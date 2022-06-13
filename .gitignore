@@ -1,0 +1,4 @@
+**/.idea
+**/venv
+toolchain/apk
+toolchain/out

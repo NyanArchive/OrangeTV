@@ -1,2 +1,3 @@
 /build
 /dex/*
+*.smali

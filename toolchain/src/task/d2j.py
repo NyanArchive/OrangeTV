@@ -17,7 +17,7 @@ class GenerateJarFile(BaseTask):
         subprocess.run(
             ["java", "-Xms512m", "-Xmx2048m", "-cp", cp,
              "com.googlecode.dex2jar.tools.Dex2jarCmd", self._apk.file_path.as_posix(),
-             "-o", env.out_dir.joinpath("tv.twitch.android.app.{}.jat".format(self._apk.version_code)).as_posix(),
+             "-o", env.out_dir.joinpath("tv.twitch.android.app.{}.jar".format(self._apk.version_code)).as_posix(),
              "--force"]
         )
 

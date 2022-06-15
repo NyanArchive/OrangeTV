@@ -65,6 +65,15 @@ def format_dex_filename(index):
     return "classes{}.dex".format(index) if index > 1 else "classes.dex"
 
 
+def inject_dex(dex_path, last_index, zip):
+    app_dex_name = format_dex_filename(last_index + 1)
+    if dex_path is zipfile.Path:
+        dex_path = dex_path.as_posix()
+    print("Injecting {} [{}]...".format(dex_path, app_dex_name))
+    last_index += 1
+    zip.write(dex_path, app_dex_name)
+
+
 class InjectAppDexs(BaseTask):
     __NAME__ = "InjectAppDexs"
 
@@ -73,10 +82,11 @@ class InjectAppDexs(BaseTask):
         last_index = get_last_dex_number(apk)
 
         writer = zipfile.ZipFile(self._apk.out_apk.as_posix(), mode="a", compression=zipfile.ZIP_DEFLATED)
-        app_dex_name = format_dex_filename(last_index + 1)
-        print("Injecting app.dex [{}]...".format(app_dex_name))
-        last_index += 1
-        writer.write(env.app_dir.joinpath("app/dex/app.dex"), app_dex_name)
+
+        for path in [env.app_dir.joinpath("app/dex/app.dex")]:
+            inject_dex(path, last_index, writer)
+            last_index += 1
+
         writer.close()
 
     def cancel(self):

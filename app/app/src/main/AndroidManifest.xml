@@ -4,8 +4,8 @@
 
     <application
         android:allowBackup="true"
-        android:label="@string/app_name"
+        android:label="Orange TV"
         android:supportsRtl="true"
-        android:theme="@style/Theme.OrangeTV" />
+        android:icon="@android:mipmap/sym_def_app_icon" />
 
 </manifest>

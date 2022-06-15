@@ -6,8 +6,8 @@ plugins {
 tasks.register('genDex')
 
 tasks.register('copyAppDex', Copy) {
-    from layout.buildDirectory.dir("intermediates/dex/debug/mergeProjectDexDebug/11/classes.dex")
-    into layout.projectDirectory.dir("dex")
+    from layout.buildDirectory.file("intermediates/dex/debug/mergeProjectDexDebug/11/classes.dex")
+    into layout.projectDirectory.file("dex")
     rename {
         "app.dex"
     }
@@ -43,8 +43,5 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.4.2'
-    implementation 'com.google.android.material:material:1.6.1'
     implementation project(path: ':Twitch')
 }

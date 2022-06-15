@@ -35,9 +35,9 @@ def get_filename(split):
 def safe_get_out_path(out_dir, split):
     l = split[0].decode().split()[2][2:]
     if l.startswith("smali/") or l.startswith("smali_"):
-        path = Path(out_dir).joinpath("smali").joinpath(l.split("/", 1)[1])
+        path = Path(out_dir).joinpath("smali").joinpath(l.split("/", 1)[1] + ".patch")
     else:
-        path = Path(out_dir).joinpath(l)
+        path = Path(out_dir).joinpath(l + ".patch")
 
     if not path.parent.exists():
         os.makedirs(path.parent.as_posix())

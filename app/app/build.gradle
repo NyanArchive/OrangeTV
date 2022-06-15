@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
-tasks.register('genDex')
+task genDex {}
 
 tasks.register('copyAppDex', Copy) {
     from layout.buildDirectory.file("/intermediates/dex/debug/mergeLibDexDebug/0/classes.dex")

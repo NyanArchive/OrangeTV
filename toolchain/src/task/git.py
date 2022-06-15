@@ -97,6 +97,14 @@ class Restore(BaseTask):
         pass
 
 
+def get_files(path: Path):
+    if path.is_file():
+        yield path
+    else:
+        for i in path.iterdir():
+            yield from get_files(i)
+
+
 class ApplyPatches(BaseTask):
     __NAME__ = "Apply patches"
 
@@ -113,20 +121,19 @@ class ApplyPatches(BaseTask):
             print("Patches not found")
             return
 
-        for file in patches.iterdir():
-            if file.is_file():
-                try:
-                    args = ["git", "apply", "--ignore-space-change", "--ignore-whitespace", file.as_posix()]
-                    if self._check:
-                        args.append("--check")
-                    subprocess.run(args, cwd=self._apk.decompile_dir, shell=True, check=True, capture_output=True)
-                    if not self._check:
-                        print("{}: OK".format(file.name))
-                except Exception as e:
-                    if self._check:
-                        print("{}\nFAILED [{}] --> \n{}{}".format('=' * 25, file.name, e.stderr.decode(), '=' * 25))
-                    else:
-                        print("{}: ERROR".format(file.name))
+        for file in get_files(patches):
+            try:
+                args = ["git", "apply", "--ignore-space-change", "--ignore-whitespace", file.as_posix()]
+                if self._check:
+                    args.append("--check")
+                subprocess.run(args, cwd=self._apk.decompile_dir, shell=True, check=True, capture_output=True)
+                if not self._check:
+                    print("{}: OK".format(file.name))
+            except Exception as e:
+                if self._check:
+                    print("{}\nFAILED [{}] --> \n{}{}".format('=' * 25, file.name, e.stderr.decode(), '=' * 25))
+                else:
+                    print("{}: ERROR".format(file.name))
 
     def cancel(self):
         pass

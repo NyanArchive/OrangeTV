@@ -69,7 +69,8 @@ def parse_env():
                signature=js['signature'],
                bin_dir=Path(wd, "bin"),
                patches_dir=Path(wd, "patches"),
-               zipalign=Path(wd, "bin", "zipalign.exe"))
+               zipalign=Path(wd, "bin", "zipalign.exe"),
+               app_dir=Path(wd).parent.joinpath("app"))
 
 
 def get_apk_desc(src: Path):
@@ -135,7 +136,10 @@ def handle_args(args, env: Env, apk: ApkDescriptor):
         tasks.append(git.ApplyPatches(apk, check=False))
     if args.recompile:
         tasks.append(apktool.RecompileApk(apk))
+        tasks.append(internal.InjectAppDexs(apk))
         tasks.append(apktool.SignApk(apk))
+    if args.debug:
+        tasks.append(internal.InjectAppDexs(apk))
     if args.restore:
         tasks.append(git.Restore(apk))
     if args.make:
@@ -166,6 +170,7 @@ if __name__ == '__main__':
     group.add_argument('--recompile', action='store_true', help="Recompile apk")
     group.add_argument('--restore', action='store_true')
     group.add_argument('--make', action='store_true')
+    group.add_argument('--debug', action='store_true')
 
     args = parser.parse_args()
 

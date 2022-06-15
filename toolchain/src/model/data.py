@@ -9,6 +9,7 @@ class Env:
     zipalign: Path
     out_dir: Path
     bin_dir: Path
+    app_dir: Path
     patches_dir: Path
     signature: str
 

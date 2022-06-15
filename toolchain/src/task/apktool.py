@@ -45,7 +45,6 @@ class SignApk(BaseTask):
         key_path = Path(os.environ.get("ORANGE_TV_SIGN_DIR", env.bin_dir))
         out_apk = self._apk.out_apk
 
-        print("Sing dir: {}".format(key_path))
         aligned = out_apk.parent.joinpath(out_apk.stem + "_aligned.apk")
         signed = out_apk.parent.joinpath(out_apk.stem + "_signed.apk")
         dig = Path(signed.parent, signed.name + ".idsig")

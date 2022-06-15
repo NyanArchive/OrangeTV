@@ -1,7 +1,19 @@
+buildscript {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+
+    dependencies {
+        classpath 'com.github.oliver-jonas.unmeta:unmeta:1.0.2'
+    }
+}
+
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
 }
+
+apply plugin: 'com.github.oliverjonas.unmeta'
 
 android {
     compileSdk 32

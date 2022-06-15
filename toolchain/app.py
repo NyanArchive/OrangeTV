@@ -177,5 +177,4 @@ if __name__ == '__main__':
     env = parse_env()
     apk = get_apk_desc(args.file)
 
-    check_apk(env, apk)
     handle_args(args=args, env=env, apk=apk)

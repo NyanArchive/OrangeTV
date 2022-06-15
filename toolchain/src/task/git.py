@@ -1,6 +1,7 @@
 import os
 import shutil
 import subprocess
+from pathlib import Path
 
 from src.model.data import Env, ApkDescriptor
 from src.task.base import BaseTask
@@ -31,14 +32,30 @@ def get_filename(split):
     return l.replace("/", ".") + ".patch"
 
 
+def safe_get_out_path(out_dir, split):
+    l = split[0].decode().split()[2][2:]
+    if l.startswith("smali/") or l.startswith("smali_"):
+        path = Path(out_dir).joinpath("smali").joinpath(l.split("/", 1)[1])
+    else:
+        path = Path(out_dir).joinpath(l)
+
+    if not path.parent.exists():
+        os.makedirs(path.parent.as_posix())
+
+    return path
+
+
 def gen_patches(splits, out_dir):
     if not out_dir.exists():
         os.makedirs(out_dir.as_posix())
 
     for split in splits:
         filename = get_filename(split)
-        with open(out_dir.joinpath(filename).as_posix(), 'wb') as fp:
-            for line in split:
+        path = safe_get_out_path(out_dir, split)
+        with open(path, 'wb') as fp:
+            for index, line in enumerate(split):
+                if index == 1 and line.startswith(b'index '):
+                    continue
                 fp.write(line)
                 fp.write(b'\n')
         print("gen::{}".format(filename))

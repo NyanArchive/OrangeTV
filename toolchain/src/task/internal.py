@@ -76,7 +76,7 @@ class InjectAppDexs(BaseTask):
         app_dex_name = format_dex_filename(last_index + 1)
         print("Injecting app.dex [{}]...".format(app_dex_name))
         last_index += 1
-        writer.write(env.app_dir.joinpath(r"app\dex\app.dex"), app_dex_name)
+        writer.write(env.app_dir.joinpath("app/dex/app.dex"), app_dex_name)
         writer.close()
 
     def cancel(self):

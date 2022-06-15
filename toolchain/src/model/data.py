@@ -7,7 +7,6 @@ class Env:
     apktool: Path
     apksigner: Path
     zipalign: Path
-    d2j: Path
     out_dir: Path
     bin_dir: Path
     patches_dir: Path

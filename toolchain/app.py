@@ -8,7 +8,7 @@ from pathlib import Path
 from pyaxmlparser import APK
 
 from src.model.data import Env, ApkDescriptor
-from src.task import apktool, internal, git, d2j
+from src.task import apktool, internal, git, enjarify
 from src.task.base import BaseTask
 
 
@@ -62,11 +62,9 @@ def parse_env():
 
     apktool = get_safe_path(os.path.join("bin", js['apktool']))
     apksigner = get_safe_path(os.path.join("bin", js['apksigner']))
-    d2j = get_safe_path(os.path.join("bin", js['d2j']))
 
     return Env(apktool=apktool,
                apksigner=apksigner,
-               d2j=d2j,
                out_dir=wd.joinpath("out"),
                signature=js['signature'],
                bin_dir=Path(wd, "bin"),
@@ -128,7 +126,7 @@ def handle_args(args, env: Env, apk: ApkDescriptor):
         tasks.append(apktool.DecompileApk(apk))
         tasks.append(git.CreateGitRepo(apk))
     if args.jar:
-        tasks.append(d2j.GenerateJarFile(apk))
+        tasks.append(enjarify.GenerateJarFile(apk))
     if args.check:
         tasks.append(git.ApplyPatches(apk, check=True))
     if args.generate:
@@ -160,12 +158,12 @@ if __name__ == '__main__':
     parser.add_argument('--force', action='store_true')
 
     group = parser.add_mutually_exclusive_group()
-    group.add_argument('--decompile', action='store_true')
-    group.add_argument('--jar', action='store_true')
-    group.add_argument('--check', action='store_true')
-    group.add_argument('--generate', action='store_true')
-    group.add_argument('--apply', action='store_true')
-    group.add_argument('--recompile', action='store_true')
+    group.add_argument('--decompile', action='store_true', help="Decompile apk and create git repo")
+    group.add_argument('--jar', action='store_true', help="Convert apk file to twitch jar file using enjarify")
+    group.add_argument('--check', action='store_true', help="Check patches")
+    group.add_argument('--generate', action='store_true', help="Generate patches")
+    group.add_argument('--apply', action='store_true', help="Apply patches")
+    group.add_argument('--recompile', action='store_true', help="Recompile apk")
     group.add_argument('--restore', action='store_true')
     group.add_argument('--make', action='store_true')
 

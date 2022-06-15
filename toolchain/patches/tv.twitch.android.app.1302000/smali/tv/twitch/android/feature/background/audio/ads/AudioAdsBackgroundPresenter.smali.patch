@@ -1,5 +1,4 @@
 diff --git a/smali_classes4/tv/twitch/android/feature/background/audio/ads/AudioAdsBackgroundPresenter.smali b/smali_classes4/tv/twitch/android/feature/background/audio/ads/AudioAdsBackgroundPresenter.smali
-index 537c53af2..04ecac0c8 100644
 --- a/smali_classes4/tv/twitch/android/feature/background/audio/ads/AudioAdsBackgroundPresenter.smali
 +++ b/smali_classes4/tv/twitch/android/feature/background/audio/ads/AudioAdsBackgroundPresenter.smali
 @@ -82,7 +82,7 @@

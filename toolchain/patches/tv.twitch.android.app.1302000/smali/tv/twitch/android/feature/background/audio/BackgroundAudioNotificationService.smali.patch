@@ -1,5 +1,4 @@
 diff --git a/smali_classes4/tv/twitch/android/feature/background/audio/BackgroundAudioNotificationService.smali b/smali_classes4/tv/twitch/android/feature/background/audio/BackgroundAudioNotificationService.smali
-index f7072decd..fdeba061a 100644
 --- a/smali_classes4/tv/twitch/android/feature/background/audio/BackgroundAudioNotificationService.smali
 +++ b/smali_classes4/tv/twitch/android/feature/background/audio/BackgroundAudioNotificationService.smali
 @@ -313,7 +313,7 @@

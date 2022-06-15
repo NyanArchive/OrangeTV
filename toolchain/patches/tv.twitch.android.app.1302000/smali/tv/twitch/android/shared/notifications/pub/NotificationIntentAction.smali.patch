@@ -1,5 +1,4 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/notifications/pub/NotificationIntentAction.smali b/smali_classes6/tv/twitch/android/shared/notifications/pub/NotificationIntentAction.smali
-index ba382e9d0..11e15865c 100644
 --- a/smali_classes6/tv/twitch/android/shared/notifications/pub/NotificationIntentAction.smali
 +++ b/smali_classes6/tv/twitch/android/shared/notifications/pub/NotificationIntentAction.smali
 @@ -130,7 +130,7 @@

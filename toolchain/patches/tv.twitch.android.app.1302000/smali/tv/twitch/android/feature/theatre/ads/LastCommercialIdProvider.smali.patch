@@ -1,5 +1,4 @@
 diff --git a/smali_classes5/tv/twitch/android/feature/theatre/ads/LastCommercialIdProvider.smali b/smali_classes5/tv/twitch/android/feature/theatre/ads/LastCommercialIdProvider.smali
-index 194018304..5afef3682 100644
 --- a/smali_classes5/tv/twitch/android/feature/theatre/ads/LastCommercialIdProvider.smali
 +++ b/smali_classes5/tv/twitch/android/feature/theatre/ads/LastCommercialIdProvider.smali
 @@ -216,7 +216,7 @@

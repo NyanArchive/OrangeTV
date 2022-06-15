@@ -1,5 +1,4 @@
 diff --git a/smali_classes5/tv/twitch/android/shared/audio/ads/AudioAdsPresenter.smali b/smali_classes5/tv/twitch/android/shared/audio/ads/AudioAdsPresenter.smali
-index 491f699e0..f08ef2a9a 100644
 --- a/smali_classes5/tv/twitch/android/shared/audio/ads/AudioAdsPresenter.smali
 +++ b/smali_classes5/tv/twitch/android/shared/audio/ads/AudioAdsPresenter.smali
 @@ -698,7 +698,7 @@

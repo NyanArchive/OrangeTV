@@ -1,5 +1,4 @@
 diff --git a/smali_classes4/tv/twitch/android/feature/background/audio/PlayerRemoteControlEventReceiver.smali b/smali_classes4/tv/twitch/android/feature/background/audio/PlayerRemoteControlEventReceiver.smali
-index b0713adec..40ced74d5 100644
 --- a/smali_classes4/tv/twitch/android/feature/background/audio/PlayerRemoteControlEventReceiver.smali
 +++ b/smali_classes4/tv/twitch/android/feature/background/audio/PlayerRemoteControlEventReceiver.smali
 @@ -49,7 +49,7 @@

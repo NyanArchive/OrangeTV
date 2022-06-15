@@ -1,5 +1,4 @@
 diff --git a/smali_classes4/tv/twitch/android/feature/background/audio/ads/BackgroundAdsAllocationPresenter$sendLastCommercialIdToForeground$2.smali b/smali_classes4/tv/twitch/android/feature/background/audio/ads/BackgroundAdsAllocationPresenter$sendLastCommercialIdToForeground$2.smali
-index de34e9890..ef2c227c2 100644
 --- a/smali_classes4/tv/twitch/android/feature/background/audio/ads/BackgroundAdsAllocationPresenter$sendLastCommercialIdToForeground$2.smali
 +++ b/smali_classes4/tv/twitch/android/feature/background/audio/ads/BackgroundAdsAllocationPresenter$sendLastCommercialIdToForeground$2.smali
 @@ -65,7 +65,7 @@

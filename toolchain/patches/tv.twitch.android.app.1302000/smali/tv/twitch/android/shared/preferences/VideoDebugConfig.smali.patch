@@ -1,5 +1,4 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/preferences/VideoDebugConfig.smali b/smali_classes6/tv/twitch/android/shared/preferences/VideoDebugConfig.smali
-index cf795f032..233a196c1 100644
 --- a/smali_classes6/tv/twitch/android/shared/preferences/VideoDebugConfig.smali
 +++ b/smali_classes6/tv/twitch/android/shared/preferences/VideoDebugConfig.smali
 @@ -120,37 +120,9 @@

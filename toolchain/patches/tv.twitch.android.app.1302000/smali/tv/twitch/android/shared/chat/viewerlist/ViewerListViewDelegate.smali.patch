@@ -1,0 +1,61 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate.smali b/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate.smali
+--- a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate.smali
++++ b/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate.smali
+@@ -3,6 +3,10 @@
+ .source "ViewerListViewDelegate.kt"
+ 
+ 
++# interfaces
++.implements Ltv/orange/features/usersearch/bridge/IViewerListViewDelegate;
++
++
+ # annotations
+ .annotation system Ldalvik/annotation/MemberClasses;
+     value = {
+@@ -30,6 +34,8 @@
+ 
+ .field private final dismissButton:Landroid/widget/ImageView;
+ 
++.field private final searchBar:Landroidx/appcompat/widget/SearchView;
++
+ 
+ # direct methods
+ .method public static synthetic $r8$lambda$pZ_AjEngR_aDo6XA2Coq_BnyOZE(Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate;Landroid/view/View;)V
+@@ -109,6 +115,14 @@
+ 
+     invoke-virtual {p1, p2}, Landroid/widget/ImageView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+ 
++    sget-object v0, Ltv/orange/features/usersearch/Hook;->INSTANCE:Ltv/orange/features/usersearch/Hook;
++
++    invoke-virtual {v0, p0}, Ltv/orange/features/usersearch/Hook;->getSearchBar(Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate;)Landroidx/appcompat/widget/SearchView;
++
++    move-result-object v0
++
++    iput-object v0, p0, Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate;->searchBar:Landroidx/appcompat/widget/SearchView;
++
+     return-void
+ .end method
+ 
+@@ -163,3 +177,22 @@
+ 
+     return-void
+ .end method
++
++.method public onInputSearchTextChanged(Ljava/lang/String;)V
++    .registers 3
++    .param p1, "text"    # Ljava/lang/String;
++        .annotation build Lorg/jetbrains/annotations/Nullable;
++        .end annotation
++    .end param
++
++    .prologue
++    .line 31
++    new-instance v0, Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event$Search;
++
++    invoke-direct {v0, p1}, Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event$Search;-><init>(Ljava/lang/String;)V
++
++    invoke-virtual {p0, v0}, Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate;->pushEvent(Ltv/twitch/android/core/mvp/viewdelegate/ViewDelegateEvent;)V
++
++    .line 32
++    return-void
++.end method

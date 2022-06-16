@@ -3,7 +3,6 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
-
 android {
     compileSdk 32
 
@@ -31,6 +30,4 @@ android {
 
 dependencies {
 
-implementation project(path: ':Twitch')
-    implementation project(path: ':models')
 }

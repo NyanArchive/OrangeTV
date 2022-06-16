@@ -16,3 +16,4 @@ rootProject.name = "Orange TV"
 include ':app'
 include ':Twitch'
 include ':core'
+include ':models'

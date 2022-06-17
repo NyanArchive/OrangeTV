@@ -2,7 +2,6 @@ import argparse
 import base64
 import json
 import os
-import sys
 from pathlib import Path
 
 from pyaxmlparser import APK
@@ -10,10 +9,7 @@ from pyaxmlparser import APK
 from src.model.data import Env, ApkDescriptor
 from src.task import apktool, internal, git, enjarify
 from src.task.base import BaseTask
-
-
-def get_working_directory():
-    return Path(os.getcwd())
+from src.util import get_working_directory, get_safe_path, done, print_title, die
 
 
 def parse_file_arg(arg: str):
@@ -37,22 +33,6 @@ def parse_file_arg(arg: str):
             return fpath
 
     raise FileNotFoundError(arg)
-
-
-def get_path(src):
-    if os.path.isabs(src):
-        return Path(src)
-    else:
-        return Path(get_working_directory(), src)
-
-
-def get_safe_path(src):
-    fpath = get_path(src)
-
-    if not fpath.exists():
-        raise FileNotFoundError(fpath)
-
-    return fpath
 
 
 def parse_env():
@@ -86,34 +66,32 @@ def get_apk_desc(src: Path):
                          out_apk=Path(get_working_directory(), "out", src.name))
 
 
-def check_apk(env: Env, apk: ApkDescriptor):
-    if env.signature != apk.signature:
-        raise Exception("Bad apk signature!")
-
-
-def done(msg):
-    print(msg)
-    sys.exit(0)
-
-
-def die(msg):
-    print(msg)
-    sys.exit(1)
-
-
 def run(tasks: [BaseTask], env: Env, restricted=True):
     if not tasks:
         done("Done!")
 
     for task in tasks:
         try:
-            print("{}: running...".format(task.__NAME__))
+            print_title("[TASK] {}".format(task.__NAME__))
             task.run(env=env)
-            print("{}: done".format(task.__NAME__))
+            print("[TASK] {}: Done".format(task.__NAME__))
         except Exception as e:
             print(e)
             if restricted:
                 raise e
+
+
+def create_decompile_tasks(tasks):
+    tasks.append(internal.Cleanup(apk))
+    tasks.append(apktool.DecompileApk(apk))
+    tasks.append(git.CreateGitRepo(apk))
+
+
+def create_recompile_tasks(tasks):
+    tasks.append(apktool.RecompileApk(apk))
+    tasks.append(internal.BuildAppDex(apk))
+    tasks.append(internal.InjectAppDexs(apk))
+    tasks.append(apktool.SignApk(apk))
 
 
 def handle_args(args, env: Env, apk: ApkDescriptor):
@@ -123,9 +101,7 @@ def handle_args(args, env: Env, apk: ApkDescriptor):
         if apk.decompile_dir.exists() and not args.force:
             die("Use --force")
 
-        tasks.append(internal.Cleanup(apk))
-        tasks.append(apktool.DecompileApk(apk))
-        tasks.append(git.CreateGitRepo(apk))
+        create_decompile_tasks(tasks)
     if args.jar:
         tasks.append(enjarify.GenerateJarFile(apk))
     if args.check:
@@ -135,28 +111,23 @@ def handle_args(args, env: Env, apk: ApkDescriptor):
     if args.apply:
         tasks.append(git.ApplyPatches(apk, check=False))
     if args.recompile:
-        tasks.append(apktool.RecompileApk(apk))
-        tasks.append(internal.InjectAppDexs(apk))
-        tasks.append(apktool.SignApk(apk))
+        create_recompile_tasks(tasks)
     if args.debug:
-        tasks.append(internal.InjectAppDexs(apk))
+        tasks.append(internal.BuildAppDex(apk))
     if args.restore:
         tasks.append(git.Restore(apk))
     if args.make:
         if apk.decompile_dir.exists() and not args.force:
             die("Use --force")
 
-        tasks.append(internal.Cleanup(apk))
-        tasks.append(apktool.DecompileApk(apk))
-        tasks.append(git.CreateGitRepo(apk))
+        create_decompile_tasks(tasks)
         tasks.append(git.ApplyPatches(apk, check=False))
-        tasks.append(apktool.RecompileApk(apk))
-        tasks.append(apktool.SignApk(apk))
+        create_recompile_tasks(tasks)
 
     run(env=env, tasks=tasks)
 
 
-def get_file_path(path):
+def get_apk_filepath(path):
     if path:
         return path
 
@@ -190,8 +161,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     env = parse_env()
-    apk_fp = get_file_path(args.file)
-    print("APK: {}".format(apk_fp))
+    apk_fp = get_apk_filepath(args.file)
+    print("Current APK: {}".format(apk_fp))
     apk = get_apk_desc(apk_fp)
 
     handle_args(args=args, env=env, apk=apk)

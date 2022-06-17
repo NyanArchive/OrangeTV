@@ -1,3 +1,4 @@
+import subprocess
 import zipfile
 
 from pyaxmlparser import APK
@@ -15,6 +16,19 @@ class Cleanup(BaseTask):
                 raise Exception("Cannot decompile apk: {} is file ".format(self._apk.decompile_dir))
             else:
                 self._apk.decompile_dir.unlink()
+
+    def cancel(self):
+        pass
+
+
+class BuildAppDex(BaseTask):
+    __NAME__ = "BuildAppDex"
+
+    def run(self, env: Env):
+        subprocess.run(
+            [env.app_dir.joinpath("gradlew.bat").as_posix(), "genDex"],  # FIXME: windows only
+            cwd=env.app_dir.as_posix()
+        )
 
     def cancel(self):
         pass

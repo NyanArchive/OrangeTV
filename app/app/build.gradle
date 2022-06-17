@@ -48,4 +48,5 @@ dependencies {
     implementation project(path: ':models')
     implementation project(path: ':features:usersearch')
     implementation project(path: ':features:refreshstream')
+    implementation project(path: ':features:emotes')
 }

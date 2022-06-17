@@ -1,4 +1,4 @@
-package tv.orange.features.usersearch
+package tv.orange.features.usersearch.view
 
 import androidx.appcompat.widget.SearchView
 import tv.twitch.android.shared.chat.viewerlist.ViewerListViewDelegate

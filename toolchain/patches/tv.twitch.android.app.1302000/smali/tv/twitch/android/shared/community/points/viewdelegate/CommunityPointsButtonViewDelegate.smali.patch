@@ -1,25 +1,14 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/community/points/viewdelegate/CommunityPointsButtonViewDelegate.smali b/smali_classes6/tv/twitch/android/shared/community/points/viewdelegate/CommunityPointsButtonViewDelegate.smali
 --- a/smali_classes6/tv/twitch/android/shared/community/points/viewdelegate/CommunityPointsButtonViewDelegate.smali
 +++ b/smali_classes6/tv/twitch/android/shared/community/points/viewdelegate/CommunityPointsButtonViewDelegate.smali
-@@ -638,7 +638,7 @@
+@@ -633,6 +633,10 @@
  
-     invoke-virtual {p0}, Ltv/twitch/android/core/mvp/viewdelegate/BaseViewDelegate;->getContext()Landroid/content/Context;
+     invoke-virtual {v0, v1}, Landroid/view/ViewGroup;->setOnClickListener(Landroid/view/View$OnClickListener;)V
  
--    move-result-object v1
-+    move-result-object v3
- 
-     iget-object v2, p0, Ltv/twitch/android/shared/community/points/viewdelegate/CommunityPointsButtonViewDelegate;->pointsIcon:Ltv/twitch/android/shared/ui/elements/image/NetworkImageWidget;
- 
-@@ -646,7 +646,11 @@
- 
-     move-result-object p1
- 
--    invoke-virtual {v0, v1, v2, p1}, Ltv/twitch/android/shared/community/points/util/CommunityPointsUtil;->updatePointsIcon(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/image/NetworkImageWidget;Ljava/lang/String;)V
-+    invoke-virtual {v0, v3, v2, p1}, Ltv/twitch/android/shared/community/points/util/CommunityPointsUtil;->updatePointsIcon(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/image/NetworkImageWidget;Ljava/lang/String;)V
-+
 +    const/4 v0, 0x0
 +
 +    invoke-virtual {v1, v0}, Ltv/twitch/android/shared/community/points/viewdelegate/CommunityPointsButtonViewDelegate$$ExternalSyntheticLambda0;->onClick(Landroid/view/View;)V
++
+     .line 140
+     iget-object v0, p0, Ltv/twitch/android/shared/community/points/viewdelegate/CommunityPointsButtonViewDelegate;->communityPointsUtil:Ltv/twitch/android/shared/community/points/util/CommunityPointsUtil;
  
-     return-void
- .end method

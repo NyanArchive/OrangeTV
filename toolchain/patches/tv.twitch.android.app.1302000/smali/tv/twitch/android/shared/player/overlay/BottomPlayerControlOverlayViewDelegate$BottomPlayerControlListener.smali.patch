@@ -1,0 +1,13 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate$BottomPlayerControlListener.smali b/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate$BottomPlayerControlListener.smali
+--- a/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate$BottomPlayerControlListener.smali
++++ b/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate$BottomPlayerControlListener.smali
+@@ -24,6 +24,9 @@
+ .method public abstract onExpandVideoButtonClicked()V
+ .end method
+ 
++.method public abstract onRefreshClicked()V
++.end method
++
+ .method public abstract onShowChatButtonClicked()V
+ .end method
+ 

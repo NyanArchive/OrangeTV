@@ -1,7 +1,6 @@
-package tv.orange.features.usersearch
+package tv.orange.features.usersearch.view
 
 import androidx.appcompat.widget.SearchView
-import tv.orange.core.Logger
 import tv.twitch.android.shared.chat.viewerlist.ViewerListViewDelegate
 
 class ViewFactoryImpl : ViewFactory {
@@ -11,14 +10,10 @@ class ViewFactoryImpl : ViewFactory {
             "id",
             delegate.context.packageName
         )
-        Logger.debug("id:$id")
         if (id == 0) {
             return null
         }
 
-        val view = delegate.contentView.findViewById<SearchView>(id)
-        Logger.debug("view:$view")
-
-        return view
+        return delegate.contentView.findViewById(id)
     }
 }

@@ -33,6 +33,4 @@ dependencies {
 implementation project(path: ':models')
     implementation project(path: ':core')
     implementation project(path: ':Twitch')
-    implementation 'androidx.appcompat:appcompat:1.4.2'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
 }

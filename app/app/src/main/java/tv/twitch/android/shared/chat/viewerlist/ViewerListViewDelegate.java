@@ -15,7 +15,7 @@ import tv.twitch.android.core.mvp.viewdelegate.ViewDelegateEvent;
 import tv.twitch.android.core.mvp.viewdelegate.ViewDelegateState;
 import tv.twitch.android.shared.ui.elements.list.ContentListViewDelegate;
 
-public class ViewerListViewDelegate extends RxViewDelegate implements IViewerListViewDelegate {
+public class ViewerListViewDelegate extends RxViewDelegate implements IViewerListViewDelegate { // TODO: @features:usersearch
     private final SearchView searchBar; // TODO: __INJECT_FIELD
 
     public ViewerListViewDelegate(Context context, View root, ContentListViewDelegate contentListViewDelegate) {
@@ -23,7 +23,7 @@ public class ViewerListViewDelegate extends RxViewDelegate implements IViewerLis
 
         /* ... */
 
-        searchBar = Hook.INSTANCE.getSearchBar(this); // TODO: __INJECT_CODE
+        searchBar = Hook.Companion.getInstance().getSearchBar(this); // TODO: __INJECT_CODE
     }
 
     @Override

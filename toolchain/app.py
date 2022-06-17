@@ -156,9 +156,24 @@ def handle_args(args, env: Env, apk: ApkDescriptor):
     run(env=env, tasks=tasks)
 
 
+def get_file_path(path):
+    if path:
+        return path
+
+    apk_dir = Path(get_working_directory()).joinpath('apk')
+    if not apk_dir.exists():
+        die("apk dir not found")
+
+    for p in apk_dir.iterdir():
+        if p.is_file() and p.name.endswith('.apk'):  # get first file
+            return p
+
+    die("apk not found")
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='OrangeTV toolchain')
-    parser.add_argument('-f', '--file', type=parse_file_arg, required=True)
+    parser.add_argument('-f', '--file', type=parse_file_arg)
     parser.add_argument('--force', action='store_true')
 
     group = parser.add_mutually_exclusive_group()
@@ -175,6 +190,8 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     env = parse_env()
-    apk = get_apk_desc(args.file)
+    apk_fp = get_file_path(args.file)
+    print("APK: {}".format(apk_fp))
+    apk = get_apk_desc(apk_fp)
 
     handle_args(args=args, env=env, apk=apk)

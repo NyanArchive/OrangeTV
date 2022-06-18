@@ -43,6 +43,7 @@ class SignApk(BaseTask):
 
     def run(self, env: Env):
         key_path = Path(os.environ.get("ORANGE_TV_SIGN_DIR", env.bin_dir))
+        print("Key path: {}".format(key_path))
         out_apk = self._apk.out_apk
 
         aligned = out_apk.parent.joinpath(out_apk.stem + "_aligned.apk")

@@ -38,3 +38,11 @@ def print_title(name, size=100):
     l_half = c // 2
     r_half = c - l_half
     print("*" * l_half, name, "*" * r_half)
+
+
+def get_files(path: Path):
+    if path.is_file():
+        yield path
+    else:
+        for i in path.iterdir():
+            yield from get_files(i)

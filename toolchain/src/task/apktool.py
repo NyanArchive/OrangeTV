@@ -2,6 +2,7 @@ import os
 import subprocess
 from pathlib import Path
 
+import src.util
 from src.model.data import Env
 from src.task.base import BaseTask
 
@@ -36,6 +37,31 @@ class RecompileApk(BaseTask):
 
     def cancel(self):
         pass
+
+
+def fix_annotations(file: Path):
+    with open(file.as_posix(), 'rb') as fp:
+        content = fp.read()
+
+    if b'&lt;annotation ' not in content:
+        return
+
+    print("Fix: {}".format(file.as_posix()))
+    with open(file.as_posix(), 'wb') as fp:
+        fp.write(content.replace(b'&lt;annotation ', b'<annotation ').replace(b'&lt;/annotation>', b'</annotation>'))
+
+
+class FixAnnotations(BaseTask):
+    def run(self, env: Env):
+        for file in src.util.get_files(self._apk.decompile_dir.joinpath("res")):
+            if file.parent.name == 'values' or file.parent.name.startswith('values-'):
+                if file.name == 'plurals.xml':
+                    fix_annotations(file)
+
+    def cancel(self):
+        pass
+
+    __NAME__ = "FixAnnotations"
 
 
 class SignApk(BaseTask):

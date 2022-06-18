@@ -5,6 +5,7 @@ from pathlib import Path
 
 from src.model.data import Env, ApkDescriptor
 from src.task.base import BaseTask
+from src.util import get_files
 
 
 def split_out(out):
@@ -95,14 +96,6 @@ class Restore(BaseTask):
 
     def cancel(self):
         pass
-
-
-def get_files(path: Path):
-    if path.is_file():
-        yield path
-    else:
-        for i in path.iterdir():
-            yield from get_files(i)
 
 
 class ApplyPatches(BaseTask):

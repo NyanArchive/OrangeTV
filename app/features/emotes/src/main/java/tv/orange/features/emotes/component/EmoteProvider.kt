@@ -15,4 +15,12 @@ class EmoteProvider() : EmoteProvider {
     override fun getUserEmotes(userId: Int): List<Emote> {
         TODO("Not yet implemented")
     }
+
+    override fun requestEmotes(channelId: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun requestUserEmotes(userId: Int) {
+        TODO("Not yet implemented")
+    }
 }

@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import io.reactivex.subjects.PublishSubject;
 import tv.twitch.android.core.mvp.viewdelegate.BaseViewDelegate;
 import tv.twitch.android.models.player.PlayerMode;
+import tv.twitch.android.models.streams.StreamModel;
 import tv.twitch.android.shared.ads.pub.TheatreAdsState;
 
 public class PlayerOverlayViewDelegate extends BaseViewDelegate implements IPlayerOverlay { // TODO: @features:refreshstream
@@ -97,6 +98,14 @@ public class PlayerOverlayViewDelegate extends BaseViewDelegate implements IPlay
     }
 
     public final PublishSubject<PlayerOverlayEvents> getPlayerOverlayEventsSubject() {
+        return null;
+    }
+
+    public final void bindStreamUptime(StreamModel model) { // TODO: __INJECT_METHOD
+        getBottomPlayerControlOverlayViewDelegate().bindStreamUptime(model);
+    }
+
+    private BottomPlayerControlOverlayViewDelegate getBottomPlayerControlOverlayViewDelegate() {
         return null;
     }
 }

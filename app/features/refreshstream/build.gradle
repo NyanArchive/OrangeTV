@@ -30,8 +30,5 @@ android {
 }
 
 dependencies {
-
-    implementation project(path: ':Twitch')
-    implementation project(path: ':models')
-    implementation project(path: ':core')
+    implementation project(path: ':features:core')
 }

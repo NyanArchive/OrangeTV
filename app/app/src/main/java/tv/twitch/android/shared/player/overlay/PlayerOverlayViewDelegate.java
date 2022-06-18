@@ -57,7 +57,7 @@ public class PlayerOverlayViewDelegate extends BaseViewDelegate implements IPlay
             @Override
             public void onRefreshClicked() { // TODO: __INJECT_METHOD
                 PlayerOverlayViewDelegate.this.getOverlayLayoutController().hideOverlay();
-                PlayerOverlayViewDelegate.this.getPlayerOverlayEventsSubject().onNext(PlayerOverlayEvents$Refresh.INSTANCE); // FIXME: wtf?
+                PlayerOverlayViewDelegate.this.getPlayerOverlayEventsSubject().onNext(PlayerOverlayEvents.Refresh.INSTANCE); // FIXME: wtf?
             }
         };
     }

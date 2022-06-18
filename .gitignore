@@ -2,3 +2,4 @@
 **/venv
 toolchain/apk/*
 toolchain/out/*
+tools/*

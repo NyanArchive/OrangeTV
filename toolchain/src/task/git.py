@@ -66,7 +66,8 @@ class GeneratePatches(BaseTask):
     __NAME__ = "Generate patches"
 
     def run(self, env: Env):
-        with subprocess.Popen(["git", "diff", "--minimal", "--ignore-space-at-eol"], cwd=self._apk.decompile_dir,
+        subprocess.run(["git", "add", "."], cwd=self._apk.decompile_dir)
+        with subprocess.Popen(["git", "diff", "HEAD", "--minimal", "--ignore-space-at-eol"], cwd=self._apk.decompile_dir,
                               stdout=subprocess.PIPE, stderr=subprocess.PIPE) as p:
             splits = split_out(p.stdout.read())
             gen_patches(splits, env.patches_dir.joinpath(self._apk.decompile_dir.name))

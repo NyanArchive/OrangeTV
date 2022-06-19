@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 
@@ -33,4 +34,6 @@ dependencies {
 
 implementation project(path: ':Twitch')
     implementation project(path: ':models')
+
+    kapt "com.google.dagger:dagger-compiler:2.42"
 }

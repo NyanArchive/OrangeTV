@@ -1,11 +1,20 @@
 package tv.twitch.android.app.consumer;
 
-import tv.orange.core.Logger;
+import tv.orange.core.Core;
 
 public class TwitchApplication {
-    public void onCreate(){
+    public Core orange; // TODO: __INJECT_FIELD
+
+    public Core getOrange() { // TODO: __INJECT_METHOD
+        return orange;
+    }
+
+    public void onCreate() {
         /* ... */
 
-        Logger.INSTANCE.debug("Hello world!"); // TODO: __INJECT_CODE
+        orange = Core.Companion.create(); // TODO: __INJECT_CODE
+        orange.initialize(); // TODO: __INJECT_CODE
+
+        /* ... */
     }
 }

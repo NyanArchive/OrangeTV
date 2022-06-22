@@ -85,6 +85,7 @@ def create_decompile_tasks(tasks):
     tasks.append(internal.Cleanup(apk))
     tasks.append(apktool.DecompileApk(apk))
     tasks.append(apktool.FixAnnotations(apk))
+    tasks.append(apktool.FixClasses(apk))
     tasks.append(git.CreateGitRepo(apk))
 
 
@@ -114,7 +115,7 @@ def handle_args(args, env: Env, apk: ApkDescriptor):
     if args.recompile:
         create_recompile_tasks(tasks)
     if args.debug:
-        tasks.append(apktool.FixAnnotations(apk))
+        tasks.append(apktool.FixClasses(apk))
     if args.restore:
         tasks.append(git.Restore(apk))
     if args.make:

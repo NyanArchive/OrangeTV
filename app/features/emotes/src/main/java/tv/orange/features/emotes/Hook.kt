@@ -36,6 +36,16 @@ class Hook @Inject constructor(val emoteProvider: EmoteProvider): LifecycleAware
         }
     }
 
+    private fun requestChannelEmotes(channelId: Int?) {
+        channelId ?: return
+
+        if (channelId <= 0) {
+            return
+        }
+
+        emoteProvider.requestChannelEmotes(channelId)
+    }
+
     override fun onAllComponentDestroyed() {
         emoteProvider.clear()
     }
@@ -55,5 +65,9 @@ class Hook @Inject constructor(val emoteProvider: EmoteProvider): LifecycleAware
     }
 
     override fun onFirstActivityStarted() {
+    }
+
+    override fun onConnectedToChannel(channelId: Int) {
+        requestChannelEmotes(channelId)
     }
 }

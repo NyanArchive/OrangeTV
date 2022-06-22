@@ -2,7 +2,10 @@ package tv.orange.features.emotes.component
 
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import tv.orange.core.Logger
+import tv.orange.features.emotes.component.data.models.Cache
+import tv.orange.features.emotes.component.data.models.ChannelSet
 import tv.orange.features.emotes.component.data.models.EmoteSet
 import tv.orange.features.emotes.component.repository.EmoteRepository
 import tv.orange.features.emotes.models.Emote
@@ -11,6 +14,8 @@ import javax.inject.Inject
 class EmoteProvider @Inject constructor(val emoteRepository: EmoteRepository) {
     private var globalBttvSet = EmoteSet(listOf())
     private var globalFfzSet = EmoteSet(listOf())
+
+    private val channelEmotesCache = Cache(3)
 
     private val disposables = CompositeDisposable()
 
@@ -34,6 +39,12 @@ class EmoteProvider @Inject constructor(val emoteRepository: EmoteRepository) {
         }, "BTTV-GLOBAL")
     }
 
+    private fun fetchFfzGlobalSet() {
+        fetch(emoteRepository.getFfzGlobalEmotes(), { emotes ->
+            globalFfzSet = EmoteSet(emotes)
+        }, "FFZ-GLOBAL")
+    }
+
     fun clear() {
         disposables.clear()
     }
@@ -43,15 +54,37 @@ class EmoteProvider @Inject constructor(val emoteRepository: EmoteRepository) {
     }
 
     fun getChannelEmotes(channelId: Int): List<Emote> {
-        return listOf()
+        return channelEmotesCache[channelId]?.allEmotes ?: emptyList()
     }
 
     fun getUserEmotes(userId: Int): List<Emote> {
-        return listOf()
+        return emptyList()
     }
 
-    fun requestEmotes(channelId: Int) {
+    fun requestChannelEmotes(channelId: Int) {
+        if (channelEmotesCache[channelId] == null) {
+            fetchChannelEmotes(channelId)
+        }
+    }
 
+    private fun fetchChannelEmotes(channelId: Int) {
+        disposables.add(
+            Single.zip(
+                emoteRepository.getBttvChannelEmotes(channelId).subscribeOn(Schedulers.io()),
+                emoteRepository.getFfzChannelEmotes(channelId).subscribeOn(Schedulers.io())
+            ) { bttvEmotes, ffzEmotes ->
+                val set = ChannelSet(
+                    bttvEmotes = EmoteSet(bttvEmotes),
+                    ffzEmotes = EmoteSet(ffzEmotes)
+                )
+                Logger.debug("set: $set")
+                return@zip set
+            }.subscribe({ set ->
+                channelEmotesCache.put(channelId, set)
+            }, {
+                it.printStackTrace()
+            })
+        )
     }
 
     fun requestUserEmotes(userId: Int) {
@@ -61,7 +94,7 @@ class EmoteProvider @Inject constructor(val emoteRepository: EmoteRepository) {
     fun updateEmotes() {
         with(globalFfzSet) {
             if (isEmpty()) {
-                // TODO("FFZ")
+                fetchFfzGlobalSet()
             }
         }
         with(globalBttvSet) {

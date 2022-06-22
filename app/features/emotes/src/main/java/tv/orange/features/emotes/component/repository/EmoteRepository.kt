@@ -9,4 +9,16 @@ class EmoteRepository @Inject constructor(val bttvDataSource: BttvRemoteDataSour
     fun getBttvGlobalEmotes(): Single<List<Emote>> {
         return bttvDataSource.getGlobalEmotes()
     }
+
+    fun getFfzGlobalEmotes(): Single<List<Emote>> {
+        return bttvDataSource.getGlobalFfzEmotes()
+    }
+
+    fun getBttvChannelEmotes(channelId: Int): Single<List<Emote>> {
+        return bttvDataSource.getChannelBttvEmotes(channelId)
+    }
+
+    fun getFfzChannelEmotes(channelId: Int): Single<List<Emote>> {
+        return bttvDataSource.getChannelFfzEmotes(channelId)
+    }
 }

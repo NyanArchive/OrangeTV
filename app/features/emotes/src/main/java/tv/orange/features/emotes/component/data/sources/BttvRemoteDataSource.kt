@@ -17,4 +17,22 @@ class BttvRemoteDataSource @Inject constructor(
             bttvMapper.map(emotes)
         }
     }
+
+    fun getGlobalFfzEmotes(): Single<List<Emote>> {
+        return bttvApi.globalFfzEmotes().subscribeOn(Schedulers.io()).map { emotes ->
+            bttvMapper.mapFfz(emotes)
+        }
+    }
+
+    fun getChannelBttvEmotes(channelId: Int): Single<List<Emote>> {
+        return bttvApi.bttvEmotes(channelId).subscribeOn(Schedulers.io()).map { emotes ->
+            bttvMapper.mapChannel(emotes)
+        }
+    }
+
+    fun getChannelFfzEmotes(channelId: Int): Single<List<Emote>> {
+        return bttvApi.ffzEmotes(channelId).subscribeOn(Schedulers.io()).map { emotes ->
+            bttvMapper.mapFfz(emotes)
+        }
+    }
 }

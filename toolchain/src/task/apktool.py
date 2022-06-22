@@ -1,4 +1,5 @@
 import os
+import shutil
 import subprocess
 from pathlib import Path
 
@@ -51,7 +52,45 @@ def fix_annotations(file: Path):
         fp.write(content.replace(b'&lt;annotation ', b'<annotation ').replace(b'&lt;/annotation>', b'</annotation>'))
 
 
+def get_last_dex_num(path: Path):
+    last = 0
+    for file in path.iterdir():
+        if file.is_dir():
+            if file.name.startswith("smali_classes"):
+                num = file.name[13:]
+                if num.isdecimal():
+                    val = int(num)
+                    if val > last:
+                        last = val
+
+    return last
+
+
+class FixClasses(BaseTask):
+    __NAME__ = "FixClasses"
+
+    def run(self, env: Env):
+        last_dex_num = get_last_dex_num(self._apk.decompile_dir)
+        md = Path(self._apk.decompile_dir).joinpath("smali_classes{}".format(last_dex_num + 1))
+        md.mkdir()
+        print("Moving classes to {}".format(md.as_posix()))
+        models = Path(self._apk.decompile_dir).joinpath("smali_classes5/tv/twitch/android/models")
+        if models.exists():
+            new_dir = md.joinpath("tv/twitch/android")
+            new_dir.mkdir(parents=True)
+            shutil.move(models.as_posix(), new_dir.as_posix())
+            print("Models: OK")
+        else:
+            print("Models: not found")
+
+    def cancel(self):
+        pass
+
+
+
 class FixAnnotations(BaseTask):
+    __NAME__ = "FixAnnotations"
+
     def run(self, env: Env):
         for file in src.util.get_files(self._apk.decompile_dir.joinpath("res")):
             if file.parent.name == 'values' or file.parent.name.startswith('values-'):
@@ -60,8 +99,6 @@ class FixAnnotations(BaseTask):
 
     def cancel(self):
         pass
-
-    __NAME__ = "FixAnnotations"
 
 
 class SignApk(BaseTask):

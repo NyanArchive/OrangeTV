@@ -1,13 +1,18 @@
 package tv.orange.features.streamuptime
 
 import tv.orange.core.Logger
+import tv.orange.features.core.CoreFeature
 import tv.orange.features.streamuptime.bridge.StreamUptimeView
+import tv.orange.features.streamuptime.di.DaggerStreamUptimeComponent
+import tv.orange.features.streamuptime.di.StreamUptimeScope
 import tv.twitch.android.models.streams.StreamModel
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
-class Hook {
+@StreamUptimeScope
+class Hook @Inject constructor() {
     fun bindStreamUptime(uptimeView: StreamUptimeView, streamModel: StreamModel) {
         val date = getStandardizeDateString(streamModel.createdAt) ?: run {
             Logger.error("Cannot parse createAt: ${streamModel.createdAt}")
@@ -42,8 +47,18 @@ class Hook {
             }
         }
 
-        val instance by lazy {
-            Hook()
+        private val INSTANCE by lazy {
+            val hook = DaggerStreamUptimeComponent.builder()
+                .coreFeatureComponent(CoreFeature.get().component)
+                .build().hook
+            Logger.debug("created: $hook")
+
+            return@lazy hook
+        }
+
+        @JvmStatic
+        fun get(): Hook {
+            return INSTANCE
         }
     }
 }

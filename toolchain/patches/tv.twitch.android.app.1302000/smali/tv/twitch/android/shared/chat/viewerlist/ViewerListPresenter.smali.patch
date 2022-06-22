@@ -12,13 +12,11 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListP
  # annotations
  .annotation system Ldalvik/annotation/MemberClasses;
      value = {
-@@ -312,6 +316,14 @@
+@@ -312,6 +316,12 @@
      .line 60
      iput-object p1, p0, Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter;->viewDelegate:Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate;
  
-+    sget-object v0, Ltv/orange/features/usersearch/Hook;->Companion:Ltv/orange/features/usersearch/Hook$Companion;
-+
-+    invoke-virtual {v0}, Ltv/orange/features/usersearch/Hook$Companion;->getInstance()Ltv/orange/features/usersearch/Hook;
++    invoke-static {}, Ltv/orange/features/usersearch/Hook;->get()Ltv/orange/features/usersearch/Hook;
 +
 +    move-result-object v0
 +
@@ -27,7 +25,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListP
      return-void
  .end method
  
-@@ -394,3 +406,33 @@
+@@ -394,3 +404,33 @@
      :cond_0
      return-void
  .end method

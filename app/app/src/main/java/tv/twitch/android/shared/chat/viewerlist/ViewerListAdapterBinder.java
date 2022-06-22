@@ -23,7 +23,7 @@ public final class ViewerListAdapterBinder { // TODO: @features:usersearch
 
         Chatters chatters = orgChatters;
         if (!TextUtils.isEmpty(searchUserText)) {
-            chatters = Hook.Companion.getInstance().filterChatters(orgChatters, searchUserText);
+            chatters = Hook.get().filterChatters(orgChatters, searchUserText);
         }
 
         clear();

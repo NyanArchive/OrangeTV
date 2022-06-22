@@ -1,0 +1,22 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMessageFactory.smali b/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMessageFactory.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMessageFactory.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMessageFactory.smali
+@@ -726,6 +726,18 @@
+         }
+     .end annotation
+ 
++    invoke-static {}, Ltv/orange/features/emotes/Hook;->get()Ltv/orange/features/emotes/Hook;
++
++    move-result-object v0
++
++    move/from16 v1, p5
++
++    move-object/from16 v2, p1
++
++    invoke-virtual {v0, v2, v1}, Ltv/orange/features/emotes/Hook;->injectEmotes(Ltv/twitch/android/provider/chat/ChatMessageInterface;I)Ltv/twitch/android/provider/chat/ChatMessageInterface;
++
++    move-result-object p1
++
+     .line 784
+     invoke-interface/range {p1 .. p1}, Ltv/twitch/android/provider/chat/ChatMessageInterface;->isSystemMessage()Z
+ 

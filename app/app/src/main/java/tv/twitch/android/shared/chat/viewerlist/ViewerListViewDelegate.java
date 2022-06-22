@@ -23,7 +23,7 @@ public class ViewerListViewDelegate extends RxViewDelegate implements IViewerLis
 
         /* ... */
 
-        searchBar = Hook.Companion.getInstance().getSearchBar(this); // TODO: __INJECT_CODE
+        searchBar = Hook.get().getSearchBar(this); // TODO: __INJECT_CODE
     }
 
     @Override

@@ -42,9 +42,18 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    api 'io.reactivex.rxjava2:rxjava:2.2.21'
-    api 'androidx.appcompat:appcompat:1.4.2'
-    api 'com.squareup.okhttp3:okhttp:4.9.3'
+    api "androidx.appcompat:appcompat:$appcompat_version"
 
-    api 'com.google.dagger:dagger:2.42'
+    api "io.reactivex.rxjava2:rxjava:$rxjava2_version"
+
+    api "com.squareup.okhttp3:okhttp:$okhttp3_version"
+
+    api "com.google.dagger:dagger:$dagger_version"
+
+    api "com.google.code.gson:gson:$gson_version"
+
+    api "com.squareup.retrofit2:retrofit:$retrofit_version"
+    api "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    api "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation project(path: ':models')
 }

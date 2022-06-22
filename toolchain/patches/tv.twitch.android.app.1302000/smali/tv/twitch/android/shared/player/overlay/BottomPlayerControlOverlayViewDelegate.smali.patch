@@ -49,13 +49,11 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayer
  
      .line 76
      sget v1, Ltv/twitch/android/shared/ui/cards/R$id;->stream_stats_icon:I
-@@ -451,6 +457,18 @@
+@@ -451,6 +457,16 @@
  
      invoke-virtual {v6, p1}, Landroid/widget/ImageView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
  
-+    sget-object v0, Ltv/orange/features/refreshstream/Hook;->Companion:Ltv/orange/features/refreshstream/Hook$Companion;
-+
-+    invoke-virtual {v0}, Ltv/orange/features/refreshstream/Hook$Companion;->getInstance()Ltv/orange/features/refreshstream/Hook;
++    invoke-static {}, Ltv/orange/features/refreshstream/Hook;->get()Ltv/orange/features/refreshstream/Hook;
 +
 +    move-result-object v0
 +
@@ -68,7 +66,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayer
      return-void
  .end method
  
-@@ -896,7 +914,7 @@
+@@ -896,7 +912,7 @@
      invoke-static {v0, p1}, Ltv/twitch/android/app/core/ViewExtensionsKt;->visibilityForBoolean(Landroid/view/View;Z)V
  
      .line 207
@@ -77,7 +75,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayer
  
      invoke-static {v0, p1}, Ltv/twitch/android/app/core/ViewExtensionsKt;->visibilityForBoolean(Landroid/view/View;Z)V
  
-@@ -1024,14 +1042,14 @@
+@@ -1024,14 +1040,14 @@
      invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setImageResource(I)V
  
      .line 224
@@ -95,7 +93,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayer
  
      invoke-virtual {p1, v1}, Landroid/widget/TextView;->setVisibility(I)V
  
-@@ -1046,14 +1064,14 @@
+@@ -1046,14 +1062,14 @@
      invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setImageResource(I)V
  
      .line 219
@@ -113,7 +111,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayer
  
      invoke-virtual {p1, v1}, Landroid/widget/TextView;->setVisibility(I)V
  
-@@ -1068,14 +1086,14 @@
+@@ -1068,14 +1084,14 @@
      invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setImageResource(I)V
  
      .line 214
@@ -131,7 +129,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayer
  
      invoke-virtual {p1, v1}, Landroid/widget/TextView;->setVisibility(I)V
  
-@@ -1158,3 +1176,36 @@
+@@ -1158,3 +1174,34 @@
      :goto_0
      return-void
  .end method
@@ -154,10 +152,8 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayer
 +    .param p1, "model"    # Ltv/twitch/android/models/streams/StreamModel;
 +
 +    .prologue
-+    .line 30
-+    sget-object v0, Ltv/orange/features/streamuptime/Hook;->Companion:Ltv/orange/features/streamuptime/Hook$Companion;
-+
-+    invoke-virtual {v0}, Ltv/orange/features/streamuptime/Hook$Companion;->getInstance()Ltv/orange/features/streamuptime/Hook;
++    .line 28
++    invoke-static {}, Ltv/orange/features/streamuptime/Hook;->get()Ltv/orange/features/streamuptime/Hook;
 +
 +    move-result-object v0
 +
@@ -165,6 +161,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayer
 +
 +    invoke-virtual {v0, v1, p1}, Ltv/orange/features/streamuptime/Hook;->bindStreamUptime(Ltv/orange/features/streamuptime/bridge/StreamUptimeView;Ltv/twitch/android/models/streams/StreamModel;)V
 +
-+    .line 31
++    .line 29
 +    return-void
 +.end method
+\ No newline at end of file

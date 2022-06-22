@@ -1,9 +1,13 @@
 package tv.orange.features.usersearch
 
 import androidx.appcompat.widget.SearchView
+import tv.orange.core.Logger
 import tv.orange.core.compat.ClassCompat.cast
+import tv.orange.features.core.CoreFeature
 import tv.orange.features.usersearch.bridge.IProxyEvent
 import tv.orange.features.usersearch.bridge.IViewerListViewDelegate
+import tv.orange.features.usersearch.di.DaggerUserSearchComponent
+import tv.orange.features.usersearch.di.UserSearchScope
 import tv.orange.features.usersearch.view.ViewFactory
 import tv.orange.features.usersearch.view.ViewFactoryImpl
 import tv.twitch.android.core.mvp.rxutil.DisposeOn
@@ -11,8 +15,10 @@ import tv.twitch.android.core.mvp.viewdelegate.ViewDelegateEvent
 import tv.twitch.android.models.chat.Chatters
 import tv.twitch.android.shared.chat.viewerlist.ViewerListPresenter
 import tv.twitch.android.shared.chat.viewerlist.ViewerListViewDelegate
+import javax.inject.Inject
 
-class Hook(private val viewFactory: ViewFactory) {
+@UserSearchScope
+class Hook @Inject constructor(val viewFactory: ViewFactory) {
     fun getSearchBar(delegate: ViewerListViewDelegate): SearchView? {
         return viewFactory.createSearchBar(delegate)?.apply {
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -70,8 +76,18 @@ class Hook(private val viewFactory: ViewFactory) {
     }
 
     companion object {
-        val instance by lazy {
-            Hook(ViewFactoryImpl())
+        private val INSTANCE by lazy {
+            val hook = DaggerUserSearchComponent.builder()
+                .coreFeatureComponent(CoreFeature.get().component)
+                .build().hook
+            Logger.debug("created: $hook")
+
+            return@lazy hook
+        }
+
+        @JvmStatic
+        fun get(): Hook {
+            return INSTANCE
         }
     }
 }

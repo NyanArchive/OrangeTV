@@ -19,7 +19,7 @@ public class ViewerListPresenter extends RxPresenter implements IProxyEvent { //
     public final void attachViewDelegate(ViewerListViewDelegate viewDelegate, BottomSheetBehaviorViewDelegate bottomSheetBehaviorViewDelegate) {
         /* ... */
 
-        Hook.Companion.getInstance().setupFilter(viewDelegate, this); // TODO: __INJECT_CODE
+        Hook.get().setupFilter(viewDelegate, this); // TODO: __INJECT_CODE
     }
 
     @Override

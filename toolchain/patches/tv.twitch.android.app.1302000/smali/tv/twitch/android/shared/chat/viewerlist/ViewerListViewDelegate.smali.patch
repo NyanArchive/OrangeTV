@@ -21,13 +21,11 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListV
  
  # direct methods
  .method public static synthetic $r8$lambda$pZ_AjEngR_aDo6XA2Coq_BnyOZE(Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate;Landroid/view/View;)V
-@@ -109,6 +115,18 @@
+@@ -109,6 +115,16 @@
  
      invoke-virtual {p1, p2}, Landroid/widget/ImageView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
  
-+    sget-object v0, Ltv/orange/features/usersearch/Hook;->Companion:Ltv/orange/features/usersearch/Hook$Companion;
-+
-+    invoke-virtual {v0}, Ltv/orange/features/usersearch/Hook$Companion;->getInstance()Ltv/orange/features/usersearch/Hook;
++    invoke-static {}, Ltv/orange/features/usersearch/Hook;->get()Ltv/orange/features/usersearch/Hook;
 +
 +    move-result-object v0
 +
@@ -40,7 +38,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListV
      return-void
  .end method
  
-@@ -163,3 +181,22 @@
+@@ -163,3 +179,22 @@
  
      return-void
  .end method

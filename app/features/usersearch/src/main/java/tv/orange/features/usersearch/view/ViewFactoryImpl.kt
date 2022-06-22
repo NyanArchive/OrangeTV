@@ -1,9 +1,12 @@
 package tv.orange.features.usersearch.view
 
 import androidx.appcompat.widget.SearchView
+import tv.orange.features.usersearch.di.UserSearchScope
 import tv.twitch.android.shared.chat.viewerlist.ViewerListViewDelegate
+import javax.inject.Inject
 
-class ViewFactoryImpl : ViewFactory {
+@UserSearchScope
+class ViewFactoryImpl @Inject constructor() : ViewFactory {
     override fun createSearchBar(delegate: ViewerListViewDelegate): SearchView? {
         val id = delegate.context.resources.getIdentifier(
             "viewer_list_dialog__search",

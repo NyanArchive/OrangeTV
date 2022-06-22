@@ -48,10 +48,10 @@ android {
 
 dependencies {
     implementation project(path: ':Twitch')
-    implementation project(path: ':core')
     implementation project(path: ':models')
     implementation project(path: ':features:usersearch')
-    implementation project(path: ':features:refreshstream')
-    implementation project(path: ':features:emotes')
     implementation project(path: ':features:streamuptime')
+    implementation project(path: ':features:refreshstream')
+    implementation project(path: ':core')
+    implementation project(path: ':features:emotes')
 }

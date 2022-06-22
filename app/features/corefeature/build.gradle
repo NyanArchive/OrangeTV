@@ -1,5 +1,7 @@
 plugins {
     id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -8,21 +10,31 @@ android {
     defaultConfig {
         minSdk 21
         targetSdk 32
+
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
         release {
             minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
-    api project(path: ':models')
+
+implementation project(path: ':models')
     api project(path: ':Twitch')
     api project(path: ':core')
+    api project(path: ':models')
+
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

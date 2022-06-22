@@ -12,7 +12,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListA
  
  # direct methods
  .method public static synthetic $r8$lambda$BGdINKUthO_7ctYaPjo8LejvNw8(Ltv/twitch/android/shared/chat/viewerlist/ViewerListAdapterBinder;Ljava/lang/String;)V
-@@ -375,14 +379,83 @@
+@@ -375,14 +379,81 @@
  .end method
  
  .method public final setViewers(Ltv/twitch/android/models/chat/Chatters;)V
@@ -58,12 +58,10 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListA
 +
 +    move-result v1
 +
-+    if-nez v1, :cond_1d
++    if-nez v1, :cond_1b
 +
 +    .line 26
-+    sget-object v1, Ltv/orange/features/usersearch/Hook;->Companion:Ltv/orange/features/usersearch/Hook$Companion;
-+
-+    invoke-virtual {v1}, Ltv/orange/features/usersearch/Hook$Companion;->getInstance()Ltv/orange/features/usersearch/Hook;
++    invoke-static {}, Ltv/orange/features/usersearch/Hook;->get()Ltv/orange/features/usersearch/Hook;
 +
 +    move-result-object v1
 +
@@ -76,7 +74,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListA
 +    move-result-object v0
 +
 +    .line 29
-+    :cond_1d
++    :cond_1b
 +    invoke-virtual {p0}, Ltv/twitch/android/shared/chat/viewerlist/ViewerListAdapterBinder;->clear()V
 +
 +    .line 30

@@ -14,7 +14,7 @@ import tv.twitch.android.shared.ui.elements.span.TwitchUrlSpanClickListener;
 
 public class ChatMessageFactory {
     private final ChatMessageSpanGroup createChatMessageSpanGroup(ChatMessageInterface chatMessageInterface, boolean z, boolean z2, int userId, int channelId, IClickableUsernameSpanListener iClickableUsernameSpanListener, TwitchUrlSpanClickListener twitchUrlSpanClickListener, WebViewSource webViewSource, String str, boolean z3, ChatFiltersSettings chatFiltersSettings, Integer num, EventDispatcher eventDispatcher, List<String> list, Set<EmoteModel.WithOwner> set) {
-        chatMessageInterface = Hook.Companion.getInstance().injectEmotes(chatMessageInterface, channelId);
+        chatMessageInterface = Hook.get().injectEmotes(chatMessageInterface, channelId);
 
         return null;
     }

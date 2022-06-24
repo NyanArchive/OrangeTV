@@ -12,8 +12,8 @@ import tv.orange.features.emotes.models.Emote
 import javax.inject.Inject
 
 class EmoteProvider @Inject constructor(val emoteRepository: EmoteRepository) {
-    private var globalBttvSet = EmoteSet(listOf())
-    private var globalFfzSet = EmoteSet(listOf())
+    private var globalBttvSet = createEmptySet()
+    private var globalFfzSet = createEmptySet()
 
     private val channelEmotesCache = Cache(3)
 
@@ -47,10 +47,16 @@ class EmoteProvider @Inject constructor(val emoteRepository: EmoteRepository) {
 
     fun clear() {
         disposables.clear()
+        globalBttvSet = createEmptySet()
+        globalFfzSet = createEmptySet()
+    }
+
+    private fun getGlobalEmote(code: String): Emote? {
+        return globalBttvSet.getEmote(code) ?: globalFfzSet.getEmote(code)
     }
 
     fun getEmote(code: String, channelId: Int, userId: Int): Emote? {
-        return null
+        return channelEmotesCache[channelId]?.getEmote(code) ?: getGlobalEmote(code)
     }
 
     fun getChannelEmotes(channelId: Int): List<Emote> {
@@ -87,9 +93,7 @@ class EmoteProvider @Inject constructor(val emoteRepository: EmoteRepository) {
         )
     }
 
-    fun requestUserEmotes(userId: Int) {
-
-    }
+    fun requestUserEmotes(userId: Int) {}
 
     fun updateEmotes() {
         with(globalFfzSet) {
@@ -106,5 +110,11 @@ class EmoteProvider @Inject constructor(val emoteRepository: EmoteRepository) {
 
     fun fetchEmotes() {
         updateEmotes()
+    }
+
+    companion object {
+        private fun createEmptySet(): EmoteSet {
+            return EmoteSet(emptyList())
+        }
     }
 }

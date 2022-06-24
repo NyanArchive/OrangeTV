@@ -4,55 +4,47 @@ import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import tv.orange.core.Logger
-import tv.orange.features.emotes.component.data.models.Cache
-import tv.orange.features.emotes.component.data.models.ChannelSet
+import tv.orange.features.emotes.component.data.models.EmoteContainerCache
+import tv.orange.features.emotes.component.data.models.EmoteContainer
 import tv.orange.features.emotes.component.data.models.EmoteSet
 import tv.orange.features.emotes.component.repository.EmoteRepository
 import tv.orange.features.emotes.models.Emote
 import javax.inject.Inject
 
 class EmoteProvider @Inject constructor(val emoteRepository: EmoteRepository) {
-    private var globalBttvSet = createEmptySet()
-    private var globalFfzSet = createEmptySet()
-
-    private val channelEmotesCache = Cache(3)
+    private var global = EmoteContainer()
+    private val channelEmotesCache = EmoteContainerCache(3)
 
     private val disposables = CompositeDisposable()
 
-    private fun fetch(
-        request: Single<List<Emote>>,
-        invoke: (set: List<Emote>) -> Unit,
-        tag: String
-    ) {
-        disposables.add(request.subscribe({ emotes: List<Emote> ->
-            invoke(emotes)
-            Logger.debug("[$tag] Emotes fetched: ${emotes.size}")
-        }, { ex: Throwable ->
-            Logger.error("[$tag] Cannot fetch emotes!")
-            ex.printStackTrace()
-        }))
-    }
-
-    private fun fetchBttvGlobalSet() {
-        fetch(emoteRepository.getBttvGlobalEmotes(), { emotes ->
-            globalBttvSet = EmoteSet(emotes)
-        }, "BTTV-GLOBAL")
-    }
-
-    private fun fetchFfzGlobalSet() {
-        fetch(emoteRepository.getFfzGlobalEmotes(), { emotes ->
-            globalFfzSet = EmoteSet(emotes)
-        }, "FFZ-GLOBAL")
+    private fun fetchGlobalEmotes() {
+        disposables.add(Single.zip(
+            emoteRepository.getBttvGlobalEmotes(),
+            emoteRepository.getFfzGlobalEmotes(),
+            emoteRepository.getStvGlobalEmotes()
+        ) { bttv, ffz, stv ->
+            val set = EmoteContainer(
+                bttvEmotes = EmoteSet(bttv),
+                ffzEmotes = EmoteSet(ffz),
+                stvEmotes = EmoteSet(stv)
+            )
+            Logger.debug("set: $set")
+            return@zip set
+        }.subscribe({ set ->
+            global = set
+        }, {
+            it.printStackTrace()
+        })
+        )
     }
 
     fun clear() {
         disposables.clear()
-        globalBttvSet = createEmptySet()
-        globalFfzSet = createEmptySet()
+        global = createEmptySet()
     }
 
     private fun getGlobalEmote(code: String): Emote? {
-        return globalBttvSet.getEmote(code) ?: globalFfzSet.getEmote(code)
+        return global.getEmote(code)
     }
 
     fun getEmote(code: String, channelId: Int, userId: Int): Emote? {
@@ -77,11 +69,13 @@ class EmoteProvider @Inject constructor(val emoteRepository: EmoteRepository) {
         disposables.add(
             Single.zip(
                 emoteRepository.getBttvChannelEmotes(channelId).subscribeOn(Schedulers.io()),
-                emoteRepository.getFfzChannelEmotes(channelId).subscribeOn(Schedulers.io())
-            ) { bttvEmotes, ffzEmotes ->
-                val set = ChannelSet(
-                    bttvEmotes = EmoteSet(bttvEmotes),
-                    ffzEmotes = EmoteSet(ffzEmotes)
+                emoteRepository.getFfzChannelEmotes(channelId).subscribeOn(Schedulers.io()),
+                emoteRepository.getStvChannelEmotes(channelId).subscribeOn(Schedulers.io())
+            ) { bttv, ffz, stv ->
+                val set = EmoteContainer(
+                    bttvEmotes = EmoteSet(bttv),
+                    ffzEmotes = EmoteSet(ffz),
+                    stvEmotes = EmoteSet(stv)
                 )
                 Logger.debug("set: $set")
                 return@zip set
@@ -95,26 +89,15 @@ class EmoteProvider @Inject constructor(val emoteRepository: EmoteRepository) {
 
     fun requestUserEmotes(userId: Int) {}
 
-    fun updateEmotes() {
-        with(globalFfzSet) {
-            if (isEmpty()) {
-                fetchFfzGlobalSet()
-            }
-        }
-        with(globalBttvSet) {
-            if (isEmpty()) {
-                fetchBttvGlobalSet()
-            }
-        }
-    }
-
     fun fetchEmotes() {
-        updateEmotes()
+        if (global.size == 0) {
+            fetchGlobalEmotes()
+        }
     }
 
     companion object {
-        private fun createEmptySet(): EmoteSet {
-            return EmoteSet(emptyList())
+        private fun createEmptySet(): EmoteContainer {
+            return EmoteContainer()
         }
     }
 }

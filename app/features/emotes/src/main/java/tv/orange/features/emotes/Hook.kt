@@ -127,9 +127,7 @@ class Hook @Inject constructor(val emoteProvider: EmoteProvider) : LifecycleAwar
 
     override fun onAllComponentStopped() {}
 
-    override fun onSdkResume() {
-        emoteProvider.updateEmotes()
-    }
+    override fun onSdkResume() {}
 
     override fun onAccountLogout() {}
 

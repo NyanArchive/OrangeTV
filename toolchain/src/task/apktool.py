@@ -66,6 +66,16 @@ def get_last_dex_num(path: Path):
     return last
 
 
+def move_classes(src, dst):
+    if src.exists():
+        new_dir = dst
+        new_dir.mkdir(parents=True)
+        shutil.move(src.as_posix(), new_dir.as_posix())
+        print("{}: OK".format(src))
+    else:
+        print("{}: not found".format(dst))
+
+
 class FixClasses(BaseTask):
     __NAME__ = "FixClasses"
 
@@ -74,18 +84,13 @@ class FixClasses(BaseTask):
         md = Path(self._apk.decompile_dir).joinpath("smali_classes{}".format(last_dex_num + 1))
         md.mkdir()
         print("Moving classes to {}".format(md.as_posix()))
-        models = Path(self._apk.decompile_dir).joinpath("smali_classes5/tv/twitch/android/models")
-        if models.exists():
-            new_dir = md.joinpath("tv/twitch/android")
-            new_dir.mkdir(parents=True)
-            shutil.move(models.as_posix(), new_dir.as_posix())
-            print("Models: OK")
-        else:
-            print("Models: not found")
+        move_classes(Path(self._apk.decompile_dir).joinpath("smali_classes5/tv/twitch/android/models"),
+                     md.joinpath("tv/twitch/android"))
+        move_classes(Path(self._apk.decompile_dir).joinpath("smali_classes2/com/fasterxml"),
+                     md.joinpath("com"))
 
     def cancel(self):
         pass
-
 
 
 class FixAnnotations(BaseTask):

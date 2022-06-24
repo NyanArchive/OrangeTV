@@ -54,4 +54,6 @@ dependencies {
     implementation project(path: ':features:refreshstream')
     implementation project(path: ':core')
     implementation project(path: ':features:emotes')
+
+    implementation "com.github.zjupure:webpdecoder:2.0.${glide_version}"
 }

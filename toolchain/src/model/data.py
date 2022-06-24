@@ -11,6 +11,7 @@ class Env:
     bin_dir: Path
     app_dir: Path
     patches_dir: Path
+    lib_dir: Path
     signature: str
 
 

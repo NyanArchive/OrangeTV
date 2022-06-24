@@ -16,4 +16,5 @@ ext {
     rxjava2_version = '2.2.21'
     appcompat_version = '1.4.2'
     gson_version = '2.8.6'
+    glide_version = '4.13.2'
 }

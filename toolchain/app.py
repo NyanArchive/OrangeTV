@@ -50,7 +50,8 @@ def parse_env():
                bin_dir=Path(wd, "bin"),
                patches_dir=Path(wd, "patches"),
                zipalign=Path(wd, "bin", "zipalign.exe"),
-               app_dir=Path(wd).parent.joinpath("app"))
+               app_dir=Path(wd).parent.joinpath("app"),
+               lib_dir=Path(wd).parent.joinpath("lib"))
 
 
 def get_apk_desc(src: Path):
@@ -90,6 +91,7 @@ def create_decompile_tasks(tasks):
 
 
 def create_recompile_tasks(tasks):
+    tasks.append(internal.CopySo(apk))
     tasks.append(apktool.RecompileApk(apk))
     tasks.append(internal.BuildAppDex(apk))
     tasks.append(internal.InjectAppDexs(apk))
@@ -115,7 +117,7 @@ def handle_args(args, env: Env, apk: ApkDescriptor):
     if args.recompile:
         create_recompile_tasks(tasks)
     if args.debug:
-        tasks.append(apktool.FixClasses(apk))
+        tasks.append(internal.CopySo(apk))
     if args.restore:
         tasks.append(git.Restore(apk))
     if args.make:

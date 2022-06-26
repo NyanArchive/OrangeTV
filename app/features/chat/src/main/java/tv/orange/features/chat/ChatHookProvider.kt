@@ -1,5 +1,6 @@
 package tv.orange.features.chat
 
+import io.reactivex.Flowable
 import tv.orange.core.Core
 import tv.orange.core.Logger
 import tv.orange.core.models.LifecycleController
@@ -10,6 +11,10 @@ import tv.orange.features.emotes.di.component.EmotesComponent
 import tv.twitch.android.models.chat.MessageBadge
 import tv.twitch.android.models.chat.MessageToken
 import tv.twitch.android.provider.chat.ChatMessageInterface
+import tv.twitch.android.shared.emotes.emotepicker.models.EmoteHeaderUiModel
+import tv.twitch.android.shared.emotes.emotepicker.models.EmotePickerSection
+import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiModel
+import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiSet
 import javax.inject.Inject
 
 class ChatHookProvider @Inject constructor(
@@ -81,6 +86,26 @@ class ChatHookProvider @Inject constructor(
             override fun isSystemMessage(): Boolean {
                 return cmi.isSystemMessage
             }
+        }
+    }
+
+    fun hookCreateAllEmoteSetsFlowable(
+        map: Flowable<Pair<EmoteUiSet, MutableList<EmoteUiSet>>>,
+        num: Int
+    ): Flowable<Pair<EmoteUiSet, MutableList<EmoteUiSet>>> {
+        return map.map {
+            it.second.add(
+                EmoteUiSet(
+                    EmoteHeaderUiModel.EmoteHeaderStringResUiModel(
+                        0,
+                        true,
+                        EmotePickerSection.ALL,
+                        false
+                    ), emptyList<EmoteUiModel>()
+                )
+            )
+
+            it
         }
     }
 }

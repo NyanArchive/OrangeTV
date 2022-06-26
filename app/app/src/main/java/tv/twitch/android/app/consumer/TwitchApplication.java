@@ -8,6 +8,8 @@ import tv.orange.core.Core;
 import tv.orange.features.chat.ChatHookProvider;
 import tv.orange.injector.Injector;
 import tv.orange.models.InjectorProvider;
+import tv.twitch.android.app.consumer.dagger.AppComponent;
+import tv.twitch.android.app.consumer.dagger.DaggerAppComponent;
 
 public class TwitchApplication extends Application implements InjectorProvider {
     private volatile Injector injector = null; // TODO: __ADD_FIELD
@@ -18,7 +20,9 @@ public class TwitchApplication extends Application implements InjectorProvider {
         /* ... */
 
         // Inject after twitch dagger
-        injector = new Injector(); // TODO: __INJECT_CODE
+        AppComponent appComponent = createDaggerComponent(); // TODO: __INJECT_CODE
+        appComponent.inject(this); // TODO: __INJECT_CODE
+        injector = new Injector((DaggerAppComponent) appComponent); // TODO: __INJECT_CODE
         Core.Companion.initialize(this); // TODO: __INJECT_CODE
         initOranges(); // TODO: __INJECT_CODE
 
@@ -27,6 +31,10 @@ public class TwitchApplication extends Application implements InjectorProvider {
 
     private void initOranges() { // TODO: __INJECT_METHOD
         ChatHookProvider.get().registerLifecycle(Core.get());
+    }
+
+    protected AppComponent createDaggerComponent() {
+        return AppComponent.Initializer.build();
     }
 
     @NonNull

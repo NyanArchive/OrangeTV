@@ -59,4 +59,5 @@ dependencies {
     implementation project(path: ':injector')
     implementation project(path: ':features:badges')
     implementation project(path: ':features:emotes')
+    implementation project(path: ':features:chathistory')
 }

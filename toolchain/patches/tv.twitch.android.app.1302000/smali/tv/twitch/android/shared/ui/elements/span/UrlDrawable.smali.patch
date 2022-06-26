@@ -1,6 +1,12 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawable.smali b/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawable.smali
 --- a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawable.smali
 +++ b/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawable.smali
+@@ -1,4 +1,4 @@
+-.class public final Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++.class public Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
+ .super Landroid/graphics/drawable/BitmapDrawable;
+ .source "UrlDrawable.kt"
+ 
 @@ -87,80 +87,144 @@
  
  
@@ -186,3 +192,12 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
  .end method
  
  .method public final getImageSize()I
+@@ -236,7 +300,7 @@
+     return-void
+ .end method
+ 
+-.method public final setDrawable(Landroid/graphics/drawable/Drawable;)V
++.method public setDrawable(Landroid/graphics/drawable/Drawable;)V
+     .locals 0
+ 
+     .line 25

@@ -70,7 +70,9 @@ class EmotesInjector @Inject constructor(val emoteProvider: EmoteProvider) : Lif
 
     override fun onFirstActivityStarted() {}
 
-    override fun onConnectedToChannel(channelId: Int) {
+    override fun onConnectedToChannel(channelId: Int) {}
+
+    override fun onConnectingToChannel(channelId: Int) {
         requestChannelEmotes(channelId)
     }
 }

@@ -77,4 +77,5 @@ class BadgesInjector @Inject constructor(val badgeProvider: BadgeProvider) : Lif
     override fun onFirstActivityStarted() {}
 
     override fun onConnectedToChannel(channelId: Int) {}
+    override fun onConnectingToChannel(channelId: Int) {}
 }

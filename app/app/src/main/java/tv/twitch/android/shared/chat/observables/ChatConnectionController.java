@@ -6,6 +6,11 @@ import tv.twitch.android.sdk.ChannelState;
 
 public class ChatConnectionController {
     public final void handleChannelStateChange(int i, ChannelState channelState, ErrorCode errorCode) {
+        if (i == 1) {
+            /* ... */
+
+            Core.get().onConnectingToChannel(i); // TODO: __INJECT_CODE
+        }
         if (i == 2) {
             /* ... */
 

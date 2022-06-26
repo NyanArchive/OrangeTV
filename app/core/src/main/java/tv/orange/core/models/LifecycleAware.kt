@@ -14,4 +14,6 @@ interface LifecycleAware {
     fun onFirstActivityStarted()
 
     fun onConnectedToChannel(channelId: Int)
+
+    fun onConnectingToChannel(channelId: Int)
 }

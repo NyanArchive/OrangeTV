@@ -93,4 +93,11 @@ class Core private constructor(private val applicationContext: Context) : Lifecy
             it.onConnectedToChannel(channelId)
         }
     }
+
+    override fun onConnectingToChannel(channelId: Int) {
+        Logger.debug("onConnectingToChannel")
+        modules.forEach {
+            it.onConnectingToChannel(channelId)
+        }
+    }
 }

@@ -30,7 +30,6 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':features:corefeature')
-
+    implementation project(path: ':core')
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

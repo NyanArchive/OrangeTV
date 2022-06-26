@@ -32,8 +32,8 @@ android {
 
 dependencies {
 
-    implementation project(path: ':models')
-    implementation project(path: ':Twitch')
+    api project(path: ':models')
+    api project(path: ':Twitch')
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

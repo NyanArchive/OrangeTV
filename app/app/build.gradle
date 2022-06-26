@@ -49,11 +49,14 @@ android {
 dependencies {
     implementation project(path: ':Twitch')
     implementation project(path: ':models')
+    implementation project(path: ':core')
     implementation project(path: ':features:usersearch')
     implementation project(path: ':features:streamuptime')
     implementation project(path: ':features:refreshstream')
-    implementation project(path: ':core')
-    implementation project(path: ':features:emotes')
 
     implementation "com.github.zjupure:webpdecoder:2.0.${glide_version}"
+    implementation project(path: ':features:chat')
+    implementation project(path: ':injector')
+    implementation project(path: ':features:badges')
+    implementation project(path: ':features:emotes')
 }

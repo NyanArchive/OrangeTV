@@ -1,15 +1,15 @@
 package tv.orange.features.usersearch
 
 import androidx.appcompat.widget.SearchView
+import tv.orange.core.Core
 import tv.orange.core.Logger
 import tv.orange.core.compat.ClassCompat.cast
-import tv.orange.features.core.CoreFeature
+import tv.orange.core.di.component.CoreComponent
 import tv.orange.features.usersearch.bridge.IProxyEvent
 import tv.orange.features.usersearch.bridge.IViewerListViewDelegate
-import tv.orange.features.usersearch.di.DaggerUserSearchComponent
-import tv.orange.features.usersearch.di.UserSearchScope
+import tv.orange.features.usersearch.di.component.DaggerUserSearchComponent
+import tv.orange.features.usersearch.di.scope.UserSearchScope
 import tv.orange.features.usersearch.view.ViewFactory
-import tv.orange.features.usersearch.view.ViewFactoryImpl
 import tv.twitch.android.core.mvp.rxutil.DisposeOn
 import tv.twitch.android.core.mvp.viewdelegate.ViewDelegateEvent
 import tv.twitch.android.models.chat.Chatters
@@ -78,7 +78,7 @@ class Hook @Inject constructor(val viewFactory: ViewFactory) {
     companion object {
         private val INSTANCE by lazy {
             val hook = DaggerUserSearchComponent.builder()
-                .coreFeatureComponent(CoreFeature.get().component)
+                .coreComponent(Core.getInjector().provideComponent(CoreComponent::class))
                 .build().hook
             Logger.debug("created: $hook")
 

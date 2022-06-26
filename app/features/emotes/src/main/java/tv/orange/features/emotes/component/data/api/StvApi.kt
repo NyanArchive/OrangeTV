@@ -10,5 +10,5 @@ interface StvApi {
     fun globalEmotes(): Single<List<StvEmote>>
 
     @GET("/v2/users/{id}/emotes")
-    fun channelEmotes(@Path("id") userId: Int): Single<List<StvEmote>>
+    fun emotes(@Path("id") userId: Int): Single<List<StvEmote>>
 }

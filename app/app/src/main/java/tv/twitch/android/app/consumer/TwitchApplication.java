@@ -1,21 +1,37 @@
 package tv.twitch.android.app.consumer;
 
-import tv.orange.core.Core;
-import tv.orange.features.emotes.Hook;
+import android.app.Application;
 
-public class TwitchApplication {
+import androidx.annotation.NonNull;
+
+import tv.orange.core.Core;
+import tv.orange.features.chat.ChatHookProvider;
+import tv.orange.injector.Injector;
+import tv.orange.models.InjectorProvider;
+
+public class TwitchApplication extends Application implements InjectorProvider {
+    private volatile Injector injector = null; // TODO: __ADD_FIELD
+
     public void onCreate() {
+        super.onCreate();
+
         /* ... */
 
         // Inject after twitch dagger
-        Core.Companion.initialize(); // TODO: __INJECT_CODE
+        injector = new Injector(); // TODO: __INJECT_CODE
+        Core.Companion.initialize(this); // TODO: __INJECT_CODE
         initOranges(); // TODO: __INJECT_CODE
 
         /* ... */
     }
 
     private void initOranges() { // TODO: __INJECT_METHOD
-        Core core = Core.get();
-        core.registerLifecycleListener(Hook.get());
+        ChatHookProvider.get().registerLifecycle(Core.get());
+    }
+
+    @NonNull
+    @Override
+    public Injector provideInjector() { // TODO: __INJECT_METHOD
+        return injector;
     }
 }

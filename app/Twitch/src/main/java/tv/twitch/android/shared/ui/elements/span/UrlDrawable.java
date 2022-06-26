@@ -11,7 +11,7 @@ import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import tv.twitch.android.app.core.Utility;
 
-public final class UrlDrawable extends BitmapDrawable {
+public class UrlDrawable extends BitmapDrawable { // TODO: __REMOVE_FINAL
     private Drawable drawable;
     private boolean isDestroyed;
     private Function1<? super Rect, Unit> onBoundsChangeListener;
@@ -27,7 +27,7 @@ public final class UrlDrawable extends BitmapDrawable {
         this.type = type;
     }
 
-    public void setDrawable(Drawable drawable) {
+    public void setDrawable(Drawable drawable) { // TODO: __REMOVE_FINAL
         this.drawable = drawable;
     }
 

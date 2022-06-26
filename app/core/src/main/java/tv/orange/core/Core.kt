@@ -1,28 +1,37 @@
 package tv.orange.core
 
-import tv.orange.core.di.CoreComponent
-import tv.orange.core.di.DaggerCoreComponent
-import tv.orange.core.models.LifecycleController
+import android.content.Context
 import tv.orange.core.models.LifecycleAware
+import tv.orange.core.models.LifecycleController
+import tv.orange.models.Injector
+import tv.orange.models.InjectorProvider
+import tv.twitch.android.app.consumer.TwitchApplication
 
-class Core private constructor(val coreComponent: CoreComponent) : LifecycleController, LifecycleAware {
+class Core private constructor(private val applicationContext: Context) : LifecycleController,
+    LifecycleAware {
     val modules: HashSet<LifecycleAware> = HashSet()
 
     companion object {
-        lateinit var INSTANCE: Core
+        private var INSTANCE: Core? = null
+
+        fun initialize(applicationContext: Context) {
+            INSTANCE = Core(applicationContext)
+        }
 
         @JvmStatic
         fun get(): Core {
-            return INSTANCE
+            return INSTANCE ?: kotlin.run {
+                throw IllegalStateException("Instance is null")
+            }
         }
 
-        fun initialize() {
-            if (::INSTANCE.isInitialized) {
-                throw IllegalStateException()
+        fun getInjector(): Injector {
+            val context = get().applicationContext
+            if (context is InjectorProvider) {
+                return context.provideInjector()
+            } else {
+                throw IllegalStateException("App context must provide Injector")
             }
-            val core = Core(DaggerCoreComponent.factory().create())
-            Logger.debug("created: $core")
-            INSTANCE = core
         }
     }
 

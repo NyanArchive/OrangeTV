@@ -1,10 +1,11 @@
 package tv.orange.features.streamuptime
 
+import tv.orange.core.Core
 import tv.orange.core.Logger
-import tv.orange.features.core.CoreFeature
+import tv.orange.core.di.component.CoreComponent
 import tv.orange.features.streamuptime.bridge.StreamUptimeView
-import tv.orange.features.streamuptime.di.DaggerStreamUptimeComponent
-import tv.orange.features.streamuptime.di.StreamUptimeScope
+import tv.orange.features.streamuptime.di.component.DaggerStreamUptimeComponent
+import tv.orange.features.streamuptime.di.scope.StreamUptimeScope
 import tv.twitch.android.models.streams.StreamModel
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -49,7 +50,7 @@ class Hook @Inject constructor() {
 
         private val INSTANCE by lazy {
             val hook = DaggerStreamUptimeComponent.builder()
-                .coreFeatureComponent(CoreFeature.get().component)
+                .coreComponent(Core.getInjector().provideComponent(CoreComponent::class))
                 .build().hook
             Logger.debug("created: $hook")
 

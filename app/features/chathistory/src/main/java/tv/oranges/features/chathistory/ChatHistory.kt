@@ -4,13 +4,16 @@ import tv.orange.core.Core
 import tv.orange.core.Logger
 import tv.orange.core.di.component.CoreComponent
 import tv.oranges.features.chathistory.bridge.ILiveChatSource
+import tv.oranges.features.chathistory.data.repository.ChatHistoryRepository
 import tv.oranges.features.chathistory.di.component.DaggerChatHistoryComponent
+import tv.oranges.features.chathistory.di.scope.ChatHistoryScope
 import tv.twitch.android.models.channel.ChannelInfo
-import tv.twitch.android.shared.chat.LiveChatSource
+import tv.twitch.android.network.graphql.GraphQlService
 import tv.twitch.android.shared.chat.events.ChatConnectionEvents
 import javax.inject.Inject
 
-class ChatHistory @Inject constructor() {
+@ChatHistoryScope
+class ChatHistory @Inject constructor(val repository: ChatHistoryRepository) {
     fun requestChatHistory(
         event: ChatConnectionEvents,
         source: ILiveChatSource,
@@ -30,25 +33,28 @@ class ChatHistory @Inject constructor() {
             return
         }
 
-//        source.addDisposable(
-//            asyncNetRequest(loader.injector.twitchRepository.getChatHistory(channelName = channelName))
-//                .observeOn(AndroidSchedulers.mainThread()).subscribe({
-//                    if (it.isNullOrEmpty()) {
-//                        source.addChatHistoryMessage(getString("mod_chat_history_no_messages"))
-//                        return@subscribe
-//                    }
-//                    source.addChatHistoryMessages(it)
-//                }) {
-//                    reportException(th = it, where = "HooksDelegate.injectChatHistory")
-//                    source.addChatHistoryMessage(getString("mod_chat_history_no_messages"))
-//                })
+        source.addDisposable(
+            repository.getMessages(channelName = channelName).subscribe({
+                if (it.isNullOrEmpty()) {
+                    source.addChatHistoryMessage("mod_chat_history_no_messages")
+                    return@subscribe
+                }
+                source.addChatHistoryMessages(it.map { message ->
+                    "${message.displayName}: ${message.text}"
+                })
+            }) {
+                it.printStackTrace()
+                source.addChatHistoryMessage("mod_chat_history_no_messages")
+            })
     }
 
     companion object {
         private val INSTANCE by lazy {
-            val hook = DaggerChatHistoryComponent.builder()
-                .coreComponent(Core.getInjector().provideComponent(CoreComponent::class))
-                .build().chatHistory
+            val hook = DaggerChatHistoryComponent.factory()
+                .create(
+                    Core.getInjector().provideComponent(CoreComponent::class),
+                    Core.getInjector().provideComponent(GraphQlService::class)
+                ).chatHistory
 
             Logger.debug("created: $hook")
             return@lazy hook

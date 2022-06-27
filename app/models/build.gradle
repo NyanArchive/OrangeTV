@@ -1,6 +1,14 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'com.apollographql.apollo3' version "$apollo_version"
+}
+
+apollo {
+    service("twitch") {
+        sourceFolder.set("twitch")
+        packageName.set("tv.orange.models.gql.twitch")
+    }
 }
 
 android {
@@ -29,5 +37,6 @@ android {
 }
 
 dependencies {
-    implementation "com.google.code.gson:gson:$gson_version"
+    api "com.google.code.gson:gson:$gson_version"
+    api "com.apollographql.apollo3:apollo-runtime:$apollo_version"
 }

@@ -45,6 +45,7 @@ dependencies {
     api "androidx.appcompat:appcompat:$appcompat_version"
 
     api "io.reactivex.rxjava2:rxjava:$rxjava2_version"
+    api "io.reactivex.rxjava2:rxandroid:$rxjava2_version"
 
     api "com.squareup.okhttp3:okhttp:$okhttp3_version"
 

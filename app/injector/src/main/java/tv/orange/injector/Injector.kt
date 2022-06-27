@@ -11,6 +11,7 @@ import tv.orange.features.emotes.di.module.EmotesApiModule
 import tv.orange.models.Injector
 import tv.twitch.android.app.consumer.dagger.DaggerAppComponent
 import tv.twitch.android.app.core.ApplicationContext
+import tv.twitch.android.network.graphql.GraphQlService
 import tv.twitch.android.network.graphql.TwitchApolloClient
 import javax.inject.Provider
 import kotlin.reflect.KClass
@@ -40,19 +41,19 @@ class Injector(private val twitchComponent: DaggerAppComponent) : Injector {
             CoreComponent::class -> coreComponent
             BadgesComponent::class -> provideBadges()
             EmotesComponent::class -> provideEmotes()
-            TwitchApolloClient::class -> provideTwitchApolloClient()
+            GraphQlService::class -> provideTwitchApolloClient()
             else -> throw IllegalStateException("Unknown class: $cls")
         } as T
     }
 
     @Suppress("UNCHECKED_CAST")
-    private fun provideTwitchApolloClient(): TwitchApolloClient {
+    private fun provideTwitchApolloClient(): GraphQlService {
         val field =
-            twitchComponent::class.java.getDeclaredField("provideApolloGqlOkHttpClientProvider")
+            twitchComponent::class.java.getDeclaredField("graphQlServiceProvider")
                 .apply {
                     isAccessible = true
                 }
-        val value = field.get(twitchComponent) as Provider<TwitchApolloClient>
+        val value = field.get(twitchComponent) as Provider<GraphQlService>
         return value.get()
     }
 }

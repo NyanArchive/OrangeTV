@@ -4,6 +4,7 @@ import android.graphics.Color
 import tv.orange.models.gql.twitch.MessageBufferChatHistoryQuery
 import tv.orange.models.gql.twitch.fragment.ChatHistoryMessageFragment
 import tv.oranges.features.chathistory.data.model.ChatHistoryMessage
+import tv.oranges.features.chathistory.data.model.ChatMessageInterfaceWrapper
 import tv.twitch.android.models.chat.AutoModMessageFlags
 import tv.twitch.android.models.chat.MessageBadge
 import tv.twitch.android.models.chat.MessageToken
@@ -14,82 +15,52 @@ import javax.inject.Inject
 
 class ChatHistoryMapper @Inject constructor() {
     fun map(recentChatMessage: MessageBufferChatHistoryQuery.RecentChatMessage): ChatHistoryMessage {
-        return ChatHistoryMessage(parse(recentChatMessage.chatHistoryMessageFragment), Color.GRAY)
+        return ChatHistoryMessage(map(recentChatMessage.chatHistoryMessageFragment), Color.GRAY)
     }
 
     fun map(chatHistoryMessage: ChatHistoryMessage): ExtensionMessageKt {
-        return ExtensionMessageKt(chatHistoryMessage.cmi, ExtensionModel("", "", "", null), Color.GRAY)
+        return ExtensionMessageKt(
+            chatHistoryMessage.cmi,
+            ExtensionModel("", "", "", null),
+            Color.GRAY
+        )
     }
 
-    private fun parse(fragment: ChatHistoryMessageFragment?): ChatMessageInterface? {
-        fragment ?: return null
-
-        val tokens = mutableListOf<MessageToken>()
-        fragment.content.fragments.forEach { tokenFragment ->
+    private fun map(fragment: List<ChatHistoryMessageFragment.Fragment>): List<MessageToken> {
+        return fragment.map { tokenFragment ->
             tokenFragment.content?.let { content ->
                 content.onEmote?.let { emote ->
-                    tokens.add(
-                        MessageToken.EmoticonToken(emote.token, emote.emoteID)
-                    )
+                    MessageToken.EmoticonToken(emote.token, emote.emoteID)
                 }
-            } ?: tokens.add(
-                MessageToken.TextToken(
-                    tokenFragment.text,
-                    AutoModMessageFlags(0, 0, 0, 0)
-                )
+            } ?: MessageToken.TextToken(
+                tokenFragment.text,
+                AutoModMessageFlags(0, 0, 0, 0)
             )
         }
-        val badges = mutableListOf<MessageBadge>()
-        fragment.sender?.displayBadges?.forEach { displayBadge ->
-            displayBadge?.setID.let { setID ->
-                displayBadge?.version.let { version ->
-                    badges.add(MessageBadge(setID, version))
-                }
-            }
-        }
+    }
 
+    private fun mapBadges(badges: List<ChatHistoryMessageFragment.DisplayBadge?>): List<MessageBadge> {
+        return badges.mapNotNull { badge ->
+            MessageBadge(badge?.setID ?: "", badge?.version ?: "")
+        }
+    }
+
+    private fun map(fragment: ChatHistoryMessageFragment?): ChatMessageInterface? {
+        fragment ?: return null
+
+        val tokens = map(fragment.content.fragments)
+        val badges = mapBadges(fragment.sender?.displayBadges ?: emptyList())
         val displayName = fragment.sender?.displayName ?: "unknown"
         val userId = fragment.sender?.id?.toIntOrNull() ?: 0
         val userName = fragment.sender?.login ?: "unknown"
 
-        return fragment.sender?.let { sender ->
-            object : ChatMessageInterface {
-                override fun getBadges(): MutableList<MessageBadge> {
-                    return badges
-                }
-
-                override fun getDisplayName(): String {
-                    return displayName
-                }
-
-                override fun getTimestampSeconds(): Int {
-                    return 0
-                }
-
-                override fun getTokens(): MutableList<MessageToken> {
-                    return tokens
-                }
-
-                override fun getUserId(): Int {
-                    return userId
-                }
-
-                override fun getUserName(): String {
-                    return userName
-                }
-
-                override fun isAction(): Boolean {
-                    return false
-                }
-
-                override fun isDeleted(): Boolean {
-                    return false
-                }
-
-                override fun isSystemMessage(): Boolean {
-                    return false
-                }
-            }
-        }
+        return ChatMessageInterfaceWrapper(
+            messageBadges = badges,
+            messageTokens = tokens,
+            timestamp = 0,
+            messageDisplayName = displayName,
+            messageUserName = userName,
+            messageUserId = userId
+        )
     }
 }

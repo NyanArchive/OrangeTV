@@ -25,14 +25,12 @@ class ChatHistory @Inject constructor(
         channel: ChannelInfo?
     ) {
         channel?.let { info ->
-            if (event is ChatConnectionEvents.ChatConnectingEvent) {
-                if (info.id == event.getChannelId()) {
-                    injectChatHistory(
-                        source = source,
-                        channelName = info.name,
-                        channelId = event.channelId
-                    )
-                }
+            if (event is ChatConnectionEvents.ChatConnectingEvent && info.id == event.getChannelId()) {
+                injectChatHistory(
+                    source = source,
+                    channelName = info.name,
+                    channelId = event.channelId
+                )
             }
         }
     }
@@ -42,10 +40,19 @@ class ChatHistory @Inject constructor(
             return
         }
 
+        source.addChatHistoryMessage(
+            channelId,
+            repository.getSystemMessage("[OHI] Fetching messages...")
+        )
+
         source.addDisposable(
             repository.getMessages(channelName = channelName)
                 .observeOn(AndroidSchedulers.mainThread()).subscribe({ messages ->
                     if (messages.isNullOrEmpty()) {
+                        source.addChatHistoryMessage(
+                            channelId,
+                            repository.getSystemMessage("[OHI] Messages not found")
+                        )
                         return@subscribe
                     }
 
@@ -54,7 +61,12 @@ class ChatHistory @Inject constructor(
                     })
                 }) {
                     it.printStackTrace()
-                })
+                    source.addChatHistoryMessage(
+                        channelId,
+                        repository.getSystemMessage("[OHI] Error: ${it.localizedMessage}")
+                    )
+                }
+        )
     }
 
     companion object {

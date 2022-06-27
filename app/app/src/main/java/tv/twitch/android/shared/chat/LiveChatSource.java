@@ -11,7 +11,7 @@ import tv.twitch.android.shared.chat.chatsource.IClickableUsernameSpanListener;
 import tv.twitch.android.shared.chat.parser.ExtensionMessageKt;
 
 public class LiveChatSource implements ILiveChatSource { // TODO: __IMPLEMENT
-    private final CompositeDisposable disposables = new CompositeDisposable();
+    private CompositeDisposable disposables;
 
     public final void addExtensionChatMessage(int p0, ExtensionMessageKt p1, IClickableUsernameSpanListener p2) {
         /* ... */

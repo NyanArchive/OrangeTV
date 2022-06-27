@@ -1,9 +1,11 @@
 package tv.oranges.features.chathistory
 
+import io.reactivex.android.schedulers.AndroidSchedulers
 import tv.orange.core.Core
 import tv.orange.core.Logger
 import tv.orange.core.di.component.CoreComponent
 import tv.oranges.features.chathistory.bridge.ILiveChatSource
+import tv.oranges.features.chathistory.data.mapper.ChatHistoryMapper
 import tv.oranges.features.chathistory.data.repository.ChatHistoryRepository
 import tv.oranges.features.chathistory.di.component.DaggerChatHistoryComponent
 import tv.oranges.features.chathistory.di.scope.ChatHistoryScope
@@ -13,7 +15,10 @@ import tv.twitch.android.shared.chat.events.ChatConnectionEvents
 import javax.inject.Inject
 
 @ChatHistoryScope
-class ChatHistory @Inject constructor(val repository: ChatHistoryRepository) {
+class ChatHistory @Inject constructor(
+    val repository: ChatHistoryRepository,
+    val mapper: ChatHistoryMapper
+) {
     fun requestChatHistory(
         event: ChatConnectionEvents,
         source: ILiveChatSource,
@@ -22,30 +27,34 @@ class ChatHistory @Inject constructor(val repository: ChatHistoryRepository) {
         channel?.let { info ->
             if (event is ChatConnectionEvents.ChatConnectingEvent) {
                 if (info.id == event.getChannelId()) {
-                    injectChatHistory(source = source, channelName = info.name)
+                    injectChatHistory(
+                        source = source,
+                        channelName = info.name,
+                        channelId = event.channelId
+                    )
                 }
             }
         }
     }
 
-    private fun injectChatHistory(source: ILiveChatSource, channelName: String?) {
+    private fun injectChatHistory(source: ILiveChatSource, channelName: String?, channelId: Int) {
         if (channelName.isNullOrBlank()) {
             return
         }
 
         source.addDisposable(
-            repository.getMessages(channelName = channelName).subscribe({
-                if (it.isNullOrEmpty()) {
-                    source.addChatHistoryMessage("mod_chat_history_no_messages")
-                    return@subscribe
-                }
-                source.addChatHistoryMessages(it.map { message ->
-                    "${message.displayName}: ${message.text}"
+            repository.getMessages(channelName = channelName)
+                .observeOn(AndroidSchedulers.mainThread()).subscribe({ messages ->
+                    if (messages.isNullOrEmpty()) {
+                        return@subscribe
+                    }
+
+                    source.addChatHistoryMessages(channelId, messages.map { message ->
+                        mapper.map(message)
+                    })
+                }) {
+                    it.printStackTrace()
                 })
-            }) {
-                it.printStackTrace()
-                source.addChatHistoryMessage("mod_chat_history_no_messages")
-            })
     }
 
     companion object {

@@ -1,5 +1,6 @@
 package tv.orange.injector
 
+import tv.orange.core.Logger
 import tv.orange.core.di.component.CoreComponent
 import tv.orange.core.di.component.DaggerCoreComponent
 import tv.orange.features.badges.di.component.BadgesComponent
@@ -12,14 +13,28 @@ import tv.orange.models.Injector
 import tv.twitch.android.app.consumer.dagger.DaggerAppComponent
 import tv.twitch.android.app.core.ApplicationContext
 import tv.twitch.android.network.graphql.GraphQlService
-import tv.twitch.android.network.graphql.TwitchApolloClient
 import javax.inject.Provider
 import kotlin.reflect.KClass
 
 class Injector(private val twitchComponent: DaggerAppComponent) : Injector {
-    private val coreComponent: CoreComponent by lazy {
-        DaggerCoreComponent.factory().create(ApplicationContext.getInstance().context)
-    }
+    @Volatile private var coreComponentDelegate: CoreComponent? = null
+
+    private val coreComponent: CoreComponent
+        get() = kotlin.run {
+            coreComponentDelegate?.let {
+                return it
+            }
+
+            synchronized(this) {
+                coreComponentDelegate ?: run {
+                    coreComponentDelegate = DaggerCoreComponent.factory()
+                        .create(ApplicationContext.getInstance().context)
+                    Logger.debug("CoreComponent: $coreComponentDelegate")
+                }
+            }
+
+            return coreComponentDelegate!!
+        }
 
     private fun provideBadges(): BadgesComponent {
         return DaggerBadgesComponent.builder()

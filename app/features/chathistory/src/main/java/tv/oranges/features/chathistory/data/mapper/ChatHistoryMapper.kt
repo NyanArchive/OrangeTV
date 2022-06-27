@@ -1,6 +1,7 @@
 package tv.oranges.features.chathistory.data.mapper
 
 import android.graphics.Color
+import tv.orange.core.DateUtil
 import tv.orange.models.gql.twitch.MessageBufferChatHistoryQuery
 import tv.orange.models.gql.twitch.fragment.ChatHistoryMessageFragment
 import tv.oranges.features.chathistory.data.model.ChatHistoryMessage
@@ -53,11 +54,14 @@ class ChatHistoryMapper @Inject constructor() {
         val displayName = fragment.sender?.displayName ?: "unknown"
         val userId = fragment.sender?.id?.toIntOrNull() ?: 0
         val userName = fragment.sender?.login ?: "unknown"
+        val sentAt = DateUtil.getStandardizeDateString(
+            fragment.sentAt.toString()
+        )?.time?.div(1000)?.toInt() ?: 0
 
         return ChatMessageInterfaceWrapper(
             messageBadges = badges,
             messageTokens = tokens,
-            timestamp = 0,
+            timestamp = sentAt,
             messageDisplayName = displayName,
             messageUserName = userName,
             messageUserId = userId

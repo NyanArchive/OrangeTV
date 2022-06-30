@@ -1,0 +1,112 @@
+diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.smali b/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.smali
+--- a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.smali
++++ b/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.smali
+@@ -4,6 +4,7 @@
+ 
+ # interfaces
+ .implements Ldagger/android/HasAndroidInjector;
++.implements Ltv/orange/models/InjectorProvider;
+ 
+ 
+ # static fields
+@@ -58,6 +59,8 @@
+     .end annotation
+ .end field
+ 
++.field private volatile injector:Ltv/orange/injector/Injector;
++
+ 
+ # direct methods
+ .method public static synthetic $r8$lambda$4sR0zYKW6LOAo3fw0jvVL7xvYA0(Ltv/twitch/android/app/consumer/TwitchApplication;ILjava/util/concurrent/Callable;)Lio/reactivex/Scheduler;
+@@ -113,6 +116,10 @@
+ 
+     iput-object v0, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->mListener:Ltv/twitch/android/app/consumer/CrashReporterListener;
+ 
++    const/4 v0, 0x0
++
++    iput-object v0, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->injector:Ltv/orange/injector/Injector;
++
+     return-void
+ .end method
+ 
+@@ -282,9 +289,7 @@
+     move-result-object v1
+ 
+     .line 115
+-    invoke-virtual {p0}, Landroid/app/Application;->getPackageName()Ljava/lang/String;
+-
+-    move-result-object v2
++    const-string v2, "tv.twitch.android.app"
+ 
+     const-string v3, "13.3.1"
+ 
+@@ -305,6 +310,20 @@
+ 
+     invoke-interface {v1, p0}, Ltv/twitch/android/app/consumer/dagger/AppComponent;->inject(Ltv/twitch/android/app/consumer/TwitchApplication;)V
+ 
++    new-instance v2, Ltv/orange/injector/Injector;
++
++    check-cast v1, Ltv/twitch/android/app/consumer/dagger/DaggerAppComponent;
++
++    invoke-direct {v2, v1}, Ltv/orange/injector/Injector;-><init>(Ltv/twitch/android/app/consumer/dagger/DaggerAppComponent;)V
++
++    iput-object v2, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->injector:Ltv/orange/injector/Injector;
++
++    sget-object v1, Ltv/orange/core/Core;->Companion:Ltv/orange/core/Core$Companion;
++
++    invoke-virtual {v1, p0}, Ltv/orange/core/Core$Companion;->initialize(Landroid/content/Context;)V
++
++    invoke-direct {p0}, Ltv/twitch/android/app/consumer/TwitchApplication;->initOranges()V
++
+     .line 126
+     sget-object v1, Ltv/twitch/android/app/consumer/TwitchApplication$$ExternalSyntheticLambda1;->INSTANCE:Ltv/twitch/android/app/consumer/TwitchApplication$$ExternalSyntheticLambda1;
+ 
+@@ -457,3 +476,48 @@
+ 
+     return-void
+ .end method
++
++.method private initOranges()V
++    .registers 3
++
++    .prologue
++    .line 24
++    invoke-static {}, Ltv/orange/features/chat/ChatHookProvider;->get()Ltv/orange/features/chat/ChatHookProvider;
++
++    move-result-object v0
++
++    invoke-static {}, Ltv/orange/core/Core;->get()Ltv/orange/core/Core;
++
++    move-result-object v1
++
++    invoke-virtual {v0, v1}, Ltv/orange/features/chat/ChatHookProvider;->registerLifecycle(Ltv/orange/core/models/LifecycleController;)V
++
++    .line 25
++    return-void
++.end method
++
++.method public provideInjector()Ltv/orange/injector/Injector;
++    .registers 2
++    .annotation build Landroidx/annotation/NonNull;
++    .end annotation
++
++    .prologue
++    .line 35
++    iget-object v0, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->injector:Ltv/orange/injector/Injector;
++
++    return-object v0
++.end method
++
++.method public bridge synthetic provideInjector()Ltv/orange/models/Injector;
++    .registers 2
++    .annotation build Landroidx/annotation/NonNull;
++    .end annotation
++
++    .prologue
++    .line 12
++    invoke-virtual {p0}, Ltv/twitch/android/app/consumer/TwitchApplication;->provideInjector()Ltv/orange/injector/Injector;
++
++    move-result-object v0
++
++    return-object v0
++.end method

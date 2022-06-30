@@ -1,0 +1,30 @@
+diff --git a/smali_classes2/com/bumptech/glide/request/BaseRequestOptions.smali b/smali_classes2/com/bumptech/glide/request/BaseRequestOptions.smali
+--- a/smali_classes2/com/bumptech/glide/request/BaseRequestOptions.smali
++++ b/smali_classes2/com/bumptech/glide/request/BaseRequestOptions.smali
+@@ -2705,3 +2705,26 @@
+ 
+     return-object p1
+ .end method
++
++.method public transform(Ljava/lang/Class;Lcom/bumptech/glide/load/Transformation;)Lcom/bumptech/glide/request/BaseRequestOptions;
++    .locals 1
++    .annotation system Ldalvik/annotation/Signature;
++        value = {
++            "<Y:",
++            "Ljava/lang/Object;",
++            ">(",
++            "Ljava/lang/Class<",
++            "TY;>;",
++            "Lcom/bumptech/glide/load/Transformation<",
++            "TY;>;)TT;"
++        }
++    .end annotation
++
++    const/4 v0, 0x1
++
++    invoke-virtual {p0, p1, p2, v0}, Lcom/bumptech/glide/request/BaseRequestOptions;->transform(Ljava/lang/Class;Lcom/bumptech/glide/load/Transformation;Z)Lcom/bumptech/glide/request/BaseRequestOptions;
++
++    move-result-object v0
++
++    return-object v0
++.end method

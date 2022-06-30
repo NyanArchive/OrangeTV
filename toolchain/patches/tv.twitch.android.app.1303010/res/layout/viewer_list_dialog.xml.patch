@@ -1,0 +1,10 @@
+diff --git a/res/layout/viewer_list_dialog.xml b/res/layout/viewer_list_dialog.xml
+--- a/res/layout/viewer_list_dialog.xml
++++ b/res/layout/viewer_list_dialog.xml
+@@ -6,4 +6,5 @@
+         <TextView android:layout_gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/viewer_list" style="@style/TitleText" />
+     </LinearLayout>
+     <FrameLayout android:id="@id/viewer_list_view_container" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0" />
++    <androidx.appcompat.widget.SearchView android:theme="@style/Theme.Twitch.SearchView" android:id="@+id/viewer_list_dialog__search" android:layout_width="fill_parent" android:layout_height="wrap_content" app:closeIcon="@drawable/ic_cancel_grey_9" app:queryHint="@string/edit_profile_edit_username_label" app:searchIcon="@drawable/ic_search_tags" />
+ </LinearLayout>
+\ No newline at end of file

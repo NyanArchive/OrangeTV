@@ -78,21 +78,6 @@ public class PlayerOverlayViewDelegate extends BaseViewDelegate implements IPlay
         /* ... */
     }
 
-    @Override
-    public void setChatModeToggleVisible(boolean b) {
-        /* ... */
-    }
-
-    @Override
-    public void setChatSettingsButtonVisible(boolean b) {
-        /* ... */
-    }
-
-    @Override
-    public void setWriteChatButtonVisible(boolean b) {
-        /* ... */
-    }
-
     public final OverlayLayoutController getOverlayLayoutController() {
         return null;
     }

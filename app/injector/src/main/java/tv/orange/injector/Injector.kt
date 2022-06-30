@@ -17,23 +17,24 @@ import javax.inject.Provider
 import kotlin.reflect.KClass
 
 class Injector(private val twitchComponent: DaggerAppComponent) : Injector {
-    @Volatile private var coreComponentDelegate: CoreComponent? = null
+    @Volatile
+    private var coreComponentInstance: CoreComponent? = null
 
     private val coreComponent: CoreComponent
         get() = kotlin.run {
-            coreComponentDelegate?.let {
+            coreComponentInstance?.let {
                 return it
             }
 
             synchronized(this) {
-                coreComponentDelegate ?: run {
-                    coreComponentDelegate = DaggerCoreComponent.factory()
+                coreComponentInstance ?: run {
+                    coreComponentInstance = DaggerCoreComponent.factory()
                         .create(ApplicationContext.getInstance().context)
-                    Logger.debug("CoreComponent: $coreComponentDelegate")
+                    Logger.debug("CoreComponent: $coreComponentInstance")
                 }
             }
 
-            return coreComponentDelegate!!
+            return coreComponentInstance!!
         }
 
     private fun provideBadges(): BadgesComponent {
@@ -56,19 +57,28 @@ class Injector(private val twitchComponent: DaggerAppComponent) : Injector {
             CoreComponent::class -> coreComponent
             BadgesComponent::class -> provideBadges()
             EmotesComponent::class -> provideEmotes()
-            GraphQlService::class -> provideTwitchApolloClient()
             else -> throw IllegalStateException("Unknown class: $cls")
         } as T
     }
 
-    @Suppress("UNCHECKED_CAST")
-    private fun provideTwitchApolloClient(): GraphQlService {
-        val field =
-            twitchComponent::class.java.getDeclaredField("graphQlServiceProvider")
-                .apply {
-                    isAccessible = true
-                }
-        val value = field.get(twitchComponent) as Provider<GraphQlService>
-        return value.get()
+    @Suppress("UNCHECKED_CAST", "IMPLICIT_CAST_TO_ANY")
+    override fun <T : Any> provideTwitchComponent(cls: KClass<T>): T {
+        return when (cls) {
+            GraphQlService::class -> provideTwitchGraphQlService()
+            else -> throw IllegalStateException("Unknown class: $cls")
+        } as T
+    }
+
+    private fun provideTwitchGraphQlService(): GraphQlService {
+        return getProvider<GraphQlService>(twitchComponent, "graphQlServiceProvider").get()
+    }
+
+    companion object {
+        @Suppress("UNCHECKED_CAST")
+        private fun <T> getProvider(component: DaggerAppComponent, fieldName: String): Provider<T> {
+            return component::class.java.getDeclaredField(fieldName).apply {
+                isAccessible = true
+            }.get(component) as Provider<T>
+        }
     }
 }

@@ -2,7 +2,7 @@ package tv.orange.features.badges.models
 
 import tv.orange.features.badges.component.data.models.BadgeSet
 
-class BadgeContainer(
+data class BadgeContainer(
     val ffzBadges: BadgeSet,
 ) {
     constructor() : this(BadgeSet())
@@ -11,7 +11,6 @@ class BadgeContainer(
         return ffzBadges.getBadges(userId)
     }
 
-    val size: Int
-            get() = ffzBadges.size
-
+    val isEmpty: Boolean
+        get() = ffzBadges.isEmpty()
 }

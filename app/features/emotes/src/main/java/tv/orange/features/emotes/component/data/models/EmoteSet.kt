@@ -24,8 +24,4 @@ class EmoteSet(emotes: Collection<Emote>) {
     fun isEmpty(): Boolean {
         return map.isEmpty()
     }
-
-    fun getSize(): Int {
-        return map.size
-    }
 }

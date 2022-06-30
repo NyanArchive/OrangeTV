@@ -50,7 +50,7 @@ class BadgesInjector @Inject constructor(val badgeProvider: BadgeProvider) : Lif
         private val INSTANCE by lazy {
             val hook = Core.getInjector().provideComponent(BadgesComponent::class).badgesInjector
 
-            Logger.debug("created: $hook")
+            Logger.debug("Provide new instance: $hook")
             return@lazy hook
         }
 

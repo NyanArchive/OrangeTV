@@ -21,7 +21,7 @@ class NetworkModule {
             .readTimeout(5000, TimeUnit.MILLISECONDS)
             .writeTimeout(5000, TimeUnit.MILLISECONDS)
             .retryOnConnectionFailure(true).build()
-        Logger.debug("provide: $client")
+        Logger.debug("Provide new instance: $client")
         return client
     }
 
@@ -32,7 +32,7 @@ class NetworkModule {
             .addConverterFactory(GsonConverterFactory.create(Gson()))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
             .client(client)
-        Logger.debug("provide: $builder")
+        Logger.debug("Provide new instance: $builder")
         return builder
     }
 }

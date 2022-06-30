@@ -12,8 +12,8 @@ data class EmoteContainer(
     val allEmotes: List<Emote>
         get() = bttvEmotes.getEmotes() + ffzEmotes.getEmotes() + stvEmotes.getEmotes()
 
-    val size: Int
-        get() = allEmotes.size
+    val isEmpty: Boolean
+        get() = bttvEmotes.isEmpty() && ffzEmotes.isEmpty() && stvEmotes.isEmpty()
 
     fun getEmote(code: String): Emote? {
         return bttvEmotes.getEmote(code) ?: ffzEmotes.getEmote(code) ?: stvEmotes.getEmote(code)

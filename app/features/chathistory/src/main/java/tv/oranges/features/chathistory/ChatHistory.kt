@@ -49,10 +49,6 @@ class ChatHistory @Inject constructor(
             repository.getMessages(channelName = channelName)
                 .observeOn(AndroidSchedulers.mainThread()).subscribe({ messages ->
                     if (messages.isNullOrEmpty()) {
-                        source.addChatHistoryMessage(
-                            channelId,
-                            repository.getSystemMessage("[OHI] Messages not found")
-                        )
                         return@subscribe
                     }
 
@@ -63,7 +59,7 @@ class ChatHistory @Inject constructor(
                     it.printStackTrace()
                     source.addChatHistoryMessage(
                         channelId,
-                        repository.getSystemMessage("[OHI] Error: ${it.localizedMessage}")
+                        repository.getSystemMessage("[TCH] Error: ${it.localizedMessage}")
                     )
                 }
         )
@@ -74,10 +70,10 @@ class ChatHistory @Inject constructor(
             val hook = DaggerChatHistoryComponent.factory()
                 .create(
                     Core.getInjector().provideComponent(CoreComponent::class),
-                    Core.getInjector().provideComponent(GraphQlService::class)
+                    Core.getInjector().provideTwitchComponent(GraphQlService::class)
                 ).chatHistory
 
-            Logger.debug("created: $hook")
+            Logger.debug("Provide new instance: $hook")
             return@lazy hook
         }
 

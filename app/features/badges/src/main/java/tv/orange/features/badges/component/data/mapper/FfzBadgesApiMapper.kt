@@ -1,13 +1,14 @@
 package tv.orange.features.badges.component.data.mapper
 
 import tv.orange.features.badges.component.data.models.BadgeSet
+import tv.orange.features.badges.component.data.models.BadgeSetBuilder
 import tv.orange.features.badges.models.BadgeImpl
 import tv.orange.models.retrofit.ffz.FfzBadges
 import javax.inject.Inject
 
 class FfzBadgesApiMapper @Inject constructor() {
     fun map(response: FfzBadges): BadgeSet {
-        val set = BadgeSet()
+        val builder = BadgeSetBuilder()
         val badges = response.badges.associateBy { it.id }
 
         response.users.forEach { entry ->
@@ -17,7 +18,7 @@ class FfzBadgesApiMapper @Inject constructor() {
             emoteId.toIntOrNull()?.let { id ->
                 userIds.forEach { userId ->
                     badges[id]?.let { ffzBadge ->
-                        set.addBadge(
+                        builder.addBadge(
                             BadgeImpl(
                                 badgeCode = ffzBadge.name,
                                 badgeUrl = getUrl(ffzBadge.id),
@@ -30,7 +31,7 @@ class FfzBadgesApiMapper @Inject constructor() {
             }
         }
 
-        return set
+        return builder.build()
     }
 
     companion object {

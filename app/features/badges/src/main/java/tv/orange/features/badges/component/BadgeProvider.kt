@@ -15,7 +15,7 @@ class BadgeProvider @Inject constructor(val emoteRepository: BadgeRepository) {
     private fun fetchGlobalBadges() {
         disposables.add(emoteRepository.getFfzBadges().subscribe({ ffz ->
             val set = BadgeContainer(ffz)
-            Logger.debug("set: $set")
+            Logger.debug("Global badges: $set")
             global = set
         }, {
             it.printStackTrace()
@@ -32,7 +32,7 @@ class BadgeProvider @Inject constructor(val emoteRepository: BadgeRepository) {
     }
 
     fun fetchBadges() {
-        if (global.size == 0) {
+        if (global.isEmpty) {
             fetchGlobalBadges()
         }
     }

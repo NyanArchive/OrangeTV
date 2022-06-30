@@ -28,7 +28,8 @@ class EmoteProvider @Inject constructor(val emoteRepository: EmoteRepository) {
                 ffzEmotes = EmoteSet(ffz),
                 stvEmotes = EmoteSet(stv)
             )
-            Logger.debug("set: $set")
+
+            Logger.debug("Global set: $set")
             return@zip set
         }.subscribe({ set ->
             global = set
@@ -90,7 +91,7 @@ class EmoteProvider @Inject constructor(val emoteRepository: EmoteRepository) {
     fun requestUserEmotes(userId: Int) {}
 
     fun fetchEmotes() {
-        if (global.size == 0) {
+        if (global.isEmpty) {
             fetchGlobalEmotes()
         }
     }

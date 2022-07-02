@@ -3,6 +3,7 @@ package tv.orange.core.util
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 object DateUtil {
     private const val API_DATE_SUBSECOND_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'"
@@ -23,5 +24,21 @@ object DateUtil {
             }
             null
         }
+    }
+
+    fun getCurrentTimestamp(): Int {
+        return Date().time.div(1000).toInt()
+    }
+
+    fun getDiff(start: Date, end: Date): Long {
+        return end.time - start.time
+    }
+
+    fun toSeconds(mil: Long): Long {
+        return TimeUnit.MILLISECONDS.toSeconds(mil)
+    }
+
+    fun timestampToDate(timestamp: Int): Date {
+        return Date(timestamp.toLong() * 1000)
     }
 }

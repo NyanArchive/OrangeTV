@@ -21,10 +21,6 @@ class BttvApiMapper @Inject constructor() {
         }
     }
 
-    fun mapEmotes(emotes: List<BttvEmote>): List<Emote> {
-        return mapBttvEmotes(emotes)
-    }
-
     fun mapFfzEmotes(emotes: List<FfzEmote>): List<Emote> {
         return emotes.mapNotNull { emote ->
             val small = emote.images["1x"] ?: return@mapNotNull null
@@ -40,7 +36,7 @@ class BttvApiMapper @Inject constructor() {
     }
 
     fun mapChannelEmotes(emotes: BttvChannel): List<Emote> {
-        return mapEmotes(emotes.sharedEmotes) + mapEmotes(emotes.channelEmotes)
+        return mapBttvEmotes(emotes.sharedEmotes) + mapBttvEmotes(emotes.channelEmotes)
     }
 
     companion object {

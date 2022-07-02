@@ -14,7 +14,7 @@ class BttvRemoteDataSource @Inject constructor(
 ) {
     fun getGlobalEmotes(): Single<List<Emote>> {
         return bttvApi.globalBttvEmotes().subscribeOn(Schedulers.io()).map { emotes ->
-            bttvMapper.mapEmotes(emotes)
+            bttvMapper.mapBttvEmotes(emotes)
         }
     }
 

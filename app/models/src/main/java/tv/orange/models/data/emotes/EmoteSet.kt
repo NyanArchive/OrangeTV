@@ -18,8 +18,8 @@ class EmoteSet(emotes: Collection<Emote>) {
         return map[code]
     }
 
-    fun getEmotes(): Collection<Emote> {
-        return map.values
+    fun getEmotes(): List<Emote> {
+        return map.values.toList()
     }
 
     fun isEmpty(): Boolean {

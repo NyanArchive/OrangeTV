@@ -66,9 +66,7 @@ class EmotesInjector @Inject constructor(val provider: EmoteProvider) : Lifecycl
 
     override fun onAccountLogout() {}
 
-    override fun onFirstActivityCreated() {
-        provider.fetchGlobalEmotes()
-    }
+    override fun onFirstActivityCreated() {}
 
     override fun onFirstActivityStarted() {}
 

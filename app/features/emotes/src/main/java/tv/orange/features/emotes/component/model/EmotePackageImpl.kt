@@ -12,7 +12,7 @@ class EmotePackageImpl(
     private val source: EmoteFetcherFactory
 ) : EmotePackage {
     var set: EmoteSet? = null
-    private var lastUpdateTimestamp: Date = Date(0)
+    private var lastUpdate: Date = Date(0)
 
     private val disposables = CompositeDisposable()
 
@@ -25,18 +25,20 @@ class EmotePackageImpl(
     }
 
     override fun refresh(force: Boolean) {
-        if (!force && DateUtil.toSeconds(DateUtil.getDiff(lastUpdateTimestamp, Date())) <
-            REFRESH_TIMEOUT
-        ) {
-            return
+        if (!force) {
+            val diff = DateUtil.toSeconds(DateUtil.getDiff(lastUpdate, Date()))
+            if (diff < REFRESH_TIMEOUT) {
+                Logger.debug("Skip: $diff")
+                return
+            }
         }
 
         disposables.add(source.create().subscribe({ set ->
             this.set = set
-            this.lastUpdateTimestamp = Date()
-            Logger.debug("[${source.name()}-${source.channelId()}] New set: $set")
+            this.lastUpdate = Date()
+            Logger.debug("[${source}] Fetched: $set")
         }, {
-            Logger.debug("[${source.name()}-${source.channelId()}] Cannot fetch emotes")
+            Logger.debug("[${source}] Cannot fetch emotes: ${it.localizedMessage}")
         }))
     }
 
@@ -49,6 +51,6 @@ class EmotePackageImpl(
     }
 
     companion object {
-        private const val REFRESH_TIMEOUT = 60
+        private const val REFRESH_TIMEOUT = 120
     }
 }

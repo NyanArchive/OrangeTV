@@ -25,4 +25,8 @@ class EmoteSet(emotes: Collection<Emote>) {
     fun isEmpty(): Boolean {
         return map.isEmpty()
     }
+
+    override fun toString(): String {
+        return "EmoteSet(${getEmotes().size})"
+    }
 }

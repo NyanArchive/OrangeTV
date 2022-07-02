@@ -18,20 +18,22 @@ class EmoteProvider @Inject constructor(val roomFactory: RoomFactory) {
     }
 
     fun requestChannelEmotes(channelId: Int) {
-        global.refresh()
-        val room = channel[channelId]
-        if (room == null) {
-            fetchChannelEmotes(channelId)
-        } else {
-            room.refresh()
-        }
+        channel[channelId]?.refresh() ?: fetchChannelEmotes(channelId)
     }
 
     private fun fetchChannelEmotes(channelId: Int) {
         channel.put(channelId, roomFactory.create(channelId).apply { fetch() })
     }
 
-    fun fetchEmotes() {
+    fun fetchGlobalEmotes() {
         global.fetch()
+    }
+
+    fun refreshGlobalEmotes() {
+        global.refresh()
+    }
+
+    fun clear() {
+        channel.evictAll()
     }
 }

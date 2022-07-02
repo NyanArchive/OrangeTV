@@ -50,8 +50,7 @@ class RoomFactoryImpl @Inject constructor(
                 EmotePackageImpl(
                     EmoteFetcherFactoryImpl(
                         { bttv.getBttvGlobalEmotes() },
-                        "BTTV-GLOBAL",
-                        0
+                        "BTTV-GLOBAL"
                     )
                 )
             )
@@ -59,8 +58,7 @@ class RoomFactoryImpl @Inject constructor(
                 EmotePackageImpl(
                     EmoteFetcherFactoryImpl(
                         { bttv.getFfzGlobalEmotes() },
-                        "FFZ-GLOBAL",
-                        0
+                        "FFZ-GLOBAL"
                     )
                 )
             )
@@ -68,8 +66,7 @@ class RoomFactoryImpl @Inject constructor(
                 EmotePackageImpl(
                     EmoteFetcherFactoryImpl(
                         { stv.getStvGlobalEmotes() },
-                        "STV-GLOBAL",
-                        0
+                        "STV-GLOBAL"
                     )
                 )
             )

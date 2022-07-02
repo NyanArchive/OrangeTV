@@ -54,16 +54,20 @@ class EmotesInjector @Inject constructor(val provider: EmoteProvider) : Lifecycl
         provider.requestChannelEmotes(channelId)
     }
 
-    override fun onAllComponentDestroyed() {}
+    override fun onAllComponentDestroyed() {
+        provider.clear()
+    }
 
     override fun onAllComponentStopped() {}
 
-    override fun onSdkResume() {}
+    override fun onSdkResume() {
+        provider.refreshGlobalEmotes()
+    }
 
     override fun onAccountLogout() {}
 
     override fun onFirstActivityCreated() {
-        provider.fetchEmotes()
+        provider.fetchGlobalEmotes()
     }
 
     override fun onFirstActivityStarted() {}

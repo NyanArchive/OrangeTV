@@ -6,10 +6,6 @@ import tv.orange.models.data.emotes.Emote
 class RoomImpl : Room {
     private val packages: MutableList<EmotePackage> = mutableListOf()
 
-    fun isEmpty(): Boolean {
-        return packages.all { pack -> pack.isEmpty() }
-    }
-
     override fun add(pack: EmotePackage) {
         packages.add(pack)
     }

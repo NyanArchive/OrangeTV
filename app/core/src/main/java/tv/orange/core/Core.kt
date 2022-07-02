@@ -5,9 +5,9 @@ import tv.orange.core.models.LifecycleAware
 import tv.orange.core.models.LifecycleController
 import tv.orange.models.Injector
 import tv.orange.models.InjectorProvider
-import tv.twitch.android.app.consumer.TwitchApplication
 
-class Core private constructor(private val applicationContext: Context) : LifecycleController,
+class Core private constructor(private val applicationContext: Context) :
+    LifecycleController,
     LifecycleAware {
     val modules: HashSet<LifecycleAware> = HashSet()
 

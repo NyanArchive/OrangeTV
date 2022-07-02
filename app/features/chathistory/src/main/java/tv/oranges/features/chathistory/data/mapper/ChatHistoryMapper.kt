@@ -1,7 +1,7 @@
 package tv.oranges.features.chathistory.data.mapper
 
 import android.graphics.Color
-import tv.orange.core.DateUtil
+import tv.orange.core.util.DateUtil
 import tv.orange.models.gql.twitch.MessageBufferChatHistoryQuery
 import tv.orange.models.gql.twitch.fragment.ChatHistoryMessageFragment
 import tv.oranges.features.chathistory.data.model.ChatHistoryMessage

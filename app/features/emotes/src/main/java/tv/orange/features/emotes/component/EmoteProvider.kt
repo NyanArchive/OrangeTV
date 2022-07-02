@@ -4,14 +4,18 @@ import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import tv.orange.core.Logger
-import tv.orange.features.emotes.component.data.models.EmoteContainerCache
-import tv.orange.features.emotes.component.data.models.EmoteContainer
-import tv.orange.features.emotes.component.data.models.EmoteSet
-import tv.orange.features.emotes.component.repository.EmoteRepository
-import tv.orange.features.emotes.models.Emote
+import tv.orange.features.api.component.repository.BttvRepository
+import tv.orange.features.api.component.repository.StvRepository
+import tv.orange.features.emotes.component.model.EmoteContainer
+import tv.orange.features.emotes.component.model.EmoteContainerCache
+import tv.orange.models.data.emotes.Emote
+import tv.orange.models.data.emotes.EmoteSet
 import javax.inject.Inject
 
-class EmoteProvider @Inject constructor(val emoteRepository: EmoteRepository) {
+class EmoteProvider @Inject constructor(
+    val bttvRepository: BttvRepository,
+    val stvRepository: StvRepository
+) {
     private var global = EmoteContainer()
     private val channelEmotesCache = EmoteContainerCache(3)
 
@@ -19,9 +23,9 @@ class EmoteProvider @Inject constructor(val emoteRepository: EmoteRepository) {
 
     private fun fetchGlobalEmotes() {
         disposables.add(Single.zip(
-            emoteRepository.getBttvGlobalEmotes(),
-            emoteRepository.getFfzGlobalEmotes(),
-            emoteRepository.getStvGlobalEmotes()
+            bttvRepository.getBttvGlobalEmotes(),
+            bttvRepository.getFfzGlobalEmotes(),
+            stvRepository.getStvGlobalEmotes()
         ) { bttv, ffz, stv ->
             val set = EmoteContainer(
                 bttvEmotes = EmoteSet(bttv),
@@ -29,7 +33,7 @@ class EmoteProvider @Inject constructor(val emoteRepository: EmoteRepository) {
                 stvEmotes = EmoteSet(stv)
             )
 
-            Logger.debug("Global set: $set")
+            Logger.debug("New global set: $set")
             return@zip set
         }.subscribe({ set ->
             global = set
@@ -69,16 +73,17 @@ class EmoteProvider @Inject constructor(val emoteRepository: EmoteRepository) {
     private fun fetchChannelEmotes(channelId: Int) {
         disposables.add(
             Single.zip(
-                emoteRepository.getBttvChannelEmotes(channelId).subscribeOn(Schedulers.io()),
-                emoteRepository.getFfzChannelEmotes(channelId).subscribeOn(Schedulers.io()),
-                emoteRepository.getStvChannelEmotes(channelId).subscribeOn(Schedulers.io())
+                bttvRepository.getBttvChannelEmotes(channelId).subscribeOn(Schedulers.io()),
+                bttvRepository.getFfzChannelEmotes(channelId).subscribeOn(Schedulers.io()),
+                stvRepository.getStvChannelEmotes(channelId).subscribeOn(Schedulers.io())
             ) { bttv, ffz, stv ->
                 val set = EmoteContainer(
                     bttvEmotes = EmoteSet(bttv),
                     ffzEmotes = EmoteSet(ffz),
                     stvEmotes = EmoteSet(stv)
                 )
-                Logger.debug("set: $set")
+
+                Logger.debug("New channel set: $set")
                 return@zip set
             }.subscribe({ set ->
                 channelEmotesCache.put(channelId, set)
@@ -91,7 +96,7 @@ class EmoteProvider @Inject constructor(val emoteRepository: EmoteRepository) {
     fun requestUserEmotes(userId: Int) {}
 
     fun fetchEmotes() {
-        if (global.isEmpty) {
+        if (global.isEmpty()) {
             fetchGlobalEmotes()
         }
     }

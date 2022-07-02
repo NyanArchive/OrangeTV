@@ -28,7 +28,7 @@ class ChatHookProvider @Inject constructor(
                 .emotesComponent(Core.getInjector().provideComponent(EmotesComponent::class))
                 .build().hook
 
-            Logger.debug("created: $hook")
+            Logger.debug("Provide new instance: $hook")
             return@lazy hook
         }
 

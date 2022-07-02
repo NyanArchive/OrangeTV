@@ -52,8 +52,8 @@ class Hook @Inject constructor() {
             val hook = DaggerStreamUptimeComponent.builder()
                 .coreComponent(Core.getInjector().provideComponent(CoreComponent::class))
                 .build().hook
-            Logger.debug("created: $hook")
 
+            Logger.debug("Provide new instance: $hook")
             return@lazy hook
         }
 

@@ -4,7 +4,7 @@ import tv.orange.core.models.LifecycleAware
 import tv.orange.features.emotes.bridge.EmoteToken
 import tv.orange.features.emotes.component.EmoteProvider
 import tv.orange.features.emotes.di.scope.EmotesScope
-import tv.orange.features.emotes.models.Emote
+import tv.orange.models.data.emotes.Emote
 import tv.twitch.android.models.chat.MessageToken
 import javax.inject.Inject
 

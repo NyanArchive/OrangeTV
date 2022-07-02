@@ -3,12 +3,12 @@ package tv.orange.injector
 import tv.orange.core.Logger
 import tv.orange.core.di.component.CoreComponent
 import tv.orange.core.di.component.DaggerCoreComponent
+import tv.orange.features.api.di.component.ApiComponent
+import tv.orange.features.api.di.component.DaggerApiComponent
 import tv.orange.features.badges.di.component.BadgesComponent
 import tv.orange.features.badges.di.component.DaggerBadgesComponent
-import tv.orange.features.badges.di.module.BadgesApiModule
 import tv.orange.features.emotes.di.component.DaggerEmotesComponent
 import tv.orange.features.emotes.di.component.EmotesComponent
-import tv.orange.features.emotes.di.module.EmotesApiModule
 import tv.orange.models.Injector
 import tv.twitch.android.app.consumer.dagger.DaggerAppComponent
 import tv.twitch.android.app.core.ApplicationContext
@@ -30,24 +30,29 @@ class Injector(private val twitchComponent: DaggerAppComponent) : Injector {
                 coreComponentInstance ?: run {
                     coreComponentInstance = DaggerCoreComponent.factory()
                         .create(ApplicationContext.getInstance().context)
-                    Logger.debug("CoreComponent: $coreComponentInstance")
+
+                    Logger.debug("Provide new instance: $coreComponentInstance")
                 }
             }
 
             return coreComponentInstance!!
         }
 
+    private val apiComponent: ApiComponent by lazy {
+        DaggerApiComponent.factory().create(coreComponent)
+    }
+
     private fun provideBadges(): BadgesComponent {
         return DaggerBadgesComponent.builder()
             .coreComponent(coreComponent)
-            .badgesApiModule(BadgesApiModule())
+            .apiComponent(apiComponent)
             .build()
     }
 
     private fun provideEmotes(): EmotesComponent {
         return DaggerEmotesComponent.builder()
             .coreComponent(coreComponent)
-            .emotesApiModule(EmotesApiModule())
+            .apiComponent(apiComponent)
             .build()
     }
 

@@ -31,7 +31,6 @@ android {
 
 dependencies {
     implementation project(path: ':core')
-    api project(path: ':features:api')
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

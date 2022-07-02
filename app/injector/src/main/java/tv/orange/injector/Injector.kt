@@ -62,6 +62,7 @@ class Injector(private val twitchComponent: DaggerAppComponent) : Injector {
             CoreComponent::class -> coreComponent
             BadgesComponent::class -> provideBadges()
             EmotesComponent::class -> provideEmotes()
+            ApiComponent::class -> apiComponent
             else -> throw IllegalStateException("Unknown class: $cls")
         } as T
     }

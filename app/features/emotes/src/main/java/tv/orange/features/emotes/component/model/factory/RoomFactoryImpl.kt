@@ -14,17 +14,65 @@ class RoomFactoryImpl @Inject constructor(
 
     override fun create(channelId: Int): Room {
         return RoomImpl().apply {
-            add(EmotePackageImpl(EmoteFetcherFactoryImpl { bttv.getBttvChannelEmotes(channelId) }))
-            add(EmotePackageImpl(EmoteFetcherFactoryImpl { bttv.getFfzChannelEmotes(channelId) }))
-            add(EmotePackageImpl(EmoteFetcherFactoryImpl { stv.getStvChannelEmotes(channelId) }))
+            add(
+                EmotePackageImpl(
+                    EmoteFetcherFactoryImpl(
+                        { bttv.getBttvChannelEmotes(channelId) },
+                        "BTTV-CHANNEL",
+                        channelId
+                    )
+                )
+            )
+            add(
+                EmotePackageImpl(
+                    EmoteFetcherFactoryImpl(
+                        { bttv.getFfzChannelEmotes(channelId) },
+                        "FFZ-CHANNEL",
+                        channelId
+                    )
+                )
+            )
+            add(
+                EmotePackageImpl(
+                    EmoteFetcherFactoryImpl(
+                        { stv.getStvChannelEmotes(channelId) },
+                        "STV-CHANNEL",
+                        channelId
+                    )
+                )
+            )
         }
     }
 
     override fun createGlobal(): Room {
         return RoomImpl().apply {
-            add(EmotePackageImpl(EmoteFetcherFactoryImpl { bttv.getBttvGlobalEmotes() }))
-            add(EmotePackageImpl(EmoteFetcherFactoryImpl { bttv.getFfzGlobalEmotes() }))
-            add(EmotePackageImpl(EmoteFetcherFactoryImpl { stv.getStvGlobalEmotes() }))
+            add(
+                EmotePackageImpl(
+                    EmoteFetcherFactoryImpl(
+                        { bttv.getBttvGlobalEmotes() },
+                        "BTTV-GLOBAL",
+                        0
+                    )
+                )
+            )
+            add(
+                EmotePackageImpl(
+                    EmoteFetcherFactoryImpl(
+                        { bttv.getFfzGlobalEmotes() },
+                        "FFZ-GLOBAL",
+                        0
+                    )
+                )
+            )
+            add(
+                EmotePackageImpl(
+                    EmoteFetcherFactoryImpl(
+                        { stv.getStvGlobalEmotes() },
+                        "STV-GLOBAL",
+                        0
+                    )
+                )
+            )
         }
     }
 }

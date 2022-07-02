@@ -5,4 +5,8 @@ import tv.orange.models.data.emotes.EmoteSet
 
 interface EmoteFetcherFactory {
     fun create(): Single<EmoteSet>
+
+    fun name(): String
+
+    fun channelId(): Int
 }

@@ -1,6 +1,7 @@
 package tv.orange.features.emotes.component.model
 
 import io.reactivex.disposables.CompositeDisposable
+import tv.orange.core.Logger
 import tv.orange.core.util.DateUtil
 import tv.orange.features.emotes.component.model.factory.EmoteFetcherFactory
 import tv.orange.models.data.emotes.Emote
@@ -33,7 +34,10 @@ class EmotePackageImpl(
         disposables.add(source.create().subscribe({ set ->
             this.set = set
             this.lastUpdateTimestamp = Date()
-        }, {}))
+            Logger.debug("[${source.name()}-${source.channelId()}] New set: $set")
+        }, {
+            Logger.debug("[${source.name()}-${source.channelId()}] Cannot fetch emotes")
+        }))
     }
 
     override fun isEmpty(): Boolean {

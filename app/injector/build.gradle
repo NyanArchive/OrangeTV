@@ -33,5 +33,6 @@ dependencies {
     implementation project(path: ':core')
     implementation project(path: ':features:emotes')
     implementation project(path: ':models')
+    implementation project(path: ':features:api')
 }
 

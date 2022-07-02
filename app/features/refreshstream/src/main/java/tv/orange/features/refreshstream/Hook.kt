@@ -27,7 +27,8 @@ class Hook @Inject constructor(val viewFactory: ViewFactory) {
             val hook = DaggerRefreshStreamComponent.builder()
                 .coreComponent(Core.getInjector().provideComponent(CoreComponent::class))
                 .build().hook
-            Logger.debug("created: $hook")
+
+            Logger.debug("Provide new instance: $hook")
             return@lazy hook
         }
 

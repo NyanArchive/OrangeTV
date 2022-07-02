@@ -4,12 +4,12 @@ import tv.orange.core.models.LifecycleAware
 import tv.orange.features.emotes.bridge.EmoteToken
 import tv.orange.features.emotes.component.EmoteProvider
 import tv.orange.features.emotes.di.scope.EmotesScope
-import tv.orange.features.emotes.models.Emote
+import tv.orange.models.data.emotes.Emote
 import tv.twitch.android.models.chat.MessageToken
 import javax.inject.Inject
 
 @EmotesScope
-class EmotesInjector @Inject constructor(val emoteProvider: EmoteProvider) : LifecycleAware {
+class EmotesInjector @Inject constructor(val provider: EmoteProvider) : LifecycleAware {
     fun injectEmotes(
         tokens: List<MessageToken>,
         userId: Int,
@@ -22,7 +22,7 @@ class EmotesInjector @Inject constructor(val emoteProvider: EmoteProvider) : Lif
             if (token is MessageToken.TextToken) {
                 val words = token.text.split(" ")
                 for (word in words) {
-                    val emote = emoteProvider.getEmote(word, channelId, userId)
+                    val emote = provider.getEmote(word, channelId)
                     if (emote != null) {
                         if (!injected) {
                             injected = true
@@ -51,22 +51,22 @@ class EmotesInjector @Inject constructor(val emoteProvider: EmoteProvider) : Lif
             return
         }
 
-        emoteProvider.requestChannelEmotes(channelId)
+        provider.requestChannelEmotes(channelId)
     }
 
     override fun onAllComponentDestroyed() {
-        emoteProvider.clear()
+        provider.clear()
     }
 
     override fun onAllComponentStopped() {}
 
-    override fun onSdkResume() {}
+    override fun onSdkResume() {
+        provider.refreshGlobalEmotes()
+    }
 
     override fun onAccountLogout() {}
 
-    override fun onFirstActivityCreated() {
-        emoteProvider.fetchEmotes()
-    }
+    override fun onFirstActivityCreated() {}
 
     override fun onFirstActivityStarted() {}
 

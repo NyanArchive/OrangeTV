@@ -17,6 +17,6 @@ interface CoreComponent {
         fun create(@BindsInstance context: Context): CoreComponent
     }
 
-    val provideOkHttpClient: OkHttpClient
-    val provideRetrofitBuilder: Retrofit.Builder
+    val okHttpClient: OkHttpClient
+    val retrofitBuilder: Retrofit.Builder
 }

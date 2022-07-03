@@ -61,7 +61,7 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
      .line 126
      sget-object v1, Ltv/twitch/android/app/consumer/TwitchApplication$$ExternalSyntheticLambda1;->INSTANCE:Ltv/twitch/android/app/consumer/TwitchApplication$$ExternalSyntheticLambda1;
  
-@@ -457,3 +476,48 @@
+@@ -457,3 +476,59 @@
  
      return-void
  .end method
@@ -70,7 +70,7 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
 +    .registers 3
 +
 +    .prologue
-+    .line 24
++    .line 34
 +    invoke-static {}, Ltv/orange/features/chat/ChatHookProvider;->get()Ltv/orange/features/chat/ChatHookProvider;
 +
 +    move-result-object v0
@@ -81,7 +81,18 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
 +
 +    invoke-virtual {v0, v1}, Ltv/orange/features/chat/ChatHookProvider;->registerLifecycle(Ltv/orange/core/models/LifecycleController;)V
 +
-+    .line 25
++    .line 35
++    invoke-static {}, Ltv/orange/core/Core;->get()Ltv/orange/core/Core;
++
++    move-result-object v0
++
++    invoke-static {}, Ltv/orange/features/stv/AvatarsHookProvider;->get()Ltv/orange/features/stv/AvatarsHookProvider;
++
++    move-result-object v1
++
++    invoke-virtual {v0, v1}, Ltv/orange/core/Core;->registerLifecycleListener(Ltv/orange/core/models/LifecycleAware;)V
++
++    .line 36
 +    return-void
 +.end method
 +

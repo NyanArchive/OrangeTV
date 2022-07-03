@@ -7,8 +7,53 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
  .super Landroid/graphics/drawable/BitmapDrawable;
  .source "UrlDrawable.kt"
  
-@@ -87,80 +87,144 @@
+@@ -24,6 +24,8 @@
  
+ .field private final url:Ljava/lang/String;
+ 
++.field private final wide:Z
++
+ 
+ # direct methods
+ .method public constructor <init>()V
+@@ -58,6 +60,10 @@
+     .line 22
+     iput-object p2, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->type:Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;
+ 
++    const/4 v0, 0x0
++
++    iput-boolean v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->wide:Z
++
+     return-void
+ .end method
+ 
+@@ -85,82 +91,169 @@
+     return-void
+ .end method
+ 
++.method public constructor <init>(Ljava/lang/String;Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;Z)V
++    .registers 4
++    .param p1, "url"    # Ljava/lang/String;
++    .param p2, "type"    # Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;
++    .param p3, "wide"    # Z
++
++    .prologue
++    .line 32
++    invoke-direct {p0}, Landroid/graphics/drawable/BitmapDrawable;-><init>()V
++
++    .line 33
++    iput-object p1, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->url:Ljava/lang/String;
++
++    .line 34
++    iput-object p2, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->type:Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;
++
++    .line 35
++    iput-boolean p3, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->wide:Z
++
++    .line 36
++    return-void
++.end method
++
  
  # virtual methods
 -.method public final destroy()V
@@ -105,7 +150,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
 +    move-result v2
 +
 +    if-eqz v2, :cond_16
-+
+ 
 +    .line 90
 +    invoke-virtual {v1}, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;->stop()V
 +
@@ -115,7 +160,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
 +.method public draw(Landroid/graphics/Canvas;)V
 +    .registers 5
 +    .param p1, "canvas"    # Landroid/graphics/Canvas;
- 
++
 +    .prologue
      .line 53
      iget-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->drawable:Landroid/graphics/drawable/Drawable;
@@ -130,33 +175,33 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
      .line 55
 -    instance-of p1, v0, Lcom/bumptech/glide/load/resource/gif/GifDrawable;
 +    invoke-virtual {v0, p1}, Landroid/graphics/drawable/Drawable;->draw(Landroid/graphics/Canvas;)V
-+
+ 
+-    if-eqz p1, :cond_0
 +    .line 56
 +    instance-of v2, v0, Lcom/bumptech/glide/load/resource/gif/GifDrawable;
  
--    if-eqz p1, :cond_0
+-    check-cast v0, Lcom/bumptech/glide/load/resource/gif/GifDrawable;
 +    if-eqz v2, :cond_18
  
--    check-cast v0, Lcom/bumptech/glide/load/resource/gif/GifDrawable;
+-    invoke-virtual {v0}, Lcom/bumptech/glide/load/resource/gif/GifDrawable;->isRunning()Z
 +    move-object v1, v0
  
--    invoke-virtual {v0}, Lcom/bumptech/glide/load/resource/gif/GifDrawable;->isRunning()Z
+-    move-result p1
 +    .line 57
 +    check-cast v1, Lcom/bumptech/glide/load/resource/gif/GifDrawable;
  
--    move-result p1
+-    if-nez p1, :cond_0
 +    .line 58
 +    .local v1, "gifDrawable":Lcom/bumptech/glide/load/resource/gif/GifDrawable;
 +    invoke-virtual {v1}, Lcom/bumptech/glide/load/resource/gif/GifDrawable;->isRunning()Z
  
--    if-nez p1, :cond_0
-+    move-result v2
- 
 -    .line 56
 -    invoke-virtual {v0}, Lcom/bumptech/glide/load/resource/gif/GifDrawable;->start()V
-+    if-nez v2, :cond_17
++    move-result v2
  
 -    :cond_0
++    if-nez v2, :cond_17
++
 +    .line 59
 +    invoke-virtual {v1}, Lcom/bumptech/glide/load/resource/gif/GifDrawable;->start()V
 +
@@ -192,7 +237,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
  .end method
  
  .method public final getImageSize()I
-@@ -236,7 +300,7 @@
+@@ -236,7 +329,7 @@
      return-void
  .end method
  
@@ -201,3 +246,17 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
      .locals 0
  
      .line 25
+@@ -267,3 +360,13 @@
+ 
+     return-void
+ .end method
++
++.method public isWide()Z
++    .registers 2
++
++    .prologue
++    .line 97
++    iget-boolean v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->wide:Z
++
++    return v0
++.end method

@@ -28,6 +28,11 @@ public final class UrlDrawable extends BitmapDrawable {
         this.type = type;
     }
 
+    public UrlDrawable(String url, MediaSpan$Type type, boolean wide) {
+        this.url = url;
+        this.type = type;
+    }
+
     public void setDrawable(Drawable drawable) {
         this.drawable = drawable;
     }
@@ -92,5 +97,9 @@ public final class UrlDrawable extends BitmapDrawable {
         }
         this.drawable = null;
         this.onBoundsChangeListener = null;
+    }
+
+    public boolean isWide() {
+        return false;
     }
 }

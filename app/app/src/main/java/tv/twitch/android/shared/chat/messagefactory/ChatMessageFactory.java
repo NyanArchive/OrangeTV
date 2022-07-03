@@ -65,7 +65,7 @@ public class ChatMessageFactory {
     }
 
     private CharSequence emoteSpannable(EmoteToken token, EventDispatcher<ChatItemClickEvent> eventDispatcher) { // TODO: __INJECT_METHOD
-        Drawable drawable = new UrlDrawable(token.getEmoteUrl(), MediaSpan$Type.Emote);
+        Drawable drawable = new UrlDrawable(token.getEmoteUrl(), MediaSpan$Type.Emote, true);
         return imageSpannable(drawable, token.getEmoteCode(), "", null, true);
     }
 

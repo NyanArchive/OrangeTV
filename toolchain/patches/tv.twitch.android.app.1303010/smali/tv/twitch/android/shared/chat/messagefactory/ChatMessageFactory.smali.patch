@@ -84,8 +84,10 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +    .end annotation
 +
 +    .prologue
-+    .line 67
 +    .local p2, "eventDispatcher":Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;, "Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher<Ltv/twitch/android/shared/chat/util/ChatItemClickEvent;>;"
++    const/4 v5, 0x1
++
++    .line 68
 +    new-instance v1, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
 +
 +    invoke-virtual {p1}, Ltv/orange/features/emotes/bridge/EmoteToken;->getEmoteUrl()Ljava/lang/String;
@@ -94,9 +96,9 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
 +    sget-object v2, Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;->Emote:Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;
 +
-+    invoke-direct {v1, v0, v2}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;-><init>(Ljava/lang/String;Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;)V
++    invoke-direct {v1, v0, v2, v5}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;-><init>(Ljava/lang/String;Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;Z)V
 +
-+    .line 68
++    .line 69
 +    .local v1, "drawable":Landroid/graphics/drawable/Drawable;
 +    invoke-virtual {p1}, Ltv/orange/features/emotes/bridge/EmoteToken;->getEmoteCode()Ljava/lang/String;
 +
@@ -105,8 +107,6 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +    const-string v3, ""
 +
 +    const/4 v4, 0x0
-+
-+    const/4 v5, 0x1
 +
 +    move-object v0, p0
 +

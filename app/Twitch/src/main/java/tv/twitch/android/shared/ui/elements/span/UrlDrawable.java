@@ -17,6 +17,7 @@ public class UrlDrawable extends BitmapDrawable { // TODO: __REMOVE_FINAL
     private Function1<? super Rect, Unit> onBoundsChangeListener;
     private final MediaSpan$Type type;
     private final String url;
+    private final boolean wide; // TODO: __INJECT_FIELD
 
     public String getUrl() {
         return this.url;
@@ -25,6 +26,13 @@ public class UrlDrawable extends BitmapDrawable { // TODO: __REMOVE_FINAL
     public UrlDrawable(String url, MediaSpan$Type type) {
         this.url = url;
         this.type = type;
+        this.wide = false; // TODO: __INJECT_CODE
+    }
+
+    public UrlDrawable(String url, MediaSpan$Type type, boolean wide) { // TODO: __INJECT_METHOD
+        this.url = url;
+        this.type = type;
+        this.wide = wide;
     }
 
     public void setDrawable(Drawable drawable) { // TODO: __REMOVE_FINAL
@@ -83,5 +91,9 @@ public class UrlDrawable extends BitmapDrawable { // TODO: __REMOVE_FINAL
         }
         this.drawable = null;
         this.onBoundsChangeListener = null;
+    }
+
+    public boolean isWide() { // TODO: __INJECT_METHOD
+        return wide;
     }
 }

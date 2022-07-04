@@ -61,7 +61,7 @@ class EmotesInjector @Inject constructor(val provider: EmoteProvider) : Lifecycl
     override fun onAllComponentStopped() {}
 
     override fun onSdkResume() {
-        provider.refreshGlobalEmotes()
+        provider.fetchGlobalEmotes()
     }
 
     override fun onAccountLogout() {}
@@ -74,5 +74,6 @@ class EmotesInjector @Inject constructor(val provider: EmoteProvider) : Lifecycl
 
     override fun onConnectingToChannel(channelId: Int) {
         requestChannelEmotes(channelId)
+        provider.refreshGlobalEmotes()
     }
 }

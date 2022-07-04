@@ -13,6 +13,7 @@ class EmotePackageImpl(
 ) : EmotePackage {
     var set: EmoteSet? = null
     private var lastUpdate: Date = Date(0)
+    private var fetching = false
 
     private val disposables = CompositeDisposable()
 
@@ -25,19 +26,33 @@ class EmotePackageImpl(
     }
 
     override fun refresh(force: Boolean) {
-        if (!force) {
+        Logger.debug("called")
+        if (fetching) {
+            Logger.debug("skip: fetching")
+            return
+        }
+
+        if (set != null && !force) {
             val diff = DateUtil.toSeconds(DateUtil.getDiff(lastUpdate, Date()))
             if (diff < REFRESH_TIMEOUT) {
-                Logger.debug("Skip: $diff")
+                Logger.debug("skip: $diff")
                 return
             }
         }
 
-        disposables.add(source.create().subscribe({ set ->
+        fetching = true
+        clear()
+        disposables.add(source.create().retryWhen { errors ->
+            return@retryWhen errors.take(MAX_RETRY_COUNT).doOnNext {
+                Logger.debug("Retry...")
+            }
+        }.subscribe({ set ->
             this.set = set
             this.lastUpdate = Date()
+            this.fetching = false
             Logger.debug("[${source}] Fetched: $set")
         }, {
+            this.fetching = false
             Logger.debug("[${source}] Cannot fetch emotes: ${it.localizedMessage}")
         }))
     }
@@ -48,9 +63,11 @@ class EmotePackageImpl(
 
     override fun clear() {
         disposables.clear()
+        set = null
     }
 
     companion object {
         private const val REFRESH_TIMEOUT = 120
+        private const val MAX_RETRY_COUNT: Long = 2
     }
 }

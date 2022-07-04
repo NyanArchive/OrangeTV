@@ -84,6 +84,7 @@ def inject_dex(dex_path, last_index, zip):
     app_dex_name = format_dex_filename(last_index + 1)
     if dex_path is zipfile.Path:
         dex_path = dex_path.as_posix()
+
     print("Injecting {} [{}]...".format(dex_path, app_dex_name))
     last_index += 1
     zip.write(dex_path, app_dex_name)
@@ -110,7 +111,7 @@ class InjectAppDexs(BaseTask):
         writer = zipfile.ZipFile(self._apk.out_apk.as_posix(), mode="a", compression=zipfile.ZIP_DEFLATED)
 
         files = [i.as_posix() for i in env.lib_dir.iterdir() if i.name.endswith(".dex")]
-        for path in [env.app_dir.joinpath("app/dex/app.dex"), *files]:
+        for path in [env.app_dir.joinpath("app/dex/app.dex").as_posix(), *files]:
             inject_dex(path, last_index, writer)
             last_index += 1
 

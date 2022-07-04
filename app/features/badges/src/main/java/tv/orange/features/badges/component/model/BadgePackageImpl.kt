@@ -62,6 +62,10 @@ class BadgePackageImpl(
         set = null
     }
 
+    override fun hasBadges(userId: Int): Boolean {
+        return set?.hasBadges(userId) ?: false
+    }
+
     companion object {
         private const val REFRESH_TIMEOUT = 120
         private const val MAX_RETRY_COUNT: Long = 3

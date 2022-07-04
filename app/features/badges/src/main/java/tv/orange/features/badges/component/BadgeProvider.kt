@@ -27,4 +27,8 @@ class BadgeProvider @Inject constructor(val roomFactory: RoomFactory) {
     fun fetchBadges() {
         fetchGlobalBadges()
     }
+
+    fun hasBadges(userId: Int): Boolean {
+        return global.hasBadges(userId)
+    }
 }

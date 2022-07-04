@@ -13,4 +13,6 @@ interface Room {
     fun refresh()
 
     fun clear()
+
+    fun hasBadges(userId: Int): Boolean
 }

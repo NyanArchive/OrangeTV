@@ -10,4 +10,6 @@ interface BadgePackage {
     fun isEmpty(): Boolean
 
     fun clear()
+
+    fun hasBadges(userId: Int): Boolean
 }

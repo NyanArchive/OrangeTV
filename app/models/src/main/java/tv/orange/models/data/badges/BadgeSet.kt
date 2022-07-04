@@ -57,4 +57,12 @@ data class BadgeSet(val badges: SparseArray<HashSet<Badge>>) {
             }
         }
     }
+
+    override fun toString(): String {
+        return "BadgeSet(${badges.size()})"
+    }
+
+    fun hasBadges(userId: Int): Boolean {
+        return badges.contains(userId)
+    }
 }

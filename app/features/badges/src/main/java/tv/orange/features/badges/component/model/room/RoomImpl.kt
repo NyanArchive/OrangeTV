@@ -34,4 +34,10 @@ class RoomImpl : Room {
             pack.clear()
         }
     }
+
+    override fun hasBadges(userId: Int): Boolean {
+        return packages.any { pack ->
+            pack.hasBadges(userId)
+        }
+    }
 }

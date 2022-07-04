@@ -17,6 +17,10 @@ class BadgesInjector @Inject constructor(val badgeProvider: BadgeProvider) : Lif
         userId: Int,
         channelId: Int
     ): List<MessageBadge> {
+        if (!badgeProvider.hasBadges(userId)) {
+            return badges
+        }
+
         val newBadges = badgeProvider.getBadges(userId).toMutableList()
         if (newBadges.isEmpty()) {
             return badges

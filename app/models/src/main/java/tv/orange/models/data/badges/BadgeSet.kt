@@ -6,8 +6,8 @@ import android.util.SparseArray
 data class BadgeSet(val badges: SparseArray<HashSet<Badge>>) {
     constructor() : this(SparseArray(0))
 
-    fun getBadges(userId: Int): Collection<Badge> {
-        return badges[userId] ?: return emptyList()
+    fun getBadges(userId: Int): List<Badge> {
+        return badges[userId].toList()
     }
 
     fun isEmpty(): Boolean {

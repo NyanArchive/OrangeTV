@@ -4,6 +4,7 @@ import io.reactivex.Single
 import tv.orange.features.api.component.data.source.StvRemoteDataSource
 import tv.orange.features.api.di.scope.ApiScope
 import tv.orange.models.data.avatars.AvatarSet
+import tv.orange.models.data.badges.BadgeSet
 import tv.orange.models.data.emotes.Emote
 import tv.orange.models.data.emotes.EmoteSet
 import javax.inject.Inject
@@ -22,5 +23,9 @@ class StvRepository @Inject constructor(
 
     fun getStvAvatars(): Single<AvatarSet> {
         return stvDataSource.getAvatars()
+    }
+
+    fun getStvBadges(): Single<BadgeSet> {
+        return stvDataSource.getBadges()
     }
 }

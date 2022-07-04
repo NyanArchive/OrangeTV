@@ -64,18 +64,14 @@ class BadgesInjector @Inject constructor(val badgeProvider: BadgeProvider) : Lif
         badgeProvider.clear()
     }
 
-    override fun onAllComponentStopped() {}
-
-    override fun onSdkResume() {}
-
-    override fun onAccountLogout() {}
-
-    override fun onFirstActivityCreated() {
+    override fun onSdkResume() {
         badgeProvider.fetchBadges()
     }
 
+    override fun onAllComponentStopped() {}
+    override fun onAccountLogout() {}
+    override fun onFirstActivityCreated() {}
     override fun onFirstActivityStarted() {}
-
     override fun onConnectedToChannel(channelId: Int) {}
     override fun onConnectingToChannel(channelId: Int) {}
 }

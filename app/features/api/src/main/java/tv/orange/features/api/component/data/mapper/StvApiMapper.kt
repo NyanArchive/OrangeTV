@@ -30,7 +30,7 @@ class StvApiMapper @Inject constructor() {
             getBadgeUrl(badge.urls)?.let { url ->
                 badge.users.forEach { userIdString ->
                     userIdString.toIntOrNull()?.let { userId ->
-                        builder.addBadge(BadgeImpl(badgeCode = "", badgeUrl = url), userId)
+                        builder.addBadge(BadgeImpl(badgeCode = "7TV", badgeUrl = url), userId)
                     }
                 }
             }

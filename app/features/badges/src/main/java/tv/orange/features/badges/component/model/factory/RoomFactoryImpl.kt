@@ -1,5 +1,6 @@
 package tv.orange.features.badges.component.model.factory
 
+import tv.orange.features.api.component.repository.ChatterinoRepository
 import tv.orange.features.api.component.repository.FfzRepository
 import tv.orange.features.api.component.repository.StvRepository
 import tv.orange.features.badges.component.model.BadgePackageImpl
@@ -9,7 +10,8 @@ import javax.inject.Inject
 
 class RoomFactoryImpl @Inject constructor(
     val ffz: FfzRepository,
-    val stv: StvRepository
+    val stv: StvRepository,
+    val chatterino: ChatterinoRepository
 ) :
     RoomFactory {
     override fun create(): Room {
@@ -27,6 +29,14 @@ class RoomFactoryImpl @Inject constructor(
                     BadgeFetcherFactoryImpl(
                         { stv.getStvBadges() },
                         "STV-BADGES"
+                    )
+                )
+            )
+            add(
+                BadgePackageImpl(
+                    BadgeFetcherFactoryImpl(
+                        { chatterino.getChatterinoBadges() },
+                        "CHATTERINO-BADGES"
                     )
                 )
             )

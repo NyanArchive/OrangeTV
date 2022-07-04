@@ -12,7 +12,6 @@ class BadgeProvider @Inject constructor(val roomFactory: RoomFactory) {
     private val disposables = CompositeDisposable()
 
     private fun fetchGlobalBadges() {
-        Logger.debug("fetch")
         global.fetch()
     }
 

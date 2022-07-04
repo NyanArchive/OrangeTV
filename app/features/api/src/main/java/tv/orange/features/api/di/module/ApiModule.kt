@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 import tv.orange.features.api.component.data.api.BttvApi
+import tv.orange.features.api.component.data.api.ChatterinoApi
 import tv.orange.features.api.component.data.api.FfzApi
 import tv.orange.features.api.component.data.api.StvApi
 import tv.orange.features.api.di.scope.ApiScope
@@ -34,6 +35,13 @@ class ApiModule {
 
     @ApiScope
     @Provides
+    @Named("chatterino")
+    fun provideChatterinoRetrofitClient(builder: Retrofit.Builder): Retrofit {
+        return builder.baseUrl("https://api.chatterino.com/").build()
+    }
+
+    @ApiScope
+    @Provides
     fun provideBttvApi(@Named("bttv") retrofit: Retrofit): BttvApi {
         return retrofit.create(BttvApi::class.java)
     }
@@ -48,5 +56,11 @@ class ApiModule {
     @Provides
     fun provideFfzApi(@Named("ffz") retrofit: Retrofit): FfzApi {
         return retrofit.create(FfzApi::class.java)
+    }
+
+    @ApiScope
+    @Provides
+    fun provideChatterinoApi(@Named("chatterino") retrofit: Retrofit): ChatterinoApi {
+        return retrofit.create(ChatterinoApi::class.java)
     }
 }

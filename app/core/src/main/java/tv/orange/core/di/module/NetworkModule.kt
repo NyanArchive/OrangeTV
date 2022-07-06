@@ -20,6 +20,13 @@ class NetworkModule {
         val client = OkHttpClient().newBuilder()
             .readTimeout(5000, TimeUnit.MILLISECONDS)
             .writeTimeout(5000, TimeUnit.MILLISECONDS)
+            .addInterceptor { chain ->
+                chain.proceed(
+                    chain.request().newBuilder()
+                        .header("User-Agent", "OrangeTV/0.1")
+                        .build()
+                )
+            }
             .retryOnConnectionFailure(true).build()
 
         Logger.debug("Provide new instance: $client")

@@ -63,6 +63,6 @@ data class BadgeSet(val badges: SparseArray<HashSet<Badge>>) {
     }
 
     fun hasBadges(userId: Int): Boolean {
-        return badges.contains(userId)
+        return badges.get(userId, null)?.isNotEmpty() ?: false
     }
 }

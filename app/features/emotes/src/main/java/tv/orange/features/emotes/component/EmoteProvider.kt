@@ -1,10 +1,13 @@
 package tv.orange.features.emotes.component
 
+import tv.orange.core.Logger
 import tv.orange.features.emotes.component.model.factory.RoomFactory
 import tv.orange.features.emotes.component.model.room.RoomCache
+import tv.orange.features.emotes.di.scope.EmotesScope
 import tv.orange.models.data.emotes.Emote
 import javax.inject.Inject
 
+@EmotesScope
 class EmoteProvider @Inject constructor(val roomFactory: RoomFactory) {
     private val global = roomFactory.createGlobal()
     private val channel = RoomCache(3)
@@ -34,6 +37,8 @@ class EmoteProvider @Inject constructor(val roomFactory: RoomFactory) {
     }
 
     fun clear() {
+        Logger.debug("called")
         channel.evictAll()
+        global.clear()
     }
 }

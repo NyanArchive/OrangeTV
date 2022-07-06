@@ -60,6 +60,8 @@ class BadgePackageImpl(
     override fun clear() {
         disposables.clear()
         set = null
+        lastUpdate = Date()
+        fetching = false
     }
 
     override fun hasBadges(userId: Int): Boolean {

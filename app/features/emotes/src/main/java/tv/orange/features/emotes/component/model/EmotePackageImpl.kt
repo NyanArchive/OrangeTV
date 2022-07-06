@@ -64,6 +64,8 @@ class EmotePackageImpl(
     override fun clear() {
         disposables.clear()
         set = null
+        lastUpdate = Date()
+        fetching = false
     }
 
     companion object {

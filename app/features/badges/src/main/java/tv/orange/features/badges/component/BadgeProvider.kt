@@ -3,20 +3,20 @@ package tv.orange.features.badges.component
 import io.reactivex.disposables.CompositeDisposable
 import tv.orange.core.Logger
 import tv.orange.features.badges.component.model.factory.RoomFactory
+import tv.orange.features.badges.di.scope.BadgesScope
 import tv.orange.models.data.badges.Badge
 import javax.inject.Inject
 
+@BadgesScope
 class BadgeProvider @Inject constructor(val roomFactory: RoomFactory) {
     private val global = roomFactory.create()
 
     private val disposables = CompositeDisposable()
 
-    private fun fetchGlobalBadges() {
-        global.fetch()
-    }
-
     fun clear() {
+        Logger.debug("called")
         disposables.clear()
+        global.clear()
     }
 
     fun getBadges(userId: Int): List<Badge> {
@@ -24,7 +24,11 @@ class BadgeProvider @Inject constructor(val roomFactory: RoomFactory) {
     }
 
     fun fetchBadges() {
-        fetchGlobalBadges()
+        global.fetch()
+    }
+
+    fun refreshBadges() {
+        global.refresh()
     }
 
     fun hasBadges(userId: Int): Boolean {

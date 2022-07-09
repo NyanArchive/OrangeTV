@@ -98,23 +98,19 @@ class ChatHookProvider @Inject constructor(
     ): List<MessageToken> {
         val stack = mutableListOf<MessageToken>()
 
-        var hasEmotes = false
-        tokens.forEachIndexed { index, token ->
+        var injected = false
+        tokens.forEach { token ->
             if (token is MessageToken.TextToken) {
-                for (word in token.text.split(" ")) {
+                val words = token.text.split(" ")
+                for (word in words) {
                     val emote = emoteProvider.getEmote(word, channelId)
                     if (emote != null) {
-                        if (!hasEmotes) {
-                            hasEmotes = true
+                        if (!injected) {
+                            injected = true
                         }
                         stack.add(EmoteToken(emote.getCode(), emote.getUrl(Emote.Size.MEDIUM)))
                     } else {
-                        val text = if (index == tokens.size - 1) {
-                            word
-                        } else {
-                            "$word "
-                        }
-                        stack.add(MessageToken.TextToken(text, token.flags))
+                        stack.add(MessageToken.TextToken("$word ", token.flags))
                     }
                 }
             } else {
@@ -122,7 +118,7 @@ class ChatHookProvider @Inject constructor(
             }
         }
 
-        if (hasEmotes) {
+        if (injected) {
             return stack
         }
 

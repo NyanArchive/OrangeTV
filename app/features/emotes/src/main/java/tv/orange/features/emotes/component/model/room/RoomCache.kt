@@ -12,4 +12,8 @@ class RoomCache(size: Int) : LruCache<Int, Room>(size) {
         super.entryRemoved(evicted, key, oldValue, newValue)
         oldValue?.clear()
     }
+
+    fun clear() {
+        evictAll()
+    }
 }

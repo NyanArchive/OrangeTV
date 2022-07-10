@@ -9,14 +9,14 @@ import javax.inject.Inject
 
 @BadgesScope
 class BadgeProvider @Inject constructor(val roomFactory: RoomFactory) {
-    private val global = roomFactory.create()
+    private var global = roomFactory.create()
 
     private val disposables = CompositeDisposable()
 
     fun clear() {
         Logger.debug("called")
         disposables.clear()
-        global.clear()
+        global = roomFactory.create()
     }
 
     fun getBadges(userId: Int): List<Badge> {

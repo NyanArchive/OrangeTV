@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 @EmotesScope
 class EmoteProvider @Inject constructor(val roomFactory: RoomFactory) {
-    private val global = roomFactory.createGlobal()
+    private var global = roomFactory.createGlobal()
     private val channel = RoomCache(3)
 
     private fun getGlobalEmote(code: String): Emote? {
@@ -38,7 +38,7 @@ class EmoteProvider @Inject constructor(val roomFactory: RoomFactory) {
 
     fun clear() {
         Logger.debug("called")
-        channel.evictAll()
-        global.clear()
+        channel.clear()
+        global = roomFactory.createGlobal()
     }
 }

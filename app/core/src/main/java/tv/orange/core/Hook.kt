@@ -16,9 +16,10 @@ class Hook @Inject constructor() {
         fun get(): Hook {
             return INSTANCE
         }
-    }
 
-    fun inDevMode(): Boolean {
-        return PreferenceManager.devMode
+        @JvmStatic
+        fun inDevMode(): Boolean {
+            return PreferenceManager.devMode
+        }
     }
 }

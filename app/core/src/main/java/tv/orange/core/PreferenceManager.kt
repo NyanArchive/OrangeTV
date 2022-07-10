@@ -11,6 +11,7 @@ class PreferenceManager @Inject constructor(context: Context) :
 
     fun initialize() {
         devMode = readBoolean("devMode")
+        preferences.registerOnSharedPreferenceChangeListener(this)
     }
 
     fun toggleDevMode(state: Boolean) {

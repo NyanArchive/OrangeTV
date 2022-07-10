@@ -2,9 +2,10 @@ package tv.orange.features.emotes.component.model.room
 
 import tv.orange.features.emotes.component.model.EmotePackage
 import tv.orange.models.data.emotes.Emote
+import java.util.*
 
 class RoomImpl : Room {
-    private val packages: MutableList<EmotePackage> = mutableListOf()
+    private val packages: MutableList<EmotePackage> = Collections.synchronizedList(mutableListOf())
 
     override fun add(pack: EmotePackage) {
         packages.add(pack)

@@ -61,4 +61,5 @@ dependencies {
     implementation project(path: ':features:emotes')
     implementation project(path: ':features:chathistory')
     implementation project(path: ':features:stv')
+    implementation project(path: ':features:settings')
 }

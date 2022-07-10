@@ -16,6 +16,7 @@ class Core private constructor(private val applicationContext: Context) :
 
         fun initialize(applicationContext: Context) {
             INSTANCE = Core(applicationContext)
+            PreferenceManager.get().initialize()
         }
 
         @JvmStatic

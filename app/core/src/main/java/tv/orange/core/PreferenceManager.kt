@@ -13,12 +13,18 @@ class PreferenceManager @Inject constructor(context: Context) :
 
     private val listeners = mutableSetOf<FlagListener>()
 
-    fun register(listener: FlagListener) {
-        listeners.add(listener)
+    fun registerFlagListeners(vararg l: FlagListener) {
+        l.forEach { listener ->
+            Logger.debug("register: $l")
+            listeners.add(listener)
+        }
     }
 
-    fun unregister(listener: FlagListener) {
-        listeners.remove(listener)
+    fun unregisterFlagListeners(vararg l: FlagListener) {
+        l.forEach { listener ->
+            Logger.debug("unregister: $l")
+            listeners.remove(listener)
+        }
     }
 
     fun initialize() {

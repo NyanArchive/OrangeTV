@@ -46,8 +46,8 @@ class ChatHookProvider @Inject constructor(
         controller: LifecycleController,
         preferenceManager: PreferenceManager
     ) {
-        controller.registerLifecycleListener(this)
-        preferenceManager.register(this)
+        controller.registerLifecycleListeners(this)
+        preferenceManager.registerFlagListeners(this)
     }
 
     fun hookMessageInterface(
@@ -151,10 +151,6 @@ class ChatHookProvider @Inject constructor(
         emoteProvider.requestChannelEmotes(channelId)
     }
 
-    override fun onAllComponentStopped() {}
-    override fun onAccountLogout() {}
-    override fun onFirstActivityStarted() {}
-    override fun onConnectedToChannel(channelId: Int) {}
     override fun onFlagChanged(flag: Flag) {
         when (flag) {
             Flag.BTTV_EMOTES, Flag.FFZ_EMOTES, Flag.STV_EMOTES -> {
@@ -168,4 +164,9 @@ class ChatHookProvider @Inject constructor(
             else -> {}
         }
     }
+
+    override fun onAllComponentStopped() {}
+    override fun onAccountLogout() {}
+    override fun onFirstActivityStarted() {}
+    override fun onConnectedToChannel(channelId: Int) {}
 }

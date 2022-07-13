@@ -32,8 +32,14 @@ public class TwitchApplication extends Application implements InjectorProvider {
     }
 
     private void initOranges() { // TODO: __INJECT_METHOD
-        ChatHookProvider.get().registerLifecycle(Core.get(), PreferenceManager.get());
-        Core.get().registerLifecycleListener(AvatarsHookProvider.get());
+        PreferenceManager prefManager = PreferenceManager.get();
+        Core core = Core.get();
+        AvatarsHookProvider avatarsHookProvider = AvatarsHookProvider.get();
+
+        ChatHookProvider.get().registerLifecycle(core, prefManager);
+
+        core.registerLifecycleListeners(avatarsHookProvider);
+        prefManager.registerFlagListeners(avatarsHookProvider);
     }
 
     protected AppComponent createDaggerComponent() {

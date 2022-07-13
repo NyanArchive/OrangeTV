@@ -4,6 +4,9 @@ import io.reactivex.disposables.CompositeDisposable
 import tv.orange.core.Core
 import tv.orange.core.Logger
 import tv.orange.core.di.component.CoreComponent
+import tv.orange.core.models.Flag
+import tv.orange.core.models.Flag.Companion.valueBoolean
+import tv.orange.core.models.FlagListener
 import tv.orange.core.models.LifecycleAware
 import tv.orange.features.api.component.repository.StvRepository
 import tv.orange.features.api.di.component.ApiComponent
@@ -13,7 +16,8 @@ import tv.orange.models.data.avatars.AvatarSet
 import javax.inject.Inject
 
 @StvScope
-class AvatarsHookProvider @Inject constructor(val stvRepository: StvRepository) : LifecycleAware {
+class AvatarsHookProvider @Inject constructor(val stvRepository: StvRepository) : LifecycleAware,
+    FlagListener {
     private var avatarSet: AvatarSet? = null
 
     private val disposables = CompositeDisposable()
@@ -44,13 +48,11 @@ class AvatarsHookProvider @Inject constructor(val stvRepository: StvRepository) 
         avatarSet = null
     }
 
-    override fun onAllComponentStopped() {}
-
-    override fun onSdkResume() {}
-
-    override fun onAccountLogout() {}
-
     override fun onFirstActivityCreated() {
+        if (!Flag.STV_AVATARS.valueBoolean()) {
+            return
+        }
+
         disposables.add(stvRepository.getStvAvatars().subscribe({
             avatarSet = it
             Logger.debug("Fetched: $it")
@@ -59,9 +61,17 @@ class AvatarsHookProvider @Inject constructor(val stvRepository: StvRepository) 
         }))
     }
 
+    override fun onFlagChanged(flag: Flag) {
+        if (flag == Flag.STV_AVATARS) {
+            onAllComponentDestroyed()
+            onFirstActivityCreated()
+        }
+    }
+
+    override fun onAllComponentStopped() {}
+    override fun onSdkResume() {}
+    override fun onAccountLogout() {}
     override fun onFirstActivityStarted() {}
-
     override fun onConnectedToChannel(channelId: Int) {}
-
     override fun onConnectingToChannel(channelId: Int) {}
 }

@@ -29,7 +29,8 @@ class SettingsController @Inject constructor() : SettingsPreferencesController {
             FlagToggleMenuModel(Flag.FFZ_BADGES),
             FlagToggleMenuModel(Flag.STV_BADGES),
             FlagToggleMenuModel(Flag.CHA_BADGES),
-            FlagToggleMenuModel(Flag.CHE_BADGES)
+            FlagToggleMenuModel(Flag.CHE_BADGES),
+            FlagToggleMenuModel(Flag.STV_AVATARS)
         )
     }
 }

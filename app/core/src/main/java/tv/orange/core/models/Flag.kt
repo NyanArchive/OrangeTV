@@ -48,6 +48,11 @@ enum class Flag(
         "cha_badges",
         "mod_settings_cha_badges",
         BooleanValue(true)
+    ),
+    STV_AVATARS(
+        "stv_avatars",
+        "mod_settings_stv_avatars",
+        BooleanValue(true)
     );
 
     companion object {

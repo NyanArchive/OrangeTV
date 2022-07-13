@@ -9,7 +9,7 @@ import tv.orange.models.InjectorProvider
 class Core private constructor(private val applicationContext: Context) :
     LifecycleController,
     LifecycleAware {
-    val modules: HashSet<LifecycleAware> = HashSet()
+    private val modules = mutableSetOf<LifecycleAware>()
 
     companion object {
         private var INSTANCE: Core? = null
@@ -36,14 +36,18 @@ class Core private constructor(private val applicationContext: Context) :
         }
     }
 
-    override fun registerLifecycleListener(lifecycleAware: LifecycleAware) {
-        Logger.debug("register: $lifecycleAware")
-        modules.add(lifecycleAware)
+    override fun registerLifecycleListeners(vararg listeners: LifecycleAware) {
+        listeners.forEach { listener ->
+            Logger.debug("register: $listener")
+            modules.add(listener)
+        }
     }
 
-    override fun unregisterLifecycleListener(lifecycleAware: LifecycleAware) {
-        Logger.debug("unregister: $lifecycleAware")
-        modules.remove(lifecycleAware)
+    override fun unregisterLifecycleListener(vararg listeners: LifecycleAware) {
+        listeners.forEach { listener ->
+            Logger.debug("unregister: $listener")
+            modules.remove(listener)
+        }
     }
 
     override fun onAllComponentDestroyed() {

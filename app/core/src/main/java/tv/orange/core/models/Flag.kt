@@ -53,6 +53,11 @@ enum class Flag(
         "stv_avatars",
         "mod_settings_stv_avatars",
         BooleanValue(true)
+    ),
+    CHAT_HISTORY(
+        "chat_history",
+        "mod_settings_chat_history",
+        BooleanValue(true)
     );
 
     companion object {

@@ -4,6 +4,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import tv.orange.core.Core
 import tv.orange.core.Logger
 import tv.orange.core.di.component.CoreComponent
+import tv.orange.core.models.Flag
+import tv.orange.core.models.Flag.Companion.valueBoolean
 import tv.oranges.features.chathistory.bridge.ILiveChatSource
 import tv.oranges.features.chathistory.data.mapper.ChatHistoryMapper
 import tv.oranges.features.chathistory.data.repository.ChatHistoryRepository
@@ -24,6 +26,10 @@ class ChatHistory @Inject constructor(
         source: ILiveChatSource,
         channel: ChannelInfo?
     ) {
+        if (!Flag.CHAT_HISTORY.valueBoolean()) {
+            return
+        }
+
         channel?.let { info ->
             if (event is ChatConnectionEvents.ChatConnectingEvent && info.id == event.getChannelId()) {
                 injectChatHistory(

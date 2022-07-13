@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mod_settings_dev_mode">Dev mode</string>
+    <string name="mod_settings_dev_mode_desc">Bla bla bla</string>
+</resources>

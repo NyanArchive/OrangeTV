@@ -3,7 +3,7 @@ package tv.orange.features.settings.bridge.model
 import tv.twitch.android.shared.ui.menus.SettingsPreferencesController
 import tv.twitch.android.shared.ui.menus.togglemenu.ToggleMenuModel
 
-class ToggleMenuModel(
+open class ToggleMenuModel(
     primaryText: String,
     secondaryText: String? = null,
     auxiliaryText: String? = null,

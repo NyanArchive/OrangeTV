@@ -5,6 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 
 import tv.orange.core.Core;
+import tv.orange.core.PreferenceManager;
 import tv.orange.features.chat.ChatHookProvider;
 import tv.orange.features.stv.AvatarsHookProvider;
 import tv.orange.injector.Injector;
@@ -31,7 +32,7 @@ public class TwitchApplication extends Application implements InjectorProvider {
     }
 
     private void initOranges() { // TODO: __INJECT_METHOD
-        ChatHookProvider.get().registerLifecycle(Core.get());
+        ChatHookProvider.get().registerLifecycle(Core.get(), PreferenceManager.get());
         Core.get().registerLifecycleListener(AvatarsHookProvider.get());
     }
 

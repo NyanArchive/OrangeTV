@@ -2,6 +2,9 @@ package tv.orange.features.chat
 
 import tv.orange.core.Core
 import tv.orange.core.Logger
+import tv.orange.core.PreferenceManager
+import tv.orange.core.models.Flag
+import tv.orange.core.models.FlagListener
 import tv.orange.core.models.LifecycleAware
 import tv.orange.core.models.LifecycleController
 import tv.orange.features.badges.bridge.OrangeMessageBadge
@@ -21,7 +24,7 @@ import javax.inject.Inject
 class ChatHookProvider @Inject constructor(
     val emoteProvider: EmoteProvider,
     val badgeProvider: BadgeProvider
-) : LifecycleAware {
+) : LifecycleAware, FlagListener {
     companion object {
         private val INSTANCE: ChatHookProvider by lazy {
             val hook = DaggerChatComponent.builder()
@@ -39,8 +42,12 @@ class ChatHookProvider @Inject constructor(
         }
     }
 
-    fun registerLifecycle(controller: LifecycleController) {
+    fun registerLifecycle(
+        controller: LifecycleController,
+        preferenceManager: PreferenceManager
+    ) {
         controller.registerLifecycleListener(this)
+        preferenceManager.register(this)
     }
 
     fun hookMessageInterface(
@@ -148,4 +155,17 @@ class ChatHookProvider @Inject constructor(
     override fun onAccountLogout() {}
     override fun onFirstActivityStarted() {}
     override fun onConnectedToChannel(channelId: Int) {}
+    override fun onFlagChanged(flag: Flag) {
+        when (flag) {
+            Flag.BTTV_EMOTES, Flag.FFZ_EMOTES, Flag.STV_EMOTES -> {
+                emoteProvider.clear()
+                emoteProvider.fetchGlobalEmotes()
+            }
+            Flag.FFZ_BADGES, Flag.STV_BADGES, Flag.CHA_BADGES, Flag.CHE_BADGES -> {
+                badgeProvider.clear()
+                badgeProvider.fetchBadges()
+            }
+            else -> {}
+        }
+    }
 }

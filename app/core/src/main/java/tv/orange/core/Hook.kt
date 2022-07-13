@@ -1,6 +1,8 @@
 package tv.orange.core
 
 import tv.orange.core.di.component.CoreComponent
+import tv.orange.core.models.Flag
+import tv.orange.core.models.Flag.Companion.valueBoolean
 import javax.inject.Inject
 
 class Hook @Inject constructor() {
@@ -19,7 +21,7 @@ class Hook @Inject constructor() {
 
         @JvmStatic
         fun inDevMode(): Boolean {
-            return PreferenceManager.devMode
+            return Flag.DEV_MODE.valueBoolean()
         }
     }
 }

@@ -2,7 +2,10 @@ package tv.orange.features.settings.component
 
 import tv.orange.core.Logger
 import tv.orange.core.PreferenceManager
+import tv.orange.core.models.Flag
+import tv.orange.features.settings.bridge.model.FlagToggleMenuModel
 import tv.twitch.android.shared.ui.menus.SettingsPreferencesController
+import tv.twitch.android.shared.ui.menus.core.MenuModel
 import tv.twitch.android.shared.ui.menus.togglemenu.ToggleMenuModel
 import javax.inject.Inject
 
@@ -14,13 +17,19 @@ class SettingsController @Inject constructor() : SettingsPreferencesController {
             return
         }
 
-        when (eventName) {
-            "devMode" -> toggleDevMode(state)
-            else -> Logger.debug("unknown event: $eventName")
-        }
+        PreferenceManager.get().writeBoolean(eventName, state)
     }
 
-    private fun toggleDevMode(state: Boolean) {
-        PreferenceManager.get().toggleDevMode(state)
+    fun getMainSettingModels(): Collection<MenuModel> {
+        return listOf(
+            FlagToggleMenuModel(Flag.DEV_MODE),
+            FlagToggleMenuModel(Flag.BTTV_EMOTES),
+            FlagToggleMenuModel(Flag.FFZ_EMOTES),
+            FlagToggleMenuModel(Flag.STV_EMOTES),
+            FlagToggleMenuModel(Flag.FFZ_BADGES),
+            FlagToggleMenuModel(Flag.STV_BADGES),
+            FlagToggleMenuModel(Flag.CHA_BADGES),
+            FlagToggleMenuModel(Flag.CHE_BADGES)
+        )
     }
 }

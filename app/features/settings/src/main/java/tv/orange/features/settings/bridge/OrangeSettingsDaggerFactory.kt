@@ -1,9 +1,9 @@
 package tv.orange.features.settings.bridge
 
-import androidx.fragment.app.Fragment
 import dagger.android.AndroidInjector
 import dagger.internal.MapBuilder
 import tv.orange.core.compat.ClassCompat
+import tv.orange.features.settings.OrangeSettings
 import tv.orange.features.settings.bridge.fragment.OrangeSettingsFragment
 import tv.twitch.android.app.consumer.dagger.DaggerAppComponent
 import javax.inject.Inject
@@ -35,7 +35,8 @@ class OrangeSettingsDaggerFactory @Inject constructor() {
                 ClassCompat.getProvider(
                     settingsActivitySubcomponentImpl,
                     "provideSettingsTrackerProvider"
-                )
+                ),
+                { OrangeSettings.get().controller }
             )
         }
     }

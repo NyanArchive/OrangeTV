@@ -1,8 +1,10 @@
 package tv.orange.features.chat
 
+import io.reactivex.Flowable
 import tv.orange.core.Core
 import tv.orange.core.Logger
 import tv.orange.core.PreferenceManager
+import tv.orange.core.ResourceManager
 import tv.orange.core.models.Flag
 import tv.orange.core.models.FlagListener
 import tv.orange.core.models.LifecycleAware
@@ -11,6 +13,8 @@ import tv.orange.features.badges.bridge.OrangeMessageBadge
 import tv.orange.features.badges.component.BadgeProvider
 import tv.orange.features.badges.di.component.BadgesComponent
 import tv.orange.features.chat.bridge.ChatMessageInterfaceWrapper
+import tv.orange.features.chat.bridge.EmotePickerEmoteModelExt
+import tv.orange.features.chat.bridge.EmoteUiModelExt
 import tv.orange.features.chat.di.component.DaggerChatComponent
 import tv.orange.features.emotes.bridge.EmoteToken
 import tv.orange.features.emotes.component.EmoteProvider
@@ -19,6 +23,12 @@ import tv.orange.models.data.emotes.Emote
 import tv.twitch.android.models.chat.MessageBadge
 import tv.twitch.android.models.chat.MessageToken
 import tv.twitch.android.provider.chat.ChatMessageInterface
+import tv.twitch.android.shared.emotes.emotepicker.EmotePickerPresenter
+import tv.twitch.android.shared.emotes.emotepicker.models.EmoteHeaderUiModel
+import tv.twitch.android.shared.emotes.emotepicker.models.EmotePickerSection
+import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiModel
+import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiSet
+import tv.twitch.android.shared.emotes.models.EmoteMessageInput
 import javax.inject.Inject
 
 class ChatHookProvider @Inject constructor(
@@ -39,6 +49,25 @@ class ChatHookProvider @Inject constructor(
         @JvmStatic
         fun get(): ChatHookProvider {
             return INSTANCE
+        }
+
+        private fun createEmoteUiModel(
+            emote: Emote,
+            channelId: Int,
+            isAnimated: Boolean
+        ): EmoteUiModel {
+            val emoteMessageInput = EmoteMessageInput(emote.getCode(), "-1", false)
+            val emotePicker = EmotePickerEmoteModelExt("-1", emote.getCode(), channelId, isAnimated)
+            val clickedEmote = EmotePickerPresenter.ClickedEmote.Unlocked(
+                emotePicker,
+                emoteMessageInput,
+                null,
+                emptyList()
+            )
+            return EmoteUiModelExt.EmoteUiModelWithUrl(
+                "-1", clickedEmote,
+                emote.getUrl(Emote.Size.LARGE), isAnimated
+            )
         }
     }
 
@@ -169,4 +198,31 @@ class ChatHookProvider @Inject constructor(
     override fun onAccountLogout() {}
     override fun onFirstActivityStarted() {}
     override fun onConnectedToChannel(channelId: Int) {}
+
+
+    @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
+    fun hookEmoteSetsFlowable(
+        map: Flowable<Pair<EmoteUiSet, MutableList<EmoteUiSet>>>,
+        num: Integer
+    ): Flowable<Pair<EmoteUiSet, MutableList<EmoteUiSet>>> {
+        return map.map { pair ->
+            pair.second.add(
+                EmoteUiSet(
+                    EmoteHeaderUiModel.EmoteHeaderStringResUiModel(
+                        ResourceManager.getId("mod_bla_bla_bla", "string"),
+                        true,
+                        EmotePickerSection.ALL,
+                        false
+                    ), emoteProvider.getGlobalEmotes().map { emote ->
+                        createEmoteUiModel(
+                            emote = emote,
+                            channelId = num.toInt(),
+                            isAnimated = false
+                        )
+                    })
+            )
+
+            return@map pair
+        }
+    }
 }

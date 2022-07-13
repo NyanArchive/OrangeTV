@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mod_settings_dev_mode">Dev mode</string>
+    <string name="mod_settings_dev_mode_desc" />
+    <string name="mod_settings_bttv_emotes">BTTV emotes</string>
+    <string name="mod_settings_bttv_emotes_desc" />
+    <string name="mod_settings_ffz_emotes">FFZ emotes</string>
+    <string name="mod_settings_ffz_emotes_desc" />
+    <string name="mod_settings_stv_emotes">7TV emotes</string>
+    <string name="mod_settings_stv_emotes_desc" />
+    <string name="mod_settings_ffz_badges">FFZ badges</string>
+    <string name="mod_settings_ffz_badges_desc" />
+    <string name="mod_settings_stv_badges">7TV badges</string>
+    <string name="mod_settings_stv_badges_desc" />
+    <string name="mod_settings_che_badges">Homies badges</string>
+    <string name="mod_settings_che_badges_desc" />
+    <string name="mod_settings_cha_badges">Chatterino badges</string>
+    <string name="mod_settings_cha_badges_desc" />
+    <string name="mod_settings_stv_avatars">7TV avatars</string>
+    <string name="mod_settings_stv_avatars_desc" />
+    <string name="mod_settings_chat_history">Chat history</string>
+    <string name="mod_settings_chat_history_desc">Load message history on connect</string>
+    <string name="mod_bla_bla_bla">Bla-bla-bla</string>
+</resources>

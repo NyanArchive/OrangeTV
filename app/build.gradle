@@ -17,5 +17,5 @@ ext {
     appcompat_version = '1.4.2'
     gson_version = '2.9.0'
     glide_version = '4.13.2'
-    apollo_version = '3.4.0'
+    apollo_version = '3.1.0'
 }

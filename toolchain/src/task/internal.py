@@ -90,6 +90,19 @@ def inject_dex(dex_path, last_index, zip):
     zip.write(dex_path, app_dex_name)
 
 
+class InjectRes(BaseTask):
+    __NAME__ = "InjectRes"
+
+    def run(self, env: Env):
+        shutil.copytree(env.app_dir.joinpath("models/src/main/res").as_posix(),
+                        self._apk.decompile_dir.joinpath("res").as_posix(),
+                        dirs_exist_ok=True)
+        print("OK")
+
+    def cancel(self):
+        pass
+
+
 class CopySo(BaseTask):
     __NAME__ = "CopySo"
 

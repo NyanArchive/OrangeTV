@@ -15,6 +15,12 @@ class RoomImpl : Room {
         return packages.flatMap { it.getEmotes() }
     }
 
+    override fun getEmotesMap(): List<Pair<String, List<Emote>>> {
+        return packages.map {
+            Pair(it.getToken(), it.getEmotes())
+        }
+    }
+
     override fun getEmote(code: String): Emote? {
         packages.forEach { pack ->
             pack.getEmote(code)?.let { emote: Emote ->

@@ -9,7 +9,8 @@ import tv.orange.models.data.emotes.EmoteSet
 import java.util.*
 
 class EmotePackageImpl(
-    private val source: EmoteFetcherFactory
+    private val source: EmoteFetcherFactory,
+    private val token: String
 ) : EmotePackage {
     var set: EmoteSet? = null
     private var lastUpdate: Date = Date(0)
@@ -59,6 +60,10 @@ class EmotePackageImpl(
 
     override fun isEmpty(): Boolean {
         return set?.isEmpty() ?: true
+    }
+
+    override fun getToken(): String {
+        return token
     }
 
     override fun clear() {

@@ -5,7 +5,6 @@ import tv.orange.models.data.emotes.EmoteSet
 
 data class EmoteFetcherFactoryImpl(
     private val provider: () -> Single<EmoteSet>,
-    val desc: String,
     val channelId: Int = 0
 ) :
     EmoteFetcherFactory {

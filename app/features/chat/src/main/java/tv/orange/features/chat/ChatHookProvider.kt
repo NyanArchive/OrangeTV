@@ -206,21 +206,23 @@ class ChatHookProvider @Inject constructor(
         num: Integer
     ): Flowable<Pair<EmoteUiSet, MutableList<EmoteUiSet>>> {
         return map.map { pair ->
-            pair.second.add(
-                EmoteUiSet(
-                    EmoteHeaderUiModel.EmoteHeaderStringResUiModel(
-                        ResourceManager.getId("mod_bla_bla_bla", "string"),
-                        true,
-                        EmotePickerSection.ALL,
-                        false
-                    ), emoteProvider.getGlobalEmotes().map { emote ->
-                        createEmoteUiModel(
-                            emote = emote,
-                            channelId = num.toInt(),
-                            isAnimated = false
-                        )
-                    })
-            )
+            emoteProvider.getEmotesMap(num.toInt()).forEach { emotePair ->
+                pair.second.add(
+                    EmoteUiSet(
+                        EmoteHeaderUiModel.EmoteHeaderStringResUiModel(
+                            ResourceManager.getId("mod_bla_bla_bla", "string"),
+                            true,
+                            EmotePickerSection.ALL,
+                            false
+                        ), emotePair.second.map { emote ->
+                            createEmoteUiModel(
+                                emote = emote,
+                                channelId = num.toInt(),
+                                isAnimated = false
+                            )
+                        })
+                )
+            }
 
             return@map pair
         }

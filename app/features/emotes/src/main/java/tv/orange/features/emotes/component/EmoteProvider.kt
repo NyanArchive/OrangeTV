@@ -16,8 +16,9 @@ class EmoteProvider @Inject constructor(val roomFactory: RoomFactory) {
         return global.getEmote(code)
     }
 
-    fun getGlobalEmotes(): List<Emote> {
-        return global.getEmotes()
+    fun getEmotesMap(channelId: Int): List<Pair<String, List<Emote>>> {
+        val channel = channel.get(channelId)?.getEmotesMap() ?: emptyList()
+        return global.getEmotesMap() + channel
     }
 
     fun getEmote(code: String, channelId: Int): Emote? {

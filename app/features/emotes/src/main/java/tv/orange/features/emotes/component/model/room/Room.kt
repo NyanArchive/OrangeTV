@@ -8,6 +8,8 @@ interface Room {
 
     fun getEmotes(): List<Emote>
 
+    fun getEmotesMap(): List<Pair<String, List<Emote>>>
+
     fun getEmote(code: String): Emote?
 
     fun fetch()

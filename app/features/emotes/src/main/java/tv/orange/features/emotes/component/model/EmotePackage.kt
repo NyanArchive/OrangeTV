@@ -11,5 +11,7 @@ interface EmotePackage {
 
     fun isEmpty(): Boolean
 
+    fun getToken(): String
+
     fun clear()
 }

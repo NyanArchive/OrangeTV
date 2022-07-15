@@ -6,5 +6,5 @@ data class FfzEmote(
     val id: Int,
     val code: String,
     val images: ArrayMap<String, String?>,
-    val imageType: ImageType
+    val imageType: FfzImageType
 )

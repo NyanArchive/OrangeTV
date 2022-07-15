@@ -5,6 +5,7 @@ import android.widget.ImageView;
 
 import tv.orange.features.refreshstream.Hook;
 import tv.orange.features.refreshstream.bridge.IBottomPlayerControlOverlayViewDelegate;
+import tv.orange.features.streamuptime.StreamUptimeHookProvider;
 import tv.orange.features.streamuptime.bridge.StreamUptimeView;
 import tv.twitch.android.core.mvp.viewdelegate.BaseViewDelegate;
 import tv.twitch.android.models.streams.StreamModel;
@@ -25,7 +26,7 @@ public class BottomPlayerControlOverlayViewDelegate extends BaseViewDelegate imp
     }
 
     public void bindStreamUptime(StreamModel model) { // TODO: __INJECT_METHOD
-        tv.orange.features.streamuptime.Hook.get().bindStreamUptime(mLiveIndicatorLeftText, model);
+        StreamUptimeHookProvider.get().bindStreamUptime(mLiveIndicatorLeftText, model);
     }
 
     @Override

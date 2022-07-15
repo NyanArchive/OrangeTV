@@ -1,25 +1,25 @@
 package tv.orange.models.data.badges
 
 data class BadgeFfzImpl(
-    val badgeType: Type,
-    val badgeUrl: String,
-    val badgeBackgroundColor: Int,
-    val badgeReplaces: String?
+    private val type: Type,
+    private val url: String,
+    private val backgroundColor: Int,
+    private val replaces: String?
 ) : Badge {
     override fun getCode(): String {
-        return badgeType.value ?: "unknown"
+        return type.value ?: "unknown"
     }
 
     override fun getUrl(): String {
-        return badgeUrl
+        return url
     }
 
     override fun getBackgroundColor(): Int {
-        return badgeBackgroundColor
+        return backgroundColor
     }
 
     override fun getReplaces(): String? {
-        return badgeReplaces
+        return replaces
     }
 
     enum class Type(val value: String?) {

@@ -2,10 +2,10 @@ package tv.orange.features.api.component.data.mapper
 
 import tv.orange.models.data.emotes.Emote
 import tv.orange.models.data.emotes.EmoteImpl
-import tv.orange.models.retrofit.bttv.BttvChannel
+import tv.orange.models.retrofit.bttv.BttvChannelData
 import tv.orange.models.retrofit.bttv.BttvEmote
 import tv.orange.models.retrofit.bttv.FfzEmote
-import tv.orange.models.retrofit.bttv.ImageType
+import tv.orange.models.retrofit.bttv.FfzImageType
 import javax.inject.Inject
 
 class BttvApiMapper @Inject constructor() {
@@ -13,7 +13,7 @@ class BttvApiMapper @Inject constructor() {
         return emotes.map { emote ->
             EmoteImpl(
                 emoteCode = emote.code,
-                animated = emote.imageType == ImageType.GIF,
+                animated = emote.imageType == FfzImageType.GIF,
                 smallUrl = getEmoteUrl("1x", emote.id),
                 mediumUrl = getEmoteUrl("2x", emote.id),
                 largeUrl = getEmoteUrl("3x", emote.id)
@@ -35,7 +35,7 @@ class BttvApiMapper @Inject constructor() {
         }
     }
 
-    fun mapChannelEmotes(emotes: BttvChannel): List<Emote> {
+    fun mapChannelEmotes(emotes: BttvChannelData): List<Emote> {
         return mapBttvEmotes(emotes.sharedEmotes) + mapBttvEmotes(emotes.channelEmotes)
     }
 

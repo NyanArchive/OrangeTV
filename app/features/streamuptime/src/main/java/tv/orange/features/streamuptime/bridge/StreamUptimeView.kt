@@ -24,13 +24,7 @@ class StreamUptimeView constructor(context: Context, attrs: AttributeSet? = null
         setupTimer(seconds)
     }
 
-    fun showIndicator() {
-        destroyTimer()
-        if (defaultViewTextResId != -1) {
-            setText(defaultViewTextResId)
-        }
-    }
-
+    @Suppress("MemberVisibilityCanBePrivate")
     fun setTextFromResources(resId: Int) {
         defaultViewTextResId = resId
         if (tick == -1) {
@@ -58,9 +52,9 @@ class StreamUptimeView constructor(context: Context, attrs: AttributeSet? = null
         canRestoreState = true
     }
 
-    private fun setupTimer(seconds: Int) {
+    private fun setupTimer(start: Int) {
         destroyTimer()
-        tick = seconds
+        tick = start
         task = object : Runnable {
             override fun run() {
                 drawCurrentTime()

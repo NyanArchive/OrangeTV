@@ -1,12 +1,11 @@
 package tv.orange.features.api.component.data.mapper
 
-import android.graphics.Color
 import tv.orange.models.data.avatars.AvatarSet
 import tv.orange.models.data.badges.BadgeImpl
 import tv.orange.models.data.badges.BadgeSet
 import tv.orange.models.data.emotes.Emote
 import tv.orange.models.data.emotes.EmoteImpl
-import tv.orange.models.retrofit.stv.Badges
+import tv.orange.models.retrofit.stv.BadgesData
 import tv.orange.models.retrofit.stv.StvEmote
 import javax.inject.Inject
 
@@ -23,14 +22,14 @@ class StvApiMapper @Inject constructor() {
         }
     }
 
-    fun mapBadges(badges: Badges): BadgeSet {
+    fun mapBadges(badges: BadgesData): BadgeSet {
         val builder = BadgeSet.Builder()
 
         badges.badges.forEach { badge ->
             getBadgeUrl(badge.urls)?.let { url ->
                 badge.users.forEach { userIdString ->
                     userIdString.toIntOrNull()?.let { userId ->
-                        builder.addBadge(BadgeImpl(badgeCode = "7TV", badgeUrl = url), userId)
+                        builder.addBadge(BadgeImpl(code = "7TV", url = url), userId)
                     }
                 }
             }

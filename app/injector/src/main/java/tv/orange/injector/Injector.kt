@@ -1,70 +1,28 @@
 package tv.orange.injector
 
-import tv.orange.core.Logger
-import tv.orange.core.di.component.CoreComponent
-import tv.orange.core.di.component.DaggerCoreComponent
-import tv.orange.features.api.di.component.ApiComponent
-import tv.orange.features.api.di.component.DaggerApiComponent
-import tv.orange.features.badges.di.component.BadgesComponent
-import tv.orange.features.badges.di.component.DaggerBadgesComponent
-import tv.orange.features.emotes.di.component.DaggerEmotesComponent
-import tv.orange.features.emotes.di.component.EmotesComponent
+import tv.orange.injector.di.DaggerInjectorComponent
 import tv.orange.models.Injector
+import tv.orange.models.ProtoComponent
 import tv.twitch.android.app.consumer.dagger.DaggerAppComponent
-import tv.twitch.android.app.core.ApplicationContext
 import tv.twitch.android.network.graphql.GraphQlService
 import javax.inject.Provider
 import kotlin.reflect.KClass
 
 class Injector(private val twitchComponent: DaggerAppComponent) : Injector {
-    @Volatile
-    private var coreComponentInstance: CoreComponent? = null
+    private val injectorComponent by lazy {
+        DaggerInjectorComponent.create()
+    }
 
-    private val coreComponent: CoreComponent
-        get() = kotlin.run {
-            coreComponentInstance?.let {
-                return it
-            }
-
-            synchronized(this) {
-                coreComponentInstance ?: run {
-                    coreComponentInstance = DaggerCoreComponent.factory()
-                        .create(ApplicationContext.getInstance().context)
-
-                    Logger.debug("Provide new instance: $coreComponentInstance")
-                }
-            }
-
-            return coreComponentInstance!!
+    @Suppress("UNCHECKED_CAST")
+    override fun <T : Any> provideComponent(cls: KClass<T>): T {
+        if (cls !is ProtoComponent) {
+            throw IllegalStateException("Can't provide non proto components: $cls")
         }
 
-    private val apiComponent: ApiComponent by lazy {
-        DaggerApiComponent.factory().create(coreComponent)
-    }
+        val obj = injectorComponent.componentByClass()[cls.java as Class<out ProtoComponent>]
+            ?: throw IllegalStateException("Unknown class: $cls")
 
-    private fun provideBadges(): BadgesComponent {
-        return DaggerBadgesComponent.builder()
-            .coreComponent(coreComponent)
-            .apiComponent(apiComponent)
-            .build()
-    }
-
-    private fun provideEmotes(): EmotesComponent {
-        return DaggerEmotesComponent.builder()
-            .coreComponent(coreComponent)
-            .apiComponent(apiComponent)
-            .build()
-    }
-
-    @Suppress("UNCHECKED_CAST", "IMPLICIT_CAST_TO_ANY")
-    override fun <T : Any> provideComponent(cls: KClass<T>): T {
-        return when (cls) {
-            CoreComponent::class -> coreComponent
-            BadgesComponent::class -> provideBadges()
-            EmotesComponent::class -> provideEmotes()
-            ApiComponent::class -> apiComponent
-            else -> throw IllegalStateException("Unknown class: $cls")
-        } as T
+        return obj as T
     }
 
     @Suppress("UNCHECKED_CAST", "IMPLICIT_CAST_TO_ANY")

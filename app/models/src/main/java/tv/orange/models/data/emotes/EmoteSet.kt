@@ -1,12 +1,14 @@
 package tv.orange.models.data.emotes
 
 
-class EmoteSet(emotes: Collection<Emote>) {
-    constructor(): this(emptyList())
+class EmoteSet(
+    emotes: Collection<Emote>
+) {
+    constructor() : this(emptyList())
 
     private val map = LinkedHashMap<String, Emote>(emotes.size).apply {
         emotes.forEach { emote ->
-            this[emote.getCode()] = emote
+            put(emote.getCode(), emote)
         }
     }
 

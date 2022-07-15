@@ -40,7 +40,15 @@ class AvatarsHookProvider @Inject constructor(val stvRepository: StvRepository) 
     }
 
     fun hookProfileImageUrl(profileImageUrl: String, channelName: String): String {
-        return avatarSet?.get(channelName) ?: profileImageUrl
+        avatarSet?.let { set ->
+            if (set.isEmpty()) {
+                return profileImageUrl
+            }
+
+            return set.get(channelName) ?: profileImageUrl
+        }
+
+        return profileImageUrl
     }
 
     override fun onAllComponentDestroyed() {

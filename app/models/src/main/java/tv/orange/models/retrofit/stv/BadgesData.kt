@@ -1,5 +1,5 @@
 package tv.orange.models.retrofit.stv
 
-data class Badges(
+data class BadgesData(
     val badges: List<Badge>
 )

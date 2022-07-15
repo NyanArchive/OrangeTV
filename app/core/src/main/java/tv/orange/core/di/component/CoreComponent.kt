@@ -10,10 +10,11 @@ import tv.orange.core.PreferenceManager
 import tv.orange.core.di.module.CoreModule
 import tv.orange.core.di.module.NetworkModule
 import tv.orange.core.di.scope.AppScope
+import tv.orange.models.ProtoComponent
 
 @AppScope
 @Component(modules = [CoreModule::class, NetworkModule::class])
-interface CoreComponent {
+interface CoreComponent : ProtoComponent {
     @Component.Factory
     interface Factory {
         fun create(@BindsInstance context: Context): CoreComponent

@@ -48,7 +48,7 @@ class ChatHistory @Inject constructor(
 
         source.addChatHistoryMessage(
             channelId,
-            repository.getSystemMessage("[OHI] Fetching messages...")
+            repository.getSystemMessage("[TCH] Fetching messages...")
         )
 
         source.addDisposable(

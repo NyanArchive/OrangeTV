@@ -1,43 +1,63 @@
 package tv.orange.injector
 
+import tv.orange.core.di.component.CoreComponent
+import tv.orange.features.api.di.component.ApiComponent
+import tv.orange.features.badges.di.component.BadgesComponent
+import tv.orange.features.emotes.di.component.EmotesComponent
 import tv.orange.injector.di.DaggerInjectorComponent
+import tv.orange.injector.di.InjectorScope
 import tv.orange.models.Injector
-import tv.orange.models.ProtoComponent
 import tv.twitch.android.app.consumer.dagger.DaggerAppComponent
 import tv.twitch.android.network.graphql.GraphQlService
+import javax.inject.Inject
 import javax.inject.Provider
 import kotlin.reflect.KClass
 
-class Injector(private val twitchComponent: DaggerAppComponent) : Injector {
-    private val injectorComponent by lazy {
-        DaggerInjectorComponent.create()
-    }
+@InjectorScope
+class Injector @Inject constructor(
+    val twitchComponent: DaggerAppComponent,
+    val coreComponent: Provider<CoreComponent>,
+    val apiComponent: Provider<ApiComponent>,
+    val emotesComponent: Provider<EmotesComponent>,
+    val badgesComponent: Provider<BadgesComponent>
+) : Injector {
+    private val map = mutableMapOf<KClass<*>, Provider<*>>()
 
     @Suppress("UNCHECKED_CAST")
-    override fun <T : Any> provideComponent(cls: KClass<T>): T {
-        if (cls !is ProtoComponent) {
-            throw IllegalStateException("Can't provide non proto components: $cls")
-        }
-
-        val obj = injectorComponent.componentByClass()[cls.java as Class<out ProtoComponent>]
-            ?: throw IllegalStateException("Unknown class: $cls")
-
-        return obj as T
+    override fun <T : Any> provideComponent(cls: KClass<T>): Provider<T> {
+        return map[cls] as Provider<T>
     }
 
     @Suppress("UNCHECKED_CAST", "IMPLICIT_CAST_TO_ANY")
-    override fun <T : Any> provideTwitchComponent(cls: KClass<T>): T {
+    override fun <T : Any> provideTwitchComponent(cls: KClass<T>): Provider<T> {
         return when (cls) {
-            GraphQlService::class -> provideTwitchGraphQlService()
+            GraphQlService::class -> getProvider<GraphQlService>(
+                twitchComponent,
+                "graphQlServiceProvider"
+            )
             else -> throw IllegalStateException("Unknown class: $cls")
-        } as T
+        } as Provider<T>
     }
 
-    private fun provideTwitchGraphQlService(): GraphQlService {
-        return getProvider<GraphQlService>(twitchComponent, "graphQlServiceProvider").get()
+    private fun <T : Any> register(cls: KClass<T>, provider: Provider<T>) {
+        map[cls] = provider
+    }
+
+    private fun initialize() {
+        register(CoreComponent::class) { coreComponent.get() }
+        register(ApiComponent::class) { apiComponent.get() }
+        register(EmotesComponent::class) { emotesComponent.get() }
+        register(BadgesComponent::class) { badgesComponent.get() }
     }
 
     companion object {
+        @JvmStatic
+        fun create(twitchComponent: DaggerAppComponent): tv.orange.injector.Injector {
+            return DaggerInjectorComponent.factory().create(twitchComponent).injector.apply {
+                initialize()
+            }
+        }
+
         @Suppress("UNCHECKED_CAST")
         private fun <T> getProvider(component: DaggerAppComponent, fieldName: String): Provider<T> {
             return component::class.java.getDeclaredField(fieldName).apply {

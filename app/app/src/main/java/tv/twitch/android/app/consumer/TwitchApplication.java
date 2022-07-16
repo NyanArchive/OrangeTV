@@ -24,7 +24,7 @@ public class TwitchApplication extends Application implements InjectorProvider {
         // Inject after twitch dagger
         AppComponent appComponent = createDaggerComponent(); // TODO: __INJECT_CODE
         appComponent.inject(this); // TODO: __INJECT_CODE
-        injector = new Injector((DaggerAppComponent) appComponent); // TODO: __INJECT_CODE
+        injector = Injector.create((DaggerAppComponent) appComponent); // TODO: __INJECT_CODE
         Core.Companion.initialize(this); // TODO: __INJECT_CODE
         initOranges(); // TODO: __INJECT_CODE
 

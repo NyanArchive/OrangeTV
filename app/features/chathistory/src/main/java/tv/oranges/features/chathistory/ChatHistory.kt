@@ -75,8 +75,8 @@ class ChatHistory @Inject constructor(
         private val INSTANCE by lazy {
             val hook = DaggerChatHistoryComponent.factory()
                 .create(
-                    Core.getInjector().provideComponent(CoreComponent::class),
-                    Core.getInjector().provideTwitchComponent(GraphQlService::class)
+                    Core.get().provideComponent(CoreComponent::class).get(),
+                    Core.get().provideTwitchComponent(GraphQlService::class).get()
                 ).chatHistory
 
             Logger.debug("Provide new instance: $hook")

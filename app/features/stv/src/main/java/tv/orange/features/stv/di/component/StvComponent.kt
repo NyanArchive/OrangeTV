@@ -10,5 +10,5 @@ import tv.orange.features.stv.di.scope.StvScope
 @StvScope
 @Component(dependencies = [CoreComponent::class, ApiComponent::class], modules = [StvModule::class])
 interface StvComponent {
-    val provider: AvatarsHookProvider
+    val hook: AvatarsHookProvider
 }

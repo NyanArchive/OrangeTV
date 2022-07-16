@@ -8,7 +8,8 @@ import javax.inject.Inject
 class Hook @Inject constructor() {
     companion object {
         private val INSTANCE: Hook by lazy {
-            val hook = Core.getInjector().provideComponent(CoreComponent::class).hook
+            val provider = Core.get().provideComponent(CoreComponent::class)
+            val hook = provider.get().coreHook
 
             Logger.debug("Provide new instance: $hook")
             return@lazy hook

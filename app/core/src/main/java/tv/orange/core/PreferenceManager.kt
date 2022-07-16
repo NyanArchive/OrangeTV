@@ -88,11 +88,11 @@ class PreferenceManager @Inject constructor(context: Context) :
         private const val ORANGE_PREFERENCES = "orange"
 
         private val INSTANCE by lazy {
-            val instance =
-                Core.getInjector().provideComponent(CoreComponent::class).preferenceManager
+            val provider = Core.get().provideComponent(CoreComponent::class)
+            val prefManager = provider.get().preferenceManager
 
-            Logger.debug("Provide new instance: $instance")
-            return@lazy instance
+            Logger.debug("Provide new instance: $prefManager")
+            return@lazy prefManager
         }
 
         @JvmStatic

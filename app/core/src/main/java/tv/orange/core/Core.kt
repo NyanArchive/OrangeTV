@@ -112,8 +112,4 @@ class Core private constructor(private val applicationContext: Context) :
     override fun <T : Any> provideComponent(cls: KClass<T>): Provider<T> {
         return getInjector().provideComponent(cls)
     }
-
-    override fun <T : Any> provideTwitchComponent(cls: KClass<T>): Provider<T> {
-        return getInjector().provideTwitchComponent(cls)
-    }
 }

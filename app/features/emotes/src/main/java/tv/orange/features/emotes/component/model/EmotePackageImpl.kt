@@ -4,13 +4,14 @@ import io.reactivex.disposables.CompositeDisposable
 import tv.orange.core.Logger
 import tv.orange.core.util.DateUtil
 import tv.orange.features.emotes.component.model.factory.EmoteFetcherFactory
+import tv.orange.models.abs.EmotePackageSet
 import tv.orange.models.data.emotes.Emote
 import tv.orange.models.data.emotes.EmoteSet
 import java.util.*
 
 class EmotePackageImpl(
     private val source: EmoteFetcherFactory,
-    private val token: String
+    private val token: EmotePackageSet
 ) : EmotePackage {
     var set: EmoteSet? = null
     private var lastUpdate: Date = Date(0)
@@ -62,7 +63,7 @@ class EmotePackageImpl(
         return set?.isEmpty() ?: true
     }
 
-    override fun getToken(): String {
+    override fun getToken(): EmotePackageSet {
         return token
     }
 

@@ -4,7 +4,7 @@ import tv.orange.core.ResourceManager
 import tv.orange.core.models.Flag
 import tv.orange.core.models.Flag.Companion.valueBoolean
 
-class FlagToggleMenuModel(flag: Flag) : ToggleMenuModel(
+class FlagToggleMenuModelExt(flag: Flag) : ToggleMenuModelExt(
     primaryText = ResourceManager.getString(flag.titleRes),
     secondaryText = ResourceManager.getString(flag.summaryRes),
     auxiliaryText = null,

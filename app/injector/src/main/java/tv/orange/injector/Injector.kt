@@ -28,17 +28,6 @@ class Injector @Inject constructor(
         return map[cls] as Provider<T>
     }
 
-    @Suppress("UNCHECKED_CAST", "IMPLICIT_CAST_TO_ANY")
-    override fun <T : Any> provideTwitchComponent(cls: KClass<T>): Provider<T> {
-        return when (cls) {
-            GraphQlService::class -> getProvider<GraphQlService>(
-                twitchComponent,
-                "graphQlServiceProvider"
-            )
-            else -> throw IllegalStateException("Unknown class: $cls")
-        } as Provider<T>
-    }
-
     private fun <T : Any> register(cls: KClass<T>, provider: Provider<T>) {
         map[cls] = provider
     }
@@ -48,6 +37,12 @@ class Injector @Inject constructor(
         register(ApiComponent::class) { apiComponent.get() }
         register(EmotesComponent::class) { emotesComponent.get() }
         register(BadgesComponent::class) { badgesComponent.get() }
+        register(GraphQlService::class) {
+            getTwitchProvider<GraphQlService>(
+                twitchComponent,
+                "graphQlServiceProvider"
+            ).get()
+        }
     }
 
     companion object {
@@ -59,7 +54,7 @@ class Injector @Inject constructor(
         }
 
         @Suppress("UNCHECKED_CAST")
-        private fun <T> getProvider(component: DaggerAppComponent, fieldName: String): Provider<T> {
+        private fun <T> getTwitchProvider(component: DaggerAppComponent, fieldName: String): Provider<T> {
             return component::class.java.getDeclaredField(fieldName).apply {
                 isAccessible = true
             }.get(component) as Provider<T>

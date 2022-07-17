@@ -4,6 +4,7 @@ import tv.orange.core.Logger
 import tv.orange.features.emotes.component.model.factory.RoomFactory
 import tv.orange.features.emotes.component.model.room.RoomCache
 import tv.orange.features.emotes.di.scope.EmotesScope
+import tv.orange.models.abs.EmotePackageSet
 import tv.orange.models.data.emotes.Emote
 import javax.inject.Inject
 
@@ -16,7 +17,7 @@ class EmoteProvider @Inject constructor(val roomFactory: RoomFactory) {
         return global.getEmote(code)
     }
 
-    fun getEmotesMap(channelId: Int): List<Pair<String, List<Emote>>> {
+    fun getEmotesMap(channelId: Int): List<Pair<EmotePackageSet, List<Emote>>> {
         val channel = channel.get(channelId)?.getEmotesMap() ?: emptyList()
         return global.getEmotesMap() + channel
     }

@@ -6,6 +6,7 @@ import tv.orange.core.Logger
 import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
 import tv.orange.core.models.Flag
+import tv.orange.core.models.Flag.Companion.valueBoolean
 import tv.orange.core.models.FlagListener
 import tv.orange.core.models.LifecycleAware
 import tv.orange.core.models.LifecycleController
@@ -19,6 +20,7 @@ import tv.orange.features.chat.di.component.DaggerChatComponent
 import tv.orange.features.emotes.bridge.EmoteToken
 import tv.orange.features.emotes.component.EmoteProvider
 import tv.orange.features.emotes.di.component.EmotesComponent
+import tv.orange.models.abs.EmotePackageSet
 import tv.orange.models.data.emotes.Emote
 import tv.twitch.android.models.chat.MessageBadge
 import tv.twitch.android.models.chat.MessageToken
@@ -46,9 +48,37 @@ class ChatHookProvider @Inject constructor(
             return@lazy hook
         }
 
+        private fun packageTokenToId(token: EmotePackageSet): Int {
+            val resName = when (token) {
+                EmotePackageSet.BttvGlobal -> "orange_bttv_global_emotes"
+                EmotePackageSet.BttvChannel -> "orange_bttv_channel_emotes"
+                EmotePackageSet.FfzGlobal -> "orange_ffz_global_emotes"
+                EmotePackageSet.FfzChannel -> "orange_ffz_channel_emotes"
+                EmotePackageSet.StvGlobal -> "orange_stv_global_emotes"
+                EmotePackageSet.StvChannel -> "orange_stv_channel_emotes"
+                else -> "orange_unknown_emotes"
+            }
+
+            return ResourceManager.getId(resName = resName, "string")
+        }
+
         @JvmStatic
         fun get(): ChatHookProvider {
             return INSTANCE
+        }
+
+        @JvmStatic
+        fun enableStickyHeaders(): Boolean {
+            return !Flag.DISABLE_STICKY_HEADERS_EP.valueBoolean()
+        }
+
+        @JvmStatic
+        fun changeBitsButtonVisibility(org: Boolean): Boolean {
+            if (Flag.HIDE_BITS_BUTTON.valueBoolean()) {
+                return false
+            }
+
+            return org
         }
 
         private fun createEmoteUiModel(
@@ -211,7 +241,7 @@ class ChatHookProvider @Inject constructor(
                     pair.second.add(
                         EmoteUiSet(
                             EmoteHeaderUiModel.EmoteHeaderStringResUiModel(
-                                ResourceManager.getId("mod_bla_bla_bla", "string"),
+                                packageTokenToId(emotePair.first),
                                 true,
                                 EmotePickerSection.ALL,
                                 false

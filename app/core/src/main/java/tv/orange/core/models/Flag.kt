@@ -11,58 +11,77 @@ enum class Flag(
 ) {
     DEV_MODE(
         "dev_mode",
-        "mod_settings_dev_mode",
-        BooleanValue(false)
+        "orange_settings_dev_mode",
+        BooleanValue()
     ),
     BTTV_EMOTES(
         "bttv_emotes",
-        "mod_settings_bttv_emotes",
+        "orange_settings_bttv_emotes",
         BooleanValue(true)
     ),
     FFZ_EMOTES(
         "ffz_emotes",
-        "mod_settings_ffz_emotes",
+        "orange_settings_ffz_emotes",
         BooleanValue(true)
     ),
     STV_EMOTES(
         "stv_emotes",
-        "mod_settings_stv_emotes",
+        "orange_settings_stv_emotes",
         BooleanValue(true)
     ),
     FFZ_BADGES(
         "ffz_badges",
-        "mod_settings_ffz_badges",
+        "orange_settings_ffz_badges",
         BooleanValue(true)
     ),
     STV_BADGES(
         "stv_badges",
-        "mod_settings_stv_badges",
+        "orange_settings_stv_badges",
         BooleanValue(true)
     ),
     CHE_BADGES(
         "che_badges",
-        "mod_settings_che_badges",
+        "orange_settings_che_badges",
         BooleanValue(true)
     ),
     CHA_BADGES(
         "cha_badges",
-        "mod_settings_cha_badges",
+        "orange_settings_cha_badges",
         BooleanValue(true)
     ),
     STV_AVATARS(
         "stv_avatars",
-        "mod_settings_stv_avatars",
+        "orange_settings_stv_avatars",
         BooleanValue(true)
     ),
     CHAT_HISTORY(
         "chat_history",
-        "mod_settings_chat_history",
+        "orange_settings_chat_history",
         BooleanValue(true)
+    ),
+    DISABLE_STICKY_HEADERS_EP(
+        "disable_sticky_headers_ep",
+        "orange_settings_disable_sticky_headers_ep",
+        BooleanValue()
+    ),
+    HIDE_BITS_BUTTON(
+        "hide_bits_button",
+        "orange_settings_hide_bits_button",
+        BooleanValue()
+    ),
+    PLAYER_IMPL(
+        "player_impl",
+        "orange_settings_player_impl",
+        ListValue(listOf("default", "core", "exo"), "default"),
     );
 
     companion object {
         fun Flag.valueBoolean(): Boolean {
             return getBoolean(this.value)
+        }
+
+        fun Flag.valueList(): List<String> {
+            return getList(this.value)
         }
 
         fun Flag.valueInt(): Int {
@@ -105,6 +124,17 @@ enum class Flag(
             if (holder is StringValue) {
                 return holder.value
             }
+            if (holder is ListValue) {
+                return holder.value
+            }
+
+            throw IllegalStateException("$holder")
+        }
+
+        fun getList(holder: ValueHolder): List<String> {
+            if (holder is ListValue) {
+                return holder.getVariants()
+            }
 
             throw IllegalStateException("$holder")
         }
@@ -116,12 +146,35 @@ enum class Flag(
     }
 
     enum class Type {
-        BOOLEAN, INTEGER, STRING, UNKNOWN
+        BOOLEAN, INTEGER, STRING, LIST, UNKNOWN
     }
 
-    class BooleanValue(bool: Any?) : ValueHolder {
-        constructor() : this(null)
+    class ListValue(private val variants: List<String>, default: String) :
+        ValueHolder {
+        private var selected: String = set(default)
 
+        fun set(value: String): String {
+            if (!variants.contains(value)) {
+                throw IllegalStateException("debug")
+            }
+
+            selected = value
+
+            return selected
+        }
+
+        override val value: String
+            get() = selected
+
+        override val type: Type
+            get() = Type.LIST
+
+        fun getVariants(): List<String> {
+            return variants
+        }
+    }
+
+    class BooleanValue(bool: Any? = false) : ValueHolder {
         override var value = when (bool) {
             is Boolean -> bool
             is String -> bool.toBoolean()
@@ -132,9 +185,7 @@ enum class Flag(
             get() = Type.BOOLEAN
     }
 
-    class IntegerValue(i: Any?) : ValueHolder {
-        constructor() : this(null)
-
+    class IntegerValue(i: Any? = 0) : ValueHolder {
         override var value = when (i) {
             is Int -> i
             is String -> i.toInt()
@@ -145,9 +196,7 @@ enum class Flag(
             get() = Type.INTEGER
     }
 
-    class StringValue(s: Any?) : ValueHolder {
-        constructor() : this(null)
-
+    class StringValue(s: Any? = null) : ValueHolder {
         override var value = when (s) {
             is String -> s
             null -> ""

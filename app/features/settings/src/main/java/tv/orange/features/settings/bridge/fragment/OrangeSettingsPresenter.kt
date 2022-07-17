@@ -37,6 +37,6 @@ class OrangeSettingsPresenter @Inject constructor(
     override fun updateSettingModels() {
         Logger.debug("called")
         settingModels.clear();
-        settingModels.addAll(controller.getMainSettingModels())
+        settingModels.addAll(controller.getMainSettingModels(activity))
     }
 }

@@ -2,8 +2,8 @@ package tv.orange.features.chat
 
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
+import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
-import org.reactivestreams.Publisher
 import tv.orange.core.Core
 import tv.orange.core.Logger
 import tv.orange.core.PreferenceManager
@@ -27,7 +27,6 @@ import tv.orange.models.data.emotes.Emote
 import tv.twitch.android.models.chat.MessageBadge
 import tv.twitch.android.models.chat.MessageToken
 import tv.twitch.android.models.emotes.EmoteCardModelResponse
-import tv.twitch.android.models.emotes.EmoteModel
 import tv.twitch.android.models.emotes.EmoteSet
 import tv.twitch.android.provider.chat.ChatMessageInterface
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerPresenter
@@ -36,6 +35,7 @@ import tv.twitch.android.shared.emotes.emotepicker.models.EmotePickerSection
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiModel
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiSet
 import tv.twitch.android.shared.emotes.models.EmoteMessageInput
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class ChatHookProvider @Inject constructor(
@@ -290,21 +290,20 @@ class ChatHookProvider @Inject constructor(
         )
     }
 
-    fun hookAutoCompleteMapProvider(flow: Flowable<MutableList<EmoteSet>>): Flowable<MutableList<EmoteSet>> {
-        return flow.flatMap { org ->
-            currentChannelSubject.toFlowable(BackpressureStrategy.LATEST).flatMap { currentChannelId ->
-                val injected = emoteProvider.getEmotesMap(currentChannelId).map { pair ->
-                    val emotes = pair.second.map {
+    fun hookAutoCompleteMapProvider(emotesFlow: Flowable<List<EmoteSet>>): Flowable<List<EmoteSet>> {
+        return emotesFlow.flatMap { orgList ->
+            currentChannelSubject.flatMap {
+                Observable.just(it).delay(3, TimeUnit.SECONDS)
+            }.toFlowable(BackpressureStrategy.LATEST).flatMap { channelId ->
+                val newSets = emoteProvider.getEmotesMap(channelId = channelId).map { pair ->
+                    OrangeEmoteSet(pair.second.map {
                         OrangeEmoteModel(
-                            it.getCode(),
-                            it.getUrl(Emote.Size.MEDIUM)
-                        ) as EmoteModel
-                    }.toMutableList()
-                    OrangeEmoteSet(emotes)
-                }.toMutableList()
-                val res = (org + injected) as MutableList<EmoteSet>
-                Logger.debug("res: $res")
-                Flowable.just(res)
+                            emoteToken = it.getCode(),
+                            emoteUrl = it.getUrl(Emote.Size.MEDIUM)
+                        )
+                    })
+                }
+                Flowable.just((orgList + newSets)).doOnNext { Logger.debug("Injected: $it") }
             }
         }
     }

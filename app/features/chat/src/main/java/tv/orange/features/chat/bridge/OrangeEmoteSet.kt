@@ -3,8 +3,8 @@ package tv.orange.features.chat.bridge
 import tv.twitch.android.models.emotes.EmoteModel
 import tv.twitch.android.models.emotes.EmoteSet
 
-class OrangeEmoteSet(val orangeEmotes: MutableList<EmoteModel>) : EmoteSet(null) {
-    override fun getEmotes(): MutableList<EmoteModel> {
+class OrangeEmoteSet(val orangeEmotes: List<EmoteModel>) : EmoteSet(null) {
+    override fun getEmotes(): List<EmoteModel> {
         return orangeEmotes
     }
 

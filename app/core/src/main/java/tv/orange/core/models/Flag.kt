@@ -98,12 +98,6 @@ enum class Flag(
             }
         }
 
-        fun findByName(name: String): Flag? {
-            return EnumSet.allOf(Flag::class.java).firstOrNull {
-                it.name == name
-            }
-        }
-
         fun getInt(holder: ValueHolder): Int {
             if (holder is IntegerValue) {
                 return holder.value

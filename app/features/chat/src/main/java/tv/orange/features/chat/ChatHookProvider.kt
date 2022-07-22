@@ -16,14 +16,17 @@ import tv.orange.features.badges.di.component.BadgesComponent
 import tv.orange.features.chat.bridge.ChatMessageInterfaceWrapper
 import tv.orange.features.chat.bridge.EmotePickerEmoteModelExt
 import tv.orange.features.chat.bridge.EmoteUiModelExt
+import tv.orange.features.chat.bridge.OrangeEmoteCardModel
 import tv.orange.features.chat.di.component.DaggerChatComponent
 import tv.orange.features.emotes.bridge.EmoteToken
 import tv.orange.features.emotes.component.EmoteProvider
 import tv.orange.features.emotes.di.component.EmotesComponent
+import tv.orange.models.abs.EmoteCardModelWrapper
 import tv.orange.models.abs.EmotePackageSet
 import tv.orange.models.data.emotes.Emote
 import tv.twitch.android.models.chat.MessageBadge
 import tv.twitch.android.models.chat.MessageToken
+import tv.twitch.android.models.emotes.EmoteCardModelResponse
 import tv.twitch.android.provider.chat.ChatMessageInterface
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerPresenter
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteHeaderUiModel
@@ -174,7 +177,14 @@ class ChatHookProvider @Inject constructor(
                         if (!injected) {
                             injected = true
                         }
-                        stack.add(EmoteToken(emote.getCode(), emote.getUrl(Emote.Size.MEDIUM)))
+                        stack.add(
+                            EmoteToken(
+                                emote.getCode(),
+                                emote.getUrl(Emote.Size.MEDIUM),
+                                emote.getUrl(Emote.Size.LARGE),
+                                emote.getPackageSet()
+                            )
+                        )
                     } else {
                         stack.add(MessageToken.TextToken("$word ", token.flags))
                     }
@@ -257,5 +267,21 @@ class ChatHookProvider @Inject constructor(
 
             return@map pair
         }
+    }
+
+    fun hookEmoteCardModelResponse(emoteId: String?): EmoteCardModelResponse? {
+        if (emoteId.isNullOrBlank()) {
+            return null
+        }
+
+        val model = EmoteCardModelWrapper.fromString(emoteId) ?: return null
+
+        return EmoteCardModelResponse.Success(
+            OrangeEmoteCardModel(
+                token = model.token,
+                url = model.url,
+                set = model.set
+            )
+        )
     }
 }

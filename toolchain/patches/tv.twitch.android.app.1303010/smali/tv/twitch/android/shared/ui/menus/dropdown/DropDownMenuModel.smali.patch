@@ -1,0 +1,9 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/ui/menus/dropdown/DropDownMenuModel.smali b/smali_classes6/tv/twitch/android/shared/ui/menus/dropdown/DropDownMenuModel.smali
+--- a/smali_classes6/tv/twitch/android/shared/ui/menus/dropdown/DropDownMenuModel.smali
++++ b/smali_classes6/tv/twitch/android/shared/ui/menus/dropdown/DropDownMenuModel.smali
+@@ -1,4 +1,4 @@
+-.class public final Ltv/twitch/android/shared/ui/menus/dropdown/DropDownMenuModel;
++.class public Ltv/twitch/android/shared/ui/menus/dropdown/DropDownMenuModel;
+ .super Ltv/twitch/android/shared/ui/menus/core/MenuModel$SingleItemModel;
+ .source "DropDownMenuModel.kt"
+ 

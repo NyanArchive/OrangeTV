@@ -2,11 +2,11 @@ package tv.orange.features.api.component.data.mapper
 
 import tv.orange.models.data.badges.BadgeFfzImpl
 import tv.orange.models.data.badges.BadgeSet
-import tv.orange.models.retrofit.ffz.FfzBadges
+import tv.orange.models.retrofit.ffz.FfzBadgesData
 import javax.inject.Inject
 
 class FfzApiMapper @Inject constructor() {
-    fun mapBadges(response: FfzBadges): BadgeSet {
+    fun mapBadges(response: FfzBadgesData): BadgeSet {
         val builder = BadgeSet.Builder()
         val badges = response.badges.associateBy { it.id }
         val supporter = BadgeFfzImpl.Type.SUPPORTER
@@ -21,10 +21,10 @@ class FfzApiMapper @Inject constructor() {
                     badges[id]?.let { ffzBadge ->
                         builder.addBadge(
                             BadgeFfzImpl(
-                                badgeType = if (ffzBadge.name == supporter.value) supporter else unknown,
-                                badgeUrl = getUrl(ffzBadge.id),
-                                badgeBackgroundColor = ffzBadge.parseColor(),
-                                badgeReplaces = ffzBadge.replaces
+                                type = if (ffzBadge.name == supporter.value) supporter else unknown,
+                                url = getUrl(ffzBadge.id),
+                                backgroundColor = ffzBadge.parseColor(),
+                                replaces = ffzBadge.replaces
                             ), userId
                         )
                     }

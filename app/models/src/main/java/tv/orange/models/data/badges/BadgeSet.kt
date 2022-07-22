@@ -3,7 +3,9 @@ package tv.orange.models.data.badges
 import android.util.ArrayMap
 import android.util.SparseArray
 
-data class BadgeSet(val badges: SparseArray<HashSet<Badge>>) {
+class BadgeSet(
+    private val badges: SparseArray<HashSet<Badge>>
+) {
     constructor() : this(SparseArray(0))
 
     fun getBadges(userId: Int): List<Badge> {

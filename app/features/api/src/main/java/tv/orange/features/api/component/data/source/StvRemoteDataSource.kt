@@ -16,16 +16,16 @@ class StvRemoteDataSource @Inject constructor(
 ) {
     fun getGlobalEmotes(): Single<List<Emote>> {
         return stvApi.globalEmotes().subscribeOn(Schedulers.io()).map { emotes ->
-            stvMapper.mapEmotes(emotes)
+            stvMapper.mapEmotes(emotes, false)
         }
     }
 
     fun getChannelEmotes(channelId: Int): Single<List<Emote>> {
         return stvApi.emotes(channelId).subscribeOn(Schedulers.io()).map { emotes ->
-            stvMapper.mapEmotes(emotes)
+            stvMapper.mapEmotes(emotes, true)
         }.onErrorResumeNext {
             Logger.debug("Cannot fetch emotes for channel: $channelId")
-            Single.just(stvMapper.mapEmotes(emptyList()))
+            Single.just(stvMapper.mapEmotes(emptyList(), true))
         }
     }
 

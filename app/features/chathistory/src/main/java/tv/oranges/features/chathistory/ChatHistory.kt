@@ -48,7 +48,7 @@ class ChatHistory @Inject constructor(
 
         source.addChatHistoryMessage(
             channelId,
-            repository.getSystemMessage("[OHI] Fetching messages...")
+            repository.getSystemMessage("[TCH] Fetching messages...")
         )
 
         source.addDisposable(
@@ -75,8 +75,8 @@ class ChatHistory @Inject constructor(
         private val INSTANCE by lazy {
             val hook = DaggerChatHistoryComponent.factory()
                 .create(
-                    Core.getInjector().provideComponent(CoreComponent::class),
-                    Core.getInjector().provideTwitchComponent(GraphQlService::class)
+                    Core.get().provideComponent(CoreComponent::class).get(),
+                    Core.get().provideComponent(GraphQlService::class).get()
                 ).chatHistory
 
             Logger.debug("Provide new instance: $hook")

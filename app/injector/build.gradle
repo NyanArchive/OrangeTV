@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -34,5 +35,7 @@ dependencies {
     implementation project(path: ':features:emotes')
     implementation project(path: ':models')
     implementation project(path: ':features:api')
+
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }
 

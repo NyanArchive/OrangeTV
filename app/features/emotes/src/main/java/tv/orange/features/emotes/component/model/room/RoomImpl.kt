@@ -1,6 +1,7 @@
 package tv.orange.features.emotes.component.model.room
 
 import tv.orange.features.emotes.component.model.EmotePackage
+import tv.orange.models.abs.EmotePackageSet
 import tv.orange.models.data.emotes.Emote
 import java.util.*
 
@@ -15,7 +16,7 @@ class RoomImpl : Room {
         return packages.flatMap { it.getEmotes() }
     }
 
-    override fun getEmotesMap(): List<Pair<String, List<Emote>>> {
+    override fun getEmotesMap(): List<Pair<EmotePackageSet, List<Emote>>> {
         return packages.map {
             Pair(it.getToken(), it.getEmotes())
         }

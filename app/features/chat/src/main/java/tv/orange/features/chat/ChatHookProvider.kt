@@ -6,6 +6,7 @@ import tv.orange.core.Logger
 import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
 import tv.orange.core.models.Flag
+import tv.orange.core.models.Flag.Companion.valueBoolean
 import tv.orange.core.models.FlagListener
 import tv.orange.core.models.LifecycleAware
 import tv.orange.core.models.LifecycleController
@@ -15,13 +16,17 @@ import tv.orange.features.badges.di.component.BadgesComponent
 import tv.orange.features.chat.bridge.ChatMessageInterfaceWrapper
 import tv.orange.features.chat.bridge.EmotePickerEmoteModelExt
 import tv.orange.features.chat.bridge.EmoteUiModelExt
+import tv.orange.features.chat.bridge.OrangeEmoteCardModel
 import tv.orange.features.chat.di.component.DaggerChatComponent
 import tv.orange.features.emotes.bridge.EmoteToken
 import tv.orange.features.emotes.component.EmoteProvider
 import tv.orange.features.emotes.di.component.EmotesComponent
+import tv.orange.models.abs.EmoteCardModelWrapper
+import tv.orange.models.abs.EmotePackageSet
 import tv.orange.models.data.emotes.Emote
 import tv.twitch.android.models.chat.MessageBadge
 import tv.twitch.android.models.chat.MessageToken
+import tv.twitch.android.models.emotes.EmoteCardModelResponse
 import tv.twitch.android.provider.chat.ChatMessageInterface
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerPresenter
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteHeaderUiModel
@@ -38,17 +43,45 @@ class ChatHookProvider @Inject constructor(
     companion object {
         private val INSTANCE: ChatHookProvider by lazy {
             val hook = DaggerChatComponent.builder()
-                .badgesComponent(Core.getInjector().provideComponent(BadgesComponent::class))
-                .emotesComponent(Core.getInjector().provideComponent(EmotesComponent::class))
+                .badgesComponent(Core.get().provideComponent(BadgesComponent::class).get())
+                .emotesComponent(Core.get().provideComponent(EmotesComponent::class).get())
                 .build().hook
 
             Logger.debug("Provide new instance: $hook")
             return@lazy hook
         }
 
+        private fun packageTokenToId(token: EmotePackageSet): Int {
+            val resName = when (token) {
+                EmotePackageSet.BttvGlobal -> "orange_bttv_global_emotes"
+                EmotePackageSet.BttvChannel -> "orange_bttv_channel_emotes"
+                EmotePackageSet.FfzGlobal -> "orange_ffz_global_emotes"
+                EmotePackageSet.FfzChannel -> "orange_ffz_channel_emotes"
+                EmotePackageSet.StvGlobal -> "orange_stv_global_emotes"
+                EmotePackageSet.StvChannel -> "orange_stv_channel_emotes"
+                else -> "orange_unknown_emotes"
+            }
+
+            return ResourceManager.getId(resName = resName, "string")
+        }
+
         @JvmStatic
         fun get(): ChatHookProvider {
             return INSTANCE
+        }
+
+        @JvmStatic
+        fun enableStickyHeaders(): Boolean {
+            return !Flag.DISABLE_STICKY_HEADERS_EP.valueBoolean()
+        }
+
+        @JvmStatic
+        fun changeBitsButtonVisibility(org: Boolean): Boolean {
+            if (Flag.HIDE_BITS_BUTTON.valueBoolean()) {
+                return false
+            }
+
+            return org
         }
 
         private fun createEmoteUiModel(
@@ -144,7 +177,14 @@ class ChatHookProvider @Inject constructor(
                         if (!injected) {
                             injected = true
                         }
-                        stack.add(EmoteToken(emote.getCode(), emote.getUrl(Emote.Size.MEDIUM)))
+                        stack.add(
+                            EmoteToken(
+                                emote.getCode(),
+                                emote.getUrl(Emote.Size.MEDIUM),
+                                emote.getUrl(Emote.Size.LARGE),
+                                emote.getPackageSet()
+                            )
+                        )
                     } else {
                         stack.add(MessageToken.TextToken("$word ", token.flags))
                     }
@@ -206,25 +246,42 @@ class ChatHookProvider @Inject constructor(
         num: Integer
     ): Flowable<Pair<EmoteUiSet, MutableList<EmoteUiSet>>> {
         return map.map { pair ->
-            emoteProvider.getEmotesMap(num.toInt()).forEach { emotePair ->
-                pair.second.add(
-                    EmoteUiSet(
-                        EmoteHeaderUiModel.EmoteHeaderStringResUiModel(
-                            ResourceManager.getId("mod_bla_bla_bla", "string"),
-                            true,
-                            EmotePickerSection.ALL,
-                            false
-                        ), emotePair.second.map { emote ->
-                            createEmoteUiModel(
-                                emote = emote,
-                                channelId = num.toInt(),
-                                isAnimated = false
-                            )
-                        })
-                )
-            }
+            emoteProvider.getEmotesMap(num.toInt()).filter { it.second.isNotEmpty() }
+                .forEach { emotePair ->
+                    pair.second.add(
+                        EmoteUiSet(
+                            EmoteHeaderUiModel.EmoteHeaderStringResUiModel(
+                                packageTokenToId(emotePair.first),
+                                true,
+                                EmotePickerSection.ALL,
+                                false
+                            ), emotePair.second.map { emote ->
+                                createEmoteUiModel(
+                                    emote = emote,
+                                    channelId = num.toInt(),
+                                    isAnimated = false
+                                )
+                            })
+                    )
+                }
 
             return@map pair
         }
+    }
+
+    fun hookEmoteCardModelResponse(emoteId: String?): EmoteCardModelResponse? {
+        if (emoteId.isNullOrBlank()) {
+            return null
+        }
+
+        val model = EmoteCardModelWrapper.fromString(emoteId) ?: return null
+
+        return EmoteCardModelResponse.Success(
+            OrangeEmoteCardModel(
+                token = model.token,
+                url = model.url,
+                set = model.set
+            )
+        )
     }
 }

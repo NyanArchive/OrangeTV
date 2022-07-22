@@ -1,9 +1,11 @@
 package tv.orange.features.settings.component
 
+import android.content.Context
 import tv.orange.core.Logger
 import tv.orange.core.PreferenceManager
 import tv.orange.core.models.Flag
-import tv.orange.features.settings.bridge.model.FlagToggleMenuModel
+import tv.orange.features.settings.bridge.model.DropDownMenuModelExt
+import tv.orange.features.settings.bridge.model.FlagToggleMenuModelExt
 import tv.twitch.android.shared.ui.menus.SettingsPreferencesController
 import tv.twitch.android.shared.ui.menus.core.MenuModel
 import tv.twitch.android.shared.ui.menus.togglemenu.ToggleMenuModel
@@ -20,18 +22,21 @@ class SettingsController @Inject constructor() : SettingsPreferencesController {
         PreferenceManager.get().writeBoolean(eventName, state)
     }
 
-    fun getMainSettingModels(): Collection<MenuModel> {
+    fun getMainSettingModels(context: Context): Collection<MenuModel> {
         return listOf(
-            FlagToggleMenuModel(Flag.DEV_MODE),
-            FlagToggleMenuModel(Flag.BTTV_EMOTES),
-            FlagToggleMenuModel(Flag.FFZ_EMOTES),
-            FlagToggleMenuModel(Flag.STV_EMOTES),
-            FlagToggleMenuModel(Flag.FFZ_BADGES),
-            FlagToggleMenuModel(Flag.STV_BADGES),
-            FlagToggleMenuModel(Flag.CHA_BADGES),
-            FlagToggleMenuModel(Flag.CHE_BADGES),
-            FlagToggleMenuModel(Flag.STV_AVATARS),
-            FlagToggleMenuModel(Flag.CHAT_HISTORY),
+            FlagToggleMenuModelExt(Flag.DEV_MODE),
+            FlagToggleMenuModelExt(Flag.BTTV_EMOTES),
+            FlagToggleMenuModelExt(Flag.FFZ_EMOTES),
+            FlagToggleMenuModelExt(Flag.STV_EMOTES),
+            FlagToggleMenuModelExt(Flag.FFZ_BADGES),
+            FlagToggleMenuModelExt(Flag.STV_BADGES),
+            FlagToggleMenuModelExt(Flag.CHA_BADGES),
+            FlagToggleMenuModelExt(Flag.CHE_BADGES),
+            FlagToggleMenuModelExt(Flag.STV_AVATARS),
+            FlagToggleMenuModelExt(Flag.CHAT_HISTORY),
+            FlagToggleMenuModelExt(Flag.DISABLE_STICKY_HEADERS_EP),
+            FlagToggleMenuModelExt(Flag.HIDE_BITS_BUTTON),
+            DropDownMenuModelExt(Flag.PLAYER_IMPL, context),
         )
     }
 }

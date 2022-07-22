@@ -7,6 +7,7 @@ import tv.orange.features.api.component.repository.StvRepository
 import tv.orange.features.emotes.component.model.EmotePackageImpl
 import tv.orange.features.emotes.component.model.room.Room
 import tv.orange.features.emotes.component.model.room.RoomImpl
+import tv.orange.models.abs.EmotePackageSet
 import javax.inject.Inject
 
 class RoomFactoryImpl @Inject constructor(
@@ -23,7 +24,7 @@ class RoomFactoryImpl @Inject constructor(
                             { bttv.getBttvChannelEmotes(channelId) },
                             channelId
                         ),
-                        "BTTV-CHANNEL"
+                        EmotePackageSet.BttvChannel
                     )
                 )
             }
@@ -34,7 +35,7 @@ class RoomFactoryImpl @Inject constructor(
                             { bttv.getFfzChannelEmotes(channelId) },
                             channelId
                         ),
-                        "FFZ-CHANNEL"
+                        EmotePackageSet.FfzChannel
                     )
                 )
             }
@@ -45,7 +46,7 @@ class RoomFactoryImpl @Inject constructor(
                             { stv.getStvChannelEmotes(channelId) },
                             channelId
                         ),
-                        "STV-CHANNEL"
+                        EmotePackageSet.StvChannel
                     )
                 )
             }
@@ -60,7 +61,7 @@ class RoomFactoryImpl @Inject constructor(
                         EmoteFetcherFactoryImpl(
                             { bttv.getBttvGlobalEmotes() },
                         ),
-                        "BTTV-GLOBAL"
+                        EmotePackageSet.BttvGlobal
                     )
                 )
             }
@@ -70,7 +71,7 @@ class RoomFactoryImpl @Inject constructor(
                         EmoteFetcherFactoryImpl(
                             { bttv.getFfzGlobalEmotes() },
                         ),
-                        "FFZ-GLOBAL"
+                        EmotePackageSet.FfzGlobal
                     )
                 )
             }
@@ -80,7 +81,7 @@ class RoomFactoryImpl @Inject constructor(
                         EmoteFetcherFactoryImpl(
                             { stv.getStvGlobalEmotes() },
                         ),
-                        "STV-GLOBAL"
+                        EmotePackageSet.StvGlobal
                     )
                 )
             }

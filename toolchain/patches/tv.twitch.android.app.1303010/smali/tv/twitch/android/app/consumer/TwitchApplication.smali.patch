@@ -44,11 +44,11 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
  
      invoke-interface {v1, p0}, Ltv/twitch/android/app/consumer/dagger/AppComponent;->inject(Ltv/twitch/android/app/consumer/TwitchApplication;)V
  
-+    new-instance v2, Ltv/orange/injector/Injector;
-+
 +    check-cast v1, Ltv/twitch/android/app/consumer/dagger/DaggerAppComponent;
 +
-+    invoke-direct {v2, v1}, Ltv/orange/injector/Injector;-><init>(Ltv/twitch/android/app/consumer/dagger/DaggerAppComponent;)V
++    invoke-static {v1}, Ltv/orange/injector/Injector;->create(Ltv/twitch/android/app/consumer/dagger/DaggerAppComponent;)Ltv/orange/injector/Injector;
++
++    move-result-object v2
 +
 +    iput-object v2, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->injector:Ltv/orange/injector/Injector;
 +

@@ -40,6 +40,11 @@ class PreferenceManager @Inject constructor(context: Context) :
         preferences.edit().putBoolean(flag.prefKey, value).apply()
     }
 
+    fun writeString(flag: Flag, value: String) {
+        Logger.debug("setting: $flag, value: $value")
+        preferences.edit().putString(flag.prefKey, value).apply()
+    }
+
     fun writeBoolean(prefKey: String, value: Boolean) {
         Logger.debug("prefKey: $prefKey, value: $value")
 
@@ -66,6 +71,11 @@ class PreferenceManager @Inject constructor(context: Context) :
         return Flag.StringValue(value)
     }
 
+    private fun readRawString(flag: Flag): String {
+        Logger.debug("flag: $flag")
+        return preferences.getString(flag.prefKey, Flag.getString(flag.default))!!
+    }
+
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         key?.let { value ->
             Flag.findByKey(value)?.let { flag ->
@@ -80,6 +90,7 @@ class PreferenceManager @Inject constructor(context: Context) :
             is Flag.BooleanValue -> flag.value = readBoolean(flag)
             is Flag.IntegerValue -> flag.value = readInt(flag)
             is Flag.StringValue -> flag.value = readString(flag)
+            is Flag.ListValue -> (flag.value as Flag.ListValue).set(readRawString(flag))
             else -> throw IllegalStateException("debug")
         }
     }
@@ -88,11 +99,11 @@ class PreferenceManager @Inject constructor(context: Context) :
         private const val ORANGE_PREFERENCES = "orange"
 
         private val INSTANCE by lazy {
-            val instance =
-                Core.getInjector().provideComponent(CoreComponent::class).preferenceManager
+            val provider = Core.get().provideComponent(CoreComponent::class)
+            val prefManager = provider.get().preferenceManager
 
-            Logger.debug("Provide new instance: $instance")
-            return@lazy instance
+            Logger.debug("Provide new instance: $prefManager")
+            return@lazy prefManager
         }
 
         @JvmStatic

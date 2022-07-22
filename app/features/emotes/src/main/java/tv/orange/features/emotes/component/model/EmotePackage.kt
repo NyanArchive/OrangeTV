@@ -1,5 +1,6 @@
 package tv.orange.features.emotes.component.model
 
+import tv.orange.models.abs.EmotePackageSet
 import tv.orange.models.data.emotes.Emote
 
 interface EmotePackage {
@@ -11,7 +12,7 @@ interface EmotePackage {
 
     fun isEmpty(): Boolean
 
-    fun getToken(): String
+    fun getToken(): EmotePackageSet
 
     fun clear()
 }

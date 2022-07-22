@@ -39,4 +39,7 @@ android {
 dependencies {
     api "com.google.code.gson:gson:$gson_version"
     api "com.apollographql.apollo3:apollo-runtime:$apollo_version"
+
+    api "com.google.dagger:dagger:$dagger_version"
+    api "com.google.dagger:dagger-android-support:$dagger_version"
 }

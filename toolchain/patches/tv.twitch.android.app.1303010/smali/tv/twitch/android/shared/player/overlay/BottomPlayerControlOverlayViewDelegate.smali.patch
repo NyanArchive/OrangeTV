@@ -152,15 +152,15 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayer
 +    .param p1, "model"    # Ltv/twitch/android/models/streams/StreamModel;
 +
 +    .prologue
-+    .line 28
-+    invoke-static {}, Ltv/orange/features/streamuptime/Hook;->get()Ltv/orange/features/streamuptime/Hook;
++    .line 29
++    invoke-static {}, Ltv/orange/features/streamuptime/StreamUptimeHookProvider;->get()Ltv/orange/features/streamuptime/StreamUptimeHookProvider;
 +
 +    move-result-object v0
 +
 +    iget-object v1, p0, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->mLiveIndicatorLeftText:Ltv/orange/features/streamuptime/bridge/StreamUptimeView;
 +
-+    invoke-virtual {v0, v1, p1}, Ltv/orange/features/streamuptime/Hook;->bindStreamUptime(Ltv/orange/features/streamuptime/bridge/StreamUptimeView;Ltv/twitch/android/models/streams/StreamModel;)V
++    invoke-virtual {v0, v1, p1}, Ltv/orange/features/streamuptime/StreamUptimeHookProvider;->bindStreamUptime(Ltv/orange/features/streamuptime/bridge/StreamUptimeView;Ltv/twitch/android/models/streams/StreamModel;)V
 +
-+    .line 29
++    .line 30
 +    return-void
 +.end method

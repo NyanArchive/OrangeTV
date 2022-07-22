@@ -25,9 +25,9 @@ class AvatarsHookProvider @Inject constructor(val stvRepository: StvRepository) 
     companion object {
         private val INSTANCE: AvatarsHookProvider by lazy {
             val hook = DaggerStvComponent.builder()
-                .coreComponent(Core.getInjector().provideComponent(CoreComponent::class))
-                .apiComponent(Core.getInjector().provideComponent(ApiComponent::class))
-                .build().provider
+                .coreComponent(Core.get().provideComponent(CoreComponent::class).get())
+                .apiComponent(Core.get().provideComponent(ApiComponent::class).get())
+                .build().hook
 
             Logger.debug("Provide new instance: $hook")
             return@lazy hook
@@ -40,7 +40,15 @@ class AvatarsHookProvider @Inject constructor(val stvRepository: StvRepository) 
     }
 
     fun hookProfileImageUrl(profileImageUrl: String, channelName: String): String {
-        return avatarSet?.get(channelName) ?: profileImageUrl
+        avatarSet?.let { set ->
+            if (set.isEmpty()) {
+                return profileImageUrl
+            }
+
+            return set.get(channelName) ?: profileImageUrl
+        }
+
+        return profileImageUrl
     }
 
     override fun onAllComponentDestroyed() {

@@ -1,6 +1,7 @@
 package tv.orange.features.emotes.component.model.room
 
 import tv.orange.features.emotes.component.model.EmotePackage
+import tv.orange.models.abs.EmotePackageSet
 import tv.orange.models.data.emotes.Emote
 
 interface Room {
@@ -8,7 +9,7 @@ interface Room {
 
     fun getEmotes(): List<Emote>
 
-    fun getEmotesMap(): List<Pair<String, List<Emote>>>
+    fun getEmotesMap(): List<Pair<EmotePackageSet, List<Emote>>>
 
     fun getEmote(code: String): Emote?
 

@@ -23,5 +23,6 @@ interface CoreComponent {
     val retrofitBuilder: Retrofit.Builder
 
     val preferenceManager: PreferenceManager
-    val hook: Hook
+
+    val coreHook: Hook
 }

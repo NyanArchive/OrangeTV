@@ -78,7 +78,7 @@ class Hook @Inject constructor(val viewFactory: ViewFactory) {
     companion object {
         private val INSTANCE by lazy {
             val hook = DaggerUserSearchComponent.builder()
-                .coreComponent(Core.getInjector().provideComponent(CoreComponent::class))
+                .coreComponent(Core.get().provideComponent(CoreComponent::class).get())
                 .build().hook
 
             Logger.debug("Provide new instance: $hook")

@@ -2,11 +2,11 @@ package tv.orange.features.api.component.data.mapper
 
 import tv.orange.models.data.badges.BadgeImpl
 import tv.orange.models.data.badges.BadgeSet
-import tv.orange.models.retrofit.nop.Donations
+import tv.orange.models.retrofit.nop.DonationsData
 import javax.inject.Inject
 
 class NopApiMapper @Inject constructor() {
-    fun mapBadges(donations: Donations): BadgeSet {
+    fun mapBadges(donations: DonationsData): BadgeSet {
         val builder = BadgeSet.Builder()
 
         val defaultBadgeUrl = donations.defaultBadgeUrl

@@ -1,6 +1,6 @@
 package tv.orange.models.retrofit.bttv
 
-data class BttvChannel(
+data class BttvChannelData(
     val channelEmotes: List<BttvEmote>,
     val sharedEmotes: List<BttvEmote>
 )

@@ -62,4 +62,7 @@ dependencies {
     implementation project(path: ':features:chathistory')
     implementation project(path: ':features:stv')
     implementation project(path: ':features:settings')
+
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
 }

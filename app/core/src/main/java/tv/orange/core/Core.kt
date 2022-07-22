@@ -5,10 +5,13 @@ import tv.orange.core.models.LifecycleAware
 import tv.orange.core.models.LifecycleController
 import tv.orange.models.Injector
 import tv.orange.models.InjectorProvider
+import javax.inject.Provider
+import kotlin.reflect.KClass
 
 class Core private constructor(private val applicationContext: Context) :
     LifecycleController,
-    LifecycleAware {
+    LifecycleAware,
+    Injector {
     private val modules = mutableSetOf<LifecycleAware>()
 
     companion object {
@@ -26,7 +29,7 @@ class Core private constructor(private val applicationContext: Context) :
             }
         }
 
-        fun getInjector(): Injector {
+        private fun getInjector(): Injector {
             val context = get().applicationContext
             if (context is InjectorProvider) {
                 return context.provideInjector()
@@ -104,5 +107,9 @@ class Core private constructor(private val applicationContext: Context) :
         modules.forEach {
             it.onConnectingToChannel(channelId)
         }
+    }
+
+    override fun <T : Any> provideComponent(cls: KClass<T>): Provider<T> {
+        return getInjector().provideComponent(cls)
     }
 }

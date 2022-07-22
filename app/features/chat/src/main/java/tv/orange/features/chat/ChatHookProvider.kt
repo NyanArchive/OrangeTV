@@ -1,6 +1,9 @@
 package tv.orange.features.chat
 
+import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
+import io.reactivex.Observable
+import io.reactivex.subjects.BehaviorSubject
 import tv.orange.core.Core
 import tv.orange.core.Logger
 import tv.orange.core.PreferenceManager
@@ -13,10 +16,7 @@ import tv.orange.core.models.LifecycleController
 import tv.orange.features.badges.bridge.OrangeMessageBadge
 import tv.orange.features.badges.component.BadgeProvider
 import tv.orange.features.badges.di.component.BadgesComponent
-import tv.orange.features.chat.bridge.ChatMessageInterfaceWrapper
-import tv.orange.features.chat.bridge.EmotePickerEmoteModelExt
-import tv.orange.features.chat.bridge.EmoteUiModelExt
-import tv.orange.features.chat.bridge.OrangeEmoteCardModel
+import tv.orange.features.chat.bridge.*
 import tv.orange.features.chat.di.component.DaggerChatComponent
 import tv.orange.features.emotes.bridge.EmoteToken
 import tv.orange.features.emotes.component.EmoteProvider
@@ -27,6 +27,7 @@ import tv.orange.models.data.emotes.Emote
 import tv.twitch.android.models.chat.MessageBadge
 import tv.twitch.android.models.chat.MessageToken
 import tv.twitch.android.models.emotes.EmoteCardModelResponse
+import tv.twitch.android.models.emotes.EmoteSet
 import tv.twitch.android.provider.chat.ChatMessageInterface
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerPresenter
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteHeaderUiModel
@@ -34,12 +35,15 @@ import tv.twitch.android.shared.emotes.emotepicker.models.EmotePickerSection
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiModel
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiSet
 import tv.twitch.android.shared.emotes.models.EmoteMessageInput
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class ChatHookProvider @Inject constructor(
     val emoteProvider: EmoteProvider,
     val badgeProvider: BadgeProvider
 ) : LifecycleAware, FlagListener {
+    private val currentChannelSubject = BehaviorSubject.create<Int>()
+
     companion object {
         private val INSTANCE: ChatHookProvider by lazy {
             val hook = DaggerChatComponent.builder()
@@ -218,6 +222,7 @@ class ChatHookProvider @Inject constructor(
 
     override fun onConnectingToChannel(channelId: Int) {
         emoteProvider.requestChannelEmotes(channelId)
+        currentChannelSubject.onNext(channelId)
     }
 
     override fun onFlagChanged(flag: Flag) {
@@ -283,5 +288,23 @@ class ChatHookProvider @Inject constructor(
                 set = model.set
             )
         )
+    }
+
+    fun hookAutoCompleteMapProvider(emotesFlow: Flowable<List<EmoteSet>>): Flowable<List<EmoteSet>> {
+        return emotesFlow.flatMap { orgList ->
+            currentChannelSubject.flatMap {
+                Observable.just(it).delay(3, TimeUnit.SECONDS)
+            }.toFlowable(BackpressureStrategy.LATEST).flatMap { channelId ->
+                val newSets = emoteProvider.getEmotesMap(channelId = channelId).map { pair ->
+                    OrangeEmoteSet(pair.second.map {
+                        OrangeEmoteModel(
+                            emoteToken = it.getCode(),
+                            emoteUrl = it.getUrl(Emote.Size.MEDIUM)
+                        )
+                    })
+                }
+                Flowable.just((orgList + newSets)).doOnNext { Logger.debug("Injected: $it") }
+            }
+        }
     }
 }

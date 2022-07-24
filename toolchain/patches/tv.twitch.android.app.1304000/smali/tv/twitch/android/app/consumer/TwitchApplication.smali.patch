@@ -1,24 +1,24 @@
 diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.smali b/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.smali
 --- a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.smali
 +++ b/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.smali
-@@ -4,6 +4,7 @@
+@@ -4,7 +4,7 @@
  
  # interfaces
  .implements Ldagger/android/HasAndroidInjector;
+-
 +.implements Ltv/orange/models/InjectorProvider;
  
- 
  # static fields
-@@ -58,6 +59,8 @@
+ .field public static DEBUG_BLOCKING_IO_CALLS:Z
+@@ -58,6 +58,7 @@
      .end annotation
  .end field
  
 +.field private volatile injector:Ltv/orange/injector/Injector;
-+
  
  # direct methods
  .method public static synthetic $r8$lambda$4sR0zYKW6LOAo3fw0jvVL7xvYA0(Ltv/twitch/android/app/consumer/TwitchApplication;ILjava/util/concurrent/Callable;)Lio/reactivex/Scheduler;
-@@ -113,6 +116,10 @@
+@@ -113,6 +114,10 @@
  
      iput-object v0, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->mListener:Ltv/twitch/android/app/consumer/CrashReporterListener;
  
@@ -29,7 +29,7 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
      return-void
  .end method
  
-@@ -282,9 +289,7 @@
+@@ -282,9 +287,7 @@
      move-result-object v1
  
      .line 115
@@ -38,9 +38,9 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
 -    move-result-object v2
 +    const-string v2, "tv.twitch.android.app"
  
-     const-string v3, "13.3.1"
+     const-string v3, "13.4.0_BETA"
  
-@@ -305,6 +310,20 @@
+@@ -305,6 +308,20 @@
  
      invoke-interface {v1, p0}, Ltv/twitch/android/app/consumer/dagger/AppComponent;->inject(Ltv/twitch/android/app/consumer/TwitchApplication;)V
  
@@ -61,7 +61,7 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
      .line 126
      sget-object v1, Ltv/twitch/android/app/consumer/TwitchApplication$$ExternalSyntheticLambda1;->INSTANCE:Ltv/twitch/android/app/consumer/TwitchApplication$$ExternalSyntheticLambda1;
  
-@@ -457,3 +476,79 @@
+@@ -457,3 +474,79 @@
  
      return-void
  .end method

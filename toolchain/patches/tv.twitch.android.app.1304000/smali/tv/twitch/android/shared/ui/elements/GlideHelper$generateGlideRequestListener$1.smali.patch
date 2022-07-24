@@ -3,7 +3,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper$gen
 +++ b/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper$generateGlideRequestListener$1.smali
 @@ -94,6 +94,17 @@
  
-     .line 177
+     .line 179
      :cond_0
 +    instance-of p2, p1, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;
 +

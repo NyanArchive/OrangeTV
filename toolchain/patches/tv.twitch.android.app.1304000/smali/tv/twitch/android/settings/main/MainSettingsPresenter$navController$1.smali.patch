@@ -3,7 +3,7 @@ diff --git a/smali_classes5/tv/twitch/android/settings/main/MainSettingsPresente
 +++ b/smali_classes5/tv/twitch/android/settings/main/MainSettingsPresenter$navController$1.smali
 @@ -178,9 +178,13 @@
  
-     .line 109
+     .line 101
      :pswitch_3
 -    new-instance p2, Ltv/twitch/android/settings/system/SystemSettingsFragment;
 +    invoke-static {}, Ltv/orange/features/settings/OrangeSettings;->get()Ltv/orange/features/settings/OrangeSettings;

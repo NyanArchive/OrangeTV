@@ -1,6 +1,6 @@
-diff --git a/smali_classes5/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali b/smali_classes5/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali
---- a/smali_classes5/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali
-+++ b/smali_classes5/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali
+diff --git a/smali_classes6/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali b/smali_classes6/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali
+--- a/smali_classes6/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali
++++ b/smali_classes6/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali
 @@ -906,6 +906,26 @@
  
      invoke-virtual {p1, v0}, Ltv/twitch/android/shared/badges/ChatBadgeProvider;->fetchChannelBadges(I)V

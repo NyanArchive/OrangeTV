@@ -1,6 +1,6 @@
-diff --git a/smali_classes5/tv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate.smali b/smali_classes5/tv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate.smali
---- a/smali_classes5/tv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate.smali
-+++ b/smali_classes5/tv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate.smali
+diff --git a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate.smali b/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate.smali
+--- a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate.smali
++++ b/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate.smali
 @@ -3,6 +3,10 @@
  .source "ViewerListViewDelegate.kt"
  

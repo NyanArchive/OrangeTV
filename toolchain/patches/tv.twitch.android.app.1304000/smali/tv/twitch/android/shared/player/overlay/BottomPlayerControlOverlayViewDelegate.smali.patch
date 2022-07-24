@@ -1,55 +1,25 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate.smali b/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate.smali
 --- a/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate.smali
 +++ b/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate.smali
-@@ -3,6 +3,10 @@
+@@ -2,6 +2,9 @@
+ .super Ltv/twitch/android/core/mvp/viewdelegate/BaseViewDelegate;
  .source "BottomPlayerControlOverlayViewDelegate.java"
- 
  
 +# interfaces
 +.implements Ltv/orange/features/refreshstream/bridge/IBottomPlayerControlOverlayViewDelegate;
 +
-+
+ 
  # annotations
  .annotation system Ldalvik/annotation/MemberClasses;
-     value = {
-@@ -18,7 +22,7 @@
- 
- .field private final mLiveIndicatorImageView:Landroid/widget/ImageView;
- 
--.field private final mLiveIndicatorLeftText:Landroid/widget/TextView;
-+.field private final mLiveIndicatorLeftText:Ltv/orange/features/streamuptime/bridge/StreamUptimeView;
- 
- .field private final mOverlayFloatRightText:Landroid/widget/TextView;
- 
-@@ -40,6 +44,8 @@
+@@ -42,6 +45,7 @@
  
  .field public final subscribeButtonViewDelegateContainer:Ltv/twitch/android/core/mvp/viewdelegate/ViewDelegateContainer;
  
 +.field private mRefreshStreamButton:Landroid/widget/ImageView;
-+
  
  # direct methods
  .method public static synthetic $r8$lambda$57iurLgdUYR_rPf2ZdatK0EitzM(Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;Landroid/view/View;)V
-@@ -166,15 +172,15 @@
- 
-     move-result-object v1
- 
--    check-cast v1, Landroid/widget/TextView;
-+    check-cast v1, Ltv/orange/features/streamuptime/bridge/StreamUptimeView;
- 
-     invoke-static {v1}, Ljava/util/Objects;->requireNonNull(Ljava/lang/Object;)Ljava/lang/Object;
- 
-     move-object v2, v1
- 
--    check-cast v2, Landroid/widget/TextView;
-+    check-cast v2, Ltv/orange/features/streamuptime/bridge/StreamUptimeView;
- 
--    iput-object v1, p0, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->mLiveIndicatorLeftText:Landroid/widget/TextView;
-+    iput-object v1, p0, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->mLiveIndicatorLeftText:Ltv/orange/features/streamuptime/bridge/StreamUptimeView;
- 
-     .line 69
-     sget v1, Ltv/twitch/android/shared/ui/cards/R$id;->stream_stats_icon:I
-@@ -349,6 +355,16 @@
+@@ -368,6 +372,16 @@
  
      invoke-virtual {v3, p1}, Landroid/widget/ImageView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
  
@@ -66,70 +36,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayer
      return-void
  .end method
  
-@@ -678,7 +694,7 @@
-     invoke-static {v0, p1}, Ltv/twitch/android/app/core/ViewExtensionsKt;->visibilityForBoolean(Landroid/view/View;Z)V
- 
-     .line 172
--    iget-object v0, p0, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->mLiveIndicatorLeftText:Landroid/widget/TextView;
-+    iget-object v0, p0, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->mLiveIndicatorLeftText:Ltv/orange/features/streamuptime/bridge/StreamUptimeView;
- 
-     invoke-static {v0, p1}, Ltv/twitch/android/app/core/ViewExtensionsKt;->visibilityForBoolean(Landroid/view/View;Z)V
- 
-@@ -785,14 +801,14 @@
-     invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setImageResource(I)V
- 
-     .line 189
--    iget-object p1, p0, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->mLiveIndicatorLeftText:Landroid/widget/TextView;
-+    iget-object p1, p0, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->mLiveIndicatorLeftText:Ltv/orange/features/streamuptime/bridge/StreamUptimeView;
- 
-     sget v0, Ltv/twitch/android/core/strings/R$string;->rerun:I
- 
--    invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(I)V
-+    invoke-virtual {p1, v0}, Ltv/orange/features/streamuptime/bridge/StreamUptimeView;->setTextFromResources(I)V
- 
-     .line 190
--    iget-object p1, p0, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->mLiveIndicatorLeftText:Landroid/widget/TextView;
-+    iget-object p1, p0, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->mLiveIndicatorLeftText:Ltv/orange/features/streamuptime/bridge/StreamUptimeView;
- 
-     invoke-virtual {p1, v1}, Landroid/widget/TextView;->setVisibility(I)V
- 
-@@ -807,14 +823,14 @@
-     invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setImageResource(I)V
- 
-     .line 184
--    iget-object p1, p0, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->mLiveIndicatorLeftText:Landroid/widget/TextView;
-+    iget-object p1, p0, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->mLiveIndicatorLeftText:Ltv/orange/features/streamuptime/bridge/StreamUptimeView;
- 
-     sget v0, Ltv/twitch/android/core/strings/R$string;->hosting:I
- 
--    invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(I)V
-+    invoke-virtual {p1, v0}, Ltv/orange/features/streamuptime/bridge/StreamUptimeView;->setTextFromResources(I)V
- 
-     .line 185
--    iget-object p1, p0, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->mLiveIndicatorLeftText:Landroid/widget/TextView;
-+    iget-object p1, p0, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->mLiveIndicatorLeftText:Ltv/orange/features/streamuptime/bridge/StreamUptimeView;
- 
-     invoke-virtual {p1, v1}, Landroid/widget/TextView;->setVisibility(I)V
- 
-@@ -829,14 +845,14 @@
-     invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setImageResource(I)V
- 
-     .line 179
--    iget-object p1, p0, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->mLiveIndicatorLeftText:Landroid/widget/TextView;
-+    iget-object p1, p0, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->mLiveIndicatorLeftText:Ltv/orange/features/streamuptime/bridge/StreamUptimeView;
- 
-     sget v0, Ltv/twitch/android/core/strings/R$string;->live:I
- 
--    invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(I)V
-+    invoke-virtual {p1, v0}, Ltv/orange/features/streamuptime/bridge/StreamUptimeView;->setTextFromResources(I)V
- 
-     .line 180
--    iget-object p1, p0, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->mLiveIndicatorLeftText:Landroid/widget/TextView;
-+    iget-object p1, p0, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->mLiveIndicatorLeftText:Ltv/orange/features/streamuptime/bridge/StreamUptimeView;
- 
-     invoke-virtual {p1, v1}, Landroid/widget/TextView;->setVisibility(I)V
- 
-@@ -919,3 +935,34 @@
+@@ -959,3 +973,16 @@
      :goto_0
      return-void
  .end method
@@ -144,23 +51,5 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayer
 +    invoke-interface {v0}, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate$BottomPlayerControlListener;->onRefreshClicked()V
 +
 +    .line 28
-+    return-void
-+.end method
-+
-+.method public bindStreamUptime(Ltv/twitch/android/models/streams/StreamModel;)V
-+    .registers 4
-+    .param p1, "model"    # Ltv/twitch/android/models/streams/StreamModel;
-+
-+    .prologue
-+    .line 29
-+    invoke-static {}, Ltv/orange/features/streamuptime/StreamUptimeHookProvider;->get()Ltv/orange/features/streamuptime/StreamUptimeHookProvider;
-+
-+    move-result-object v0
-+
-+    iget-object v1, p0, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->mLiveIndicatorLeftText:Ltv/orange/features/streamuptime/bridge/StreamUptimeView;
-+
-+    invoke-virtual {v0, v1, p1}, Ltv/orange/features/streamuptime/StreamUptimeHookProvider;->bindStreamUptime(Ltv/orange/features/streamuptime/bridge/StreamUptimeView;Ltv/twitch/android/models/streams/StreamModel;)V
-+
-+    .line 30
 +    return-void
 +.end method

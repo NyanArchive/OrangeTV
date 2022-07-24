@@ -1,7 +1,7 @@
 diff --git a/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnectionController.smali b/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnectionController.smali
 --- a/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnectionController.smali
 +++ b/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnectionController.smali
-@@ -2362,6 +2362,12 @@
+@@ -2392,6 +2392,11 @@
  
      invoke-virtual {v0, p1}, Ltv/twitch/android/shared/badges/ChatBadgeProvider;->fetchChannelBadges(I)V
  
@@ -10,11 +10,10 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnec
 +    move-result-object v0
 +
 +    invoke-virtual {v0, p1}, Ltv/orange/core/Core;->onConnectedToChannel(I)V
-+
      goto :goto_1
  
-     .line 611
-@@ -2374,6 +2380,12 @@
+     .line 610
+@@ -2404,6 +2409,12 @@
  
      invoke-virtual {v0, v2}, Lio/reactivex/subjects/BehaviorSubject;->onNext(Ljava/lang/Object;)V
  
@@ -24,6 +23,6 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnec
 +
 +    invoke-virtual {v0, p1}, Ltv/orange/core/Core;->onConnectingToChannel(I)V
 +
-     .line 638
+     .line 637
      :goto_1
      sget-object v0, Ltv/twitch/android/sdk/ChannelState;->Disconnected:Ltv/twitch/android/sdk/ChannelState;

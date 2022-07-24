@@ -1,7 +1,7 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayPresenter.smali b/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayPresenter.smali
 --- a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayPresenter.smali
 +++ b/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayPresenter.smali
-@@ -538,6 +538,10 @@
+@@ -605,6 +605,10 @@
  
      invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
  
@@ -12,7 +12,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
      const/4 v0, 0x0
  
      const/4 v1, 0x2
-@@ -656,6 +660,10 @@
+@@ -723,6 +727,10 @@
  
      invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
  
@@ -20,6 +20,6 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
 +
 +    invoke-virtual {v0, p1}, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->bindStreamUptime(Ltv/twitch/android/models/streams/StreamModel;)V
 +
-     .line 306
+     .line 310
      invoke-virtual {p1}, Ltv/twitch/android/models/streams/StreamModel;->getChannel()Ltv/twitch/android/models/channel/ChannelModel;
  

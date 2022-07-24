@@ -1,0 +1,101 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/viewerlist/ViewerListAdapterBinder.smali b/smali_classes5/tv/twitch/android/shared/chat/viewerlist/ViewerListAdapterBinder.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/viewerlist/ViewerListAdapterBinder.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/viewerlist/ViewerListAdapterBinder.smali
+@@ -38,6 +38,10 @@
+ 
+ .field private final recyclerItemClickedListener:Ltv/twitch/android/shared/chat/viewerlist/ui/ChatUserInfoRecyclerItem$ChatUserInfoClickedListener;
+ 
++.field private orgChatters:Ltv/twitch/android/models/chat/Chatters;
++
++.field private searchUserText:Ljava/lang/String;
++
+ 
+ # direct methods
+ .method public static synthetic $r8$lambda$BGdINKUthO_7ctYaPjo8LejvNw8(Ltv/twitch/android/shared/chat/viewerlist/ViewerListAdapterBinder;Ljava/lang/String;)V
+@@ -375,14 +379,81 @@
+ .end method
+ 
+ .method public final setViewers(Ltv/twitch/android/models/chat/Chatters;)V
+-    .locals 1
++    .registers 2
++    .param p1, "chatters"    # Ltv/twitch/android/models/chat/Chatters;
+ 
+-    const-string v0, "chatters"
++    .prologue
++    .line 15
++    iput-object p1, p0, Ltv/twitch/android/shared/chat/viewerlist/ViewerListAdapterBinder;->orgChatters:Ltv/twitch/android/models/chat/Chatters;
+ 
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
++    .line 16
++    invoke-direct {p0}, Ltv/twitch/android/shared/chat/viewerlist/ViewerListAdapterBinder;->filterChatters()V
++
++    .line 17
++    return-void
++.end method
++
++.method private filterChatters()V
++    .registers 5
++
++    .prologue
++    .line 20
++    iget-object v1, p0, Ltv/twitch/android/shared/chat/viewerlist/ViewerListAdapterBinder;->orgChatters:Ltv/twitch/android/models/chat/Chatters;
++
++    if-nez v1, :cond_5
++
++    .line 31
++    :goto_4
++    return-void
++
++    .line 24
++    :cond_5
++    iget-object v0, p0, Ltv/twitch/android/shared/chat/viewerlist/ViewerListAdapterBinder;->orgChatters:Ltv/twitch/android/models/chat/Chatters;
++
++    .line 25
++    .local v0, "chatters":Ltv/twitch/android/models/chat/Chatters;
++    iget-object v1, p0, Ltv/twitch/android/shared/chat/viewerlist/ViewerListAdapterBinder;->searchUserText:Ljava/lang/String;
++
++    invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
++
++    move-result v1
++
++    if-nez v1, :cond_1b
++
++    .line 26
++    invoke-static {}, Ltv/orange/features/usersearch/Hook;->get()Ltv/orange/features/usersearch/Hook;
++
++    move-result-object v1
++
++    iget-object v2, p0, Ltv/twitch/android/shared/chat/viewerlist/ViewerListAdapterBinder;->orgChatters:Ltv/twitch/android/models/chat/Chatters;
++
++    iget-object v3, p0, Ltv/twitch/android/shared/chat/viewerlist/ViewerListAdapterBinder;->searchUserText:Ljava/lang/String;
++
++    invoke-virtual {v1, v2, v3}, Ltv/orange/features/usersearch/Hook;->filterChatters(Ltv/twitch/android/models/chat/Chatters;Ljava/lang/String;)Ltv/twitch/android/models/chat/Chatters;
++
++    move-result-object v0
++
++    .line 29
++    :cond_1b
++    invoke-virtual {p0}, Ltv/twitch/android/shared/chat/viewerlist/ViewerListAdapterBinder;->clear()V
++
++    .line 30
++    invoke-direct {p0, v0}, Ltv/twitch/android/shared/chat/viewerlist/ViewerListAdapterBinder;->addMoreViewers(Ltv/twitch/android/models/chat/Chatters;)V
++
++    goto :goto_4
++.end method
++
++.method public final setSearchUserText(Ljava/lang/String;)V
++    .registers 2
++    .param p1, "text"    # Ljava/lang/String;
++
++    .prologue
++    .line 34
++    iput-object p1, p0, Ltv/twitch/android/shared/chat/viewerlist/ViewerListAdapterBinder;->searchUserText:Ljava/lang/String;
+ 
+-    .line 53
+-    invoke-direct {p0, p1}, Ltv/twitch/android/shared/chat/viewerlist/ViewerListAdapterBinder;->addMoreViewers(Ltv/twitch/android/models/chat/Chatters;)V
++    .line 35
++    invoke-direct {p0}, Ltv/twitch/android/shared/chat/viewerlist/ViewerListAdapterBinder;->filterChatters()V
+ 
++    .line 36
+     return-void
+ .end method

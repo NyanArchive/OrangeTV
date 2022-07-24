@@ -1,0 +1,12 @@
+diff --git a/res/layout/stream_stats_layout.xml b/res/layout/stream_stats_layout.xml
+--- a/res/layout/stream_stats_layout.xml
++++ b/res/layout/stream_stats_layout.xml
+@@ -2,6 +2,6 @@
+ <merge
+   xmlns:android="http://schemas.android.com/apk/res/android">
+     <ImageView android:layout_gravity="center" android:id="@id/stream_stats_icon" android:layout_width="@dimen/live_indicator_icon" android:layout_height="@dimen/live_indicator_icon" android:layout_marginRight="@dimen/default_margin_half" android:src="@drawable/live_indicator" />
+-    <TextView android:id="@id/stream_stats_left_text" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/default_margin_double" style="@style/LiveIndicatorText" />
++    <tv.orange.features.streamuptime.bridge.StreamUptimeView android:id="@id/stream_stats_left_text" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/default_margin_double" style="@style/LiveIndicatorText" />
+     <TextView android:id="@id/stream_stats_text" android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/LiveIndicatorText" />
+ </merge>
+\ No newline at end of file

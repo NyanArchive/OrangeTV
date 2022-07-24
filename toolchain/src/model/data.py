@@ -12,6 +12,7 @@ class Env:
     app_dir: Path
     patches_dir: Path
     lib_dir: Path
+    d2j: Path
     signature: str
 
 

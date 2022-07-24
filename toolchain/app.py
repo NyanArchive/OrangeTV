@@ -7,7 +7,7 @@ from pathlib import Path
 from pyaxmlparser import APK
 
 from src.model.data import Env, ApkDescriptor
-from src.task import apktool, internal, git, enjarify
+from src.task import apktool, internal, git, d2j
 from src.task.base import BaseTask
 from src.util import get_working_directory, get_safe_path, done, print_title, die
 
@@ -51,7 +51,8 @@ def parse_env():
                patches_dir=Path(wd, "patches"),
                zipalign=Path(wd, "bin", "zipalign.exe"),
                app_dir=Path(wd).parent.joinpath("app"),
-               lib_dir=Path(wd).parent.joinpath("lib"))
+               lib_dir=Path(wd).parent.joinpath("lib"),
+               d2j=Path(wd, "bin/dex2jar"))
 
 
 def get_apk_desc(src: Path):
@@ -108,7 +109,7 @@ def handle_args(args, env: Env, apk: ApkDescriptor):
 
         create_decompile_tasks(tasks)
     if args.jar:
-        tasks.append(enjarify.GenerateJarFile(apk))
+        tasks.append(d2j.GenerateJarFile(apk))
     if args.check:
         tasks.append(git.ApplyPatches(apk, check=True))
     if args.generate:

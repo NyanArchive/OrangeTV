@@ -1,2 +1,2 @@
 /build
-/src/main/graphql/twitch/*
+/src/main/graphql/twitch/schema.json

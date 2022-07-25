@@ -1,0 +1,37 @@
+query MessageBufferChatHistory($channelLogin: String!) {
+  channel(name: $channelLogin) {
+    recentChatMessages {
+      ...chatHistoryMessageFragment
+    }
+  }
+}
+
+fragment chatHistoryMessageFragment on Message {
+  id
+  sentAt
+  content {
+    text
+    fragments {
+      text
+      content {
+        __typename
+        ... on Emote {
+          emoteID: id
+          setID
+          token
+        }
+      }
+    }
+  }
+  sender {
+    id
+    login
+    chatColor
+    displayName
+    displayBadges(channelLogin: $channelLogin) {
+      id
+      setID
+      version
+    }
+  }
+}

@@ -42,4 +42,5 @@ dependencies {
 
     api "com.google.dagger:dagger:$dagger_version"
     api "com.google.dagger:dagger-android-support:$dagger_version"
+    api "io.reactivex.rxjava2:rxjava:$rxjava2_version"
 }

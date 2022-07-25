@@ -54,7 +54,6 @@ class PreferenceManager @Inject constructor(context: Context) :
     }
 
     private fun readBoolean(flag: Flag): Flag.BooleanValue {
-        Logger.debug("flag: $flag")
         val value = preferences.getBoolean(flag.prefKey, Flag.getBoolean(flag.default))
         return Flag.BooleanValue(value)
     }
@@ -99,11 +98,10 @@ class PreferenceManager @Inject constructor(context: Context) :
         private const val ORANGE_PREFERENCES = "orange"
 
         private val INSTANCE by lazy {
-            val provider = Core.get().provideComponent(CoreComponent::class)
-            val prefManager = provider.get().preferenceManager
+            val instance = Core.getProvider(CoreComponent::class).get().preferenceManager
 
-            Logger.debug("Provide new instance: $prefManager")
-            return@lazy prefManager
+            Logger.debug("Provide new instance: $instance")
+            return@lazy instance
         }
 
         @JvmStatic

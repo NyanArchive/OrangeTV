@@ -10,11 +10,10 @@ import javax.inject.Inject
 class Hook @Inject constructor() {
     companion object {
         private val INSTANCE: Hook by lazy {
-            val provider = Core.get().provideComponent(CoreComponent::class)
-            val hook = provider.get().coreHook
+            val instance = Core.getProvider(CoreComponent::class).get().coreHook
 
-            Logger.debug("Provide new instance: $hook")
-            return@lazy hook
+            Logger.debug("Provide new instance: $instance")
+            return@lazy instance
         }
 
         @JvmStatic

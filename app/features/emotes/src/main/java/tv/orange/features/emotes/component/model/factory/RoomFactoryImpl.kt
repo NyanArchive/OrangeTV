@@ -20,10 +20,7 @@ class RoomFactoryImpl @Inject constructor(
             if (Flag.BTTV_EMOTES.valueBoolean()) {
                 add(
                     EmotePackageImpl(
-                        EmoteFetcherFactoryImpl(
-                            { bttv.getBttvChannelEmotes(channelId) },
-                            channelId
-                        ),
+                        EmoteFetcherFactoryImpl { bttv.getBttvChannelEmotes(channelId) },
                         EmotePackageSet.BttvChannel
                     )
                 )
@@ -31,10 +28,7 @@ class RoomFactoryImpl @Inject constructor(
             if (Flag.FFZ_EMOTES.valueBoolean()) {
                 add(
                     EmotePackageImpl(
-                        EmoteFetcherFactoryImpl(
-                            { bttv.getFfzChannelEmotes(channelId) },
-                            channelId
-                        ),
+                        EmoteFetcherFactoryImpl { bttv.getFfzChannelEmotes(channelId) },
                         EmotePackageSet.FfzChannel
                     )
                 )
@@ -42,10 +36,7 @@ class RoomFactoryImpl @Inject constructor(
             if (Flag.STV_EMOTES.valueBoolean()) {
                 add(
                     EmotePackageImpl(
-                        EmoteFetcherFactoryImpl(
-                            { stv.getStvChannelEmotes(channelId) },
-                            channelId
-                        ),
+                        EmoteFetcherFactoryImpl { stv.getStvChannelEmotes(channelId) },
                         EmotePackageSet.StvChannel
                     )
                 )
@@ -58,9 +49,7 @@ class RoomFactoryImpl @Inject constructor(
             if (Flag.BTTV_EMOTES.valueBoolean()) {
                 add(
                     EmotePackageImpl(
-                        EmoteFetcherFactoryImpl(
-                            { bttv.getBttvGlobalEmotes() },
-                        ),
+                        EmoteFetcherFactoryImpl { bttv.getBttvGlobalEmotes() },
                         EmotePackageSet.BttvGlobal
                     )
                 )
@@ -68,9 +57,7 @@ class RoomFactoryImpl @Inject constructor(
             if (Flag.FFZ_EMOTES.valueBoolean()) {
                 add(
                     EmotePackageImpl(
-                        EmoteFetcherFactoryImpl(
-                            { bttv.getFfzGlobalEmotes() },
-                        ),
+                        EmoteFetcherFactoryImpl { bttv.getFfzGlobalEmotes() },
                         EmotePackageSet.FfzGlobal
                     )
                 )
@@ -78,9 +65,7 @@ class RoomFactoryImpl @Inject constructor(
             if (Flag.STV_EMOTES.valueBoolean()) {
                 add(
                     EmotePackageImpl(
-                        EmoteFetcherFactoryImpl(
-                            { stv.getStvGlobalEmotes() },
-                        ),
+                        EmoteFetcherFactoryImpl { stv.getStvGlobalEmotes() },
                         EmotePackageSet.StvGlobal
                     )
                 )

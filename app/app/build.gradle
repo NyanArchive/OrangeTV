@@ -59,7 +59,6 @@ dependencies {
     implementation project(path: ':models')
     implementation project(path: ':core')
     implementation project(path: ':features:usersearch')
-    implementation project(path: ':features:streamuptime')
     implementation project(path: ':features:refreshstream')
 
     implementation "com.github.zjupure:webpdecoder:2.0.${glide_version}"

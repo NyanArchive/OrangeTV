@@ -1,8 +1,9 @@
 package tv.orange.features.stv
 
-import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.Single
 import tv.orange.core.Core
 import tv.orange.core.Logger
+import tv.orange.core.LoggerWithTag
 import tv.orange.core.di.component.CoreComponent
 import tv.orange.core.models.Flag
 import tv.orange.core.models.Flag.Companion.valueBoolean
@@ -12,15 +13,20 @@ import tv.orange.features.api.component.repository.StvRepository
 import tv.orange.features.api.di.component.ApiComponent
 import tv.orange.features.stv.di.component.DaggerStvComponent
 import tv.orange.features.stv.di.scope.StvScope
+import tv.orange.models.SimpleFetcher
 import tv.orange.models.data.avatars.AvatarSet
 import javax.inject.Inject
 
 @StvScope
-class AvatarsHookProvider @Inject constructor(val stvRepository: StvRepository) : LifecycleAware,
-    FlagListener {
-    private var avatarSet: AvatarSet? = null
-
-    private val disposables = CompositeDisposable()
+class AvatarsHookProvider @Inject constructor(val stvRepository: StvRepository) :
+    SimpleFetcher<AvatarSet>(
+        dataSourceFactory = object : SourceFactory<AvatarSet> {
+            override fun create(): Single<AvatarSet> {
+                return stvRepository.getStvAvatars()
+            }
+        },
+        logger = LoggerWithTag("7TV-Avatars")
+    ), LifecycleAware, FlagListener {
 
     companion object {
         private val INSTANCE: AvatarsHookProvider by lazy {
@@ -40,7 +46,7 @@ class AvatarsHookProvider @Inject constructor(val stvRepository: StvRepository) 
     }
 
     fun hookProfileImageUrl(profileImageUrl: String, channelName: String): String {
-        avatarSet?.let { set ->
+        getData()?.let { set ->
             if (set.isEmpty()) {
                 return profileImageUrl
             }
@@ -52,8 +58,7 @@ class AvatarsHookProvider @Inject constructor(val stvRepository: StvRepository) 
     }
 
     override fun onAllComponentDestroyed() {
-        disposables.clear()
-        avatarSet = null
+        clear()
     }
 
     override fun onFirstActivityCreated() {
@@ -61,12 +66,7 @@ class AvatarsHookProvider @Inject constructor(val stvRepository: StvRepository) 
             return
         }
 
-        disposables.add(stvRepository.getStvAvatars().subscribe({
-            avatarSet = it
-            Logger.debug("Fetched: $it")
-        }, {
-            it.printStackTrace()
-        }))
+        refresh(force = true)
     }
 
     override fun onFlagChanged(flag: Flag) {

@@ -47,8 +47,8 @@ class ChatHookProvider @Inject constructor(
     companion object {
         private val INSTANCE: ChatHookProvider by lazy {
             val hook = DaggerChatComponent.builder()
-                .badgesComponent(Core.get().provideComponent(BadgesComponent::class).get())
-                .emotesComponent(Core.get().provideComponent(EmotesComponent::class).get())
+                .badgesComponent(Core.getProvider(BadgesComponent::class).get())
+                .emotesComponent(Core.getProvider(EmotesComponent::class).get())
                 .build().hook
 
             Logger.debug("Provide new instance: $hook")

@@ -29,26 +29,20 @@ class Core private constructor(private val applicationContext: Context) :
             }
         }
 
-        private fun getInjector(): Injector {
-            val context = get().applicationContext
-            if (context is InjectorProvider) {
-                return context.provideInjector()
-            } else {
-                throw IllegalStateException("App context must provide Injector")
-            }
+        @JvmStatic
+        fun <T : Any> getProvider(componentClass: KClass<T>): Provider<T> {
+            return get().getComponentProvider(componentClass)
         }
     }
 
     override fun registerLifecycleListeners(vararg listeners: LifecycleAware) {
         listeners.forEach { listener ->
-            Logger.debug("register: $listener")
             modules.add(listener)
         }
     }
 
     override fun unregisterLifecycleListener(vararg listeners: LifecycleAware) {
         listeners.forEach { listener ->
-            Logger.debug("unregister: $listener")
             modules.remove(listener)
         }
     }
@@ -109,7 +103,13 @@ class Core private constructor(private val applicationContext: Context) :
         }
     }
 
-    override fun <T : Any> provideComponent(cls: KClass<T>): Provider<T> {
-        return getInjector().provideComponent(cls)
+    override fun <T : Any> getComponentProvider(cls: KClass<T>): Provider<T> {
+        val injector = if (applicationContext is InjectorProvider) {
+            applicationContext.provideInjector()
+        } else {
+            throw IllegalStateException("App context must provide Injector")
+        }
+
+        return injector.getComponentProvider(cls)
     }
 }

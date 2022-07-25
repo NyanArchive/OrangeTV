@@ -33,11 +33,11 @@ class OrangeSettings @Inject constructor(
 
     companion object {
         private val INSTANCE by lazy {
-            val hook = DaggerSettingsComponent.factory()
-                .create(Core.get().provideComponent(CoreComponent::class).get()).orangeSettings
+            val instance = DaggerSettingsComponent.factory()
+                .create(Core.getProvider(CoreComponent::class).get()).orangeSettings
 
-            Logger.debug("Provide new instance: $hook")
-            return@lazy hook
+            Logger.debug("Provide new instance: $instance")
+            return@lazy instance
         }
 
         @JvmStatic

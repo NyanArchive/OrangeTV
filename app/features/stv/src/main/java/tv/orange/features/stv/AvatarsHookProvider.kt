@@ -24,13 +24,13 @@ class AvatarsHookProvider @Inject constructor(val stvRepository: StvRepository) 
 
     companion object {
         private val INSTANCE: AvatarsHookProvider by lazy {
-            val hook = DaggerStvComponent.builder()
-                .coreComponent(Core.get().provideComponent(CoreComponent::class).get())
-                .apiComponent(Core.get().provideComponent(ApiComponent::class).get())
+            val instance = DaggerStvComponent.builder()
+                .coreComponent(Core.getProvider(CoreComponent::class).get())
+                .apiComponent(Core.getProvider(ApiComponent::class).get())
                 .build().hook
 
-            Logger.debug("Provide new instance: $hook")
-            return@lazy hook
+            Logger.debug("Provide new instance: $instance")
+            return@lazy instance
         }
 
         @JvmStatic

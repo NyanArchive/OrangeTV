@@ -73,14 +73,13 @@ class ChatHistory @Inject constructor(
 
     companion object {
         private val INSTANCE by lazy {
-            val hook = DaggerChatHistoryComponent.factory()
-                .create(
-                    Core.get().provideComponent(CoreComponent::class).get(),
-                    Core.get().provideComponent(GraphQlService::class).get()
-                ).chatHistory
+            val instance = DaggerChatHistoryComponent.factory().create(
+                Core.getProvider(CoreComponent::class).get(),
+                Core.getProvider(GraphQlService::class).get()
+            ).chatHistory
 
-            Logger.debug("Provide new instance: $hook")
-            return@lazy hook
+            Logger.debug("Provide new instance: $instance")
+            return@lazy instance
         }
 
         @JvmStatic

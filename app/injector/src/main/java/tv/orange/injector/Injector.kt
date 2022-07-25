@@ -24,7 +24,7 @@ class Injector @Inject constructor(
     private val map = mutableMapOf<KClass<*>, Provider<*>>()
 
     @Suppress("UNCHECKED_CAST")
-    override fun <T : Any> provideComponent(cls: KClass<T>): Provider<T> {
+    override fun <T : Any> getComponentProvider(cls: KClass<T>): Provider<T> {
         return map[cls] as Provider<T>
     }
 

@@ -84,10 +84,11 @@ class FixClasses(BaseTask):
         md = Path(self._apk.decompile_dir).joinpath("smali_classes{}".format(last_dex_num + 1))
         md.mkdir()
         print("Moving classes to {}".format(md.as_posix()))
-        move_classes(Path(self._apk.decompile_dir).joinpath("smali_classes5/tv/twitch/android/models"),
-                     md.joinpath("tv/twitch/android"))
         move_classes(Path(self._apk.decompile_dir).joinpath("smali_classes2/com/fasterxml"),
                      md.joinpath("com"))
+        move_classes(Path(self._apk.decompile_dir).joinpath("smali_classes4/jp"), md)
+        move_classes(Path(self._apk.decompile_dir).joinpath("smali_classes5/tv/twitch/android/models"),
+                     md.joinpath("tv/twitch/android"))
 
     def cancel(self):
         pass

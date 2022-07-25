@@ -9,6 +9,7 @@ import tv.orange.features.api.component.repository.StvRepository
 import tv.orange.features.badges.component.model.BadgePackageImpl
 import tv.orange.features.badges.component.model.room.Room
 import tv.orange.features.badges.component.model.room.RoomImpl
+import tv.orange.models.abs.BadgePackageSet
 import javax.inject.Inject
 
 class RoomFactoryImpl @Inject constructor(
@@ -23,49 +24,39 @@ class RoomFactoryImpl @Inject constructor(
             if (Flag.FFZ_BADGES.valueBoolean()) {
                 add(
                     BadgePackageImpl(
-                        BadgeFetcherFactoryImpl(
-                            { ffz.getFfzBadges() },
-                            "FFZ-BADGES"
-                        )
+                        BadgeFetcherFactoryImpl { ffz.getFfzBadges() },
+                        BadgePackageSet.Ffz
                     )
                 )
             }
             if (Flag.STV_BADGES.valueBoolean()) {
                 add(
                     BadgePackageImpl(
-                        BadgeFetcherFactoryImpl(
-                            { stv.getStvBadges() },
-                            "STV-BADGES"
-                        )
+                        BadgeFetcherFactoryImpl { stv.getStvBadges() },
+                        BadgePackageSet.Stv
                     )
                 )
             }
             if (Flag.CHA_BADGES.valueBoolean()) {
                 add(
                     BadgePackageImpl(
-                        BadgeFetcherFactoryImpl(
-                            { chatterino.getChatterinoBadges() },
-                            "CHATTERINO-BADGES"
-                        )
+                        BadgeFetcherFactoryImpl { chatterino.getChatterinoBadges() },
+                        BadgePackageSet.Chatterino
                     )
                 )
             }
             if (Flag.CHE_BADGES.valueBoolean()) {
                 add(
                     BadgePackageImpl(
-                        BadgeFetcherFactoryImpl(
-                            { nop.getHomiesBadges() },
-                            "HOMIES-BADGES"
-                        )
+                        BadgeFetcherFactoryImpl { nop.getHomiesBadges() },
+                        BadgePackageSet.Homies
                     )
                 )
             }
             add(
                 BadgePackageImpl(
-                    BadgeFetcherFactoryImpl(
-                        { nop.getTwitchModBadges() },
-                        "TWITCHMOD-BADGES"
-                    )
+                    BadgeFetcherFactoryImpl { nop.getTwitchModBadges() },
+                    BadgePackageSet.TwitchMod
                 )
             )
         }

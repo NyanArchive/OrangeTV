@@ -4,12 +4,14 @@ import io.reactivex.disposables.CompositeDisposable
 import tv.orange.core.Logger
 import tv.orange.core.util.DateUtil
 import tv.orange.features.badges.component.model.factory.BadgeFetcherFactory
+import tv.orange.models.abs.BadgePackageSet
 import tv.orange.models.data.badges.Badge
 import tv.orange.models.data.badges.BadgeSet
 import java.util.*
 
 class BadgePackageImpl(
-    private val source: BadgeFetcherFactory
+    private val source: BadgeFetcherFactory,
+    private val token: BadgePackageSet
 ) : BadgePackage {
     var set: BadgeSet? = null
     private var lastUpdate: Date = Date(0)
@@ -22,16 +24,16 @@ class BadgePackageImpl(
     }
 
     override fun refresh(force: Boolean) {
-        Logger.debug("called")
+        Logger.debug("[$token] Starting...")
         if (fetching) {
-            Logger.debug("skip: fetching")
+            Logger.debug("[$token] skip: fetching")
             return
         }
 
         if (set != null && !force) {
             val diff = DateUtil.toSeconds(DateUtil.getDiff(lastUpdate, Date()))
             if (diff < REFRESH_TIMEOUT) {
-                Logger.debug("skip: $diff")
+                Logger.debug("[$token] skip: diff is $diff")
                 return
             }
         }
@@ -40,16 +42,16 @@ class BadgePackageImpl(
         clear()
         disposables.add(source.create().retryWhen { errors ->
             return@retryWhen errors.take(MAX_RETRY_COUNT).doOnNext {
-                Logger.debug("Retry...")
+                Logger.debug("[$token] retry...")
             }
         }.subscribe({ set ->
             this.set = set
             this.lastUpdate = Date()
             this.fetching = false
-            Logger.debug("[${source}] Fetched: $set")
+            Logger.debug("[${token}] Fetched: $set")
         }, {
             this.fetching = false
-            Logger.debug("[${source}] Cannot fetch badges: ${it.localizedMessage}")
+            Logger.debug("[${token}] Cannot fetch badges: ${it.localizedMessage}")
         }))
     }
 

@@ -28,16 +28,16 @@ class EmotePackageImpl(
     }
 
     override fun refresh(force: Boolean) {
-        Logger.debug("called")
+        Logger.debug("[$token] Starting...")
         if (fetching) {
-            Logger.debug("skip: fetching")
+            Logger.debug("[$token] skip: fetching")
             return
         }
 
         if (set != null && !force) {
             val diff = DateUtil.toSeconds(DateUtil.getDiff(lastUpdate, Date()))
             if (diff < REFRESH_TIMEOUT) {
-                Logger.debug("skip: $diff")
+                Logger.debug("[$token] skip: diff is $diff")
                 return
             }
         }
@@ -46,16 +46,16 @@ class EmotePackageImpl(
         clear()
         disposables.add(source.create().retryWhen { errors ->
             return@retryWhen errors.take(MAX_RETRY_COUNT).doOnNext {
-                Logger.debug("Retry...")
+                Logger.debug("[$token] retry...")
             }
         }.subscribe({ set ->
             this.set = set
             this.lastUpdate = Date()
             this.fetching = false
-            Logger.debug("[${source}] Fetched: $set")
+            Logger.debug("[${token}] Fetched: $set")
         }, {
             this.fetching = false
-            Logger.debug("[${source}] Cannot fetch emotes: ${it.localizedMessage}")
+            Logger.debug("[${token}] Cannot fetch emotes: ${it.localizedMessage}")
         }))
     }
 

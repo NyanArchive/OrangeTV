@@ -72,7 +72,12 @@ enum class Flag(
     PLAYER_IMPL(
         "player_impl",
         "orange_settings_player_impl",
-        ListValue(listOf("default", "core", "exo"), "default"),
+        ListValue(listOf("default", "core", "exo"), "default")
+    ),
+    DELETED_MESSAGES(
+        "deleted_messages",
+        "orange_settings_deleted_messages",
+        ListValue(listOf("default", "mod", "strikethrough", "grey"), "default"),
     );
 
     companion object {

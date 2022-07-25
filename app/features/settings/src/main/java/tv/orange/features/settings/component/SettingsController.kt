@@ -37,6 +37,7 @@ class SettingsController @Inject constructor() : SettingsPreferencesController {
             FlagToggleMenuModelExt(Flag.DISABLE_STICKY_HEADERS_EP),
             FlagToggleMenuModelExt(Flag.HIDE_BITS_BUTTON),
             DropDownMenuModelExt(Flag.PLAYER_IMPL, context),
+            DropDownMenuModelExt(Flag.DELETED_MESSAGES, context),
         )
     }
 }

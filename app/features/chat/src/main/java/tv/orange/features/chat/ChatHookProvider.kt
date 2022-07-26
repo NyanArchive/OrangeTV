@@ -436,4 +436,9 @@ class ChatHookProvider @Inject constructor(
             )
         }
     }
+
+    fun refreshEmotes() {
+        emoteProvider.fetchGlobalEmotes()
+        emoteProvider.refreshChannelEmotes()
+    }
 }

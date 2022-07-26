@@ -16,4 +16,8 @@ class RoomCache(size: Int) : LruCache<Int, Room>(size) {
     fun clear() {
         evictAll()
     }
+
+    fun refresh() {
+        snapshot().values.forEach { it.fetch() }
+    }
 }

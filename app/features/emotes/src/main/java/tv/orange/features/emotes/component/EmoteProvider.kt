@@ -47,4 +47,8 @@ class EmoteProvider @Inject constructor(val roomFactory: RoomFactory) {
         global = roomFactory.createGlobal()
         channel = RoomCache(3)
     }
+
+    fun refreshChannelEmotes() {
+        channel.refresh()
+    }
 }

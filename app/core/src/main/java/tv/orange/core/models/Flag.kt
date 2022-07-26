@@ -1,5 +1,7 @@
 package tv.orange.core.models
 
+import tv.orange.core.models.variants.DeletedMessages
+import tv.orange.core.models.variants.PlayerImpl
 import java.util.*
 
 enum class Flag(
@@ -72,12 +74,12 @@ enum class Flag(
     PLAYER_IMPL(
         "player_impl",
         "orange_settings_player_impl",
-        ListValue(listOf("default", "core", "exo"), "default")
+        ListValue<PlayerImpl>(PlayerImpl.Default)
     ),
     DELETED_MESSAGES(
         "deleted_messages",
         "orange_settings_deleted_messages",
-        ListValue(listOf("default", "mod", "strikethrough", "grey"), "default"),
+        ListValue<DeletedMessages>(DeletedMessages.Default),
     );
 
     companion object {
@@ -85,8 +87,8 @@ enum class Flag(
             return getBoolean(this.value)
         }
 
-        fun Flag.valueList(): List<String> {
-            return getList(this.value)
+        fun <T: Variant> Flag.variant(): T {
+            return getVariant(this.value)
         }
 
         fun Flag.valueInt(): Int {
@@ -123,16 +125,16 @@ enum class Flag(
             if (holder is StringValue) {
                 return holder.value
             }
-            if (holder is ListValue) {
+            if (holder is ListValue<*>) {
                 return holder.value
             }
 
             throw IllegalStateException("$holder")
         }
 
-        fun getList(holder: ValueHolder): List<String> {
-            if (holder is ListValue) {
-                return holder.getVariants()
+        fun <T : Variant> getVariant(holder: ValueHolder): T {
+            if (holder is ListValue<*>) {
+                return holder.getVariant()
             }
 
             throw IllegalStateException("$holder")
@@ -145,31 +147,40 @@ enum class Flag(
     }
 
     enum class Type {
-        BOOLEAN, INTEGER, STRING, LIST, UNKNOWN
+        BOOLEAN, INTEGER, STRING, LIST
     }
 
-    class ListValue(private val variants: List<String>, default: String) :
-        ValueHolder {
-        private var selected: String = set(default)
+    interface Variant {
+        fun getVariants(): List<Variant>
+        fun default(): Variant
+        fun fromString(value: String): Variant
+        override fun toString(): String
+    }
 
-        fun set(value: String): String {
-            if (!variants.contains(value)) {
-                throw IllegalStateException("debug")
-            }
+    @Suppress("UNCHECKED_CAST")
+    class ListValue<T: Variant>(private val variant: T) : ValueHolder {
+        var currentVariant: Variant? = variant.default()
 
-            selected = value
+        fun set(string: String): String {
+            currentVariant = variant.fromString(string)
 
-            return selected
+            return string
+        }
+
+        fun set(variant: Variant): String {
+            currentVariant = variant
+
+            return value
         }
 
         override val value: String
-            get() = selected
+            get() = currentVariant.toString()
 
         override val type: Type
             get() = Type.LIST
 
-        fun getVariants(): List<String> {
-            return variants
+        fun <T: Variant> getVariant(): T {
+            return currentVariant as T
         }
     }
 

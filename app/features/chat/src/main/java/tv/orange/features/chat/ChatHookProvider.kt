@@ -19,10 +19,11 @@ import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
 import tv.orange.core.models.Flag
 import tv.orange.core.models.Flag.Companion.valueBoolean
-import tv.orange.core.models.Flag.Companion.valueString
+import tv.orange.core.models.Flag.Companion.variant
 import tv.orange.core.models.FlagListener
 import tv.orange.core.models.LifecycleAware
 import tv.orange.core.models.LifecycleController
+import tv.orange.core.models.variants.DeletedMessages
 import tv.orange.features.badges.bridge.OrangeMessageBadge
 import tv.orange.features.badges.component.BadgeProvider
 import tv.orange.features.badges.di.component.BadgesComponent
@@ -130,7 +131,13 @@ class ChatHookProvider @Inject constructor(
             messageClickEventDispatcher: PublishSubject<ChatMessageClickedEvents?>?,
             hasModAccess: Boolean
         ): Spanned? {
-            return get().hookMarkAsDeleted(messageId, message, context, messageClickEventDispatcher, hasModAccess)
+            return get().hookMarkAsDeleted(
+                messageId,
+                message,
+                context,
+                messageClickEventDispatcher,
+                hasModAccess
+            )
         }
 
         private fun createDeletedGrey(msg: Spanned?): Spanned? {
@@ -407,14 +414,26 @@ class ChatHookProvider @Inject constructor(
         messageId: String?,
         message: Spanned?,
         context: Context?,
-        messageClickEventDispatcher: PublishSubject<ChatMessageClickedEvents?>?,
+        eventDispatcher: PublishSubject<ChatMessageClickedEvents?>?,
         hasModAccess: Boolean
     ): Spanned? {
-        return when (Flag.DELETED_MESSAGES.valueString()) {
-            "mod" -> ChatUtil.Companion!!.createDeletedSpanFromChatMessageSpan(messageId, message, context, messageClickEventDispatcher, true)
-            "strikethrough" -> createDeletedStrikethrough(message)
-            "grey" -> createDeletedGrey(message)
-            else -> ChatUtil.Companion!!.createDeletedSpanFromChatMessageSpan(messageId, message, context, messageClickEventDispatcher, hasModAccess)
+        return when (Flag.DELETED_MESSAGES.variant<DeletedMessages>()) {
+            DeletedMessages.Mod -> ChatUtil.Companion!!.createDeletedSpanFromChatMessageSpan(
+                messageId,
+                message,
+                context,
+                eventDispatcher,
+                true
+            )
+            DeletedMessages.Strikethrough -> createDeletedStrikethrough(message)
+            DeletedMessages.Grey -> createDeletedGrey(message)
+            DeletedMessages.Default -> ChatUtil.Companion!!.createDeletedSpanFromChatMessageSpan(
+                messageId,
+                message,
+                context,
+                eventDispatcher,
+                hasModAccess
+            )
         }
     }
 }

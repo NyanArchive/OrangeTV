@@ -89,7 +89,7 @@ class PreferenceManager @Inject constructor(context: Context) :
             is Flag.BooleanValue -> flag.value = readBoolean(flag)
             is Flag.IntegerValue -> flag.value = readInt(flag)
             is Flag.StringValue -> flag.value = readString(flag)
-            is Flag.ListValue -> (flag.value as Flag.ListValue).set(readRawString(flag))
+            is Flag.ListValue<*> -> (flag.value as Flag.ListValue<*>).set(readRawString(flag))
             else -> throw IllegalStateException("debug")
         }
     }

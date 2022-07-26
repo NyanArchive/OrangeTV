@@ -46,8 +46,8 @@ class RoomImpl : Room {
 
     override fun clear() {
         packages.forEach { pack ->
-            packages.remove(pack)
             pack.clear()
         }
+        packages.clear()
     }
 }

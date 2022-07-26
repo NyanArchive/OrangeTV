@@ -4,6 +4,8 @@ import android.content.Context
 import tv.orange.core.Logger
 import tv.orange.core.PreferenceManager
 import tv.orange.core.models.Flag
+import tv.orange.core.models.variants.DeletedMessages
+import tv.orange.core.models.variants.PlayerImpl
 import tv.orange.features.settings.bridge.model.DropDownMenuModelExt
 import tv.orange.features.settings.bridge.model.FlagToggleMenuModelExt
 import tv.twitch.android.shared.ui.menus.SettingsPreferencesController
@@ -36,7 +38,8 @@ class SettingsController @Inject constructor() : SettingsPreferencesController {
             FlagToggleMenuModelExt(Flag.CHAT_HISTORY),
             FlagToggleMenuModelExt(Flag.DISABLE_STICKY_HEADERS_EP),
             FlagToggleMenuModelExt(Flag.HIDE_BITS_BUTTON),
-            DropDownMenuModelExt(Flag.PLAYER_IMPL, context),
+            DropDownMenuModelExt<PlayerImpl>(Flag.PLAYER_IMPL, context),
+            DropDownMenuModelExt<DeletedMessages>(Flag.DELETED_MESSAGES, context),
         )
     }
 }

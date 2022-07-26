@@ -1,41 +1,60 @@
 package tv.twitch.android.shared.ui.elements.span;
 
 import android.graphics.Canvas;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
+import com.bumptech.glide.integration.webp.decoder.WebpDrawable;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
+import kotlin.jvm.internal.DefaultConstructorMarker;
 import tv.twitch.android.app.core.Utility;
 
-public class UrlDrawable extends BitmapDrawable { // TODO: __REMOVE_FINAL
+@SuppressWarnings("deprecation")
+public class UrlDrawable extends BitmapDrawable { // TODO: __REPLACE_CLASS
     private Drawable drawable;
     private boolean isDestroyed;
     private Function1<? super Rect, Unit> onBoundsChangeListener;
     private final MediaSpan$Type type;
     private final String url;
-    private final boolean wide; // TODO: __INJECT_FIELD
+    private final boolean wide;
+
+    private boolean grey = false;
+    private ColorMatrix greyMatrix;
+    private ColorMatrixColorFilter greyFilter;
+
+    public UrlDrawable() {
+        this(null, null, 3, null);
+    }
 
     public String getUrl() {
         return this.url;
     }
 
-    public UrlDrawable(String url, MediaSpan$Type type) {
-        this.url = url;
-        this.type = type;
-        this.wide = false; // TODO: __INJECT_CODE
+    public UrlDrawable(String str, MediaSpan$Type mediaSpan$Type, int i, DefaultConstructorMarker defaultConstructorMarker) {
+        this((i & 1) != 0 ? "" : str, (i & 2) != 0 ? MediaSpan$Type.Emote : mediaSpan$Type, false);
     }
 
-    public UrlDrawable(String url, MediaSpan$Type type, boolean wide) { // TODO: __INJECT_METHOD
+    public UrlDrawable(String url, MediaSpan$Type type) {
+        this(url, type, false);
+    }
+
+    public boolean isWide() {
+        return wide;
+    }
+
+    public UrlDrawable(String url, MediaSpan$Type type, boolean wide) {
         this.url = url;
         this.type = type;
         this.wide = wide;
     }
 
-    public void setDrawable(Drawable drawable) { // TODO: __REMOVE_FINAL
+    public void setDrawable(Drawable drawable) {
         this.drawable = drawable;
     }
 
@@ -55,19 +74,19 @@ public class UrlDrawable extends BitmapDrawable { // TODO: __REMOVE_FINAL
         return this.drawable != null;
     }
 
+    public void setGrey(boolean state) { // TODO: __INJECT_METHOD
+        grey = state;
+    }
+
     @Override
-    public void draw(Canvas canvas) {
+    public void draw(Canvas canvas) { // TODO: __REPLACE_METHOD
         Drawable drawable = this.drawable;
         if (drawable != null) {
+            if (grey) {
+                setGreyFilter(drawable);
+            }
             drawable.draw(canvas);
-            if (!(drawable instanceof GifDrawable)) {
-                return;
-            }
-            GifDrawable gifDrawable = (GifDrawable) drawable;
-            if (gifDrawable.isRunning()) {
-                return;
-            }
-            gifDrawable.start();
+            startAnimation(drawable);
         }
     }
 
@@ -81,19 +100,51 @@ public class UrlDrawable extends BitmapDrawable { // TODO: __REMOVE_FINAL
     }
 
     public void destroy() {
-        this.isDestroyed = true;
-        Drawable drawable = this.drawable;
+        isDestroyed = true;
+        stopAnimation(drawable);
+        drawable = null;
+        onBoundsChangeListener = null;
+        greyMatrix = null;
+        greyFilter = null;
+    }
+
+    private void setGreyFilter(Drawable drawable) {
+        if (greyMatrix == null) {
+            greyMatrix = new ColorMatrix();
+            greyMatrix.setSaturation(0);
+        }
+        if (greyFilter == null) {
+            greyFilter = new ColorMatrixColorFilter(greyMatrix);
+        }
+
+        drawable.setColorFilter(greyFilter);
+    }
+
+    private static void startAnimation(Drawable drawable) {
+        if (drawable instanceof GifDrawable) {
+            GifDrawable gifDrawable = (GifDrawable) drawable;
+            if (!gifDrawable.isRunning()) {
+                gifDrawable.start();
+            }
+        } else if (drawable instanceof WebpDrawable) {
+            WebpDrawable webpDrawable = (WebpDrawable) drawable;
+            if (!webpDrawable.isRunning()) {
+                webpDrawable.start();
+            }
+        }
+    }
+
+    private static void stopAnimation(Drawable drawable) {
         if (drawable instanceof GifDrawable) {
             GifDrawable gifDrawable = (GifDrawable) drawable;
             if (gifDrawable.isRunning()) {
                 gifDrawable.stop();
             }
+        } else if (drawable instanceof WebpDrawable) {
+            WebpDrawable webpDrawable = (WebpDrawable) drawable;
+            if (webpDrawable.isRunning()) {
+                webpDrawable.stop();
+            }
         }
-        this.drawable = null;
-        this.onBoundsChangeListener = null;
-    }
-
-    public boolean isWide() { // TODO: __INJECT_METHOD
-        return wide;
     }
 }

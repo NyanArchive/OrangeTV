@@ -2,8 +2,9 @@ package tv.orange.core
 
 import tv.orange.core.di.component.CoreComponent
 import tv.orange.core.models.Flag
+import tv.orange.core.models.Flag.Companion.variant
 import tv.orange.core.models.Flag.Companion.valueBoolean
-import tv.orange.core.models.Flag.Companion.valueString
+import tv.orange.core.models.variants.PlayerImpl
 import tv.twitch.android.models.player.PlayerImplementation
 import javax.inject.Inject
 
@@ -28,11 +29,10 @@ class Hook @Inject constructor() {
 
         @JvmStatic
         fun hookPlayerImplementation(default: PlayerImplementation): PlayerImplementation {
-            return when (Flag.PLAYER_IMPL.valueString()) {
-                "default" -> default
-                "core" -> PlayerImplementation.Core
-                "exo" -> PlayerImplementation.Exo2
-                else -> default
+            return when (Flag.PLAYER_IMPL.variant<PlayerImpl>()) {
+                PlayerImpl.Default -> default
+                PlayerImpl.Core  -> PlayerImplementation.Core
+                PlayerImpl.Exo -> PlayerImplementation.Exo2
             }
         }
     }

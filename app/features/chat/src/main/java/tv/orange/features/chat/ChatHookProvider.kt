@@ -1,18 +1,29 @@
 package tv.orange.features.chat
 
+import android.content.Context
+import android.graphics.Color
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.SpannedString
+import android.text.TextUtils
+import android.text.style.ForegroundColorSpan
+import android.text.style.StrikethroughSpan
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
+import io.reactivex.subjects.PublishSubject
 import tv.orange.core.Core
 import tv.orange.core.Logger
 import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
 import tv.orange.core.models.Flag
 import tv.orange.core.models.Flag.Companion.valueBoolean
+import tv.orange.core.models.Flag.Companion.variant
 import tv.orange.core.models.FlagListener
 import tv.orange.core.models.LifecycleAware
 import tv.orange.core.models.LifecycleController
+import tv.orange.core.models.variants.DeletedMessages
 import tv.orange.features.badges.bridge.OrangeMessageBadge
 import tv.orange.features.badges.component.BadgeProvider
 import tv.orange.features.badges.di.component.BadgesComponent
@@ -29,12 +40,17 @@ import tv.twitch.android.models.chat.MessageToken
 import tv.twitch.android.models.emotes.EmoteCardModelResponse
 import tv.twitch.android.models.emotes.EmoteSet
 import tv.twitch.android.provider.chat.ChatMessageInterface
+import tv.twitch.android.shared.chat.adapter.item.ChatMessageClickedEvents
+import tv.twitch.android.shared.chat.util.ChatUtil
+import tv.twitch.android.shared.chat.util.ClickableUsernameSpan
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerPresenter
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteHeaderUiModel
 import tv.twitch.android.shared.emotes.emotepicker.models.EmotePickerSection
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiModel
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiSet
 import tv.twitch.android.shared.emotes.models.EmoteMessageInput
+import tv.twitch.android.shared.ui.elements.span.CenteredImageSpan
+import tv.twitch.android.shared.ui.elements.span.UrlDrawable
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -105,6 +121,92 @@ class ChatHookProvider @Inject constructor(
                 "-1", clickedEmote,
                 emote.getUrl(Emote.Size.LARGE), isAnimated
             )
+        }
+
+        @JvmStatic
+        fun hook(
+            messageId: String?,
+            message: Spanned?,
+            context: Context?,
+            messageClickEventDispatcher: PublishSubject<ChatMessageClickedEvents?>?,
+            hasModAccess: Boolean
+        ): Spanned? {
+            return get().hookMarkAsDeleted(
+                messageId,
+                message,
+                context,
+                messageClickEventDispatcher,
+                hasModAccess
+            )
+        }
+
+        private fun createDeletedGrey(msg: Spanned?): Spanned? {
+            if (msg.isNullOrBlank()) {
+                return msg
+            }
+
+            msg.getSpans(0, msg.length, ForegroundColorSpan::class.java)?.forEach {
+                if (it.foregroundColor == Color.GRAY) {
+                    return msg
+                }
+            }
+
+            val message = SpannableStringBuilder(msg)
+            message.getSpans(0, msg.length, ForegroundColorSpan::class.java)?.forEach {
+                message.removeSpan(it)
+            }
+
+            message.getSpans(0, msg.length, CenteredImageSpan::class.java)?.forEach {
+                val drawable = it.imageDrawable
+                if (drawable is UrlDrawable) {
+                    drawable.setGrey(true)
+                }
+            }
+            message.setSpan(
+                ForegroundColorSpan(Color.GRAY),
+                0,
+                message.length,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            return SpannedString.valueOf(message)
+        }
+
+        private fun createDeletedStrikethrough(msg: Spanned?): Spanned? {
+            if (msg.isNullOrBlank()) {
+                return msg
+            }
+
+            msg.getSpans(0, msg.length, StrikethroughSpan::class.java)?.let { spans ->
+                if (spans.isNotEmpty()) {
+                    return msg
+                }
+            }
+
+            val message = SpannableStringBuilder(msg).apply {
+                setSpan(
+                    StrikethroughSpan(),
+                    getMessageStartPos(msg),
+                    length,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+            return SpannedString.valueOf(message)
+        }
+
+        private fun getMessageStartPos(msg: Spanned): Int {
+            var usernameEndPos = 0
+            val spans = msg.getSpans(0, msg.length, ClickableUsernameSpan::class.java)
+            if (spans.isEmpty()) {
+                return usernameEndPos
+            }
+            usernameEndPos = msg.getSpanEnd(spans[0])
+            val pos = usernameEndPos + 2
+            if (pos < msg.length) {
+                if (TextUtils.equals(msg.subSequence(usernameEndPos, pos), ": ")) {
+                    usernameEndPos = pos
+                }
+            }
+            return usernameEndPos
         }
     }
 
@@ -305,6 +407,33 @@ class ChatHookProvider @Inject constructor(
                 }
                 Flowable.just((orgList + newSets)).doOnNext { Logger.debug("Injected: $it") }
             }
+        }
+    }
+
+    fun hookMarkAsDeleted(
+        messageId: String?,
+        message: Spanned?,
+        context: Context?,
+        eventDispatcher: PublishSubject<ChatMessageClickedEvents?>?,
+        hasModAccess: Boolean
+    ): Spanned? {
+        return when (Flag.DELETED_MESSAGES.variant<DeletedMessages>()) {
+            DeletedMessages.Mod -> ChatUtil.Companion!!.createDeletedSpanFromChatMessageSpan(
+                messageId,
+                message,
+                context,
+                eventDispatcher,
+                true
+            )
+            DeletedMessages.Strikethrough -> createDeletedStrikethrough(message)
+            DeletedMessages.Grey -> createDeletedGrey(message)
+            DeletedMessages.Default -> ChatUtil.Companion!!.createDeletedSpanFromChatMessageSpan(
+                messageId,
+                message,
+                context,
+                eventDispatcher,
+                hasModAccess
+            )
         }
     }
 }

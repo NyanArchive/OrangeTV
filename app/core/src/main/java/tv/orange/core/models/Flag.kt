@@ -74,12 +74,12 @@ enum class Flag(
     PLAYER_IMPL(
         "player_impl",
         "orange_settings_player_impl",
-        ListValue<PlayerImpl>(PlayerImpl.Default)
+        ListValue(PlayerImpl.Default)
     ),
     DELETED_MESSAGES(
         "deleted_messages",
         "orange_settings_deleted_messages",
-        ListValue<DeletedMessages>(DeletedMessages.Default),
+        ListValue(DeletedMessages.Default),
     );
 
     companion object {

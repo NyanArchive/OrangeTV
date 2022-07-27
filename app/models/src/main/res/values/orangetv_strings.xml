@@ -48,4 +48,6 @@
     <string name="orange_emotecard_ffz_global">FFZ Global Emote</string>
     <string name="orange_emotecard_stv_global">STV Global Emote</string>
     <string name="orange_emotecard_bttv_global">BTTV Global Emote</string>
+    <string name="orange_chat_settings_preferences_subtitle">OrangeTV</string>
+    <string name="orange_chat_settings_refresh">Refresh</string>
 </resources>

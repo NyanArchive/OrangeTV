@@ -99,7 +99,7 @@ class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
                     Flag.STV_EMOTES.valueBoolean()
                 )
             }.map {
-                ChatSettingsOrangeEvents.Closable()
+                ChatSettingsOrangeEvents.Toggle()
             })
             add(toggleFfzEmotes.eventObserver().doOnNext {
                 PreferenceManager.get().writeBoolean(Flag.FFZ_EMOTES, it.isToggled)
@@ -109,7 +109,7 @@ class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
                     Flag.STV_EMOTES.valueBoolean()
                 )
             }.map {
-                ChatSettingsOrangeEvents.Closable()
+                ChatSettingsOrangeEvents.Toggle()
             })
             add(toggleStvEmotes.eventObserver().doOnNext {
                 PreferenceManager.get().writeBoolean(Flag.STV_EMOTES, it.isToggled)
@@ -119,7 +119,7 @@ class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
                     it.isToggled
                 )
             }.map {
-                ChatSettingsOrangeEvents.Closable()
+                ChatSettingsOrangeEvents.Toggle()
             })
         }
     }

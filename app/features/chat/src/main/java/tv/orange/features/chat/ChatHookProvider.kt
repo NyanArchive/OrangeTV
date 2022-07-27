@@ -60,6 +60,234 @@ class ChatHookProvider @Inject constructor(
 ) : LifecycleAware, FlagListener {
     private val currentChannelSubject = BehaviorSubject.create<Int>()
 
+    fun registerLifecycle(
+        controller: LifecycleController,
+        preferenceManager: PreferenceManager
+    ) {
+        controller.registerLifecycleListeners(this)
+        preferenceManager.registerFlagListeners(this)
+    }
+
+    fun hookMessageInterface(
+        cmi: ChatMessageInterface,
+        channelId: Int
+    ): ChatMessageInterface {
+        val badges = injectBadges(cmi.badges, cmi.userId, channelId)
+        val tokens = injectEmotes(cmi.tokens, cmi.userId, channelId)
+
+        return ChatMessageInterfaceWrapper(cmi = cmi, badges = badges, tokens = tokens)
+    }
+
+    private fun injectBadges(
+        badges: List<MessageBadge>,
+        userId: Int,
+        channelId: Int
+    ): List<MessageBadge> {
+        if (!badgeProvider.hasBadges(userId)) {
+            return badges
+        }
+
+        val newBadges = badgeProvider.getBadges(userId).toMutableList()
+        if (newBadges.isEmpty()) {
+            return badges
+        }
+
+        val stack = mutableListOf<MessageBadge>()
+        badges.forEach { badge ->
+            val replaces = newBadges.firstOrNull { it.getReplaces() == badge.name }
+
+            if (replaces != null) {
+                stack.add(
+                    OrangeMessageBadge(
+                        replaces.getCode(),
+                        replaces.getUrl(),
+                        replaces.getBackgroundColor()
+                    )
+                )
+                newBadges.remove(replaces)
+            } else {
+                stack.add(badge)
+            }
+        }
+        stack.addAll(newBadges.map {
+            OrangeMessageBadge(it.getCode(), it.getUrl(), it.getBackgroundColor())
+        })
+
+        return stack
+    }
+
+    private fun injectEmotes(
+        tokens: List<MessageToken>,
+        userId: Int,
+        channelId: Int
+    ): List<MessageToken> {
+        val stack = mutableListOf<MessageToken>()
+
+        var injected = false
+        tokens.forEach { token ->
+            if (token is MessageToken.TextToken) {
+                val words = token.text.split(" ")
+                for (word in words) {
+                    val emote = emoteProvider.getEmote(word, channelId)
+                    if (emote != null) {
+                        if (!injected) {
+                            injected = true
+                        }
+                        stack.add(
+                            EmoteToken(
+                                emote.getCode(),
+                                emote.getUrl(Emote.Size.MEDIUM),
+                                emote.getUrl(Emote.Size.LARGE),
+                                emote.getPackageSet()
+                            )
+                        )
+                    } else {
+                        stack.add(MessageToken.TextToken("$word ", token.flags))
+                    }
+                }
+            } else {
+                stack.add(token)
+            }
+        }
+
+        if (injected) {
+            return stack
+        }
+
+        return tokens
+    }
+
+    override fun onAllComponentDestroyed() {
+        emoteProvider.clear()
+        badgeProvider.clear()
+    }
+
+    override fun onSdkResume() {
+        badgeProvider.refreshBadges()
+        emoteProvider.fetch()
+    }
+
+    override fun onFirstActivityCreated() {
+        badgeProvider.fetchBadges()
+        emoteProvider.fetch()
+    }
+
+    override fun onConnectingToChannel(channelId: Int) {
+        emoteProvider.requestChannelEmotes(channelId)
+        currentChannelSubject.onNext(channelId)
+    }
+
+    override fun onFlagChanged(flag: Flag) {
+        when (flag) {
+            Flag.BTTV_EMOTES, Flag.FFZ_EMOTES, Flag.STV_EMOTES -> {
+                emoteProvider.rebuild()
+            }
+            Flag.FFZ_BADGES, Flag.STV_BADGES, Flag.CHA_BADGES, Flag.CHE_BADGES -> {
+                badgeProvider.rebuild()
+            }
+            else -> {}
+        }
+    }
+
+    override fun onAllComponentStopped() {}
+    override fun onAccountLogout() {}
+    override fun onFirstActivityStarted() {}
+    override fun onConnectedToChannel(channelId: Int) {}
+
+    @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
+    fun hookEmoteSetsFlowable(
+        map: Flowable<Pair<EmoteUiSet, MutableList<EmoteUiSet>>>,
+        num: Integer
+    ): Flowable<Pair<EmoteUiSet, MutableList<EmoteUiSet>>> {
+        return map.map { pair ->
+            emoteProvider.getEmotesMap(num.toInt()).filter { it.second.isNotEmpty() }
+                .forEach { emotePair ->
+                    pair.second.add(
+                        EmoteUiSet(
+                            EmoteHeaderUiModel.EmoteHeaderStringResUiModel(
+                                packageTokenToId(emotePair.first),
+                                true,
+                                EmotePickerSection.ALL,
+                                false
+                            ), emotePair.second.map { emote ->
+                                createEmoteUiModel(
+                                    emote = emote,
+                                    channelId = num.toInt(),
+                                    isAnimated = false
+                                )
+                            })
+                    )
+                }
+
+            return@map pair
+        }
+    }
+
+    fun hookEmoteCardModelResponse(emoteId: String?): EmoteCardModelResponse? {
+        if (emoteId.isNullOrBlank()) {
+            return null
+        }
+
+        val model = EmoteCardModelWrapper.fromString(emoteId) ?: return null
+
+        return EmoteCardModelResponse.Success(
+            OrangeEmoteCardModel(
+                token = model.token,
+                url = model.url,
+                set = model.set
+            )
+        )
+    }
+
+    fun hookAutoCompleteMapProvider(emotesFlow: Flowable<List<EmoteSet>>): Flowable<List<EmoteSet>> {
+        return emotesFlow.flatMap { orgList ->
+            currentChannelSubject.flatMap {
+                Observable.just(it).delay(3, TimeUnit.SECONDS)
+            }.toFlowable(BackpressureStrategy.LATEST).flatMap { channelId ->
+                val newSets = emoteProvider.getEmotesMap(channelId = channelId).map { pair ->
+                    OrangeEmoteSet(pair.second.map {
+                        OrangeEmoteModel(
+                            emoteToken = it.getCode(),
+                            emoteUrl = it.getUrl(Emote.Size.MEDIUM)
+                        )
+                    })
+                }
+                Flowable.just((orgList + newSets)).doOnNext { Logger.debug("Injected: $it") }
+            }
+        }
+    }
+
+    fun hookMarkAsDeleted(
+        messageId: String?,
+        message: Spanned?,
+        context: Context?,
+        eventDispatcher: PublishSubject<ChatMessageClickedEvents?>?,
+        hasModAccess: Boolean
+    ): Spanned? {
+        return when (Flag.DELETED_MESSAGES.variant<DeletedMessages>()) {
+            DeletedMessages.Mod -> ChatUtil.Companion!!.createDeletedSpanFromChatMessageSpan(
+                messageId,
+                message,
+                context,
+                eventDispatcher,
+                true
+            )
+            DeletedMessages.Strikethrough -> createDeletedStrikethrough(message)
+            DeletedMessages.Grey -> createDeletedGrey(message)
+            DeletedMessages.Default -> ChatUtil.Companion!!.createDeletedSpanFromChatMessageSpan(
+                messageId,
+                message,
+                context,
+                eventDispatcher,
+                hasModAccess
+            )
+        }
+    }
+
+    fun rebuildEmotes() {
+        emoteProvider.rebuild()
+    }
+
     companion object {
         private val INSTANCE: ChatHookProvider by lazy {
             val hook = DaggerChatComponent.builder()
@@ -208,237 +436,5 @@ class ChatHookProvider @Inject constructor(
             }
             return usernameEndPos
         }
-    }
-
-    fun registerLifecycle(
-        controller: LifecycleController,
-        preferenceManager: PreferenceManager
-    ) {
-        controller.registerLifecycleListeners(this)
-        preferenceManager.registerFlagListeners(this)
-    }
-
-    fun hookMessageInterface(
-        cmi: ChatMessageInterface,
-        channelId: Int
-    ): ChatMessageInterface {
-        val badges = injectBadges(cmi.badges, cmi.userId, channelId)
-        val tokens = injectEmotes(cmi.tokens, cmi.userId, channelId)
-
-        return ChatMessageInterfaceWrapper(cmi = cmi, badges = badges, tokens = tokens)
-    }
-
-    private fun injectBadges(
-        badges: List<MessageBadge>,
-        userId: Int,
-        channelId: Int
-    ): List<MessageBadge> {
-        if (!badgeProvider.hasBadges(userId)) {
-            return badges
-        }
-
-        val newBadges = badgeProvider.getBadges(userId).toMutableList()
-        if (newBadges.isEmpty()) {
-            return badges
-        }
-
-        val stack = mutableListOf<MessageBadge>()
-        badges.forEach { badge ->
-            val replaces = newBadges.firstOrNull { it.getReplaces() == badge.name }
-
-            if (replaces != null) {
-                stack.add(
-                    OrangeMessageBadge(
-                        replaces.getCode(),
-                        replaces.getUrl(),
-                        replaces.getBackgroundColor()
-                    )
-                )
-                newBadges.remove(replaces)
-            } else {
-                stack.add(badge)
-            }
-        }
-        stack.addAll(newBadges.map {
-            OrangeMessageBadge(it.getCode(), it.getUrl(), it.getBackgroundColor())
-        })
-
-        return stack
-    }
-
-    private fun injectEmotes(
-        tokens: List<MessageToken>,
-        userId: Int,
-        channelId: Int
-    ): List<MessageToken> {
-        val stack = mutableListOf<MessageToken>()
-
-        var injected = false
-        tokens.forEach { token ->
-            if (token is MessageToken.TextToken) {
-                val words = token.text.split(" ")
-                for (word in words) {
-                    val emote = emoteProvider.getEmote(word, channelId)
-                    if (emote != null) {
-                        if (!injected) {
-                            injected = true
-                        }
-                        stack.add(
-                            EmoteToken(
-                                emote.getCode(),
-                                emote.getUrl(Emote.Size.MEDIUM),
-                                emote.getUrl(Emote.Size.LARGE),
-                                emote.getPackageSet()
-                            )
-                        )
-                    } else {
-                        stack.add(MessageToken.TextToken("$word ", token.flags))
-                    }
-                }
-            } else {
-                stack.add(token)
-            }
-        }
-
-        if (injected) {
-            return stack
-        }
-
-        return tokens
-    }
-
-    override fun onAllComponentDestroyed() {
-        emoteProvider.clear()
-        badgeProvider.clear()
-    }
-
-    override fun onSdkResume() {
-        badgeProvider.refreshBadges()
-        emoteProvider.refreshGlobalEmotes()
-    }
-
-    override fun onFirstActivityCreated() {
-        emoteProvider.fetchGlobalEmotes()
-        badgeProvider.fetchBadges()
-    }
-
-    override fun onConnectingToChannel(channelId: Int) {
-        emoteProvider.requestChannelEmotes(channelId)
-        currentChannelSubject.onNext(channelId)
-    }
-
-    override fun onFlagChanged(flag: Flag) {
-        when (flag) {
-            Flag.BTTV_EMOTES, Flag.FFZ_EMOTES, Flag.STV_EMOTES -> {
-                emoteProvider.clear()
-                emoteProvider.fetchGlobalEmotes()
-            }
-            Flag.FFZ_BADGES, Flag.STV_BADGES, Flag.CHA_BADGES, Flag.CHE_BADGES -> {
-                badgeProvider.clear()
-                badgeProvider.fetchBadges()
-            }
-            else -> {}
-        }
-    }
-
-    override fun onAllComponentStopped() {}
-    override fun onAccountLogout() {}
-    override fun onFirstActivityStarted() {}
-    override fun onConnectedToChannel(channelId: Int) {}
-
-
-    @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
-    fun hookEmoteSetsFlowable(
-        map: Flowable<Pair<EmoteUiSet, MutableList<EmoteUiSet>>>,
-        num: Integer
-    ): Flowable<Pair<EmoteUiSet, MutableList<EmoteUiSet>>> {
-        return map.map { pair ->
-            emoteProvider.getEmotesMap(num.toInt()).filter { it.second.isNotEmpty() }
-                .forEach { emotePair ->
-                    pair.second.add(
-                        EmoteUiSet(
-                            EmoteHeaderUiModel.EmoteHeaderStringResUiModel(
-                                packageTokenToId(emotePair.first),
-                                true,
-                                EmotePickerSection.ALL,
-                                false
-                            ), emotePair.second.map { emote ->
-                                createEmoteUiModel(
-                                    emote = emote,
-                                    channelId = num.toInt(),
-                                    isAnimated = false
-                                )
-                            })
-                    )
-                }
-
-            return@map pair
-        }
-    }
-
-    fun hookEmoteCardModelResponse(emoteId: String?): EmoteCardModelResponse? {
-        if (emoteId.isNullOrBlank()) {
-            return null
-        }
-
-        val model = EmoteCardModelWrapper.fromString(emoteId) ?: return null
-
-        return EmoteCardModelResponse.Success(
-            OrangeEmoteCardModel(
-                token = model.token,
-                url = model.url,
-                set = model.set
-            )
-        )
-    }
-
-    fun hookAutoCompleteMapProvider(emotesFlow: Flowable<List<EmoteSet>>): Flowable<List<EmoteSet>> {
-        return emotesFlow.flatMap { orgList ->
-            currentChannelSubject.flatMap {
-                Observable.just(it).delay(3, TimeUnit.SECONDS)
-            }.toFlowable(BackpressureStrategy.LATEST).flatMap { channelId ->
-                val newSets = emoteProvider.getEmotesMap(channelId = channelId).map { pair ->
-                    OrangeEmoteSet(pair.second.map {
-                        OrangeEmoteModel(
-                            emoteToken = it.getCode(),
-                            emoteUrl = it.getUrl(Emote.Size.MEDIUM)
-                        )
-                    })
-                }
-                Flowable.just((orgList + newSets)).doOnNext { Logger.debug("Injected: $it") }
-            }
-        }
-    }
-
-    fun hookMarkAsDeleted(
-        messageId: String?,
-        message: Spanned?,
-        context: Context?,
-        eventDispatcher: PublishSubject<ChatMessageClickedEvents?>?,
-        hasModAccess: Boolean
-    ): Spanned? {
-        return when (Flag.DELETED_MESSAGES.variant<DeletedMessages>()) {
-            DeletedMessages.Mod -> ChatUtil.Companion!!.createDeletedSpanFromChatMessageSpan(
-                messageId,
-                message,
-                context,
-                eventDispatcher,
-                true
-            )
-            DeletedMessages.Strikethrough -> createDeletedStrikethrough(message)
-            DeletedMessages.Grey -> createDeletedGrey(message)
-            DeletedMessages.Default -> ChatUtil.Companion!!.createDeletedSpanFromChatMessageSpan(
-                messageId,
-                message,
-                context,
-                eventDispatcher,
-                hasModAccess
-            )
-        }
-    }
-
-    fun refreshEmotes() {
-        emoteProvider.fetchGlobalEmotes()
-        emoteProvider.refreshChannelEmotes()
     }
 }

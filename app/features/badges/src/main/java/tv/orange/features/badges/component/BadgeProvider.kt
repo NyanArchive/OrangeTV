@@ -34,4 +34,9 @@ class BadgeProvider @Inject constructor(val roomFactory: RoomFactory) {
     fun hasBadges(userId: Int): Boolean {
         return global.hasBadges(userId)
     }
+
+    fun rebuild() {
+        clear()
+        fetchBadges()
+    }
 }

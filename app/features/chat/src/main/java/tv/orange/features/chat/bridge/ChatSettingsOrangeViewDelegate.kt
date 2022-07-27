@@ -80,14 +80,14 @@ class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
         toggleStvEmotes.render(SimpleToggleRowViewDelegate.ToggleState(stv))
     }
 
-    private fun refreshEmotes() {
-        ChatHookProvider.get().refreshEmotes()
+    private fun rebuildEmotes() {
+        ChatHookProvider.get().rebuildEmotes()
     }
 
     fun injectEvents(listOf: List<Flowable<ChatSettingsViewDelegate.ChatSettingsEvents>>): List<Flowable<ChatSettingsViewDelegate.ChatSettingsEvents>> {
         return listOf.toMutableList().apply {
             add(refreshEmotes.eventObserver().doOnNext {
-                refreshEmotes()
+                rebuildEmotes()
             }.map {
                 ChatSettingsOrangeEvents.Closable()
             })

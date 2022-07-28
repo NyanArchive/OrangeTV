@@ -8,6 +8,7 @@ import android.text.SpannedString
 import android.text.TextUtils
 import android.text.style.ForegroundColorSpan
 import android.text.style.StrikethroughSpan
+import android.widget.ImageView
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Observable
@@ -29,6 +30,7 @@ import tv.orange.features.badges.component.BadgeProvider
 import tv.orange.features.badges.di.component.BadgesComponent
 import tv.orange.features.chat.bridge.*
 import tv.orange.features.chat.di.component.DaggerChatComponent
+import tv.orange.features.chat.view.ViewFactory
 import tv.orange.features.emotes.bridge.EmoteToken
 import tv.orange.features.emotes.component.EmoteProvider
 import tv.orange.features.emotes.di.component.EmotesComponent
@@ -44,6 +46,7 @@ import tv.twitch.android.shared.chat.adapter.item.ChatMessageClickedEvents
 import tv.twitch.android.shared.chat.util.ChatUtil
 import tv.twitch.android.shared.chat.util.ClickableUsernameSpan
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerPresenter
+import tv.twitch.android.shared.emotes.emotepicker.EmotePickerViewDelegate
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteHeaderUiModel
 import tv.twitch.android.shared.emotes.emotepicker.models.EmotePickerSection
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiModel
@@ -56,7 +59,8 @@ import javax.inject.Inject
 
 class ChatHookProvider @Inject constructor(
     val emoteProvider: EmoteProvider,
-    val badgeProvider: BadgeProvider
+    val badgeProvider: BadgeProvider,
+    val viewFactory: ViewFactory
 ) : LifecycleAware, FlagListener {
     private val currentChannelSubject = BehaviorSubject.create<Int>()
 
@@ -207,7 +211,7 @@ class ChatHookProvider @Inject constructor(
                             EmoteHeaderUiModel.EmoteHeaderStringResUiModel(
                                 packageTokenToId(emotePair.first),
                                 true,
-                                EmotePickerSection.ALL,
+                                EmotePickerSection.ORANGE,
                                 false
                             ), emotePair.second.map { emote ->
                                 createEmoteUiModel(
@@ -284,8 +288,20 @@ class ChatHookProvider @Inject constructor(
         }
     }
 
+    fun getOrangeEmotesButton(emotePickerViewDelegate: EmotePickerViewDelegate): ImageView? {
+        return viewFactory.createOrangeEmotesButton(emotePickerViewDelegate)
+    }
+
     fun rebuildEmotes() {
         emoteProvider.rebuild()
+    }
+
+    fun renderEmotePickerState(
+        state: EmotePickerPresenter.EmotePickerState,
+        orangeEmotesButton: ImageView?
+    ) {
+        orangeEmotesButton?.isSelected =
+            state.selectedEmotePickerSection == EmotePickerSection.ORANGE
     }
 
     companion object {

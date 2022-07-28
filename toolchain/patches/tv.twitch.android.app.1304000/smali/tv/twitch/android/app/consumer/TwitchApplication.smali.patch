@@ -40,53 +40,58 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
  
      const-string v3, "13.4.0_BETA"
  
-@@ -305,6 +308,20 @@
+@@ -305,6 +308,8 @@
  
      invoke-interface {v1, p0}, Ltv/twitch/android/app/consumer/dagger/AppComponent;->inject(Ltv/twitch/android/app/consumer/TwitchApplication;)V
  
-+    check-cast v1, Ltv/twitch/android/app/consumer/dagger/DaggerAppComponent;
-+
-+    invoke-static {v1}, Ltv/orange/injector/Injector;->create(Ltv/twitch/android/app/consumer/dagger/DaggerAppComponent;)Ltv/orange/injector/Injector;
-+
-+    move-result-object v2
-+
-+    iput-object v2, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->injector:Ltv/orange/injector/Injector;
-+
-+    sget-object v1, Ltv/orange/core/Core;->Companion:Ltv/orange/core/Core$Companion;
-+
-+    invoke-virtual {v1, p0}, Ltv/orange/core/Core$Companion;->initialize(Landroid/content/Context;)V
-+
-+    invoke-direct {p0}, Ltv/twitch/android/app/consumer/TwitchApplication;->initOranges()V
++    invoke-direct {p0, v1}, Ltv/twitch/android/app/consumer/TwitchApplication;->initOranges(Ltv/twitch/android/app/consumer/dagger/AppComponent;)V
 +
      .line 126
      sget-object v1, Ltv/twitch/android/app/consumer/TwitchApplication$$ExternalSyntheticLambda1;->INSTANCE:Ltv/twitch/android/app/consumer/TwitchApplication$$ExternalSyntheticLambda1;
  
-@@ -457,3 +474,79 @@
+@@ -457,3 +462,96 @@
  
      return-void
  .end method
 +
-+.method private initOranges()V
-+    .registers 7
++.method private initOranges(Ltv/twitch/android/app/consumer/dagger/AppComponent;)V
++    .registers 8
++    .param p1, "appComponent"    # Ltv/twitch/android/app/consumer/dagger/AppComponent;
 +
-+    .line 35
++    .line 37
++    move-object v0, p1
++
++    check-cast v0, Ltv/twitch/android/app/consumer/dagger/DaggerAppComponent;
++
++    invoke-static {v0}, Ltv/orange/injector/Injector;->create(Ltv/twitch/android/app/consumer/dagger/DaggerAppComponent;)Ltv/orange/injector/Injector;
++
++    move-result-object v0
++
++    iput-object v0, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->injector:Ltv/orange/injector/Injector;
++
++    .line 38
++    sget-object v0, Ltv/orange/core/Core;->Companion:Ltv/orange/core/Core$Companion;
++
++    invoke-virtual {v0, p0}, Ltv/orange/core/Core$Companion;->initialize(Landroid/content/Context;)V
++
++    .line 39
 +    invoke-static {}, Ltv/orange/core/PreferenceManager;->get()Ltv/orange/core/PreferenceManager;
 +
 +    move-result-object v0
 +
-+    .line 36
++    .line 40
 +    .local v0, "prefManager":Ltv/orange/core/PreferenceManager;
 +    invoke-static {}, Ltv/orange/core/Core;->get()Ltv/orange/core/Core;
 +
 +    move-result-object v1
 +
-+    .line 37
++    .line 41
 +    .local v1, "core":Ltv/orange/core/Core;
 +    invoke-static {}, Ltv/orange/features/stv/AvatarsHookProvider;->get()Ltv/orange/features/stv/AvatarsHookProvider;
 +
 +    move-result-object v2
 +
-+    .line 39
++    .line 43
 +    .local v2, "avatarsHookProvider":Ltv/orange/features/stv/AvatarsHookProvider;
 +    invoke-static {}, Ltv/orange/features/chat/ChatHookProvider;->get()Ltv/orange/features/chat/ChatHookProvider;
 +
@@ -94,7 +99,7 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
 +
 +    invoke-virtual {v3, v1, v0}, Ltv/orange/features/chat/ChatHookProvider;->registerLifecycle(Ltv/orange/core/models/LifecycleController;Ltv/orange/core/PreferenceManager;)V
 +
-+    .line 41
++    .line 45
 +    const/4 v3, 0x1
 +
 +    new-array v4, v3, [Ltv/orange/core/models/LifecycleAware;
@@ -105,14 +110,14 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
 +
 +    invoke-virtual {v1, v4}, Ltv/orange/core/Core;->registerLifecycleListeners([Ltv/orange/core/models/LifecycleAware;)V
 +
-+    .line 42
++    .line 46
 +    new-array v3, v3, [Ltv/orange/core/models/FlagListener;
 +
 +    aput-object v2, v3, v5
 +
 +    invoke-virtual {v0, v3}, Ltv/orange/core/PreferenceManager;->registerFlagListeners([Ltv/orange/core/models/FlagListener;)V
 +
-+    .line 43
++    .line 47
 +    return-void
 +.end method
 +

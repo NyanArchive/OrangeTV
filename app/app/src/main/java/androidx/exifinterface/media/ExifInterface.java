@@ -3,33 +3,37 @@ package androidx.exifinterface.media;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 
+import tv.orange.models.VirtualImpl;
+
 public class ExifInterface {
+    /* ... */
+
     private static boolean isJpegFormat(byte[] bArr) throws IOException {
-        return false;
+        throw new VirtualImpl();
     }
 
     private boolean isRafFormat(byte[] bArr) throws IOException {
-        return false;
+        throw new VirtualImpl();
     }
 
     private boolean isHeifFormat(byte[] bArr) throws IOException {
-        return false;
+        throw new VirtualImpl();
     }
 
     private boolean isOrfFormat(byte[] bArr) throws IOException {
-        return false;
+        throw new VirtualImpl();
     }
 
     private boolean isRw2Format(byte[] bArr) throws IOException {
-        return false;
+        throw new VirtualImpl();
     }
 
     private boolean isPngFormat(byte[] bArr) throws IOException {
-        return false;
+        throw new VirtualImpl();
     }
 
     private boolean isWebpFormat(byte[] bArr) throws IOException {
-        return false;
+        throw new VirtualImpl();
     }
 
     private int getMimeType(BufferedInputStream bufferedInputStream) throws IOException { // TODO: __REPLACE_METHOD
@@ -58,6 +62,9 @@ public class ExifInterface {
         if (isRw2Format(bArr)) {
             return 10;
         }
+
         return 0;
     }
+
+    /* ... */
 }

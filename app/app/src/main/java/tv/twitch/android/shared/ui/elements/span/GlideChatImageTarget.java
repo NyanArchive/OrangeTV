@@ -10,9 +10,23 @@ import com.bumptech.glide.request.transition.Transition;
 
 import java.lang.ref.WeakReference;
 
+import tv.orange.models.VirtualImpl;
+
 public class GlideChatImageTarget {
     private UrlDrawable mUrlDrawable;
     private WeakReference<View> mContainer; // TODO: __INJECT_FIELD
+
+    /* ... */
+
+    public void onResourceReady(Drawable drawable, Transition<? super Drawable> transition) {
+        /* ... */
+
+        maybeInvalidateContainer(drawable); // TODO: __INJECT_CODE
+
+        /* ... */
+
+        throw new VirtualImpl();
+    }
 
     private Point scaleSquared(float f2, float f3, float f4) { // TODO: __REPLACE_METHOD
         float f5 = 1.0f;
@@ -29,11 +43,7 @@ public class GlideChatImageTarget {
         return new Point((int) (f2 * min), (int) (f3 * min));
     }
 
-    public void onResourceReady(Drawable drawable, Transition<? super Drawable> transition) {
-        /* ... */
-
-        maybeInvalidateContainer(drawable); // TODO: __INJECT_CODE
-    }
+    /* ... */
 
     public void maybeInvalidateContainer(Drawable drawable) { // TODO: __INJECT_METHOD
         if (drawable == null) {
@@ -63,7 +73,7 @@ public class GlideChatImageTarget {
             }
 
             if (view != null) {
-                mContainer = new WeakReference<View>(view);
+                mContainer = new WeakReference<>(view);
             } else {
                 mContainer = null;
             }

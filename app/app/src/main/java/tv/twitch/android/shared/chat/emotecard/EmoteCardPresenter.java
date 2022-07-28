@@ -8,7 +8,9 @@ import tv.twitch.android.core.mvp.presenter.StateUpdateEvent;
 public class EmoteCardPresenter extends RxPresenter<EmoteCardState, EmoteCardViewDelegate> {
     private final EmoteCardPresenter$stateUpdater$1 stateUpdater = null;
 
-    public void pushOrangeEmoteCardLoadedState(OrangeEmoteCardModel emoteCardModel) { // TODO: __INJECT_MODEL
+    /* ... */
+
+    public void pushOrangeEmoteCardLoadedState(OrangeEmoteCardModel emoteCardModel) { // TODO: __INJECT_METHOD
         stateUpdater.pushStateUpdate(new UpdateEvent.Initialized(new EmoteCardState.Loaded(new OrangeEmoteCardUiModel(emoteCardModel), emoteCardModel, null, null)));
     }
 
@@ -25,4 +27,6 @@ public class EmoteCardPresenter extends RxPresenter<EmoteCardState, EmoteCardVie
             }
         }
     }
+
+    /* ... */
 }

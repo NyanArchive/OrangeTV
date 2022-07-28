@@ -10,14 +10,24 @@ import tv.twitch.android.core.mvp.viewdelegate.ViewDelegateState;
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiSet;
 
 public class EmotePickerPresenter {
+    /* ... */
+
     public static final class EmotePickerState implements PresenterState, ViewDelegateState {
         /* ... */
     }
 
-    private final Flowable<Pair<EmoteUiSet, List<EmoteUiSet>>> createAllEmoteSetsFlowable(final Integer num, final EmotePickerSource emotePickerSource) {
+    /* ... */
+
+    private Flowable<Pair<EmoteUiSet, List<EmoteUiSet>>> createAllEmoteSetsFlowable(final Integer num, final EmotePickerSource emotePickerSource) {
+        /* ... */
+
         Flowable<Pair<EmoteUiSet, List<EmoteUiSet>>> map = null;
+
+        /* ... */
 
         map = ChatHookProvider.get().hookEmoteSetsFlowable(map, num); // TODO: __INJECT_CODE
         return map;
     }
+
+    /* ... */
 }

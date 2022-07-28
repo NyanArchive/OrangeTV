@@ -6,6 +6,7 @@ import java.util.List;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import tv.orange.models.VirtualImpl;
 import tv.oranges.features.chathistory.bridge.ILiveChatSource;
 import tv.twitch.android.shared.chat.chatsource.IClickableUsernameSpanListener;
 import tv.twitch.android.shared.chat.parser.ExtensionMessageKt;
@@ -13,9 +14,15 @@ import tv.twitch.android.shared.chat.parser.ExtensionMessageKt;
 public class LiveChatSource implements ILiveChatSource { // TODO: __IMPLEMENT
     private CompositeDisposable disposables;
 
+    /* ... */
+
     public final void addExtensionChatMessage(int p0, ExtensionMessageKt p1, IClickableUsernameSpanListener p2) {
         /* ... */
+
+        throw new VirtualImpl();
     }
+
+    /* ... */
 
     @Override
     public void addDisposable(@NonNull Disposable disposable) { // TODO: __INJECT_METHOD
@@ -33,4 +40,6 @@ public class LiveChatSource implements ILiveChatSource { // TODO: __IMPLEMENT
             addChatHistoryMessage(channelId, message);
         }
     }
+
+    /* ... */
 }

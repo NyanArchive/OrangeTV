@@ -4,9 +4,18 @@ import androidx.annotation.Nullable;
 
 import java.io.IOException;
 
+import tv.orange.models.VirtualImpl;
+
 public class HlsPlaylistParser {
+    /* ... */
+
     private static final String TAG_TARGET_DURATION = "#EXT-X-TARGETDURATION";
+
+    /* ... */
+
     private static final String TAG_PREFETCH = "#EXT-X-TWITCH-PREFETCH"; // TODO: __INJECT_FIELD
+
+    /* ... */
 
     private static Object parseMediaPlaylist(
             Object multivariantPlaylist,
@@ -14,6 +23,8 @@ public class HlsPlaylistParser {
             Object iterator,
             String baseUri)
             throws IOException {
+        /* ... */
+
         long targetDurationUs = 0;
 
         String line = "";
@@ -28,6 +39,10 @@ public class HlsPlaylistParser {
             }
         }
 
-        return null;
+        /* ... */
+
+        throw new VirtualImpl();
     }
+
+    /* ... */
 }

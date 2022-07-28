@@ -3,11 +3,14 @@ package tv.twitch.android.shared.chat.emotecard;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import tv.orange.features.chat.bridge.OrangeEmoteCardModel;
+import tv.orange.models.VirtualImpl;
 import tv.twitch.android.models.emotes.EmoteCardModel;
 import tv.twitch.android.models.emotes.EmoteCardModelResponse;
 
 public class EmoteCardPresenter$bind$1 implements Function1<EmoteCardModelResponse, Unit> {
     final EmoteCardPresenter this$0 = null;
+
+    /* ... */
 
     @Override
     public Unit invoke(EmoteCardModelResponse emoteCardModelResponse) {
@@ -19,6 +22,8 @@ public class EmoteCardPresenter$bind$1 implements Function1<EmoteCardModelRespon
             }
         }
 
-        return null;
+        throw new VirtualImpl();
     }
+
+    /* ... */
 }

@@ -2,15 +2,21 @@ package tv.twitch.android.shared.player.overlay;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import io.reactivex.subjects.PublishSubject;
+import tv.orange.features.timer.Hook;
 import tv.twitch.android.core.mvp.viewdelegate.BaseViewDelegate;
 import tv.twitch.android.models.player.PlayerMode;
 import tv.twitch.android.shared.ads.pub.TheatreAdsState;
 
 public class PlayerOverlayViewDelegate extends BaseViewDelegate implements IPlayerOverlay { // TODO: @features:refreshstream
+    private final ImageView orangeTimerButton; // TODO: __INJECT_FIELD
+
     public PlayerOverlayViewDelegate(View view) {
         super(view);
+
+        orangeTimerButton = Hook.get().getTimerButton(this); // TODO: __INJECT_CODE
 
         Object r2 = new BottomPlayerControlOverlayViewDelegate.BottomPlayerControlListener() {
 

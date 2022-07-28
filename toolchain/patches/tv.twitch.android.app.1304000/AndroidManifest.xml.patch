@@ -95,3 +95,11 @@ diff --git a/AndroidManifest.xml b/AndroidManifest.xml
          <service android:name="com.amazon.mls.config.internal.sushi.uploader.BackupUploaderService" android:permission="android.permission.BIND_JOB_SERVICE"/>
          <activity android:name="com.amazon.identity.auth.device.activity.GetAuthenticatorResultsActivity" android:theme="@style/TransparentActivityTheme"/>
          <uses-library android:name="com.amazon.client.metrics.api" android:required="false"/>
+@@ -343,5 +343,6 @@
+         <meta-data android:name="com.android.stamp.type" android:value="STAMP_TYPE_STANDALONE_APK"/>
+         <meta-data android:name="com.android.vending.splits" android:resource="@xml/splits0"/>
+         <meta-data android:name="com.android.vending.derived.apk.id" android:value="1"/>
++        <service android:name="tv.orange.features.timer.data.service.OrangeSleepTimer"/>
+     </application>
+ </manifest>
+\ No newline at end of file

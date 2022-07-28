@@ -1,6 +1,8 @@
 package tv.orange.core
 
 import android.content.Context
+import android.os.Build
+import androidx.fragment.app.FragmentActivity
 import tv.orange.core.models.LifecycleAware
 import tv.orange.core.models.LifecycleController
 import tv.orange.models.Injector
@@ -111,5 +113,9 @@ class Core private constructor(private val applicationContext: Context) :
         }
 
         return injector.getComponentProvider(cls)
+    }
+
+    fun killApp() {
+        System.exit(0);
     }
 }

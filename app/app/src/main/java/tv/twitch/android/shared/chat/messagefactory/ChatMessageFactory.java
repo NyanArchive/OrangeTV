@@ -12,6 +12,7 @@ import tv.orange.features.badges.bridge.OrangeMessageBadge;
 import tv.orange.features.chat.ChatHookProvider;
 import tv.orange.features.chat.bridge.BackgroundUrlDrawable;
 import tv.orange.features.emotes.bridge.EmoteToken;
+import tv.orange.models.VirtualImpl;
 import tv.orange.models.abs.EmoteCardModelWrapper;
 import tv.twitch.android.core.mvp.viewdelegate.EventDispatcher;
 import tv.twitch.android.models.chat.MessageBadge;
@@ -29,6 +30,8 @@ import tv.twitch.android.shared.ui.elements.span.TwitchUrlSpanClickListener;
 import tv.twitch.android.shared.ui.elements.span.UrlDrawable;
 
 public class ChatMessageFactory {
+    /* ... */
+
     public enum TextStyle {
         CHAT_MESSAGE,
         ACTION,
@@ -36,14 +39,16 @@ public class ChatMessageFactory {
         HIGHLIGHTED_MESSAGE
     }
 
+    /* ... */
+
     private final ChatMessageSpanGroup createChatMessageSpanGroup(ChatMessageInterface chatMessageInterface, boolean z, boolean z2, int userId, int channelId, IClickableUsernameSpanListener iClickableUsernameSpanListener, TwitchUrlSpanClickListener twitchUrlSpanClickListener, WebViewSource webViewSource, String str, boolean z3, ChatFiltersSettings chatFiltersSettings, Integer num, EventDispatcher eventDispatcher, List<String> list, Set<EmoteModel.WithOwner> set) {
         chatMessageInterface = ChatHookProvider.get().hookMessageInterface(chatMessageInterface, channelId); // TODO: __INJECT_CODE
 
-        return null;
+        throw new VirtualImpl();
     }
 
     private final CharSequence imageSpannable(Drawable drawable, String str, String str2, UrlImageClickableProvider urlImageClickableProvider, boolean z) {
-        return null;
+        throw new VirtualImpl();
     }
 
     private final CharSequence badgeSpannable(MessageBadge messageBadge, int i) {
@@ -51,10 +56,9 @@ public class ChatMessageFactory {
             return badgeSpannable((OrangeMessageBadge) messageBadge);
         }
 
-
         /* ... */
 
-        return null;
+        throw new VirtualImpl();
     }
 
     public final SpannedString parseChatMessageTokens(ChatMessageInterface chatMessageInterface, boolean z, boolean z2, WebViewSource webViewSource, TwitchUrlSpanClickListener twitchUrlSpanClickListener, String str, TextStyle textStyle, int i, ChatFiltersSettings chatFiltersSettings, Integer num, EventDispatcher<ChatItemClickEvent> eventDispatcher, List<String> list, Set<EmoteModel.WithOwner> followerEmotes, String str2) {
@@ -64,8 +68,10 @@ public class ChatMessageFactory {
             spannableStringBuilder.append(emoteSpannable((EmoteToken) token, chatMessageInterface, eventDispatcher));
         }
 
-        return null;
+        throw new VirtualImpl();
     }
+
+    /* ... */
 
     private CharSequence emoteSpannable(EmoteToken token, ChatMessageInterface cmi, EventDispatcher<ChatItemClickEvent> eventDispatcher) { // TODO: __INJECT_METHOD
         Drawable drawable = new UrlDrawable(token.getEmoteUrl(), MediaSpan$Type.Emote, true);

@@ -4,9 +4,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import tv.orange.features.chat.bridge.OrangeEmoteModel;
+import tv.orange.models.VirtualImpl;
 import tv.twitch.android.models.emotes.EmoteModel;
 
 public class AutoCompleteAdapter {
+    /* ... */
+
     public View getView(int i, View view, ViewGroup viewGroup) {
         EmoteModel model = null;
 
@@ -15,6 +18,8 @@ public class AutoCompleteAdapter {
             url.toString();
         }
 
-        return null;
+        throw new VirtualImpl();
     }
+
+    /* ... */
 }

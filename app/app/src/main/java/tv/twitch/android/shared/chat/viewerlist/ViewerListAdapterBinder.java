@@ -5,11 +5,14 @@ import android.text.TextUtils;
 import java.util.List;
 
 import tv.orange.features.usersearch.Hook;
+import tv.orange.models.VirtualImpl;
 import tv.twitch.android.models.chat.Chatters;
 
-public final class ViewerListAdapterBinder { // TODO: @features:usersearch
+public final class ViewerListAdapterBinder {
     private Chatters orgChatters; // TODO: __INJECT_FIELD
     private String searchUserText; // TODO: __INJECT_FIELD
+
+    /* ... */
 
     public final void setViewers(Chatters chatters) { // TODO: __REPLACE_METHOD
         orgChatters = chatters;
@@ -35,9 +38,23 @@ public final class ViewerListAdapterBinder { // TODO: @features:usersearch
         filterChatters();
     }
 
-    private final void addMoreViewers(Chatters chatters) {/* ... */}
+    /* ... */
 
-    private final void addItems(String str, List<String> list) {/* ... */}
+    private void addMoreViewers(Chatters chatters) {
+        /* ... */
 
-    public final void clear() {/* ... */}
+        throw new VirtualImpl();
+    }
+
+    private void addItems(String str, List<String> list) {
+        /* ... */
+
+        throw new VirtualImpl();
+    }
+
+    public final void clear() {
+        /* ... */
+
+        throw new VirtualImpl();
+    }
 }

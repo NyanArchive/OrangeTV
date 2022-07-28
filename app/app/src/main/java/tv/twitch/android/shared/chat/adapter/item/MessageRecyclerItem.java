@@ -7,6 +7,7 @@ import java.util.List;
 
 import io.reactivex.subjects.PublishSubject;
 import tv.orange.features.chat.ChatHookProvider;
+import tv.orange.models.VirtualImpl;
 import tv.twitch.android.core.mvp.viewdelegate.EventDispatcher;
 import tv.twitch.android.shared.chat.adapter.SystemMessageType;
 import tv.twitch.android.shared.chat.util.ChatItemClickEvent;
@@ -31,6 +32,8 @@ public class MessageRecyclerItem {
     private float textSizePx;
     private String username;
 
+    /* ... */
+
     public void markAsDeleted() {
         Spanned createDeletedSpanFromChatMessageSpan = ChatHookProvider.hook(messageId,
                 message,
@@ -42,5 +45,9 @@ public class MessageRecyclerItem {
             this.message = createDeletedSpanFromChatMessageSpan;
         }
         this.hasBeenDeleted = true;
+        
+        throw new VirtualImpl();
     }
+
+    /* ... */
 }

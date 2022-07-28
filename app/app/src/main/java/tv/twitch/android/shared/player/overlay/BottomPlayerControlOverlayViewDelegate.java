@@ -5,13 +5,15 @@ import android.widget.ImageView;
 
 import tv.orange.features.refreshstream.Hook;
 import tv.orange.features.refreshstream.bridge.IBottomPlayerControlOverlayViewDelegate;
+import tv.orange.models.VirtualImpl;
 import tv.twitch.android.core.mvp.viewdelegate.BaseViewDelegate;
 
 public class BottomPlayerControlOverlayViewDelegate extends BaseViewDelegate implements IBottomPlayerControlOverlayViewDelegate { // TODO: @features:refreshstream
     private BottomPlayerControlListener mBottomPlayerControlListener;
 
-    private ImageView mRefreshStreamButton; // TODO: __INJECT_FIELD
+    private final ImageView mRefreshStreamButton; // TODO: __INJECT_FIELD
 
+    /* ... */
 
     public BottomPlayerControlOverlayViewDelegate(View view) {
         super(view);
@@ -19,11 +21,10 @@ public class BottomPlayerControlOverlayViewDelegate extends BaseViewDelegate imp
         /* ... */
 
         mRefreshStreamButton = Hook.get().getRefreshStreamButton(this); // TODO: __INJECT_CODE
-    }
 
-    @Override
-    public void onRefreshStreamClicked() { // TODO: __INJECT_METHOD
-        mBottomPlayerControlListener.onRefreshClicked();
+        /* ... */
+
+        throw new VirtualImpl();
     }
 
     public interface BottomPlayerControlListener {
@@ -44,5 +45,12 @@ public class BottomPlayerControlOverlayViewDelegate extends BaseViewDelegate imp
         void onViewCountClicked();
 
         void onRefreshClicked(); // TODO: __INJECT_METHOD
+    }
+
+    /* ... */
+
+    @Override
+    public void onRefreshStreamClicked() { // TODO: __INJECT_METHOD
+        mBottomPlayerControlListener.onRefreshClicked();
     }
 }

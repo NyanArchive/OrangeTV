@@ -1,0 +1,31 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate.smali b/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate.smali
+--- a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate.smali
++++ b/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate.smali
+@@ -86,6 +86,8 @@
+ 
+ .field private final twitchRadioButton:Landroid/widget/ImageView;
+ 
++.field private final orangeTimerButton:Landroid/widget/ImageView;
++
+ 
+ # direct methods
+ .method public static synthetic $r8$lambda$OHalcw30Kr4-HVrzEe4UL00NqNs(Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;Landroid/view/View;)V
+@@ -535,6 +537,18 @@
+ 
+     invoke-virtual {v1, v2}, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->setBottomPlayerControlListener(Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate$BottomPlayerControlListener;)V
+ 
++    move-object/from16 v0, p0
++
++    invoke-static {}, Ltv/orange/features/timer/Hook;->get()Ltv/orange/features/timer/Hook;
++
++    move-result-object v1
++
++    invoke-virtual {v1, v0}, Ltv/orange/features/timer/Hook;->getTimerButton(Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;)Landroid/widget/ImageView;
++
++    move-result-object v1
++
++    iput-object v1, v0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->orangeTimerButton:Landroid/widget/ImageView;
++
+     return-void
+ .end method
+ 

@@ -1,0 +1,28 @@
+diff --git a/smali_classes8/tv/twitch/android/models/streams/HostedStreamModel.smali b/smali_classes8/tv/twitch/android/models/streams/HostedStreamModel.smali
+--- a/smali_classes8/tv/twitch/android/models/streams/HostedStreamModel.smali
++++ b/smali_classes8/tv/twitch/android/models/streams/HostedStreamModel.smali
+@@ -887,10 +887,21 @@
+ .end method
+ 
+ .method public getChannelLogoURL()Ljava/lang/String;
+-    .locals 1
++    .registers 4
+ 
+-    .line 23
+-    iget-object v0, p0, Ltv/twitch/android/models/streams/HostedStreamModel;->channelLogoURL:Ljava/lang/String;
++    .prologue
++    .line 12
++    invoke-static {}, Ltv/orange/features/stv/AvatarsHookProvider;->get()Ltv/orange/features/stv/AvatarsHookProvider;
++
++    move-result-object v0
++
++    iget-object v1, p0, Ltv/twitch/android/models/streams/HostedStreamModel;->channelLogoURL:Ljava/lang/String;
++
++    iget-object v2, p0, Ltv/twitch/android/models/streams/HostedStreamModel;->name:Ljava/lang/String;
++
++    invoke-virtual {v0, v1, v2}, Ltv/orange/features/stv/AvatarsHookProvider;->hookProfileImageUrl(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
++
++    move-result-object v0
+ 
+     return-object v0
+ .end method

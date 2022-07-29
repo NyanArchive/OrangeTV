@@ -1,0 +1,87 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/leaderboards/repository/LeaderboardsDataSource.smali b/smali_classes6/tv/twitch/android/shared/leaderboards/repository/LeaderboardsDataSource.smali
+--- a/smali_classes6/tv/twitch/android/shared/leaderboards/repository/LeaderboardsDataSource.smali
++++ b/smali_classes6/tv/twitch/android/shared/leaderboards/repository/LeaderboardsDataSource.smali
+@@ -635,82 +635,8 @@
+ .end method
+ 
+ .method private final observePubSubUpdates(Ltv/twitch/android/models/leaderboard/ChannelLeaderboards;)V
+-    .locals 4
+-
+-    .line 215
+-    invoke-virtual {p1}, Ltv/twitch/android/models/leaderboard/ChannelLeaderboards;->getSubGiftsLeaderboard()Ltv/twitch/android/models/leaderboard/ChannelLeaderboard;
+-
+-    move-result-object v0
+-
+-    if-eqz v0, :cond_0
+-
+-    .line 216
+-    iget-object v1, p0, Ltv/twitch/android/shared/leaderboards/repository/LeaderboardsDataSource;->pubSubTopicsDisposable:Lio/reactivex/disposables/CompositeDisposable;
+-
+-    iget-object v2, p0, Ltv/twitch/android/shared/leaderboards/repository/LeaderboardsDataSource;->pubSubUpdater:Ltv/twitch/android/shared/leaderboards/repository/pubsub/LeaderboardPubSubUpdater;
+-
+-    invoke-virtual {v0}, Ltv/twitch/android/models/leaderboard/ChannelLeaderboard;->getId()Ljava/lang/String;
+-
+-    move-result-object v0
+-
+-    invoke-virtual {p0}, Ltv/twitch/android/core/mvp/presenter/RxPresenter;->stateObserver()Lio/reactivex/Flowable;
+-
+-    move-result-object v3
+-
+-    invoke-virtual {v2, v0, v3}, Ltv/twitch/android/shared/leaderboards/repository/pubsub/LeaderboardPubSubUpdater;->observeEventsForLeaderboard(Ljava/lang/String;Lio/reactivex/Flowable;)Lio/reactivex/Flowable;
+-
+-    move-result-object v0
+-
+-    .line 217
+-    new-instance v2, Ltv/twitch/android/shared/leaderboards/repository/LeaderboardsDataSource$observePubSubUpdates$1$1;
+-
+-    invoke-direct {v2, p0}, Ltv/twitch/android/shared/leaderboards/repository/LeaderboardsDataSource$observePubSubUpdates$1$1;-><init>(Ltv/twitch/android/shared/leaderboards/repository/LeaderboardsDataSource;)V
+-
+-    invoke-static {v0, v2}, Ltv/twitch/android/util/RxHelperKt;->safeSubscribe(Lio/reactivex/Flowable;Lkotlin/jvm/functions/Function1;)Lio/reactivex/disposables/Disposable;
+-
+-    move-result-object v0
+-
+-    .line 216
+-    invoke-static {v1, v0}, Ltv/twitch/android/util/RxHelperKt;->plusAssign(Lio/reactivex/disposables/CompositeDisposable;Lio/reactivex/disposables/Disposable;)V
+-
+-    .line 222
+-    :cond_0
+-    invoke-virtual {p1}, Ltv/twitch/android/models/leaderboard/ChannelLeaderboards;->getBitsLeaderboard()Ltv/twitch/android/models/leaderboard/ChannelLeaderboard;
+-
+-    move-result-object p1
+-
+-    if-eqz p1, :cond_1
+-
+-    .line 223
+-    iget-object v0, p0, Ltv/twitch/android/shared/leaderboards/repository/LeaderboardsDataSource;->pubSubTopicsDisposable:Lio/reactivex/disposables/CompositeDisposable;
+-
+-    iget-object v1, p0, Ltv/twitch/android/shared/leaderboards/repository/LeaderboardsDataSource;->pubSubUpdater:Ltv/twitch/android/shared/leaderboards/repository/pubsub/LeaderboardPubSubUpdater;
+-
+-    invoke-virtual {p1}, Ltv/twitch/android/models/leaderboard/ChannelLeaderboard;->getId()Ljava/lang/String;
+-
+-    move-result-object p1
+-
+-    invoke-virtual {p0}, Ltv/twitch/android/core/mvp/presenter/RxPresenter;->stateObserver()Lio/reactivex/Flowable;
+-
+-    move-result-object v2
+-
+-    invoke-virtual {v1, p1, v2}, Ltv/twitch/android/shared/leaderboards/repository/pubsub/LeaderboardPubSubUpdater;->observeEventsForLeaderboard(Ljava/lang/String;Lio/reactivex/Flowable;)Lio/reactivex/Flowable;
+-
+-    move-result-object p1
+-
+-    .line 224
+-    new-instance v1, Ltv/twitch/android/shared/leaderboards/repository/LeaderboardsDataSource$observePubSubUpdates$2$1;
+-
+-    invoke-direct {v1, p0}, Ltv/twitch/android/shared/leaderboards/repository/LeaderboardsDataSource$observePubSubUpdates$2$1;-><init>(Ltv/twitch/android/shared/leaderboards/repository/LeaderboardsDataSource;)V
+-
+-    invoke-static {p1, v1}, Ltv/twitch/android/util/RxHelperKt;->safeSubscribe(Lio/reactivex/Flowable;Lkotlin/jvm/functions/Function1;)Lio/reactivex/disposables/Disposable;
+-
+-    move-result-object p1
+-
+-    .line 223
+-    invoke-static {v0, p1}, Ltv/twitch/android/util/RxHelperKt;->plusAssign(Lio/reactivex/disposables/CompositeDisposable;Lio/reactivex/disposables/Disposable;)V
++    .locals 0
+ 
+-    :cond_1
+     return-void
+ .end method
+ 

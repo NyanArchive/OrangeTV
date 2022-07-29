@@ -87,7 +87,7 @@ enum class Flag(
             return getBoolean(this.value)
         }
 
-        fun <T: Variant> Flag.variant(): T {
+        fun <T : Variant> Flag.variant(): T {
             return getVariant(this.value)
         }
 
@@ -158,7 +158,7 @@ enum class Flag(
     }
 
     @Suppress("UNCHECKED_CAST")
-    class ListValue<T: Variant>(private val variant: T) : ValueHolder {
+    class ListValue<T : Variant>(private val variant: T) : ValueHolder {
         var currentVariant: Variant? = variant.default()
 
         fun set(string: String): String {
@@ -179,7 +179,7 @@ enum class Flag(
         override val type: Type
             get() = Type.LIST
 
-        fun <T: Variant> getVariant(): T {
+        fun <T : Variant> getVariant(): T {
             return currentVariant as T
         }
     }

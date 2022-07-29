@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/orange_chapters_item__logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:minWidth="60dp"
+        android:minHeight="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/orange_chapters_item__title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Test me"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/orange_chapters_item__timestamp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/orange_chapters_item__logo"
+        app:layout_constraintTop_toTopOf="@id/orange_chapters_item__logo" />
+
+    <TextView
+        android:id="@+id/orange_chapters_item__timestamp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="01:01:23"
+        app:layout_constraintBottom_toBottomOf="@id/orange_chapters_item__logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/orange_chapters_item__logo"
+        app:layout_constraintTop_toBottomOf="@id/orange_chapters_item__title" />
+</androidx.constraintlayout.widget.ConstraintLayout>

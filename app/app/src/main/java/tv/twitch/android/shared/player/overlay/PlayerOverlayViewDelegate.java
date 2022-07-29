@@ -4,15 +4,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+
 import io.reactivex.subjects.PublishSubject;
+import tv.orange.features.chapters.ChaptersHook;
+import tv.orange.features.chapters.bridge.IChaptersDelegate;
 import tv.orange.features.timer.Hook;
 import tv.orange.models.VirtualImpl;
 import tv.twitch.android.core.mvp.viewdelegate.BaseViewDelegate;
 import tv.twitch.android.models.player.PlayerMode;
+import tv.twitch.android.models.videos.VodModel;
 import tv.twitch.android.shared.ads.pub.TheatreAdsState;
+import tv.twitch.android.shared.player.overlay.seekable.SeekbarOverlayPresenter;
 
-public class PlayerOverlayViewDelegate extends BaseViewDelegate implements IPlayerOverlay { // TODO: @features:refreshstream
+public class PlayerOverlayViewDelegate extends BaseViewDelegate implements IPlayerOverlay, IChaptersDelegate { // TODO: __IMPLEMENT
     private final ImageView orangeTimerButton; // TODO: __INJECT_FIELD
+    private final ImageView chaptersButton; // TODO: __INJECT_FIELD
 
     /* ... */
 
@@ -22,6 +29,7 @@ public class PlayerOverlayViewDelegate extends BaseViewDelegate implements IPlay
         /* ... */
 
         orangeTimerButton = Hook.get().getTimerButton(this); // TODO: __INJECT_CODE
+        chaptersButton = ChaptersHook.get().getChaptersButton(this); // TODO: __INJECT_CODE
 
         /* ... */
 
@@ -116,5 +124,15 @@ public class PlayerOverlayViewDelegate extends BaseViewDelegate implements IPlay
         /* ... */
 
         throw new VirtualImpl();
+    }
+
+    @Override
+    public void hideChaptersButton() { // TODO: __INJECT_METHOD
+        ChaptersHook.get().hideChaptersButton(chaptersButton);
+    }
+
+    @Override
+    public void onBindVodModel(@NonNull VodModel vod, @NonNull SeekbarOverlayPresenter presenter) { // TODO: __INJECT_METHOD
+        ChaptersHook.get().bindChaptersButton(chaptersButton, vod, presenter);
     }
 }

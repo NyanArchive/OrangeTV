@@ -1,0 +1,40 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/messageinput/autocomplete/AutoCompleteAdapter.smali b/smali_classes5/tv/twitch/android/shared/chat/messageinput/autocomplete/AutoCompleteAdapter.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/messageinput/autocomplete/AutoCompleteAdapter.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/messageinput/autocomplete/AutoCompleteAdapter.smali
+@@ -156,7 +156,7 @@
+ .end method
+ 
+ .method public getView(ILandroid/view/View;Landroid/view/ViewGroup;)Landroid/view/View;
+-    .locals 3
++    .locals 4
+ 
+     if-nez p2, :cond_0
+ 
+@@ -268,6 +268,19 @@
+ 
+     check-cast p1, Ltv/twitch/android/models/emotes/EmoteModel;
+ 
++    instance-of v3, p1, Ltv/orange/features/chat/bridge/OrangeEmoteModel;
++
++    if-eqz v3, :cond_z
++
++    check-cast p1, Ltv/orange/features/chat/bridge/OrangeEmoteModel;
++
++    invoke-virtual {p1}, Ltv/orange/features/chat/bridge/OrangeEmoteModel;->getEmoteUrl()Ljava/lang/String;
++
++    move-result-object p1
++
++    goto :goto_z
++
++    :cond_z
+     invoke-virtual {p1}, Ltv/twitch/android/models/emotes/EmoteModel;->getId()Ljava/lang/String;
+ 
+     move-result-object p1
+@@ -276,6 +289,7 @@
+ 
+     move-result-object p1
+ 
++    :goto_z
+     invoke-virtual {v0, p1}, Ltv/twitch/android/shared/ui/elements/image/NetworkImageWidget;->setImageURL(Ljava/lang/String;)V
+ 
+     .line 97

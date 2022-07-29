@@ -1,0 +1,182 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate.smali b/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate.smali
+--- a/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate.smali
++++ b/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate.smali
+@@ -2,6 +2,9 @@
+ .super Ltv/twitch/android/core/mvp/viewdelegate/RxViewDelegate;
+ .source "EmotePickerViewDelegate.kt"
+ 
++# interfaces
++.implements Ltv/orange/features/chat/bridge/ScrollableOrangeSection;
++
+ 
+ # annotations
+ .annotation system Ldalvik/annotation/MemberClasses;
+@@ -49,6 +52,8 @@
+ 
+ .field private final showKeyboardButton:Landroid/widget/ImageView;
+ 
++.field private final orangeEmotesButton:Landroid/widget/ImageView;
++
+ 
+ # direct methods
+ .method public static synthetic $r8$lambda$CQ_u71dF9BxWNvZMIFBqYllcHYo(Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate;Landroid/view/View;)V
+@@ -275,6 +280,16 @@
+ 
+     invoke-virtual {v0, p1}, Landroid/widget/ImageView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+ 
++    invoke-static {}, Ltv/orange/features/chat/ChatHookProvider;->get()Ltv/orange/features/chat/ChatHookProvider;
++
++    move-result-object v0
++
++    invoke-virtual {v0, p0}, Ltv/orange/features/chat/ChatHookProvider;->getOrangeEmotesButton(Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate;)Landroid/widget/ImageView;
++
++    move-result-object v0
++
++    iput-object v0, p0, Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate;->orangeEmotesButton:Landroid/widget/ImageView;
++
+     return-void
+ .end method
+ 
+@@ -623,6 +638,14 @@
+ 
+     invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+ 
++    invoke-static {}, Ltv/orange/features/chat/ChatHookProvider;->get()Ltv/orange/features/chat/ChatHookProvider;
++
++    move-result-object v0
++
++    iget-object v1, p0, Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate;->orangeEmotesButton:Landroid/widget/ImageView;
++
++    invoke-virtual {v0, p1, v1}, Ltv/orange/features/chat/ChatHookProvider;->renderEmotePickerState(Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter$EmotePickerState;Landroid/widget/ImageView;)V
++
+     .line 131
+     invoke-virtual {p1}, Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter$EmotePickerState;->isOpen()Z
+ 
+@@ -774,3 +797,127 @@
+ 
+     return-void
+ .end method
++
++.method public scrollToOrangeSection()V
++    .registers 10
++
++    .line 29
++    iget-object v0, p0, Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate;->listViewDelegate:Ltv/twitch/android/shared/ui/elements/list/ContentListViewDelegate;
++
++    if-nez v0, :cond_5
++
++    .line 30
++    return-void
++
++    .line 33
++    :cond_5
++    invoke-virtual {v0}, Ltv/twitch/android/shared/ui/elements/list/ContentListViewDelegate;->getAdapter()Landroidx/recyclerview/widget/RecyclerView$Adapter;
++
++    move-result-object v0
++
++    check-cast v0, Ltv/twitch/android/core/adapters/TwitchSectionAdapter;
++
++    .line 35
++    .local v0, "adapter":Ltv/twitch/android/core/adapters/TwitchSectionAdapter;
++    if-nez v0, :cond_e
++
++    .line 36
++    return-void
++
++    .line 39
++    :cond_e
++    invoke-virtual {v0}, Ltv/twitch/android/core/adapters/TwitchSectionAdapter;->getSections()Ljava/util/List;
++
++    move-result-object v1
++
++    .line 40
++    .local v1, "sections":Ljava/util/List;, "Ljava/util/List<Ltv/twitch/android/core/adapters/RecyclerAdapterSection;>;"
++    if-eqz v1, :cond_46
++
++    invoke-interface {v1}, Ljava/util/List;->size()I
++
++    move-result v2
++
++    if-nez v2, :cond_1b
++
++    goto :goto_46
++
++    .line 44
++    :cond_1b
++    const/4 v2, 0x0
++
++    .line 46
++    .local v2, "pos":I
++    const/4 v3, 0x0
++
++    .line 47
++    .local v3, "sizeWithHeader":I
++    invoke-interface {v1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
++
++    move-result-object v4
++
++    :goto_21
++    invoke-interface {v4}, Ljava/util/Iterator;->hasNext()Z
++
++    move-result v5
++
++    if-eqz v5, :cond_40
++
++    invoke-interface {v4}, Ljava/util/Iterator;->next()Ljava/lang/Object;
++
++    move-result-object v5
++
++    check-cast v5, Ltv/twitch/android/core/adapters/RecyclerAdapterSection;
++
++    .line 48
++    .local v5, "t":Ltv/twitch/android/core/adapters/RecyclerAdapterSection;
++    move-object v6, v5
++
++    check-cast v6, Ltv/twitch/android/shared/emotes/emotepicker/adapter/EmotePickerAdapterSection;
++
++    .line 50
++    .local v6, "section":Ltv/twitch/android/shared/emotes/emotepicker/adapter/EmotePickerAdapterSection;
++    invoke-virtual {v6}, Ltv/twitch/android/shared/emotes/emotepicker/adapter/EmotePickerAdapterSection;->getEmotePickerSection()Ltv/twitch/android/shared/emotes/emotepicker/models/EmotePickerSection;
++
++    move-result-object v7
++
++    sget-object v8, Ltv/twitch/android/shared/emotes/emotepicker/models/EmotePickerSection;->ORANGE:Ltv/twitch/android/shared/emotes/emotepicker/models/EmotePickerSection;
++
++    if-ne v7, v8, :cond_3a
++
++    .line 51
++    move v2, v3
++
++    .line 52
++    goto :goto_40
++
++    .line 55
++    :cond_3a
++    invoke-virtual {v6}, Ltv/twitch/android/shared/emotes/emotepicker/adapter/EmotePickerAdapterSection;->sizeWithHeader()I
++
++    move-result v7
++
++    add-int/2addr v3, v7
++
++    .line 56
++    .end local v5    # "t":Ltv/twitch/android/core/adapters/RecyclerAdapterSection;
++    .end local v6    # "section":Ltv/twitch/android/shared/emotes/emotepicker/adapter/EmotePickerAdapterSection;
++    goto :goto_21
++
++    .line 58
++    :cond_40
++    :goto_40
++    iget-object v4, p0, Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate;->listViewDelegate:Ltv/twitch/android/shared/ui/elements/list/ContentListViewDelegate;
++
++    invoke-virtual {v4, v2}, Ltv/twitch/android/shared/ui/elements/list/ContentListViewDelegate;->fastScrollToPosition(I)V
++
++    .line 59
++    return-void
++
++    .line 41
++    .end local v2    # "pos":I
++    .end local v3    # "sizeWithHeader":I
++    :cond_46
++    :goto_46
++    return-void
++.end method

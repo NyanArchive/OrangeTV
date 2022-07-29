@@ -69,7 +69,8 @@ def get_last_dex_num(path: Path):
 def move_classes(src, dst):
     if src.exists():
         new_dir = dst
-        new_dir.mkdir(parents=True)
+        if not new_dir.exists():
+            new_dir.mkdir(parents=True)
         shutil.move(src.as_posix(), new_dir.as_posix())
         print("{}: OK".format(src))
     else:

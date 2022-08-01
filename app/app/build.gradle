@@ -70,4 +70,5 @@ dependencies {
     implementation project(path: ':features:stv')
     implementation project(path: ':features:settings')
     implementation project(path: ':features:timer')
+    implementation project(path: ':features:chapters')
 }

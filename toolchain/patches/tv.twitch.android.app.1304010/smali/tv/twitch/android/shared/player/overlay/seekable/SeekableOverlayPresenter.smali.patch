@@ -1,0 +1,55 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/seekable/SeekableOverlayPresenter.smali b/smali_classes6/tv/twitch/android/shared/player/overlay/seekable/SeekableOverlayPresenter.smali
+--- a/smali_classes6/tv/twitch/android/shared/player/overlay/seekable/SeekableOverlayPresenter.smali
++++ b/smali_classes6/tv/twitch/android/shared/player/overlay/seekable/SeekableOverlayPresenter.smali
+@@ -233,6 +233,10 @@
+ 
+     invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+ 
++    iget-object v0, p0, Ltv/twitch/android/shared/player/overlay/seekable/SeekableOverlayPresenter;->playerOverlayPresenter:Ltv/twitch/android/shared/player/overlay/PlayerOverlayPresenter;
++
++    invoke-virtual {v0}, Ltv/twitch/android/shared/player/overlay/PlayerOverlayPresenter;->hideChaptersButton()V
++
+     .line 187
+     iget-object v0, p0, Ltv/twitch/android/shared/player/overlay/seekable/SeekableOverlayPresenter;->playPauseFastSeekViewDelegate:Ltv/twitch/android/shared/player/overlay/seekable/PlayPauseFastSeekViewDelegate;
+ 
+@@ -299,6 +303,12 @@
+ 
+     invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+ 
++    iget-object v0, p0, Ltv/twitch/android/shared/player/overlay/seekable/SeekableOverlayPresenter;->playerOverlayPresenter:Ltv/twitch/android/shared/player/overlay/PlayerOverlayPresenter;
++
++    iget-object v1, p0, Ltv/twitch/android/shared/player/overlay/seekable/SeekableOverlayPresenter;->seekbarOverlayPresenter:Ltv/twitch/android/shared/player/overlay/seekable/SeekbarOverlayPresenter;
++
++    invoke-virtual {v0, p1, v1}, Ltv/twitch/android/shared/player/overlay/PlayerOverlayPresenter;->onBindVodModel(Ltv/twitch/android/models/videos/VodModel;Ltv/twitch/android/shared/player/overlay/seekable/SeekbarOverlayPresenter;)V
++
+     .line 172
+     iget-object v0, p0, Ltv/twitch/android/shared/player/overlay/seekable/SeekableOverlayPresenter;->playPauseFastSeekViewDelegate:Ltv/twitch/android/shared/player/overlay/seekable/PlayPauseFastSeekViewDelegate;
+ 
+@@ -540,6 +550,10 @@
+     .line 145
+     invoke-virtual {v0, p1}, Ltv/twitch/android/shared/player/overlay/PlayerOverlayPresenter;->attachViewDelegate(Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;)V
+ 
++    iget-object v0, p0, Ltv/twitch/android/shared/player/overlay/seekable/SeekableOverlayPresenter;->playerOverlayPresenter:Ltv/twitch/android/shared/player/overlay/PlayerOverlayPresenter;
++
++    invoke-virtual {v0}, Ltv/twitch/android/shared/player/overlay/PlayerOverlayPresenter;->hideChaptersButton()V
++
+     return-void
+ .end method
+ 
+@@ -778,3 +792,16 @@
+ 
+     return-void
+ .end method
++
++.method public xSeekTo(I)V
++    .registers 3
++    .param p1, "seconds"    # I
++
++    .line 9
++    iget-object v0, p0, Ltv/twitch/android/shared/player/overlay/seekable/SeekableOverlayPresenter;->seekbarOverlayViewDelegate:Ltv/twitch/android/shared/player/overlay/seekable/SeekbarOverlayViewDelegate;
++
++    invoke-virtual {v0, p1}, Ltv/twitch/android/shared/player/overlay/seekable/SeekbarOverlayViewDelegate;->xSeekTo(I)V
++
++    .line 10
++    return-void
++.end method

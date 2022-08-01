@@ -43,4 +43,7 @@ dependencies {
     api "com.google.dagger:dagger:$dagger_version"
     api "com.google.dagger:dagger-android-support:$dagger_version"
     api "io.reactivex.rxjava2:rxjava:$rxjava2_version"
+    api 'androidx.recyclerview:recyclerview:1.2.1'
+    api 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation project(path: ':TwitchRes')
 }

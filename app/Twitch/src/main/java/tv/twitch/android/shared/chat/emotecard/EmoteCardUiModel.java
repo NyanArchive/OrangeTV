@@ -1,6 +1,5 @@
 package tv.twitch.android.shared.chat.emotecard;
 
-import kotlin.jvm.internal.Intrinsics;
 import tv.twitch.android.core.strings.StringResource;
 
 public class EmoteCardUiModel { // TODO: __REMOVE_FINAL

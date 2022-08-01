@@ -65,6 +65,7 @@ class ChaptersHook @Inject constructor(val viewFactory: ViewFactory) {
             Logger.debug("called")
             val sfm = (chaptersButton.context as FragmentActivity).supportFragmentManager
             val fragment = chaptersComponent.chaptersFragment
+            fragment.bindSeekPresenter(presenter)
             fragment.show(sfm, "chapters")
             fragment.load(id)
         }

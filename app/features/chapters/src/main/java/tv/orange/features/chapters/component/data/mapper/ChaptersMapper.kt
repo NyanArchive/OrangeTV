@@ -7,14 +7,25 @@ import javax.inject.Inject
 
 class ChaptersMapper @Inject constructor() {
     fun map(data: VideoPlayer_ChapterSelectButtonVideoQuery.Data): List<Chapter> {
-        return data.video?.moments?.edges?.map {
+        val res = data.video?.moments?.edges?.map {
             it.node.let { node ->
                 Chapter(
                     title = node.description ?: "Unknown",
-                    timestamp = TimeUnit.MILLISECONDS.toSeconds(node.positionMilliseconds.toLong()).toInt(),
+                    timestamp = TimeUnit.MILLISECONDS.toSeconds(node.positionMilliseconds.toLong())
+                        .toInt(),
                     url = node.details?.onGameChangeMomentDetails?.game?.boxArtURL
                 )
             }
-        } ?: emptyList()
+        }
+        if (res.isNullOrEmpty()) {
+            return listOf(
+                Chapter(
+                    title = data.video?.game?.displayName ?: "Unknown",
+                    timestamp = 0,
+                    url = data.video?.game?.boxArtURL
+                )
+            )
+        }
+        return res
     }
 }

@@ -4,7 +4,7 @@ query VideoPlayer_ChapterSelectButtonVideo($videoID: ID $includePrivate: Boolean
         game {
             id
             displayName
-            boxArtURL(width: 40 height: 53)
+            boxArtURL(width: 160 height: 212)
         }
         moments(momentRequestType: VIDEO_CHAPTER_MARKERS types: [GAME_CHANGE]) {
             edges {
@@ -19,7 +19,7 @@ query VideoPlayer_ChapterSelectButtonVideo($videoID: ID $includePrivate: Boolean
                             game {
                                 id
                                 displayName
-                                boxArtURL(width: 40 height: 53)
+                                boxArtURL(width: 160 height: 212)
                             }
                         }
                     }

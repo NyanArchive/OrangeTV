@@ -21,4 +21,8 @@ object ResourceManager {
         val context = ApplicationContext.getInstance().context
         return context.resources.getIdentifier(resName, type, context.packageName)
     }
+
+    fun getResId(resName: String): Int {
+        return getId(resName = resName, type = "id")
+    }
 }

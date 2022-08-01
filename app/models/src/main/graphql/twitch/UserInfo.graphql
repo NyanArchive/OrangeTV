@@ -1,0 +1,6 @@
+query UserInfo($userId: ID, $userLogin: String) {
+    user(id: $userId, login: $userLogin) {
+        id
+        login
+    }
+}

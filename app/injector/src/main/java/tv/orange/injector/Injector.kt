@@ -9,6 +9,7 @@ import tv.orange.injector.di.InjectorScope
 import tv.orange.models.Injector
 import tv.twitch.android.app.consumer.dagger.DaggerAppComponent
 import tv.twitch.android.network.graphql.GraphQlService
+import tv.twitch.android.shared.chat.messagefactory.ChatMessageFactory
 import javax.inject.Inject
 import javax.inject.Provider
 import kotlin.reflect.KClass
@@ -41,6 +42,12 @@ class Injector @Inject constructor(
             getTwitchProvider<GraphQlService>(
                 twitchComponent,
                 "graphQlServiceProvider"
+            ).get()
+        }
+        register(ChatMessageFactory.Factory::class) {
+            getTwitchProvider<ChatMessageFactory.Factory>(
+                twitchComponent,
+                "factoryProvider2"
             ).get()
         }
     }

@@ -2,7 +2,6 @@ package tv.orange.features.logs
 
 import androidx.fragment.app.FragmentActivity
 import tv.orange.core.Core
-import tv.orange.core.Logger
 import tv.orange.core.di.component.CoreComponent
 import tv.orange.features.logs.di.component.DaggerLogsComponent
 import tv.orange.features.logs.di.component.LogsComponent
@@ -17,18 +16,12 @@ import javax.inject.Inject
 
 @LogsScope
 class LogsHook @Inject constructor(val viewFactory: ViewFactory) {
-    private lateinit var logsComponent: LogsComponent
-
-    fun createModLogsButton(state: ModerationBottomSheetViewState): BottomSheetListItemModel<*> {
-        return viewFactory.createModLogsButton(state)
-    }
-
     fun showModLogs(
         activity: FragmentActivity,
         event: ModerationActionBottomSheetViewDelegate.ModerationActionButtonEvent
     ): Boolean {
         if (event is ModerationActionBottomSheetViewDelegate.ModerationActionButtonEvent.ViewLogs) {
-            val fragment = logsComponent.modLogsFragment
+            val fragment = COMPONENT!!.modLogsFragment
             fragment.bind(activity)
             fragment.show(activity.supportFragmentManager, "mod_logs")
             fragment.load(event.userId, event.channelId)
@@ -43,28 +36,47 @@ class LogsHook @Inject constructor(val viewFactory: ViewFactory) {
         state: ModerationBottomSheetViewState
     ): List<BottomSheetListItemModel<*>> {
         return list.toMutableList().apply {
-            add(createModLogsButton(state))
+            add(viewFactory.createModLogsButton(state))
         }
     }
 
     companion object {
-        private val INSTANCE by lazy {
-            val component = DaggerLogsComponent.factory().create(
+        private var COMPONENT: LogsComponent? = null
+        private var INSTANCE: LogsHook? = null
+
+        private fun buildComponent(): LogsComponent {
+            return DaggerLogsComponent.factory().create(
                 Core.getProvider(CoreComponent::class).get(),
                 Core.getProvider(ChatMessageFactory.Factory::class).get(),
                 Core.getProvider(GraphQlService::class).get()
-            )
+            ).apply {
+                COMPONENT = this
+            }
+        }
 
-            val instance = component.hook
-            component.hook.logsComponent = component
-
-            Logger.debug("Provide new instance: $instance")
-            return@lazy instance
+        private fun buildInstance(): LogsHook {
+            return COMPONENT!!.hook.apply {
+                INSTANCE = this
+            }
         }
 
         @JvmStatic
         fun get(): LogsHook {
-            return INSTANCE
+            INSTANCE?.let {
+                return it
+            }
+
+            synchronized(this) {
+                COMPONENT ?: buildComponent()
+                INSTANCE ?: buildInstance()
+
+                return INSTANCE!!
+            }
+        }
+
+        fun clear() {
+            COMPONENT = null
+            INSTANCE = null
         }
     }
 }

@@ -41,4 +41,16 @@ object DateUtil {
     fun timestampToDate(timestamp: Int): Date {
         return Date(timestamp.toLong() * 1000)
     }
+
+    fun isSameDate(d1: Date?, d2: Date?): Boolean {
+        d1 ?: return false
+        d2 ?: return false
+
+        val c1 = Calendar.getInstance().apply { time = d1 }
+        val c2 = Calendar.getInstance().apply { time = d2 }
+
+        return c1[Calendar.YEAR] == c2[Calendar.YEAR] &&
+                c1[Calendar.MONTH] == c2[Calendar.MONTH] &&
+                c1[Calendar.DAY_OF_MONTH] == c2[Calendar.DAY_OF_MONTH]
+    }
 }

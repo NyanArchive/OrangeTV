@@ -6,45 +6,48 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.fragment.app.FragmentActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import tv.orange.core.ResourceManager
 import tv.orange.core.ViewUtil.getView
+import tv.orange.features.logs.component.data.model.MessageItem
 import tv.orange.features.logs.component.data.repository.LogsRepository
 import tv.orange.features.logs.data.adapter.LogsAdapter
 import javax.inject.Inject
 
 class LogsFragment @Inject constructor(
-    val repository: LogsRepository,
-    val adapter: LogsAdapter
-) :
-    BottomSheetDialogFragment() {
-    lateinit var rv: RecyclerView
-    lateinit var pb: ProgressBar
+    val logsRepository: LogsRepository,
+    val logsAdapter: LogsAdapter
+) : BottomSheetDialogFragment() {
+    private lateinit var rv: RecyclerView
+    private lateinit var pb: ProgressBar
 
     private val disposables = CompositeDisposable()
 
     fun bind(fragment: FragmentActivity) {
-        adapter.bindActivity(fragment)
+        logsAdapter.bindActivity(fragment)
+    }
+
+    private fun render(messages: List<MessageItem>) {
+        logsAdapter.setData(messages)
+        pb.visibility = View.GONE
+        rv.visibility = View.VISIBLE
     }
 
     fun load(userLogin: String, channelId: String) {
         disposables.clear()
         disposables.add(
-            repository.getLogs(userLogin, channelId).observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    adapter.setData(it)
-                    pb.visibility = View.GONE
-                    rv.visibility = View.VISIBLE
-                }, Throwable::printStackTrace)
+            logsRepository.getLogs(userLogin, channelId)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ render(it) }, Throwable::printStackTrace)
         )
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        disposables.clear()
     }
 
     override fun onCreateView(
@@ -58,13 +61,9 @@ class LogsFragment @Inject constructor(
             false
         )
         pb = view.getView("orangetv_logs_container__pb")
-        rv = view.getView("orangetv_logs_container__rv")
-        rv.adapter = adapter
-        rv.layoutManager = LinearLayoutManager(
-            inflater.context,
-            LinearLayoutManager.VERTICAL,
-            false
-        )
+        rv = view.getView<RecyclerView>("orangetv_logs_container__rv").apply {
+            adapter = logsAdapter
+        }
 
         return view
     }

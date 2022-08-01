@@ -4,7 +4,8 @@ import com.apollographql.apollo3.api.Optional
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import tv.orange.features.logs.component.data.mapper.LogsMapper
-import tv.orange.features.logs.component.data.model.Message
+import tv.orange.features.logs.component.data.model.ChatMessage
+import tv.orange.features.logs.component.data.model.MessageItem
 import tv.orange.features.logs.component.data.model.UserInfo
 import tv.orange.features.logs.di.scope.LogsScope
 import tv.orange.models.gql.twitch.UserInfoQuery
@@ -17,7 +18,7 @@ class LogsDataSource @Inject constructor(
     val apolloClient: GraphQlService,
     val mapper: LogsMapper
 ) {
-    fun getMessages(userLogin: String, channelId: String): Single<List<Message>> {
+    fun getMessages(userLogin: String, channelId: String): Single<List<MessageItem>> {
         return getUserInfo(userLogin).flatMap { userInfo ->
             apolloClient.singleForQuery(
                 ViewerCardModLogsMessagesBySenderQuery(

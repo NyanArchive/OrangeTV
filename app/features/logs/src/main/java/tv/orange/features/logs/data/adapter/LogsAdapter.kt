@@ -10,24 +10,45 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import tv.orange.core.ResourceManager
 import tv.orange.core.ViewUtil.getView
-import tv.orange.features.logs.component.data.model.Message
+import tv.orange.features.logs.component.data.model.ChatMessage
+import tv.orange.features.logs.component.data.model.MessageItem
 import tv.twitch.android.shared.chat.messagefactory.ChatMessageFactory
 import tv.twitch.android.shared.ui.elements.GlideHelper
+import java.text.DateFormat
+import java.util.*
 import javax.inject.Inject
 
 class LogsAdapter @Inject constructor(val factoryProvider: ChatMessageFactory.Factory) :
-    RecyclerView.Adapter<LogsAdapter.ChapterItemVH>() {
-    private var messages: List<Message> = listOf()
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private var messages: List<MessageItem> = listOf()
     lateinit var factory: ChatMessageFactory
 
     fun bindActivity(fragmentActivity: FragmentActivity) {
         factory = factoryProvider.create(fragmentActivity)
     }
 
-    class ChapterItemVH(view: View) : RecyclerView.ViewHolder(view) {
+    override fun getItemViewType(position: Int): Int {
+        val res = messages[position]
+
+        return if (res is MessageItem.Header) {
+            HEADER_TYPE
+        } else {
+            CONTENT_TYPE
+        }
+    }
+
+    class DateViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val tv = view.getView<TextView>("orangetv_logs_date__tv")
+
+        fun onBind(date: Date) {
+            tv.text = DateFormat.getDateInstance(DateFormat.SHORT).format(date)
+        }
+    }
+
+    class MessageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val tv = view.getView<TextView>("chat_message_item")
 
-        fun onBind(factory: ChatMessageFactory, message: Message) {
+        fun onBind(factory: ChatMessageFactory, message: ChatMessage) {
             val spanned = factory.createChatHistoryMessage(
                 message.token,
                 Color.YELLOW,
@@ -40,18 +61,32 @@ class LogsAdapter @Inject constructor(val factoryProvider: ChatMessageFactory.Fa
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChapterItemVH {
-        val view = LayoutInflater.from(parent.context).inflate(
-            ResourceManager.getId("chat_message_item", "layout"),
-            parent,
-            false
-        )
-
-        return ChapterItemVH(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            HEADER_TYPE -> DateViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    ResourceManager.getId("orangetv_logs_date", "layout"),
+                    parent,
+                    false
+                )
+            )
+            else -> MessageViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    ResourceManager.getId("chat_message_item", "layout"),
+                    parent,
+                    false
+                )
+            )
+        }
     }
 
-    override fun onBindViewHolder(holder: ChapterItemVH, position: Int) {
-        holder.onBind(factory, messages[position])
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val message = messages[position]
+        if (message is MessageItem.Content) {
+            (holder as MessageViewHolder).onBind(factory, message.content)
+        } else if (message is MessageItem.Header) {
+            (holder as DateViewHolder).onBind(message.date)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -59,8 +94,13 @@ class LogsAdapter @Inject constructor(val factoryProvider: ChatMessageFactory.Fa
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(it: List<Message>) {
+    fun setData(it: List<MessageItem>) {
         messages = it
         notifyDataSetChanged()
+    }
+
+    companion object {
+        private const val CONTENT_TYPE = 0
+        private const val HEADER_TYPE = 1
     }
 }

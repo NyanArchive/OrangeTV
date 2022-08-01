@@ -1,7 +1,8 @@
 package tv.orange.features.logs.component.data.mapper
 
 import tv.orange.core.util.DateUtil
-import tv.orange.features.logs.component.data.model.Message
+import tv.orange.features.logs.component.data.model.ChatMessage
+import tv.orange.features.logs.component.data.model.MessageItem
 import tv.orange.features.logs.component.data.model.UserInfo
 import tv.orange.features.logs.di.scope.LogsScope
 import tv.orange.models.gql.twitch.UserInfoQuery
@@ -20,8 +21,8 @@ class LogsMapper @Inject constructor() {
         return UserInfo(userId = data.user!!.id, userName = data.user!!.login)
     }
 
-    fun map(data: ViewerCardModLogsMessagesBySenderQuery.Data): List<Message> {
-        return data.channel?.modLogs?.messagesBySender?.edges?.mapNotNull { edge ->
+    fun map(data: ViewerCardModLogsMessagesBySenderQuery.Data): List<MessageItem> {
+        val messages = data.channel?.modLogs?.messagesBySender?.edges?.mapNotNull { edge ->
             edge.node?.let { node ->
                 val fragment = node.modChatHistoryMessageFragment
                     ?: node.autoModCaughtChatHistoryMessageFragment?.modLogsMessage?.modChatHistoryMessageFragment
@@ -30,9 +31,24 @@ class LogsMapper @Inject constructor() {
                 }
             }
         } ?: emptyList()
+        return convert(messages)
     }
 
-    private fun map(fragment: ModChatHistoryMessageFragment, channelId: Int): Message? {
+    private fun convert(messages: List<ChatMessage>): List<MessageItem> {
+        var currentDate: Date? = null
+        val stack = mutableListOf<MessageItem>()
+        messages.forEach{ message ->
+            if (!DateUtil.isSameDate(currentDate, message.timestamp)) {
+                stack.add(MessageItem.Header(message.timestamp))
+                currentDate = message.timestamp
+            }
+            stack.add(MessageItem.Content(message))
+        }
+
+        return stack
+    }
+
+    private fun map(fragment: ModChatHistoryMessageFragment, channelId: Int): ChatMessage? {
         val tokens = mutableListOf<MessageToken>()
         fragment.content.fragments.forEach { tokenFragment ->
             tokenFragment.content?.let { content ->
@@ -58,7 +74,7 @@ class LogsMapper @Inject constructor() {
         }
 
         return fragment.sender?.let { sender ->
-            Message(
+            ChatMessage(
                 ChatHistoryMessage(
                     sender.id.toInt(),
                     sender.login,

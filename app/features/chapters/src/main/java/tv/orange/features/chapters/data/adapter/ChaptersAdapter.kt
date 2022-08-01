@@ -22,9 +22,9 @@ class ChaptersAdapter(private val listener: OnChapterClickedListener) :
     }
 
     class ChapterItemVH(view: View) : RecyclerView.ViewHolder(view) {
-        private val logo = view.getView<ImageView>("orange_chapters_item__logo")
-        private val title = view.getView<TextView>("orange_chapters_item__title")
-        private val timestamp = view.getView<TextView>("orange_chapters_item__timestamp")
+        private val logo = view.getView<ImageView>("orangetv_chapters_item__logo")
+        private val title = view.getView<TextView>("orangetv_chapters_item__title")
+        private val timestamp = view.getView<TextView>("orangetv_chapters_item__timestamp")
 
         fun onBind(listener: OnChapterClickedListener, chapter: Chapter) {
             title.text = chapter.title
@@ -38,7 +38,7 @@ class ChaptersAdapter(private val listener: OnChapterClickedListener) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChapterItemVH {
         val view = LayoutInflater.from(parent.context).inflate(
-            ResourceManager.getId("orange_chapters_item", "layout"),
+            ResourceManager.getId("orangetv_chapters_item", "layout"),
             parent,
             false
         )

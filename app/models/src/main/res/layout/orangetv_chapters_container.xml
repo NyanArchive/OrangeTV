@@ -7,9 +7,9 @@
     android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/orange_chapters_container_rv"
+        android:id="@+id/orangetv_chapters_container_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/orange_chapters_item" />
+        tools:listitem="@layout/orangetv_chapters_item" />
 
 </LinearLayout>

@@ -1,0 +1,10 @@
+<resources>
+    <style name="ChatMessageView">
+        <item name="android:textSize">@dimen/font_small</item>
+        <item name="android:textColor">@color/text_base</item>
+        <item name="android:paddingLeft">@dimen/default_margin</item>
+        <item name="android:paddingRight">@dimen/default_margin</item>
+        <item name="android:minHeight">@dimen/chat_message_min_height</item>
+        <item name="android:lineSpacingExtra">2.0dip</item>
+    </style>
+</resources>

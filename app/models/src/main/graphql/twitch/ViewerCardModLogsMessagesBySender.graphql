@@ -1,0 +1,61 @@
+query ViewerCardModLogsMessagesBySender($senderID: ID!, $channelID: ID!, $first: Int) {
+    channel: user(id: $channelID) {
+        id
+        modLogs {
+            messagesBySender(
+                senderID: $senderID
+                first: $first
+                order: DESC
+                includeMessageCount: false
+                includeTargetedActions: true
+                includeAutoModCaughtMessages: false
+            ) {
+                edges {
+                    node {
+                        __typename
+                        ...autoModCaughtChatHistoryMessageFragment
+                        ...modChatHistoryMessageFragment
+                    }
+                }
+            }
+        }
+    }
+}
+
+fragment modChatHistoryMessageFragment on ModLogsMessage {
+    id
+    sentAt
+    content {
+        text
+        fragments {
+            text
+            content {
+                __typename
+                ... on Emote {
+                    emoteID: id
+                    setID
+                    token
+                }
+            }
+        }
+    }
+    sender {
+        id
+        login
+        chatColor
+        displayName
+        displayBadges(channelID: $channelID) {
+            id
+            setID
+            version
+        }
+    }
+}
+fragment autoModCaughtChatHistoryMessageFragment on AutoModCaughtMessage {
+    id
+    status
+    modLogsMessage {
+        __typename
+        ...modChatHistoryMessageFragment
+    }
+}

@@ -10,6 +10,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import tv.orange.core.ResourceManager
+import tv.orange.core.ViewUtil.getView
 import tv.orange.features.chapters.component.data.model.Chapter
 import tv.orange.features.chapters.component.data.repository.ChaptersRepository
 import tv.orange.features.chapters.data.adapter.ChaptersAdapter
@@ -29,9 +30,7 @@ class ChaptersFragment @Inject constructor(val repository: ChaptersRepository) :
         disposables.add(
             repository.getChapters(id).observeOn(AndroidSchedulers.mainThread()).subscribe({
                 adapter.setData(it)
-            }, {
-                it.printStackTrace()
-            })
+            }, Throwable::printStackTrace)
         )
     }
 
@@ -45,11 +44,11 @@ class ChaptersFragment @Inject constructor(val repository: ChaptersRepository) :
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(
-            ResourceManager.getId("orange_chapters_container", "layout"),
+            ResourceManager.getId("orangetv_chapters_container", "layout"),
             container,
             false
         )
-        rv = view.findViewById(ResourceManager.getId("orange_chapters_container_rv", "id"))
+        rv = view.getView("orangetv_chapters_container_rv")
         rv.adapter = adapter
         rv.layoutManager = LinearLayoutManager(
             inflater.context,

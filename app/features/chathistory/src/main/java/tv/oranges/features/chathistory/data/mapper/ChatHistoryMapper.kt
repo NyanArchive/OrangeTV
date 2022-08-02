@@ -4,53 +4,50 @@ import android.graphics.Color
 import tv.orange.core.util.DateUtil
 import tv.orange.models.gql.twitch.MessageBufferChatHistoryQuery
 import tv.orange.models.gql.twitch.fragment.ChatHistoryMessageFragment
-import tv.oranges.features.chathistory.data.model.ChatHistoryMessage
-import tv.oranges.features.chathistory.data.model.ChatMessageInterfaceWrapper
-import tv.twitch.android.models.chat.AutoModMessageFlags
-import tv.twitch.android.models.chat.MessageBadge
-import tv.twitch.android.models.chat.MessageToken
-import tv.twitch.android.models.extensions.ExtensionModel
-import tv.twitch.android.provider.chat.ChatMessageInterface
-import tv.twitch.android.shared.chat.parser.ExtensionMessageKt
+import tv.twitch.chat.*
 import javax.inject.Inject
 
 class ChatHistoryMapper @Inject constructor() {
-    fun map(recentChatMessage: MessageBufferChatHistoryQuery.RecentChatMessage): ChatHistoryMessage {
-        return ChatHistoryMessage(map(recentChatMessage.chatHistoryMessageFragment), Color.GRAY)
+    fun map(recentChatMessage: MessageBufferChatHistoryQuery.RecentChatMessage): ChatMessageInfo? {
+        return tokensMapper(recentChatMessage.chatHistoryMessageFragment)
     }
 
-    fun map(chatHistoryMessage: ChatHistoryMessage): ExtensionMessageKt {
-        return ExtensionMessageKt(
-            chatHistoryMessage.cmi,
-            ExtensionModel("", "", "", null),
-            Color.GRAY
-        )
-    }
-
-    private fun map(fragment: List<ChatHistoryMessageFragment.Fragment>): List<MessageToken> {
-        return fragment.map { tokenFragment ->
-            tokenFragment.content?.let { content ->
+    private fun tokensMapper(fragments: List<ChatHistoryMessageFragment.Fragment>): List<ChatMessageToken> {
+        return fragments.map { fragment ->
+            fragment.content?.let { content ->
                 content.onEmote?.let { emote ->
-                    MessageToken.EmoticonToken(emote.token, emote.emoteID)
+                    ChatEmoticonToken().apply {
+                        this.emoticonId = emote.emoteID
+                        this.emoticonText = emote.token
+                    }
                 }
-            } ?: MessageToken.TextToken(
-                tokenFragment.text,
-                AutoModMessageFlags(0, 0, 0, 0)
-            )
+            } ?: ChatTextToken().apply {
+                this.text = fragment.text
+            }
         }
     }
 
-    private fun mapBadges(badges: List<ChatHistoryMessageFragment.DisplayBadge?>): List<MessageBadge> {
+    private fun badgesMapper(badges: List<ChatHistoryMessageFragment.DisplayBadge?>): List<ChatMessageBadge> {
         return badges.mapNotNull { badge ->
-            MessageBadge(badge?.setID ?: "", badge?.version ?: "")
+            ChatMessageBadge().apply {
+                this.name = badge?.setID ?: ""
+                this.version = badge?.version ?: ""
+            }
         }
     }
 
-    private fun map(fragment: ChatHistoryMessageFragment?): ChatMessageInterface? {
+    private fun tokensMapper(fragment: ChatHistoryMessageFragment?): ChatMessageInfo? {
         fragment ?: return null
 
-        val tokens = map(fragment.content.fragments)
-        val badges = mapBadges(fragment.sender?.displayBadges ?: emptyList())
+        var userNameColor = fragment.sender?.chatColor?.let { color ->
+            var res = Color.parseColor(color)
+            if (res == Color.TRANSPARENT) {
+                res = Color.DKGRAY
+            }
+            res
+        } ?: Color.DKGRAY
+        val tokens = tokensMapper(fragment.content.fragments).toTypedArray()
+        val badges = badgesMapper(fragment.sender?.displayBadges ?: emptyList()).toTypedArray()
         val displayName = fragment.sender?.displayName ?: "unknown"
         val userId = fragment.sender?.id?.toIntOrNull() ?: 0
         val userName = fragment.sender?.login ?: "unknown"
@@ -58,13 +55,14 @@ class ChatHistoryMapper @Inject constructor() {
             fragment.sentAt.toString()
         )?.time?.div(1000)?.toInt() ?: 0
 
-        return ChatMessageInterfaceWrapper(
-            messageBadges = badges,
-            messageTokens = tokens,
-            timestamp = sentAt,
-            messageDisplayName = displayName,
-            messageUserName = userName,
-            messageUserId = userId
-        )
+        return ChatMessageInfo().apply {
+            this.displayName = displayName
+            this.timestamp = sentAt
+            this.userName = userName
+            this.userId = userId
+            this.badges = badges
+            this.tokens = tokens
+            this.nameColorARGB = userNameColor
+        }
     }
 }

@@ -7,7 +7,6 @@ import tv.orange.core.di.component.CoreComponent
 import tv.orange.core.models.Flag
 import tv.orange.core.models.Flag.Companion.valueBoolean
 import tv.oranges.features.chathistory.bridge.ILiveChatSource
-import tv.oranges.features.chathistory.data.mapper.ChatHistoryMapper
 import tv.oranges.features.chathistory.data.repository.ChatHistoryRepository
 import tv.oranges.features.chathistory.di.component.DaggerChatHistoryComponent
 import tv.oranges.features.chathistory.di.scope.ChatHistoryScope
@@ -18,8 +17,7 @@ import javax.inject.Inject
 
 @ChatHistoryScope
 class ChatHistory @Inject constructor(
-    val repository: ChatHistoryRepository,
-    val mapper: ChatHistoryMapper
+    val repository: ChatHistoryRepository
 ) {
     fun requestChatHistory(
         event: ChatConnectionEvents,
@@ -32,7 +30,7 @@ class ChatHistory @Inject constructor(
 
         channel?.let { info ->
             if (event is ChatConnectionEvents.ChatConnectingEvent && info.id == event.getChannelId()) {
-                injectChatHistory(
+                injectTwitchChatHistory(
                     source = source,
                     channelName = info.name,
                     channelId = event.channelId
@@ -41,14 +39,14 @@ class ChatHistory @Inject constructor(
         }
     }
 
-    private fun injectChatHistory(source: ILiveChatSource, channelName: String?, channelId: Int) {
+    private fun injectTwitchChatHistory(source: ILiveChatSource, channelName: String?, channelId: Int) {
         if (channelName.isNullOrBlank()) {
             return
         }
 
         source.addChatHistoryMessage(
-            channelId,
-            repository.getSystemMessage("[TCH] Fetching messages...")
+            repository.getSystemMessage("[Twitch] Fetching messages..."),
+            channelId
         )
 
         source.addDisposable(
@@ -58,14 +56,14 @@ class ChatHistory @Inject constructor(
                         return@subscribe
                     }
 
-                    source.addChatHistoryMessages(channelId, messages.map { message ->
-                        mapper.map(message)
-                    })
+                    messages.forEach { message ->
+                        source.addChatHistoryMessage(message, channelId)
+                    }
                 }) {
                     it.printStackTrace()
                     source.addChatHistoryMessage(
-                        channelId,
-                        repository.getSystemMessage("[TCH] Error: ${it.localizedMessage}")
+                        repository.getSystemMessage("[Twitch] Error: ${it.localizedMessage}"),
+                        channelId
                     )
                 }
         )

@@ -39,6 +39,6 @@ data class ChatMessageInterfaceSystemMessage(val text: String) : ChatMessageInte
     }
 
     override fun isSystemMessage(): Boolean {
-        return true
+        return false
     }
 }

@@ -1,6 +1,6 @@
 package tv.twitch.android.shared.ui.cards.channel;
 
-import tv.orange.features.stv.AvatarsHookProvider;
+import tv.orange.features.stv.StvAvatars;
 
 public class NewCompactProfileViewModel {
     private final String channelName = null;
@@ -9,7 +9,7 @@ public class NewCompactProfileViewModel {
     /* ... */
 
     public final String getImageUrl() { // TODO: __REPLACE_METHOD
-        return AvatarsHookProvider.get().hookProfileImageUrl(this.imageUrl, this.channelName);
+        return StvAvatars.get().hookProfileImageUrl(this.imageUrl, this.channelName);
     }
 
     /* ... */

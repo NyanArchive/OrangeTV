@@ -4,7 +4,7 @@ import android.text.TextUtils;
 
 import java.util.List;
 
-import tv.orange.features.usersearch.Hook;
+import tv.orange.features.usersearch.UserSearch;
 import tv.orange.models.VirtualImpl;
 import tv.twitch.android.models.chat.Chatters;
 
@@ -26,7 +26,7 @@ public final class ViewerListAdapterBinder {
 
         Chatters chatters = orgChatters;
         if (!TextUtils.isEmpty(searchUserText)) {
-            chatters = Hook.get().filterChatters(orgChatters, searchUserText);
+            chatters = UserSearch.get().filterChatters(orgChatters, searchUserText);
         }
 
         clear();

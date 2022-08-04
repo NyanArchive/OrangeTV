@@ -5,7 +5,8 @@ import dagger.BindsInstance
 import dagger.Component
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import tv.orange.core.Hook
+import tv.orange.core.Core
+import tv.orange.core.CoreHook
 import tv.orange.core.PreferenceManager
 import tv.orange.core.di.module.CoreModule
 import tv.orange.core.di.module.NetworkModule
@@ -19,10 +20,10 @@ interface CoreComponent {
         fun create(@BindsInstance context: Context): CoreComponent
     }
 
-    val okHttpClient: OkHttpClient
+    val context: Context
+
     val retrofitBuilder: Retrofit.Builder
+    val okHttpClient: OkHttpClient
 
-    val preferenceManager: PreferenceManager
-
-    val coreHook: Hook
+    val coreHook: CoreHook
 }

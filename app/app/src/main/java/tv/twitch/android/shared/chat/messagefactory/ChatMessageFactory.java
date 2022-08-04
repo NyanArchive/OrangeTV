@@ -7,8 +7,11 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.SpannedString;
 
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import tv.orange.features.badges.bridge.OrangeMessageBadge;
@@ -100,6 +103,10 @@ public class ChatMessageFactory {
     }
 
     public ChatAdapterItem createChatHistoryMessage(ChatMessageInfo message, int channelId) { // TODO: __INJECT_METHOD
-        return createUserNoticeRecyclerItem(message, message.nameColorARGB, channelId, null, null, null, null, null, Collections.emptySet());
+        Spanned header = null;
+        if (!message.userMode.system) {
+            header = new SpannedString(new SimpleDateFormat("HH:mm", Locale.ENGLISH).format(new Date(message.timestamp * 1000L)));
+        }
+        return createUserNoticeRecyclerItem(message, message.nameColorARGB, channelId, null, null, null, header, null, Collections.emptySet());
     }
 }

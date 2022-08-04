@@ -4,6 +4,7 @@ import java.util.List;
 
 import io.reactivex.Flowable;
 import kotlin.Pair;
+import tv.orange.core.Core;
 import tv.orange.features.chat.ChatHookProvider;
 import tv.twitch.android.core.mvp.presenter.PresenterState;
 import tv.twitch.android.core.mvp.viewdelegate.ViewDelegateState;

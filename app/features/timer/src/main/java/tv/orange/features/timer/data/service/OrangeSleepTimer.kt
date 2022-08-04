@@ -86,7 +86,7 @@ class OrangeSleepTimer : Service() {
 
             override fun onFinish() {
                 cancel()
-                Core.get().killApp()
+                Core.killApp()
             }
         }.apply {
             start()

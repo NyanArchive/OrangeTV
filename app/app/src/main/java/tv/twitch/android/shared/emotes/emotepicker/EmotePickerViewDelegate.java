@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 import java.util.List;
 
+import tv.orange.core.Core;
 import tv.orange.features.chat.ChatHookProvider;
 import tv.orange.features.chat.bridge.ScrollableOrangeSection;
 import tv.twitch.android.core.adapters.RecyclerAdapterSection;

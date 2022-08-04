@@ -12,12 +12,12 @@ public class ChatConnectionController {
         if (i == 1) {
             /* ... */
 
-            Core.get().onConnectingToChannel(i); // TODO: __INJECT_CODE
+            Core.getFeature(Core.class).onConnectingToChannel(i); // TODO: __INJECT_CODE
         }
         if (i == 2) {
             /* ... */
 
-            Core.get().onConnectedToChannel(i); // TODO: __INJECT_CODE
+            Core.getFeature(Core.class).onConnectedToChannel(i); // TODO: __INJECT_CODE
         }
 
         throw new VirtualImpl();

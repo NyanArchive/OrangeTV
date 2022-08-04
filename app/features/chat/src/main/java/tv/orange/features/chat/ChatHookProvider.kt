@@ -23,17 +23,14 @@ import tv.orange.core.models.Flag.Companion.valueBoolean
 import tv.orange.core.models.Flag.Companion.variant
 import tv.orange.core.models.FlagListener
 import tv.orange.core.models.LifecycleAware
-import tv.orange.core.models.LifecycleController
 import tv.orange.core.models.variants.DeletedMessages
 import tv.orange.features.badges.bridge.OrangeMessageBadge
 import tv.orange.features.badges.component.BadgeProvider
-import tv.orange.features.badges.di.component.BadgesComponent
 import tv.orange.features.chat.bridge.*
-import tv.orange.features.chat.di.component.DaggerChatComponent
 import tv.orange.features.chat.view.ViewFactory
 import tv.orange.features.emotes.bridge.EmoteToken
 import tv.orange.features.emotes.component.EmoteProvider
-import tv.orange.features.emotes.di.component.EmotesComponent
+import tv.orange.models.Feature
 import tv.orange.models.abs.EmoteCardModelWrapper
 import tv.orange.models.abs.EmotePackageSet
 import tv.orange.models.data.emotes.Emote
@@ -61,21 +58,14 @@ class ChatHookProvider @Inject constructor(
     val emoteProvider: EmoteProvider,
     val badgeProvider: BadgeProvider,
     val viewFactory: ViewFactory
-) : LifecycleAware, FlagListener {
+) : LifecycleAware, FlagListener, Feature {
     private val currentChannelSubject = BehaviorSubject.create<Int>()
-
-    fun registerLifecycle(
-        controller: LifecycleController,
-        preferenceManager: PreferenceManager
-    ) {
-        controller.registerLifecycleListeners(this)
-        preferenceManager.registerFlagListeners(this)
-    }
 
     fun hookMessageInterface(
         cmi: ChatMessageInterface,
         channelId: Int
     ): ChatMessageInterface {
+        Logger.debug("cmi: $cmi, channelId: $channelId")
         val badges = injectBadges(cmi.badges, cmi.userId, channelId)
         val tokens = injectEmotes(cmi.tokens, cmi.userId, channelId)
 
@@ -87,6 +77,7 @@ class ChatHookProvider @Inject constructor(
         userId: Int,
         channelId: Int
     ): List<MessageBadge> {
+        Logger.debug("badges: $badges, userId:: $userId, channelId: $channelId")
         if (!badgeProvider.hasBadges(userId)) {
             return badges
         }
@@ -125,6 +116,7 @@ class ChatHookProvider @Inject constructor(
         userId: Int,
         channelId: Int
     ): List<MessageToken> {
+        Logger.debug("tokens:: $tokens:, userId:: $userId, channelId: $channelId")
         val stack = mutableListOf<MessageToken>()
 
         var injected = false
@@ -162,6 +154,7 @@ class ChatHookProvider @Inject constructor(
     }
 
     override fun onAllComponentDestroyed() {
+        Logger.debug("called")
         emoteProvider.clear()
         badgeProvider.clear()
     }
@@ -201,10 +194,11 @@ class ChatHookProvider @Inject constructor(
     @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
     fun hookEmoteSetsFlowable(
         map: Flowable<Pair<EmoteUiSet, MutableList<EmoteUiSet>>>,
-        num: Integer
+        channelId: Integer
     ): Flowable<Pair<EmoteUiSet, MutableList<EmoteUiSet>>> {
+        Logger.debug("map: $map, channelId: $channelId")
         return map.map { pair ->
-            emoteProvider.getEmotesMap(num.toInt()).filter { it.second.isNotEmpty() }
+            emoteProvider.getEmotesMap(channelId.toInt()).filter { it.second.isNotEmpty() }
                 .forEach { emotePair ->
                     pair.second.add(
                         EmoteUiSet(
@@ -216,7 +210,7 @@ class ChatHookProvider @Inject constructor(
                             ), emotePair.second.map { emote ->
                                 createEmoteUiModel(
                                     emote = emote,
-                                    channelId = num.toInt(),
+                                    channelId = channelId.toInt(),
                                     isAnimated = false
                                 )
                             })
@@ -228,6 +222,7 @@ class ChatHookProvider @Inject constructor(
     }
 
     fun hookEmoteCardModelResponse(emoteId: String?): EmoteCardModelResponse? {
+        Logger.debug("emoteId: $emoteId")
         if (emoteId.isNullOrBlank()) {
             return null
         }
@@ -244,6 +239,7 @@ class ChatHookProvider @Inject constructor(
     }
 
     fun hookAutoCompleteMapProvider(emotesFlow: Flowable<List<EmoteSet>>): Flowable<List<EmoteSet>> {
+        Logger.debug("emotesFlow: $emotesFlow")
         return emotesFlow.flatMap { orgList ->
             currentChannelSubject.flatMap {
                 Observable.just(it).delay(3, TimeUnit.SECONDS)
@@ -268,6 +264,7 @@ class ChatHookProvider @Inject constructor(
         eventDispatcher: PublishSubject<ChatMessageClickedEvents?>?,
         hasModAccess: Boolean
     ): Spanned? {
+        Logger.debug("messageId: $messageId, message: $message, context: $context, eventDispatcher: $eventDispatcher, hasModAccess: $hasModAccess")
         return when (Flag.DELETED_MESSAGES.variant<DeletedMessages>()) {
             DeletedMessages.Mod -> ChatUtil.Companion!!.createDeletedSpanFromChatMessageSpan(
                 messageId,
@@ -289,31 +286,28 @@ class ChatHookProvider @Inject constructor(
     }
 
     fun getOrangeEmotesButton(emotePickerViewDelegate: EmotePickerViewDelegate): ImageView? {
-        return viewFactory.createOrangeEmotesButton(emotePickerViewDelegate)
+        val view = viewFactory.createOrangeEmotesButton(emotePickerViewDelegate)
+        Logger.debug("view: $view")
+        return view
     }
 
     fun rebuildEmotes() {
+        Logger.debug("called")
         emoteProvider.rebuild()
     }
 
     fun renderEmotePickerState(
         state: EmotePickerPresenter.EmotePickerState,
-        orangeEmotesButton: ImageView?
+        button: ImageView?
     ) {
-        orangeEmotesButton?.isSelected =
+        Logger.debug("state: $state, button: $button")
+        button?.isSelected =
             state.selectedEmotePickerSection == EmotePickerSection.ORANGE
     }
 
     companion object {
-        private val INSTANCE: ChatHookProvider by lazy {
-            val hook = DaggerChatComponent.builder()
-                .badgesComponent(Core.getProvider(BadgesComponent::class).get())
-                .emotesComponent(Core.getProvider(EmotesComponent::class).get())
-                .build().hook
-
-            Logger.debug("Provide new instance: $hook")
-            return@lazy hook
-        }
+        @JvmStatic
+        fun get() = Core.getFeature(ChatHookProvider::class.java)
 
         private fun packageTokenToId(token: EmotePackageSet): Int {
             val resName = when (token) {
@@ -327,11 +321,6 @@ class ChatHookProvider @Inject constructor(
             }
 
             return ResourceManager.getId(resName = resName, "string")
-        }
-
-        @JvmStatic
-        fun get(): ChatHookProvider {
-            return INSTANCE
         }
 
         @JvmStatic
@@ -452,5 +441,15 @@ class ChatHookProvider @Inject constructor(
             }
             return usernameEndPos
         }
+    }
+
+    override fun onDestroyFeature() {
+        Core.getBridge().getFeature(PreferenceManager::class.java).unregisterFlagListeners(this)
+        Core.getBridge().getFeature(Core::class.java).unregisterLifecycleListener(this)
+    }
+
+    override fun onCreateFeature() {
+        Core.getBridge().getFeature(Core::class.java).registerLifecycleListeners(this)
+        Core.getBridge().getFeature(PreferenceManager::class.java).registerFlagListeners(this)
     }
 }

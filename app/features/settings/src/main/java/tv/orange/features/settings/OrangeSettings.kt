@@ -5,12 +5,11 @@ import dagger.android.AndroidInjector
 import dagger.internal.MapBuilder
 import tv.orange.core.Core
 import tv.orange.core.Logger
-import tv.orange.core.di.component.CoreComponent
 import tv.orange.features.settings.bridge.OrangeSettingsDaggerFactory
 import tv.orange.features.settings.bridge.fragment.OrangeSettingsFragment
 import tv.orange.features.settings.component.SettingsController
-import tv.orange.features.settings.di.component.DaggerSettingsComponent
 import tv.orange.features.settings.di.scope.SettingsScope
+import tv.orange.models.Feature
 import tv.twitch.android.app.consumer.dagger.DaggerAppComponent
 import javax.inject.Inject
 import javax.inject.Provider
@@ -19,30 +18,26 @@ import javax.inject.Provider
 class OrangeSettings @Inject constructor(
     val daggerFactory: OrangeSettingsDaggerFactory,
     val controller: SettingsController
-) {
+) : Feature {
+    companion object {
+        @JvmStatic
+        fun get() = Core.getFeature(OrangeSettings::class.java)
+    }
+
     fun inject(
         builder: MapBuilder<Class<*>, Provider<AndroidInjector.Factory<*>>>,
         component: DaggerAppComponent.SettingsActivitySubcomponentImpl
     ) {
+        Logger.debug("builder: $builder, component: $component")
         daggerFactory.injectSubcomponentSettingsProvider(builder, component)
     }
 
     fun createSettingsFragment(): Fragment {
-        return OrangeSettingsFragment()
+        val fragment = OrangeSettingsFragment()
+        Logger.debug("fragment: $fragment")
+        return fragment
     }
 
-    companion object {
-        private val INSTANCE by lazy {
-            val instance = DaggerSettingsComponent.factory()
-                .create(Core.getProvider(CoreComponent::class).get()).orangeSettings
-
-            Logger.debug("Provide new instance: $instance")
-            return@lazy instance
-        }
-
-        @JvmStatic
-        fun get(): OrangeSettings {
-            return INSTANCE
-        }
-    }
+    override fun onDestroyFeature() {}
+    override fun onCreateFeature() {}
 }

@@ -3,13 +3,13 @@ package tv.twitch.android.shared.player.overlay;
 import android.view.View;
 import android.widget.ImageView;
 
-import tv.orange.features.refreshstream.Hook;
+import tv.orange.features.refreshstream.RefreshStream;
 import tv.orange.features.refreshstream.bridge.IBottomPlayerControlOverlayViewDelegate;
 import tv.orange.models.VirtualImpl;
 import tv.twitch.android.core.mvp.viewdelegate.BaseViewDelegate;
 
 public class BottomPlayerControlOverlayViewDelegate extends BaseViewDelegate implements IBottomPlayerControlOverlayViewDelegate { // TODO: @features:refreshstream
-    private BottomPlayerControlListener mBottomPlayerControlListener;
+    private final BottomPlayerControlListener mBottomPlayerControlListener;
 
     private final ImageView mRefreshStreamButton; // TODO: __INJECT_FIELD
 
@@ -20,7 +20,7 @@ public class BottomPlayerControlOverlayViewDelegate extends BaseViewDelegate imp
 
         /* ... */
 
-        mRefreshStreamButton = Hook.get().getRefreshStreamButton(this); // TODO: __INJECT_CODE
+        mRefreshStreamButton = RefreshStream.get().getRefreshStreamButton(this); // TODO: __INJECT_CODE
 
         /* ... */
 

@@ -27,7 +27,9 @@ class DropDownMenuModelExt<T : Flag.Variant>(flag: Flag, context: Context) :
         null,
         null,
         DropDownMenuItemSelection { _, position ->
-            PreferenceManager.get()
-                .writeString(flag, flag.variant<T>().getVariants()[position].toString())
+            PreferenceManager.get().writeString(
+                flag = flag,
+                value = flag.variant<T>().getVariants()[position].toString()
+            )
         }
     )

@@ -1,6 +1,7 @@
 package tv.twitch.android.shared.chat.messageinput.autocomplete;
 
 import io.reactivex.disposables.CompositeDisposable;
+import tv.orange.core.Core;
 import tv.orange.features.chat.ChatHookProvider;
 import tv.orange.models.VirtualImpl;
 import tv.twitch.android.shared.emotes.emotepicker.EmoteFetcher;

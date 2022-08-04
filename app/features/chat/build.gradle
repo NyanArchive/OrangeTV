@@ -31,8 +31,8 @@ android {
 
 dependencies {
     implementation project(path: ':core')
-    implementation project(path: ':features:emotes')
-    implementation project(path: ':features:badges')
+    implementation project(path: ':components:emotes')
+    implementation project(path: ':components:badges')
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

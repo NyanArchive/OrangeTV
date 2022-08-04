@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import tv.orange.models.VirtualImpl;
-import tv.oranges.features.chathistory.bridge.ILiveChatSource;
+import tv.orange.features.chathistory.bridge.ILiveChatSource;
 import tv.twitch.android.shared.chat.chatsource.IClickableUsernameSpanListener;
 import tv.twitch.android.shared.chat.messagefactory.MessageListAdapterBinder;
 import tv.twitch.android.shared.chat.parser.ExtensionMessageKt;

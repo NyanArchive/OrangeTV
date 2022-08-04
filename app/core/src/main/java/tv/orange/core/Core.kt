@@ -1,39 +1,52 @@
 package tv.orange.core
 
 import android.content.Context
-import android.os.Build
-import androidx.fragment.app.FragmentActivity
 import tv.orange.core.models.LifecycleAware
 import tv.orange.core.models.LifecycleController
-import tv.orange.models.Injector
-import tv.orange.models.InjectorProvider
+import tv.orange.models.*
+import tv.twitch.android.app.core.ApplicationContext
+import javax.inject.Inject
 import javax.inject.Provider
 import kotlin.reflect.KClass
+import kotlin.system.exitProcess
 
-class Core private constructor(private val applicationContext: Context) :
+class Core @Inject constructor(val context: Context) :
     LifecycleController,
     LifecycleAware,
-    Injector {
+    Injector,
+    Feature {
     private val modules = mutableSetOf<LifecycleAware>()
 
     companion object {
-        private var INSTANCE: Core? = null
-
-        fun initialize(applicationContext: Context) {
-            INSTANCE = Core(applicationContext)
-            PreferenceManager.get().initialize()
+        @JvmStatic
+        fun <T : Feature> getFeature(clazz: Class<T>): T {
+            Logger.debug("request: $clazz")
+            return getBridge().getFeature(clazz)
         }
 
         @JvmStatic
-        fun get(): Core {
-            return INSTANCE ?: kotlin.run {
-                throw IllegalStateException("Instance is null")
+        fun getBridge(): Bridge {
+            val context = ApplicationContext.getInstance().getContext()
+            if (context is BridgeProvider) {
+                return context.provideBridge()
             }
+
+            throw IllegalStateException("context must provide bridge")
         }
 
         @JvmStatic
         fun <T : Any> getProvider(componentClass: KClass<T>): Provider<T> {
-            return get().getComponentProvider(componentClass)
+            val context = ApplicationContext.getInstance().getContext()
+            if (context is InjectorProvider) {
+                return context.provideInjector().getComponentProvider(componentClass)
+            }
+
+            throw IllegalStateException("context must provide injector")
+        }
+
+        @JvmStatic
+        fun killApp() {
+            exitProcess(0);
         }
     }
 
@@ -106,8 +119,8 @@ class Core private constructor(private val applicationContext: Context) :
     }
 
     override fun <T : Any> getComponentProvider(cls: KClass<T>): Provider<T> {
-        val injector = if (applicationContext is InjectorProvider) {
-            applicationContext.provideInjector()
+        val injector = if (context is InjectorProvider) {
+            context.provideInjector()
         } else {
             throw IllegalStateException("App context must provide Injector")
         }
@@ -115,7 +128,6 @@ class Core private constructor(private val applicationContext: Context) :
         return injector.getComponentProvider(cls)
     }
 
-    fun killApp() {
-        System.exit(0);
-    }
+    override fun onDestroyFeature() {}
+    override fun onCreateFeature() {}
 }

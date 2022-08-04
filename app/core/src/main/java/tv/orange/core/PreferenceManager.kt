@@ -2,15 +2,15 @@ package tv.orange.core
 
 import android.content.Context
 import android.content.SharedPreferences
-import tv.orange.core.di.component.CoreComponent
 import tv.orange.core.models.Flag
 import tv.orange.core.models.FlagListener
+import tv.orange.models.Feature
 import javax.inject.Inject
 
-class PreferenceManager @Inject constructor(context: Context) :
-    SharedPreferences.OnSharedPreferenceChangeListener {
+class PreferenceManager @Inject constructor(
+    context: Context
+) : SharedPreferences.OnSharedPreferenceChangeListener, Feature {
     private val preferences = context.getSharedPreferences(ORANGE_PREFERENCES, Context.MODE_PRIVATE)
-
     private val listeners = mutableSetOf<FlagListener>()
 
     fun registerFlagListeners(vararg l: FlagListener) {
@@ -20,19 +20,20 @@ class PreferenceManager @Inject constructor(context: Context) :
         }
     }
 
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        key?.let { value ->
+            Flag.findByKey(value)?.let { flag ->
+                readSettingFromPref(flag)
+                listeners.forEach { it.onFlagChanged(flag) }
+            }
+        }
+    }
+
     fun unregisterFlagListeners(vararg l: FlagListener) {
         l.forEach { listener ->
             Logger.debug("unregister: $l")
             listeners.remove(listener)
         }
-    }
-
-    fun initialize() {
-        Flag.values().forEach { setting ->
-            readSettingFromPref(setting)
-        }
-
-        preferences.registerOnSharedPreferenceChangeListener(this)
     }
 
     fun writeBoolean(flag: Flag, value: Boolean) {
@@ -75,15 +76,6 @@ class PreferenceManager @Inject constructor(context: Context) :
         return preferences.getString(flag.prefKey, Flag.getString(flag.default))!!
     }
 
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        key?.let { value ->
-            Flag.findByKey(value)?.let { flag ->
-                readSettingFromPref(flag)
-                listeners.forEach { it.onFlagChanged(flag) }
-            }
-        }
-    }
-
     private fun readSettingFromPref(flag: Flag) {
         when (flag.value) {
             is Flag.BooleanValue -> flag.value = readBoolean(flag)
@@ -97,16 +89,20 @@ class PreferenceManager @Inject constructor(context: Context) :
     companion object {
         private const val ORANGE_PREFERENCES = "orange"
 
-        private val INSTANCE by lazy {
-            val instance = Core.getProvider(CoreComponent::class).get().preferenceManager
-
-            Logger.debug("Provide new instance: $instance")
-            return@lazy instance
-        }
-
         @JvmStatic
-        fun get(): PreferenceManager {
-            return INSTANCE
-        }
+        fun get() = Core.getFeature(PreferenceManager::class.java)
     }
+
+    fun initialize() {
+        Flag.values().forEach { setting ->
+            readSettingFromPref(setting)
+        }
+
+        preferences.registerOnSharedPreferenceChangeListener(this)
+    }
+
+    override fun onDestroyFeature() {
+        throw IllegalStateException("PreferenceManager cannot be destroyed")
+    }
+    override fun onCreateFeature() {}
 }

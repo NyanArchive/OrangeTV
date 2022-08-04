@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import io.reactivex.Flowable
+import tv.orange.core.Core
 import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
 import tv.orange.core.models.Flag
@@ -17,7 +18,12 @@ import tv.twitch.android.shared.ui.menus.infomenu.InfoMenuViewDelegate
 import tv.twitch.android.shared.ui.menus.togglemenu.SimpleToggleRowViewDelegate
 
 class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
-    private val modStuffContainer: ViewGroup = view.findViewById(ResourceManager.getId("orange_preferences_container", "id")) // orange_preferences_container
+    private val modStuffContainer: ViewGroup = view.findViewById(
+        ResourceManager.getId(
+            "orange_preferences_container",
+            "id"
+        )
+    ) // orange_preferences_container
 
     private val refreshEmotes = SettingsViewDelegateItemsUtilKt.getValueRowItem(
         context,
@@ -92,7 +98,8 @@ class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
                 ChatSettingsOrangeEvents.Closable()
             })
             add(toggleBttvEmotes.eventObserver().doOnNext {
-                PreferenceManager.get().writeBoolean(Flag.BTTV_EMOTES, it.isToggled)
+                Core.getBridge().getFeature(PreferenceManager::class.java)
+                    .writeBoolean(Flag.BTTV_EMOTES, it.isToggled)
                 renderEmotesState(
                     it.isToggled,
                     Flag.FFZ_EMOTES.valueBoolean(),
@@ -102,7 +109,8 @@ class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
                 ChatSettingsOrangeEvents.Toggle()
             })
             add(toggleFfzEmotes.eventObserver().doOnNext {
-                PreferenceManager.get().writeBoolean(Flag.FFZ_EMOTES, it.isToggled)
+                Core.getBridge().getFeature(PreferenceManager::class.java)
+                    .writeBoolean(Flag.FFZ_EMOTES, it.isToggled)
                 renderEmotesState(
                     Flag.BTTV_EMOTES.valueBoolean(),
                     it.isToggled,
@@ -112,7 +120,8 @@ class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
                 ChatSettingsOrangeEvents.Toggle()
             })
             add(toggleStvEmotes.eventObserver().doOnNext {
-                PreferenceManager.get().writeBoolean(Flag.STV_EMOTES, it.isToggled)
+                Core.getBridge().getFeature(PreferenceManager::class.java)
+                    .writeBoolean(Flag.STV_EMOTES, it.isToggled)
                 renderEmotesState(
                     Flag.BTTV_EMOTES.valueBoolean(),
                     Flag.FFZ_EMOTES.valueBoolean(),

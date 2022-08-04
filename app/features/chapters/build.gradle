@@ -31,7 +31,6 @@ android {
 
 dependencies {
     implementation project(path: ':core')
-    implementation 'com.google.android.material:material:1.6.1'
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

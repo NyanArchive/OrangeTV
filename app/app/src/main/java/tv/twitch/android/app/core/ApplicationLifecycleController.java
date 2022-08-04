@@ -11,7 +11,7 @@ public class ApplicationLifecycleController {
     private void handleAllAppComponentsDestroyed() {
         /* ... */
 
-        Core.get().onAllComponentDestroyed(); // TODO: __INJECT_CODE
+        Core.getFeature(Core.class).onAllComponentDestroyed(); // TODO: __INJECT_CODE
 
         throw new VirtualImpl();
     }
@@ -19,7 +19,7 @@ public class ApplicationLifecycleController {
     private void handleAllAppComponentsStopped() {
         /* ... */
 
-        Core.get().onAllComponentStopped(); // TODO: __INJECT_CODE
+        Core.getFeature(Core.class).onAllComponentStopped(); // TODO: __INJECT_CODE
 
         throw new VirtualImpl();
     }
@@ -28,7 +28,7 @@ public class ApplicationLifecycleController {
         if (1 == 1) {
             /* ... */
 
-            Core.get().onFirstActivityCreated(); // TODO: __INJECT_CODE
+            Core.getFeature(Core.class).onFirstActivityCreated(); // TODO: __INJECT_CODE
         }
 
         throw new VirtualImpl();
@@ -38,7 +38,7 @@ public class ApplicationLifecycleController {
         if (1 == 1) {
             /* ... */
 
-            Core.get().onFirstActivityStarted(); // TODO: __INJECT_CODE
+            Core.getFeature(Core.class).onFirstActivityStarted(); // TODO: __INJECT_CODE
         }
 
         throw new VirtualImpl();
@@ -47,7 +47,7 @@ public class ApplicationLifecycleController {
     private void sdkResume(CoreAPI.LogInCallback p0) {
         /* ... */
 
-        Core.get().onSdkResume(); // TODO: __INJECT_CODE
+        Core.getFeature(Core.class).onSdkResume(); // TODO: __INJECT_CODE
 
         throw new VirtualImpl();
     }
@@ -55,7 +55,7 @@ public class ApplicationLifecycleController {
     public void onAccountLogout() {
         /* ... */
 
-        Core.get().onAccountLogout(); // TODO: __INJECT_CODE
+        Core.getFeature(Core.class).onAccountLogout(); // TODO: __INJECT_CODE
 
         throw new VirtualImpl();
     }

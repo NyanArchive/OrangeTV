@@ -8,11 +8,10 @@ import tv.orange.features.usersearch.view.ViewFactoryImpl
 
 @Module(includes = [UserSearchModule.BindsModule::class])
 class UserSearchModule {
-
     @Module
     abstract class BindsModule {
         @UserSearchScope
         @Binds
-        abstract fun bindViewFactory(viewFactory: ViewFactoryImpl): ViewFactory
+        abstract fun bind(viewFactory: ViewFactoryImpl): ViewFactory
     }
 }

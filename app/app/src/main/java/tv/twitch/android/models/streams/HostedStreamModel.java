@@ -1,6 +1,6 @@
 package tv.twitch.android.models.streams;
 
-import tv.orange.features.stv.AvatarsHookProvider;
+import tv.orange.features.stv.StvAvatars;
 
 public class HostedStreamModel {
     private String channelLogoURL;
@@ -9,7 +9,7 @@ public class HostedStreamModel {
     /* ... */
 
     public String getChannelLogoURL() { // TODO: __REPLACE_METHOD
-        return AvatarsHookProvider.get().hookProfileImageUrl(this.channelLogoURL, this.name);
+        return StvAvatars.get().hookProfileImageUrl(this.channelLogoURL, this.name);
     }
 
     /* ... */

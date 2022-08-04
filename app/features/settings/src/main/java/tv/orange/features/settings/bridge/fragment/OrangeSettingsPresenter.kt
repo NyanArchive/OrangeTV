@@ -1,6 +1,7 @@
 package tv.orange.features.settings.bridge.fragment
 
 import androidx.fragment.app.FragmentActivity
+import tv.orange.core.Core
 import tv.orange.core.Logger
 import tv.orange.features.settings.OrangeSettings
 import tv.orange.features.settings.component.SettingsController
@@ -25,7 +26,7 @@ class OrangeSettingsPresenter @Inject constructor(
     override fun getPrefController(): SettingsPreferencesController {
         Logger.debug("called")
 
-        return OrangeSettings.get().controller
+        return Core.getFeature(OrangeSettings::class.java).controller
     }
 
     override fun getToolbarTitle(): String {

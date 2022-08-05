@@ -26,6 +26,7 @@ public class EmotePickerPresenter {
         /* ... */
 
         map = ChatHookProvider.get().hookEmoteSetsFlowable(map, num); // TODO: __INJECT_CODE
+
         return map;
     }
 

@@ -7,7 +7,7 @@ import javax.inject.Provider;
 import dagger.android.AndroidInjector;
 import dagger.internal.MapBuilder;
 import tv.orange.features.settings.OrangeSettings;
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 
 public class DaggerAppComponent {
     /* ... */

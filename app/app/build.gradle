@@ -14,13 +14,13 @@ tasks.register('copyAppDex', Copy) {
     }
 }
 
-//tasks.whenTaskAdded { task ->
-//    if (task.name == 'mergeLibDexDebug') {
-//        task.doFirst {
-//            delete fileTree("$rootProject.projectDir/Twitch/build/.transforms") { include '**/*.dex' }
-//        }
-//    }
-//}
+tasks.whenTaskAdded { task ->
+    if (task.name == 'mergeLibDexDebug') {
+        task.doFirst {
+            delete fileTree("$rootProject.projectDir/Twitch/build/.transforms") { include '**/*.dex' }
+        }
+    }
+}
 
 genDex.dependsOn 'mergeLibDexDebug'
 genDex.finalizedBy 'copyAppDex'
@@ -55,21 +55,5 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':Twitch')
-    implementation project(path: ':models')
-    implementation project(path: ':core')
-    implementation project(path: ':features:usersearch')
-    implementation project(path: ':features:refreshstream')
-
-    implementation "com.github.zjupure:webpdecoder:2.0.${glide_version}"
-    implementation project(path: ':features:chat')
-    implementation project(path: ':injector')
-    implementation project(path: ':features:badges')
-    implementation project(path: ':features:emotes')
-    implementation project(path: ':features:chathistory')
-    implementation project(path: ':features:stv')
-    implementation project(path: ':features:settings')
-    implementation project(path: ':features:timer')
-    implementation project(path: ':features:chapters')
-    implementation project(path: ':features:logs')
+    api project(path: ':bridge')
 }

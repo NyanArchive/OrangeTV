@@ -2,9 +2,9 @@ package tv.twitch.android.shared.chat.viewerlist;
 
 import androidx.annotation.NonNull;
 
-import tv.orange.features.usersearch.Hook;
+import tv.orange.features.usersearch.UserSearch;
 import tv.orange.features.usersearch.bridge.IProxyEvent;
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.core.mvp.presenter.RxPresenter;
 import tv.twitch.android.core.mvp.viewdelegate.ViewDelegateEvent;
 import tv.twitch.android.shared.ui.elements.bottomsheet.BottomSheetBehaviorViewDelegate;
@@ -24,7 +24,7 @@ public class ViewerListPresenter extends RxPresenter implements IProxyEvent { //
     public final void attachViewDelegate(ViewerListViewDelegate viewDelegate, BottomSheetBehaviorViewDelegate bottomSheetBehaviorViewDelegate) {
         /* ... */
 
-        Hook.get().setupFilter(viewDelegate, this); // TODO: __INJECT_CODE
+        UserSearch.get().setupFilter(viewDelegate, this); // TODO: __INJECT_CODE
 
         /* ... */
 

@@ -2,14 +2,13 @@ package tv.orange.features.logs.data.adapter
 
 import android.annotation.SuppressLint
 import android.graphics.Color
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import tv.orange.core.ResourceManager
 import tv.orange.core.ViewUtil.getView
+import tv.orange.core.ViewUtil.inflate
 import tv.orange.features.logs.component.data.model.ChatMessage
 import tv.orange.features.logs.component.data.model.MessageItem
 import tv.twitch.android.shared.chat.messagefactory.ChatMessageFactory
@@ -63,20 +62,8 @@ class LogsAdapter @Inject constructor(val factoryProvider: ChatMessageFactory.Fa
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            HEADER_TYPE -> DateViewHolder(
-                LayoutInflater.from(parent.context).inflate(
-                    ResourceManager.getId("orangetv_logs_date", "layout"),
-                    parent,
-                    false
-                )
-            )
-            else -> MessageViewHolder(
-                LayoutInflater.from(parent.context).inflate(
-                    ResourceManager.getId("chat_message_item", "layout"),
-                    parent,
-                    false
-                )
-            )
+            HEADER_TYPE -> DateViewHolder(parent.inflate("orangetv_logs_date"))
+            else -> MessageViewHolder(parent.inflate("chat_message_item"))
         }
     }
 

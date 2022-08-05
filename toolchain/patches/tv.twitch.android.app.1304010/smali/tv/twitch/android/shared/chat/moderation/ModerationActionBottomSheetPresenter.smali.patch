@@ -5,13 +5,13 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/moderation/ModerationA
  
      move-object/from16 v0, p1
  
-+    invoke-static {}, Ltv/orange/features/logs/LogsHook;->get()Ltv/orange/features/logs/LogsHook;
++    invoke-static {}, Ltv/orange/features/logs/ChatLogs;->get()Ltv/orange/features/logs/ChatLogs;
 +
 +    move-result-object v2
 +
 +    iget-object v1, v6, Ltv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetPresenter;->activity:Landroidx/fragment/app/FragmentActivity;
 +
-+    invoke-virtual {v2, v1, v0}, Ltv/orange/features/logs/LogsHook;->showModLogs(Landroidx/fragment/app/FragmentActivity;Ltv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetViewDelegate$ModerationActionButtonEvent;)Z
++    invoke-virtual {v2, v1, v0}, Ltv/orange/features/logs/ChatLogs;->showModLogs(Landroidx/fragment/app/FragmentActivity;Ltv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetViewDelegate$ModerationActionButtonEvent;)Z
 +
 +    move-result v2
 +

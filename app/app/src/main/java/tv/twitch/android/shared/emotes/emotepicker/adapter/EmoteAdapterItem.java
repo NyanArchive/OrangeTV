@@ -1,7 +1,7 @@
 package tv.twitch.android.shared.emotes.emotepicker.adapter;
 
 import tv.orange.features.chat.bridge.EmoteUiModelExt;
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiModel;
 
 public class EmoteAdapterItem {

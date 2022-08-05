@@ -23,11 +23,11 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayer
  
      invoke-virtual {v3, p1}, Landroid/widget/ImageView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
  
-+    invoke-static {}, Ltv/orange/features/refreshstream/Hook;->get()Ltv/orange/features/refreshstream/Hook;
++    invoke-static {}, Ltv/orange/features/refreshstream/RefreshStream;->get()Ltv/orange/features/refreshstream/RefreshStream;
 +
 +    move-result-object v0
 +
-+    invoke-virtual {v0, p0}, Ltv/orange/features/refreshstream/Hook;->getRefreshStreamButton(Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;)Landroid/widget/ImageView;
++    invoke-virtual {v0, p0}, Ltv/orange/features/refreshstream/RefreshStream;->getRefreshStreamButton(Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;)Landroid/widget/ImageView;
 +
 +    move-result-object v0
 +

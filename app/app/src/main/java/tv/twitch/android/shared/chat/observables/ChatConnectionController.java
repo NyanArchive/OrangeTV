@@ -1,7 +1,7 @@
 package tv.twitch.android.shared.chat.observables;
 
 import tv.orange.core.Core;
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.ErrorCode;
 import tv.twitch.android.sdk.ChannelState;
 

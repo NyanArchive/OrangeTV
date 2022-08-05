@@ -1,6 +1,6 @@
 package tv.orange.features.logs.component.data.mapper
 
-import tv.orange.core.util.DateUtil
+import tv.orange.models.util.DateUtil
 import tv.orange.features.logs.component.data.model.ChatMessage
 import tv.orange.features.logs.component.data.model.MessageItem
 import tv.orange.features.logs.component.data.model.UserInfo

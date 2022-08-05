@@ -16,18 +16,24 @@ class DropDownMenuModelExt<T : Flag.Variant>(flag: Flag, context: Context) :
             context,
             flag.variant<T>().getVariants().map { variant ->
                 TwitchArrayAdapterModel {
-                    ResourceManager.getString("orange_${flag.prefKey}_$variant")
+                    ResourceManager.get().getString("orange_${flag.prefKey}_$variant")
                 }
             },
-            ResourceManager.getId("twitch_spinner_dropdown_item", "layout")
+            ResourceManager.get().getLayoutId("twitch_spinner_dropdown_item")
         ),
         flag.variant<T>().getVariants().indexOf(flag.variant()),
-        ResourceManager.getString(flag.titleRes),
-        ResourceManager.getString(flag.summaryRes),
+        flag.titleRes?.let { id ->
+            ResourceManager.get().getString(id)
+        },
+        flag.summaryRes?.let { id ->
+            ResourceManager.get().getString(id)
+        },
         null,
         null,
         DropDownMenuItemSelection { _, position ->
-            PreferenceManager.get()
-                .writeString(flag, flag.variant<T>().getVariants()[position].toString())
+            PreferenceManager.get().writeString(
+                flag = flag,
+                value = flag.variant<T>().getVariants()[position].toString()
+            )
         }
     )

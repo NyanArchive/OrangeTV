@@ -1,6 +1,6 @@
 package tv.orange.models.data.emotes
 
-import tv.orange.models.abs.EmotePackageSet
+import tv.orange.models.abc.EmotePackageSet
 
 data class EmoteImpl(
     private val emoteCode: String,

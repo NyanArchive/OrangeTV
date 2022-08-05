@@ -12,7 +12,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/streams/HostedStreamModel.s
 -    iget-object v0, p0, Ltv/twitch/android/models/streams/HostedStreamModel;->channelLogoURL:Ljava/lang/String;
 +    .prologue
 +    .line 12
-+    invoke-static {}, Ltv/orange/features/stv/AvatarsHookProvider;->get()Ltv/orange/features/stv/AvatarsHookProvider;
++    invoke-static {}, Ltv/orange/features/stv/StvAvatars;->get()Ltv/orange/features/stv/StvAvatars;
 +
 +    move-result-object v0
 +
@@ -20,7 +20,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/streams/HostedStreamModel.s
 +
 +    iget-object v2, p0, Ltv/twitch/android/models/streams/HostedStreamModel;->name:Ljava/lang/String;
 +
-+    invoke-virtual {v0, v1, v2}, Ltv/orange/features/stv/AvatarsHookProvider;->hookProfileImageUrl(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
++    invoke-virtual {v0, v1, v2}, Ltv/orange/features/stv/StvAvatars;->hookProfileImageUrl(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 +
 +    move-result-object v0
  

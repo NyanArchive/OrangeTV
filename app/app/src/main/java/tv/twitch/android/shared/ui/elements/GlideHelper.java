@@ -3,7 +3,7 @@ package tv.twitch.android.shared.ui.elements;
 import android.content.Context;
 import android.widget.TextView;
 
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.shared.ui.elements.span.GlideChatImageCustomTarget;
 import tv.twitch.android.shared.ui.elements.span.GlideChatImageTarget;
 import tv.twitch.android.shared.ui.elements.span.UrlDrawable;

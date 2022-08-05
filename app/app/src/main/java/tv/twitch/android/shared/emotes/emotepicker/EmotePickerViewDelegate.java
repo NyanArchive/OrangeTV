@@ -8,6 +8,7 @@ import java.util.List;
 
 import tv.orange.features.chat.ChatHookProvider;
 import tv.orange.features.chat.bridge.ScrollableOrangeSection;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.core.adapters.RecyclerAdapterSection;
 import tv.twitch.android.core.adapters.TwitchSectionAdapter;
 import tv.twitch.android.shared.emotes.emotepicker.adapter.EmotePickerAdapterSection;
@@ -23,6 +24,10 @@ public class EmotePickerViewDelegate implements ScrollableOrangeSection { // TOD
         /* ... */
 
         orangeEmotesButton = ChatHookProvider.get().getOrangeEmotesButton(this); // TODO: __INJECT_CODE
+
+        /* ... */
+
+        throw new VirtualImpl();
     }
 
     public void scrollToOrangeSection() { // TODO: __INJECT_METHOD
@@ -68,7 +73,7 @@ public class EmotePickerViewDelegate implements ScrollableOrangeSection { // TOD
                 // uContentList.enableStickyHeaders();
             }
 
-            return null;
+            throw new VirtualImpl();
         }
     }
 }

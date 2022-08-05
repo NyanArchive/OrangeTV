@@ -5,5 +5,5 @@ import tv.twitch.android.shared.player.overlay.BottomPlayerControlOverlayViewDel
 import tv.twitch.android.shared.player.overlay.PlayerOverlayViewDelegate
 
 interface ViewFactory {
-    fun createTimerButton(delegate: PlayerOverlayViewDelegate): ImageView?
+    fun createTimerButton(delegate: PlayerOverlayViewDelegate): ImageView
 }

@@ -10,10 +10,7 @@ class OrangeEmoteCardUiModel(model: OrangeEmoteCardModel) :
         EmoteCardHeaderUiModel(
             model.emoteToken,
             StringResource.Companion!!.fromStringId(
-                ResourceManager.getId(
-                    model.set.stringId,
-                    "string"
-                )
+                ResourceManager.get().getStringId(model.set.stringId)
             ),
             model.url,
             false

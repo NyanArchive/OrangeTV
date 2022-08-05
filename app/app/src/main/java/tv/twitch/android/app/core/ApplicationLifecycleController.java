@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import tv.orange.core.Core;
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.CoreAPI;
 
 public class ApplicationLifecycleController {

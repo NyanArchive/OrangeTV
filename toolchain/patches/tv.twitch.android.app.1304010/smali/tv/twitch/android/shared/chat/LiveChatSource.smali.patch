@@ -6,64 +6,15 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/LiveChatSource.smali b
  .source "LiveChatSource.kt"
  
 +# interfaces
-+.implements Ltv/oranges/features/chathistory/bridge/ILiveChatSource;
++.implements Ltv/orange/features/chathistory/bridge/ILiveChatSource;
 +
  
  # annotations
  .annotation system Ldalvik/annotation/MemberClasses;
-@@ -3678,3 +3681,87 @@
+@@ -3678,3 +3681,37 @@
  
      return-void
  .end method
-+
-+.method public addChatHistoryMessages(ILjava/util/List;)V
-+    .registers 6
-+    .param p1, "channelId"    # I
-+    .param p2    # Ljava/util/List;
-+        .annotation build Landroidx/annotation/NonNull;
-+        .end annotation
-+    .end param
-+    .annotation system Ldalvik/annotation/Signature;
-+        value = {
-+            "(I",
-+            "Ljava/util/List",
-+            "<",
-+            "Ltv/twitch/android/shared/chat/parser/ExtensionMessageKt;",
-+            ">;)V"
-+        }
-+    .end annotation
-+
-+    .prologue
-+    .line 32
-+    .local p2, "messages":Ljava/util/List;, "Ljava/util/List<Ltv/twitch/android/shared/chat/parser/ExtensionMessageKt;>;"
-+    invoke-interface {p2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
-+
-+    move-result-object v1
-+
-+    :goto_4
-+    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
-+
-+    move-result v2
-+
-+    if-eqz v2, :cond_14
-+
-+    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
-+
-+    move-result-object v0
-+
-+    check-cast v0, Ltv/twitch/android/shared/chat/parser/ExtensionMessageKt;
-+
-+    .line 33
-+    .local v0, "message":Ltv/twitch/android/shared/chat/parser/ExtensionMessageKt;
-+    invoke-virtual {p0, p1, v0}, Ltv/twitch/android/shared/chat/LiveChatSource;->addChatHistoryMessage(ILtv/twitch/android/shared/chat/parser/ExtensionMessageKt;)V
-+
-+    goto :goto_4
-+
-+    .line 35
-+    .end local v0    # "message":Ltv/twitch/android/shared/chat/parser/ExtensionMessageKt;
-+    :cond_14
-+    return-void
-+.end method
 +
 +.method public addDisposable(Lio/reactivex/disposables/Disposable;)V
 +    .registers 3
@@ -82,20 +33,19 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/LiveChatSource.smali b
 +    return-void
 +.end method
 +
-+.method public addChatHistoryMessage(ILtv/twitch/android/shared/chat/parser/ExtensionMessageKt;)V
++.method public addChatHistoryMessage(Ltv/twitch/chat/ChatMessageInfo;I)V
 +    .registers 4
-+    .param p1, "channelId"    # I
-+    .param p2, "line"    # Ltv/twitch/android/shared/chat/parser/ExtensionMessageKt;
++    .param p1, "message"    # Ltv/twitch/chat/ChatMessageInfo;
 +        .annotation build Landroidx/annotation/NonNull;
 +        .end annotation
 +    .end param
++    .param p2, "channelId"    # I
 +
-+    .prologue
-+    .line 27
-+    const/4 v0, 0x0
++    .line 35
++    iget-object v0, p0, Ltv/twitch/android/shared/chat/LiveChatSource;->messageListAdapterBinder:Ltv/twitch/android/shared/chat/messagefactory/MessageListAdapterBinder;
 +
-+    invoke-virtual {p0, p1, p2, v0}, Ltv/twitch/android/shared/chat/LiveChatSource;->addExtensionChatMessage(ILtv/twitch/android/shared/chat/parser/ExtensionMessageKt;Ltv/twitch/android/shared/chat/chatsource/IClickableUsernameSpanListener;)V
++    invoke-virtual {v0, p1, p2}, Ltv/twitch/android/shared/chat/messagefactory/MessageListAdapterBinder;->addChatHistoryMessage(Ltv/twitch/chat/ChatMessageInfo;I)V
 +
-+    .line 28
++    .line 36
 +    return-void
 +.end method

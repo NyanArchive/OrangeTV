@@ -1,6 +1,6 @@
 package tv.orange.core
 
-import tv.orange.models.Logger
+import tv.orange.models.util.Logger
 
 class LoggerWithTag(private val tag: String) : Logger {
     override fun warning(msg: String) {

@@ -3,7 +3,7 @@ package tv.twitch.android.shared.chat.emotecard;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import tv.orange.features.chat.bridge.OrangeEmoteCardModel;
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.models.emotes.EmoteCardModel;
 import tv.twitch.android.models.emotes.EmoteCardModelResponse;
 

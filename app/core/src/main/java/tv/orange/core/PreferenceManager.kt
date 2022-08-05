@@ -2,21 +2,30 @@ package tv.orange.core
 
 import android.content.Context
 import android.content.SharedPreferences
-import tv.orange.core.di.component.CoreComponent
 import tv.orange.core.models.Flag
 import tv.orange.core.models.FlagListener
+import tv.orange.models.abc.Feature
 import javax.inject.Inject
 
-class PreferenceManager @Inject constructor(context: Context) :
-    SharedPreferences.OnSharedPreferenceChangeListener {
+class PreferenceManager @Inject constructor(
+    context: Context
+) : SharedPreferences.OnSharedPreferenceChangeListener, Feature {
     private val preferences = context.getSharedPreferences(ORANGE_PREFERENCES, Context.MODE_PRIVATE)
-
     private val listeners = mutableSetOf<FlagListener>()
 
     fun registerFlagListeners(vararg l: FlagListener) {
         l.forEach { listener ->
             Logger.debug("register: $l")
             listeners.add(listener)
+        }
+    }
+
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        key?.let { value ->
+            Flag.findByKey(value)?.let { flag ->
+                readSettingFromPref(flag)
+                listeners.forEach { it.onFlagChanged(flag) }
+            }
         }
     }
 
@@ -27,27 +36,15 @@ class PreferenceManager @Inject constructor(context: Context) :
         }
     }
 
-    fun initialize() {
-        Flag.values().forEach { setting ->
-            readSettingFromPref(setting)
-        }
-
-        preferences.registerOnSharedPreferenceChangeListener(this)
-    }
-
     fun writeBoolean(flag: Flag, value: Boolean) {
-        Logger.debug("setting: $flag, value: $value")
         preferences.edit().putBoolean(flag.prefKey, value).apply()
     }
 
     fun writeString(flag: Flag, value: String) {
-        Logger.debug("setting: $flag, value: $value")
         preferences.edit().putString(flag.prefKey, value).apply()
     }
 
     fun writeBoolean(prefKey: String, value: Boolean) {
-        Logger.debug("prefKey: $prefKey, value: $value")
-
         Flag.findByKey(prefKey)?.let { flag ->
             writeBoolean(flag, value)
         } ?: throw IllegalStateException(prefKey)
@@ -59,29 +56,17 @@ class PreferenceManager @Inject constructor(context: Context) :
     }
 
     private fun readInt(flag: Flag): Flag.IntegerValue {
-        Logger.debug("flag: $flag")
         val value = preferences.getInt(flag.prefKey, Flag.getInt(flag.default))
         return Flag.IntegerValue(value)
     }
 
     private fun readString(flag: Flag): Flag.StringValue {
-        Logger.debug("flag: $flag")
         val value = preferences.getString(flag.prefKey, Flag.getString(flag.default))
         return Flag.StringValue(value)
     }
 
     private fun readRawString(flag: Flag): String {
-        Logger.debug("flag: $flag")
         return preferences.getString(flag.prefKey, Flag.getString(flag.default))!!
-    }
-
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        key?.let { value ->
-            Flag.findByKey(value)?.let { flag ->
-                readSettingFromPref(flag)
-                listeners.forEach { it.onFlagChanged(flag) }
-            }
-        }
     }
 
     private fun readSettingFromPref(flag: Flag) {
@@ -97,16 +82,20 @@ class PreferenceManager @Inject constructor(context: Context) :
     companion object {
         private const val ORANGE_PREFERENCES = "orange"
 
-        private val INSTANCE by lazy {
-            val instance = Core.getProvider(CoreComponent::class).get().preferenceManager
-
-            Logger.debug("Provide new instance: $instance")
-            return@lazy instance
-        }
-
         @JvmStatic
-        fun get(): PreferenceManager {
-            return INSTANCE
-        }
+        fun get() = Core.getFeature(PreferenceManager::class.java)
     }
+
+    fun initialize() {
+        Flag.values().forEach { setting ->
+            readSettingFromPref(setting)
+        }
+
+        preferences.registerOnSharedPreferenceChangeListener(this)
+    }
+
+    override fun onDestroyFeature() {
+        throw IllegalStateException("PreferenceManager cannot be destroyed")
+    }
+    override fun onCreateFeature() {}
 }

@@ -2,16 +2,17 @@ package tv.twitch.android.shared.chat;
 
 import androidx.annotation.NonNull;
 
-import java.util.List;
-
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import tv.orange.models.VirtualImpl;
-import tv.oranges.features.chathistory.bridge.ILiveChatSource;
+import tv.orange.features.chathistory.bridge.ILiveChatSource;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.shared.chat.chatsource.IClickableUsernameSpanListener;
+import tv.twitch.android.shared.chat.messagefactory.MessageListAdapterBinder;
 import tv.twitch.android.shared.chat.parser.ExtensionMessageKt;
+import tv.twitch.chat.ChatMessageInfo;
 
 public class LiveChatSource implements ILiveChatSource { // TODO: __IMPLEMENT
+    private MessageListAdapterBinder messageListAdapterBinder;
     private CompositeDisposable disposables;
 
     /* ... */
@@ -30,15 +31,8 @@ public class LiveChatSource implements ILiveChatSource { // TODO: __IMPLEMENT
     }
 
     @Override
-    public void addChatHistoryMessage(int channelId, @NonNull ExtensionMessageKt line) { // TODO: __INJECT_METHOD
-        addExtensionChatMessage(channelId, line, null);
-    }
-
-    @Override
-    public void addChatHistoryMessages(int channelId, @NonNull List<ExtensionMessageKt> messages) { // TODO: __INJECT_METHOD
-        for (ExtensionMessageKt message : messages) {
-            addChatHistoryMessage(channelId, message);
-        }
+    public void addChatHistoryMessage(@NonNull ChatMessageInfo message, int channelId) { // TODO: __INJECT_METHOD
+        messageListAdapterBinder.addChatHistoryMessage(message, channelId);
     }
 
     /* ... */

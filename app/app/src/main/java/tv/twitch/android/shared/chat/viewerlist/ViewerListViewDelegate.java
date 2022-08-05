@@ -8,15 +8,15 @@ import androidx.appcompat.widget.SearchView;
 import org.jetbrains.annotations.Nullable;
 
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import tv.orange.features.usersearch.Hook;
+import tv.orange.features.usersearch.UserSearch;
 import tv.orange.features.usersearch.bridge.IViewerListViewDelegate;
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.core.mvp.viewdelegate.RxViewDelegate;
 import tv.twitch.android.core.mvp.viewdelegate.ViewDelegateEvent;
-import tv.twitch.android.core.mvp.viewdelegate.ViewDelegateState;
 import tv.twitch.android.shared.ui.elements.list.ContentListViewDelegate;
+import tv.twitch.android.shared.ui.elements.list.ListViewState;
 
-public class ViewerListViewDelegate extends RxViewDelegate implements IViewerListViewDelegate { // TODO: @features:usersearch
+public class ViewerListViewDelegate extends RxViewDelegate<ListViewState, ViewerListViewDelegate.Event> implements IViewerListViewDelegate { // TODO: @features:usersearch
     private final SearchView searchBar; // TODO: __INJECT_FIELD
 
     /* ... */
@@ -26,7 +26,7 @@ public class ViewerListViewDelegate extends RxViewDelegate implements IViewerLis
 
         /* ... */
 
-        searchBar = Hook.get().getSearchBar(this); // TODO: __INJECT_CODE
+        searchBar = UserSearch.get().getSearchBar(this); // TODO: __INJECT_CODE
 
         /* ... */
 
@@ -39,14 +39,7 @@ public class ViewerListViewDelegate extends RxViewDelegate implements IViewerLis
     }
 
     @Override
-    public void render(ViewDelegateState viewDelegateState) {
-        /* ... */
-
-        throw new VirtualImpl();
-    }
-
-    @Override
-    public void pushEvent(Object o) {
+    public void render(ListViewState listViewState) {
         /* ... */
 
         throw new VirtualImpl();
@@ -80,7 +73,8 @@ public class ViewerListViewDelegate extends RxViewDelegate implements IViewerLis
             }
         }
 
-        private Event() { }
+        private Event() {
+        }
     }
 
     /* ... */

@@ -10,7 +10,7 @@ import com.bumptech.glide.request.transition.Transition;
 
 import java.lang.ref.WeakReference;
 
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 
 public class GlideChatImageCustomTarget {
     private UrlDrawable mUrlDrawable;

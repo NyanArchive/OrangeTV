@@ -6,7 +6,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/experiments/helpers/PlayerS
  
      :goto_1
 +
-+    invoke-static {v0}, Ltv/orange/core/Hook;->hookPlayerImplementation(Ltv/twitch/android/models/player/PlayerImplementation;)Ltv/twitch/android/models/player/PlayerImplementation;
++    invoke-static {v0}, Ltv/orange/core/CoreHook;->hookPlayerImplementation(Ltv/twitch/android/models/player/PlayerImplementation;)Ltv/twitch/android/models/player/PlayerImplementation;
 +
 +    move-result-object v0
 +

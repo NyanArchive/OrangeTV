@@ -1,6 +1,6 @@
 package tv.orange.features.chat.bridge
 
-import tv.orange.models.abs.EmotePackageSet
+import tv.orange.models.abc.EmotePackageSet
 import tv.twitch.android.models.emotes.EmoteCardModel
 import tv.twitch.android.models.emotes.EmoteModelAssetType
 

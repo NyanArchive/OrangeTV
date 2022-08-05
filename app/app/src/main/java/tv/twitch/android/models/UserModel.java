@@ -1,6 +1,6 @@
 package tv.twitch.android.models;
 
-import tv.orange.features.stv.AvatarsHookProvider;
+import tv.orange.features.stv.StvAvatars;
 
 public class UserModel {
     private String logoURL;
@@ -9,7 +9,7 @@ public class UserModel {
     /* ... */
 
     public final String getLogoURL() { // TODO: __REPLACE_METHOD
-        return AvatarsHookProvider.get().hookProfileImageUrl(this.logoURL, name);
+        return StvAvatars.get().hookProfileImageUrl(this.logoURL, name);
     }
 
     /* ... */

@@ -63,4 +63,6 @@ dependencies {
     api "com.github.zjupure:webpdecoder:2.0.${glide_version}"
     api 'androidx.constraintlayout:constraintlayout:2.1.4'
     api 'androidx.recyclerview:recyclerview:1.2.1'
+    api 'com.google.android.material:material:1.6.1'
+    api "com.github.zjupure:webpdecoder:2.0.${glide_version}" // TODO: __INJECT_LIB
 }

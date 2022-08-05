@@ -14,20 +14,26 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Orange TV"
 include ':app'
+
 include ':Twitch'
-include ':core'
+include ':TwitchRes'
+
 include ':models'
+include ':core'
+
+include ':injector'
+include ':bridge'
+
+include ':components:emotes'
+include ':components:badges'
+include ':components:api'
+
 include ':features:usersearch'
 include ':features:refreshstream'
-include ':features:emotes'
-include ':features:badges'
 include ':features:chat'
-include ':injector'
 include ':features:chathistory'
-include ':features:api'
 include ':features:stv'
 include ':features:settings'
 include ':features:timer'
 include ':features:chapters'
 include ':features:logs'
-include ':TwitchRes'

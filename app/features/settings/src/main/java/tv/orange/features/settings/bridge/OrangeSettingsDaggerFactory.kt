@@ -35,9 +35,8 @@ class OrangeSettingsDaggerFactory @Inject constructor() {
                 ClassCompat.getProvider(
                     settingsActivitySubcomponentImpl,
                     "provideSettingsTrackerProvider"
-                ),
-                { OrangeSettings.get().controller }
-            )
+                )
+            ) { OrangeSettings.get().controller }
         }
     }
 }

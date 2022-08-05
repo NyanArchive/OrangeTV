@@ -1,7 +1,34 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali b/smali_classes6/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali
 --- a/smali_classes6/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali
 +++ b/smali_classes6/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali
-@@ -906,6 +906,26 @@
+@@ -677,7 +677,26 @@
+ 
+     invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+ 
++    invoke-static {}, Ltv/orange/features/vodsync/VodSync;->get()Ltv/orange/features/vodsync/VodSync;
++
++    move-result-object v0
++
++    iget-object v1, p0, Ltv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl;->vodModel:Ltv/twitch/android/models/videos/VodModel;
++
++    invoke-virtual {v0, v1, p2}, Ltv/orange/features/vodsync/VodSync;->hookChommentTimestamp(Ltv/twitch/android/models/videos/VodModel;I)I
++
++    move-result p2
++
++    if-gez p2, :cond_z
++
++    invoke-static {}, Lio/reactivex/Maybe;->empty()Lio/reactivex/Maybe;
++
++    move-result-object v0
++
++    return-object v0
++
+     .line 73
++    :cond_z
+     iget-boolean v0, p0, Ltv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl;->isRequestInFlight:Z
+ 
+     if-nez v0, :cond_1
+@@ -906,6 +925,26 @@
  
      invoke-virtual {p1, v0}, Ltv/twitch/android/shared/badges/ChatBadgeProvider;->fetchChannelBadges(I)V
  

@@ -28,6 +28,8 @@ import tv.orange.features.timer.SleepTimer
 import tv.orange.features.timer.di.component.DaggerTimerComponent
 import tv.orange.features.usersearch.UserSearch
 import tv.orange.features.usersearch.di.component.DaggerUserSearchComponent
+import tv.orange.features.vodsync.VodSync
+import tv.orange.features.vodsync.di.component.DaggerVodSyncComponent
 import tv.orange.models.abc.Injector
 import tv.twitch.android.network.graphql.GraphQlService
 import tv.twitch.android.shared.chat.messagefactory.ChatMessageFactory
@@ -88,6 +90,13 @@ class BridgeFeatureModule {
             coreComponent = coreComponent,
             service = injector.getComponentProvider(GraphQlService::class).get()
         ).vodChapters
+    }
+
+    @Provides
+    fun provideVodSync(
+        coreComponent: CoreComponent
+    ): VodSync {
+        return DaggerVodSyncComponent.builder().coreComponent(coreComponent).build().vodSync
     }
 
     @Provides

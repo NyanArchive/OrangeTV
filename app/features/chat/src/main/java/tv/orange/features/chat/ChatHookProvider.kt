@@ -2,10 +2,7 @@ package tv.orange.features.chat
 
 import android.content.Context
 import android.graphics.Color
-import android.text.SpannableStringBuilder
-import android.text.Spanned
-import android.text.SpannedString
-import android.text.TextUtils
+import android.text.*
 import android.text.style.ForegroundColorSpan
 import android.text.style.StrikethroughSpan
 import android.widget.ImageView
@@ -30,9 +27,9 @@ import tv.orange.features.chat.bridge.*
 import tv.orange.features.chat.view.ViewFactory
 import tv.orange.features.emotes.bridge.EmoteToken
 import tv.orange.features.emotes.component.EmoteProvider
-import tv.orange.models.abc.Feature
 import tv.orange.models.abc.EmoteCardModelWrapper
 import tv.orange.models.abc.EmotePackageSet
+import tv.orange.models.abc.Feature
 import tv.orange.models.data.emotes.Emote
 import tv.twitch.android.models.chat.MessageBadge
 import tv.twitch.android.models.chat.MessageToken
@@ -51,6 +48,8 @@ import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiSet
 import tv.twitch.android.shared.emotes.models.EmoteMessageInput
 import tv.twitch.android.shared.ui.elements.span.CenteredImageSpan
 import tv.twitch.android.shared.ui.elements.span.UrlDrawable
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -60,6 +59,25 @@ class ChatHookProvider @Inject constructor(
     val viewFactory: ViewFactory
 ) : LifecycleAware, FlagListener, Feature {
     private val currentChannelSubject = BehaviorSubject.create<Int>()
+
+    fun maybeAddTimestamp(
+        message: Spanned,
+        userId: Int,
+        messageTimestamp: Int
+    ): Spanned {
+        if (!Flag.CHAT_TIMESTAMPS.valueBoolean()) {
+            return message
+        }
+
+        return if (userId > 0) {
+            createTimestampSpanFromChatMessageSpan(
+                message,
+                Date(messageTimestamp.toLong() * 1000)
+            )
+        } else {
+            message
+        }
+    }
 
     fun hookMessageInterface(
         cmi: ChatMessageInterface,
@@ -257,6 +275,8 @@ class ChatHookProvider @Inject constructor(
     }
 
     companion object {
+        private const val TIMESTAMP_DATE_FORMAT = "HH:mm"
+
         @JvmStatic
         fun get() = Core.getFeature(ChatHookProvider::class.java)
 
@@ -392,6 +412,15 @@ class ChatHookProvider @Inject constructor(
             }
             return usernameEndPos
         }
+
+        private fun formatTimestamp(msg: Spanned, timestamp: CharSequence): Spanned =
+            SpannableString.valueOf(SpannableStringBuilder(timestamp).append(" ").append(msg))
+
+        private fun createTimestampSpanFromChatMessageSpan(msg: Spanned, date: Date): Spanned =
+            formatTimestamp(
+                msg = msg,
+                timestamp = SimpleDateFormat(TIMESTAMP_DATE_FORMAT, Locale.ENGLISH).format(date)
+            )
     }
 
     override fun onDestroyFeature() {

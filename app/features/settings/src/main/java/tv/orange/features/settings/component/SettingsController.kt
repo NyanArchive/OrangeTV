@@ -36,6 +36,7 @@ class SettingsController @Inject constructor() : SettingsPreferencesController {
             FlagToggleMenuModelExt(Flag.CHE_BADGES),
             FlagToggleMenuModelExt(Flag.STV_AVATARS),
             FlagToggleMenuModelExt(Flag.CHAT_HISTORY),
+            FlagToggleMenuModelExt(Flag.CHAT_TIMESTAMPS),
             FlagToggleMenuModelExt(Flag.DISABLE_STICKY_HEADERS_EP),
             FlagToggleMenuModelExt(Flag.HIDE_BITS_BUTTON),
             DropDownMenuModelExt<PlayerImpl>(Flag.PLAYER_IMPL, context),

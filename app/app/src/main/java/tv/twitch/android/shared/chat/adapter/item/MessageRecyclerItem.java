@@ -34,8 +34,21 @@ public class MessageRecyclerItem {
 
     /* ... */
 
+    public MessageRecyclerItem(Context context, String str, int i, String str2, String str3, int i2,
+                               Spanned message, SystemMessageType systemMessageType, float f, int i3,
+                               float f2, boolean z, boolean z2, List<String> mentionedUsers,
+                               String str4, EventDispatcher<ChatItemClickEvent> eventDispatcher,
+                               PublishSubject<ChatMessageClickedEvents> publishSubject, boolean z3) {
+        message = ChatHookProvider.get().maybeAddTimestamp(message, i, i2); // TODO: __INJECT_CODE
+
+        /* ... */
+
+        throw new VirtualImpl();
+    }
+
     public void markAsDeleted() {
-        Spanned createDeletedSpanFromChatMessageSpan = ChatHookProvider.hook(messageId,
+        Spanned createDeletedSpanFromChatMessageSpan = ChatHookProvider.hook(
+                messageId,
                 message,
                 context,
                 messageClickEventDispatcher,
@@ -44,8 +57,9 @@ public class MessageRecyclerItem {
         if (createDeletedSpanFromChatMessageSpan != null) {
             this.message = createDeletedSpanFromChatMessageSpan;
         }
-        this.hasBeenDeleted = true;
-        
+
+        /* ... */
+
         throw new VirtualImpl();
     }
 

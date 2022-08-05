@@ -80,6 +80,11 @@ enum class Flag(
         "deleted_messages",
         "orange_settings_deleted_messages",
         ListValue(DeletedMessages.Default),
+    ),
+    CHAT_TIMESTAMPS(
+        "chat_timestamps",
+        "orange_settings_chat_timestamps",
+        BooleanValue(false)
     );
 
     companion object {

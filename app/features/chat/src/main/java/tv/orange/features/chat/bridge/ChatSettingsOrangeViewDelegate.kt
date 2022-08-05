@@ -1,13 +1,13 @@
 package tv.orange.features.chat.bridge
 
 import android.content.Context
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import io.reactivex.Flowable
 import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
 import tv.orange.core.ViewUtil.getView
+import tv.orange.core.ViewUtil.inflate
 import tv.orange.core.models.Flag
 import tv.orange.core.models.Flag.Companion.valueBoolean
 import tv.orange.features.chat.ChatHookProvider
@@ -25,32 +25,23 @@ class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
         modStuffContainer,
     )
     private val toggleBttvEmotes = getToggleRowItem(
-        context,
         modStuffContainer,
         ResourceManager.get().getStringId("orange_settings_bttv_emotes")
     )
     private val toggleFfzEmotes = getToggleRowItem(
-        context,
         modStuffContainer,
         ResourceManager.get().getStringId("orange_settings_ffz_emotes")
     )
     private val toggleStvEmotes = getToggleRowItem(
-        context,
         modStuffContainer,
         ResourceManager.get().getStringId("orange_settings_stv_emotes")
     )
 
     private fun getToggleRowItem(
-        context: Context,
         container: ViewGroup,
         resId: Int
     ): SimpleToggleRowViewDelegate {
-        val inflate = LayoutInflater.from(context).inflate(
-            ResourceManager.get().getStringId("toggle_row_item"),
-            container,
-            false
-        )
-        return SimpleToggleRowViewDelegate(inflate, resId)
+        return SimpleToggleRowViewDelegate(container.inflate("toggle_row_item"), resId)
     }
 
     init {

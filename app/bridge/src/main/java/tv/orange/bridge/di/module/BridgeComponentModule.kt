@@ -3,6 +3,7 @@ package tv.orange.bridge.di.module
 import dagger.Module
 import dagger.Provides
 import tv.orange.bridge.di.scope.BridgeScope
+import tv.orange.core.Logger
 import tv.orange.core.di.component.CoreComponent
 import tv.orange.features.api.di.component.ApiComponent
 import tv.orange.features.api.di.component.DaggerApiComponent
@@ -18,6 +19,7 @@ class BridgeComponentModule {
         coreComponent: CoreComponent,
         apiComponent: ApiComponent
     ): EmotesComponent {
+        Logger.debug("called")
         return DaggerEmotesComponent.builder().coreComponent(coreComponent)
             .apiComponent(apiComponent).build()
     }
@@ -27,6 +29,7 @@ class BridgeComponentModule {
         coreComponent: CoreComponent,
         apiComponent: ApiComponent
     ): BadgesComponent {
+        Logger.debug("called")
         return DaggerBadgesComponent.builder().coreComponent(coreComponent)
             .apiComponent(apiComponent).build()
     }
@@ -34,6 +37,7 @@ class BridgeComponentModule {
     @BridgeScope
     @Provides
     fun provideApiComponent(coreComponent: CoreComponent): ApiComponent {
+        Logger.debug("called")
         return DaggerApiComponent.factory().create(coreComponent = coreComponent)
     }
 }

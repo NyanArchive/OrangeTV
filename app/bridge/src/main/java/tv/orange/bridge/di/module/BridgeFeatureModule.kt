@@ -4,6 +4,7 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import tv.orange.bridge.di.scope.BridgeScope
+import tv.orange.core.Logger
 import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
 import tv.orange.core.di.component.CoreComponent
@@ -38,6 +39,7 @@ import tv.twitch.android.shared.chat.messagefactory.ChatMessageFactory
 class BridgeFeatureModule {
     @Provides
     fun provideRefreshStreamHook(coreComponent: CoreComponent): RefreshStream {
+        Logger.debug("called")
         return DaggerRefreshStreamComponent.builder()
             .coreComponent(coreComponent)
             .build().refreshStream
@@ -45,16 +47,19 @@ class BridgeFeatureModule {
 
     @Provides
     fun provideUserSearch(coreComponent: CoreComponent): UserSearch {
+        Logger.debug("called")
         return DaggerUserSearchComponent.builder().coreComponent(coreComponent).build().userSearch
     }
 
     @Provides
     fun provideSleepTimer(coreComponent: CoreComponent): SleepTimer {
+        Logger.debug("called")
         return DaggerTimerComponent.builder().coreComponent(coreComponent).build().sleepTimer
     }
 
     @Provides
     fun provideStvAvatars(coreComponent: CoreComponent, apiComponent: ApiComponent): StvAvatars {
+        Logger.debug("called")
         return DaggerStvComponent.builder()
             .coreComponent(coreComponent)
             .apiComponent(apiComponent).build().stvAvatars
@@ -62,6 +67,7 @@ class BridgeFeatureModule {
 
     @Provides
     fun provideOrangeSettings(coreComponent: CoreComponent): OrangeSettings {
+        Logger.debug("called")
         return DaggerSettingsComponent.factory().create(
             coreComponent = coreComponent
         ).orangeSettings
@@ -69,6 +75,7 @@ class BridgeFeatureModule {
 
     @Provides
     fun provideChatLogs(coreComponent: CoreComponent, injector: Injector): ChatLogs {
+        Logger.debug("called")
         return DaggerLogsComponent.factory().create(
             coreComponent = coreComponent,
             service = injector.getComponentProvider(GraphQlService::class).get(),
@@ -78,6 +85,7 @@ class BridgeFeatureModule {
 
     @Provides
     fun provideChatHistory(coreComponent: CoreComponent, injector: Injector): ChatHistory {
+        Logger.debug("called")
         return DaggerChatHistoryComponent.factory().create(
             coreComponent = coreComponent,
             service = injector.getComponentProvider(GraphQlService::class).get()
@@ -86,6 +94,7 @@ class BridgeFeatureModule {
 
     @Provides
     fun provideChaptersHook(coreComponent: CoreComponent, injector: Injector): VodChapters {
+        Logger.debug("called")
         return DaggerChaptersComponent.factory().create(
             coreComponent = coreComponent,
             service = injector.getComponentProvider(GraphQlService::class).get()
@@ -96,6 +105,7 @@ class BridgeFeatureModule {
     fun provideVodSync(
         coreComponent: CoreComponent
     ): VodSync {
+        Logger.debug("called")
         return DaggerVodSyncComponent.builder().coreComponent(coreComponent).build().vodSync
     }
 
@@ -104,6 +114,7 @@ class BridgeFeatureModule {
         badgesComponent: BadgesComponent,
         emotesComponent: EmotesComponent
     ): ChatHookProvider {
+        Logger.debug("called")
         return DaggerChatComponent.builder()
             .badgesComponent(badgesComponent)
             .emotesComponent(emotesComponent)
@@ -113,12 +124,14 @@ class BridgeFeatureModule {
     @BridgeScope
     @Provides
     fun providePreferenceManager(context: Context): PreferenceManager {
+        Logger.debug("called")
         return PreferenceManager(context)
     }
 
     @BridgeScope
     @Provides
     fun provideResourceManager(context: Context): ResourceManager {
+        Logger.debug("called")
         return ResourceManager(context)
     }
 }

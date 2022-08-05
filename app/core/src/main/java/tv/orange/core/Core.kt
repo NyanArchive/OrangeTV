@@ -111,7 +111,5 @@ class Core @Inject constructor(val context: Context) :
     }
 
     override fun onDestroyFeature() {}
-    override fun onCreateFeature() {
-        Logger.debug("called")
-    }
+    override fun onCreateFeature() {}
 }

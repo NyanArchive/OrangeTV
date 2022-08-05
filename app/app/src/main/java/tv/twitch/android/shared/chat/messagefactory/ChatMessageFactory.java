@@ -105,7 +105,7 @@ public class ChatMessageFactory {
     public ChatAdapterItem createChatHistoryMessage(ChatMessageInfo message, int channelId) { // TODO: __INJECT_METHOD
         Spanned header = null;
         if (!message.userMode.system) {
-            header = new SpannedString(new SimpleDateFormat("HH:mm", Locale.ENGLISH).format(new Date(message.timestamp * 1000L)));
+            header = new SpannedString(new SimpleDateFormat("HH:mm", Locale.ENGLISH).format(new Date((long) message.timestamp * 1000)));
         }
         return createUserNoticeRecyclerItem(message, message.nameColorARGB, channelId, null, null, null, header, null, Collections.emptySet());
     }

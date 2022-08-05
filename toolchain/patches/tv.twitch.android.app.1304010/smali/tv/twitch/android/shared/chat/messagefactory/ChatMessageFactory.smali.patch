@@ -63,7 +63,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      instance-of v1, v0, Ltv/twitch/android/models/chat/MessageToken$EmoticonToken;
  
      if-eqz v1, :cond_9
-@@ -5315,3 +5355,221 @@
+@@ -5315,3 +5355,222 @@
  
      return-void
  .end method
@@ -84,7 +84,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +        }
 +    .end annotation
 +
-+    .line 71
++    .line 91
 +    .local p3, "eventDispatcher":Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;, "Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher<Ltv/twitch/android/shared/chat/util/ChatItemClickEvent;>;"
 +    new-instance v1, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
 +
@@ -98,7 +98,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
 +    invoke-direct {v1, v0, v2, v6}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;-><init>(Ljava/lang/String;Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;Z)V
 +
-+    .line 72
++    .line 92
 +    .local v1, "drawable":Landroid/graphics/drawable/Drawable;
 +    new-instance v7, Landroid/text/SpannableString;
 +
@@ -122,14 +122,14 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
 +    move-object v0, v7
 +
-+    .line 73
++    .line 93
 +    .local v0, "spannable":Landroid/text/SpannableString;
 +    if-eqz p3, :cond_46
 +
-+    .line 74
++    .line 94
 +    new-instance v2, Ltv/twitch/android/shared/chat/util/ClickableEmoteSpan;
 +
-+    new-instance v3, Ltv/orange/models/abs/EmoteCardModelWrapper;
++    new-instance v3, Ltv/orange/models/abc/EmoteCardModelWrapper;
 +
 +    invoke-virtual {p1}, Ltv/orange/features/emotes/bridge/EmoteToken;->getEmoteCode()Ljava/lang/String;
 +
@@ -139,13 +139,13 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
 +    move-result-object v5
 +
-+    invoke-virtual {p1}, Ltv/orange/features/emotes/bridge/EmoteToken;->getPackageSet()Ltv/orange/models/abs/EmotePackageSet;
++    invoke-virtual {p1}, Ltv/orange/features/emotes/bridge/EmoteToken;->getPackageSet()Ltv/orange/models/abc/EmotePackageSet;
 +
 +    move-result-object v7
 +
-+    invoke-direct {v3, v4, v5, v7}, Ltv/orange/models/abs/EmoteCardModelWrapper;-><init>(Ljava/lang/String;Ljava/lang/String;Ltv/orange/models/abs/EmotePackageSet;)V
++    invoke-direct {v3, v4, v5, v7}, Ltv/orange/models/abc/EmoteCardModelWrapper;-><init>(Ljava/lang/String;Ljava/lang/String;Ltv/orange/models/abc/EmotePackageSet;)V
 +
-+    invoke-virtual {v3}, Ltv/orange/models/abs/EmoteCardModelWrapper;->toJsonString()Ljava/lang/String;
++    invoke-virtual {v3}, Ltv/orange/models/abc/EmoteCardModelWrapper;->toJsonString()Ljava/lang/String;
 +
 +    move-result-object v3
 +
@@ -163,7 +163,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
 +    invoke-virtual {v0, v2, v3, v4, v5}, Landroid/text/SpannableString;->setSpan(Ljava/lang/Object;III)V
 +
-+    .line 77
++    .line 97
 +    :cond_46
 +    return-object v0
 +.end method
@@ -223,7 +223,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
 +    iget-boolean v1, v1, Ltv/twitch/chat/ChatUserMode;->system:Z
 +
-+    if-nez v1, :cond_24
++    if-nez v1, :cond_26
 +
 +    .line 108
 +    new-instance v1, Landroid/text/SpannedString;
@@ -240,9 +240,11 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
 +    iget v4, p1, Ltv/twitch/chat/ChatMessageInfo;->timestamp:I
 +
-+    mul-int/lit16 v4, v4, 0x3e8
-+
 +    int-to-long v4, v4
++
++    const-wide/16 v6, 0x3e8
++
++    mul-long v4, v4, v6
 +
 +    invoke-direct {v3, v4, v5}, Ljava/util/Date;-><init>(J)V
 +
@@ -255,7 +257,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +    move-object v0, v1
 +
 +    .line 110
-+    :cond_24
++    :cond_26
 +    iget v3, p1, Ltv/twitch/chat/ChatMessageInfo;->nameColorARGB:I
 +
 +    const/4 v5, 0x0
@@ -284,4 +286,3 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
 +    return-object v1
 +.end method
-+

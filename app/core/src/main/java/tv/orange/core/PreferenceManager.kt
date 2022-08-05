@@ -13,6 +13,14 @@ class PreferenceManager @Inject constructor(
     private val preferences = context.getSharedPreferences(ORANGE_PREFERENCES, Context.MODE_PRIVATE)
     private val listeners = mutableSetOf<FlagListener>()
 
+    fun getChommentSeekerValue(id: String): Int {
+        return localChommentsSeekerOpt[id] ?: 0
+    }
+
+    fun saveChommentSeekerValue(id: String, value: Int) {
+        localChommentsSeekerOpt[id] = value
+    }
+
     fun registerFlagListeners(vararg l: FlagListener) {
         l.forEach { listener ->
             Logger.debug("register: $l")
@@ -81,6 +89,8 @@ class PreferenceManager @Inject constructor(
 
     companion object {
         private const val ORANGE_PREFERENCES = "orange"
+
+        private val localChommentsSeekerOpt = mutableMapOf<String, Int>()
 
         @JvmStatic
         fun get() = Core.getFeature(PreferenceManager::class.java)

@@ -53,4 +53,5 @@
     <string name="orange_timer_title">OrangeTV Timer</string>
     <string name="orange_timer_cancel">Cancel</string>
     <string name="orange_mod_logs">View logs</string>
+    <string name="orange_seeker_header_text">Vod sync</string>
 </resources>

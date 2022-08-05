@@ -11,8 +11,20 @@ open class ToggleMenuModelExt(
     eventName: String
 ) : ToggleMenuModel(
     primaryText,
-    secondaryText,
-    auxiliaryText,
+    secondaryText.let {
+        if (it.isNullOrBlank()) {
+            null
+        } else {
+            it
+        }
+    },
+    auxiliaryText.let {
+        if (it.isNullOrBlank()) {
+            null
+        } else {
+            it
+        }
+    },
     state,
     true,
     null,

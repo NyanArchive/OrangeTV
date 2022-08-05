@@ -10,8 +10,8 @@ import tv.orange.core.models.FlagListener
 import tv.orange.core.models.LifecycleAware
 import tv.orange.features.api.component.repository.StvRepository
 import tv.orange.features.stv.di.scope.StvScope
-import tv.orange.models.Feature
-import tv.orange.models.SimpleFetcher
+import tv.orange.models.abc.Feature
+import tv.orange.models.data.SimpleFetcher
 import tv.orange.models.data.avatars.AvatarSet
 import javax.inject.Inject
 
@@ -32,8 +32,6 @@ class StvAvatars @Inject constructor(
     }
 
     fun hookProfileImageUrl(profileImageUrl: String, channelName: String): String {
-        Logger.debug("profileImageUrl: $profileImageUrl, channelName: $channelName")
-
         getData()?.let { set ->
             if (set.isEmpty()) {
                 return profileImageUrl

@@ -1,4 +1,4 @@
-package tv.orange.models
+package tv.orange.models.abc
 
 import javax.inject.Provider
 import kotlin.reflect.KClass

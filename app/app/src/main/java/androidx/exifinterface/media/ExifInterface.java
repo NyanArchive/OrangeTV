@@ -3,7 +3,7 @@ package androidx.exifinterface.media;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 
 public class ExifInterface {
     /* ... */

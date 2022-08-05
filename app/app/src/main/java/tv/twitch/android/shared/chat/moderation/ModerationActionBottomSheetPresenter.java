@@ -2,9 +2,8 @@ package tv.twitch.android.shared.chat.moderation;
 
 import androidx.fragment.app.FragmentActivity;
 
-import tv.orange.core.Core;
 import tv.orange.features.logs.ChatLogs;
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 
 public class ModerationActionBottomSheetPresenter {
     private FragmentActivity activity;

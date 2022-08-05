@@ -1,4 +1,4 @@
-package tv.orange.models
+package tv.orange.models.abc
 
 interface InjectorProvider {
     fun provideInjector(): Injector

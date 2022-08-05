@@ -1,6 +1,6 @@
 package tv.orange.features.emotes.component.model
 
-import tv.orange.models.abs.EmotePackageSet
+import tv.orange.models.abc.EmotePackageSet
 import tv.orange.models.data.emotes.Emote
 
 interface EmotePackage {

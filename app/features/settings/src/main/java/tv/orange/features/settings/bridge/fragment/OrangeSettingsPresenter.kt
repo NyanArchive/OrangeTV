@@ -24,19 +24,14 @@ class OrangeSettingsPresenter @Inject constructor(
     }
 
     override fun getPrefController(): SettingsPreferencesController {
-        Logger.debug("called")
-
-        return Core.getFeature(OrangeSettings::class.java).controller
+        return OrangeSettings.get().controller
     }
 
     override fun getToolbarTitle(): String {
-        Logger.debug("called")
-
         return "Main"
     }
 
     override fun updateSettingModels() {
-        Logger.debug("called")
         settingModels.clear();
         settingModels.addAll(controller.getMainSettingModels(activity))
     }

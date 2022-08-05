@@ -30,9 +30,9 @@ import tv.orange.features.chat.bridge.*
 import tv.orange.features.chat.view.ViewFactory
 import tv.orange.features.emotes.bridge.EmoteToken
 import tv.orange.features.emotes.component.EmoteProvider
-import tv.orange.models.Feature
-import tv.orange.models.abs.EmoteCardModelWrapper
-import tv.orange.models.abs.EmotePackageSet
+import tv.orange.models.abc.Feature
+import tv.orange.models.abc.EmoteCardModelWrapper
+import tv.orange.models.abc.EmotePackageSet
 import tv.orange.models.data.emotes.Emote
 import tv.twitch.android.models.chat.MessageBadge
 import tv.twitch.android.models.chat.MessageToken
@@ -65,7 +65,6 @@ class ChatHookProvider @Inject constructor(
         cmi: ChatMessageInterface,
         channelId: Int
     ): ChatMessageInterface {
-        Logger.debug("cmi: $cmi, channelId: $channelId")
         val badges = injectBadges(cmi.badges, cmi.userId, channelId)
         val tokens = injectEmotes(cmi.tokens, cmi.userId, channelId)
 
@@ -77,7 +76,6 @@ class ChatHookProvider @Inject constructor(
         userId: Int,
         channelId: Int
     ): List<MessageBadge> {
-        Logger.debug("badges: $badges, userId:: $userId, channelId: $channelId")
         if (!badgeProvider.hasBadges(userId)) {
             return badges
         }
@@ -116,7 +114,6 @@ class ChatHookProvider @Inject constructor(
         userId: Int,
         channelId: Int
     ): List<MessageToken> {
-        Logger.debug("tokens:: $tokens:, userId:: $userId, channelId: $channelId")
         val stack = mutableListOf<MessageToken>()
 
         var injected = false
@@ -153,50 +150,11 @@ class ChatHookProvider @Inject constructor(
         return tokens
     }
 
-    override fun onAllComponentDestroyed() {
-        Logger.debug("called")
-        emoteProvider.clear()
-        badgeProvider.clear()
-    }
-
-    override fun onSdkResume() {
-        badgeProvider.refreshBadges()
-        emoteProvider.fetch()
-    }
-
-    override fun onFirstActivityCreated() {
-        badgeProvider.fetchBadges()
-        emoteProvider.fetch()
-    }
-
-    override fun onConnectingToChannel(channelId: Int) {
-        emoteProvider.requestChannelEmotes(channelId)
-        currentChannelSubject.onNext(channelId)
-    }
-
-    override fun onFlagChanged(flag: Flag) {
-        when (flag) {
-            Flag.BTTV_EMOTES, Flag.FFZ_EMOTES, Flag.STV_EMOTES -> {
-                emoteProvider.rebuild()
-            }
-            Flag.FFZ_BADGES, Flag.STV_BADGES, Flag.CHA_BADGES, Flag.CHE_BADGES -> {
-                badgeProvider.rebuild()
-            }
-            else -> {}
-        }
-    }
-
-    override fun onAllComponentStopped() {}
-    override fun onAccountLogout() {}
-    override fun onFirstActivityStarted() {}
-    override fun onConnectedToChannel(channelId: Int) {}
-
     @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
     fun hookEmoteSetsFlowable(
         map: Flowable<Pair<EmoteUiSet, MutableList<EmoteUiSet>>>,
         channelId: Integer
     ): Flowable<Pair<EmoteUiSet, MutableList<EmoteUiSet>>> {
-        Logger.debug("map: $map, channelId: $channelId")
         return map.map { pair ->
             emoteProvider.getEmotesMap(channelId.toInt()).filter { it.second.isNotEmpty() }
                 .forEach { emotePair ->
@@ -222,7 +180,6 @@ class ChatHookProvider @Inject constructor(
     }
 
     fun hookEmoteCardModelResponse(emoteId: String?): EmoteCardModelResponse? {
-        Logger.debug("emoteId: $emoteId")
         if (emoteId.isNullOrBlank()) {
             return null
         }
@@ -239,7 +196,6 @@ class ChatHookProvider @Inject constructor(
     }
 
     fun hookAutoCompleteMapProvider(emotesFlow: Flowable<List<EmoteSet>>): Flowable<List<EmoteSet>> {
-        Logger.debug("emotesFlow: $emotesFlow")
         return emotesFlow.flatMap { orgList ->
             currentChannelSubject.flatMap {
                 Observable.just(it).delay(3, TimeUnit.SECONDS)
@@ -264,7 +220,6 @@ class ChatHookProvider @Inject constructor(
         eventDispatcher: PublishSubject<ChatMessageClickedEvents?>?,
         hasModAccess: Boolean
     ): Spanned? {
-        Logger.debug("messageId: $messageId, message: $message, context: $context, eventDispatcher: $eventDispatcher, hasModAccess: $hasModAccess")
         return when (Flag.DELETED_MESSAGES.variant<DeletedMessages>()) {
             DeletedMessages.Mod -> ChatUtil.Companion!!.createDeletedSpanFromChatMessageSpan(
                 messageId,
@@ -286,9 +241,7 @@ class ChatHookProvider @Inject constructor(
     }
 
     fun getOrangeEmotesButton(emotePickerViewDelegate: EmotePickerViewDelegate): ImageView? {
-        val view = viewFactory.createOrangeEmotesButton(emotePickerViewDelegate)
-        Logger.debug("view: $view")
-        return view
+        return viewFactory.createOrangeEmotesButton(emotePickerViewDelegate)
     }
 
     fun rebuildEmotes() {
@@ -300,9 +253,7 @@ class ChatHookProvider @Inject constructor(
         state: EmotePickerPresenter.EmotePickerState,
         button: ImageView?
     ) {
-        Logger.debug("state: $state, button: $button")
-        button?.isSelected =
-            state.selectedEmotePickerSection == EmotePickerSection.ORANGE
+        button?.isSelected = state.selectedEmotePickerSection == EmotePickerSection.ORANGE
     }
 
     companion object {
@@ -320,7 +271,7 @@ class ChatHookProvider @Inject constructor(
                 else -> "orange_unknown_emotes"
             }
 
-            return ResourceManager.getId(resName = resName, "string")
+            return ResourceManager.get().getStringId(resName)
         }
 
         @JvmStatic
@@ -444,12 +395,52 @@ class ChatHookProvider @Inject constructor(
     }
 
     override fun onDestroyFeature() {
-        Core.getBridge().getFeature(PreferenceManager::class.java).unregisterFlagListeners(this)
-        Core.getBridge().getFeature(Core::class.java).unregisterLifecycleListener(this)
+        PreferenceManager.get().unregisterFlagListeners(this)
+        Core.get().unregisterLifecycleListener(this)
+        onAllComponentDestroyed()
     }
 
     override fun onCreateFeature() {
-        Core.getBridge().getFeature(Core::class.java).registerLifecycleListeners(this)
-        Core.getBridge().getFeature(PreferenceManager::class.java).registerFlagListeners(this)
+        Core.get().registerLifecycleListeners(this)
+        PreferenceManager.get().registerFlagListeners(this)
     }
+
+
+    override fun onAllComponentDestroyed() {
+        emoteProvider.clear()
+        badgeProvider.clear()
+    }
+
+    override fun onSdkResume() {
+        badgeProvider.refreshBadges()
+        emoteProvider.fetch()
+    }
+
+    override fun onFirstActivityCreated() {
+        badgeProvider.fetchBadges()
+        emoteProvider.fetch()
+    }
+
+    override fun onConnectingToChannel(channelId: Int) {
+        Logger.debug("channelId: $channelId")
+        emoteProvider.requestChannelEmotes(channelId)
+        currentChannelSubject.onNext(channelId)
+    }
+
+    override fun onFlagChanged(flag: Flag) {
+        when (flag) {
+            Flag.BTTV_EMOTES, Flag.FFZ_EMOTES, Flag.STV_EMOTES -> {
+                emoteProvider.rebuild()
+            }
+            Flag.FFZ_BADGES, Flag.STV_BADGES, Flag.CHA_BADGES, Flag.CHE_BADGES -> {
+                badgeProvider.rebuild()
+            }
+            else -> {}
+        }
+    }
+
+    override fun onAllComponentStopped() {}
+    override fun onAccountLogout() {}
+    override fun onFirstActivityStarted() {}
+    override fun onConnectedToChannel(channelId: Int) {}
 }

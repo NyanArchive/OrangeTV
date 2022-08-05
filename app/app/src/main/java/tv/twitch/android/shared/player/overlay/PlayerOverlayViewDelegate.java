@@ -10,7 +10,7 @@ import io.reactivex.subjects.PublishSubject;
 import tv.orange.features.chapters.VodChapters;
 import tv.orange.features.chapters.bridge.IChaptersDelegate;
 import tv.orange.features.timer.SleepTimer;
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.core.mvp.viewdelegate.BaseViewDelegate;
 import tv.twitch.android.models.player.PlayerMode;
 import tv.twitch.android.models.videos.VodModel;

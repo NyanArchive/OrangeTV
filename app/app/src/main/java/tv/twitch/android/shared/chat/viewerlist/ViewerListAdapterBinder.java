@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import java.util.List;
 
 import tv.orange.features.usersearch.UserSearch;
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.models.chat.Chatters;
 
 public final class ViewerListAdapterBinder {

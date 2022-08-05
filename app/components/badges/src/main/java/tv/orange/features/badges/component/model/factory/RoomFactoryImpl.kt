@@ -9,7 +9,7 @@ import tv.orange.features.api.component.repository.StvRepository
 import tv.orange.features.badges.component.model.BadgePackageImpl
 import tv.orange.features.badges.component.model.room.Room
 import tv.orange.features.badges.component.model.room.RoomImpl
-import tv.orange.models.abs.BadgePackageSet
+import tv.orange.models.abc.BadgePackageSet
 import javax.inject.Inject
 
 class RoomFactoryImpl @Inject constructor(

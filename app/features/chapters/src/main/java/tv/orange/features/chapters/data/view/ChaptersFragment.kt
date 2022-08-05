@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import tv.orange.core.ResourceManager
 import tv.orange.core.ViewUtil.getView
+import tv.orange.core.ViewUtil.inflate
 import tv.orange.features.chapters.component.data.model.Chapter
 import tv.orange.features.chapters.component.data.repository.ChaptersRepository
 import tv.orange.features.chapters.data.adapter.ChaptersAdapter
@@ -42,12 +42,9 @@ class ChaptersFragment @Inject constructor(val repository: ChaptersRepository) :
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(
-            ResourceManager.getId("orangetv_chapters_container", "layout"),
-            container,
-            false
-        )
+    ): View {
+        val view = inflater.inflate(container, "orangetv_chapters_container")
+
         rv = view.getView("orangetv_chapters_container_rv")
         rv.adapter = adapter
         rv.layoutManager = LinearLayoutManager(

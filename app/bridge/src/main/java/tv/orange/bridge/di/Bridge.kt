@@ -1,24 +1,27 @@
 package tv.orange.bridge.di
 
+import android.content.Context
 import tv.orange.bridge.di.component.BridgeComponent
 import tv.orange.bridge.di.component.DaggerBridgeComponent
 import tv.orange.core.Core
 import tv.orange.core.PreferenceManager
+import tv.orange.core.ResourceManager
+import tv.orange.core.di.component.DaggerCoreComponent
 import tv.orange.features.chapters.VodChapters
 import tv.orange.features.chat.ChatHookProvider
+import tv.orange.features.chathistory.ChatHistory
 import tv.orange.features.logs.ChatLogs
 import tv.orange.features.refreshstream.RefreshStream
 import tv.orange.features.settings.OrangeSettings
 import tv.orange.features.stv.StvAvatars
 import tv.orange.features.timer.SleepTimer
 import tv.orange.features.usersearch.UserSearch
-import tv.orange.models.Feature
-import tv.orange.features.chathistory.ChatHistory
+import tv.orange.models.abc.Feature
 import java.util.concurrent.ConcurrentHashMap
 import javax.inject.Provider
 import kotlin.collections.set
 
-class Bridge private constructor() : tv.orange.models.Bridge {
+class Bridge private constructor() : tv.orange.models.abc.Bridge {
     private lateinit var component: BridgeComponent
 
     private val lock = Any()
@@ -35,9 +38,10 @@ class Bridge private constructor() : tv.orange.models.Bridge {
             }
             factory[clazz]?.let { func ->
                 func().run {
-                    initialize()
-                    map[clazz] = this
-                    return get() as T
+                    val feature = get()
+                    feature.onCreateFeature()
+                    map[clazz] = Provider { feature }
+                    return feature as T
                 }
             }
         }
@@ -47,8 +51,9 @@ class Bridge private constructor() : tv.orange.models.Bridge {
 
     override fun <T : Feature> destroyFeature(clazz: Class<T>) {
         synchronized(lock) {
-            map[clazz]?.get()?.onDestroyFeature()
+            val feature = map[clazz]?.get()
             map.remove(clazz)
+            feature?.onDestroyFeature()
         }
     }
 
@@ -64,12 +69,21 @@ class Bridge private constructor() : tv.orange.models.Bridge {
         factory[StvAvatars::class.java] = { component.stvAvatarsProvider }
         factory[SleepTimer::class.java] = { component.sleepTimerProvider }
         factory[UserSearch::class.java] = { component.userSearchProvider }
+        factory[ResourceManager::class.java] = { component.resourceManagerProvider }
     }
 
-    fun initialize() {
-        component = DaggerBridgeComponent.builder().build()
+    fun initialize(context: Context) {
+        component = DaggerBridgeComponent.builder().coreComponent(
+            DaggerCoreComponent.factory().create(context)
+        ).build()
         buildFactoryMap()
-        getFeature(PreferenceManager::class.java).initialize() // init first
+    }
+
+    fun initializeFeatures() {
+        getFeature(PreferenceManager::class.java).initialize()
+        getFeature(Core::class.java)
+        getFeature(ChatHookProvider::class.java)
+        getFeature(StvAvatars::class.java)
     }
 
     companion object {

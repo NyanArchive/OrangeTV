@@ -1,14 +1,15 @@
 package tv.orange.injector
 
-import tv.orange.models.Injector
+import tv.orange.models.abc.Injector
 import tv.twitch.android.app.consumer.dagger.DaggerAppComponent
 import tv.twitch.android.network.graphql.GraphQlService
 import tv.twitch.android.shared.chat.messagefactory.ChatMessageFactory
+import java.util.concurrent.ConcurrentHashMap
 import javax.inject.Provider
 import kotlin.reflect.KClass
 
-class Injector private constructor(private val twitchComponent: DaggerAppComponent) : Injector {
-    private val map = mutableMapOf<KClass<*>, Provider<*>>()
+class InjectorImpl private constructor() : Injector {
+    private val map = ConcurrentHashMap<KClass<*>, Provider<*>>(2)
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : Any> getComponentProvider(cls: KClass<T>): Provider<T> {
@@ -19,16 +20,16 @@ class Injector private constructor(private val twitchComponent: DaggerAppCompone
         map[cls] = provider
     }
 
-    fun initialize() {
+    fun initialize(appComponent: DaggerAppComponent) {
         register(GraphQlService::class) {
             getTwitchProvider<GraphQlService>(
-                twitchComponent,
+                appComponent,
                 "graphQlServiceProvider"
             ).get()
         }
         register(ChatMessageFactory.Factory::class) {
             getTwitchProvider<ChatMessageFactory.Factory>(
-                twitchComponent,
+                appComponent,
                 "factoryProvider2"
             ).get()
         }
@@ -36,8 +37,8 @@ class Injector private constructor(private val twitchComponent: DaggerAppCompone
 
     companion object {
         @JvmStatic
-        fun create(twitchComponent: DaggerAppComponent): tv.orange.injector.Injector {
-            return Injector(twitchComponent)
+        fun create(): InjectorImpl {
+            return InjectorImpl()
         }
 
         @Suppress("UNCHECKED_CAST")

@@ -12,6 +12,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import tv.orange.core.ResourceManager
 import tv.orange.core.ViewUtil.getView
+import tv.orange.core.ViewUtil.inflate
 import tv.orange.features.logs.component.data.model.MessageItem
 import tv.orange.features.logs.component.data.repository.LogsRepository
 import tv.orange.features.logs.data.adapter.LogsAdapter
@@ -54,12 +55,9 @@ class LogsFragment @Inject constructor(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(
-            ResourceManager.getId("orangetv_logs_container", "layout"),
-            container,
-            false
-        )
+    ): View {
+        val view = inflater.inflate(container, "orangetv_logs_container")
+
         pb = view.getView("orangetv_logs_container__pb")
         rv = view.getView<RecyclerView>("orangetv_logs_container__rv").apply {
             adapter = logsAdapter

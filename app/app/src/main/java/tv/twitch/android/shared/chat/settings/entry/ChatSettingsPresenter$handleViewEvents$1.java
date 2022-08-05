@@ -1,7 +1,7 @@
 package tv.twitch.android.shared.chat.settings.entry;
 
 import tv.orange.features.chat.bridge.ChatSettingsOrangeEvents;
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 
 public class ChatSettingsPresenter$handleViewEvents$1 {
     ChatSettingsPresenter this$0;

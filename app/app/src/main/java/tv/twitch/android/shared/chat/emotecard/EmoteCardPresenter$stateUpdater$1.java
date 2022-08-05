@@ -1,6 +1,6 @@
 package tv.twitch.android.shared.chat.emotecard;
 
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.core.mvp.presenter.StateUpdater;
 import tv.twitch.android.core.mvp.viewdelegate.EventDispatcher;
 

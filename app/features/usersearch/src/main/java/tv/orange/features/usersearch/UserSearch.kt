@@ -2,13 +2,12 @@ package tv.orange.features.usersearch
 
 import androidx.appcompat.widget.SearchView
 import tv.orange.core.Core
-import tv.orange.core.Logger
 import tv.orange.core.compat.ClassCompat.cast
 import tv.orange.features.usersearch.bridge.IProxyEvent
 import tv.orange.features.usersearch.bridge.IViewerListViewDelegate
 import tv.orange.features.usersearch.di.scope.UserSearchScope
 import tv.orange.features.usersearch.view.ViewFactory
-import tv.orange.models.Feature
+import tv.orange.models.abc.Feature
 import tv.twitch.android.core.mvp.rxutil.DisposeOn
 import tv.twitch.android.core.mvp.viewdelegate.ViewDelegateEvent
 import tv.twitch.android.models.chat.Chatters
@@ -26,27 +25,22 @@ class UserSearch @Inject constructor(
     }
 
     fun getSearchBar(delegate: ViewerListViewDelegate): SearchView? {
-        val view = viewFactory.createSearchBar(delegate)?.apply {
+        return viewFactory.createSearchBar(delegate)?.apply {
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     return false
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    Logger.debug("newText: $newText")
                     (delegate.cast<IViewerListViewDelegate>()).onInputSearchTextChanged(newText)
 
                     return false
                 }
             })
         }
-        Logger.debug("view: $view")
-        return view
     }
 
     fun filterChatters(chatters: Chatters?, searchText: String?): Chatters? {
-        Logger.debug("chatters: $chatters, searchText: $searchText")
-
         searchText ?: return chatters
         chatters ?: return null
 
@@ -64,7 +58,6 @@ class UserSearch @Inject constructor(
     }
 
     private fun filterUserList(users: List<String>, part: String): List<String> {
-        Logger.debug("users: $users, part: $part")
         if (users.isEmpty()) {
             return users
         }
@@ -80,7 +73,6 @@ class UserSearch @Inject constructor(
         delegate: ViewerListViewDelegate,
         presenter: ViewerListPresenter
     ) {
-        Logger.debug("delegate: $delegate, presenter: $presenter")
         presenter.directSubscribe(delegate.eventObserver(), DisposeOn.DESTROY) { event ->
             if (event is ViewDelegateEvent) {
                 (presenter.cast<IProxyEvent>()).proxyEvent(event)

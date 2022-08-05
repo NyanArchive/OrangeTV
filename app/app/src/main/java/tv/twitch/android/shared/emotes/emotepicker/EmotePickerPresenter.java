@@ -4,7 +4,6 @@ import java.util.List;
 
 import io.reactivex.Flowable;
 import kotlin.Pair;
-import tv.orange.core.Core;
 import tv.orange.features.chat.ChatHookProvider;
 import tv.twitch.android.core.mvp.presenter.PresenterState;
 import tv.twitch.android.core.mvp.viewdelegate.ViewDelegateState;
@@ -27,6 +26,7 @@ public class EmotePickerPresenter {
         /* ... */
 
         map = ChatHookProvider.get().hookEmoteSetsFlowable(map, num); // TODO: __INJECT_CODE
+
         return map;
     }
 

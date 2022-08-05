@@ -1,20 +1,12 @@
 package tv.orange.features.refreshstream.view
 
 import android.widget.ImageView
+import tv.orange.core.ViewUtil.getView
 import tv.twitch.android.shared.player.overlay.BottomPlayerControlOverlayViewDelegate
 import javax.inject.Inject
 
 class ViewFactoryImpl @Inject constructor() : ViewFactory {
-    override fun createRefreshStreamButton(delegate: BottomPlayerControlOverlayViewDelegate): ImageView? {
-        val id = delegate.context.resources.getIdentifier(
-            "bottom_player_control_overlay_widget__refresh_button",
-            "id",
-            delegate.context.packageName
-        )
-        if (id == 0) {
-            return null
-        }
-
-        return delegate.contentView.findViewById(id)
+    override fun createRefreshStreamButton(delegate: BottomPlayerControlOverlayViewDelegate): ImageView {
+        return delegate.contentView.getView("bottom_player_control_overlay_widget__refresh_button")
     }
 }

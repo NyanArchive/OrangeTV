@@ -1,7 +1,7 @@
 package tv.orange.features.emotes.component.model.room
 
 import tv.orange.features.emotes.component.model.EmotePackage
-import tv.orange.models.abs.EmotePackageSet
+import tv.orange.models.abc.EmotePackageSet
 import tv.orange.models.data.emotes.Emote
 import java.util.*
 

@@ -4,5 +4,5 @@ import androidx.appcompat.widget.SearchView
 import tv.twitch.android.shared.chat.viewerlist.ViewerListViewDelegate
 
 interface ViewFactory {
-    fun createSearchBar(delegate: ViewerListViewDelegate): SearchView?
+    fun createSearchBar(delegate: ViewerListViewDelegate): SearchView
 }

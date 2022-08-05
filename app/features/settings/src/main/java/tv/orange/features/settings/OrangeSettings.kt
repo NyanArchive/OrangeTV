@@ -4,12 +4,11 @@ import androidx.fragment.app.Fragment
 import dagger.android.AndroidInjector
 import dagger.internal.MapBuilder
 import tv.orange.core.Core
-import tv.orange.core.Logger
 import tv.orange.features.settings.bridge.OrangeSettingsDaggerFactory
 import tv.orange.features.settings.bridge.fragment.OrangeSettingsFragment
 import tv.orange.features.settings.component.SettingsController
 import tv.orange.features.settings.di.scope.SettingsScope
-import tv.orange.models.Feature
+import tv.orange.models.abc.Feature
 import tv.twitch.android.app.consumer.dagger.DaggerAppComponent
 import javax.inject.Inject
 import javax.inject.Provider
@@ -28,14 +27,11 @@ class OrangeSettings @Inject constructor(
         builder: MapBuilder<Class<*>, Provider<AndroidInjector.Factory<*>>>,
         component: DaggerAppComponent.SettingsActivitySubcomponentImpl
     ) {
-        Logger.debug("builder: $builder, component: $component")
         daggerFactory.injectSubcomponentSettingsProvider(builder, component)
     }
 
     fun createSettingsFragment(): Fragment {
-        val fragment = OrangeSettingsFragment()
-        Logger.debug("fragment: $fragment")
-        return fragment
+        return OrangeSettingsFragment()
     }
 
     override fun onDestroyFeature() {}

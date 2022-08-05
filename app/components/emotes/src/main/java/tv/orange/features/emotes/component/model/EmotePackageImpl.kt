@@ -1,8 +1,8 @@
 package tv.orange.features.emotes.component.model
 
 import tv.orange.core.LoggerWithTag
-import tv.orange.models.SimpleFetcher
-import tv.orange.models.abs.EmotePackageSet
+import tv.orange.models.data.SimpleFetcher
+import tv.orange.models.abc.EmotePackageSet
 import tv.orange.models.data.emotes.Emote
 import tv.orange.models.data.emotes.EmoteSet
 

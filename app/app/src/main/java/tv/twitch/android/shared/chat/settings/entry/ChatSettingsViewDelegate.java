@@ -7,7 +7,7 @@ import java.util.List;
 
 import io.reactivex.Flowable;
 import tv.orange.features.chat.bridge.ChatSettingsOrangeViewDelegate;
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.core.mvp.viewdelegate.RxViewDelegate;
 import tv.twitch.android.core.mvp.viewdelegate.ViewDelegateEvent;
 import tv.twitch.android.core.mvp.viewdelegate.ViewDelegateState;

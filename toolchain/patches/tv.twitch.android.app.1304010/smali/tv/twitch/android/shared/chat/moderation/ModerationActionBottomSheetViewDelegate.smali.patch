@@ -7,11 +7,11 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/moderation/ModerationA
  
 +    move-object/from16 v3, p1
 +
-+    invoke-static {}, Ltv/orange/features/logs/LogsHook;->get()Ltv/orange/features/logs/LogsHook;
++    invoke-static {}, Ltv/orange/features/logs/ChatLogs;->get()Ltv/orange/features/logs/ChatLogs;
 +
 +    move-result-object v4
 +
-+    invoke-virtual {v4, v2, v3}, Ltv/orange/features/logs/LogsHook;->injectModLogsButton(Ljava/util/List;Ltv/twitch/android/shared/chat/moderation/ModerationBottomSheetViewState;)Ljava/util/List;
++    invoke-virtual {v4, v2, v3}, Ltv/orange/features/logs/ChatLogs;->injectModLogsButton(Ljava/util/List;Ltv/twitch/android/shared/chat/moderation/ModerationBottomSheetViewState;)Ljava/util/List;
 +
 +    move-result-object v2
 +

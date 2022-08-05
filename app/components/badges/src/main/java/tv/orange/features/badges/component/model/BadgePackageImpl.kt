@@ -1,8 +1,8 @@
 package tv.orange.features.badges.component.model
 
 import tv.orange.core.LoggerWithTag
-import tv.orange.models.SimpleFetcher
-import tv.orange.models.abs.BadgePackageSet
+import tv.orange.models.data.SimpleFetcher
+import tv.orange.models.abc.BadgePackageSet
 import tv.orange.models.data.badges.Badge
 import tv.orange.models.data.badges.BadgeSet
 

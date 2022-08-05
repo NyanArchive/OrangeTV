@@ -4,7 +4,7 @@ import tv.orange.core.Logger
 import tv.orange.features.emotes.component.model.factory.RoomFactory
 import tv.orange.features.emotes.component.model.room.RoomCache
 import tv.orange.features.emotes.di.scope.EmotesScope
-import tv.orange.models.abs.EmotePackageSet
+import tv.orange.models.abc.EmotePackageSet
 import tv.orange.models.data.emotes.Emote
 import javax.inject.Inject
 
@@ -25,6 +25,7 @@ class EmoteProvider @Inject constructor(
     }
 
     fun requestChannelEmotes(channelId: Int) {
+        Logger.debug("channelId: $channelId")
         channel[channelId]?.refresh() ?: fetchChannelEmotes(channelId)
     }
 
@@ -34,11 +35,13 @@ class EmoteProvider @Inject constructor(
     }
 
     fun fetch() {
+        Logger.debug("called")
         global.fetch()
         channel.fetch()
     }
 
     fun rebuild() {
+        Logger.debug("called")
         global = roomFactory.createGlobal()
         channel.rebuild()
         fetch()

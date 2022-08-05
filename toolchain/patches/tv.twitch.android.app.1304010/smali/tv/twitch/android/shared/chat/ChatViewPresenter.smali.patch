@@ -5,7 +5,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/ChatViewPresenter.smal
  .method private final onChannelStateChanged(Ltv/twitch/android/shared/chat/events/ChatConnectionEvents;)V
      .locals 9
  
-+    invoke-static {}, Ltv/oranges/features/chathistory/ChatHistory;->get()Ltv/oranges/features/chathistory/ChatHistory;
++    invoke-static {}, Ltv/orange/features/chathistory/ChatHistory;->get()Ltv/orange/features/chathistory/ChatHistory;
 +
 +    move-result-object v0
 +
@@ -13,7 +13,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/ChatViewPresenter.smal
 +
 +    iget-object v2, p0, Ltv/twitch/android/shared/chat/ChatViewPresenter;->channel:Ltv/twitch/android/models/channel/ChannelInfo;
 +
-+    invoke-virtual {v0, p1, v1, v2}, Ltv/oranges/features/chathistory/ChatHistory;->requestChatHistory(Ltv/twitch/android/shared/chat/events/ChatConnectionEvents;Ltv/oranges/features/chathistory/bridge/ILiveChatSource;Ltv/twitch/android/models/channel/ChannelInfo;)V
++    invoke-virtual {v0, p1, v1, v2}, Ltv/orange/features/chathistory/ChatHistory;->requestChatHistory(Ltv/twitch/android/shared/chat/events/ChatConnectionEvents;Ltv/orange/features/chathistory/bridge/ILiveChatSource;Ltv/twitch/android/models/channel/ChannelInfo;)V
 +
      .line 941
      instance-of v0, p1, Ltv/twitch/android/shared/chat/events/ChatConnectionEvents$ChatConnectingEvent;

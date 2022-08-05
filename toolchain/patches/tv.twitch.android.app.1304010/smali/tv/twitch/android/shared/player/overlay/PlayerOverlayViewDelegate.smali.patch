@@ -25,11 +25,11 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
  
 +    move-object/from16 v0, p0
 +
-+    invoke-static {}, Ltv/orange/features/timer/Hook;->get()Ltv/orange/features/timer/Hook;
++    invoke-static {}, Ltv/orange/features/timer/SleepTimer;->get()Ltv/orange/features/timer/SleepTimer;
 +
 +    move-result-object v1
 +
-+    invoke-virtual {v1, v0}, Ltv/orange/features/timer/Hook;->getTimerButton(Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;)Landroid/widget/ImageView;
++    invoke-virtual {v1, v0}, Ltv/orange/features/timer/SleepTimer;->getTimerButton(Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;)Landroid/widget/ImageView;
 +
 +    move-result-object v1
 +
@@ -37,11 +37,11 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
 +
 +    move-object/from16 v0, p0
 +
-+    invoke-static {}, Ltv/orange/features/chapters/ChaptersHook;->get()Ltv/orange/features/chapters/ChaptersHook;
++    invoke-static {}, Ltv/orange/features/chapters/VodChapters;->get()Ltv/orange/features/chapters/VodChapters;
 +
 +    move-result-object v1
 +
-+    invoke-virtual {v1, v0}, Ltv/orange/features/chapters/ChaptersHook;->getChaptersButton(Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;)Landroid/widget/ImageView;
++    invoke-virtual {v1, v0}, Ltv/orange/features/chapters/VodChapters;->getChaptersButton(Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;)Landroid/widget/ImageView;
 +
 +    move-result-object v1
 +
@@ -67,13 +67,13 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
 +    .end param
 +
 +    .line 136
-+    invoke-static {}, Ltv/orange/features/chapters/ChaptersHook;->get()Ltv/orange/features/chapters/ChaptersHook;
++    invoke-static {}, Ltv/orange/features/chapters/VodChapters;->get()Ltv/orange/features/chapters/VodChapters;
 +
 +    move-result-object v0
 +
 +    iget-object v1, p0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->chaptersButton:Landroid/widget/ImageView;
 +
-+    invoke-virtual {v0, v1, p1, p2}, Ltv/orange/features/chapters/ChaptersHook;->bindChaptersButton(Landroid/widget/ImageView;Ltv/twitch/android/models/videos/VodModel;Ltv/twitch/android/shared/player/overlay/seekable/SeekbarOverlayPresenter;)V
++    invoke-virtual {v0, v1, p1, p2}, Ltv/orange/features/chapters/VodChapters;->bindChaptersButton(Landroid/widget/ImageView;Ltv/twitch/android/models/videos/VodModel;Ltv/twitch/android/shared/player/overlay/seekable/SeekbarOverlayPresenter;)V
 +
 +    .line 137
 +    return-void
@@ -83,13 +83,13 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
 +    .registers 3
 +
 +    .line 131
-+    invoke-static {}, Ltv/orange/features/chapters/ChaptersHook;->get()Ltv/orange/features/chapters/ChaptersHook;
++    invoke-static {}, Ltv/orange/features/chapters/VodChapters;->get()Ltv/orange/features/chapters/VodChapters;
 +
 +    move-result-object v0
 +
 +    iget-object v1, p0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->chaptersButton:Landroid/widget/ImageView;
 +
-+    invoke-virtual {v0, v1}, Ltv/orange/features/chapters/ChaptersHook;->hideChaptersButton(Landroid/widget/ImageView;)V
++    invoke-virtual {v0, v1}, Ltv/orange/features/chapters/VodChapters;->hideChaptersButton(Landroid/widget/ImageView;)V
 +
 +    .line 132
 +    return-void

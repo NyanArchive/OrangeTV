@@ -24,10 +24,12 @@ class BadgeProvider @Inject constructor(val roomFactory: RoomFactory) {
     }
 
     fun fetchBadges() {
+        Logger.debug("called")
         global.fetch()
     }
 
     fun refreshBadges() {
+        Logger.debug("called")
         global.refresh()
     }
 
@@ -36,6 +38,7 @@ class BadgeProvider @Inject constructor(val roomFactory: RoomFactory) {
     }
 
     fun rebuild() {
+        Logger.debug("called")
         clear()
         fetchBadges()
     }

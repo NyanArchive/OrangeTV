@@ -1,7 +1,7 @@
 package tv.twitch.android.shared.chat.observables;
 
 import tv.orange.core.Core;
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.ErrorCode;
 import tv.twitch.android.sdk.ChannelState;
 
@@ -12,12 +12,12 @@ public class ChatConnectionController {
         if (i == 1) {
             /* ... */
 
-            Core.getFeature(Core.class).onConnectingToChannel(i); // TODO: __INJECT_CODE
+            Core.get().onConnectingToChannel(i); // TODO: __INJECT_CODE
         }
         if (i == 2) {
             /* ... */
 
-            Core.getFeature(Core.class).onConnectedToChannel(i); // TODO: __INJECT_CODE
+            Core.get().onConnectedToChannel(i); // TODO: __INJECT_CODE
         }
 
         throw new VirtualImpl();

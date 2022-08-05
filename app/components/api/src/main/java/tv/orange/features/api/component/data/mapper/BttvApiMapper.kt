@@ -1,6 +1,6 @@
 package tv.orange.features.api.component.data.mapper
 
-import tv.orange.models.abs.EmotePackageSet
+import tv.orange.models.abc.EmotePackageSet
 import tv.orange.models.data.emotes.Emote
 import tv.orange.models.data.emotes.EmoteImpl
 import tv.orange.models.retrofit.bttv.BttvChannelData

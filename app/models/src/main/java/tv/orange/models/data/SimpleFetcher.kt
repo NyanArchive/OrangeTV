@@ -1,8 +1,9 @@
-package tv.orange.models
+package tv.orange.models.data
 
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
-import tv.orange.core.util.DateUtil
+import tv.orange.models.util.DateUtil
+import tv.orange.models.util.Logger
 import java.util.*
 
 abstract class SimpleFetcher<Data>(
@@ -60,7 +61,7 @@ abstract class SimpleFetcher<Data>(
             logger.debug("Fetched: $res")
         }, {
             this.fetching = false
-            logger.debug("Cannot fetch: ${it.localizedMessage}")
+            logger.error("Cannot fetch: ${it.localizedMessage}")
         }))
     }
 }

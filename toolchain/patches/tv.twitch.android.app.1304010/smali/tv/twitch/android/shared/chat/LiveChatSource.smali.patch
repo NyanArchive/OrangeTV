@@ -6,7 +6,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/LiveChatSource.smali b
  .source "LiveChatSource.kt"
  
 +# interfaces
-+.implements Ltv/oranges/features/chathistory/bridge/ILiveChatSource;
++.implements Ltv/orange/features/chathistory/bridge/ILiveChatSource;
 +
  
  # annotations

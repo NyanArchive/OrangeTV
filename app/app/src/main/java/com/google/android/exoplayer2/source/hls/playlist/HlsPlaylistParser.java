@@ -4,7 +4,7 @@ import androidx.annotation.Nullable;
 
 import java.io.IOException;
 
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 
 public class HlsPlaylistParser {
     /* ... */

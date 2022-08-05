@@ -4,8 +4,8 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import tv.orange.bridge.di.scope.BridgeScope
-import tv.orange.core.Core
 import tv.orange.core.PreferenceManager
+import tv.orange.core.ResourceManager
 import tv.orange.core.di.component.CoreComponent
 import tv.orange.features.api.di.component.ApiComponent
 import tv.orange.features.badges.di.component.BadgesComponent
@@ -13,6 +13,8 @@ import tv.orange.features.chapters.VodChapters
 import tv.orange.features.chapters.di.component.DaggerChaptersComponent
 import tv.orange.features.chat.ChatHookProvider
 import tv.orange.features.chat.di.component.DaggerChatComponent
+import tv.orange.features.chathistory.ChatHistory
+import tv.orange.features.chathistory.di.component.DaggerChatHistoryComponent
 import tv.orange.features.emotes.di.component.EmotesComponent
 import tv.orange.features.logs.ChatLogs
 import tv.orange.features.logs.di.component.DaggerLogsComponent
@@ -26,8 +28,7 @@ import tv.orange.features.timer.SleepTimer
 import tv.orange.features.timer.di.component.DaggerTimerComponent
 import tv.orange.features.usersearch.UserSearch
 import tv.orange.features.usersearch.di.component.DaggerUserSearchComponent
-import tv.orange.features.chathistory.ChatHistory
-import tv.orange.features.chathistory.di.component.DaggerChatHistoryComponent
+import tv.orange.models.abc.Injector
 import tv.twitch.android.network.graphql.GraphQlService
 import tv.twitch.android.shared.chat.messagefactory.ChatMessageFactory
 
@@ -65,27 +66,27 @@ class BridgeFeatureModule {
     }
 
     @Provides
-    fun provideChatLogs(coreComponent: CoreComponent): ChatLogs {
+    fun provideChatLogs(coreComponent: CoreComponent, injector: Injector): ChatLogs {
         return DaggerLogsComponent.factory().create(
             coreComponent = coreComponent,
-            service = Core.getProvider(GraphQlService::class).get(),
-            factory = Core.getProvider(ChatMessageFactory.Factory::class).get()
+            service = injector.getComponentProvider(GraphQlService::class).get(),
+            factory = injector.getComponentProvider(ChatMessageFactory.Factory::class).get()
         ).chatLogs
     }
 
     @Provides
-    fun provideChatHistory(coreComponent: CoreComponent): ChatHistory {
+    fun provideChatHistory(coreComponent: CoreComponent, injector: Injector): ChatHistory {
         return DaggerChatHistoryComponent.factory().create(
             coreComponent = coreComponent,
-            service = Core.getProvider(GraphQlService::class).get()
+            service = injector.getComponentProvider(GraphQlService::class).get()
         ).chatHistory
     }
 
     @Provides
-    fun provideChaptersHook(coreComponent: CoreComponent): VodChapters {
+    fun provideChaptersHook(coreComponent: CoreComponent, injector: Injector): VodChapters {
         return DaggerChaptersComponent.factory().create(
             coreComponent = coreComponent,
-            service = Core.getProvider(GraphQlService::class).get()
+            service = injector.getComponentProvider(GraphQlService::class).get()
         ).vodChapters
     }
 
@@ -104,5 +105,11 @@ class BridgeFeatureModule {
     @Provides
     fun providePreferenceManager(context: Context): PreferenceManager {
         return PreferenceManager(context)
+    }
+
+    @BridgeScope
+    @Provides
+    fun provideResourceManager(context: Context): ResourceManager {
+        return ResourceManager(context)
     }
 }

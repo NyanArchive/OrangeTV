@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import tv.orange.features.usersearch.UserSearch;
 import tv.orange.features.usersearch.bridge.IViewerListViewDelegate;
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.core.mvp.viewdelegate.RxViewDelegate;
 import tv.twitch.android.core.mvp.viewdelegate.ViewDelegateEvent;
 import tv.twitch.android.shared.ui.elements.list.ContentListViewDelegate;

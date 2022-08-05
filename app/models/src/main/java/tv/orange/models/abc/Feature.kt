@@ -1,7 +1,6 @@
-package tv.orange.models
+package tv.orange.models.abc
 
 interface Feature {
     fun onDestroyFeature()
-
     fun onCreateFeature()
 }

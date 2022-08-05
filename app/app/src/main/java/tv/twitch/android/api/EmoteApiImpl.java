@@ -2,7 +2,7 @@ package tv.twitch.android.api;
 
 import io.reactivex.Single;
 import tv.orange.features.chat.ChatHookProvider;
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.models.emotes.EmoteCardModelResponse;
 
 public class EmoteApiImpl {

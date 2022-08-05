@@ -3,7 +3,7 @@ package tv.twitch.android.shared.leaderboards.repository.pubsub;
 import java.util.List;
 
 import io.reactivex.Single;
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.models.leaderboard.ChannelLeaderboardRank;
 import tv.twitch.android.shared.leaderboards.model.LeaderboardPubSubRankingUpdate;
 

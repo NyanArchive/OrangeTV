@@ -5,6 +5,7 @@ import tv.orange.bridge.di.module.BridgeModule
 import tv.orange.bridge.di.scope.BridgeScope
 import tv.orange.core.Core
 import tv.orange.core.PreferenceManager
+import tv.orange.core.ResourceManager
 import tv.orange.core.di.component.CoreComponent
 import tv.orange.features.chapters.VodChapters
 import tv.orange.features.chat.ChatHookProvider
@@ -29,6 +30,7 @@ interface BridgeComponent {
     val stvAvatarsProvider: Provider<StvAvatars>
     val sleepTimerProvider: Provider<SleepTimer>
     val userSearchProvider: Provider<UserSearch>
+    val resourceManagerProvider: Provider<ResourceManager>
 
     val preferenceManager: Provider<PreferenceManager>
     val core: Provider<Core>

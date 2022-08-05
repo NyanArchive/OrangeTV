@@ -4,9 +4,8 @@ import android.view.View
 import android.widget.ImageView
 import androidx.fragment.app.FragmentActivity
 import tv.orange.core.Core
-import tv.orange.core.Logger
 import tv.orange.features.chapters.view.ViewFactory
-import tv.orange.models.Feature
+import tv.orange.models.abc.Feature
 import tv.twitch.android.models.videos.VodModel
 import tv.twitch.android.shared.player.overlay.PlayerOverlayViewDelegate
 import tv.twitch.android.shared.player.overlay.seekable.SeekbarOverlayPresenter
@@ -21,12 +20,10 @@ class VodChapters @Inject constructor(
     }
 
     fun getChaptersButton(delegate: PlayerOverlayViewDelegate): ImageView? {
-        Logger.debug("delegate: $delegate")
         return viewFactory.createChaptersButton(delegate)
     }
 
     fun hideChaptersButton(button: ImageView) {
-        Logger.debug("button: $button")
         button.visibility = View.GONE
     }
 
@@ -35,7 +32,6 @@ class VodChapters @Inject constructor(
         vod: VodModel,
         presenter: SeekbarOverlayPresenter
     ) {
-        Logger.debug("button: $button, vod: $vod, presenter: $presenter")
         button.visibility = View.VISIBLE
         button.setOnClickListener {
             val id = if (vod.id.startsWith("v")) {
@@ -43,11 +39,10 @@ class VodChapters @Inject constructor(
             } else {
                 vod.id
             }
-            Logger.debug("called")
             val sfm = (button.context as FragmentActivity).supportFragmentManager
             val fragment = viewFactory.getChaptersFragment()
             fragment.bindSeekPresenter(presenter)
-            fragment.show(sfm, "chapters")
+            fragment.show(sfm, "orange_chapters")
             fragment.load(id)
         }
     }

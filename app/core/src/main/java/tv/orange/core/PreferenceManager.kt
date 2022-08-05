@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import tv.orange.core.models.Flag
 import tv.orange.core.models.FlagListener
-import tv.orange.models.Feature
+import tv.orange.models.abc.Feature
 import javax.inject.Inject
 
 class PreferenceManager @Inject constructor(
@@ -37,18 +37,14 @@ class PreferenceManager @Inject constructor(
     }
 
     fun writeBoolean(flag: Flag, value: Boolean) {
-        Logger.debug("setting: $flag, value: $value")
         preferences.edit().putBoolean(flag.prefKey, value).apply()
     }
 
     fun writeString(flag: Flag, value: String) {
-        Logger.debug("setting: $flag, value: $value")
         preferences.edit().putString(flag.prefKey, value).apply()
     }
 
     fun writeBoolean(prefKey: String, value: Boolean) {
-        Logger.debug("prefKey: $prefKey, value: $value")
-
         Flag.findByKey(prefKey)?.let { flag ->
             writeBoolean(flag, value)
         } ?: throw IllegalStateException(prefKey)
@@ -60,19 +56,16 @@ class PreferenceManager @Inject constructor(
     }
 
     private fun readInt(flag: Flag): Flag.IntegerValue {
-        Logger.debug("flag: $flag")
         val value = preferences.getInt(flag.prefKey, Flag.getInt(flag.default))
         return Flag.IntegerValue(value)
     }
 
     private fun readString(flag: Flag): Flag.StringValue {
-        Logger.debug("flag: $flag")
         val value = preferences.getString(flag.prefKey, Flag.getString(flag.default))
         return Flag.StringValue(value)
     }
 
     private fun readRawString(flag: Flag): String {
-        Logger.debug("flag: $flag")
         return preferences.getString(flag.prefKey, Flag.getString(flag.default))!!
     }
 

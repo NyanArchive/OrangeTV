@@ -2,7 +2,7 @@ package tv.twitch.android.shared.player.overlay.seekable;
 
 import android.view.ViewGroup;
 
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.models.channel.ChannelModel;
 import tv.twitch.android.models.clips.ClipModel;
 import tv.twitch.android.models.videos.VodModel;

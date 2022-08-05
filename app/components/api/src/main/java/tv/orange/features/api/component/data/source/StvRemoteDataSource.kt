@@ -24,7 +24,7 @@ class StvRemoteDataSource @Inject constructor(
         return stvApi.emotes(channelId).subscribeOn(Schedulers.io()).map { emotes ->
             stvMapper.mapEmotes(emotes, true)
         }.onErrorResumeNext {
-            Logger.debug("Cannot fetch emotes for channel: $channelId")
+            Logger.warning("Cannot fetch emotes for channel: $channelId")
             Single.just(stvMapper.mapEmotes(emptyList(), true))
         }
     }

@@ -16,11 +16,11 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListP
      .line 60
      iput-object p1, p0, Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter;->viewDelegate:Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate;
  
-+    invoke-static {}, Ltv/orange/features/usersearch/Hook;->get()Ltv/orange/features/usersearch/Hook;
++    invoke-static {}, Ltv/orange/features/usersearch/UserSearch;->get()Ltv/orange/features/usersearch/UserSearch;
 +
 +    move-result-object v0
 +
-+    invoke-virtual {v0, p1, v1}, Ltv/orange/features/usersearch/Hook;->setupFilter(Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate;Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter;)V
++    invoke-virtual {v0, p1, v1}, Ltv/orange/features/usersearch/UserSearch;->setupFilter(Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate;Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter;)V
 +
      return-void
  .end method

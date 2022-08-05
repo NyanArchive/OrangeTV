@@ -2,15 +2,14 @@ package tv.orange.features.chapters.data.adapter
 
 import android.annotation.SuppressLint
 import android.text.format.DateUtils
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import tv.orange.core.ResourceManager
 import tv.orange.core.ViewUtil.getView
+import tv.orange.core.ViewUtil.inflate
 import tv.orange.features.chapters.component.data.model.Chapter
 
 class ChaptersAdapter(private val listener: OnChapterClickedListener) :
@@ -37,13 +36,7 @@ class ChaptersAdapter(private val listener: OnChapterClickedListener) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChapterItemVH {
-        val view = LayoutInflater.from(parent.context).inflate(
-            ResourceManager.getId("orangetv_chapters_item", "layout"),
-            parent,
-            false
-        )
-
-        return ChapterItemVH(view)
+        return ChapterItemVH(parent.inflate("orangetv_chapters_item"))
     }
 
     override fun onBindViewHolder(holder: ChapterItemVH, position: Int) {

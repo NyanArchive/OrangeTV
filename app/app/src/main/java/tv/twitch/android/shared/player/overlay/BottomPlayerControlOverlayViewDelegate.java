@@ -5,7 +5,7 @@ import android.widget.ImageView;
 
 import tv.orange.features.refreshstream.RefreshStream;
 import tv.orange.features.refreshstream.bridge.IBottomPlayerControlOverlayViewDelegate;
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.core.mvp.viewdelegate.BaseViewDelegate;
 
 public class BottomPlayerControlOverlayViewDelegate extends BaseViewDelegate implements IBottomPlayerControlOverlayViewDelegate { // TODO: @features:refreshstream

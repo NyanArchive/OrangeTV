@@ -1,4 +1,4 @@
-package tv.orange.models.abs
+package tv.orange.models.abc
 
 enum class EmotePackageSet(val value: String, val stringId: String) {
     BttvChannel("BTTV-CHANNEL", "orange_emotecard_bttv_channel"),

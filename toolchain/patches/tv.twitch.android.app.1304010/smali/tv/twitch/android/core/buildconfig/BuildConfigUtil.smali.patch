@@ -7,7 +7,7 @@ diff --git a/smali_classes4/tv/twitch/android/core/buildconfig/BuildConfigUtil.s
  
 -    .line 37
 -    invoke-virtual {p0}, Ltv/twitch/android/core/buildconfig/BuildConfigUtil;->isAlpha()Z
-+    invoke-static {}, Ltv/orange/core/Hook;->inDevMode()Z
++    invoke-static {}, Ltv/orange/core/CoreHook;->inDevMode()Z
  
      move-result v0
  
@@ -47,7 +47,7 @@ diff --git a/smali_classes4/tv/twitch/android/core/buildconfig/BuildConfigUtil.s
  
 -    .line 27
 -    invoke-static {v0, v1}, Lkotlin/jvm/internal/Intrinsics;->areEqual(Ljava/lang/Object;Ljava/lang/Object;)Z
-+    invoke-static {}, Ltv/orange/core/Hook;->inDevMode()Z
++    invoke-static {}, Ltv/orange/core/CoreHook;->inDevMode()Z
  
      move-result v0
  
@@ -64,7 +64,7 @@ diff --git a/smali_classes4/tv/twitch/android/core/buildconfig/BuildConfigUtil.s
  
 -    .line 30
 -    invoke-static {v0, v1}, Lkotlin/jvm/internal/Intrinsics;->areEqual(Ljava/lang/Object;Ljava/lang/Object;)Z
-+    invoke-static {}, Ltv/orange/core/Hook;->inDevMode()Z
++    invoke-static {}, Ltv/orange/core/CoreHook;->inDevMode()Z
  
      move-result v0
  
@@ -73,7 +73,7 @@ diff --git a/smali_classes4/tv/twitch/android/core/buildconfig/BuildConfigUtil.s
      .locals 1
  
 -    const/4 v0, 0x0
-+    invoke-static {}, Ltv/orange/core/Hook;->inDevMode()Z
++    invoke-static {}, Ltv/orange/core/CoreHook;->inDevMode()Z
 +
 +    move-result v0
  
@@ -96,7 +96,7 @@ diff --git a/smali_classes4/tv/twitch/android/core/buildconfig/BuildConfigUtil.s
 +    .locals 0
  
 -    const/4 p1, 0x1
-+    invoke-static {}, Ltv/orange/core/Hook;->inDevMode()Z
++    invoke-static {}, Ltv/orange/core/CoreHook;->inDevMode()Z
  
 -    goto :goto_0
 +    move-result p1

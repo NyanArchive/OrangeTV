@@ -28,7 +28,7 @@ class BttvRemoteDataSource @Inject constructor(
         return bttvApi.bttvEmotes(channelId).subscribeOn(Schedulers.io()).map { emotes ->
             bttvMapper.mapChannelEmotes(emotes)
         }.onErrorResumeNext {
-            Logger.debug("Cannot fetch emotes for channel: $channelId")
+            Logger.warning("Cannot fetch emotes for channel: $channelId")
             Single.just(emptyList())
         }
     }
@@ -37,7 +37,7 @@ class BttvRemoteDataSource @Inject constructor(
         return bttvApi.ffzEmotes(channelId).subscribeOn(Schedulers.io()).map { emotes ->
             bttvMapper.mapFfzEmotes(emotes, true)
         }.onErrorResumeNext {
-            Logger.debug("Cannot fetch emotes for channel: $channelId")
+            Logger.warning("Cannot fetch emotes for channel: $channelId")
             Single.just(emptyList())
         }
     }

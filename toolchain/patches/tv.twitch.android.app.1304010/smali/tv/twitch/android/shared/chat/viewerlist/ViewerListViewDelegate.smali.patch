@@ -25,11 +25,11 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListV
  
      invoke-virtual {p1, p2}, Landroid/widget/ImageView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
  
-+    invoke-static {}, Ltv/orange/features/usersearch/Hook;->get()Ltv/orange/features/usersearch/Hook;
++    invoke-static {}, Ltv/orange/features/usersearch/UserSearch;->get()Ltv/orange/features/usersearch/UserSearch;
 +
 +    move-result-object v0
 +
-+    invoke-virtual {v0, p0}, Ltv/orange/features/usersearch/Hook;->getSearchBar(Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate;)Landroidx/appcompat/widget/SearchView;
++    invoke-virtual {v0, p0}, Ltv/orange/features/usersearch/UserSearch;->getSearchBar(Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate;)Landroidx/appcompat/widget/SearchView;
 +
 +    move-result-object v0
 +

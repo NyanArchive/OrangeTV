@@ -5,10 +5,12 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 
 import tv.orange.bridge.di.Bridge;
-import tv.orange.injector.Injector;
-import tv.orange.models.BridgeProvider;
-import tv.orange.models.InjectorProvider;
-import tv.orange.models.VirtualImpl;
+import tv.orange.core.Core;
+import tv.orange.injector.InjectorImpl;
+import tv.orange.models.abc.BridgeProvider;
+import tv.orange.models.abc.Injector;
+import tv.orange.models.abc.InjectorProvider;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.app.consumer.dagger.AppComponent;
 import tv.twitch.android.app.consumer.dagger.DaggerAppComponent;
 
@@ -33,9 +35,12 @@ public class TwitchApplication extends Application implements InjectorProvider, 
     }
 
     private void initOranges(AppComponent appComponent) { // TODO: __INJECT_METHOD
-        injector = Injector.create((DaggerAppComponent) appComponent);
+        injector = InjectorImpl.create();
+        ((InjectorImpl) injector).initialize((DaggerAppComponent) appComponent);
         bridge = Bridge.create();
-        bridge.initialize();
+        bridge.initialize(this);
+        Core.setBridge(bridge);
+        bridge.initializeFeatures();
     }
 
     protected AppComponent createDaggerComponent() {
@@ -50,7 +55,7 @@ public class TwitchApplication extends Application implements InjectorProvider, 
 
     @NonNull
     @Override
-    public tv.orange.models.Bridge provideBridge() { // TODO: __INJECT_METHOD
+    public tv.orange.models.abc.Bridge provideBridge() { // TODO: __INJECT_METHOD
         return bridge;
     }
 }

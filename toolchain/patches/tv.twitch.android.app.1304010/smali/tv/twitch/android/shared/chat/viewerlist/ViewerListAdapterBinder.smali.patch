@@ -61,7 +61,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListA
 +    if-nez v1, :cond_1b
 +
 +    .line 26
-+    invoke-static {}, Ltv/orange/features/usersearch/Hook;->get()Ltv/orange/features/usersearch/Hook;
++    invoke-static {}, Ltv/orange/features/usersearch/UserSearch;->get()Ltv/orange/features/usersearch/UserSearch;
 +
 +    move-result-object v1
 +
@@ -69,7 +69,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListA
 +
 +    iget-object v3, p0, Ltv/twitch/android/shared/chat/viewerlist/ViewerListAdapterBinder;->searchUserText:Ljava/lang/String;
 +
-+    invoke-virtual {v1, v2, v3}, Ltv/orange/features/usersearch/Hook;->filterChatters(Ltv/twitch/android/models/chat/Chatters;Ljava/lang/String;)Ltv/twitch/android/models/chat/Chatters;
++    invoke-virtual {v1, v2, v3}, Ltv/orange/features/usersearch/UserSearch;->filterChatters(Ltv/twitch/android/models/chat/Chatters;Ljava/lang/String;)Ltv/twitch/android/models/chat/Chatters;
 +
 +    move-result-object v0
 +

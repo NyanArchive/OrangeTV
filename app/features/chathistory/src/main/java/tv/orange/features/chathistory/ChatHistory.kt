@@ -2,10 +2,9 @@ package tv.orange.features.chathistory
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import tv.orange.core.Core
-import tv.orange.core.Logger
 import tv.orange.core.models.Flag
 import tv.orange.core.models.Flag.Companion.valueBoolean
-import tv.orange.models.Feature
+import tv.orange.models.abc.Feature
 import tv.orange.features.chathistory.bridge.ILiveChatSource
 import tv.orange.features.chathistory.data.repository.ChatHistoryRepository
 import tv.orange.features.chathistory.di.scope.ChatHistoryScope
@@ -27,7 +26,6 @@ class ChatHistory @Inject constructor(
         source: ILiveChatSource,
         channel: ChannelInfo?
     ) {
-        Logger.debug("event: $event, source: $source, channel: $channel")
         if (!Flag.CHAT_HISTORY.valueBoolean()) {
             return
         }
@@ -48,7 +46,6 @@ class ChatHistory @Inject constructor(
         channelName: String?,
         channelId: Int
     ) {
-        Logger.debug("source: $source, channelName: $channelName, channelId: $channelId")
         if (channelName.isNullOrBlank()) {
             return
         }

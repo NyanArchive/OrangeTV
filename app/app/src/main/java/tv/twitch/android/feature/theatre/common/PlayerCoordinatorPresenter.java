@@ -1,6 +1,6 @@
 package tv.twitch.android.feature.theatre.common;
 
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.shared.player.presenters.PlayerPresenter;
 
 public class PlayerCoordinatorPresenter {

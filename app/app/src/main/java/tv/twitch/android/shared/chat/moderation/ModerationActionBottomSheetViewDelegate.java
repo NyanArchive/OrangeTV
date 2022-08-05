@@ -2,9 +2,8 @@ package tv.twitch.android.shared.chat.moderation;
 
 import java.util.List;
 
-import tv.orange.core.Core;
 import tv.orange.features.logs.ChatLogs;
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.core.mvp.viewdelegate.ViewDelegateEvent;
 import tv.twitch.android.shared.ui.elements.bottomsheet.BottomSheetListItemModel;
 

@@ -1,4 +1,4 @@
-package tv.orange.core.util
+package tv.orange.models.util
 
 import java.text.ParseException
 import java.text.SimpleDateFormat

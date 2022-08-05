@@ -1,4 +1,4 @@
-package tv.orange.models.abs
+package tv.orange.models.abc
 
 import org.json.JSONObject
 

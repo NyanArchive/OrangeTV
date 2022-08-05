@@ -1,7 +1,7 @@
 package tv.twitch.android.shared.chat.messageinput;
 
 import tv.orange.features.chat.ChatHookProvider;
-import tv.orange.models.VirtualImpl;
+import tv.orange.models.exception.VirtualImpl;
 
 public class MessageInputViewDelegate {
     /* ... */

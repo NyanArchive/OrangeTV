@@ -44,6 +44,7 @@ dependencies {
     api project(path: ':features:chapters')
     api project(path: ':features:logs')
     api project(path: ':features:vodsync')
+    api project(path: ':features:ui')
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

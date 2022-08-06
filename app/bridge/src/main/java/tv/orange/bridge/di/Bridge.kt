@@ -16,6 +16,7 @@ import tv.orange.features.refreshstream.RefreshStream
 import tv.orange.features.settings.OrangeSettings
 import tv.orange.features.stv.StvAvatars
 import tv.orange.features.timer.SleepTimer
+import tv.orange.features.ui.UI
 import tv.orange.features.usersearch.UserSearch
 import tv.orange.features.vodsync.VodSync
 import tv.orange.models.abc.Feature
@@ -74,6 +75,7 @@ class Bridge private constructor() : tv.orange.models.abc.Bridge {
         factory[ResourceManager::class.java] = { component.resourceManagerProvider }
         factory[VodSync::class.java] = { component.vodSyncProvider }
         factory[CoreHook::class.java] = { component.coreHookProvider }
+        factory[UI::class.java] = { component.uiProvider }
     }
 
     fun initialize(context: Context) {

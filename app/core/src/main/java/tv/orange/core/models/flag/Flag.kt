@@ -22,6 +22,16 @@ enum class Flag(
         "orange_settings_chat_timestamps",
         BooleanValue()
     ),
+    DISABLE_LINK_DISCLAIMER(
+        "disable_link_disclaimer",
+        "orange_settings_disable_link_disclaimer",
+        BooleanValue()
+    ),
+    HIDE_LEADERBOARDS(
+        "hide_leaderboards",
+        "orange_settings_hide_leaderboards",
+        BooleanValue()
+    ),
     BTTV_EMOTES(
         "bttv_emotes",
         "orange_settings_bttv_emotes",

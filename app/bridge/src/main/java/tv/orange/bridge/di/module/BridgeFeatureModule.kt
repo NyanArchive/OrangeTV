@@ -27,6 +27,8 @@ import tv.orange.features.stv.StvAvatars
 import tv.orange.features.stv.di.component.DaggerStvComponent
 import tv.orange.features.timer.SleepTimer
 import tv.orange.features.timer.di.component.DaggerTimerComponent
+import tv.orange.features.ui.UI
+import tv.orange.features.ui.di.component.DaggerUIComponent
 import tv.orange.features.usersearch.UserSearch
 import tv.orange.features.usersearch.di.component.DaggerUserSearchComponent
 import tv.orange.features.vodsync.VodSync
@@ -128,6 +130,12 @@ class BridgeFeatureModule {
             .badgesComponent(badgesComponent)
             .emotesComponent(emotesComponent)
             .build().hook
+    }
+
+    @Provides
+    fun provideUIProvider(coreComponent: CoreComponent): UI {
+        Logger.debug("called")
+        return DaggerUIComponent.builder().coreComponent(coreComponent).build().ui
     }
 
     @BridgeScope

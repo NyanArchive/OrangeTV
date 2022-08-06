@@ -16,6 +16,7 @@ import tv.orange.features.refreshstream.RefreshStream
 import tv.orange.features.settings.OrangeSettings
 import tv.orange.features.stv.StvAvatars
 import tv.orange.features.timer.SleepTimer
+import tv.orange.features.ui.UI
 import tv.orange.features.usersearch.UserSearch
 import tv.orange.features.vodsync.VodSync
 import javax.inject.Provider
@@ -35,6 +36,7 @@ interface BridgeComponent {
     val resourceManagerProvider: Provider<ResourceManager>
     val vodSyncProvider: Provider<VodSync>
     val coreHookProvider: Provider<CoreHook>
+    val uiProvider: Provider<UI>
 
     val preferenceManager: Provider<PreferenceManager>
     val core: Provider<Core>

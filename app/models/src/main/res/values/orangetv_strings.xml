@@ -56,4 +56,8 @@
     <string name="orange_seeker_header_text">Vod sync</string>
     <string name="orange_settings_chat_timestamps">Timestamps</string>
     <string name="orange_settings_chat_timestamps_desc" />
+    <string name="orange_settings_hide_leaderboards">Hide leaderboards</string>
+    <string name="orange_settings_hide_leaderboards_desc" />
+    <string name="orange_settings_disable_link_disclaimer" >Disable Browser link disclaimer</string>
+    <string name="orange_settings_disable_link_disclaimer_desc" />
 </resources>

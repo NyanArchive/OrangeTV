@@ -1,4 +1,4 @@
-package tv.orange.features.logs.component.data.model
+package tv.orange.models.data
 
 data class UserInfo(
     val userId: String,

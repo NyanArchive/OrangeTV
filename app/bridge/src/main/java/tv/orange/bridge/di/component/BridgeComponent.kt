@@ -4,6 +4,7 @@ import dagger.Component
 import tv.orange.bridge.di.module.BridgeModule
 import tv.orange.bridge.di.scope.BridgeScope
 import tv.orange.core.Core
+import tv.orange.core.CoreHook
 import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
 import tv.orange.core.di.component.CoreComponent
@@ -33,6 +34,7 @@ interface BridgeComponent {
     val userSearchProvider: Provider<UserSearch>
     val resourceManagerProvider: Provider<ResourceManager>
     val vodSyncProvider: Provider<VodSync>
+    val coreHookProvider: Provider<CoreHook>
 
     val preferenceManager: Provider<PreferenceManager>
     val core: Provider<Core>

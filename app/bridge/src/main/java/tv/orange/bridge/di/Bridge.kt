@@ -4,6 +4,7 @@ import android.content.Context
 import tv.orange.bridge.di.component.BridgeComponent
 import tv.orange.bridge.di.component.DaggerBridgeComponent
 import tv.orange.core.Core
+import tv.orange.core.CoreHook
 import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
 import tv.orange.core.di.component.DaggerCoreComponent
@@ -72,6 +73,7 @@ class Bridge private constructor() : tv.orange.models.abc.Bridge {
         factory[UserSearch::class.java] = { component.userSearchProvider }
         factory[ResourceManager::class.java] = { component.resourceManagerProvider }
         factory[VodSync::class.java] = { component.vodSyncProvider }
+        factory[CoreHook::class.java] = { component.coreHookProvider }
     }
 
     fun initialize(context: Context) {

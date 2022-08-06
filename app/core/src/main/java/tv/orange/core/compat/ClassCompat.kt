@@ -1,6 +1,5 @@
 package tv.orange.core.compat
 
-import tv.twitch.android.app.consumer.dagger.DaggerAppComponent
 import javax.inject.Provider
 
 object ClassCompat {

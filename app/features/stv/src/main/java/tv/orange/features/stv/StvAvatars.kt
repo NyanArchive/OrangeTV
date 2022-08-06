@@ -4,10 +4,10 @@ import io.reactivex.Single
 import tv.orange.core.Core
 import tv.orange.core.Logger
 import tv.orange.core.LoggerWithTag
-import tv.orange.core.models.Flag
-import tv.orange.core.models.Flag.Companion.valueBoolean
-import tv.orange.core.models.FlagListener
-import tv.orange.core.models.LifecycleAware
+import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.Flag.Companion.asBoolean
+import tv.orange.core.models.flag.FlagListener
+import tv.orange.core.models.lifecycle.LifecycleAware
 import tv.orange.features.api.component.repository.StvRepository
 import tv.orange.features.stv.di.scope.StvScope
 import tv.orange.models.abc.Feature
@@ -49,7 +49,7 @@ class StvAvatars @Inject constructor(
     }
 
     override fun onFirstActivityCreated() {
-        if (!Flag.STV_AVATARS.valueBoolean()) {
+        if (!Flag.STV_AVATARS.asBoolean()) {
             return
         }
 

@@ -1,7 +1,7 @@
 package tv.orange.features.chapters.view
 
 import android.widget.ImageView
-import tv.orange.core.ViewUtil.getView
+import tv.orange.core.util.ViewUtil.getView
 import tv.orange.features.chapters.data.view.ChaptersFragment
 import tv.twitch.android.shared.player.overlay.PlayerOverlayViewDelegate
 import javax.inject.Inject

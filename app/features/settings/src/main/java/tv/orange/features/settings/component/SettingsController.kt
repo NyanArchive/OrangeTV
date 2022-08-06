@@ -3,9 +3,9 @@ package tv.orange.features.settings.component
 import android.content.Context
 import tv.orange.core.Logger
 import tv.orange.core.PreferenceManager
-import tv.orange.core.models.Flag
-import tv.orange.core.models.variants.DeletedMessages
-import tv.orange.core.models.variants.PlayerImpl
+import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.variants.DeletedMessages
+import tv.orange.core.models.flag.variants.PlayerImpl
 import tv.orange.features.settings.bridge.model.DropDownMenuModelExt
 import tv.orange.features.settings.bridge.model.FlagToggleMenuModelExt
 import tv.twitch.android.shared.ui.menus.SettingsPreferencesController

@@ -29,8 +29,8 @@
     <string name="orange_stv_channel_emotes">7TV Channel Emotes</string>
     <string name="orange_settings_hide_bits_button">Hide bits button</string>
     <string name="orange_settings_hide_bits_button_desc" />
-    <string name="disable_sticky_headers_ep">Disable sticky headers</string>
-    <string name="disable_sticky_headers_ep_desc" />
+    <string name="orange_settings_disable_sticky_headers_ep">Disable sticky headers</string>
+    <string name="orange_settings_disable_sticky_headers_ep_desc" />
     <string name="orange_settings_player_impl">Player implementation</string>
     <string name="orange_settings_player_impl_desc" />
     <string name="orange_player_impl_default">Default</string>
@@ -46,7 +46,7 @@
     <string name="orange_emotecard_bttv_channel">BTTV Channel Emote</string>
     <string name="orange_emotecard_stv_channel">STV Channel Emote</string>
     <string name="orange_emotecard_ffz_global">FFZ Global Emote</string>
-    <string name="orange_emotecard_stv_global">STV Global Emote</string>
+    <string name="orange_emotecard_stv_global">7TV Global Emote</string>
     <string name="orange_emotecard_bttv_global">BTTV Global Emote</string>
     <string name="orange_chat_settings_preferences_subtitle">OrangeTV</string>
     <string name="orange_chat_settings_refresh">Refresh</string>

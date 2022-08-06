@@ -1,4 +1,4 @@
-query ViewerCardModLogsMessagesBySender($senderID: ID!, $channelID: ID!, $first: Int) {
+query ModLogsMessagesBySender($senderID: ID!, $channelID: ID!, $first: Int) {
     channel: user(id: $channelID) {
         id
         modLogs {

@@ -8,8 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import tv.orange.core.ViewUtil.getView
-import tv.orange.core.ViewUtil.inflate
+import tv.orange.core.util.ViewUtil.getView
+import tv.orange.core.util.ViewUtil.inflate
 import tv.orange.features.chapters.component.data.model.Chapter
 
 class ChaptersAdapter(private val listener: OnChapterClickedListener) :

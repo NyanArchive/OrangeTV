@@ -19,8 +19,8 @@ class SleepTimer @Inject constructor(
         fun get() = Core.getFeature(SleepTimer::class.java)
     }
 
-    fun getTimerButton(delegate: PlayerOverlayViewDelegate): ImageView? {
-        return viewFactory.createTimerButton(delegate)?.apply {
+    fun getTimerButton(delegate: PlayerOverlayViewDelegate): ImageView {
+        return viewFactory.createTimerButton(delegate).apply {
             setOnClickListener { button ->
                 OrangeTimerFragment().show(
                     (button.context as FragmentActivity).supportFragmentManager,

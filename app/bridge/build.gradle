@@ -30,7 +30,6 @@ dependencies {
     api project(path: ':Twitch')
     api project(path: ':models')
     api project(path: ':core')
-    api project(path: ':injector')
 
     api project(path: ':components:badges')
     api project(path: ':components:emotes')

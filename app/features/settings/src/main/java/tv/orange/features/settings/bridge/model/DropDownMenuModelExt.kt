@@ -3,25 +3,26 @@ package tv.orange.features.settings.bridge.model
 import android.content.Context
 import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
-import tv.orange.core.models.Flag
-import tv.orange.core.models.Flag.Companion.variant
+import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.Flag.Companion.asVariant
+import tv.orange.core.models.flag.Internal
 import tv.twitch.android.core.adapters.TwitchArrayAdapter
 import tv.twitch.android.core.adapters.TwitchArrayAdapterModel
 import tv.twitch.android.shared.ui.menus.dropdown.DropDownMenuModel
 import tv.twitch.android.shared.ui.menus.dropdown.DropDownMenuModel.DropDownMenuItemSelection
 
-class DropDownMenuModelExt<T : Flag.Variant>(flag: Flag, context: Context) :
+class DropDownMenuModelExt<T : Internal.Variant>(flag: Flag, context: Context) :
     DropDownMenuModel<TwitchArrayAdapterModel>(
         TwitchArrayAdapter(
             context,
-            flag.variant<T>().getVariants().map { variant ->
+            flag.asVariant<T>().getVariants().map { variant ->
                 TwitchArrayAdapterModel {
                     ResourceManager.get().getString("orange_${flag.prefKey}_$variant")
                 }
             },
             ResourceManager.get().getLayoutId("twitch_spinner_dropdown_item")
         ),
-        flag.variant<T>().getVariants().indexOf(flag.variant()),
+        flag.asVariant<T>().getVariants().indexOf(flag.asVariant()),
         flag.titleRes?.let { id ->
             ResourceManager.get().getString(id)
         },
@@ -33,7 +34,7 @@ class DropDownMenuModelExt<T : Flag.Variant>(flag: Flag, context: Context) :
         DropDownMenuItemSelection { _, position ->
             PreferenceManager.get().writeString(
                 flag = flag,
-                value = flag.variant<T>().getVariants()[position].toString()
+                value = flag.asVariant<T>().getVariants()[position].toString()
             )
         }
     )

@@ -2,8 +2,9 @@ package tv.orange.core
 
 import android.content.Context
 import android.content.SharedPreferences
-import tv.orange.core.models.Flag
-import tv.orange.core.models.FlagListener
+import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.FlagListener
+import tv.orange.core.models.flag.Internal.*
 import tv.orange.models.abc.Feature
 import javax.inject.Inject
 
@@ -58,19 +59,19 @@ class PreferenceManager @Inject constructor(
         } ?: throw IllegalStateException(prefKey)
     }
 
-    private fun readBoolean(flag: Flag): Flag.BooleanValue {
+    private fun readBoolean(flag: Flag): BooleanValue {
         val value = preferences.getBoolean(flag.prefKey, Flag.getBoolean(flag.default))
-        return Flag.BooleanValue(value)
+        return BooleanValue(value)
     }
 
-    private fun readInt(flag: Flag): Flag.IntegerValue {
+    private fun readInt(flag: Flag): IntegerValue {
         val value = preferences.getInt(flag.prefKey, Flag.getInt(flag.default))
-        return Flag.IntegerValue(value)
+        return IntegerValue(value)
     }
 
-    private fun readString(flag: Flag): Flag.StringValue {
+    private fun readString(flag: Flag): StringValue {
         val value = preferences.getString(flag.prefKey, Flag.getString(flag.default))
-        return Flag.StringValue(value)
+        return StringValue(value)
     }
 
     private fun readRawString(flag: Flag): String {
@@ -79,10 +80,10 @@ class PreferenceManager @Inject constructor(
 
     private fun readSettingFromPref(flag: Flag) {
         when (flag.value) {
-            is Flag.BooleanValue -> flag.value = readBoolean(flag)
-            is Flag.IntegerValue -> flag.value = readInt(flag)
-            is Flag.StringValue -> flag.value = readString(flag)
-            is Flag.ListValue<*> -> (flag.value as Flag.ListValue<*>).set(readRawString(flag))
+            is BooleanValue -> flag.value = readBoolean(flag)
+            is IntegerValue -> flag.value = readInt(flag)
+            is StringValue -> flag.value = readString(flag)
+            is ListValue<*> -> (flag.value as ListValue<*>).set(readRawString(flag))
             else -> throw IllegalStateException("debug")
         }
     }
@@ -107,5 +108,6 @@ class PreferenceManager @Inject constructor(
     override fun onDestroyFeature() {
         throw IllegalStateException("PreferenceManager cannot be destroyed")
     }
+
     override fun onCreateFeature() {}
 }

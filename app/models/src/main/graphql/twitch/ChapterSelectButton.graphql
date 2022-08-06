@@ -1,4 +1,4 @@
-query VideoPlayer_ChapterSelectButtonVideo($videoID: ID $includePrivate: Boolean = false) {
+query ChapterSelectButton($videoID: ID $includePrivate: Boolean = false) {
     video(id: $videoID options: { includePrivate: $includePrivate }) {
         id
         game {

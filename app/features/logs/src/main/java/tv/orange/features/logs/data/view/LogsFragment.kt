@@ -10,9 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import tv.orange.core.ResourceManager
-import tv.orange.core.ViewUtil.getView
-import tv.orange.core.ViewUtil.inflate
+import tv.orange.core.util.ViewUtil.getView
+import tv.orange.core.util.ViewUtil.inflate
 import tv.orange.features.logs.component.data.model.MessageItem
 import tv.orange.features.logs.component.data.repository.LogsRepository
 import tv.orange.features.logs.data.adapter.LogsAdapter

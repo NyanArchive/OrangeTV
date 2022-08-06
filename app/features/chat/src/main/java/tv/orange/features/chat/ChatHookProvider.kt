@@ -15,12 +15,12 @@ import tv.orange.core.Core
 import tv.orange.core.Logger
 import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
-import tv.orange.core.models.Flag
-import tv.orange.core.models.Flag.Companion.valueBoolean
-import tv.orange.core.models.Flag.Companion.variant
-import tv.orange.core.models.FlagListener
-import tv.orange.core.models.LifecycleAware
-import tv.orange.core.models.variants.DeletedMessages
+import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.Flag.Companion.asBoolean
+import tv.orange.core.models.flag.Flag.Companion.asVariant
+import tv.orange.core.models.flag.FlagListener
+import tv.orange.core.models.lifecycle.LifecycleAware
+import tv.orange.core.models.flag.variants.DeletedMessages
 import tv.orange.features.badges.bridge.OrangeMessageBadge
 import tv.orange.features.badges.component.BadgeProvider
 import tv.orange.features.chat.bridge.*
@@ -65,7 +65,7 @@ class ChatHookProvider @Inject constructor(
         userId: Int,
         messageTimestamp: Int
     ): Spanned {
-        if (!Flag.CHAT_TIMESTAMPS.valueBoolean()) {
+        if (!Flag.CHAT_TIMESTAMPS.asBoolean()) {
             return message
         }
 
@@ -238,7 +238,7 @@ class ChatHookProvider @Inject constructor(
         eventDispatcher: PublishSubject<ChatMessageClickedEvents?>?,
         hasModAccess: Boolean
     ): Spanned? {
-        return when (Flag.DELETED_MESSAGES.variant<DeletedMessages>()) {
+        return when (Flag.DELETED_MESSAGES.asVariant<DeletedMessages>()) {
             DeletedMessages.Mod -> ChatUtil.Companion!!.createDeletedSpanFromChatMessageSpan(
                 messageId,
                 message,
@@ -296,12 +296,12 @@ class ChatHookProvider @Inject constructor(
 
         @JvmStatic
         fun enableStickyHeaders(): Boolean {
-            return !Flag.DISABLE_STICKY_HEADERS_EP.valueBoolean()
+            return !Flag.DISABLE_STICKY_HEADERS_EP.asBoolean()
         }
 
         @JvmStatic
         fun changeBitsButtonVisibility(org: Boolean): Boolean {
-            if (Flag.HIDE_BITS_BUTTON.valueBoolean()) {
+            if (Flag.HIDE_BITS_BUTTON.asBoolean()) {
                 return false
             }
 

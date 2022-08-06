@@ -21,7 +21,6 @@ include ':TwitchRes'
 include ':models'
 include ':core'
 
-include ':injector'
 include ':bridge'
 
 include ':components:emotes'

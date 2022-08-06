@@ -1,7 +1,7 @@
 package tv.orange.features.refreshstream.view
 
 import android.widget.ImageView
-import tv.orange.core.ViewUtil.getView
+import tv.orange.core.util.ViewUtil.getView
 import tv.twitch.android.shared.player.overlay.BottomPlayerControlOverlayViewDelegate
 import javax.inject.Inject
 

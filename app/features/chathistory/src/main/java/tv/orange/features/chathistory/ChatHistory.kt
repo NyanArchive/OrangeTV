@@ -2,8 +2,8 @@ package tv.orange.features.chathistory
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import tv.orange.core.Core
-import tv.orange.core.models.Flag
-import tv.orange.core.models.Flag.Companion.valueBoolean
+import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.models.abc.Feature
 import tv.orange.features.chathistory.bridge.ILiveChatSource
 import tv.orange.features.chathistory.data.repository.ChatHistoryRepository
@@ -26,7 +26,7 @@ class ChatHistory @Inject constructor(
         source: ILiveChatSource,
         channel: ChannelInfo?
     ) {
-        if (!Flag.CHAT_HISTORY.valueBoolean()) {
+        if (!Flag.CHAT_HISTORY.asBoolean()) {
             return
         }
 

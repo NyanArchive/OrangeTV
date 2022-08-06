@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import tv.orange.core.ViewUtil.getView
-import tv.orange.core.ViewUtil.inflate
+import tv.orange.core.util.ViewUtil.getView
+import tv.orange.core.util.ViewUtil.inflate
 import tv.orange.features.logs.component.data.model.ChatMessage
 import tv.orange.features.logs.component.data.model.MessageItem
 import tv.twitch.android.shared.chat.messagefactory.ChatMessageFactory

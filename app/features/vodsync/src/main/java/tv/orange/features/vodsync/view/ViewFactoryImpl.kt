@@ -2,7 +2,7 @@ package tv.orange.features.vodsync.view
 
 import android.view.View
 import android.view.ViewGroup
-import tv.orange.core.ViewUtil.getView
+import tv.orange.core.util.ViewUtil.getView
 import tv.orange.features.vodsync.di.scope.VodSyncScope
 import tv.twitch.android.core.mvp.viewdelegate.BaseViewDelegate
 import javax.inject.Inject

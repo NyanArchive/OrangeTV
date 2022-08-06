@@ -5,7 +5,6 @@ import tv.orange.features.api.component.data.source.StvRemoteDataSource
 import tv.orange.features.api.di.scope.ApiScope
 import tv.orange.models.data.avatars.AvatarSet
 import tv.orange.models.data.badges.BadgeSet
-import tv.orange.models.data.emotes.Emote
 import tv.orange.models.data.emotes.EmoteSet
 import javax.inject.Inject
 

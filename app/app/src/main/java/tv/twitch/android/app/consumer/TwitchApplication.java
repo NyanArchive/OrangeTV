@@ -6,17 +6,17 @@ import androidx.annotation.NonNull;
 
 import tv.orange.bridge.di.Bridge;
 import tv.orange.core.Core;
-import tv.orange.injector.InjectorImpl;
+import tv.orange.bridge.TwitchComponentProviderImpl;
 import tv.orange.models.abc.BridgeProvider;
-import tv.orange.models.abc.Injector;
-import tv.orange.models.abc.InjectorProvider;
+import tv.orange.models.abc.TwitchComponentProvider;
+import tv.orange.models.abc.TCPProvider;
 import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.app.consumer.dagger.AppComponent;
 import tv.twitch.android.app.consumer.dagger.DaggerAppComponent;
 
-public class TwitchApplication extends Application implements InjectorProvider, BridgeProvider { // TODO: __IMPLEMENT
-    private volatile Injector injector = null; // TODO: __ADD_FIELD
-    private volatile Bridge bridge = null; // TODO: __ADD_FIELD
+public class TwitchApplication extends Application implements TCPProvider, BridgeProvider { // TODO: __IMPLEMENT
+    private volatile TwitchComponentProvider twitchComponentProvider = null; // TODO: __ADD_FIELD
+    private volatile Bridge orangeBridge = null; // TODO: __ADD_FIELD
 
     /* ... */
 
@@ -35,12 +35,12 @@ public class TwitchApplication extends Application implements InjectorProvider, 
     }
 
     private void initOranges(AppComponent appComponent) { // TODO: __INJECT_METHOD
-        injector = InjectorImpl.create();
-        ((InjectorImpl) injector).initialize((DaggerAppComponent) appComponent);
-        bridge = Bridge.create();
-        bridge.initialize(this);
-        Core.setBridge(bridge);
-        bridge.initializeFeatures();
+        twitchComponentProvider = TwitchComponentProviderImpl.create();
+        ((TwitchComponentProviderImpl) twitchComponentProvider).initialize((DaggerAppComponent) appComponent);
+        orangeBridge = Bridge.create();
+        orangeBridge.initialize(this);
+        Core.setBridge(orangeBridge);
+        orangeBridge.initializeFeatures();
     }
 
     protected AppComponent createDaggerComponent() {
@@ -49,13 +49,13 @@ public class TwitchApplication extends Application implements InjectorProvider, 
 
     @NonNull
     @Override
-    public Injector provideInjector() { // TODO: __INJECT_METHOD
-        return injector;
+    public TwitchComponentProvider provideTCP() { // TODO: __INJECT_METHOD
+        return twitchComponentProvider;
     }
 
     @NonNull
     @Override
-    public tv.orange.models.abc.Bridge provideBridge() { // TODO: __INJECT_METHOD
-        return bridge;
+    public Bridge provideBridge() { // TODO: __INJECT_METHOD
+        return orangeBridge;
     }
 }

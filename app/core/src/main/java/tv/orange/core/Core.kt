@@ -1,8 +1,8 @@
 package tv.orange.core
 
 import android.content.Context
-import tv.orange.core.models.LifecycleAware
-import tv.orange.core.models.LifecycleController
+import tv.orange.core.models.lifecycle.LifecycleAware
+import tv.orange.core.models.lifecycle.LifecycleController
 import tv.orange.models.abc.Bridge
 import tv.orange.models.abc.Feature
 import javax.inject.Inject

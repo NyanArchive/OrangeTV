@@ -31,7 +31,7 @@ import tv.orange.features.usersearch.UserSearch
 import tv.orange.features.usersearch.di.component.DaggerUserSearchComponent
 import tv.orange.features.vodsync.VodSync
 import tv.orange.features.vodsync.di.component.DaggerVodSyncComponent
-import tv.orange.models.abc.Injector
+import tv.orange.models.abc.TwitchComponentProvider
 import tv.twitch.android.network.graphql.GraphQlService
 import tv.twitch.android.shared.chat.messagefactory.ChatMessageFactory
 
@@ -74,30 +74,39 @@ class BridgeFeatureModule {
     }
 
     @Provides
-    fun provideChatLogs(coreComponent: CoreComponent, injector: Injector): ChatLogs {
+    fun provideChatLogs(
+        coreComponent: CoreComponent,
+        twitchComponentProvider: TwitchComponentProvider
+    ): ChatLogs {
         Logger.debug("called")
         return DaggerLogsComponent.factory().create(
             coreComponent = coreComponent,
-            service = injector.getComponentProvider(GraphQlService::class).get(),
-            factory = injector.getComponentProvider(ChatMessageFactory.Factory::class).get()
+            service = twitchComponentProvider.getProvider(GraphQlService::class).get(),
+            factory = twitchComponentProvider.getProvider(ChatMessageFactory.Factory::class).get()
         ).chatLogs
     }
 
     @Provides
-    fun provideChatHistory(coreComponent: CoreComponent, injector: Injector): ChatHistory {
+    fun provideChatHistory(
+        coreComponent: CoreComponent,
+        twitchComponentProvider: TwitchComponentProvider
+    ): ChatHistory {
         Logger.debug("called")
         return DaggerChatHistoryComponent.factory().create(
             coreComponent = coreComponent,
-            service = injector.getComponentProvider(GraphQlService::class).get()
+            service = twitchComponentProvider.getProvider(GraphQlService::class).get()
         ).chatHistory
     }
 
     @Provides
-    fun provideChaptersHook(coreComponent: CoreComponent, injector: Injector): VodChapters {
+    fun provideChaptersHook(
+        coreComponent: CoreComponent,
+        twitchComponentProvider: TwitchComponentProvider
+    ): VodChapters {
         Logger.debug("called")
         return DaggerChaptersComponent.factory().create(
             coreComponent = coreComponent,
-            service = injector.getComponentProvider(GraphQlService::class).get()
+            service = twitchComponentProvider.getProvider(GraphQlService::class).get()
         ).vodChapters
     }
 

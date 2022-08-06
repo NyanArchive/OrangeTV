@@ -38,6 +38,8 @@ class BridgeComponentModule {
     @Provides
     fun provideApiComponent(coreComponent: CoreComponent): ApiComponent {
         Logger.debug("called")
-        return DaggerApiComponent.factory().create(coreComponent = coreComponent)
+        return DaggerApiComponent.factory().create(
+            coreComponent = coreComponent
+        )
     }
 }

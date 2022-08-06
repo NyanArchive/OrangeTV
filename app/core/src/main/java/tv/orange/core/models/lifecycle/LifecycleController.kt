@@ -1,4 +1,4 @@
-package tv.orange.core.models
+package tv.orange.core.models.lifecycle
 
 interface LifecycleController {
     fun registerLifecycleListeners(vararg listeners: LifecycleAware)

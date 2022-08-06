@@ -1,7 +1,8 @@
-package tv.orange.core.models
+package tv.orange.core.models.flag
 
-import tv.orange.core.models.variants.DeletedMessages
-import tv.orange.core.models.variants.PlayerImpl
+import tv.orange.core.models.flag.Internal.*
+import tv.orange.core.models.flag.variants.DeletedMessages
+import tv.orange.core.models.flag.variants.PlayerImpl
 import java.util.*
 
 enum class Flag(
@@ -14,6 +15,11 @@ enum class Flag(
     DEV_MODE(
         "dev_mode",
         "orange_settings_dev_mode",
+        BooleanValue()
+    ),
+    CHAT_TIMESTAMPS(
+        "chat_timestamps",
+        "orange_settings_chat_timestamps",
         BooleanValue()
     ),
     BTTV_EMOTES(
@@ -80,34 +86,39 @@ enum class Flag(
         "deleted_messages",
         "orange_settings_deleted_messages",
         ListValue(DeletedMessages.Default),
-    ),
-    CHAT_TIMESTAMPS(
-        "chat_timestamps",
-        "orange_settings_chat_timestamps",
-        BooleanValue(false)
     );
 
+    constructor(key: String, default: ValueHolder) : this(
+        prefKey = key,
+        titleRes = null,
+        summaryRes = null,
+        default = default,
+        value = default
+    )
+
+    constructor(prefKey: String, titleRes: String, default: ValueHolder) : this(
+        prefKey = prefKey,
+        titleRes = titleRes,
+        summaryRes = titleRes + "_desc",
+        default = default,
+        value = default
+    )
+
     companion object {
-        fun Flag.valueBoolean(): Boolean {
+        fun Flag.asBoolean(): Boolean {
             return getBoolean(this.value)
         }
 
-        fun <T : Variant> Flag.variant(): T {
+        fun <T : Variant> Flag.asVariant(): T {
             return getVariant(this.value)
         }
 
-        fun Flag.valueInt(): Int {
+        fun Flag.asInt(): Int {
             return getInt(this.value)
         }
 
-        fun Flag.valueString(): String {
+        fun Flag.asString(): String {
             return getString(this.value)
-        }
-
-        fun findByKey(key: String): Flag? {
-            return EnumSet.allOf(Flag::class.java).firstOrNull {
-                it.prefKey == key
-            }
         }
 
         fun getInt(holder: ValueHolder): Int {
@@ -144,96 +155,11 @@ enum class Flag(
 
             throw IllegalStateException("$holder")
         }
-    }
 
-    interface ValueHolder {
-        val value: Any
-        val type: Type
-    }
-
-    enum class Type {
-        BOOLEAN, INTEGER, STRING, LIST
-    }
-
-    interface Variant {
-        fun getVariants(): List<Variant>
-        fun default(): Variant
-        fun fromString(value: String): Variant
-        override fun toString(): String
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    class ListValue<T : Variant>(private val variant: T) : ValueHolder {
-        var currentVariant: Variant? = variant.default()
-
-        fun set(string: String): String {
-            currentVariant = variant.fromString(string)
-
-            return string
-        }
-
-        fun set(variant: Variant): String {
-            currentVariant = variant
-
-            return value
-        }
-
-        override val value: String
-            get() = currentVariant.toString()
-
-        override val type: Type
-            get() = Type.LIST
-
-        fun <T : Variant> getVariant(): T {
-            return currentVariant as T
+        fun findByKey(key: String): Flag? {
+            return EnumSet.allOf(Flag::class.java).firstOrNull {
+                it.prefKey == key
+            }
         }
     }
-
-    class BooleanValue(bool: Any? = false) : ValueHolder {
-        override var value = when (bool) {
-            is Boolean -> bool
-            is String -> bool.toBoolean()
-            null -> false
-            else -> bool.toString().toBoolean()
-        }
-        override val type: Type
-            get() = Type.BOOLEAN
-    }
-
-    class IntegerValue(i: Any? = 0) : ValueHolder {
-        override var value = when (i) {
-            is Int -> i
-            is String -> i.toInt()
-            null -> 0
-            else -> i.toString().toInt()
-        }
-        override val type: Type
-            get() = Type.INTEGER
-    }
-
-    class StringValue(s: Any? = null) : ValueHolder {
-        override var value = when (s) {
-            is String -> s
-            null -> ""
-            else -> s.toString()
-        }
-        override val type: Type
-            get() = Type.STRING
-    }
-
-    constructor(key: String, default: ValueHolder) : this(
-        prefKey = key,
-        titleRes = null,
-        summaryRes = null,
-        default = default,
-        value = default
-    )
-
-    constructor(prefKey: String, titleRes: String, default: ValueHolder) : this(
-        prefKey = prefKey,
-        titleRes = titleRes,
-        summaryRes = titleRes + "_desc",
-        default = default,
-        value = default
-    )
 }

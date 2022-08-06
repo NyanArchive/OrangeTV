@@ -7,7 +7,7 @@ import android.widget.TextView
 import tv.orange.core.Core
 import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
-import tv.orange.core.ViewUtil.getView
+import tv.orange.core.util.ViewUtil.getView
 import tv.orange.features.vodsync.di.scope.VodSyncScope
 import tv.orange.features.vodsync.view.ViewFactory
 import tv.orange.models.abc.Feature

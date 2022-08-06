@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import io.reactivex.Flowable
 import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
-import tv.orange.core.ViewUtil.getView
-import tv.orange.core.ViewUtil.inflate
-import tv.orange.core.models.Flag
-import tv.orange.core.models.Flag.Companion.valueBoolean
+import tv.orange.core.util.ViewUtil.getView
+import tv.orange.core.util.ViewUtil.inflate
+import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.features.chat.ChatHookProvider
 import tv.twitch.android.core.mvp.viewdelegate.ViewDelegateState
 import tv.twitch.android.shared.chat.settings.entry.ChatSettingsViewDelegate
@@ -50,9 +50,9 @@ class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
         modStuffContainer.addView(toggleFfzEmotes.contentView)
         modStuffContainer.addView(toggleStvEmotes.contentView)
         renderEmotesState(
-            Flag.BTTV_EMOTES.valueBoolean(),
-            Flag.FFZ_EMOTES.valueBoolean(),
-            Flag.STV_EMOTES.valueBoolean()
+            Flag.BTTV_EMOTES.asBoolean(),
+            Flag.FFZ_EMOTES.asBoolean(),
+            Flag.STV_EMOTES.asBoolean()
         )
     }
 
@@ -87,8 +87,8 @@ class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
                 PreferenceManager.get().writeBoolean(Flag.BTTV_EMOTES, it.isToggled)
                 renderEmotesState(
                     it.isToggled,
-                    Flag.FFZ_EMOTES.valueBoolean(),
-                    Flag.STV_EMOTES.valueBoolean()
+                    Flag.FFZ_EMOTES.asBoolean(),
+                    Flag.STV_EMOTES.asBoolean()
                 )
             }.map {
                 ChatSettingsOrangeEvents.Toggle()
@@ -96,9 +96,9 @@ class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
             add(toggleFfzEmotes.eventObserver().doOnNext {
                 PreferenceManager.get().writeBoolean(Flag.FFZ_EMOTES, it.isToggled)
                 renderEmotesState(
-                    Flag.BTTV_EMOTES.valueBoolean(),
+                    Flag.BTTV_EMOTES.asBoolean(),
                     it.isToggled,
-                    Flag.STV_EMOTES.valueBoolean()
+                    Flag.STV_EMOTES.asBoolean()
                 )
             }.map {
                 ChatSettingsOrangeEvents.Toggle()
@@ -106,8 +106,8 @@ class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
             add(toggleStvEmotes.eventObserver().doOnNext {
                 PreferenceManager.get().writeBoolean(Flag.STV_EMOTES, it.isToggled)
                 renderEmotesState(
-                    Flag.BTTV_EMOTES.valueBoolean(),
-                    Flag.FFZ_EMOTES.valueBoolean(),
+                    Flag.BTTV_EMOTES.asBoolean(),
+                    Flag.FFZ_EMOTES.asBoolean(),
                     it.isToggled
                 )
             }.map {

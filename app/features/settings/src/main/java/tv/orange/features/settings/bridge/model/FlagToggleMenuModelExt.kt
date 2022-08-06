@@ -1,8 +1,8 @@
 package tv.orange.features.settings.bridge.model
 
 import tv.orange.core.ResourceManager
-import tv.orange.core.models.Flag
-import tv.orange.core.models.Flag.Companion.valueBoolean
+import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.Flag.Companion.asBoolean
 
 class FlagToggleMenuModelExt(flag: Flag) : ToggleMenuModelExt(
     primaryText = ResourceManager.get().getString(flag.titleRes!!),
@@ -10,6 +10,6 @@ class FlagToggleMenuModelExt(flag: Flag) : ToggleMenuModelExt(
         ResourceManager.get().getString(id)
     },
     auxiliaryText = null,
-    state = flag.valueBoolean(),
+    state = flag.asBoolean(),
     eventName = flag.prefKey
 )

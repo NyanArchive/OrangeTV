@@ -1,7 +1,7 @@
 package tv.orange.features.badges.component.model.factory
 
-import tv.orange.core.models.Flag
-import tv.orange.core.models.Flag.Companion.valueBoolean
+import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.features.api.component.repository.ChatterinoRepository
 import tv.orange.features.api.component.repository.FfzRepository
 import tv.orange.features.api.component.repository.NopRepository
@@ -21,7 +21,7 @@ class RoomFactoryImpl @Inject constructor(
     RoomFactory {
     override fun create(): Room {
         return RoomImpl().apply {
-            if (Flag.FFZ_BADGES.valueBoolean()) {
+            if (Flag.FFZ_BADGES.asBoolean()) {
                 add(
                     BadgePackageImpl(
                         BadgeFetcherFactoryImpl { ffz.getFfzBadges() },
@@ -29,7 +29,7 @@ class RoomFactoryImpl @Inject constructor(
                     )
                 )
             }
-            if (Flag.STV_BADGES.valueBoolean()) {
+            if (Flag.STV_BADGES.asBoolean()) {
                 add(
                     BadgePackageImpl(
                         BadgeFetcherFactoryImpl { stv.getStvBadges() },
@@ -37,7 +37,7 @@ class RoomFactoryImpl @Inject constructor(
                     )
                 )
             }
-            if (Flag.CHA_BADGES.valueBoolean()) {
+            if (Flag.CHA_BADGES.asBoolean()) {
                 add(
                     BadgePackageImpl(
                         BadgeFetcherFactoryImpl { chatterino.getChatterinoBadges() },
@@ -45,7 +45,7 @@ class RoomFactoryImpl @Inject constructor(
                     )
                 )
             }
-            if (Flag.CHE_BADGES.valueBoolean()) {
+            if (Flag.CHE_BADGES.asBoolean()) {
                 add(
                     BadgePackageImpl(
                         BadgeFetcherFactoryImpl { nop.getHomiesBadges() },

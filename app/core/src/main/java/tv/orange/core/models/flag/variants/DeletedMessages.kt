@@ -1,22 +1,22 @@
-package tv.orange.core.models.variants
+package tv.orange.core.models.flag.variants
 
-import tv.orange.core.models.Flag
+import tv.orange.core.models.flag.Internal
 
-enum class DeletedMessages(val value: String) : Flag.Variant {
+enum class DeletedMessages(val value: String) : Internal.Variant {
     Default("default"),
     Mod("mod"),
     Strikethrough("strikethrough"),
     Grey("grey");
 
-    override fun getVariants(): List<Flag.Variant> {
+    override fun getVariants(): List<Internal.Variant> {
         return values().toList()
     }
 
-    override fun default(): Flag.Variant {
+    override fun default(): Internal.Variant {
         return Default
     }
 
-    override fun fromString(value: String): Flag.Variant {
+    override fun fromString(value: String): Internal.Variant {
         return values().firstOrNull { it.value == value }
             ?: throw IllegalStateException("Variant not found: $value")
     }

@@ -39,6 +39,8 @@ class SettingsController @Inject constructor() : SettingsPreferencesController {
             FlagToggleMenuModelExt(Flag.CHAT_TIMESTAMPS),
             FlagToggleMenuModelExt(Flag.DISABLE_STICKY_HEADERS_EP),
             FlagToggleMenuModelExt(Flag.HIDE_BITS_BUTTON),
+            FlagToggleMenuModelExt(Flag.DISABLE_LINK_DISCLAIMER),
+            FlagToggleMenuModelExt(Flag.HIDE_LEADERBOARDS),
             DropDownMenuModelExt<PlayerImpl>(Flag.PLAYER_IMPL, context),
             DropDownMenuModelExt<DeletedMessages>(Flag.DELETED_MESSAGES, context),
         )

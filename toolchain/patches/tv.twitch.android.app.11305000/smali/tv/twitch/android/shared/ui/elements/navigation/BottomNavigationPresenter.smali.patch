@@ -1,0 +1,18 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/navigation/BottomNavigationPresenter.smali b/smali_classes6/tv/twitch/android/shared/ui/elements/navigation/BottomNavigationPresenter.smali
+--- a/smali_classes6/tv/twitch/android/shared/ui/elements/navigation/BottomNavigationPresenter.smali
++++ b/smali_classes6/tv/twitch/android/shared/ui/elements/navigation/BottomNavigationPresenter.smali
+@@ -647,6 +647,14 @@
+ 
+     invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+ 
++    invoke-static {}, Ltv/orange/features/ui/UI;->get()Ltv/orange/features/ui/UI;
++
++    move-result-object v0
++
++    invoke-virtual {v0, p1}, Ltv/orange/features/ui/UI;->filterNavItems(Ljava/util/List;)Ljava/util/List;
++
++    move-result-object p1
++
+     .line 135
+     iget-object v0, p0, Ltv/twitch/android/shared/ui/elements/navigation/BottomNavigationPresenter;->stateMachine:Ltv/twitch/android/core/mvp/presenter/StateMachine;
+ 

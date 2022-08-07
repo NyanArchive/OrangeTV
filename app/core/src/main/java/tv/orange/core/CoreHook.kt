@@ -20,6 +20,10 @@ class CoreHook @Inject constructor() : Feature {
         }
 
         @JvmStatic
+        val fastBread: Boolean
+            get() = !Flag.DISABLE_FAST_BREAD.asBoolean()
+
+        @JvmStatic
         fun hookPlayerImplementation(default: PlayerImplementation): PlayerImplementation {
             return when (Flag.PLAYER_IMPL.asVariant<PlayerImpl>()) {
                 PlayerImpl.Default -> default

@@ -58,6 +58,19 @@
     <string name="orange_settings_chat_timestamps_desc" />
     <string name="orange_settings_hide_leaderboards">Hide leaderboards</string>
     <string name="orange_settings_hide_leaderboards_desc" />
-    <string name="orange_settings_disable_link_disclaimer" >Disable Browser link disclaimer</string>
+    <string name="orange_settings_disable_link_disclaimer">Disable Browser link disclaimer</string>
     <string name="orange_settings_disable_link_disclaimer_desc" />
+    <string name="orange_settings_disable_fast_bread">Disable low latency</string>
+    <string name="orange_settings_disable_fast_bread_desc" />
+    <string name="orange_settings_bottom_navbar_position">Navbar position</string>
+    <string name="orange_settings_bottom_navbar_position_desc" />
+    <string name="orange_bottom_navbar_position_default">Default</string>
+    <string name="orange_bottom_navbar_position_top">Top</string>
+    <string name="orange_bottom_navbar_position_hidden">Hidden</string>
+    <string name="orange_settings_followed_full_cards">Show full stream cards in followed section</string>
+    <string name="orange_settings_followed_full_cards_desc" />
+    <string name="orange_settings_disable_hype_train" >Disable HypeTrain</string>
+    <string name="orange_settings_disable_hype_train_desc" />
+    <string name="orange_settings_hide_discover_tab" >Hide Discover tab</string>
+    <string name="orange_settings_hide_discover_tab_desc" />
 </resources>

@@ -1,7 +1,7 @@
 diff --git a/smali_classes5/tv/twitch/android/feature/viewer/main/MainActivity.smali b/smali_classes5/tv/twitch/android/feature/viewer/main/MainActivity.smali
 --- a/smali_classes5/tv/twitch/android/feature/viewer/main/MainActivity.smali
 +++ b/smali_classes5/tv/twitch/android/feature/viewer/main/MainActivity.smali
-@@ -1246,6 +1246,12 @@
+@@ -1233,6 +1233,12 @@
  
      iput-object p1, p0, Ltv/twitch/android/feature/viewer/main/MainActivity;->mWrapper:Landroid/view/ViewGroup;
  

@@ -1,7 +1,7 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter.smali b/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter.smali
 --- a/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter.smali
 +++ b/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter.smali
-@@ -610,13 +610,21 @@
+@@ -608,13 +608,21 @@
  
      invoke-virtual {v0, v1}, Lio/reactivex/Flowable;->map(Lio/reactivex/functions/Function;)Lio/reactivex/Flowable;
  

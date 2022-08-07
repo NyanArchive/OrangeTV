@@ -1,7 +1,7 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/navigation/BottomNavigationPresenter.smali b/smali_classes6/tv/twitch/android/shared/ui/elements/navigation/BottomNavigationPresenter.smali
 --- a/smali_classes6/tv/twitch/android/shared/ui/elements/navigation/BottomNavigationPresenter.smali
 +++ b/smali_classes6/tv/twitch/android/shared/ui/elements/navigation/BottomNavigationPresenter.smali
-@@ -647,6 +647,14 @@
+@@ -645,6 +645,14 @@
  
      invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
  

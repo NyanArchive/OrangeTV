@@ -7,6 +7,6 @@ diff --git a/res/layout/main_activity.xml b/res/layout/main_activity.xml
      <LinearLayout android:orientation="vertical" android:id="@id/main_wrapper" android:layout_width="fill_parent" android:layout_height="fill_parent">
 -        <FrameLayout android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
 +        <FrameLayout android:id="@+id/main_activity__main_wrapper" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0">
-             <androidx.coordinatorlayout.widget.CoordinatorLayout android:orientation="vertical" android:id="@id/main_content_coordinator_layout" android:layout_width="fill_parent" android:layout_height="fill_parent">
+             <tv.twitch.android.shared.ui.elements.layout.TwitchCoordinatorLayout android:orientation="vertical" android:id="@id/main_content_coordinator_layout" android:layout_width="fill_parent" android:layout_height="fill_parent">
                  <include layout="@layout/collapsing_toolbar_with_tabs" />
                  <FrameLayout android:id="@id/fragment_container" android:layout_width="fill_parent" android:layout_height="fill_parent" app:layout_behavior="@string/appbar_scrolling_view_behavior" />

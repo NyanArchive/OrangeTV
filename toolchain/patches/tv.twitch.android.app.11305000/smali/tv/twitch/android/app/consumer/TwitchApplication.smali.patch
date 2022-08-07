@@ -1,24 +1,16 @@
 diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.smali b/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.smali
 --- a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.smali
 +++ b/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.smali
-@@ -4,14 +4,14 @@
+@@ -4,6 +4,8 @@
  
  # interfaces
  .implements Ldagger/android/HasAndroidInjector;
--
 +.implements Ltv/orange/models/abc/TCPProvider;
 +.implements Ltv/orange/models/abc/BridgeProvider;
  
+ 
  # static fields
- .field public static DEBUG_BLOCKING_IO_CALLS:Z
- 
- .field private static IGNORED_PACKAGES_RX_DOG_TAG:[Ljava/lang/String;
- 
--
- # instance fields
- .field dispatchingAndroidInjector:Ldagger/android/DispatchingAndroidInjector;
-     .annotation system Ldalvik/annotation/Signature;
-@@ -58,6 +58,10 @@
+@@ -58,6 +60,10 @@
      .end annotation
  .end field
  
@@ -29,12 +21,10 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
  
  # direct methods
  .method public static synthetic $r8$lambda$4sR0zYKW6LOAo3fw0jvVL7xvYA0(Ltv/twitch/android/app/consumer/TwitchApplication;ILjava/util/concurrent/Callable;)Lio/reactivex/Scheduler;
-@@ -113,6 +117,12 @@
+@@ -97,6 +103,10 @@
+     .line 69
+     sput-boolean v0, Ltv/twitch/android/app/consumer/TwitchApplication;->DEBUG_BLOCKING_IO_CALLS:Z
  
-     iput-object v0, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->mListener:Ltv/twitch/android/app/consumer/CrashReporterListener;
- 
-+    const/4 v0, 0x0
-+
 +    iput-object v0, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->twitchComponentProvider:Ltv/orange/models/abc/TwitchComponentProvider;
 +
 +    iput-object v0, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->orangeBridge:Ltv/orange/bridge/di/Bridge;
@@ -51,7 +41,7 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
 -    move-result-object v2
 +    const-string v2, "tv.twitch.android.app"
  
-     const-string v3, "13.4.1"
+     const-string v3, "13.5.0_BETA"
  
 @@ -305,6 +313,8 @@
  

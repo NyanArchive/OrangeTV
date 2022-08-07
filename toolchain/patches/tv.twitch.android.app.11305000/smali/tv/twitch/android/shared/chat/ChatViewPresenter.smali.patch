@@ -15,6 +15,6 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/ChatViewPresenter.smal
 +
 +    invoke-virtual {v0, p1, v1, v2}, Ltv/orange/features/chathistory/ChatHistory;->requestChatHistory(Ltv/twitch/android/shared/chat/events/ChatConnectionEvents;Ltv/orange/features/chathistory/bridge/ILiveChatSource;Ltv/twitch/android/models/channel/ChannelInfo;)V
 +
-     .line 941
+     .line 940
      instance-of v0, p1, Ltv/twitch/android/shared/chat/events/ChatConnectionEvents$ChatConnectingEvent;
  

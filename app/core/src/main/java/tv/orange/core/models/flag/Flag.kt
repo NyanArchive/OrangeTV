@@ -1,6 +1,7 @@
 package tv.orange.core.models.flag
 
 import tv.orange.core.models.flag.Internal.*
+import tv.orange.core.models.flag.variants.BottomNavbarPosition
 import tv.orange.core.models.flag.variants.DeletedMessages
 import tv.orange.core.models.flag.variants.PlayerImpl
 import java.util.*
@@ -30,6 +31,26 @@ enum class Flag(
     HIDE_LEADERBOARDS(
         "hide_leaderboards",
         "orange_settings_hide_leaderboards",
+        BooleanValue()
+    ),
+    DISABLE_FAST_BREAD(
+        "disable_fast_bread",
+        "orange_settings_disable_fast_bread",
+        BooleanValue()
+    ),
+    FOLLOWED_FULL_CARDS(
+        "followed_full_cards",
+        "orange_settings_followed_full_cards",
+        BooleanValue()
+    ),
+    DISABLE_HYPE_TRAIN(
+        "disable_hype_train",
+        "orange_settings_disable_hype_train",
+        BooleanValue()
+    ),
+    HIDE_DISCOVER_TAB(
+        "hide_discover_tab",
+        "orange_settings_hide_discover_tab",
         BooleanValue()
     ),
     BTTV_EMOTES(
@@ -96,6 +117,11 @@ enum class Flag(
         "deleted_messages",
         "orange_settings_deleted_messages",
         ListValue(DeletedMessages.Default),
+    ),
+    BOTTOM_NAVBAR_POSITION(
+        "bottom_navbar_position",
+        "orange_settings_bottom_navbar_position",
+        ListValue(BottomNavbarPosition.Default),
     );
 
     constructor(key: String, default: ValueHolder) : this(

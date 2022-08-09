@@ -1,0 +1,107 @@
+diff --git a/smali_classes4/tv/twitch/android/feature/background/audio/BackgroundAudioNotificationService.smali b/smali_classes4/tv/twitch/android/feature/background/audio/BackgroundAudioNotificationService.smali
+--- a/smali_classes4/tv/twitch/android/feature/background/audio/BackgroundAudioNotificationService.smali
++++ b/smali_classes4/tv/twitch/android/feature/background/audio/BackgroundAudioNotificationService.smali
+@@ -313,7 +313,7 @@
+     .line 270
+     new-instance v7, Landroid/content/Intent;
+ 
+-    const-string/jumbo v3, "tv.twitch.android.media.action.toggleplayback"
++    const-string/jumbo v3, "tv.orange.action.toggleplayback"
+ 
+     invoke-direct {v7, v3}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+ 
+@@ -344,7 +344,7 @@
+     .line 279
+     new-instance v7, Landroid/content/Intent;
+ 
+-    const-string/jumbo v5, "tv.twitch.android.media.action.stop"
++    const-string/jumbo v5, "tv.orange.action.stop"
+ 
+     invoke-direct {v7, v5}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+ 
+@@ -365,7 +365,7 @@
+     .line 288
+     new-instance v8, Landroid/content/Intent;
+ 
+-    const-string/jumbo v6, "tv.twitch.android.media.action.launchapp"
++    const-string/jumbo v6, "tv.orange.action.launchapp"
+ 
+     invoke-direct {v8, v6}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+ 
+@@ -942,22 +942,22 @@
+ 
+     invoke-direct {v0}, Landroid/content/IntentFilter;-><init>()V
+ 
+-    const-string/jumbo v1, "tv.twitch.android.media.action.launchapp"
++    const-string/jumbo v1, "tv.orange.action.launchapp"
+ 
+     .line 107
+     invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+ 
+-    const-string/jumbo v1, "tv.twitch.android.media.action.toggleplayback"
++    const-string/jumbo v1, "tv.orange.action.toggleplayback"
+ 
+     .line 108
+     invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+ 
+-    const-string/jumbo v1, "tv.twitch.android.media.action.stop"
++    const-string/jumbo v1, "tv.orange.action.stop"
+ 
+     .line 109
+     invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+ 
+-    const-string/jumbo v1, "tv.twitch.android.media.action.audiobecomingnoisy"
++    const-string/jumbo v1, "tv.orange.action.audiobecomingnoisy"
+ 
+     .line 110
+     invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+@@ -1507,7 +1507,7 @@
+     goto :goto_2
+ 
+     :sswitch_0
+-    const-string/jumbo p1, "tv.twitch.android.media.action.audiobecomingnoisy"
++    const-string/jumbo p1, "tv.orange.action.audiobecomingnoisy"
+ 
+     invoke-virtual {p3, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+ 
+@@ -1535,7 +1535,7 @@
+     goto :goto_2
+ 
+     :sswitch_1
+-    const-string/jumbo p1, "tv.twitch.android.media.action.toggleplayback"
++    const-string/jumbo p1, "tv.orange.action.toggleplayback"
+ 
+     .line 227
+     invoke-virtual {p3, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+@@ -1572,7 +1572,7 @@
+     goto :goto_2
+ 
+     :sswitch_2
+-    const-string/jumbo p1, "tv.twitch.android.media.action.stop"
++    const-string/jumbo p1, "tv.orange.action.stop"
+ 
+     .line 227
+     invoke-virtual {p3, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+@@ -1598,7 +1598,7 @@
+     goto :goto_2
+ 
+     :sswitch_3
+-    const-string/jumbo p1, "tv.twitch.android.media.action.launchapp"
++    const-string/jumbo p1, "tv.orange.action.launchapp"
+ 
+     .line 227
+     invoke-virtual {p3, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+@@ -1624,9 +1624,9 @@
+ 
+     :sswitch_data_0
+     .sparse-switch
+-        0x144f8e0e -> :sswitch_3
+-        0x23b7ff82 -> :sswitch_2
+-        0x52dc94ef -> :sswitch_1
+-        0x54010054 -> :sswitch_0
++        -0x552f2fd6 -> :sswitch_3
++        0x6184dbe6 -> :sswitch_2
++        0x749c4453 -> :sswitch_1
++        0x25d25db8 -> :sswitch_0
+     .end sparse-switch
+ .end method

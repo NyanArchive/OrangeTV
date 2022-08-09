@@ -1,0 +1,104 @@
+diff --git a/smali_classes4/tv/twitch/android/core/buildconfig/BuildConfigUtil.smali b/smali_classes4/tv/twitch/android/core/buildconfig/BuildConfigUtil.smali
+--- a/smali_classes4/tv/twitch/android/core/buildconfig/BuildConfigUtil.smali
++++ b/smali_classes4/tv/twitch/android/core/buildconfig/BuildConfigUtil.smali
+@@ -40,31 +40,10 @@
+ .method public final bugReportingEnabled()Z
+     .locals 1
+ 
+-    .line 40
+-    invoke-virtual {p0}, Ltv/twitch/android/core/buildconfig/BuildConfigUtil;->isAlpha()Z
++    invoke-static {}, Ltv/orange/core/CoreHook;->inDevMode()Z
+ 
+     move-result v0
+ 
+-    if-nez v0, :cond_1
+-
+-    invoke-virtual {p0}, Ltv/twitch/android/core/buildconfig/BuildConfigUtil;->isBeta()Z
+-
+-    move-result v0
+-
+-    if-eqz v0, :cond_0
+-
+-    goto :goto_0
+-
+-    :cond_0
+-    const/4 v0, 0x0
+-
+-    goto :goto_1
+-
+-    :cond_1
+-    :goto_0
+-    const/4 v0, 0x1
+-
+-    :goto_1
+     return v0
+ .end method
+ 
+@@ -253,14 +232,9 @@
+ .end method
+ 
+ .method public final isAlpha()Z
+-    .locals 2
+-
+-    const-string v0, "BETA"
+-
+-    const-string v1, "ALPHA"
++    .locals 1
+ 
+-    .line 27
+-    invoke-static {v0, v1}, Lkotlin/jvm/internal/Intrinsics;->areEqual(Ljava/lang/Object;Ljava/lang/Object;)Z
++    invoke-static {}, Ltv/orange/core/CoreHook;->inDevMode()Z
+ 
+     move-result v0
+ 
+@@ -278,10 +252,7 @@
+ .method public final isBeta()Z
+     .locals 1
+ 
+-    const-string v0, "BETA"
+-
+-    .line 30
+-    invoke-static {v0, v0}, Lkotlin/jvm/internal/Intrinsics;->areEqual(Ljava/lang/Object;Ljava/lang/Object;)Z
++    invoke-static {}, Ltv/orange/core/CoreHook;->inDevMode()Z
+ 
+     move-result v0
+ 
+@@ -291,7 +262,9 @@
+ .method public final isDebugConfigEnabled()Z
+     .locals 1
+ 
+-    const/4 v0, 0x0
++    invoke-static {}, Ltv/orange/core/CoreHook;->inDevMode()Z
++
++    move-result v0
+ 
+     return v0
+ .end method
+@@ -305,24 +278,11 @@
+ .end method
+ 
+ .method public final shouldShowDebugOptions(Z)Z
+-    .locals 1
+-
+-    .line 38
+-    invoke-virtual {p0}, Ltv/twitch/android/core/buildconfig/BuildConfigUtil;->isAlpha()Z
+-
+-    move-result v0
+-
+-    if-eqz v0, :cond_0
+-
+-    if-eqz p1, :cond_0
+-
+-    const/4 p1, 0x1
++    .locals 0
+ 
+-    goto :goto_0
++    invoke-static {}, Ltv/orange/core/CoreHook;->inDevMode()Z
+ 
+-    :cond_0
+-    const/4 p1, 0x0
++    move-result p1
+ 
+-    :goto_0
+     return p1
+ .end method

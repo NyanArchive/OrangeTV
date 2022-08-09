@@ -1,0 +1,146 @@
+diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.smali b/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.smali
+--- a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.smali
++++ b/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.smali
+@@ -4,6 +4,8 @@
+ 
+ # interfaces
+ .implements Ldagger/android/HasAndroidInjector;
++.implements Ltv/orange/models/abc/TCPProvider;
++.implements Ltv/orange/models/abc/BridgeProvider;
+ 
+ 
+ # static fields
+@@ -58,6 +60,10 @@
+     .end annotation
+ .end field
+ 
++.field private volatile orangeBridge:Ltv/orange/bridge/di/Bridge;
++
++.field private volatile twitchComponentProvider:Ltv/orange/models/abc/TwitchComponentProvider;
++
+ 
+ # direct methods
+ .method public static synthetic $r8$lambda$4sR0zYKW6LOAo3fw0jvVL7xvYA0(Ltv/twitch/android/app/consumer/TwitchApplication;ILjava/util/concurrent/Callable;)Lio/reactivex/Scheduler;
+@@ -113,6 +119,12 @@
+ 
+     iput-object v0, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->mListener:Ltv/twitch/android/app/consumer/CrashReporterListener;
+ 
++    const/4 v0, 0x0
++    
++    iput-object v0, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->twitchComponentProvider:Ltv/orange/models/abc/TwitchComponentProvider;
++
++    iput-object v0, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->orangeBridge:Ltv/orange/bridge/di/Bridge;
++
+     return-void
+ .end method
+ 
+@@ -282,9 +294,7 @@
+     move-result-object v1
+ 
+     .line 115
+-    invoke-virtual {p0}, Landroid/app/Application;->getPackageName()Ljava/lang/String;
+-
+-    move-result-object v2
++    const-string v2, "tv.twitch.android.app"
+ 
+     const-string v3, "13.5.0_BETA"
+ 
+@@ -305,6 +315,8 @@
+ 
+     invoke-interface {v1, p0}, Ltv/twitch/android/app/consumer/dagger/AppComponent;->inject(Ltv/twitch/android/app/consumer/TwitchApplication;)V
+ 
++    invoke-direct {p0, v1}, Ltv/twitch/android/app/consumer/TwitchApplication;->initOranges(Ltv/twitch/android/app/consumer/dagger/AppComponent;)V
++
+     .line 126
+     sget-object v1, Ltv/twitch/android/app/consumer/TwitchApplication$$ExternalSyntheticLambda1;->INSTANCE:Ltv/twitch/android/app/consumer/TwitchApplication$$ExternalSyntheticLambda1;
+ 
+@@ -457,3 +469,89 @@
+ 
+     return-void
+ .end method
++
++.method private initOranges(Ltv/twitch/android/app/consumer/dagger/AppComponent;)V
++    .registers 3
++    .param p1, "appComponent"    # Ltv/twitch/android/app/consumer/dagger/AppComponent;
++
++    .prologue
++    .line 38
++    invoke-static {}, Ltv/orange/bridge/TwitchComponentProviderImpl;->create()Ltv/orange/bridge/TwitchComponentProviderImpl;
++
++    move-result-object v0
++
++    iput-object v0, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->twitchComponentProvider:Ltv/orange/models/abc/TwitchComponentProvider;
++
++    .line 39
++    iget-object v0, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->twitchComponentProvider:Ltv/orange/models/abc/TwitchComponentProvider;
++
++    check-cast v0, Ltv/orange/bridge/TwitchComponentProviderImpl;
++
++    check-cast p1, Ltv/twitch/android/app/consumer/dagger/DaggerAppComponent;
++
++    .end local p1    # "appComponent":Ltv/twitch/android/app/consumer/dagger/AppComponent;
++    invoke-virtual {v0, p1}, Ltv/orange/bridge/TwitchComponentProviderImpl;->initialize(Ltv/twitch/android/app/consumer/dagger/DaggerAppComponent;)V
++
++    .line 40
++    invoke-static {}, Ltv/orange/bridge/di/Bridge;->create()Ltv/orange/bridge/di/Bridge;
++
++    move-result-object v0
++
++    iput-object v0, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->orangeBridge:Ltv/orange/bridge/di/Bridge;
++
++    .line 41
++    iget-object v0, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->orangeBridge:Ltv/orange/bridge/di/Bridge;
++
++    invoke-virtual {v0, p0}, Ltv/orange/bridge/di/Bridge;->initialize(Landroid/content/Context;)V
++
++    .line 42
++    iget-object v0, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->orangeBridge:Ltv/orange/bridge/di/Bridge;
++
++    invoke-static {v0}, Ltv/orange/core/Core;->setBridge(Ltv/orange/models/abc/Bridge;)V
++
++    .line 43
++    iget-object v0, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->orangeBridge:Ltv/orange/bridge/di/Bridge;
++
++    invoke-virtual {v0}, Ltv/orange/bridge/di/Bridge;->initializeFeatures()V
++
++    .line 44
++    return-void
++.end method
++
++.method public provideBridge()Ltv/orange/bridge/di/Bridge;
++    .registers 2
++    .annotation build Landroidx/annotation/NonNull;
++    .end annotation
++
++    .prologue
++    .line 59
++    iget-object v0, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->orangeBridge:Ltv/orange/bridge/di/Bridge;
++
++    return-object v0
++.end method
++
++.method public bridge synthetic provideBridge()Ltv/orange/models/abc/Bridge;
++    .registers 2
++    .annotation build Landroidx/annotation/NonNull;
++    .end annotation
++
++    .prologue
++    .line 17
++    invoke-virtual {p0}, Ltv/twitch/android/app/consumer/TwitchApplication;->provideBridge()Ltv/orange/bridge/di/Bridge;
++
++    move-result-object v0
++
++    return-object v0
++.end method
++
++.method public provideTCP()Ltv/orange/models/abc/TwitchComponentProvider;
++    .registers 2
++    .annotation build Landroidx/annotation/NonNull;
++    .end annotation
++
++    .prologue
++    .line 53
++    iget-object v0, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->twitchComponentProvider:Ltv/orange/models/abc/TwitchComponentProvider;
++
++    return-object v0
++.end method

@@ -1,0 +1,55 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate.smali b/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate.smali
+--- a/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate.smali
++++ b/smali_classes6/tv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate.smali
+@@ -2,6 +2,9 @@
+ .super Ltv/twitch/android/core/mvp/viewdelegate/BaseViewDelegate;
+ .source "BottomPlayerControlOverlayViewDelegate.java"
+ 
++# interfaces
++.implements Ltv/orange/features/refreshstream/bridge/IBottomPlayerControlOverlayViewDelegate;
++
+ 
+ # annotations
+ .annotation system Ldalvik/annotation/MemberClasses;
+@@ -42,6 +45,7 @@
+ 
+ .field public final subscribeButtonViewDelegateContainer:Ltv/twitch/android/core/mvp/viewdelegate/ViewDelegateContainer;
+ 
++.field private mRefreshStreamButton:Landroid/widget/ImageView;
+ 
+ # direct methods
+ .method public static synthetic $r8$lambda$57iurLgdUYR_rPf2ZdatK0EitzM(Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;Landroid/view/View;)V
+@@ -368,6 +372,16 @@
+ 
+     invoke-virtual {v3, p1}, Landroid/widget/ImageView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+ 
++    invoke-static {}, Ltv/orange/features/refreshstream/RefreshStream;->get()Ltv/orange/features/refreshstream/RefreshStream;
++
++    move-result-object v0
++
++    invoke-virtual {v0, p0}, Ltv/orange/features/refreshstream/RefreshStream;->getRefreshStreamButton(Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;)Landroid/widget/ImageView;
++
++    move-result-object v0
++
++    iput-object v0, p0, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->mRefreshStreamButton:Landroid/widget/ImageView;
++
+     return-void
+ .end method
+ 
+@@ -959,3 +973,16 @@
+     :goto_0
+     return-void
+ .end method
++
++.method public onRefreshStreamClicked()V
++    .registers 2
++
++    .prologue
++    .line 27
++    iget-object v0, p0, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->mBottomPlayerControlListener:Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate$BottomPlayerControlListener;
++
++    invoke-interface {v0}, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate$BottomPlayerControlListener;->onRefreshClicked()V
++
++    .line 28
++    return-void
++.end method

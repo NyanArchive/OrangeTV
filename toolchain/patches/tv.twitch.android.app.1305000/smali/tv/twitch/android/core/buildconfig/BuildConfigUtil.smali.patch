@@ -40,7 +40,7 @@ diff --git a/smali_classes4/tv/twitch/android/core/buildconfig/BuildConfigUtil.s
  .method public final isAlpha()Z
 -    .locals 2
 -
--    const-string v0, "BETA"
+-    const-string v0, "PROD"
 -
 -    const-string v1, "ALPHA"
 +    .locals 1
@@ -51,19 +51,24 @@ diff --git a/smali_classes4/tv/twitch/android/core/buildconfig/BuildConfigUtil.s
  
      move-result v0
  
-@@ -278,10 +252,7 @@
- .method public final isBeta()Z
-     .locals 1
+@@ -276,14 +250,9 @@
+ .end method
  
--    const-string v0, "BETA"
+ .method public final isBeta()Z
+-    .locals 2
 -
+-    const-string v0, "PROD"
+-
+-    const-string v1, "BETA"
++    .locals 1
+ 
 -    .line 30
--    invoke-static {v0, v0}, Lkotlin/jvm/internal/Intrinsics;->areEqual(Ljava/lang/Object;Ljava/lang/Object;)Z
+-    invoke-static {v0, v1}, Lkotlin/jvm/internal/Intrinsics;->areEqual(Ljava/lang/Object;Ljava/lang/Object;)Z
 +    invoke-static {}, Ltv/orange/core/CoreHook;->inDevMode()Z
  
      move-result v0
  
-@@ -291,7 +262,9 @@
+@@ -293,7 +262,9 @@
  .method public final isDebugConfigEnabled()Z
      .locals 1
  
@@ -74,7 +79,7 @@ diff --git a/smali_classes4/tv/twitch/android/core/buildconfig/BuildConfigUtil.s
  
      return v0
  .end method
-@@ -305,24 +278,11 @@
+@@ -307,24 +278,11 @@
  .end method
  
  .method public final shouldShowDebugOptions(Z)Z
@@ -88,17 +93,17 @@ diff --git a/smali_classes4/tv/twitch/android/core/buildconfig/BuildConfigUtil.s
 -    if-eqz v0, :cond_0
 -
 -    if-eqz p1, :cond_0
--
--    const/4 p1, 0x1
 +    .locals 0
  
--    goto :goto_0
+-    const/4 p1, 0x1
 +    invoke-static {}, Ltv/orange/core/CoreHook;->inDevMode()Z
+ 
+-    goto :goto_0
++    move-result p1
  
 -    :cond_0
 -    const/4 p1, 0x0
-+    move-result p1
- 
+-
 -    :goto_0
      return p1
  .end method

@@ -16,7 +16,7 @@ diff --git a/AndroidManifest.xml b/AndroidManifest.xml
          <meta-data android:name="WindowManagerPreference:FreeformWindowSize" android:value="phone"/>
          <meta-data android:name="WindowManagerPreference:FreeformWindowOrientation" android:value="portrait"/>
          <meta-data android:name="android.allow_multiple_resumed_activities" android:value="true"/>
-@@ -126,11 +126,11 @@
+@@ -127,11 +127,11 @@
          <service android:name="tv.twitch.android.feature.pictureinpicture.PictureInPictureService"/>
          <service android:exported="false" android:name="tv.twitch.android.feature.background.audio.BackgroundAudioNotificationService">
              <intent-filter>
@@ -33,11 +33,12 @@ diff --git a/AndroidManifest.xml b/AndroidManifest.xml
              </intent-filter>
          </service>
          <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:name="com.google.android.gms.ads.AdActivity" android:theme="@android:style/Theme.Translucent"/>
-@@ -141,15 +141,15 @@
+@@ -142,16 +142,16 @@
          </service>
-         <receiver android:name="tv.twitch.android.shared.notifications.impl.NotificationDismissTrackerReceiver">
+         <receiver android:exported="false" android:name="tv.twitch.android.shared.notifications.impl.NotificationDismissTrackerReceiver">
              <intent-filter>
 -                <action android:name="tv.twitch.android.push.channel"/>
+-                <action android:name="tv.twitch.android.push.creatormode"/>
 -                <action android:name="tv.twitch.android.push.dashboard"/>
 -                <action android:name="tv.twitch.android.push.whisper"/>
 -                <action android:name="tv.twitch.android.push.report"/>
@@ -47,6 +48,7 @@ diff --git a/AndroidManifest.xml b/AndroidManifest.xml
 -                <action android:name="tv.twitch.android.push.category"/>
 -                <action android:name="tv.twitch.android.push.externallink"/>
 +                <action android:name="tv.orange.push.channel"/>
++                <action android:name="tv.orange.push.creatormode"/>
 +                <action android:name="tv.orange.push.dashboard"/>
 +                <action android:name="tv.orange.push.whisper"/>
 +                <action android:name="tv.orange.push.report"/>
@@ -58,7 +60,7 @@ diff --git a/AndroidManifest.xml b/AndroidManifest.xml
              </intent-filter>
          </receiver>
          <receiver android:exported="true" android:name="tv.twitch.android.shared.app.indexing.AppIndexingUpdateReceiver" android:permission="com.google.android.gms.permission.APPINDEXING">
-@@ -175,10 +175,10 @@
+@@ -177,10 +177,10 @@
              </intent-filter>
          </service>
          <service android:name="tv.twitch.android.shared.app.indexing.AppIndexingUpdateService" android:permission="android.permission.BIND_JOB_SERVICE"/>
@@ -71,7 +73,7 @@ diff --git a/AndroidManifest.xml b/AndroidManifest.xml
          <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_jgBdao5vVtyZ3hdckxy8jlkkzqooQltZ"/>
          <meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_test_ahupan1EKvF7XkpepyA3vpfivrdlOlMg"/>
          <meta-data android:name="io.branch.sdk.TestMode" android:value="false"/>
-@@ -287,11 +287,11 @@
+@@ -289,11 +289,11 @@
          <activity android:excludeFromRecents="true" android:exported="false" android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
          <service android:exported="true" android:name="com.google.android.gms.auth.api.signin.RevocationBoundService" android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" android:visibleToInstantApps="true"/>
          <activity android:exported="false" android:name="com.google.android.gms.common.api.GoogleApiActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
@@ -86,7 +88,7 @@ diff --git a/AndroidManifest.xml b/AndroidManifest.xml
              <meta-data android:name="androidx.emoji2.text.EmojiCompatInitializer" android:value="androidx.startup"/>
              <meta-data android:name="androidx.lifecycle.ProcessLifecycleInitializer" android:value="androidx.startup"/>
          </provider>
-@@ -305,7 +305,7 @@
+@@ -307,7 +307,7 @@
          <service android:enabled="false" android:exported="true" android:name="com.google.android.play.core.assetpacks.AssetPackExtractionService"/>
          <meta-data android:name="com.google.android.play.billingclient.version" android:value="3.0.3"/>
          <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize" android:exported="false" android:name="com.android.billingclient.api.ProxyBillingActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
@@ -95,7 +97,7 @@ diff --git a/AndroidManifest.xml b/AndroidManifest.xml
          <service android:name="com.amazon.mls.config.internal.sushi.uploader.BackupUploaderService" android:permission="android.permission.BIND_JOB_SERVICE"/>
          <activity android:name="com.amazon.identity.auth.device.activity.GetAuthenticatorResultsActivity" android:theme="@style/TransparentActivityTheme"/>
          <uses-library android:name="com.amazon.client.metrics.api" android:required="false"/>
-@@ -343,5 +343,6 @@
+@@ -345,5 +345,6 @@
          <meta-data android:name="com.android.stamp.type" android:value="STAMP_TYPE_STANDALONE_APK"/>
          <meta-data android:name="com.android.vending.splits" android:resource="@xml/splits0"/>
          <meta-data android:name="com.android.vending.derived.apk.id" android:value="1"/>

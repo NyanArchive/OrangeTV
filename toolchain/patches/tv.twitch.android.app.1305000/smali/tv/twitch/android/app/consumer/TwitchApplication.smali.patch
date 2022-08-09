@@ -43,7 +43,7 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
 -    move-result-object v2
 +    const-string v2, "tv.twitch.android.app"
  
-     const-string v3, "13.5.0_BETA"
+     const-string v3, "13.5.0"
  
 @@ -305,6 +315,8 @@
  

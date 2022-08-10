@@ -41,7 +41,24 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      .line 742
      invoke-interface/range {p1 .. p1}, Ltv/twitch/android/provider/chat/ChatMessageInterface;->isSystemMessage()Z
  
-@@ -5109,6 +5134,21 @@
+@@ -3163,6 +3188,16 @@
+ 
+     move-result-object v0
+ 
++    move-object/from16 v2, p1
++
++    move-object/from16 v3, p0
++
++    invoke-static {}, Ltv/orange/features/chat/ChatHookProvider;->get()Ltv/orange/features/chat/ChatHookProvider;
++
++    move-result-object v1
++
++    invoke-virtual {v1, v3, v0, v2}, Ltv/orange/features/chat/ChatHookProvider;->setShouldHighlightBackground(Ltv/twitch/android/shared/chat/messagefactory/ChatMessageFactory;Ltv/orange/features/chat/bridge/IMessageRecyclerItem;Ltv/twitch/android/provider/chat/ChatMessageInterface;)V
++
+     return-object v0
+ .end method
+ 
+@@ -5109,6 +5144,21 @@
  
      .line 857
      :cond_7
@@ -63,7 +80,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      instance-of v1, v0, Ltv/twitch/android/models/chat/MessageToken$EmoticonToken;
  
      if-eqz v1, :cond_9
-@@ -5315,3 +5355,222 @@
+@@ -5315,3 +5365,222 @@
  
      return-void
  .end method

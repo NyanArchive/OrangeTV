@@ -2,17 +2,23 @@ package tv.twitch.android.shared.chat.adapter.item;
 
 import android.content.Context;
 import android.text.Spanned;
+import android.view.View;
+
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import io.reactivex.subjects.PublishSubject;
 import tv.orange.features.chat.ChatHookProvider;
+import tv.orange.features.chat.bridge.IMessageRecyclerItem;
 import tv.orange.models.exception.VirtualImpl;
+import tv.twitch.android.core.adapters.AbstractTwitchRecyclerViewHolder;
 import tv.twitch.android.core.mvp.viewdelegate.EventDispatcher;
 import tv.twitch.android.shared.chat.adapter.SystemMessageType;
 import tv.twitch.android.shared.chat.util.ChatItemClickEvent;
 
-public class MessageRecyclerItem {
+public class MessageRecyclerItem implements IMessageRecyclerItem { // TODO: __IMPLEMENT
     private int authorUserId;
     private EventDispatcher<ChatItemClickEvent> clickEventDispatcher;
     private Context context;
@@ -31,6 +37,7 @@ public class MessageRecyclerItem {
     private String rawMessage;
     private float textSizePx;
     private String username;
+    private Integer highlightColor; // TODO: __INJECT_FIELD
 
     /* ... */
 
@@ -43,6 +50,10 @@ public class MessageRecyclerItem {
 
         /* ... */
 
+        throw new VirtualImpl();
+    }
+
+    public MessageRecyclerItem() {
         throw new VirtualImpl();
     }
 
@@ -61,6 +72,42 @@ public class MessageRecyclerItem {
         /* ... */
 
         throw new VirtualImpl();
+    }
+
+    @Override
+    public void setHighlightColor(@Nullable Integer highlightColor) { // TODO: __INJECT_METHOD
+        this.highlightColor = highlightColor;
+    }
+
+    public void bindToViewHolder(RecyclerView.ViewHolder viewHolder) {
+        /* ... */
+
+        ChatMessageViewHolder chatMessageViewHolder = null;
+        if (chatMessageViewHolder != null) {
+            /* ... */
+
+            bindChatMessageViewHolder(viewHolder); // TODO: __INJECT_CODE
+        }
+
+        /* ... */
+
+        throw new VirtualImpl();
+    }
+
+    private void bindChatMessageViewHolder(RecyclerView.ViewHolder viewHolder) {
+        ChatHookProvider.get().bindChatMessageViewHolder(viewHolder, highlightColor); // TODO: __INJECT_METHOD
+    }
+
+    public static final class ChatMessageViewHolder extends AbstractTwitchRecyclerViewHolder {
+        /* ... */
+
+        public ChatMessageViewHolder(View view) {
+            super(view);
+
+            throw new VirtualImpl();
+        }
+
+        /* ... */
     }
 
     /* ... */

@@ -14,6 +14,7 @@ import tv.orange.features.chathistory.ChatHistory
 import tv.orange.features.logs.ChatLogs
 import tv.orange.features.refreshstream.RefreshStream
 import tv.orange.features.settings.OrangeSettings
+import tv.orange.features.spam.Spam
 import tv.orange.features.stv.StvAvatars
 import tv.orange.features.timer.SleepTimer
 import tv.orange.features.ui.UI
@@ -37,6 +38,7 @@ interface BridgeComponent {
     val vodSyncProvider: Provider<VodSync>
     val coreHookProvider: Provider<CoreHook>
     val uiProvider: Provider<UI>
+    val spamProvider: Provider<Spam>
 
     val preferenceManager: Provider<PreferenceManager>
     val core: Provider<Core>

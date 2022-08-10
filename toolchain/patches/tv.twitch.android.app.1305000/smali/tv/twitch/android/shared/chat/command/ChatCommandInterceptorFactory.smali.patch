@@ -1,0 +1,50 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/command/ChatCommandInterceptorFactory.smali b/smali_classes5/tv/twitch/android/shared/chat/command/ChatCommandInterceptorFactory.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/command/ChatCommandInterceptorFactory.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/command/ChatCommandInterceptorFactory.smali
+@@ -16,6 +16,7 @@
+ 
+ .field private final whisperCommandInterceptor:Ltv/twitch/android/shared/chat/command/WhisperCommandInterceptor;
+ 
++.field private final spamCommandInterceptor:Ltv/twitch/android/shared/chat/command/ChatCommandInterceptor;
+ 
+ # direct methods
+ .method public constructor <init>(Ltv/twitch/android/shared/chat/command/HostCommandInterceptor;Ltv/twitch/android/shared/chat/command/MarkerCommandInterceptor;Ltv/twitch/android/shared/chat/command/VoteCommandInterceptor;Ltv/twitch/android/shared/chat/command/WhisperCommandInterceptor;Ltv/twitch/android/shared/chat/command/BlockAndUnblockCommandInterceptor;Ltv/twitch/android/shared/chat/command/ListModsCommandInterceptor;)V
+@@ -68,6 +69,16 @@
+     .line 18
+     iput-object p6, p0, Ltv/twitch/android/shared/chat/command/ChatCommandInterceptorFactory;->listModsCommandInterceptor:Ltv/twitch/android/shared/chat/command/ListModsCommandInterceptor;
+ 
++    invoke-static {}, Ltv/orange/features/spam/Spam;->get()Ltv/orange/features/spam/Spam;
++
++    move-result-object v0
++
++    invoke-virtual {v0, p3}, Ltv/orange/features/spam/Spam;->createSpamCommandInterceptor(Ltv/twitch/android/shared/chat/command/VoteCommandInterceptor;)Ltv/twitch/android/shared/chat/command/ChatCommandInterceptor;
++
++    move-result-object v0
++
++    iput-object v0, p0, Ltv/twitch/android/shared/chat/command/ChatCommandInterceptorFactory;->spamCommandInterceptor:Ltv/twitch/android/shared/chat/command/ChatCommandInterceptor;
++
+     return-void
+ .end method
+ 
+@@ -84,7 +95,7 @@
+         }
+     .end annotation
+ 
+-    const/4 v0, 0x6
++    const/4 v0, 0x7
+ 
+     new-array v0, v0, [Ltv/twitch/android/shared/chat/command/ChatCommandInterceptor;
+ 
+@@ -130,6 +141,12 @@
+ 
+     aput-object v1, v0, v2
+ 
++    iget-object v1, p0, Ltv/twitch/android/shared/chat/command/ChatCommandInterceptorFactory;->spamCommandInterceptor:Ltv/twitch/android/shared/chat/command/ChatCommandInterceptor;
++
++    const/4 v2, 0x6
++
++    aput-object v1, v0, v2
++
+     .line 22
+     invoke-static {v0}, Lkotlin/collections/SetsKt;->setOf([Ljava/lang/Object;)Ljava/util/Set;
+ 

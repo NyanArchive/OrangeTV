@@ -14,6 +14,7 @@ import tv.orange.features.chathistory.ChatHistory
 import tv.orange.features.logs.ChatLogs
 import tv.orange.features.refreshstream.RefreshStream
 import tv.orange.features.settings.OrangeSettings
+import tv.orange.features.spam.Spam
 import tv.orange.features.stv.StvAvatars
 import tv.orange.features.timer.SleepTimer
 import tv.orange.features.ui.UI
@@ -76,6 +77,7 @@ class Bridge private constructor() : tv.orange.models.abc.Bridge {
         factory[VodSync::class.java] = { component.vodSyncProvider }
         factory[CoreHook::class.java] = { component.coreHookProvider }
         factory[UI::class.java] = { component.uiProvider }
+        factory[Spam::class.java] = { component.spamProvider }
     }
 
     fun initialize(context: Context) {

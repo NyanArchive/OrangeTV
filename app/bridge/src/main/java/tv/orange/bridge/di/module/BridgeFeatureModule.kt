@@ -23,6 +23,8 @@ import tv.orange.features.refreshstream.RefreshStream
 import tv.orange.features.refreshstream.di.component.DaggerRefreshStreamComponent
 import tv.orange.features.settings.OrangeSettings
 import tv.orange.features.settings.di.component.DaggerSettingsComponent
+import tv.orange.features.spam.Spam
+import tv.orange.features.spam.di.component.DaggerSpamComponent
 import tv.orange.features.stv.StvAvatars
 import tv.orange.features.stv.di.component.DaggerStvComponent
 import tv.orange.features.timer.SleepTimer
@@ -136,6 +138,12 @@ class BridgeFeatureModule {
     fun provideUIProvider(coreComponent: CoreComponent): UI {
         Logger.debug("called")
         return DaggerUIComponent.builder().coreComponent(coreComponent).build().ui
+    }
+
+    @Provides
+    fun provideSpamProvider(coreComponent: CoreComponent): Spam {
+        Logger.debug("called")
+        return DaggerSpamComponent.builder().coreComponent(coreComponent).build().spam
     }
 
     @BridgeScope

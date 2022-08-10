@@ -28,6 +28,7 @@ import tv.twitch.android.models.webview.WebViewSource;
 import tv.twitch.android.provider.chat.ChatAdapterItem;
 import tv.twitch.android.provider.chat.ChatMessageInterface;
 import tv.twitch.android.shared.chat.UrlImageClickableProvider;
+import tv.twitch.android.shared.chat.adapter.item.MessageRecyclerItem;
 import tv.twitch.android.shared.chat.chatsource.IClickableUsernameSpanListener;
 import tv.twitch.android.shared.chat.util.ChatItemClickEvent;
 import tv.twitch.android.shared.chat.util.ClickableEmoteSpan;
@@ -108,5 +109,18 @@ public class ChatMessageFactory {
             header = new SpannedString(new SimpleDateFormat("HH:mm", Locale.ENGLISH).format(new Date((long) message.timestamp * 1000)));
         }
         return createUserNoticeRecyclerItem(message, message.nameColorARGB, channelId, null, null, null, header, null, Collections.emptySet());
+    }
+
+
+    public final ChatAdapterItem createChatMessageItem(ChatMessageInterface chatMessageInterface, boolean z, boolean z2, int i, int i2, IClickableUsernameSpanListener iClickableUsernameSpanListener, TwitchUrlSpanClickListener twitchUrlSpanClickListener, WebViewSource webViewSource, String str, boolean z3, ChatFiltersSettings chatFiltersSettings, EventDispatcher<ChatItemClickEvent> eventDispatcher, Set<EmoteModel.WithOwner> set) {
+        /* ... */
+
+        MessageRecyclerItem ret = new MessageRecyclerItem();
+
+        /* ... */
+
+        ChatHookProvider.get().setShouldHighlightBackground(this, ret, chatMessageInterface); // TODO: __INJECT_CODE
+
+        throw new VirtualImpl();
     }
 }

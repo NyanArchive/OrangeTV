@@ -6,6 +6,7 @@ import android.text.*
 import android.text.style.ForegroundColorSpan
 import android.text.style.StrikethroughSpan
 import android.widget.ImageView
+import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Observable
@@ -15,12 +16,13 @@ import tv.orange.core.Core
 import tv.orange.core.Logger
 import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
+import tv.orange.core.compat.ClassCompat.getPrivateField
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.FlagListener
-import tv.orange.core.models.lifecycle.LifecycleAware
 import tv.orange.core.models.flag.variants.DeletedMessages
+import tv.orange.core.models.lifecycle.LifecycleAware
 import tv.orange.features.badges.bridge.OrangeMessageBadge
 import tv.orange.features.badges.component.BadgeProvider
 import tv.orange.features.chat.bridge.*
@@ -31,12 +33,14 @@ import tv.orange.models.abc.EmoteCardModelWrapper
 import tv.orange.models.abc.EmotePackageSet
 import tv.orange.models.abc.Feature
 import tv.orange.models.data.emotes.Emote
+import tv.twitch.android.core.user.TwitchAccountManager
 import tv.twitch.android.models.chat.MessageBadge
 import tv.twitch.android.models.chat.MessageToken
 import tv.twitch.android.models.emotes.EmoteCardModelResponse
 import tv.twitch.android.models.emotes.EmoteSet
 import tv.twitch.android.provider.chat.ChatMessageInterface
 import tv.twitch.android.shared.chat.adapter.item.ChatMessageClickedEvents
+import tv.twitch.android.shared.chat.messagefactory.ChatMessageFactory
 import tv.twitch.android.shared.chat.util.ChatUtil
 import tv.twitch.android.shared.chat.util.ClickableUsernameSpan
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerPresenter
@@ -59,6 +63,11 @@ class ChatHookProvider @Inject constructor(
     val viewFactory: ViewFactory
 ) : LifecycleAware, FlagListener, Feature {
     private val currentChannelSubject = BehaviorSubject.create<Int>()
+
+    override fun onAllComponentStopped() {}
+    override fun onAccountLogout() {}
+    override fun onFirstActivityStarted() {}
+    override fun onConnectedToChannel(channelId: Int) {}
 
     fun maybeAddTimestamp(
         message: Spanned,
@@ -421,6 +430,20 @@ class ChatHookProvider @Inject constructor(
                 msg = msg,
                 timestamp = SimpleDateFormat(TIMESTAMP_DATE_FORMAT, Locale.ENGLISH).format(date)
             )
+
+        private fun isUserMentioned(chatMessageInterface: ChatMessageInterface, username: String): Boolean {
+            if (username.isBlank()) {
+                return false
+            }
+
+            return chatMessageInterface.tokens.any { token ->
+                if (token is MessageToken.MentionToken) {
+                    token.userName?.let { username.equals(it, ignoreCase = true) } ?: false
+                } else {
+                    false
+                }
+            }
+        }
     }
 
     override fun onDestroyFeature() {
@@ -468,8 +491,31 @@ class ChatHookProvider @Inject constructor(
         }
     }
 
-    override fun onAllComponentStopped() {}
-    override fun onAccountLogout() {}
-    override fun onFirstActivityStarted() {}
-    override fun onConnectedToChannel(channelId: Int) {}
+    fun setShouldHighlightBackground(
+        factory: ChatMessageFactory,
+        message: IMessageRecyclerItem,
+        chatMessageInterface: ChatMessageInterface
+    ) {
+        val isMention = isUserMentioned(
+            chatMessageInterface,
+            factory.getPrivateField<TwitchAccountManager>("twitchAccountManager").username
+        )
+
+        if (!isMention) {
+            return
+        }
+
+        message.setHighlightColor(Color.argb(100, 255, 0, 0))
+    }
+
+    fun bindChatMessageViewHolder(
+        viewHolder: RecyclerView.ViewHolder,
+        highlightColor: Int?
+    ) {
+        highlightColor?.let { color ->
+            viewHolder.itemView.setBackgroundColor(color)
+        } ?: run {
+            viewHolder.itemView.background = null
+        }
+    }
 }

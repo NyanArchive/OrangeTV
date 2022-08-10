@@ -75,11 +75,13 @@ class SpamCommandInterceptor(
         }
 
         command = strArr[1]
-        val count = parseSpamCount(command) ?: return ChatSpamErrorCommand("Cannot parse {count} param: '$command'")
+        val count = parseSpamCount(command)
+            ?: return ChatSpamErrorCommand("Wrong {count} param: '$command'")
         command = strArr[2]
-        val delay = parseSpamDelay(command) ?: return ChatSpamErrorCommand("Cannot parse {delay} param: '$command'")
+        val delay = parseSpamDelay(command)
+            ?: return ChatSpamErrorCommand("Wrong {delay} param: '$command'")
 
-        val text = getMultiplier(strArr)?.let { num ->
+        var text = getMultiplier(strArr)?.let { num ->
             val tmp = TextUtils.join(" ", strArr.copyOfRange(3, strArr.size - 1))
             if (tmp.endsWith(" ")) {
                 tmp.repeat(num)
@@ -90,6 +92,9 @@ class SpamCommandInterceptor(
 
         if (text.isBlank()) {
             return ChatSpamErrorCommand("Nothing to spam")
+        }
+        if (text.length > 498) {
+            text = text.substring(0, 498)
         }
 
         return ChatSpamCommand(

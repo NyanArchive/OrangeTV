@@ -6,6 +6,7 @@ import android.widget.FrameLayout
 import tv.orange.core.Core
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
+import tv.orange.core.models.flag.Flag.Companion.asIntRange
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.variants.BottomNavbarPosition
 import tv.orange.core.util.ViewUtil.getView
@@ -39,6 +40,10 @@ class UI @Inject constructor() : Feature {
         @JvmStatic
         val showFullCards: Boolean
             get() = Flag.FOLLOWED_FULL_CARDS.asBoolean()
+
+        @JvmStatic
+        val landscapeContainerScale: Int
+            get() = Flag.LANDSCAPE_CHAT_SIZE.asIntRange().currentValue
     }
 
     val skipTwitchBrowserDialog: Boolean

@@ -128,6 +128,11 @@ enum class Flag(
         "chat_font_size",
         "orange_settings_chat_font_size",
         ListValue(FontSize.SP13),
+    ),
+    LANDSCAPE_CHAT_SIZE(
+        "landscape_chat_size",
+        "orange_settings_landscape_chat_size",
+        IntegerRangeValue(10, 50, 30),
     );
 
     constructor(key: String, default: ValueHolder) : this(
@@ -151,6 +156,10 @@ enum class Flag(
             return getBoolean(this.value)
         }
 
+        fun Flag.asIntRange(): IntegerRangeValue {
+            return getIntegerRange(this.value)
+        }
+
         fun <T : Variant> Flag.asVariant(): T {
             return getVariant(this.value)
         }
@@ -166,6 +175,9 @@ enum class Flag(
         fun getInt(holder: ValueHolder): Int {
             if (holder is IntegerValue) {
                 return holder.value
+            }
+            if (holder is IntegerRangeValue) {
+                return holder.currentValue
             }
 
             throw IllegalStateException("$holder")
@@ -193,6 +205,14 @@ enum class Flag(
         fun <T : Variant> getVariant(holder: ValueHolder): T {
             if (holder is ListValue<*>) {
                 return holder.getVariant()
+            }
+
+            throw IllegalStateException("$holder")
+        }
+
+        fun getIntegerRange(holder: ValueHolder): IntegerRangeValue {
+            if (holder is IntegerRangeValue) {
+                return holder
             }
 
             throw IllegalStateException("$holder")

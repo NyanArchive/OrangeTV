@@ -78,4 +78,6 @@
     <string name="orange_settings_title">OrangeTV Settings</string>
     <string name="orange_settings_chat_font_size">Chat font size</string>
     <string name="orange_settings_chat_font_size_desc" />
+    <string name="orange_settings_landscape_chat_size">Landscape chat width</string>
+    <string name="orange_settings_landscape_chat_size_desc" />
 </resources>

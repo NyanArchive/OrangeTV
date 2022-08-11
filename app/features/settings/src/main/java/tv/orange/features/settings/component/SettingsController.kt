@@ -7,16 +7,19 @@ import tv.orange.core.Logger
 import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
 import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.Flag.Companion.asIntRange
 import tv.orange.core.models.flag.Flag.Companion.asString
 import tv.orange.core.models.flag.Internal
 import tv.orange.core.models.flag.variants.FontSize
 import tv.orange.features.settings.bridge.model.DropDownMenuModelExt
 import tv.orange.features.settings.bridge.model.FlagToggleMenuModelExt
+import tv.orange.features.settings.bridge.slider.SliderModel
 import tv.twitch.android.shared.ui.menus.SettingsPreferencesController
 import tv.twitch.android.shared.ui.menus.core.MenuModel
 import tv.twitch.android.shared.ui.menus.togglemenu.ToggleMenuModel
 
-class SettingsController(val activity: FragmentActivity) : SettingsPreferencesController {
+class SettingsController(val activity: FragmentActivity) : SettingsPreferencesController,
+    SliderModel.SliderListener {
     override fun updatePreferenceBooleanState(toggleMenuModel: ToggleMenuModel, state: Boolean) {
         val eventName = toggleMenuModel.eventName
         if (eventName.isNullOrBlank()) {
@@ -69,6 +72,7 @@ class SettingsController(val activity: FragmentActivity) : SettingsPreferencesCo
                 } else {
                     DropDownMenuModelExt(it, this)
                 }
+                is Internal.IntegerRangeValue -> SliderModel(it, this)
                 else -> null
             }
         }
@@ -86,5 +90,15 @@ class SettingsController(val activity: FragmentActivity) : SettingsPreferencesCo
 
     companion object {
         private val RESTART_FLAGS = setOf(Flag.BOTTOM_NAVBAR_POSITION, Flag.DEV_MODE)
+    }
+
+    override fun onSliderValueChanged(flag: Flag, value: Int) {
+        if (flag.asIntRange().currentValue == value) {
+            Logger.debug("Ignore: $flag")
+            return
+        }
+
+        PreferenceManager.get().writeInt(flag, value)
+        checkIfNeedRestart(flag)
     }
 }

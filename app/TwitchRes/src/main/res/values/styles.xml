@@ -7,4 +7,11 @@
         <item name="android:minHeight">@dimen/chat_message_min_height</item>
         <item name="android:lineSpacingExtra">2.0dip</item>
     </style>
+    <style name="TitleText" parent="@style/SemiboldFont">
+        <item name="android:textSize">@dimen/font_title</item>
+        <item name="android:textColor">@color/text_base</item>
+        <item name="android:textColorLink">@color/text_link</item>
+    </style>
+    <style name="RowItemStyleWithForeground" />
+    <style name="SemiboldFont" />
 </resources>

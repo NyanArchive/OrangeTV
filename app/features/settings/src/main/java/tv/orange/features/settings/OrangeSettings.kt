@@ -1,6 +1,7 @@
 package tv.orange.features.settings
 
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import dagger.android.AndroidInjector
 import dagger.internal.MapBuilder
 import tv.orange.core.Core
@@ -15,12 +16,15 @@ import javax.inject.Provider
 
 @SettingsScope
 class OrangeSettings @Inject constructor(
-    val daggerFactory: OrangeSettingsDaggerFactory,
-    val controller: SettingsController
+    val daggerFactory: OrangeSettingsDaggerFactory
 ) : Feature {
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(OrangeSettings::class.java)
+    }
+
+    fun getOrangeSettingsController(activity: FragmentActivity): SettingsController {
+        return SettingsController(activity)
     }
 
     fun inject(

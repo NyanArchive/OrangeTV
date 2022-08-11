@@ -1,8 +1,8 @@
 package tv.orange.features.settings.bridge.fragment
 
 import androidx.fragment.app.FragmentActivity
-import tv.orange.core.Core
 import tv.orange.core.Logger
+import tv.orange.core.ResourceManager
 import tv.orange.features.settings.OrangeSettings
 import tv.orange.features.settings.component.SettingsController
 import tv.twitch.android.settings.base.BaseSettingsPresenter
@@ -24,15 +24,15 @@ class OrangeSettingsPresenter @Inject constructor(
     }
 
     override fun getPrefController(): SettingsPreferencesController {
-        return OrangeSettings.get().controller
+        return OrangeSettings.get().getOrangeSettingsController(activity)
     }
 
     override fun getToolbarTitle(): String {
-        return "Main"
+        return ResourceManager.get().getString("orange_settings_title")
     }
 
     override fun updateSettingModels() {
         settingModels.clear();
-        settingModels.addAll(controller.getMainSettingModels(activity))
+        settingModels.addAll(controller.getMainSettingModels())
     }
 }

@@ -1,12 +1,18 @@
 package tv.orange.core
 
+import android.app.Activity
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
+import android.os.Build
 import tv.orange.core.models.lifecycle.LifecycleAware
 import tv.orange.core.models.lifecycle.LifecycleController
 import tv.orange.models.abc.Bridge
 import tv.orange.models.abc.Feature
 import javax.inject.Inject
 import kotlin.system.exitProcess
+
 
 class Core @Inject constructor(val context: Context) :
     LifecycleController,
@@ -39,6 +45,29 @@ class Core @Inject constructor(val context: Context) :
         @JvmStatic
         fun killApp() {
             exitProcess(0);
+        }
+
+        @JvmStatic
+        fun restart(activity: Activity) {
+            val intent: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            } else {
+                PendingIntent.FLAG_UPDATE_CURRENT
+            }
+            val manager = (activity.getSystemService(Context.ALARM_SERVICE) as AlarmManager)
+            manager.setExact(
+                AlarmManager.ELAPSED_REALTIME,
+                1500L,
+                PendingIntent.getActivity(
+                    activity,
+                    0, Intent(
+                        activity,
+                        activity::class.java
+                    ),
+                    intent
+                )
+            )
+            killApp()
         }
     }
 

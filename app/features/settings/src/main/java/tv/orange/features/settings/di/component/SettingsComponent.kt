@@ -11,7 +11,6 @@ import tv.orange.features.settings.di.scope.SettingsScope
 @Component(dependencies = [CoreComponent::class], modules = [SettingsModule::class])
 interface SettingsComponent {
     val orangeSettings: OrangeSettings
-    val settingsController: SettingsController
 
     @Component.Factory
     interface Factory {

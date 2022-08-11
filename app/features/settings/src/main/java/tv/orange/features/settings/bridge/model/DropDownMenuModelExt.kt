@@ -1,20 +1,19 @@
 package tv.orange.features.settings.bridge.model
 
-import android.content.Context
-import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.Internal
+import tv.orange.features.settings.component.SettingsController
 import tv.twitch.android.core.adapters.TwitchArrayAdapter
 import tv.twitch.android.core.adapters.TwitchArrayAdapterModel
 import tv.twitch.android.shared.ui.menus.dropdown.DropDownMenuModel
 import tv.twitch.android.shared.ui.menus.dropdown.DropDownMenuModel.DropDownMenuItemSelection
 
-class DropDownMenuModelExt<T : Internal.Variant>(flag: Flag, context: Context) :
+class DropDownMenuModelExt<T : Internal.Variant>(flag: Flag, controller: SettingsController) :
     DropDownMenuModel<TwitchArrayAdapterModel>(
         TwitchArrayAdapter(
-            context,
+            controller.activity,
             flag.asVariant<T>().getVariants().map { variant ->
                 TwitchArrayAdapterModel {
                     ResourceManager.get().getString("orange_${flag.prefKey}_$variant")
@@ -32,9 +31,9 @@ class DropDownMenuModelExt<T : Internal.Variant>(flag: Flag, context: Context) :
         null,
         null,
         DropDownMenuItemSelection { _, position ->
-            PreferenceManager.get().writeString(
-                flag = flag,
-                value = flag.asVariant<T>().getVariants()[position].toString()
+            controller.onDropDownMenuItemSelection(
+                flag,
+                flag.asVariant<T>().getVariants()[position]
             )
         }
     )

@@ -69,8 +69,11 @@
     <string name="orange_bottom_navbar_position_hidden">Hidden</string>
     <string name="orange_settings_followed_full_cards">Show full stream cards in followed section</string>
     <string name="orange_settings_followed_full_cards_desc" />
-    <string name="orange_settings_disable_hype_train" >Disable HypeTrain</string>
+    <string name="orange_settings_disable_hype_train">Disable HypeTrain</string>
     <string name="orange_settings_disable_hype_train_desc" />
-    <string name="orange_settings_hide_discover_tab" >Hide Discover tab</string>
+    <string name="orange_settings_hide_discover_tab">Hide Discover tab</string>
     <string name="orange_settings_hide_discover_tab_desc" />
+    <string name="orange_restart_app">Restart</string>
+    <string name="orange_restart_app_title">Update and restart the app?</string>
+    <string name="orange_settings_title">OrangeTV Settings</string>
 </resources>

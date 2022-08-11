@@ -1,5 +1,6 @@
 package tv.orange.features.settings.bridge
 
+import androidx.fragment.app.FragmentActivity
 import dagger.android.AndroidInjector
 import dagger.internal.MapBuilder
 import tv.orange.core.compat.ClassCompat
@@ -8,7 +9,6 @@ import tv.orange.features.settings.bridge.fragment.OrangeSettingsFragment
 import tv.twitch.android.app.consumer.dagger.DaggerAppComponent
 import javax.inject.Inject
 import javax.inject.Provider
-
 
 class OrangeSettingsDaggerFactory @Inject constructor() {
     fun injectSubcomponentSettingsProvider(
@@ -23,11 +23,12 @@ class OrangeSettingsDaggerFactory @Inject constructor() {
 
     private fun newInstance(settingsActivitySubcomponentImpl: DaggerAppComponent.SettingsActivitySubcomponentImpl): Provider<AndroidInjector.Factory<*>> {
         return Provider<AndroidInjector.Factory<*>> {
+            val fragmentActivityProvider = ClassCompat.getProvider<FragmentActivity>(
+                settingsActivitySubcomponentImpl,
+                "provideFragmentActivityProvider"
+            )
             OrangeSettingsFragmentSubcomponentFactory(
-                ClassCompat.getProvider(
-                    settingsActivitySubcomponentImpl,
-                    "provideFragmentActivityProvider"
-                ),
+                fragmentActivityProvider,
                 ClassCompat.getProvider(
                     settingsActivitySubcomponentImpl,
                     "provideMenuAdapterBinderProvider"
@@ -36,7 +37,7 @@ class OrangeSettingsDaggerFactory @Inject constructor() {
                     settingsActivitySubcomponentImpl,
                     "provideSettingsTrackerProvider"
                 )
-            ) { OrangeSettings.get().controller }
+            ) { OrangeSettings.get().getOrangeSettingsController(fragmentActivityProvider.get()) }
         }
     }
 }

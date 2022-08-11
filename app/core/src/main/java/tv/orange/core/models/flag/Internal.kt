@@ -21,7 +21,8 @@ class Internal {
     class IntegerRangeValue(
         val minValue: Int,
         val maxValue: Int,
-        var currentValue: Int
+        var currentValue: Int,
+        val step: Int = 1
     ) : ValueHolder {
 
         override val value: Any

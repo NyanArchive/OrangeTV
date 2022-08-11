@@ -133,6 +133,21 @@ enum class Flag(
         "landscape_chat_size",
         "orange_settings_landscape_chat_size",
         IntegerRangeValue(10, 50, 30),
+    ),
+    FORWARD_SEEK(
+        "forward_seek",
+        "orange_settings_forward_seek",
+        IntegerRangeValue(5, 120, 30, step = 5),
+    ),
+    REWIND_SEEK(
+        "backward_seek",
+        "orange_settings_rewind_seek",
+        IntegerRangeValue(5, 120, 10, step = 5),
+    ),
+    MINI_PLAYER_SIZE(
+        "mini_player_size",
+        "orange_settings_mini_player_size",
+        IntegerRangeValue(50, 200, 100, step = 5),
     );
 
     constructor(key: String, default: ValueHolder) : this(

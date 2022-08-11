@@ -80,4 +80,7 @@
     <string name="orange_settings_chat_font_size_desc" />
     <string name="orange_settings_landscape_chat_size">Landscape chat width</string>
     <string name="orange_settings_landscape_chat_size_desc" />
+    <string name="orange_settings_forward_seek">Player forward seek</string>
+    <string name="orange_settings_rewind_seek">Player backward seek</string>
+    <string name="orange_settings_mini_player_size">MiniPlayer size</string>
 </resources>

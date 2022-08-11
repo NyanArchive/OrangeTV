@@ -24,7 +24,7 @@ class SliderRecyclerItem(
             vh.slider.valueFrom = model.flag.asIntRange().minValue.toFloat()
             vh.slider.valueTo = model.flag.asIntRange().maxValue.toFloat()
             vh.slider.value = model.flag.asIntRange().currentValue.toFloat()
-            vh.slider.stepSize = 1F
+            vh.slider.stepSize = model.flag.asIntRange().step.toFloat()
             vh.slider.addOnChangeListener { _, value, _ ->
                 model.listener.onSliderValueChanged(model.flag, value.toInt())
             }

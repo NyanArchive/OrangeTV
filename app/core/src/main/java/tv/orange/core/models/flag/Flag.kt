@@ -3,6 +3,7 @@ package tv.orange.core.models.flag
 import tv.orange.core.models.flag.Internal.*
 import tv.orange.core.models.flag.variants.BottomNavbarPosition
 import tv.orange.core.models.flag.variants.DeletedMessages
+import tv.orange.core.models.flag.variants.FontSize
 import tv.orange.core.models.flag.variants.PlayerImpl
 import java.util.*
 
@@ -122,6 +123,11 @@ enum class Flag(
         "bottom_navbar_position",
         "orange_settings_bottom_navbar_position",
         ListValue(BottomNavbarPosition.Default),
+    ),
+    CHAT_FONT_SIZE(
+        "chat_font_size",
+        "orange_settings_chat_font_size",
+        ListValue(FontSize.SP13),
     );
 
     constructor(key: String, default: ValueHolder) : this(

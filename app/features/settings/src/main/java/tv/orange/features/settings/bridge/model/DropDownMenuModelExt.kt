@@ -10,13 +10,21 @@ import tv.twitch.android.core.adapters.TwitchArrayAdapterModel
 import tv.twitch.android.shared.ui.menus.dropdown.DropDownMenuModel
 import tv.twitch.android.shared.ui.menus.dropdown.DropDownMenuModel.DropDownMenuItemSelection
 
-class DropDownMenuModelExt<T : Internal.Variant>(flag: Flag, controller: SettingsController) :
+class DropDownMenuModelExt<T : Internal.Variant>(
+    flag: Flag,
+    controller: SettingsController,
+    private val raw: Boolean = false
+) :
     DropDownMenuModel<TwitchArrayAdapterModel>(
         TwitchArrayAdapter(
             controller.activity,
             flag.asVariant<T>().getVariants().map { variant ->
                 TwitchArrayAdapterModel {
-                    ResourceManager.get().getString("orange_${flag.prefKey}_$variant")
+                    if (raw) {
+                        variant.toString()
+                    } else {
+                        ResourceManager.get().getString("orange_${flag.prefKey}_$variant")
+                    }
                 }
             },
             ResourceManager.get().getLayoutId("twitch_spinner_dropdown_item")

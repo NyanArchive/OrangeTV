@@ -82,20 +82,13 @@ public class MessageRecyclerItem implements IMessageRecyclerItem { // TODO: __IM
     public void bindToViewHolder(RecyclerView.ViewHolder viewHolder) {
         /* ... */
 
-        ChatMessageViewHolder chatMessageViewHolder = null;
-        if (chatMessageViewHolder != null) {
-            /* ... */
-
-            bindChatMessageViewHolder(viewHolder); // TODO: __INJECT_CODE
-        }
-
-        /* ... */
-
         throw new VirtualImpl();
     }
 
-    private void bindChatMessageViewHolder(RecyclerView.ViewHolder viewHolder) {
-        ChatHookProvider.get().bindChatMessageViewHolder(viewHolder, highlightColor); // TODO: __INJECT_METHOD
+    @Nullable
+    @Override
+    public Integer getHighlightColor() { // TODO: __INJECT_METHOD
+        return highlightColor;
     }
 
     public static final class ChatMessageViewHolder extends AbstractTwitchRecyclerViewHolder {

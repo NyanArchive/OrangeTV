@@ -9,7 +9,7 @@ import tv.orange.core.ResourceManager
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asString
 import tv.orange.core.models.flag.Internal
-import tv.orange.core.models.flag.variants.PlayerImpl
+import tv.orange.core.models.flag.variants.FontSize
 import tv.orange.features.settings.bridge.model.DropDownMenuModelExt
 import tv.orange.features.settings.bridge.model.FlagToggleMenuModelExt
 import tv.twitch.android.shared.ui.menus.SettingsPreferencesController
@@ -64,7 +64,11 @@ class SettingsController(val activity: FragmentActivity) : SettingsPreferencesCo
         return Flag.values().mapNotNull {
             when (it.value) {
                 is Internal.BooleanValue -> FlagToggleMenuModelExt(it)
-                is Internal.ListValue<*> -> DropDownMenuModelExt<PlayerImpl>(it, this)
+                is Internal.ListValue<*> -> if (it == Flag.CHAT_FONT_SIZE) {
+                    DropDownMenuModelExt<FontSize>(it, this, true)
+                } else {
+                    DropDownMenuModelExt(it, this)
+                }
                 else -> null
             }
         }

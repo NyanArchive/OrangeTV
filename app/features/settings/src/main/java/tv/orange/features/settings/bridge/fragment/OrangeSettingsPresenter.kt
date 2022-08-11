@@ -12,7 +12,6 @@ import tv.twitch.android.shared.ui.menus.SettingsPreferencesController
 import tv.twitch.android.shared.ui.menus.core.MenuAdapterBinder
 import javax.inject.Inject
 
-
 class OrangeSettingsPresenter @Inject constructor(
     activity: FragmentActivity,
     adapterBinder: MenuAdapterBinder,

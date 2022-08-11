@@ -7,3 +7,12 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/menus/togglemenu/ToggleM
  .super Ltv/twitch/android/shared/ui/menus/core/MenuModel$SingleItemModel;
  .source "ToggleMenuModel.kt"
  
+@@ -314,7 +314,7 @@
+     return-object v0
+ .end method
+ 
+-.method public final getToggleState()Z
++.method public getToggleState()Z
+     .locals 1
+ 
+     .line 23

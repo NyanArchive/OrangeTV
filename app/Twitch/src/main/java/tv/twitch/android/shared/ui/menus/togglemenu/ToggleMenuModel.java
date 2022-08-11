@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.core.mvp.lifecycle.VisibilityProvider;
 import tv.twitch.android.shared.ui.menus.SettingActionListener;
 import tv.twitch.android.shared.ui.menus.SettingsPreferencesController;
@@ -22,5 +23,9 @@ public class ToggleMenuModel extends MenuModel.SingleItemModel { // TODO: __REMO
     @Override
     public ToggleMenuRecyclerItem toRecyclerAdapterItem(Context context, SettingActionListener settingActionListener, VisibilityProvider visibilityProvider) {
         return null;
+    }
+
+    public boolean getToggleState() { // TODO: __REMOVE_FINAL
+        throw new VirtualImpl();
     }
 }

@@ -5,7 +5,7 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.os.Build
+import android.os.*
 import tv.orange.core.models.lifecycle.LifecycleAware
 import tv.orange.core.models.lifecycle.LifecycleController
 import tv.orange.models.abc.Bridge
@@ -68,6 +68,37 @@ class Core @Inject constructor(val context: Context) :
                 )
             )
             killApp()
+        }
+
+        fun vibrate(context: Context, delay: Int, duration: Int) {
+            Handler(context.mainLooper).postDelayed(
+                { intVibrate(context = context, duration = duration) },
+                delay.toLong()
+            )
+        }
+
+        private fun intVibrate(context: Context, duration: Int) {
+            val v = getVibrator(context)
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                v?.vibrate(
+                    VibrationEffect.createOneShot(
+                        duration.toLong(),
+                        VibrationEffect.DEFAULT_AMPLITUDE
+                    )
+                )
+            } else {
+                @Suppress("DEPRECATION")
+                v?.vibrate(duration.toLong())
+            }
+        }
+
+        private fun getVibrator(context: Context): Vibrator? {
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                (context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager?)?.defaultVibrator
+            } else {
+                context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator?
+            }
         }
     }
 

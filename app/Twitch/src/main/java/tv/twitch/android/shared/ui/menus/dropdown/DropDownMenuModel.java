@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.core.adapters.RecyclerAdapterItem;
 import tv.twitch.android.core.mvp.lifecycle.VisibilityProvider;
 import tv.twitch.android.shared.ui.menus.SettingActionListener;
@@ -16,6 +17,10 @@ public class DropDownMenuModel<T> extends MenuModel.SingleItemModel {
 
     public DropDownMenuModel(ArrayAdapter<T> adapter, int position, String primaryText, String secondaryText, String auxiliaryText, View.OnClickListener clickListener, DropDownMenuModel.DropDownMenuItemSelection<T> dropDownMenuItemSelection) {
         super(null, null, null, null, null);
+    }
+
+    public int getSelectedOption() { // TODO: __REMOVE_FINAL
+        throw new VirtualImpl();
     }
 
     @Override

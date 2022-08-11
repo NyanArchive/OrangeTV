@@ -21,6 +21,7 @@ import tv.orange.core.ResourceManager
 import tv.orange.core.compat.ClassCompat.getPrivateField
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
+import tv.orange.core.models.flag.Flag.Companion.asIntRange
 import tv.orange.core.models.flag.Flag.Companion.asString
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.FlagListener
@@ -37,6 +38,7 @@ import tv.orange.models.abc.EmoteCardModelWrapper
 import tv.orange.models.abc.EmotePackageSet
 import tv.orange.models.abc.Feature
 import tv.orange.models.data.emotes.Emote
+import tv.twitch.android.core.adapters.RecyclerAdapterItem
 import tv.twitch.android.core.user.TwitchAccountManager
 import tv.twitch.android.models.chat.MessageBadge
 import tv.twitch.android.models.chat.MessageToken
@@ -551,6 +553,7 @@ class ChatHookProvider @Inject constructor(
         }
 
         message.setHighlightColor(Color.argb(100, 255, 0, 0))
+        tryVibrate(factory.getPrivateField("context"))
     }
 
     private fun maybeChangeMessageFontSize(textView: TextView) {
@@ -580,7 +583,10 @@ class ChatHookProvider @Inject constructor(
         }
     }
 
-    fun onBindToViewHolder(viewHolder: RecyclerView.ViewHolder) {
+    fun onBindToViewHolder(
+        viewHolder: RecyclerView.ViewHolder,
+        item: RecyclerAdapterItem
+    ) {
         Logger.debug("bind: $viewHolder")
         when (viewHolder) {
             is MessageRecyclerItem.ChatMessageViewHolder -> {
@@ -605,10 +611,20 @@ class ChatHookProvider @Inject constructor(
                 maybeChangeMessageFontSize(viewHolder.body)
             }
         }
-        when (viewHolder) {
+        when (item) {
             is IMessageRecyclerItem -> {
-                bindHighlightMessage(viewHolder, viewHolder.getHighlightColor())
+                bindHighlightMessage(viewHolder, item.getHighlightColor())
             }
+        }
+    }
+
+    private fun tryVibrate(context: Context) {
+        if (Flag.VIBRATE_ON_MENTION.asBoolean()) {
+            Core.vibrate(
+                context = context,
+                delay = 200,
+                duration = Flag.VIBRATION_DURATION.asIntRange().currentValue
+            )
         }
     }
 }

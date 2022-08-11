@@ -7,3 +7,12 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/menus/dropdown/DropDownM
  .super Ltv/twitch/android/shared/ui/menus/core/MenuModel$SingleItemModel;
  .source "DropDownMenuModel.kt"
  
+@@ -124,7 +124,7 @@
+     return-object v0
+ .end method
+ 
+-.method public final getSelectedOption()I
++.method public getSelectedOption()I
+     .locals 1
+ 
+     .line 20

@@ -54,6 +54,11 @@ enum class Flag(
         "orange_settings_hide_discover_tab",
         BooleanValue()
     ),
+    VIBRATE_ON_MENTION(
+        "vibrate_on_mention",
+        "orange_settings_vibrate_on_mention",
+        BooleanValue()
+    ),
     BTTV_EMOTES(
         "bttv_emotes",
         "orange_settings_bttv_emotes",
@@ -148,6 +153,11 @@ enum class Flag(
         "mini_player_size",
         "orange_settings_mini_player_size",
         IntegerRangeValue(50, 200, 100, step = 5),
+    ),
+    VIBRATION_DURATION(
+        "vibration_duration",
+        "orange_settings_vibration_duration",
+        IntegerRangeValue(10, 1000, 100, step = 10),
     );
 
     constructor(key: String, default: ValueHolder) : this(

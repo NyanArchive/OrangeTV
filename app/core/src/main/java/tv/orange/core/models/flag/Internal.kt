@@ -12,14 +12,15 @@ class Internal {
 
     interface Variant {
         fun getVariants(): List<Variant>
-        fun default(): Variant
+        fun getDefault(): Variant
         fun fromString(value: String): Variant
+        fun isDefault(): Boolean
         override fun toString(): String
     }
 
     @Suppress("UNCHECKED_CAST")
     class ListValue<T : Variant>(private val variant: T) : ValueHolder {
-        var currentVariant: Variant? = variant.default()
+        var currentVariant: Variant? = variant.getDefault()
 
         fun set(string: String): String {
             currentVariant = variant.fromString(string)

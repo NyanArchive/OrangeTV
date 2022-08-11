@@ -11,7 +11,7 @@ enum class PlayerImpl(val value: String) : Internal.Variant {
         return values().toList()
     }
 
-    override fun default(): Internal.Variant {
+    override fun getDefault(): Internal.Variant {
         return Default
     }
 
@@ -22,5 +22,9 @@ enum class PlayerImpl(val value: String) : Internal.Variant {
 
     override fun toString(): String {
         return value
+    }
+
+    override fun isDefault(): Boolean {
+        return this == getDefault()
     }
 }

@@ -76,4 +76,6 @@
     <string name="orange_restart_app">Restart</string>
     <string name="orange_restart_app_title">Update and restart the app?</string>
     <string name="orange_settings_title">OrangeTV Settings</string>
+    <string name="orange_settings_chat_font_size">Chat font size</string>
+    <string name="orange_settings_chat_font_size_desc" />
 </resources>

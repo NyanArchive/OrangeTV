@@ -124,11 +124,13 @@ class BridgeFeatureModule {
 
     @Provides
     fun provideChatHookProvider(
+        coreComponent: CoreComponent,
         badgesComponent: BadgesComponent,
         emotesComponent: EmotesComponent
     ): ChatHookProvider {
         Logger.debug("called")
         return DaggerChatComponent.builder()
+            .coreComponent(coreComponent)
             .badgesComponent(badgesComponent)
             .emotesComponent(emotesComponent)
             .build().hook

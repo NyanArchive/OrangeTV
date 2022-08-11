@@ -5,7 +5,9 @@ import android.graphics.Color
 import android.text.*
 import android.text.style.ForegroundColorSpan
 import android.text.style.StrikethroughSpan
+import android.util.TypedValue
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
@@ -19,9 +21,11 @@ import tv.orange.core.ResourceManager
 import tv.orange.core.compat.ClassCompat.getPrivateField
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
+import tv.orange.core.models.flag.Flag.Companion.asString
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.FlagListener
 import tv.orange.core.models.flag.variants.DeletedMessages
+import tv.orange.core.models.flag.variants.FontSize
 import tv.orange.core.models.lifecycle.LifecycleAware
 import tv.orange.features.badges.bridge.OrangeMessageBadge
 import tv.orange.features.badges.component.BadgeProvider
@@ -40,7 +44,13 @@ import tv.twitch.android.models.emotes.EmoteCardModelResponse
 import tv.twitch.android.models.emotes.EmoteSet
 import tv.twitch.android.provider.chat.ChatMessageInterface
 import tv.twitch.android.shared.chat.adapter.item.ChatMessageClickedEvents
+import tv.twitch.android.shared.chat.adapter.item.MessageRecyclerItem
+import tv.twitch.android.shared.chat.chomments.ChommentRecyclerItem
 import tv.twitch.android.shared.chat.messagefactory.ChatMessageFactory
+import tv.twitch.android.shared.chat.messagefactory.adapteritem.PrivateCalloutsMessageRecyclerItem
+import tv.twitch.android.shared.chat.messagefactory.adapteritem.RaidMessageRecyclerItem
+import tv.twitch.android.shared.chat.messagefactory.adapteritem.SubGoalUserNoticeRecyclerItem
+import tv.twitch.android.shared.chat.messagefactory.adapteritem.UserNoticeRecyclerItem
 import tv.twitch.android.shared.chat.util.ChatUtil
 import tv.twitch.android.shared.chat.util.ClickableUsernameSpan
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerPresenter
@@ -58,6 +68,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class ChatHookProvider @Inject constructor(
+    val context: Context,
     val emoteProvider: EmoteProvider,
     val badgeProvider: BadgeProvider,
     val viewFactory: ViewFactory
@@ -286,6 +297,10 @@ class ChatHookProvider @Inject constructor(
     companion object {
         private const val TIMESTAMP_DATE_FORMAT = "HH:mm"
 
+        var fontSizeSp: Int = 0
+        var fontSizePx: Float = 0F
+        var fontSizeScaleFactory: Float = 0F
+
         @JvmStatic
         fun get() = Core.getFeature(ChatHookProvider::class.java)
 
@@ -431,7 +446,10 @@ class ChatHookProvider @Inject constructor(
                 timestamp = SimpleDateFormat(TIMESTAMP_DATE_FORMAT, Locale.ENGLISH).format(date)
             )
 
-        private fun isUserMentioned(chatMessageInterface: ChatMessageInterface, username: String): Boolean {
+        private fun isUserMentioned(
+            chatMessageInterface: ChatMessageInterface,
+            username: String
+        ): Boolean {
             if (username.isBlank()) {
                 return false
             }
@@ -444,6 +462,27 @@ class ChatHookProvider @Inject constructor(
                 }
             }
         }
+
+        private fun spToPx(context: Context, sp: Int): Float {
+            return TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_SP,
+                sp.toFloat(),
+                context.resources.displayMetrics
+            )
+        }
+
+        private fun calcFontSizeScale(fontSizeSp: Int): Float {
+            return fontSizeSp.div(FontSize.SP13.value.removeSuffix("sp").toFloat())
+        }
+
+        @JvmStatic
+        fun hookMediaSpanSizeDp(sizeDp: Float): Float {
+            if (fontSizeScaleFactory != 0F) {
+                return sizeDp * fontSizeScaleFactory
+            }
+
+            return sizeDp
+        }
     }
 
     override fun onDestroyFeature() {
@@ -455,8 +494,14 @@ class ChatHookProvider @Inject constructor(
     override fun onCreateFeature() {
         Core.get().registerLifecycleListeners(this)
         PreferenceManager.get().registerFlagListeners(this)
+        updateFontSize()
     }
 
+    private fun updateFontSize() {
+        fontSizeSp = Flag.CHAT_FONT_SIZE.asString().removeSuffix("sp").toInt()
+        fontSizePx = spToPx(context, fontSizeSp)
+        fontSizeScaleFactory = calcFontSizeScale(fontSizeSp)
+    }
 
     override fun onAllComponentDestroyed() {
         emoteProvider.clear()
@@ -481,11 +526,11 @@ class ChatHookProvider @Inject constructor(
 
     override fun onFlagChanged(flag: Flag) {
         when (flag) {
-            Flag.BTTV_EMOTES, Flag.FFZ_EMOTES, Flag.STV_EMOTES -> {
-                emoteProvider.rebuild()
-            }
-            Flag.FFZ_BADGES, Flag.STV_BADGES, Flag.CHA_BADGES, Flag.CHE_BADGES -> {
-                badgeProvider.rebuild()
+            Flag.BTTV_EMOTES, Flag.FFZ_EMOTES, Flag.STV_EMOTES -> emoteProvider.rebuild()
+            Flag.FFZ_BADGES, Flag.STV_BADGES, Flag.CHA_BADGES, Flag.CHE_BADGES -> badgeProvider.rebuild()
+            Flag.CHAT_FONT_SIZE -> {
+                updateFontSize()
+                Logger.debug("sp: $fontSizeSp, px: $fontSizePx, scale: $fontSizeScaleFactory")
             }
             else -> {}
         }
@@ -508,14 +553,62 @@ class ChatHookProvider @Inject constructor(
         message.setHighlightColor(Color.argb(100, 255, 0, 0))
     }
 
-    fun bindChatMessageViewHolder(
-        viewHolder: RecyclerView.ViewHolder,
+    private fun maybeChangeMessageFontSize(textView: TextView) {
+        if (Flag.CHAT_FONT_SIZE.asVariant<FontSize>().isDefault()) {
+            return
+        }
+
+        if (fontSizeSp == 0) {
+            updateFontSize()
+        }
+
+        if (textView.textSize == fontSizePx) {
+            return
+        }
+
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSizePx)
+    }
+
+    private fun bindHighlightMessage(
+        vh: RecyclerView.ViewHolder,
         highlightColor: Int?
     ) {
         highlightColor?.let { color ->
-            viewHolder.itemView.setBackgroundColor(color)
+            vh.itemView.setBackgroundColor(color)
         } ?: run {
-            viewHolder.itemView.background = null
+            vh.itemView.background = null
+        }
+    }
+
+    fun onBindToViewHolder(viewHolder: RecyclerView.ViewHolder) {
+        Logger.debug("bind: $viewHolder")
+        when (viewHolder) {
+            is MessageRecyclerItem.ChatMessageViewHolder -> {
+                maybeChangeMessageFontSize(viewHolder.messageTextView)
+            }
+            is ChommentRecyclerItem.ChommentItemViewHolder -> {
+                maybeChangeMessageFontSize(viewHolder.chommentTextView)
+            }
+            is UserNoticeRecyclerItem.UserNoticeViewHolder -> {
+                maybeChangeMessageFontSize(viewHolder.chatMessage)
+                maybeChangeMessageFontSize(viewHolder.systemMessage)
+            }
+            is SubGoalUserNoticeRecyclerItem.SubGoalUserNoticeViewHolder -> {
+                maybeChangeMessageFontSize(viewHolder.chatMessage)
+                maybeChangeMessageFontSize(viewHolder.goalProgressText)
+                maybeChangeMessageFontSize(viewHolder.systemMessage)
+            }
+            is RaidMessageRecyclerItem.RaidMessageViewHolder -> {
+                maybeChangeMessageFontSize(viewHolder.text)
+            }
+            is PrivateCalloutsMessageRecyclerItem.CalloutMessageViewHolder -> {
+                maybeChangeMessageFontSize(viewHolder.body)
+            }
+        }
+        when (viewHolder) {
+            is IMessageRecyclerItem -> {
+                bindHighlightMessage(viewHolder, viewHolder.getHighlightColor())
+            }
         }
     }
 }

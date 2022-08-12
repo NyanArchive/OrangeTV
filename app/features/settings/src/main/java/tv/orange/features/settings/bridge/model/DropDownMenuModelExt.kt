@@ -11,7 +11,7 @@ import tv.twitch.android.shared.ui.menus.dropdown.DropDownMenuModel
 import tv.twitch.android.shared.ui.menus.dropdown.DropDownMenuModel.DropDownMenuItemSelection
 
 class DropDownMenuModelExt<T : Internal.Variant>(
-    flag: Flag,
+    val flag: Flag,
     controller: SettingsController,
     private val raw: Boolean = false
 ) :
@@ -44,4 +44,8 @@ class DropDownMenuModelExt<T : Internal.Variant>(
                 flag.asVariant<T>().getVariants()[position]
             )
         }
-    )
+    ) {
+    override fun getSelectedOption(): Int {
+        return flag.asVariant<T>().getVariants().indexOf(flag.asVariant())
+    }
+}

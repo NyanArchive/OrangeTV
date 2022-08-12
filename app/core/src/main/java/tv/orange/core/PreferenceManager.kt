@@ -45,6 +45,10 @@ class PreferenceManager @Inject constructor(
         }
     }
 
+    fun writeInt(flag: Flag, value: Int) {
+        preferences.edit().putInt(flag.prefKey, value).apply()
+    }
+
     fun writeBoolean(flag: Flag, value: Boolean) {
         preferences.edit().putBoolean(flag.prefKey, value).apply()
     }
@@ -74,16 +78,13 @@ class PreferenceManager @Inject constructor(
         return StringValue(value)
     }
 
-    private fun readRawString(flag: Flag): String {
-        return preferences.getString(flag.prefKey, Flag.getString(flag.default))!!
-    }
-
     private fun readSettingFromPref(flag: Flag) {
-        when (flag.value) {
+        when (val value = flag.value) {
             is BooleanValue -> flag.value = readBoolean(flag)
             is IntegerValue -> flag.value = readInt(flag)
             is StringValue -> flag.value = readString(flag)
-            is ListValue<*> -> (flag.value as ListValue<*>).set(readRawString(flag))
+            is ListValue<*> -> value.set(readString(flag).value)
+            is IntegerRangeValue -> value.currentValue = readInt(flag).value
             else -> throw IllegalStateException("debug")
         }
     }

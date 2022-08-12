@@ -54,6 +54,11 @@ enum class Flag(
         "orange_settings_hide_discover_tab",
         BooleanValue()
     ),
+    VIBRATE_ON_MENTION(
+        "vibrate_on_mention",
+        "orange_settings_vibrate_on_mention",
+        BooleanValue()
+    ),
     BTTV_EMOTES(
         "bttv_emotes",
         "orange_settings_bttv_emotes",
@@ -128,6 +133,31 @@ enum class Flag(
         "chat_font_size",
         "orange_settings_chat_font_size",
         ListValue(FontSize.SP13),
+    ),
+    LANDSCAPE_CHAT_SIZE(
+        "landscape_chat_size",
+        "orange_settings_landscape_chat_size",
+        IntegerRangeValue(10, 50, 30),
+    ),
+    FORWARD_SEEK(
+        "forward_seek",
+        "orange_settings_forward_seek",
+        IntegerRangeValue(5, 120, 30, step = 5),
+    ),
+    REWIND_SEEK(
+        "backward_seek",
+        "orange_settings_rewind_seek",
+        IntegerRangeValue(5, 120, 10, step = 5),
+    ),
+    MINI_PLAYER_SIZE(
+        "mini_player_size",
+        "orange_settings_mini_player_size",
+        IntegerRangeValue(50, 200, 100, step = 5),
+    ),
+    VIBRATION_DURATION(
+        "vibration_duration",
+        "orange_settings_vibration_duration",
+        IntegerRangeValue(10, 1000, 100, step = 10),
     );
 
     constructor(key: String, default: ValueHolder) : this(
@@ -151,6 +181,10 @@ enum class Flag(
             return getBoolean(this.value)
         }
 
+        fun Flag.asIntRange(): IntegerRangeValue {
+            return getIntegerRange(this.value)
+        }
+
         fun <T : Variant> Flag.asVariant(): T {
             return getVariant(this.value)
         }
@@ -166,6 +200,9 @@ enum class Flag(
         fun getInt(holder: ValueHolder): Int {
             if (holder is IntegerValue) {
                 return holder.value
+            }
+            if (holder is IntegerRangeValue) {
+                return holder.currentValue
             }
 
             throw IllegalStateException("$holder")
@@ -193,6 +230,14 @@ enum class Flag(
         fun <T : Variant> getVariant(holder: ValueHolder): T {
             if (holder is ListValue<*>) {
                 return holder.getVariant()
+            }
+
+            throw IllegalStateException("$holder")
+        }
+
+        fun getIntegerRange(holder: ValueHolder): IntegerRangeValue {
+            if (holder is IntegerRangeValue) {
+                return holder
             }
 
             throw IllegalStateException("$holder")

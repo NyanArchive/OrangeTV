@@ -44,7 +44,7 @@
     <string name="orange_deleted_messages_grey">Серый</string>
     <string name="orange_emotecard_ffz_channel">Смайлик канала FFZ</string>
     <string name="orange_emotecard_bttv_channel">Смайлик канала BTTV</string>
-    <string name="orange_emotecard_stv_channel">Смайлик канала STV</string>
+    <string name="orange_emotecard_stv_channel">Смайлик канала 7TV</string>
     <string name="orange_emotecard_ffz_global">Глобальный смайлик FFZ</string>
     <string name="orange_emotecard_stv_global">Глобальный смайлик 7TV</string>
     <string name="orange_emotecard_bttv_global">Глобальный смайлик BTTV</string>

@@ -44,7 +44,7 @@
     <string name="orange_deleted_messages_grey">Grey</string>
     <string name="orange_emotecard_ffz_channel">FFZ Channel Emote</string>
     <string name="orange_emotecard_bttv_channel">BTTV Channel Emote</string>
-    <string name="orange_emotecard_stv_channel">STV Channel Emote</string>
+    <string name="orange_emotecard_stv_channel">7TV Channel Emote</string>
     <string name="orange_emotecard_ffz_global">FFZ Global Emote</string>
     <string name="orange_emotecard_stv_global">7TV Global Emote</string>
     <string name="orange_emotecard_bttv_global">BTTV Global Emote</string>
@@ -78,4 +78,12 @@
     <string name="orange_settings_title">OrangeTV Settings</string>
     <string name="orange_settings_chat_font_size">Chat font size</string>
     <string name="orange_settings_chat_font_size_desc" />
+    <string name="orange_settings_landscape_chat_size">Landscape chat width</string>
+    <string name="orange_settings_landscape_chat_size_desc" />
+    <string name="orange_settings_forward_seek">Player forward seek</string>
+    <string name="orange_settings_rewind_seek">Player backward seek</string>
+    <string name="orange_settings_mini_player_size">MiniPlayer size</string>
+    <string name="orange_settings_vibrate_on_mention">Vibrate when mentioned</string>
+    <string name="orange_settings_vibrate_on_mention_desc" />
+    <string name="orange_settings_vibration_duration">Vibration duration</string>
 </resources>

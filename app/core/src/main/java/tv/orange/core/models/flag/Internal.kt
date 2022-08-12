@@ -18,6 +18,21 @@ class Internal {
         override fun toString(): String
     }
 
+    class IntegerRangeValue(
+        val minValue: Int,
+        val maxValue: Int,
+        var currentValue: Int,
+        val step: Int = 1
+    ) : ValueHolder {
+
+        override val value: Any
+            get() = currentValue
+
+
+        override val type: Type
+            get() = Type.INTEGER
+    }
+
     @Suppress("UNCHECKED_CAST")
     class ListValue<T : Variant>(private val variant: T) : ValueHolder {
         var currentVariant: Variant? = variant.getDefault()

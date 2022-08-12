@@ -22,7 +22,7 @@ public abstract class AbstractTwitchRecyclerViewHolder extends RecyclerView.View
     public void onBindDataItem(RecyclerAdapterItem item) {
         /* ... */
 
-        ChatHookProvider.get().onBindToViewHolder(this); // TODO: __INJECT_CODE
+        ChatHookProvider.get().onBindToViewHolder(this, item); // TODO: __INJECT_CODE
 
         throw new VirtualImpl();
     }

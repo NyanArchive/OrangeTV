@@ -49,6 +49,7 @@
     <string name="orange_bottom_navbar_position_default">По умолчанию</string>
     <string name="orange_bottom_navbar_position_top">Сверху</string>
     <string name="orange_bottom_navbar_position_hidden">Не отображается</string>
+    <string name="orange_settings_followed_full_cards">Показывать крупные превью отслеживаемых каналов</string>
     <string name="orange_settings_disable_hype_train">Отключить Хайповоз</string>
     <string name="orange_settings_hide_discover_tab">Скрыть вкладку «Поиск»</string>
     <string name="orange_restart_app">Перезапустить</string>

@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="orange_settings_dev_mode">Modo desarrollador</string>
+    <string name="orange_settings_bttv_emotes">Emoticonos de BTTV</string>
+    <string name="orange_settings_ffz_emotes">Emoticonos de FFZ</string>
+    <string name="orange_settings_stv_emotes">Emoticonos de 7TV</string>
+    <string name="orange_settings_ffz_badges">Insignias de FFZ</string>
+    <string name="orange_settings_stv_badges">Insignias de 7TV</string>
+    <string name="orange_settings_che_badges">Insignias de Homies</string>
+    <string name="orange_settings_cha_badges">Insignias de Chatterino</string>
+    <string name="orange_settings_stv_avatars">Avatares de 7TV</string>
+    <string name="orange_settings_chat_history">Historial del chat</string>
+    <string name="orange_settings_chat_history_desc">Cargar historial de mensajes al conectarse</string>
+    <string name="orange_unknown_emotes">Emotes desconocidos</string>
+    <string name="orange_bttv_global_emotes">Emotes Globales de BTTV</string>
+</resources>

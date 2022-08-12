@@ -83,7 +83,10 @@ public class ChatMessageFactory {
             spannableStringBuilder.append(emoteSpannable((EmoteToken) token, chatMessageInterface, eventDispatcher));
         }
 
-        throw new VirtualImpl();
+        /* ... */
+
+        SpannedString ret = new SpannedString(spannableStringBuilder);
+        return ChatHookProvider.get().fixDeletedMessage(ret, chatMessageInterface, eventDispatcher);
     }
 
     /* ... */

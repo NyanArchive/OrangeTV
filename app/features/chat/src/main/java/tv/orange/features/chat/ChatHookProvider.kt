@@ -39,6 +39,7 @@ import tv.orange.models.abc.EmotePackageSet
 import tv.orange.models.abc.Feature
 import tv.orange.models.data.emotes.Emote
 import tv.twitch.android.core.adapters.RecyclerAdapterItem
+import tv.twitch.android.core.mvp.viewdelegate.EventDispatcher
 import tv.twitch.android.core.user.TwitchAccountManager
 import tv.twitch.android.models.chat.MessageBadge
 import tv.twitch.android.models.chat.MessageToken
@@ -53,6 +54,7 @@ import tv.twitch.android.shared.chat.messagefactory.adapteritem.PrivateCalloutsM
 import tv.twitch.android.shared.chat.messagefactory.adapteritem.RaidMessageRecyclerItem
 import tv.twitch.android.shared.chat.messagefactory.adapteritem.SubGoalUserNoticeRecyclerItem
 import tv.twitch.android.shared.chat.messagefactory.adapteritem.UserNoticeRecyclerItem
+import tv.twitch.android.shared.chat.util.ChatItemClickEvent
 import tv.twitch.android.shared.chat.util.ChatUtil
 import tv.twitch.android.shared.chat.util.ClickableUsernameSpan
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerPresenter
@@ -626,5 +628,27 @@ class ChatHookProvider @Inject constructor(
                 duration = Flag.VIBRATION_DURATION.asIntRange().currentValue
             )
         }
+    }
+
+    fun fixDeletedMessage(
+        ret: SpannedString,
+        cmi: ChatMessageInterface,
+        eventDispatcher: EventDispatcher<ChatItemClickEvent>
+    ): SpannedString {
+        if (!cmi.isDeleted) {
+            return ret
+        }
+
+        val builder = SpannableStringBuilder(ret)
+        return SpannedString(
+            when (Flag.DELETED_MESSAGES.asVariant<DeletedMessages>()) {
+                DeletedMessages.Strikethrough -> createDeletedStrikethrough(builder)
+                DeletedMessages.Grey -> createDeletedGrey(builder)
+                DeletedMessages.Default -> "<${
+                    ResourceManager.get().getString("chat_message_deleted")
+                }>"
+                else -> createDeletedGrey(builder)
+            }
+        )
     }
 }

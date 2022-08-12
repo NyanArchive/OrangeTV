@@ -58,7 +58,56 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      return-object v0
  .end method
  
-@@ -5109,6 +5144,21 @@
+@@ -4876,48 +4911,6 @@
+ 
+     invoke-static {v12, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+ 
+-    .line 811
+-    invoke-interface/range {p1 .. p1}, Ltv/twitch/android/provider/chat/ChatMessageInterface;->isDeleted()Z
+-
+-    move-result v0
+-
+-    if-eqz v0, :cond_0
+-
+-    .line 812
+-    new-instance v0, Landroid/text/SpannedString;
+-
+-    new-instance v1, Ljava/lang/StringBuilder;
+-
+-    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+-
+-    const/16 v2, 0x3c
+-
+-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
+-
+-    iget-object v2, v6, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageFactory;->context:Landroid/content/ContextWrapper;
+-
+-    sget v3, Ltv/twitch/android/core/strings/R$string;->chat_message_deleted:I
+-
+-    invoke-virtual {v2, v3}, Landroid/content/ContextWrapper;->getString(I)Ljava/lang/String;
+-
+-    move-result-object v2
+-
+-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+-
+-    const/16 v2, 0x3e
+-
+-    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
+-
+-    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+-
+-    move-result-object v1
+-
+-    invoke-direct {v0, v1}, Landroid/text/SpannedString;-><init>(Ljava/lang/CharSequence;)V
+-
+-    return-object v0
+-
+-    .line 815
+-    :cond_0
+     new-instance v13, Landroid/text/SpannableStringBuilder;
+ 
+     invoke-direct {v13}, Landroid/text/SpannableStringBuilder;-><init>()V
+@@ -5109,6 +5102,21 @@
  
      .line 857
      :cond_7
@@ -80,7 +129,26 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      instance-of v1, v0, Ltv/twitch/android/models/chat/MessageToken$EmoticonToken;
  
      if-eqz v1, :cond_9
-@@ -5315,3 +5365,222 @@
+@@ -5271,6 +5279,18 @@
+ 
+     invoke-direct {v0, v13}, Landroid/text/SpannedString;-><init>(Ljava/lang/CharSequence;)V
+ 
++    invoke-static {}, Ltv/orange/features/chat/ChatHookProvider;->get()Ltv/orange/features/chat/ChatHookProvider;
++
++    move-result-object v1
++
++    move-object/from16 v2, p1
++
++    move-object/from16 v3, p11
++
++    invoke-virtual {v1, v0, v2, v3}, Ltv/orange/features/chat/ChatHookProvider;->fixDeletedMessage(Landroid/text/SpannedString;Ltv/twitch/android/provider/chat/ChatMessageInterface;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)Landroid/text/SpannedString;
++
++    move-result-object v0
++
+     return-object v0
+ .end method
+ 
+@@ -5315,3 +5335,222 @@
  
      return-void
  .end method

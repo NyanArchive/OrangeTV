@@ -633,7 +633,7 @@ class ChatHookProvider @Inject constructor(
     fun fixDeletedMessage(
         ret: SpannedString,
         cmi: ChatMessageInterface,
-        eventDispatcher: EventDispatcher<ChatItemClickEvent>
+        eventDispatcher: EventDispatcher<ChatItemClickEvent>?
     ): SpannedString {
         if (!cmi.isDeleted) {
             return ret

@@ -1,2 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="orange_settings_dev_mode">Режим розробника</string>
+    <string name="orange_settings_bttv_emotes">BTTV емоції</string>
+    <string name="orange_settings_ffz_emotes">FFZ емоції</string>
+    <string name="orange_settings_stv_emotes">7TV емоції</string>
+    <string name="orange_settings_ffz_badges">FFZ значки</string>
+    <string name="orange_settings_stv_badges">7TV значки</string>
+    <string name="orange_settings_che_badges">Homies значки</string>
+    <string name="orange_settings_cha_badges">Chatterino значки</string>
+    <string name="orange_settings_stv_avatars">7TV аватари</string>
+    <string name="orange_settings_chat_history">Історія чату</string>
+    <string name="orange_settings_chat_history_desc">Завантажувати історію повідомлень при підключенні</string>
+    <string name="orange_unknown_emotes">Невідомі емоції</string>
+    <string name="orange_bttv_global_emotes">Глобальні емоції BTTV</string>
+    <string name="orange_bttv_channel_emotes">Емоції каналу BTTV</string>
+    <string name="orange_ffz_global_emotes">Глобальні емоції FFZ</string>
+    <string name="orange_ffz_channel_emotes">Емоції каналу FFZ</string>
+    <string name="orange_stv_global_emotes">Глобальні емоції 7TV</string>
+    <string name="orange_stv_channel_emotes">Емоції каналу 7TV</string>
+    <string name="orange_settings_hide_bits_button">Сховати кнопку «Bits»</string>
+    <string name="orange_settings_disable_sticky_headers_ep">Вимкнути фіксацію імен (Панель смайлів)</string>
+    <string name="orange_settings_player_impl">Реалізація плеєра</string>
+    <string name="orange_player_impl_default">За замовчуванням</string>
+    <string name="orange_player_impl_core">TwitchCore</string>
+    <string name="orange_player_impl_exo">ExoPlayer</string>
+    <string name="orange_settings_deleted_messages">Стиль видалених повідомлень</string>
+    <string name="orange_deleted_messages_default">Стандартний</string>
+    <string name="orange_deleted_messages_mod">Мод</string>
+    <string name="orange_deleted_messages_strikethrough">Закреслений</string>
+    <string name="orange_deleted_messages_grey">Сірий</string>
+    <string name="orange_emotecard_ffz_channel">Емоції каналу FFZ</string>
+    <string name="orange_emotecard_bttv_channel">Емоції каналу BTTV</string>
+    <string name="orange_emotecard_stv_channel">Емоції каналу 7TV</string>
+    <string name="orange_emotecard_ffz_global">Глобальні емоції FFZ</string>
+    <string name="orange_emotecard_stv_global">Глобальні емоції 7TV</string>
+    <string name="orange_emotecard_bttv_global">Глобальні емоції BTTV</string>
+    <string name="orange_chat_settings_preferences_subtitle">OrangeTV</string>
+    <string name="orange_chat_settings_refresh">Оновити</string>
+    <string name="orange_timer_title">OrangeTV Таймер</string>
+    <string name="orange_timer_cancel">Скасувати</string>
+    <string name="orange_mod_logs">Переглянути Логи</string>
+    <string name="orange_seeker_header_text">Синхронізація відеозапису</string>
+    <string name="orange_settings_chat_timestamps">Відмітки часу (В чаті)</string>
+    <string name="orange_settings_hide_leaderboards">Приховати дошку лідерів</string>
+    <string name="orange_settings_disable_link_disclaimer">Сховати попередження про перехід на інший сайт</string>
+    <string name="orange_settings_disable_fast_bread">Вимкнути режим низької затримки</string>
+    <string name="orange_settings_bottom_navbar_position">Позиція панелі навігації</string>
+    <string name="orange_bottom_navbar_position_default">За замовчуванням</string>
+    <string name="orange_bottom_navbar_position_top">Вгорі</string>
+    <string name="orange_bottom_navbar_position_hidden">Прихований</string>
+    <string name="orange_settings_followed_full_cards">Збільшені прев\'ю етерів</string>
+    <string name="orange_settings_disable_hype_train">Сховати «Хайпотяг»</string>
+</resources>

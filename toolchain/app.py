@@ -2,6 +2,7 @@ import argparse
 import base64
 import json
 import os
+from datetime import datetime
 from pathlib import Path
 
 from pyaxmlparser import APK
@@ -167,8 +168,12 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     env = parse_env()
+    start = datetime.now()
     apk_fp = get_apk_filepath(args.file)
     print("Current APK: {}".format(apk_fp))
     apk = get_apk_desc(apk_fp)
 
     handle_args(args=args, env=env, apk=apk)
+
+    end = datetime.now()
+    print("Total: {}s".format((end - start).total_seconds()))

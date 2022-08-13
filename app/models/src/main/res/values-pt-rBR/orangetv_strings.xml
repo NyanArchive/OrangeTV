@@ -1,2 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="orange_settings_dev_mode">Modo desenvolvedor</string>
+    <string name="orange_settings_bttv_emotes">Emotes da BTTV</string>
+    <string name="orange_settings_ffz_emotes">Emotes da FFZ</string>
+    <string name="orange_settings_stv_emotes">Emotes da 7TV</string>
+    <string name="orange_settings_ffz_badges">Distintivos da FFZ</string>
+    <string name="orange_settings_stv_badges">Distintivos da 7TV</string>
+    <string name="orange_settings_che_badges">Distintivos da Homies</string>
+    <string name="orange_settings_cha_badges">Distintivos da Chatterino</string>
+    <string name="orange_settings_stv_avatars">Avatares da 7TV</string>
+    <string name="orange_settings_chat_history">Histórico do chat</string>
+    <string name="orange_settings_chat_history_desc">Carregar histórico de mensagens ao se conectar</string>
+    <string name="orange_unknown_emotes">Emotes desconhecidos</string>
+    <string name="orange_bttv_global_emotes">Emotes Globais da BTTV</string>
+    <string name="orange_bttv_channel_emotes">Emotes de Canal da BTTV</string>
+    <string name="orange_ffz_global_emotes">Emotes Globais da FFZ</string>
+    <string name="orange_ffz_channel_emotes">Emotes de Canal da FFZ</string>
+    <string name="orange_stv_global_emotes">Emotes Globais da 7TV</string>
+    <string name="orange_stv_channel_emotes">Emotes de Canal da 7TV</string>
+    <string name="orange_settings_hide_bits_button">Ocultar botão de bits</string>
+    <string name="orange_settings_disable_sticky_headers_ep">Desativar cabeçalhos fixos</string>
+    <string name="orange_settings_player_impl">Implementação do reprodutor</string>
+    <string name="orange_player_impl_default">Padrão</string>
+    <string name="orange_player_impl_core">TwitchCore</string>
+    <string name="orange_player_impl_exo">ExoPlayer</string>
+    <string name="orange_settings_deleted_messages">Mensagens excluídas</string>
+    <string name="orange_deleted_messages_default">Padrão</string>
+    <string name="orange_deleted_messages_mod">Mod</string>
+    <string name="orange_deleted_messages_strikethrough">Riscado</string>
+    <string name="orange_deleted_messages_grey">Cinza</string>
+    <string name="orange_emotecard_ffz_channel">Emote de Canal da FFZ</string>
+    <string name="orange_emotecard_bttv_channel">Emote de Canal da BTTV</string>
+    <string name="orange_emotecard_stv_channel">Emote de Canal da 7TV</string>
+    <string name="orange_emotecard_ffz_global">Emote Global da FFZ</string>
+    <string name="orange_emotecard_stv_global">Emote Global da 7TV</string>
+    <string name="orange_emotecard_bttv_global">Emote Global da BTTV</string>
+    <string name="orange_chat_settings_preferences_subtitle">OrangeTV</string>
+    <string name="orange_chat_settings_refresh">Atualizar</string>
+    <string name="orange_timer_cancel">Cancelar</string>
+    <string name="orange_mod_logs">Ver registros</string>
+    <string name="orange_seeker_header_text">Sincronização do VOD</string>
+    <string name="orange_settings_chat_timestamps">Marcas de Tempo</string>
+    <string name="orange_settings_hide_leaderboards">Ocultar leaderboards</string>
+    <string name="orange_settings_disable_link_disclaimer">Desativar aviso para links de navegador</string>
+    <string name="orange_settings_disable_fast_bread">Desativar baixa latência</string>
+    <string name="orange_settings_bottom_navbar_position">Posição da barra de navegação</string>
+    <string name="orange_bottom_navbar_position_default">Padrão</string>
+    <string name="orange_bottom_navbar_position_top">Acima</string>
+    <string name="orange_bottom_navbar_position_hidden">Oculto</string>
+</resources>

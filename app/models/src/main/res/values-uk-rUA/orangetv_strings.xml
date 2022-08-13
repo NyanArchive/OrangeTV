@@ -10,7 +10,7 @@
     <string name="orange_settings_cha_badges">Chatterino значки</string>
     <string name="orange_settings_stv_avatars">7TV аватари</string>
     <string name="orange_settings_chat_history">Історія чату</string>
-    <string name="orange_settings_chat_history_desc">Завантажувати історію повідомлень при підключенні</string>
+    <string name="orange_settings_chat_history_desc">Завантажувати історію повідомлень при вході у чат</string>
     <string name="orange_unknown_emotes">Невідомі емоції</string>
     <string name="orange_bttv_global_emotes">Глобальні емоції BTTV</string>
     <string name="orange_bttv_channel_emotes">Емоції каналу BTTV</string>
@@ -26,7 +26,7 @@
     <string name="orange_player_impl_exo">ExoPlayer</string>
     <string name="orange_settings_deleted_messages">Стиль видалених повідомлень</string>
     <string name="orange_deleted_messages_default">Стандартний</string>
-    <string name="orange_deleted_messages_mod">Мод</string>
+    <string name="orange_deleted_messages_mod">Клікабельний</string>
     <string name="orange_deleted_messages_strikethrough">Закреслений</string>
     <string name="orange_deleted_messages_grey">Сірий</string>
     <string name="orange_emotecard_ffz_channel">Емоції каналу FFZ</string>
@@ -42,13 +42,25 @@
     <string name="orange_mod_logs">Переглянути Логи</string>
     <string name="orange_seeker_header_text">Синхронізація відеозапису</string>
     <string name="orange_settings_chat_timestamps">Відмітки часу (В чаті)</string>
-    <string name="orange_settings_hide_leaderboards">Приховати дошку лідерів</string>
+    <string name="orange_settings_hide_leaderboards">Сховати дошку лідерів</string>
     <string name="orange_settings_disable_link_disclaimer">Сховати попередження про перехід на інший сайт</string>
     <string name="orange_settings_disable_fast_bread">Вимкнути режим низької затримки</string>
     <string name="orange_settings_bottom_navbar_position">Позиція панелі навігації</string>
     <string name="orange_bottom_navbar_position_default">За замовчуванням</string>
     <string name="orange_bottom_navbar_position_top">Вгорі</string>
-    <string name="orange_bottom_navbar_position_hidden">Прихований</string>
+    <string name="orange_bottom_navbar_position_hidden">Сховати</string>
     <string name="orange_settings_followed_full_cards">Збільшені прев\'ю етерів</string>
     <string name="orange_settings_disable_hype_train">Сховати «Хайпотяг»</string>
+    <string name="orange_settings_hide_discover_tab">Сховати вкладку «Пошук»</string>
+    <string name="orange_restart_app">Перезапуск</string>
+    <string name="orange_restart_app_title">Оновити та перезапустити додаток?</string>
+    <string name="orange_settings_title">Налаштування OrangeTV</string>
+    <string name="orange_settings_chat_font_size">Розмір шрифту у чаті</string>
+    <string name="orange_settings_landscape_chat_size">Ширина чату в повноекранному режимі</string>
+    <string name="orange_settings_forward_seek">Перемотка вперед на</string>
+    <string name="orange_settings_rewind_seek">Перемотка назад на</string>
+    <string name="orange_settings_mini_player_size">Розмір мініплеєра</string>
+    <string name="orange_settings_vibrate_on_mention">Вібрувати при згадці</string>
+    <string name="orange_settings_vibration_duration">Тривалість вібрації</string>
+    <string name="orange_settings_hide_top_chat_panel_vods">Сховати верхню панель чату у відеозаписах</string>
 </resources>

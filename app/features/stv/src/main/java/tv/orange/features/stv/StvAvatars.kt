@@ -43,6 +43,8 @@ class StvAvatars @Inject constructor(
         return profileImageUrl
     }
 
+    fun initialize() {}
+
     override fun onAllComponentDestroyed() {
         Logger.debug("called")
         clear()
@@ -70,6 +72,6 @@ class StvAvatars @Inject constructor(
     override fun onConnectedToChannel(channelId: Int) {}
     override fun onConnectingToChannel(channelId: Int) {}
 
-    override fun onDestroyFeature() = onAllComponentDestroyed()
+    override fun onDestroyFeature() {}
     override fun onCreateFeature() {}
 }

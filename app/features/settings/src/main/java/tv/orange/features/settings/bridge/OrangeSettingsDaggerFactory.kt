@@ -3,7 +3,7 @@ package tv.orange.features.settings.bridge
 import androidx.fragment.app.FragmentActivity
 import dagger.android.AndroidInjector
 import dagger.internal.MapBuilder
-import tv.orange.core.compat.ClassCompat
+import tv.orange.core.compat.ClassCompat.getPrivateField
 import tv.orange.features.settings.OrangeSettings
 import tv.orange.features.settings.bridge.fragment.OrangeSettingsFragment
 import tv.twitch.android.app.consumer.dagger.DaggerAppComponent
@@ -21,23 +21,19 @@ class OrangeSettingsDaggerFactory @Inject constructor() {
         )
     }
 
-    private fun newInstance(settingsActivitySubcomponentImpl: DaggerAppComponent.SettingsActivitySubcomponentImpl): Provider<AndroidInjector.Factory<*>> {
+    private fun newInstance(subcomponentImpl: DaggerAppComponent.SettingsActivitySubcomponentImpl): Provider<AndroidInjector.Factory<*>> {
         return Provider<AndroidInjector.Factory<*>> {
-            val fragmentActivityProvider = ClassCompat.getProvider<FragmentActivity>(
-                settingsActivitySubcomponentImpl,
-                "provideFragmentActivityProvider"
-            )
             OrangeSettingsFragmentSubcomponentFactory(
-                fragmentActivityProvider,
-                ClassCompat.getProvider(
-                    settingsActivitySubcomponentImpl,
-                    "provideMenuAdapterBinderProvider"
-                ),
-                ClassCompat.getProvider(
-                    settingsActivitySubcomponentImpl,
-                    "provideSettingsTrackerProvider"
+                subcomponentImpl.getPrivateField("provideFragmentActivityProvider"),
+                subcomponentImpl.getPrivateField("provideMenuAdapterBinderProvider"),
+                subcomponentImpl.getPrivateField("provideSettingsTrackerProvider")
+            ) {
+                OrangeSettings.get().getOrangeSettingsController(
+                    subcomponentImpl.getPrivateField<Provider<FragmentActivity>>(
+                        "provideFragmentActivityProvider"
+                    ).get()
                 )
-            ) { OrangeSettings.get().getOrangeSettingsController(fragmentActivityProvider.get()) }
+            }
         }
     }
 }

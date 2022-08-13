@@ -41,7 +41,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      .line 742
      invoke-interface/range {p1 .. p1}, Ltv/twitch/android/provider/chat/ChatMessageInterface;->isSystemMessage()Z
  
-@@ -3163,6 +3188,16 @@
+@@ -3163,6 +3188,18 @@
  
      move-result-object v0
  
@@ -53,12 +53,14 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
 +    move-result-object v1
 +
-+    invoke-virtual {v1, v3, v0, v2}, Ltv/orange/features/chat/ChatHookProvider;->setShouldHighlightBackground(Ltv/twitch/android/shared/chat/messagefactory/ChatMessageFactory;Ltv/orange/features/chat/bridge/IMessageRecyclerItem;Ltv/twitch/android/provider/chat/ChatMessageInterface;)V
++    iget-object v4, v3, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageFactory;->twitchAccountManager:Ltv/twitch/android/core/user/TwitchAccountManager;
++
++    invoke-virtual {v1, v3, v0, v2, v4}, Ltv/orange/features/chat/ChatHookProvider;->setShouldHighlightBackground(Ltv/twitch/android/shared/chat/messagefactory/ChatMessageFactory;Ltv/orange/features/chat/bridge/IMessageRecyclerItem;Ltv/twitch/android/provider/chat/ChatMessageInterface;Ltv/twitch/android/core/user/TwitchAccountManager;)V
 +
      return-object v0
  .end method
  
-@@ -4876,48 +4911,6 @@
+@@ -4876,48 +4913,6 @@
  
      invoke-static {v12, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
  
@@ -107,7 +109,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      new-instance v13, Landroid/text/SpannableStringBuilder;
  
      invoke-direct {v13}, Landroid/text/SpannableStringBuilder;-><init>()V
-@@ -5109,6 +5102,21 @@
+@@ -5109,6 +5104,21 @@
  
      .line 857
      :cond_7
@@ -129,7 +131,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      instance-of v1, v0, Ltv/twitch/android/models/chat/MessageToken$EmoticonToken;
  
      if-eqz v1, :cond_9
-@@ -5271,6 +5279,18 @@
+@@ -5271,6 +5281,18 @@
  
      invoke-direct {v0, v13}, Landroid/text/SpannedString;-><init>(Ljava/lang/CharSequence;)V
  
@@ -148,7 +150,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      return-object v0
  .end method
  
-@@ -5315,3 +5335,222 @@
+@@ -5315,3 +5337,222 @@
  
      return-void
  .end method

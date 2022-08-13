@@ -18,9 +18,10 @@ import tv.orange.features.badges.bridge.OrangeMessageBadge;
 import tv.orange.features.chat.ChatHookProvider;
 import tv.orange.features.chat.bridge.BackgroundUrlDrawable;
 import tv.orange.features.emotes.bridge.EmoteToken;
-import tv.orange.models.exception.VirtualImpl;
 import tv.orange.models.abc.EmoteCardModelWrapper;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.core.mvp.viewdelegate.EventDispatcher;
+import tv.twitch.android.core.user.TwitchAccountManager;
 import tv.twitch.android.models.chat.MessageBadge;
 import tv.twitch.android.models.chat.MessageToken;
 import tv.twitch.android.models.emotes.EmoteModel;
@@ -40,6 +41,7 @@ import tv.twitch.chat.ChatMessageInfo;
 
 public class ChatMessageFactory {
     private ContextWrapper context;
+    private TwitchAccountManager twitchAccountManager;
 
     /* ... */
 
@@ -114,7 +116,6 @@ public class ChatMessageFactory {
         return createUserNoticeRecyclerItem(message, message.nameColorARGB, channelId, null, null, null, header, null, Collections.emptySet());
     }
 
-
     public final ChatAdapterItem createChatMessageItem(ChatMessageInterface chatMessageInterface, boolean z, boolean z2, int i, int i2, IClickableUsernameSpanListener iClickableUsernameSpanListener, TwitchUrlSpanClickListener twitchUrlSpanClickListener, WebViewSource webViewSource, String str, boolean z3, ChatFiltersSettings chatFiltersSettings, EventDispatcher<ChatItemClickEvent> eventDispatcher, Set<EmoteModel.WithOwner> set) {
         /* ... */
 
@@ -122,7 +123,7 @@ public class ChatMessageFactory {
 
         /* ... */
 
-        ChatHookProvider.get().setShouldHighlightBackground(this, ret, chatMessageInterface); // TODO: __INJECT_CODE
+        ChatHookProvider.get().setShouldHighlightBackground(this, ret, chatMessageInterface, twitchAccountManager); // TODO: __INJECT_CODE
 
         throw new VirtualImpl();
     }

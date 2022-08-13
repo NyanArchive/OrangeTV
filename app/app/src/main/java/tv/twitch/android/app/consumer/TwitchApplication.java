@@ -4,12 +4,13 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 
-import tv.orange.bridge.di.Bridge;
-import tv.orange.core.Core;
 import tv.orange.bridge.TwitchComponentProviderImpl;
+import tv.orange.bridge.di.BridgeImpl;
+import tv.orange.core.Core;
+import tv.orange.models.abc.Bridge;
 import tv.orange.models.abc.BridgeProvider;
-import tv.orange.models.abc.TwitchComponentProvider;
 import tv.orange.models.abc.TCPProvider;
+import tv.orange.models.abc.TwitchComponentProvider;
 import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.app.consumer.dagger.AppComponent;
 import tv.twitch.android.app.consumer.dagger.DaggerAppComponent;
@@ -37,10 +38,10 @@ public class TwitchApplication extends Application implements TCPProvider, Bridg
     private void initOranges(AppComponent appComponent) { // TODO: __INJECT_METHOD
         twitchComponentProvider = TwitchComponentProviderImpl.create();
         ((TwitchComponentProviderImpl) twitchComponentProvider).initialize((DaggerAppComponent) appComponent);
-        orangeBridge = Bridge.create();
-        orangeBridge.initialize(this);
+        orangeBridge = BridgeImpl.create();
+        ((BridgeImpl) orangeBridge).initialize(this);
         Core.setBridge(orangeBridge);
-        orangeBridge.initializeFeatures();
+        ((BridgeImpl) orangeBridge).initializeFeatures();
     }
 
     protected AppComponent createDaggerComponent() {

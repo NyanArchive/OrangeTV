@@ -15,9 +15,7 @@ import kotlin.system.exitProcess
 
 
 class Core @Inject constructor(val context: Context) :
-    LifecycleController,
-    LifecycleAware,
-    Feature {
+    LifecycleController, LifecycleAware, Feature {
     private val modules = mutableSetOf<LifecycleAware>()
 
     companion object {
@@ -33,7 +31,6 @@ class Core @Inject constructor(val context: Context) :
 
         @JvmStatic
         fun <T : Feature> getFeature(clazz: Class<T>): T {
-            Logger.debug("request: $clazz")
             return getBridge().getFeature(clazz)
         }
 
@@ -101,6 +98,8 @@ class Core @Inject constructor(val context: Context) :
             }
         }
     }
+
+    fun initialize() {}
 
     override fun registerLifecycleListeners(vararg listeners: LifecycleAware) {
         listeners.forEach { listener ->

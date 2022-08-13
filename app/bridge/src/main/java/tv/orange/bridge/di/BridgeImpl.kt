@@ -20,12 +20,13 @@ import tv.orange.features.timer.SleepTimer
 import tv.orange.features.ui.UI
 import tv.orange.features.usersearch.UserSearch
 import tv.orange.features.vodsync.VodSync
+import tv.orange.models.abc.Bridge
 import tv.orange.models.abc.Feature
 import java.util.concurrent.ConcurrentHashMap
 import javax.inject.Provider
 import kotlin.collections.set
 
-class Bridge private constructor() : tv.orange.models.abc.Bridge {
+class BridgeImpl private constructor() : Bridge {
     private lateinit var component: BridgeComponent
 
     private val lock = Any()
@@ -89,15 +90,14 @@ class Bridge private constructor() : tv.orange.models.abc.Bridge {
 
     fun initializeFeatures() {
         getFeature(PreferenceManager::class.java).initialize()
-        getFeature(Core::class.java)
-        getFeature(ChatHookProvider::class.java)
-        getFeature(StvAvatars::class.java)
+        getFeature(ChatHookProvider::class.java).initialize()
+        getFeature(StvAvatars::class.java).initialize()
     }
 
     companion object {
         @JvmStatic
-        fun create(): Bridge {
-            return Bridge()
+        fun create(): BridgeImpl {
+            return BridgeImpl()
         }
     }
 }

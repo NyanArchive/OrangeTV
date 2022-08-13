@@ -5,9 +5,7 @@ import dagger.BindsInstance
 import dagger.Component
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import tv.orange.core.Core
 import tv.orange.core.CoreHook
-import tv.orange.core.PreferenceManager
 import tv.orange.core.di.module.CoreModule
 import tv.orange.core.di.module.NetworkModule
 import tv.orange.core.di.scope.AppScope

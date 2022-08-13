@@ -14,21 +14,6 @@ class PreferenceManager @Inject constructor(
     private val preferences = context.getSharedPreferences(ORANGE_PREFERENCES, Context.MODE_PRIVATE)
     private val listeners = mutableSetOf<FlagListener>()
 
-    fun getChommentSeekerValue(id: String): Int {
-        return localChommentsSeekerOpt[id] ?: 0
-    }
-
-    fun saveChommentSeekerValue(id: String, value: Int) {
-        localChommentsSeekerOpt[id] = value
-    }
-
-    fun registerFlagListeners(vararg l: FlagListener) {
-        l.forEach { listener ->
-            Logger.debug("register: $l")
-            listeners.add(listener)
-        }
-    }
-
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         key?.let { value ->
             Flag.findByKey(value)?.let { flag ->
@@ -38,9 +23,28 @@ class PreferenceManager @Inject constructor(
         }
     }
 
+    override fun onDestroyFeature() {
+        throw IllegalStateException("PreferenceManager cannot be destroyed")
+    }
+
+    override fun onCreateFeature() {}
+
+    fun getChommentSeekerValue(id: String): Int {
+        return chommentSeekerCache[id] ?: 0
+    }
+
+    fun saveChommentSeekerValue(id: String, value: Int) {
+        chommentSeekerCache[id] = value
+    }
+
+    fun registerFlagListeners(vararg l: FlagListener) {
+        l.forEach { listener ->
+            listeners.add(listener)
+        }
+    }
+
     fun unregisterFlagListeners(vararg l: FlagListener) {
         l.forEach { listener ->
-            Logger.debug("unregister: $l")
             listeners.remove(listener)
         }
     }
@@ -55,12 +59,6 @@ class PreferenceManager @Inject constructor(
 
     fun writeString(flag: Flag, value: String) {
         preferences.edit().putString(flag.prefKey, value).apply()
-    }
-
-    fun writeBoolean(prefKey: String, value: Boolean) {
-        Flag.findByKey(prefKey)?.let { flag ->
-            writeBoolean(flag, value)
-        } ?: throw IllegalStateException(prefKey)
     }
 
     private fun readBoolean(flag: Flag): BooleanValue {
@@ -92,10 +90,10 @@ class PreferenceManager @Inject constructor(
     companion object {
         private const val ORANGE_PREFERENCES = "orange"
 
-        private val localChommentsSeekerOpt = mutableMapOf<String, Int>()
-
         @JvmStatic
         fun get() = Core.getFeature(PreferenceManager::class.java)
+
+        private val chommentSeekerCache = mutableMapOf<String, Int>()
     }
 
     fun initialize() {
@@ -105,10 +103,4 @@ class PreferenceManager @Inject constructor(
 
         preferences.registerOnSharedPreferenceChangeListener(this)
     }
-
-    override fun onDestroyFeature() {
-        throw IllegalStateException("PreferenceManager cannot be destroyed")
-    }
-
-    override fun onCreateFeature() {}
 }

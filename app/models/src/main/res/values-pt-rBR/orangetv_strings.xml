@@ -37,6 +37,7 @@
     <string name="orange_emotecard_bttv_global">Emote Global da BTTV</string>
     <string name="orange_chat_settings_preferences_subtitle">OrangeTV</string>
     <string name="orange_chat_settings_refresh">Atualizar</string>
+    <string name="orange_timer_title">Temporizador de OrangeTV</string>
     <string name="orange_timer_cancel">Cancelar</string>
     <string name="orange_mod_logs">Ver registros</string>
     <string name="orange_seeker_header_text">Sincronização do VOD</string>

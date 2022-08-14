@@ -41,7 +41,18 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      .line 742
      invoke-interface/range {p1 .. p1}, Ltv/twitch/android/provider/chat/ChatMessageInterface;->isSystemMessage()Z
  
-@@ -3163,6 +3188,18 @@
+@@ -2773,6 +2798,10 @@
+ .method private final usernameSpannable(Ltv/twitch/android/provider/chat/ChatMessageInterface;ILtv/twitch/android/shared/chat/chatsource/IClickableUsernameSpanListener;ZLjava/lang/String;Ljava/lang/String;)Ljava/lang/CharSequence;
+     .locals 12
+ 
++    invoke-static {p2}, Ltv/orange/features/chat/ChatHookProvider;->fixUsernameSpanColor(I)I
++
++    move-result p2
++
+     if-eqz p4, :cond_0
+ 
+     const/4 v0, 0x0
+@@ -3163,6 +3192,18 @@
  
      move-result-object v0
  
@@ -60,7 +71,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      return-object v0
  .end method
  
-@@ -4876,48 +4913,6 @@
+@@ -4876,48 +4917,6 @@
  
      invoke-static {v12, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
  
@@ -109,7 +120,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      new-instance v13, Landroid/text/SpannableStringBuilder;
  
      invoke-direct {v13}, Landroid/text/SpannableStringBuilder;-><init>()V
-@@ -5109,6 +5104,21 @@
+@@ -5109,6 +5108,21 @@
  
      .line 857
      :cond_7
@@ -131,7 +142,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      instance-of v1, v0, Ltv/twitch/android/models/chat/MessageToken$EmoticonToken;
  
      if-eqz v1, :cond_9
-@@ -5271,6 +5281,18 @@
+@@ -5271,6 +5285,18 @@
  
      invoke-direct {v0, v13}, Landroid/text/SpannedString;-><init>(Ljava/lang/CharSequence;)V
  
@@ -150,7 +161,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      return-object v0
  .end method
  
-@@ -5315,3 +5337,222 @@
+@@ -5315,3 +5341,222 @@
  
      return-void
  .end method

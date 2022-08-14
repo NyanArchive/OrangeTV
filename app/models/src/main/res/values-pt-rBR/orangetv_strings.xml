@@ -49,4 +49,18 @@
     <string name="orange_bottom_navbar_position_default">Padrão</string>
     <string name="orange_bottom_navbar_position_top">Acima</string>
     <string name="orange_bottom_navbar_position_hidden">Oculto</string>
+    <string name="orange_settings_followed_full_cards">Mostrar thumbnails grandes em Seguindo</string>
+    <string name="orange_settings_disable_hype_train">Desativar Hype Train </string>
+    <string name="orange_settings_hide_discover_tab">Ocultar a aba Descubra</string>
+    <string name="orange_restart_app">Reiniciar</string>
+    <string name="orange_restart_app_title">Atualizar e reiniciar o app?</string>
+    <string name="orange_settings_title">Configurações de OrangeTV</string>
+    <string name="orange_settings_chat_font_size">Tamanho da fonte do chat</string>
+    <string name="orange_settings_landscape_chat_size">Largura do chat no modo paisagem</string>
+    <string name="orange_settings_forward_seek">Avançar no reprodutor</string>
+    <string name="orange_settings_rewind_seek">Retroceder no reprodutor </string>
+    <string name="orange_settings_mini_player_size">Tamanho do minirreprodutor</string>
+    <string name="orange_settings_vibrate_on_mention">Vibrar quando mencionado</string>
+    <string name="orange_settings_vibration_duration">Duração da vibração</string>
+    <string name="orange_settings_hide_top_chat_panel_vods">Ocultar o painel acima do chat em VODs</string>
 </resources>

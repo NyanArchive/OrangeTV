@@ -5,7 +5,10 @@ import android.graphics.Color
 import android.text.*
 import android.text.style.ForegroundColorSpan
 import android.text.style.StrikethroughSpan
+import android.util.LruCache
 import android.util.TypedValue
+import okhttp3.internal.toHexString
+import tv.orange.core.Logger
 import tv.twitch.android.models.chat.MessageToken
 import tv.twitch.android.provider.chat.ChatMessageInterface
 import tv.twitch.android.shared.chat.util.ClickableUsernameSpan
@@ -16,6 +19,49 @@ import java.util.*
 
 object ChatUtil {
     private const val TIMESTAMP_DATE_FORMAT = "HH:mm"
+
+    private const val MIN_DARK_THEME_NICKNAME_HSV_VALUE = .3f
+    private const val FIXED_DARK_THEME_NICKNAME_HSV_VALUE = .4f
+    private const val MIN_WHITE_THEME_NICKNAME_HSV_VALUE = .9f
+    private const val FIXED_WHITE_THEME_NICKNAME_HSV_VALUE = .8f
+
+    private const val CACHE_SIZE = 500
+
+    private val darkThemeCache: LruCache<Int, Int> = object : LruCache<Int, Int>(CACHE_SIZE) {
+        override fun create(color: Int): Int {
+            val hsv = FloatArray(3)
+            Color.colorToHSV(color, hsv)
+            if (hsv[2] >= MIN_DARK_THEME_NICKNAME_HSV_VALUE) {
+                return color
+            }
+            hsv[2] = FIXED_DARK_THEME_NICKNAME_HSV_VALUE
+            val res = Color.HSVToColor(hsv)
+            Logger.debug("org: ${color.toHexString()}, fixed: ${res.toHexString()}")
+            return res
+        }
+    }
+
+    private val lightThemeCache: LruCache<Int, Int> = object : LruCache<Int, Int>(CACHE_SIZE) {
+        override fun create(color: Int): Int {
+            val hsv = FloatArray(3)
+            Color.colorToHSV(color, hsv)
+            if (hsv[2] <= MIN_WHITE_THEME_NICKNAME_HSV_VALUE) {
+                return color
+            }
+            hsv[2] = FIXED_WHITE_THEME_NICKNAME_HSV_VALUE
+            val res = Color.HSVToColor(hsv)
+            Logger.debug("org: ${color.toHexString()}, fixed: ${res.toHexString()}")
+            return res
+        }
+    }
+
+    fun fixUsernameColor(color: Int, darkTheme: Boolean): Int {
+        return if (darkTheme) {
+            darkThemeCache[color]
+        } else {
+            lightThemeCache[color]
+        }
+    }
 
     fun createDeletedGrey(msg: Spanned?): Spanned? {
         if (msg.isNullOrBlank()) {

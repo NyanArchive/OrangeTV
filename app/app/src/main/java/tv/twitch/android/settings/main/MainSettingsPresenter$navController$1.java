@@ -29,5 +29,12 @@ public class MainSettingsPresenter$navController$1 {
         throw new VirtualImpl();
     }
 
+    public void updateSettingModels() {
+        /* ... */
+
+        String string9 = OrangeSettings.getOrangeSettingsString(); // TODO: __REPLACE_CODE
+
+        throw new VirtualImpl();
+    }
     /* ... */
 }

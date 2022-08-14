@@ -68,6 +68,14 @@ public class ChatMessageFactory {
         throw new VirtualImpl();
     }
 
+    private CharSequence usernameSpannable(ChatMessageInterface chatMessageInterface, int color, IClickableUsernameSpanListener iClickableUsernameSpanListener, boolean z, String str, String str2) {
+        color = ChatHookProvider.fixUsernameSpanColor(color); // TODO: __HOOK_PARAM
+
+        /* ... */
+
+        throw new VirtualImpl();
+    }
+
     private final CharSequence badgeSpannable(MessageBadge messageBadge, int i) {
         if (messageBadge instanceof OrangeMessageBadge) { // TODO: __INJECT_CODE
             return badgeSpannable((OrangeMessageBadge) messageBadge);

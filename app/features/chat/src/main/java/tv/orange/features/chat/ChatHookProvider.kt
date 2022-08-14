@@ -17,6 +17,7 @@ import io.reactivex.subjects.PublishSubject
 import tv.orange.core.Core
 import tv.orange.core.Logger
 import tv.orange.core.PreferenceManager
+import tv.orange.core.PreferenceManager.Companion.isDarkTheme
 import tv.orange.core.ResourceManager
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
@@ -30,6 +31,7 @@ import tv.orange.core.models.lifecycle.LifecycleAware
 import tv.orange.features.badges.bridge.OrangeMessageBadge
 import tv.orange.features.badges.component.BadgeProvider
 import tv.orange.features.chat.bridge.*
+import tv.orange.features.chat.util.ChatUtil
 import tv.orange.features.chat.util.ChatUtil.createDeletedGrey
 import tv.orange.features.chat.util.ChatUtil.createDeletedStrikethrough
 import tv.orange.features.chat.util.ChatUtil.createTimestampSpanFromChatMessageSpan
@@ -59,7 +61,6 @@ import tv.twitch.android.shared.chat.messagefactory.adapteritem.RaidMessageRecyc
 import tv.twitch.android.shared.chat.messagefactory.adapteritem.SubGoalUserNoticeRecyclerItem
 import tv.twitch.android.shared.chat.messagefactory.adapteritem.UserNoticeRecyclerItem
 import tv.twitch.android.shared.chat.util.ChatItemClickEvent
-import tv.twitch.android.shared.chat.util.ChatUtil
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerPresenter
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerViewDelegate
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteHeaderUiModel
@@ -262,7 +263,7 @@ class ChatHookProvider @Inject constructor(
         hasModAccess: Boolean
     ): Spanned? {
         return when (Flag.DELETED_MESSAGES.asVariant<DeletedMessages>()) {
-            DeletedMessages.Mod -> ChatUtil.Companion!!.createDeletedSpanFromChatMessageSpan(
+            DeletedMessages.Mod -> tv.twitch.android.shared.chat.util.ChatUtil.Companion!!.createDeletedSpanFromChatMessageSpan(
                 messageId,
                 message,
                 context,
@@ -271,7 +272,7 @@ class ChatHookProvider @Inject constructor(
             )
             DeletedMessages.Strikethrough -> createDeletedStrikethrough(message)
             DeletedMessages.Grey -> createDeletedGrey(message)
-            DeletedMessages.Default -> ChatUtil.Companion!!.createDeletedSpanFromChatMessageSpan(
+            DeletedMessages.Default -> tv.twitch.android.shared.chat.util.ChatUtil.Companion!!.createDeletedSpanFromChatMessageSpan(
                 messageId,
                 message,
                 context,
@@ -381,6 +382,11 @@ class ChatHookProvider @Inject constructor(
 
             return sizeDp
         }
+
+        @JvmStatic
+        fun fixUsernameSpanColor(color: Int): Int {
+            return ChatUtil.fixUsernameColor(color, isDarkTheme)
+        }
     }
 
     override fun onDestroyFeature() {
@@ -485,7 +491,6 @@ class ChatHookProvider @Inject constructor(
         viewHolder: RecyclerView.ViewHolder,
         item: RecyclerAdapterItem
     ) {
-        Logger.debug("bind: $viewHolder")
         when (viewHolder) {
             is MessageRecyclerItem.ChatMessageViewHolder -> {
                 maybeChangeMessageFontSize(viewHolder.messageTextView)

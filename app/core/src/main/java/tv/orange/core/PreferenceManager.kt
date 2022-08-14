@@ -11,10 +11,18 @@ import javax.inject.Inject
 class PreferenceManager @Inject constructor(
     context: Context
 ) : SharedPreferences.OnSharedPreferenceChangeListener, Feature {
-    private val preferences = context.getSharedPreferences(ORANGE_PREFERENCES, Context.MODE_PRIVATE)
+    private val twitch = android.preference.PreferenceManager.getDefaultSharedPreferences(context)
+    private val orange = context.getSharedPreferences(ORANGE_PREFERENCES, Context.MODE_PRIVATE)
     private val listeners = mutableSetOf<FlagListener>()
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        if (sharedPreferences == twitch) {
+            if (key == TWITCH_DARK_THEME_KEY) {
+                isDarkTheme = twitch.getBoolean(TWITCH_DARK_THEME_KEY, false)
+            }
+            return
+        }
+
         key?.let { value ->
             Flag.findByKey(value)?.let { flag ->
                 readSettingFromPref(flag)
@@ -50,29 +58,29 @@ class PreferenceManager @Inject constructor(
     }
 
     fun writeInt(flag: Flag, value: Int) {
-        preferences.edit().putInt(flag.prefKey, value).apply()
+        orange.edit().putInt(flag.prefKey, value).apply()
     }
 
     fun writeBoolean(flag: Flag, value: Boolean) {
-        preferences.edit().putBoolean(flag.prefKey, value).apply()
+        orange.edit().putBoolean(flag.prefKey, value).apply()
     }
 
     fun writeString(flag: Flag, value: String) {
-        preferences.edit().putString(flag.prefKey, value).apply()
+        orange.edit().putString(flag.prefKey, value).apply()
     }
 
     private fun readBoolean(flag: Flag): BooleanValue {
-        val value = preferences.getBoolean(flag.prefKey, Flag.getBoolean(flag.default))
+        val value = orange.getBoolean(flag.prefKey, Flag.getBoolean(flag.default))
         return BooleanValue(value)
     }
 
     private fun readInt(flag: Flag): IntegerValue {
-        val value = preferences.getInt(flag.prefKey, Flag.getInt(flag.default))
+        val value = orange.getInt(flag.prefKey, Flag.getInt(flag.default))
         return IntegerValue(value)
     }
 
     private fun readString(flag: Flag): StringValue {
-        val value = preferences.getString(flag.prefKey, Flag.getString(flag.default))
+        val value = orange.getString(flag.prefKey, Flag.getString(flag.default))
         return StringValue(value)
     }
 
@@ -88,7 +96,11 @@ class PreferenceManager @Inject constructor(
     }
 
     companion object {
+        private const val TWITCH_DARK_THEME_KEY = "dark_theme_enabled"
+
         private const val ORANGE_PREFERENCES = "orange"
+
+        var isDarkTheme = false
 
         @JvmStatic
         fun get() = Core.getFeature(PreferenceManager::class.java)
@@ -101,6 +113,9 @@ class PreferenceManager @Inject constructor(
             readSettingFromPref(setting)
         }
 
-        preferences.registerOnSharedPreferenceChangeListener(this)
+        orange.registerOnSharedPreferenceChangeListener(this)
+        twitch.registerOnSharedPreferenceChangeListener(this)
+
+        isDarkTheme = twitch.getBoolean(TWITCH_DARK_THEME_KEY, false)
     }
 }

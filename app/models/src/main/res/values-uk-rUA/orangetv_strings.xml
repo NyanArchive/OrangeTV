@@ -19,7 +19,7 @@
     <string name="orange_stv_global_emotes">Глобальні емоції 7TV</string>
     <string name="orange_stv_channel_emotes">Емоції каналу 7TV</string>
     <string name="orange_settings_hide_bits_button">Сховати кнопку «Bits»</string>
-    <string name="orange_settings_disable_sticky_headers_ep">Вимкнути фіксацію імен (Панель смайлів)</string>
+    <string name="orange_settings_disable_sticky_headers_ep">Вимкнути фіксацію імен (Панель емоцій)</string>
     <string name="orange_settings_player_impl">Реалізація плеєра</string>
     <string name="orange_player_impl_default">За замовчуванням</string>
     <string name="orange_player_impl_core">TwitchCore</string>

@@ -1,2 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="orange_settings_dev_mode">โหมดผู้พัฒนา</string>
+    <string name="orange_settings_bttv_emotes">อีโมติคอน BTTV</string>
+    <string name="orange_settings_ffz_emotes">อีโมติคอน FFZ</string>
+    <string name="orange_settings_stv_emotes">อีโมติคอน 7TV</string>
+    <string name="orange_settings_ffz_badges">เครื่องหมาย FFZ</string>
+    <string name="orange_settings_stv_badges">เครื่องหมาย7TV</string>
+    <string name="orange_settings_che_badges">สัญลักษณ์ Homies</string>
+    <string name="orange_settings_cha_badges">สัญลักษณ์ Chatterino</string>
+    <string name="orange_settings_stv_avatars">สัญลักษณ์ 7TV</string>
+    <string name="orange_settings_chat_history">ประวัติการแชท</string>
+    <string name="orange_settings_chat_history_desc">โหลดประวัติข้อความในการเชื่อมต่อ</string>
+    <string name="orange_unknown_emotes">อีโมติคอนที่ไม่รู้จัก</string>
+    <string name="orange_bttv_global_emotes">อีโมติคอน BTTV แบบทั่วไป</string>
+    <string name="orange_bttv_channel_emotes">อีโมติคอนช่อง BTTV </string>
+    <string name="orange_ffz_global_emotes">อีโมติคอน FFZ แบบทั่วไป</string>
+    <string name="orange_ffz_channel_emotes">อีโมติคอนช่อง FFZ</string>
+    <string name="orange_stv_global_emotes">อีโมติคอน 7TV แบบทั่วไป</string>
+    <string name="orange_stv_channel_emotes">อีโมติคอนช่อง 7TV</string>
+</resources>

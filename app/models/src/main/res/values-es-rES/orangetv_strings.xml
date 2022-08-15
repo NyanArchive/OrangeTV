@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="orange_settings_dev_mode">Modo desarrollador</string>
-    <string name="orange_settings_bttv_emotes">Emoticonos de BTTV</string>
-    <string name="orange_settings_ffz_emotes">Emoticonos de FFZ</string>
-    <string name="orange_settings_stv_emotes">Emoticonos de 7TV</string>
+    <string name="orange_settings_dev_mode">Modo de desarrollador</string>
+    <string name="orange_settings_bttv_emotes">Emotes de BTTV</string>
+    <string name="orange_settings_ffz_emotes">Emotes de FFZ</string>
+    <string name="orange_settings_stv_emotes">Emotes de 7TV</string>
     <string name="orange_settings_ffz_badges">Insignias de FFZ</string>
     <string name="orange_settings_stv_badges">Insignias de 7TV</string>
     <string name="orange_settings_che_badges">Insignias de Homies</string>
@@ -12,12 +12,12 @@
     <string name="orange_settings_chat_history">Historial del chat</string>
     <string name="orange_settings_chat_history_desc">Cargar historial de mensajes al conectarse</string>
     <string name="orange_unknown_emotes">Emotes desconocidos</string>
-    <string name="orange_bttv_global_emotes">Emoticonos Globales de BTTV</string>
-    <string name="orange_bttv_channel_emotes">Emoticonos de BTTV del Canal</string>
-    <string name="orange_ffz_global_emotes">Emoticonos Globales de FFZ</string>
-    <string name="orange_ffz_channel_emotes">Emoticonos de FFZ del Canal</string>
-    <string name="orange_stv_global_emotes">Emoticonos Globales de 7TV</string>
-    <string name="orange_stv_channel_emotes">Emoticonos de 7TV del canal</string>
+    <string name="orange_bttv_global_emotes">Emotes Globales de BTTV</string>
+    <string name="orange_bttv_channel_emotes">Emotes de BTTV del Canal</string>
+    <string name="orange_ffz_global_emotes">Emotes Globales de FFZ</string>
+    <string name="orange_ffz_channel_emotes">Emotes de FFZ del Canal</string>
+    <string name="orange_stv_global_emotes">Emotes Globales de 7TV</string>
+    <string name="orange_stv_channel_emotes">Emotes de 7TV del canal</string>
     <string name="orange_settings_hide_bits_button">Ocultar botón de bits</string>
     <string name="orange_settings_disable_sticky_headers_ep">Desactivar cabeceras fijas</string>
     <string name="orange_settings_player_impl">Implementación del reproductor</string>
@@ -29,14 +29,14 @@
     <string name="orange_deleted_messages_mod">Mod</string>
     <string name="orange_deleted_messages_strikethrough">Tachado</string>
     <string name="orange_deleted_messages_grey">Gris</string>
-    <string name="orange_emotecard_ffz_channel">Emoticon de FFZ del Canal</string>
-    <string name="orange_emotecard_bttv_channel">Emoticon de BTTV del Canal</string>
-    <string name="orange_emotecard_stv_channel">Emoticon de 7TV del canal</string>
-    <string name="orange_emotecard_ffz_global">Emoticon Global de FFZ</string>
-    <string name="orange_emotecard_stv_global">Emoticon Global de 7TV</string>
-    <string name="orange_emotecard_bttv_global">Emoticon Global de BTTV</string>
+    <string name="orange_emotecard_ffz_channel">Emote de FFZ del Canal</string>
+    <string name="orange_emotecard_bttv_channel">Emote de BTTV del Canal</string>
+    <string name="orange_emotecard_stv_channel">Emote de 7TV del canal</string>
+    <string name="orange_emotecard_ffz_global">Emote Global de FFZ</string>
+    <string name="orange_emotecard_stv_global">Emote Global de 7TV</string>
+    <string name="orange_emotecard_bttv_global">Emote Global de BTTV</string>
     <string name="orange_chat_settings_preferences_subtitle">OrangeTV</string>
-    <string name="orange_chat_settings_refresh">Refrescar</string>
+    <string name="orange_chat_settings_refresh">Actualizar</string>
     <string name="orange_timer_title">Temporizador de OrangeTV</string>
     <string name="orange_timer_cancel">Cancelar</string>
     <string name="orange_mod_logs">Ver registros</string>
@@ -57,7 +57,7 @@
     <string name="orange_settings_title">Ajustes de OrangeTV</string>
     <string name="orange_settings_chat_font_size">Tamaño de fuente del chat</string>
     <string name="orange_settings_landscape_chat_size">Ancho del chat en horizontal</string>
-    <string name="orange_settings_forward_seek">Búsqueda hacia adelante del reproductor</string>
+    <string name="orange_settings_forward_seek">Búsqueda hacia delante del reproductor</string>
     <string name="orange_settings_rewind_seek">Búsqueda hacia atrás del reproductor</string>
     <string name="orange_settings_mini_player_size">Tamaño del Mini Reproductor</string>
     <string name="orange_settings_vibrate_on_mention">Vibrar cuando seas mencionado</string>

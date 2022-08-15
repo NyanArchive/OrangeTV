@@ -35,7 +35,7 @@
     <string name="orange_emotecard_ffz_global">FFZ Global Emotes</string>
     <string name="orange_emotecard_stv_global">7TV Global Emotes</string>
     <string name="orange_emotecard_bttv_global">BTTV Global Emotes</string>
-    <string name="orange_chat_settings_preferences_subtitle">OrangeTV Chat Einstellungen</string>
+    <string name="orange_chat_settings_preferences_subtitle">OrangeTV</string>
     <string name="orange_chat_settings_refresh">Aktualisieren</string>
     <string name="orange_timer_title">Timer</string>
     <string name="orange_timer_cancel">Timer abbrechen</string>
@@ -45,15 +45,15 @@
     <string name="orange_settings_hide_leaderboards">Ranglisten ausblenden</string>
     <string name="orange_settings_disable_link_disclaimer">Hinweisfenster bei Browserlinks deaktivieren</string>
     <string name="orange_settings_disable_fast_bread">Low Latency Modus deaktivieren</string>
-    <string name="orange_settings_bottom_navbar_position">Postion der Navigationsleiste</string>
+    <string name="orange_settings_bottom_navbar_position">Position der Navigationsleiste</string>
     <string name="orange_bottom_navbar_position_default">Standard</string>
     <string name="orange_bottom_navbar_position_top">Oben</string>
     <string name="orange_bottom_navbar_position_hidden">Ausgeblendet</string>
     <string name="orange_settings_followed_full_cards">Zeige große Streamvorschau bei Following</string>
-    <string name="orange_settings_disable_hype_train">HypeTrain ausblenden</string>
+    <string name="orange_settings_disable_hype_train">Hype Train ausblenden</string>
     <string name="orange_settings_hide_discover_tab">Entdecken Tab ausblenden</string>
-    <string name="orange_restart_app">App neu starten</string>
-    <string name="orange_restart_app_title">Aktualisieren und die App neu starten?</string>
+    <string name="orange_restart_app">Restart</string>
+    <string name="orange_restart_app_title">Neustarten zum übernehmen?</string>
     <string name="orange_settings_title">OrangeTV Einstellungen</string>
     <string name="orange_settings_chat_font_size">Chat Schriftgröße</string>
     <string name="orange_settings_landscape_chat_size">Chatbreite im Querformat</string>
@@ -61,6 +61,6 @@
     <string name="orange_settings_rewind_seek">Videos zurückspulen Dauer</string>
     <string name="orange_settings_mini_player_size">Größe des Miniplayers</string>
     <string name="orange_settings_vibrate_on_mention">Vibrieren bei Erwähnung im Chat</string>
-    <string name="orange_settings_vibration_duration">Vibrationsdauer</string>
+    <string name="orange_settings_vibration_duration">Dauer der Vibration</string>
     <string name="orange_settings_hide_top_chat_panel_vods">Chat Kopfzeile bei Videos ausblenden</string>
 </resources>

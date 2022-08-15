@@ -51,7 +51,7 @@
     <string name="orange_bottom_navbar_position_hidden">Сховати</string>
     <string name="orange_settings_followed_full_cards">Збільшені прев\'ю етерів</string>
     <string name="orange_settings_disable_hype_train">Сховати «Хайпотяг»</string>
-    <string name="orange_settings_hide_discover_tab">Сховати вкладку «Пошук»</string>
+    <string name="orange_settings_hide_discover_tab">Сховати вкладку «Discover»</string>
     <string name="orange_restart_app">Перезапуск</string>
     <string name="orange_restart_app_title">Оновити та перезапустити додаток?</string>
     <string name="orange_settings_title">Налаштування OrangeTV</string>

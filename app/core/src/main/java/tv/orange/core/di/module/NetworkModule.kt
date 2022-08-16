@@ -7,13 +7,19 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import tv.orange.core.BuildConfig.USER_AGENT_VERSION
+import tv.orange.core.BuildConfig.USER_AGENT
+import tv.orange.core.Core
 import tv.orange.core.di.scope.AppScope
 import tv.orange.core.factory.StringConverterFactory
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 @Module
 class NetworkModule {
+    private val buildNumber: Int by lazy {
+        Core.get().buildConfig.number
+    }
+
     @AppScope
     @Provides
     fun provideOkHttpClient(): OkHttpClient {
@@ -23,8 +29,14 @@ class NetworkModule {
             .addInterceptor { chain ->
                 chain.proceed(
                     chain.request().newBuilder()
-                        .header("User-Agent", USER_AGENT_VERSION)
-                        .build()
+                        .header(
+                            "User-Agent",
+                            String.format(
+                                Locale.ENGLISH,
+                                USER_AGENT,
+                                buildNumber
+                            )
+                        ).build()
                 )
             }
             .retryOnConnectionFailure(true).build()

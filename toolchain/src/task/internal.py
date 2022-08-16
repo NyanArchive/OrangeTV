@@ -1,3 +1,4 @@
+import json
 import shutil
 import subprocess
 import zipfile
@@ -129,6 +130,29 @@ class InjectAppDexs(BaseTask):
             last_index += 1
 
         writer.close()
+
+    def cancel(self):
+        pass
+
+
+class IncreaseBuildNumber(BaseTask):
+    __NAME__ = "IncreaseBuildNumber"
+    BUILD_FILENAME = "build.json"
+
+    def run(self, env: Env):
+        if not env.build.exists():
+            print("%s not found" % self.BUILD_FILENAME)
+            return
+
+        with open(env.build, "r", encoding="utf-8") as fp:
+            js = json.load(fp)
+
+        js["number"] += 1
+
+        with open(env.build, "w", encoding="utf-8") as fp:
+            json.dump(js, fp)
+
+        shutil.copy(env.build.as_posix(), self._apk.decompile_dir.joinpath("assets").joinpath(self.BUILD_FILENAME))
 
     def cancel(self):
         pass

@@ -53,6 +53,7 @@ def parse_env():
                zipalign=Path(wd, "bin", "zipalign.exe"),
                app_dir=Path(wd).parent.joinpath("app"),
                lib_dir=Path(wd).parent.joinpath("lib"),
+               build=Path(wd, "etc").joinpath("build.json"),
                d2j=Path(wd, "bin/dex2jar"))
 
 
@@ -95,6 +96,7 @@ def create_decompile_tasks(tasks):
 def create_recompile_tasks(tasks):
     tasks.append(internal.CopySo(apk))
     tasks.append(internal.InjectRes(apk))
+    tasks.append(internal.IncreaseBuildNumber(apk))
     tasks.append(apktool.RecompileApk(apk))
     tasks.append(internal.BuildAppDex(apk))
     tasks.append(internal.InjectAppDexs(apk))

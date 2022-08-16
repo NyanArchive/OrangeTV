@@ -64,7 +64,6 @@ import tv.twitch.android.shared.chat.messagefactory.adapteritem.RaidMessageRecyc
 import tv.twitch.android.shared.chat.messagefactory.adapteritem.SubGoalUserNoticeRecyclerItem
 import tv.twitch.android.shared.chat.messagefactory.adapteritem.UserNoticeRecyclerItem
 import tv.twitch.android.shared.chat.util.ChatItemClickEvent
-import tv.twitch.android.shared.chat.util.ClickableUsernameSpan
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerPresenter
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerViewDelegate
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteHeaderUiModel
@@ -550,29 +549,24 @@ class ChatHookProvider @Inject constructor(
         )
     }
 
-    fun bindPronoun(holder: MessageRecyclerItem.ChatMessageViewHolder): PronounSetter? {
+    fun bindPronoun(
+        holder: MessageRecyclerItem.ChatMessageViewHolder,
+        item: RecyclerAdapterItem
+    ): PronounSetter? {
         if (!Flag.PRONOUNS.asBoolean()) {
             return null
         }
 
-        val setter = PronounSetter(holder)
-        val spanned = setter.getSpanned() ?: run {
+        if (item !is MessageRecyclerItem) {
             return null
         }
 
-        val userName: String =
-            spanned.getSpans(0, spanned.length, ClickableUsernameSpan::class.java).let {
-                if (it.isNotEmpty()) {
-                    it[0].getPrivateField<String>("username")
-                } else {
-                    null
-                }
-            } ?: run {
-                return null
-            }
+        val userName =
+            item.getPrivateField<String?>("username") ?: return null // FIXME: just add getter, LOL?
+        val setter = PronounSetter(holder)
 
-        pronounProvider.getPronoun(userName) { pronounText: String ->
-            setter.setPronoun(pronounText)
+        pronounProvider.getPronounText(userName) { pronounText: String ->
+            setter.setText(pronounText)
         }
 
         return setter

@@ -36,7 +36,7 @@ class PronounProvider @Inject constructor(
         )
     }
 
-    fun getPronoun(userName: String, function: (String) -> Unit) {
+    fun getPronounText(userName: String, function: (String) -> Unit) {
         cache.get(userName)?.let { opt ->
             opt.ifPresent { }
             if (opt.isPresent) {

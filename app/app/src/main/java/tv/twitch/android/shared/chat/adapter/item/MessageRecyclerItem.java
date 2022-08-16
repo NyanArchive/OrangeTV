@@ -111,7 +111,7 @@ public class MessageRecyclerItem implements IMessageRecyclerItem { // TODO: __IM
             if (pronounSetter != null) {
                 pronounSetter.destroy();
             }
-            pronounSetter = ChatHookProvider.get().bindPronoun(this);
+            pronounSetter = ChatHookProvider.get().bindPronoun(this, item);
         }
 
         @Override

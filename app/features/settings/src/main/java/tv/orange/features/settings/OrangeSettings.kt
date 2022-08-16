@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentActivity
 import dagger.android.AndroidInjector
 import dagger.internal.MapBuilder
 import tv.orange.core.Core
+import tv.orange.core.ResourceManager
 import tv.orange.features.settings.bridge.OrangeSettingsDaggerFactory
 import tv.orange.features.settings.bridge.fragment.OrangeSettingsFragment
 import tv.orange.features.settings.component.SettingsController
@@ -21,6 +22,11 @@ class OrangeSettings @Inject constructor(
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(OrangeSettings::class.java)
+
+        @JvmStatic
+        fun getOrangeSettingsString(): String {
+            return ResourceManager.get().getString("orange_settings")
+        }
     }
 
     fun getOrangeSettingsController(activity: FragmentActivity): SettingsController {

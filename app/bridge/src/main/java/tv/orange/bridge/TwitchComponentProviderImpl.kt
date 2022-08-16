@@ -1,6 +1,6 @@
 package tv.orange.bridge
 
-import tv.orange.core.compat.ClassCompat
+import tv.orange.core.compat.ClassCompat.getPrivateField
 import tv.orange.models.abc.TwitchComponentProvider
 import tv.twitch.android.app.consumer.dagger.DaggerAppComponent
 import tv.twitch.android.network.graphql.GraphQlService
@@ -24,11 +24,11 @@ class TwitchComponentProviderImpl private constructor() : TwitchComponentProvide
     fun initialize(appComponent: DaggerAppComponent) {
         register(
             GraphQlService::class,
-            ClassCompat.getProvider(appComponent, "graphQlServiceProvider")
+            appComponent.getPrivateField("graphQlServiceProvider")
         )
         register(
             ChatMessageFactory.Factory::class,
-            ClassCompat.getProvider(appComponent, "factoryProvider2")
+            appComponent.getPrivateField("factoryProvider2")
         )
     }
 

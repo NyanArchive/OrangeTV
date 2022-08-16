@@ -6,19 +6,35 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.*
+import org.json.JSONObject
 import tv.orange.core.models.lifecycle.LifecycleAware
 import tv.orange.core.models.lifecycle.LifecycleController
 import tv.orange.models.abc.Bridge
 import tv.orange.models.abc.Feature
+import tv.orange.models.abc.OrangeBuildConfig
 import javax.inject.Inject
 import kotlin.system.exitProcess
 
 
 class Core @Inject constructor(val context: Context) :
-    LifecycleController,
-    LifecycleAware,
-    Feature {
+    LifecycleController, LifecycleAware, Feature {
     private val modules = mutableSetOf<LifecycleAware>()
+
+    val buildConfig: OrangeBuildConfig by lazy {
+        return@lazy try {
+            with(JSONObject(rawBuildString)) {
+                OrangeBuildConfig(number = getInt("number"))
+            }
+        } catch (e: Throwable) {
+            e.printStackTrace()
+            OrangeBuildConfig()
+        }
+    }
+
+    private val rawBuildString: String
+        get() = context.assets.open("build.json").bufferedReader().use {
+            it.readText()
+        }
 
     companion object {
         private lateinit var bridge: Bridge
@@ -33,7 +49,6 @@ class Core @Inject constructor(val context: Context) :
 
         @JvmStatic
         fun <T : Feature> getFeature(clazz: Class<T>): T {
-            Logger.debug("request: $clazz")
             return getBridge().getFeature(clazz)
         }
 
@@ -101,6 +116,8 @@ class Core @Inject constructor(val context: Context) :
             }
         }
     }
+
+    fun initialize() {}
 
     override fun registerLifecycleListeners(vararg listeners: LifecycleAware) {
         listeners.forEach { listener ->
@@ -171,5 +188,7 @@ class Core @Inject constructor(val context: Context) :
     }
 
     override fun onDestroyFeature() {}
-    override fun onCreateFeature() {}
+    override fun onCreateFeature() {
+        Logger.debug("OrangeTV:${buildConfig.number}")
+    }
 }

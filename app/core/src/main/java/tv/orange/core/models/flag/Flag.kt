@@ -59,6 +59,11 @@ enum class Flag(
         "orange_settings_vibrate_on_mention",
         BooleanValue()
     ),
+    HIDE_TOP_CHAT_PANEL_VODS(
+        "hide_top_chat_panel_vods",
+        "orange_settings_hide_top_chat_panel_vods",
+        BooleanValue()
+    ),
     BTTV_EMOTES(
         "bttv_emotes",
         "orange_settings_bttv_emotes",

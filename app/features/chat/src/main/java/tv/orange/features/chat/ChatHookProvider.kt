@@ -2,9 +2,9 @@ package tv.orange.features.chat
 
 import android.content.Context
 import android.graphics.Color
-import android.text.*
-import android.text.style.ForegroundColorSpan
-import android.text.style.StrikethroughSpan
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.text.SpannedString
 import android.util.TypedValue
 import android.widget.ImageView
 import android.widget.TextView
@@ -17,8 +17,8 @@ import io.reactivex.subjects.PublishSubject
 import tv.orange.core.Core
 import tv.orange.core.Logger
 import tv.orange.core.PreferenceManager
+import tv.orange.core.PreferenceManager.Companion.isDarkTheme
 import tv.orange.core.ResourceManager
-import tv.orange.core.compat.ClassCompat.getPrivateField
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.models.flag.Flag.Companion.asIntRange
@@ -31,6 +31,12 @@ import tv.orange.core.models.lifecycle.LifecycleAware
 import tv.orange.features.badges.bridge.OrangeMessageBadge
 import tv.orange.features.badges.component.BadgeProvider
 import tv.orange.features.chat.bridge.*
+import tv.orange.features.chat.util.ChatUtil
+import tv.orange.features.chat.util.ChatUtil.createDeletedGrey
+import tv.orange.features.chat.util.ChatUtil.createDeletedStrikethrough
+import tv.orange.features.chat.util.ChatUtil.createTimestampSpanFromChatMessageSpan
+import tv.orange.features.chat.util.ChatUtil.isUserMentioned
+import tv.orange.features.chat.util.ChatUtil.spToPx
 import tv.orange.features.chat.view.ViewFactory
 import tv.orange.features.emotes.bridge.EmoteToken
 import tv.orange.features.emotes.component.EmoteProvider
@@ -39,6 +45,7 @@ import tv.orange.models.abc.EmotePackageSet
 import tv.orange.models.abc.Feature
 import tv.orange.models.data.emotes.Emote
 import tv.twitch.android.core.adapters.RecyclerAdapterItem
+import tv.twitch.android.core.mvp.viewdelegate.EventDispatcher
 import tv.twitch.android.core.user.TwitchAccountManager
 import tv.twitch.android.models.chat.MessageBadge
 import tv.twitch.android.models.chat.MessageToken
@@ -53,8 +60,7 @@ import tv.twitch.android.shared.chat.messagefactory.adapteritem.PrivateCalloutsM
 import tv.twitch.android.shared.chat.messagefactory.adapteritem.RaidMessageRecyclerItem
 import tv.twitch.android.shared.chat.messagefactory.adapteritem.SubGoalUserNoticeRecyclerItem
 import tv.twitch.android.shared.chat.messagefactory.adapteritem.UserNoticeRecyclerItem
-import tv.twitch.android.shared.chat.util.ChatUtil
-import tv.twitch.android.shared.chat.util.ClickableUsernameSpan
+import tv.twitch.android.shared.chat.util.ChatItemClickEvent
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerPresenter
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerViewDelegate
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteHeaderUiModel
@@ -62,9 +68,6 @@ import tv.twitch.android.shared.emotes.emotepicker.models.EmotePickerSection
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiModel
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiSet
 import tv.twitch.android.shared.emotes.models.EmoteMessageInput
-import tv.twitch.android.shared.ui.elements.span.CenteredImageSpan
-import tv.twitch.android.shared.ui.elements.span.UrlDrawable
-import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -73,7 +76,7 @@ class ChatHookProvider @Inject constructor(
     val context: Context,
     val emoteProvider: EmoteProvider,
     val badgeProvider: BadgeProvider,
-    val viewFactory: ViewFactory
+    val viewFactory: ViewFactory,
 ) : LifecycleAware, FlagListener, Feature {
     private val currentChannelSubject = BehaviorSubject.create<Int>()
 
@@ -81,6 +84,8 @@ class ChatHookProvider @Inject constructor(
     override fun onAccountLogout() {}
     override fun onFirstActivityStarted() {}
     override fun onConnectedToChannel(channelId: Int) {}
+
+    fun initialize() {}
 
     fun maybeAddTimestamp(
         message: Spanned,
@@ -92,10 +97,7 @@ class ChatHookProvider @Inject constructor(
         }
 
         return if (userId > 0) {
-            createTimestampSpanFromChatMessageSpan(
-                message,
-                Date(messageTimestamp.toLong() * 1000)
-            )
+            createTimestampSpanFromChatMessageSpan(message, Date(messageTimestamp.toLong() * 1000))
         } else {
             message
         }
@@ -261,7 +263,7 @@ class ChatHookProvider @Inject constructor(
         hasModAccess: Boolean
     ): Spanned? {
         return when (Flag.DELETED_MESSAGES.asVariant<DeletedMessages>()) {
-            DeletedMessages.Mod -> ChatUtil.Companion!!.createDeletedSpanFromChatMessageSpan(
+            DeletedMessages.Mod -> tv.twitch.android.shared.chat.util.ChatUtil.Companion!!.createDeletedSpanFromChatMessageSpan(
                 messageId,
                 message,
                 context,
@@ -270,7 +272,7 @@ class ChatHookProvider @Inject constructor(
             )
             DeletedMessages.Strikethrough -> createDeletedStrikethrough(message)
             DeletedMessages.Grey -> createDeletedGrey(message)
-            DeletedMessages.Default -> ChatUtil.Companion!!.createDeletedSpanFromChatMessageSpan(
+            DeletedMessages.Default -> tv.twitch.android.shared.chat.util.ChatUtil.Companion!!.createDeletedSpanFromChatMessageSpan(
                 messageId,
                 message,
                 context,
@@ -297,8 +299,6 @@ class ChatHookProvider @Inject constructor(
     }
 
     companion object {
-        private const val TIMESTAMP_DATE_FORMAT = "HH:mm"
-
         var fontSizeSp: Int = 0
         var fontSizePx: Float = 0F
         var fontSizeScaleFactory: Float = 0F
@@ -370,109 +370,6 @@ class ChatHookProvider @Inject constructor(
             )
         }
 
-        private fun createDeletedGrey(msg: Spanned?): Spanned? {
-            if (msg.isNullOrBlank()) {
-                return msg
-            }
-
-            msg.getSpans(0, msg.length, ForegroundColorSpan::class.java)?.forEach {
-                if (it.foregroundColor == Color.GRAY) {
-                    return msg
-                }
-            }
-
-            val message = SpannableStringBuilder(msg)
-            message.getSpans(0, msg.length, ForegroundColorSpan::class.java)?.forEach {
-                message.removeSpan(it)
-            }
-
-            message.getSpans(0, msg.length, CenteredImageSpan::class.java)?.forEach {
-                val drawable = it.imageDrawable
-                if (drawable is UrlDrawable) {
-                    drawable.setGrey(true)
-                }
-            }
-            message.setSpan(
-                ForegroundColorSpan(Color.GRAY),
-                0,
-                message.length,
-                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-            )
-            return SpannedString.valueOf(message)
-        }
-
-        private fun createDeletedStrikethrough(msg: Spanned?): Spanned? {
-            if (msg.isNullOrBlank()) {
-                return msg
-            }
-
-            msg.getSpans(0, msg.length, StrikethroughSpan::class.java)?.let { spans ->
-                if (spans.isNotEmpty()) {
-                    return msg
-                }
-            }
-
-            val message = SpannableStringBuilder(msg).apply {
-                setSpan(
-                    StrikethroughSpan(),
-                    getMessageStartPos(msg),
-                    length,
-                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                )
-            }
-            return SpannedString.valueOf(message)
-        }
-
-        private fun getMessageStartPos(msg: Spanned): Int {
-            var usernameEndPos = 0
-            val spans = msg.getSpans(0, msg.length, ClickableUsernameSpan::class.java)
-            if (spans.isEmpty()) {
-                return usernameEndPos
-            }
-            usernameEndPos = msg.getSpanEnd(spans[0])
-            val pos = usernameEndPos + 2
-            if (pos < msg.length) {
-                if (TextUtils.equals(msg.subSequence(usernameEndPos, pos), ": ")) {
-                    usernameEndPos = pos
-                }
-            }
-            return usernameEndPos
-        }
-
-        private fun formatTimestamp(msg: Spanned, timestamp: CharSequence): Spanned =
-            SpannableString.valueOf(SpannableStringBuilder(timestamp).append(" ").append(msg))
-
-        private fun createTimestampSpanFromChatMessageSpan(msg: Spanned, date: Date): Spanned =
-            formatTimestamp(
-                msg = msg,
-                timestamp = SimpleDateFormat(TIMESTAMP_DATE_FORMAT, Locale.ENGLISH).format(date)
-            )
-
-        private fun isUserMentioned(
-            chatMessageInterface: ChatMessageInterface,
-            username: String
-        ): Boolean {
-            if (username.isBlank()) {
-                return false
-            }
-
-            return chatMessageInterface.tokens.any { token ->
-                if (token is MessageToken.MentionToken) {
-                    token.userName?.let { username.equals(it, ignoreCase = true) } ?: false
-                } else {
-                    false
-                }
-            }
-        }
-
-        private fun spToPx(context: Context, sp: Int): Float {
-            return TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_SP,
-                sp.toFloat(),
-                context.resources.displayMetrics
-            )
-        }
-
         private fun calcFontSizeScale(fontSizeSp: Int): Float {
             return fontSizeSp.div(FontSize.SP13.value.removeSuffix("sp").toFloat())
         }
@@ -484,6 +381,11 @@ class ChatHookProvider @Inject constructor(
             }
 
             return sizeDp
+        }
+
+        @JvmStatic
+        fun fixUsernameSpanColor(color: Int): Int {
+            return ChatUtil.fixUsernameColor(color, isDarkTheme)
         }
     }
 
@@ -541,19 +443,21 @@ class ChatHookProvider @Inject constructor(
     fun setShouldHighlightBackground(
         factory: ChatMessageFactory,
         message: IMessageRecyclerItem,
-        chatMessageInterface: ChatMessageInterface
+        chatMessageInterface: ChatMessageInterface,
+        twitchAccountManager: TwitchAccountManager
     ) {
-        val isMention = isUserMentioned(
-            chatMessageInterface,
-            factory.getPrivateField<TwitchAccountManager>("twitchAccountManager").username
-        )
-
-        if (!isMention) {
+        if (!isUserMentioned(chatMessageInterface, twitchAccountManager.username)) {
             return
         }
 
         message.setHighlightColor(Color.argb(100, 255, 0, 0))
-        tryVibrate(factory.getPrivateField("context"))
+        if (Flag.VIBRATE_ON_MENTION.asBoolean()) {
+            Core.vibrate(
+                context = context,
+                delay = 200,
+                duration = Flag.VIBRATION_DURATION.asIntRange().currentValue
+            )
+        }
     }
 
     private fun maybeChangeMessageFontSize(textView: TextView) {
@@ -587,7 +491,6 @@ class ChatHookProvider @Inject constructor(
         viewHolder: RecyclerView.ViewHolder,
         item: RecyclerAdapterItem
     ) {
-        Logger.debug("bind: $viewHolder")
         when (viewHolder) {
             is MessageRecyclerItem.ChatMessageViewHolder -> {
                 maybeChangeMessageFontSize(viewHolder.messageTextView)
@@ -618,13 +521,25 @@ class ChatHookProvider @Inject constructor(
         }
     }
 
-    private fun tryVibrate(context: Context) {
-        if (Flag.VIBRATE_ON_MENTION.asBoolean()) {
-            Core.vibrate(
-                context = context,
-                delay = 200,
-                duration = Flag.VIBRATION_DURATION.asIntRange().currentValue
-            )
+    fun fixDeletedMessage(
+        ret: SpannedString,
+        cmi: ChatMessageInterface,
+        eventDispatcher: EventDispatcher<ChatItemClickEvent>?
+    ): SpannedString {
+        if (!cmi.isDeleted) {
+            return ret
         }
+
+        val builder = SpannableStringBuilder(ret)
+        return SpannedString(
+            when (Flag.DELETED_MESSAGES.asVariant<DeletedMessages>()) {
+                DeletedMessages.Strikethrough -> createDeletedStrikethrough(builder)
+                DeletedMessages.Grey -> createDeletedGrey(builder)
+                DeletedMessages.Default -> "<${
+                    ResourceManager.get().getString("chat_message_deleted")
+                }>"
+                else -> createDeletedGrey(builder)
+            }
+        )
     }
 }

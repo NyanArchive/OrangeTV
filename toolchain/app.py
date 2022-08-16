@@ -2,6 +2,7 @@ import argparse
 import base64
 import json
 import os
+from datetime import datetime
 from pathlib import Path
 
 from pyaxmlparser import APK
@@ -52,6 +53,7 @@ def parse_env():
                zipalign=Path(wd, "bin", "zipalign.exe"),
                app_dir=Path(wd).parent.joinpath("app"),
                lib_dir=Path(wd).parent.joinpath("lib"),
+               build=Path(wd, "etc").joinpath("build.json"),
                d2j=Path(wd, "bin/dex2jar"))
 
 
@@ -94,6 +96,7 @@ def create_decompile_tasks(tasks):
 def create_recompile_tasks(tasks):
     tasks.append(internal.CopySo(apk))
     tasks.append(internal.InjectRes(apk))
+    tasks.append(internal.IncreaseBuildNumber(apk))
     tasks.append(apktool.RecompileApk(apk))
     tasks.append(internal.BuildAppDex(apk))
     tasks.append(internal.InjectAppDexs(apk))
@@ -167,8 +170,12 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     env = parse_env()
+    start = datetime.now()
     apk_fp = get_apk_filepath(args.file)
     print("Current APK: {}".format(apk_fp))
     apk = get_apk_desc(apk_fp)
 
     handle_args(args=args, env=env, apk=apk)
+
+    end = datetime.now()
+    print("Total: {}s".format((end - start).total_seconds()))

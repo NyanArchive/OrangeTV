@@ -18,9 +18,10 @@ import tv.orange.features.badges.bridge.OrangeMessageBadge;
 import tv.orange.features.chat.ChatHookProvider;
 import tv.orange.features.chat.bridge.BackgroundUrlDrawable;
 import tv.orange.features.emotes.bridge.EmoteToken;
-import tv.orange.models.exception.VirtualImpl;
 import tv.orange.models.abc.EmoteCardModelWrapper;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.core.mvp.viewdelegate.EventDispatcher;
+import tv.twitch.android.core.user.TwitchAccountManager;
 import tv.twitch.android.models.chat.MessageBadge;
 import tv.twitch.android.models.chat.MessageToken;
 import tv.twitch.android.models.emotes.EmoteModel;
@@ -40,6 +41,7 @@ import tv.twitch.chat.ChatMessageInfo;
 
 public class ChatMessageFactory {
     private ContextWrapper context;
+    private TwitchAccountManager twitchAccountManager;
 
     /* ... */
 
@@ -66,6 +68,14 @@ public class ChatMessageFactory {
         throw new VirtualImpl();
     }
 
+    private CharSequence usernameSpannable(ChatMessageInterface chatMessageInterface, int color, IClickableUsernameSpanListener iClickableUsernameSpanListener, boolean z, String str, String str2) {
+        color = ChatHookProvider.fixUsernameSpanColor(color); // TODO: __HOOK_PARAM
+
+        /* ... */
+
+        throw new VirtualImpl();
+    }
+
     private final CharSequence badgeSpannable(MessageBadge messageBadge, int i) {
         if (messageBadge instanceof OrangeMessageBadge) { // TODO: __INJECT_CODE
             return badgeSpannable((OrangeMessageBadge) messageBadge);
@@ -83,7 +93,10 @@ public class ChatMessageFactory {
             spannableStringBuilder.append(emoteSpannable((EmoteToken) token, chatMessageInterface, eventDispatcher));
         }
 
-        throw new VirtualImpl();
+        /* ... */
+
+        SpannedString ret = new SpannedString(spannableStringBuilder);
+        return ChatHookProvider.get().fixDeletedMessage(ret, chatMessageInterface, eventDispatcher);
     }
 
     /* ... */
@@ -111,7 +124,6 @@ public class ChatMessageFactory {
         return createUserNoticeRecyclerItem(message, message.nameColorARGB, channelId, null, null, null, header, null, Collections.emptySet());
     }
 
-
     public final ChatAdapterItem createChatMessageItem(ChatMessageInterface chatMessageInterface, boolean z, boolean z2, int i, int i2, IClickableUsernameSpanListener iClickableUsernameSpanListener, TwitchUrlSpanClickListener twitchUrlSpanClickListener, WebViewSource webViewSource, String str, boolean z3, ChatFiltersSettings chatFiltersSettings, EventDispatcher<ChatItemClickEvent> eventDispatcher, Set<EmoteModel.WithOwner> set) {
         /* ... */
 
@@ -119,7 +131,7 @@ public class ChatMessageFactory {
 
         /* ... */
 
-        ChatHookProvider.get().setShouldHighlightBackground(this, ret, chatMessageInterface); // TODO: __INJECT_CODE
+        ChatHookProvider.get().setShouldHighlightBackground(this, ret, chatMessageInterface, twitchAccountManager); // TODO: __INJECT_CODE
 
         throw new VirtualImpl();
     }

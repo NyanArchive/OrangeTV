@@ -59,6 +59,10 @@ class UI @Inject constructor() : Feature {
 
         @JvmStatic
         fun hookMiniPlayerWidth(org: Int): Int = (miniPlayerSizeScale * org).toInt()
+
+        @JvmStatic
+        val hideChatHeader: Boolean
+            get() = Flag.HIDE_TOP_CHAT_PANEL_VODS.asBoolean()
     }
 
     val skipTwitchBrowserDialog: Boolean

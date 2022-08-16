@@ -89,4 +89,6 @@
     <string name="orange_settings_hide_top_chat_panel_vods">Hide the top chat panel in VODs</string>
     <string name="orange_settings_hide_top_chat_panel_vods_desc" />
     <string name="orange_settings" translatable="false">OrangeTV</string>
+    <string name="orange_settings_pronouns">Pronouns</string>
+    <string name="orange_settings_pronouns_desc" translatable="false">https://pronouns.alejo.io/</string>
 </resources>

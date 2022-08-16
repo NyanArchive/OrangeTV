@@ -19,6 +19,7 @@ import tv.orange.features.chathistory.di.component.DaggerChatHistoryComponent
 import tv.orange.features.emotes.di.component.EmotesComponent
 import tv.orange.features.logs.ChatLogs
 import tv.orange.features.logs.di.component.DaggerLogsComponent
+import tv.orange.features.pronouns.di.component.PronounComponent
 import tv.orange.features.refreshstream.RefreshStream
 import tv.orange.features.refreshstream.di.component.DaggerRefreshStreamComponent
 import tv.orange.features.settings.OrangeSettings
@@ -126,13 +127,15 @@ class BridgeFeatureModule {
     fun provideChatHookProvider(
         coreComponent: CoreComponent,
         badgesComponent: BadgesComponent,
-        emotesComponent: EmotesComponent
+        emotesComponent: EmotesComponent,
+        pronounComponent: PronounComponent
     ): ChatHookProvider {
         Logger.debug("called")
         return DaggerChatComponent.builder()
             .coreComponent(coreComponent)
             .badgesComponent(badgesComponent)
             .emotesComponent(emotesComponent)
+            .pronounComponent(pronounComponent)
             .build().hook
     }
 

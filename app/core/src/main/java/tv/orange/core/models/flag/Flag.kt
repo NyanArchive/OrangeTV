@@ -64,6 +64,11 @@ enum class Flag(
         "orange_settings_hide_top_chat_panel_vods",
         BooleanValue()
     ),
+    PRONOUNS(
+        "pronouns",
+        "orange_settings_pronouns",
+        BooleanValue()
+    ),
     BTTV_EMOTES(
         "bttv_emotes",
         "orange_settings_bttv_emotes",

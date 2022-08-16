@@ -19,6 +19,7 @@ import tv.orange.core.Logger
 import tv.orange.core.PreferenceManager
 import tv.orange.core.PreferenceManager.Companion.isDarkTheme
 import tv.orange.core.ResourceManager
+import tv.orange.core.compat.ClassCompat.getPrivateField
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.models.flag.Flag.Companion.asIntRange
@@ -40,6 +41,8 @@ import tv.orange.features.chat.util.ChatUtil.spToPx
 import tv.orange.features.chat.view.ViewFactory
 import tv.orange.features.emotes.bridge.EmoteToken
 import tv.orange.features.emotes.component.EmoteProvider
+import tv.orange.features.pronouns.PronounSetter
+import tv.orange.features.pronouns.component.PronounProvider
 import tv.orange.models.abc.EmoteCardModelWrapper
 import tv.orange.models.abc.EmotePackageSet
 import tv.orange.models.abc.Feature
@@ -61,6 +64,7 @@ import tv.twitch.android.shared.chat.messagefactory.adapteritem.RaidMessageRecyc
 import tv.twitch.android.shared.chat.messagefactory.adapteritem.SubGoalUserNoticeRecyclerItem
 import tv.twitch.android.shared.chat.messagefactory.adapteritem.UserNoticeRecyclerItem
 import tv.twitch.android.shared.chat.util.ChatItemClickEvent
+import tv.twitch.android.shared.chat.util.ClickableUsernameSpan
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerPresenter
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerViewDelegate
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteHeaderUiModel
@@ -76,6 +80,7 @@ class ChatHookProvider @Inject constructor(
     val context: Context,
     val emoteProvider: EmoteProvider,
     val badgeProvider: BadgeProvider,
+    val pronounProvider: PronounProvider,
     val viewFactory: ViewFactory,
 ) : LifecycleAware, FlagListener, Feature {
     private val currentChannelSubject = BehaviorSubject.create<Int>()
@@ -410,6 +415,7 @@ class ChatHookProvider @Inject constructor(
     override fun onAllComponentDestroyed() {
         emoteProvider.clear()
         badgeProvider.clear()
+        pronounProvider.destroy()
     }
 
     override fun onSdkResume() {
@@ -420,6 +426,7 @@ class ChatHookProvider @Inject constructor(
     override fun onFirstActivityCreated() {
         badgeProvider.fetchBadges()
         emoteProvider.fetch()
+        pronounProvider.fetchPronouns()
     }
 
     override fun onConnectingToChannel(channelId: Int) {
@@ -541,5 +548,33 @@ class ChatHookProvider @Inject constructor(
                 else -> createDeletedGrey(builder)
             }
         )
+    }
+
+    fun bindPronoun(holder: MessageRecyclerItem.ChatMessageViewHolder): PronounSetter? {
+        if (!Flag.PRONOUNS.asBoolean()) {
+            return null
+        }
+
+        val setter = PronounSetter(holder)
+        val spanned = setter.getSpanned() ?: run {
+            return null
+        }
+
+        val userName: String =
+            spanned.getSpans(0, spanned.length, ClickableUsernameSpan::class.java).let {
+                if (it.isNotEmpty()) {
+                    it[0].getPrivateField<String>("username")
+                } else {
+                    null
+                }
+            } ?: run {
+                return null
+            }
+
+        pronounProvider.getPronoun(userName) { pronounText: String ->
+            setter.setPronoun(pronounText)
+        }
+
+        return setter
     }
 }

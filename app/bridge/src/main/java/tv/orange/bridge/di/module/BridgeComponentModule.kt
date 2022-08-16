@@ -11,6 +11,8 @@ import tv.orange.features.badges.di.component.BadgesComponent
 import tv.orange.features.badges.di.component.DaggerBadgesComponent
 import tv.orange.features.emotes.di.component.DaggerEmotesComponent
 import tv.orange.features.emotes.di.component.EmotesComponent
+import tv.orange.features.pronouns.di.component.DaggerPronounComponent
+import tv.orange.features.pronouns.di.component.PronounComponent
 
 @Module
 class BridgeComponentModule {
@@ -21,6 +23,16 @@ class BridgeComponentModule {
     ): EmotesComponent {
         Logger.debug("called")
         return DaggerEmotesComponent.builder().coreComponent(coreComponent)
+            .apiComponent(apiComponent).build()
+    }
+
+    @Provides
+    fun providePronounsComponent(
+        coreComponent: CoreComponent,
+        apiComponent: ApiComponent
+    ): PronounComponent {
+        Logger.debug("called")
+        return DaggerPronounComponent.builder().coreComponent(coreComponent)
             .apiComponent(apiComponent).build()
     }
 

@@ -33,6 +33,7 @@ dependencies {
 
     api project(path: ':components:badges')
     api project(path: ':components:emotes')
+    api project(path: ':components:pronouns')
 
     api project(path: ':features:usersearch')
     api project(path: ':features:refreshstream')

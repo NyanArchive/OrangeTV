@@ -19,6 +19,7 @@ import tv.orange.core.Logger
 import tv.orange.core.PreferenceManager
 import tv.orange.core.PreferenceManager.Companion.isDarkTheme
 import tv.orange.core.ResourceManager
+import tv.orange.core.compat.ClassCompat.getPrivateField
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.models.flag.Flag.Companion.asIntRange
@@ -40,6 +41,8 @@ import tv.orange.features.chat.util.ChatUtil.spToPx
 import tv.orange.features.chat.view.ViewFactory
 import tv.orange.features.emotes.bridge.EmoteToken
 import tv.orange.features.emotes.component.EmoteProvider
+import tv.orange.features.pronouns.PronounSetter
+import tv.orange.features.pronouns.component.PronounProvider
 import tv.orange.models.abc.EmoteCardModelWrapper
 import tv.orange.models.abc.EmotePackageSet
 import tv.orange.models.abc.Feature
@@ -76,6 +79,7 @@ class ChatHookProvider @Inject constructor(
     val context: Context,
     val emoteProvider: EmoteProvider,
     val badgeProvider: BadgeProvider,
+    val pronounProvider: PronounProvider,
     val viewFactory: ViewFactory,
 ) : LifecycleAware, FlagListener, Feature {
     private val currentChannelSubject = BehaviorSubject.create<Int>()
@@ -410,6 +414,7 @@ class ChatHookProvider @Inject constructor(
     override fun onAllComponentDestroyed() {
         emoteProvider.clear()
         badgeProvider.clear()
+        pronounProvider.destroy()
     }
 
     override fun onSdkResume() {
@@ -420,6 +425,7 @@ class ChatHookProvider @Inject constructor(
     override fun onFirstActivityCreated() {
         badgeProvider.fetchBadges()
         emoteProvider.fetch()
+        pronounProvider.fetchPronouns()
     }
 
     override fun onConnectingToChannel(channelId: Int) {
@@ -541,5 +547,28 @@ class ChatHookProvider @Inject constructor(
                 else -> createDeletedGrey(builder)
             }
         )
+    }
+
+    fun bindPronoun(
+        holder: MessageRecyclerItem.ChatMessageViewHolder,
+        item: RecyclerAdapterItem
+    ): PronounSetter? {
+        if (!Flag.PRONOUNS.asBoolean()) {
+            return null
+        }
+
+        if (item !is MessageRecyclerItem) {
+            return null
+        }
+
+        val userName =
+            item.getPrivateField<String?>("username") ?: return null // FIXME: just add getter, LOL?
+        val setter = PronounSetter(holder)
+
+        pronounProvider.getPronounText(userName) { pronounText: String ->
+            setter.setText(pronounText)
+        }
+
+        return setter
     }
 }

@@ -27,5 +27,9 @@ public abstract class AbstractTwitchRecyclerViewHolder extends RecyclerView.View
         throw new VirtualImpl();
     }
 
+    public void onRecycled() {
+        throw new VirtualImpl();
+    }
+
     /* ... */
 }

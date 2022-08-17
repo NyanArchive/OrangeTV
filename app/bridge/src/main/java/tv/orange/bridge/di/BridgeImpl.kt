@@ -17,6 +17,7 @@ import tv.orange.features.settings.OrangeSettings
 import tv.orange.features.spam.Spam
 import tv.orange.features.stv.StvAvatars
 import tv.orange.features.timer.SleepTimer
+import tv.orange.features.tracking.Tracking
 import tv.orange.features.ui.UI
 import tv.orange.features.usersearch.UserSearch
 import tv.orange.features.vodsync.VodSync
@@ -79,6 +80,7 @@ class BridgeImpl private constructor() : Bridge {
         factory[CoreHook::class.java] = { component.coreHookProvider }
         factory[UI::class.java] = { component.uiProvider }
         factory[Spam::class.java] = { component.spamProvider }
+        factory[Tracking::class.java] = { component.trackingProvider }
     }
 
     fun initialize(context: Context) {
@@ -92,6 +94,7 @@ class BridgeImpl private constructor() : Bridge {
         getFeature(PreferenceManager::class.java).initialize()
         getFeature(ChatHookProvider::class.java).initialize()
         getFeature(StvAvatars::class.java).initialize()
+        getFeature(Tracking::class.java).initialize()
     }
 
     companion object {

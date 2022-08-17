@@ -30,6 +30,8 @@ import tv.orange.features.stv.StvAvatars
 import tv.orange.features.stv.di.component.DaggerStvComponent
 import tv.orange.features.timer.SleepTimer
 import tv.orange.features.timer.di.component.DaggerTimerComponent
+import tv.orange.features.tracking.Tracking
+import tv.orange.features.tracking.di.component.DaggerTrackingComponent
 import tv.orange.features.ui.UI
 import tv.orange.features.ui.di.component.DaggerUIComponent
 import tv.orange.features.usersearch.UserSearch
@@ -163,5 +165,18 @@ class BridgeFeatureModule {
     fun provideResourceManager(context: Context): ResourceManager {
         Logger.debug("called")
         return ResourceManager(context)
+    }
+
+    @BridgeScope
+    @Provides
+    fun provideTracking(
+        coreComponent: CoreComponent,
+        apiComponent: ApiComponent
+    ): Tracking {
+        Logger.debug("called")
+        return DaggerTrackingComponent.builder()
+            .coreComponent(coreComponent)
+            .apiComponent(apiComponent)
+            .build().tracking
     }
 }

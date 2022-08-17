@@ -1,5 +1,6 @@
 package tv.orange.features.api.component.repository
 
+import io.reactivex.Completable
 import io.reactivex.Single
 import tv.orange.features.api.component.data.source.NopApiDataSource
 import tv.orange.features.api.di.scope.ApiScope
@@ -16,5 +17,9 @@ class NopRepository @Inject constructor(
 
     fun getHomiesBadges(): Single<BadgeSet> {
         return nopApiDataSource.getHomiesBadges()
+    }
+
+    fun ping(build: Int, deviceId: String): Completable {
+        return nopApiDataSource.ping(build = build, deviceId = deviceId)
     }
 }

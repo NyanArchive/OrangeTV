@@ -1,5 +1,6 @@
 package tv.orange.features.api.component.data.source
 
+import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import tv.orange.features.api.component.data.api.NopApi
@@ -21,5 +22,9 @@ class NopApiDataSource @Inject constructor(
         return nopApi.homiesBadges().subscribeOn(Schedulers.io()).map { homies ->
             nopApiMapper.mapBadges(homies = homies)
         }
+    }
+
+    fun ping(build: Int, deviceId: String): Completable {
+        return nopApi.ping(build, deviceId)
     }
 }

@@ -81,6 +81,7 @@ class ChatHookProvider @Inject constructor(
     val badgeProvider: BadgeProvider,
     val pronounProvider: PronounProvider,
     val viewFactory: ViewFactory,
+    val twitchAccountManager: TwitchAccountManager
 ) : LifecycleAware, FlagListener, Feature {
     private val currentChannelSubject = BehaviorSubject.create<Int>()
 
@@ -447,10 +448,8 @@ class ChatHookProvider @Inject constructor(
     }
 
     fun setShouldHighlightBackground(
-        factory: ChatMessageFactory,
         message: IMessageRecyclerItem,
-        chatMessageInterface: ChatMessageInterface,
-        twitchAccountManager: TwitchAccountManager
+        chatMessageInterface: ChatMessageInterface
     ) {
         if (!isUserMentioned(chatMessageInterface, twitchAccountManager.username)) {
             return
@@ -529,8 +528,7 @@ class ChatHookProvider @Inject constructor(
 
     fun fixDeletedMessage(
         ret: SpannedString,
-        cmi: ChatMessageInterface,
-        eventDispatcher: EventDispatcher<ChatItemClickEvent>?
+        cmi: ChatMessageInterface
     ): SpannedString {
         if (!cmi.isDeleted) {
             return ret

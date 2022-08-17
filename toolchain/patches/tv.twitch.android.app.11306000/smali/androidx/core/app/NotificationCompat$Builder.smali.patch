@@ -1,0 +1,20 @@
+diff --git a/smali/androidx/core/app/NotificationCompat$Builder.smali b/smali/androidx/core/app/NotificationCompat$Builder.smali
+--- a/smali/androidx/core/app/NotificationCompat$Builder.smali
++++ b/smali/androidx/core/app/NotificationCompat$Builder.smali
+@@ -857,3 +857,16 @@
+ 
+     return-object p0
+ .end method
++
++.method public setOnlyAlertOnce(Z)Landroidx/core/app/NotificationCompat$Builder;
++    .registers 3
++    .param p1, "onlyAlertOnce"    # Z
++
++    .line 1656
++    const/16 v0, 0x8
++
++    invoke-direct {p0, v0, p1}, Landroidx/core/app/NotificationCompat$Builder;->setFlag(IZ)V
++
++    .line 1657
++    return-object p0
++.end method

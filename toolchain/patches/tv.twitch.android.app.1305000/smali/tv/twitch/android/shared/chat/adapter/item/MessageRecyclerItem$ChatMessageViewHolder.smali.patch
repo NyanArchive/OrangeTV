@@ -65,7 +65,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/adapter/item/MessageRe
 +
 +    move-result-object v0
 +
-+    invoke-virtual {v0, p0}, Ltv/orange/features/chat/ChatHookProvider;->bindPronoun(Ltv/twitch/android/shared/chat/adapter/item/MessageRecyclerItem$ChatMessageViewHolder;)Ltv/orange/features/pronouns/PronounSetter;
++    invoke-virtual {v0, p0, p1}, Ltv/orange/features/chat/ChatHookProvider;->bindPronoun(Ltv/twitch/android/shared/chat/adapter/item/MessageRecyclerItem$ChatMessageViewHolder;Ltv/twitch/android/core/adapters/RecyclerAdapterItem;)Ltv/orange/features/pronouns/PronounSetter;
 +
 +    move-result-object v0
 +

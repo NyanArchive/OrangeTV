@@ -63,4 +63,5 @@
     <string name="orange_settings_vibrate_on_mention">Etiketlendiğinde titret</string>
     <string name="orange_settings_vibration_duration">Titreşim süresi</string>
     <string name="orange_settings_hide_top_chat_panel_vods">VOD\'larda sohbet üst panelini gizle</string>
+    <string name="orange_settings_pronouns">Zamirler</string>
 </resources>

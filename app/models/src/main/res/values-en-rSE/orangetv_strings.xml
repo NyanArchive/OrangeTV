@@ -63,4 +63,5 @@
     <string name="orange_settings_vibrate_on_mention">Vibrera om nämnd</string>
     <string name="orange_settings_vibration_duration">Vibrations varaktighet</string>
     <string name="orange_settings_hide_top_chat_panel_vods">Göm topp chat panelen i VODs</string>
+    <string name="orange_settings_pronouns">Pronomen</string>
 </resources>

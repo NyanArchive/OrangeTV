@@ -63,4 +63,5 @@
     <string name="orange_settings_vibrate_on_mention">اهتزاز عندما تُذكَر</string>
     <string name="orange_settings_vibration_duration">مدة الإهتزاز</string>
     <string name="orange_settings_hide_top_chat_panel_vods">إخفاء لوحة الدردشة العلوية في VODs</string>
+    <string name="orange_settings_pronouns">الضمائر</string>
 </resources>

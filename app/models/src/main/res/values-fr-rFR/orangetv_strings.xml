@@ -63,4 +63,5 @@
     <string name="orange_settings_vibrate_on_mention">Vibrer quand vous êtes mentionné</string>
     <string name="orange_settings_vibration_duration">Durée de vibration</string>
     <string name="orange_settings_hide_top_chat_panel_vods">Masquer le haut panneau de discussion dans les vidéos</string>
+    <string name="orange_settings_pronouns">Pronoms</string>
 </resources>

@@ -42,7 +42,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/command/ChatCommandInt
  
 +    iget-object v1, p0, Ltv/twitch/android/shared/chat/command/ChatCommandInterceptorFactory;->spamCommandInterceptor:Ltv/twitch/android/shared/chat/command/ChatCommandInterceptor;
 +
-+    const/16 v2, 0x8
++    const/16 v2, 0x7
 +
 +    aput-object v1, v0, v2
 +

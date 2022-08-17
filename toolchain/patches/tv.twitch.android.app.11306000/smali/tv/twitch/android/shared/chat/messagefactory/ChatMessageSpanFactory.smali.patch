@@ -69,7 +69,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
 +    move-result-object v0
 +
-+    invoke-virtual {v13, v0}, Landroid/text/SpannableStringBuilder;->append(Ljava/lang/CharSequence;)Landroid/text/SpannableStringBuilder;
++    invoke-virtual {v14, v0}, Landroid/text/SpannableStringBuilder;->append(Ljava/lang/CharSequence;)Landroid/text/SpannableStringBuilder;
 +
 +    goto/16 :goto_0
 +

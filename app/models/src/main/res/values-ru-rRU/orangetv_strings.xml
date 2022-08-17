@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="orange_settings_dev_mode">Режим разработчика</string>
-    <string name="orange_settings_bttv_emotes">BTTV смайлики</string>
-    <string name="orange_settings_ffz_emotes">FFZ смайлики</string>
-    <string name="orange_settings_stv_emotes">7TV смайлики</string>
-    <string name="orange_settings_ffz_badges">FFZ значки</string>
-    <string name="orange_settings_stv_badges">7TV значки</string>
-    <string name="orange_settings_che_badges">Homies значки</string>
-    <string name="orange_settings_cha_badges">Chatterino значки</string>
+    <string name="orange_settings_bttv_emotes">Смайлики BTTV</string>
+    <string name="orange_settings_ffz_emotes">Смайлики FFZ</string>
+    <string name="orange_settings_stv_emotes">Смайлики 7TV</string>
+    <string name="orange_settings_ffz_badges">Значки FFZ</string>
+    <string name="orange_settings_stv_badges">Значки 7TV</string>
+    <string name="orange_settings_che_badges">Значки Homies</string>
+    <string name="orange_settings_cha_badges">Значки Chatterino</string>
     <string name="orange_settings_stv_avatars">Анимированные аватары 7TV</string>
     <string name="orange_settings_chat_history">История чата</string>
     <string name="orange_settings_chat_history_desc">Загружать предыдущие сообщения в чате при подключении</string>
@@ -27,8 +27,8 @@
     <string name="orange_settings_deleted_messages">Просмотр удаленных сообщений</string>
     <string name="orange_deleted_messages_default">По умолчанию</string>
     <string name="orange_deleted_messages_mod">Модерация</string>
-    <string name="orange_deleted_messages_strikethrough">Зачеркнутый</string>
-    <string name="orange_deleted_messages_grey">Серый</string>
+    <string name="orange_deleted_messages_strikethrough">Зачеркнутые</string>
+    <string name="orange_deleted_messages_grey">Серые</string>
     <string name="orange_emotecard_ffz_channel">Смайлик канала FFZ</string>
     <string name="orange_emotecard_bttv_channel">Смайлик канала BTTV</string>
     <string name="orange_emotecard_stv_channel">Смайлик канала 7TV</string>
@@ -55,10 +55,13 @@
     <string name="orange_restart_app">Перезапустить</string>
     <string name="orange_restart_app_title">Обновить и перезапустить приложение?</string>
     <string name="orange_settings_title">Настройки OrangeTV</string>
-    <string name="orange_settings_chat_font_size">Размер шрифта чат</string>
+    <string name="orange_settings_chat_font_size">Размер шрифта в чате</string>
     <string name="orange_settings_landscape_chat_size">Ширина чата в полноэкранном режиме</string>
+    <string name="orange_settings_forward_seek">Шаг перемотки вперёд</string>
+    <string name="orange_settings_rewind_seek">Шаг перемотки назад</string>
     <string name="orange_settings_mini_player_size">Размер мини-плеера</string>
     <string name="orange_settings_vibrate_on_mention">Вибрация при упоминании</string>
     <string name="orange_settings_vibration_duration">Продолжительность вибрации</string>
     <string name="orange_settings_hide_top_chat_panel_vods">Скрыть верхнюю панель чата в записях</string>
+    <string name="orange_settings_pronouns">Включить поддержку Pronouns</string>
 </resources>

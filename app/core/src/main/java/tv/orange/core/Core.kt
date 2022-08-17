@@ -6,6 +6,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.*
+import io.reactivex.disposables.CompositeDisposable
 import org.json.JSONObject
 import tv.orange.core.models.lifecycle.LifecycleAware
 import tv.orange.core.models.lifecycle.LifecycleController
@@ -16,8 +17,9 @@ import javax.inject.Inject
 import kotlin.system.exitProcess
 
 
-class Core @Inject constructor(val context: Context) :
-    LifecycleController, LifecycleAware, Feature {
+class Core @Inject constructor(
+    val context: Context
+) : LifecycleController, LifecycleAware, Feature {
     private val modules = mutableSetOf<LifecycleAware>()
 
     val buildConfig: OrangeBuildConfig by lazy {

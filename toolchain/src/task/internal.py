@@ -2,6 +2,7 @@ import json
 import shutil
 import subprocess
 import zipfile
+from datetime import datetime
 
 from pyaxmlparser import APK
 
@@ -148,6 +149,7 @@ class IncreaseBuildNumber(BaseTask):
             js = json.load(fp)
 
         js["number"] += 1
+        js['timestamp'] = int(datetime.now().timestamp())
 
         with open(env.build, "w", encoding="utf-8") as fp:
             json.dump(js, fp)

@@ -25,7 +25,7 @@ class Core @Inject constructor(
     val buildConfig: OrangeBuildConfig by lazy {
         return@lazy try {
             with(JSONObject(rawBuildString)) {
-                OrangeBuildConfig(number = getInt("number"))
+                OrangeBuildConfig(number = getInt("number"), timestamp = getInt("timestamp"))
             }
         } catch (e: Throwable) {
             e.printStackTrace()

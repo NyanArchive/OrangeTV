@@ -1,8 +1,10 @@
 package tv.orange.features.ui
 
+import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.recyclerview.widget.RecyclerView
 import tv.orange.core.Core
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
@@ -12,12 +14,17 @@ import tv.orange.core.models.flag.variants.BottomNavbarPosition
 import tv.orange.core.util.ViewUtil.getView
 import tv.orange.features.ui.di.scope.UIScope
 import tv.orange.models.abc.Feature
+import tv.twitch.android.core.strings.DateUtil
 import tv.twitch.android.shared.ui.elements.navigation.BottomNavigationDestination
 import tv.twitch.android.shared.ui.elements.navigation.BottomNavigationItem
+import tv.twitch.android.shared.ui.menus.LogoutSectionRecyclerItem
+import java.util.*
 import javax.inject.Inject
 
 @UIScope
-class UI @Inject constructor() : Feature {
+class UI @Inject constructor(
+    val context: Context
+) : Feature {
     override fun onDestroyFeature() {}
     override fun onCreateFeature() {}
 
@@ -105,6 +112,27 @@ class UI @Inject constructor() : Feature {
                 bottomNavigation.visibility = View.GONE
             }
             else -> {}
+        }
+    }
+
+    fun updateLogoutSectionRecyclerItem(viewHolder: RecyclerView.ViewHolder) {
+        if (viewHolder is LogoutSectionRecyclerItem.SectionFooterRecyclerItemViewHolder) {
+            Core.get().buildConfig.let { config ->
+                viewHolder.versionTextView.text = if (config.number > 0) {
+                    "OrangeTV/${config.number}"
+                } else {
+                    "OrangeTV/Stub"
+                }
+
+                viewHolder.buildDateTextView.text = DateUtil.Companion!!.localizedDate(
+                    context,
+                    if (config.timestamp > 0) {
+                        config.timestampToDate()
+                    } else {
+                        Date(0)
+                    }
+                )
+            }
         }
     }
 }

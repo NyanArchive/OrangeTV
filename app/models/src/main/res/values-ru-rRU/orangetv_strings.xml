@@ -42,13 +42,13 @@
     <string name="orange_mod_logs">Просмотр логов</string>
     <string name="orange_seeker_header_text">Синхронизация чата</string>
     <string name="orange_settings_chat_timestamps">Временные метки</string>
-    <string name="orange_settings_hide_leaderboards">Спрятать таблицу лидеров</string>
+    <string name="orange_settings_hide_leaderboards">Скрыть таблицу лидеров</string>
     <string name="orange_settings_disable_link_disclaimer">Скрыть предупреждение о переходе на другой сайт</string>
     <string name="orange_settings_disable_fast_bread">Отключить режим низкой задержки</string>
     <string name="orange_settings_bottom_navbar_position">Позиция панели навигации</string>
     <string name="orange_bottom_navbar_position_default">По умолчанию</string>
     <string name="orange_bottom_navbar_position_top">Сверху</string>
-    <string name="orange_bottom_navbar_position_hidden">Не отображается</string>
+    <string name="orange_bottom_navbar_position_hidden">Скрыть полностью</string>
     <string name="orange_settings_followed_full_cards">Показывать крупные превью отслеживаемых каналов</string>
     <string name="orange_settings_disable_hype_train">Отключить Хайповоз</string>
     <string name="orange_settings_hide_discover_tab">Скрыть вкладку «Поиск»</string>
@@ -56,7 +56,7 @@
     <string name="orange_restart_app_title">Обновить и перезапустить приложение?</string>
     <string name="orange_settings_title">Настройки OrangeTV</string>
     <string name="orange_settings_chat_font_size">Размер шрифта в чате</string>
-    <string name="orange_settings_landscape_chat_size">Ширина чата в полноэкранном режиме</string>
+    <string name="orange_settings_landscape_chat_size">Ширина чата в горизонтальной ориентации</string>
     <string name="orange_settings_forward_seek">Шаг перемотки вперёд</string>
     <string name="orange_settings_rewind_seek">Шаг перемотки назад</string>
     <string name="orange_settings_mini_player_size">Размер мини-плеера</string>

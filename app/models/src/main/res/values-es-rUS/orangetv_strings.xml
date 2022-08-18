@@ -64,4 +64,5 @@
     <string name="orange_settings_vibration_duration">Duración de la vibración</string>
     <string name="orange_settings_hide_top_chat_panel_vods">Ocultar el panel de chat superior en VODs</string>
     <string name="orange_settings_pronouns">Pronombres</string>
+    <string name="orange_settings_auto_hide_message_input">Ocultar la entrada de mensajes en horizontal</string>
 </resources>

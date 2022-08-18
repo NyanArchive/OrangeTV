@@ -64,4 +64,5 @@
     <string name="orange_settings_vibration_duration">Durata vibrazione</string>
     <string name="orange_settings_hide_top_chat_panel_vods">Nascondi il riquadro in alto \"Replica chat\" nei VOD</string>
     <string name="orange_settings_pronouns">Pronomi</string>
+    <string name="orange_settings_auto_hide_message_input">Nascondi l\'input dei messaggi in modalità orizzontale</string>
 </resources>

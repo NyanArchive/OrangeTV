@@ -64,4 +64,5 @@
     <string name="orange_settings_vibration_duration">バイブレーションの持続時間</string>
     <string name="orange_settings_hide_top_chat_panel_vods">VODのトップチャットパネルの非表示</string>
     <string name="orange_settings_pronouns">代名詞</string>
+    <string name="orange_settings_auto_hide_message_input">ランドスケープでのメッセージ入力の非表示</string>
 </resources>

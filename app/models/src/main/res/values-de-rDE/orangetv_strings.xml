@@ -64,4 +64,5 @@
     <string name="orange_settings_vibration_duration">Dauer der Vibration</string>
     <string name="orange_settings_hide_top_chat_panel_vods">Chat Kopfzeile bei Videos ausblenden</string>
     <string name="orange_settings_pronouns">Pronomen</string>
+    <string name="orange_settings_auto_hide_message_input">Nachrichteneingabefeld im Querformat ausblenden</string>
 </resources>

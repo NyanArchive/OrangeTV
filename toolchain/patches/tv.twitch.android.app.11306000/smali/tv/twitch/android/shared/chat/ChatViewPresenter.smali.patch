@@ -44,3 +44,25 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/ChatViewPresenter.smal
      .line 945
      instance-of v0, p1, Ltv/twitch/android/shared/chat/events/ChatConnectionEvents$ChatConnectingEvent;
  
+@@ -4532,7 +4560,7 @@
+ .end method
+ 
+ .method public onConfigurationChanged()V
+-    .locals 1
++    .locals 2
+ 
+     .line 546
+     invoke-super {p0}, Ltv/twitch/android/core/mvp/presenter/BasePresenter;->onConfigurationChanged()V
+@@ -4544,6 +4572,12 @@
+ 
+     invoke-virtual {v0}, Ltv/twitch/android/core/mvp/viewdelegate/BaseViewDelegate;->onConfigurationChanged()V
+ 
++    invoke-static {}, Ltv/orange/features/ui/UI;->get()Ltv/orange/features/ui/UI;
++
++    move-result-object v1
++
++    invoke-virtual {v1, v0}, Ltv/orange/features/ui/UI;->onChatViewPresenterConfigurationChanged(Ltv/twitch/android/shared/chat/ChatViewDelegate;)V
++
+     :cond_0
+     return-void
+ .end method

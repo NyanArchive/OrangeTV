@@ -1,7 +1,7 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawable.smali b/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawable.smali
 --- a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawable.smali
 +++ b/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawable.smali
-@@ -1,11 +1,17 @@
+@@ -1,18 +1,24 @@
 -.class public final Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
 +.class public Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
  .super Landroid/graphics/drawable/BitmapDrawable;
@@ -21,7 +21,31 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
  .field private isDestroyed:Z
  
  .field private onBoundsChangeListener:Lkotlin/jvm/functions/Function1;
-@@ -24,149 +30,347 @@
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+-            "Lkotlin/jvm/functions/Function1<",
+-            "-",
++            "Lkotlin/jvm/functions/Function1",
++            "<-",
+             "Landroid/graphics/Rect;",
+             "Lkotlin/Unit;",
+             ">;"
+@@ -20,153 +26,459 @@
+     .end annotation
+ .end field
+ 
++.field private final stack:Ljava/util/List;
++    .annotation system Ldalvik/annotation/Signature;
++        value = {
++            "Ljava/util/List",
++            "<",
++            "Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;",
++            ">;"
++        }
++    .end annotation
++.end field
++
+ .field private final type:Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;
  
  .field private final url:Ljava/lang/String;
  
@@ -33,14 +57,18 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
 -    .locals 2
 +    .registers 3
  
-+    .line 32
-     const/4 v0, 0x0
+-    const/4 v0, 0x0
++    .prologue
++    const/4 v1, 0x0
  
-     const/4 v1, 0x3
+-    const/4 v1, 0x3
++    .line 50
++    const/4 v0, 0x3
  
-     invoke-direct {p0, v0, v0, v1, v0}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;-><init>(Ljava/lang/String;Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+-    invoke-direct {p0, v0, v0, v1, v0}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;-><init>(Ljava/lang/String;Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
++    invoke-direct {p0, v1, v1, v0, v1}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;-><init>(Ljava/lang/String;Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
  
-+    .line 33
++    .line 51
      return-void
  .end method
  
@@ -50,57 +78,51 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
 +    .param p1, "url"    # Ljava/lang/String;
 +    .param p2, "type"    # Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;
 +
-+    .line 44
++    .prologue
++    .line 62
 +    const/4 v0, 0x0
 +
 +    invoke-direct {p0, p1, p2, v0}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;-><init>(Ljava/lang/String;Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;Z)V
 +
-+    .line 45
++    .line 63
 +    return-void
 +.end method
 +
 +.method public constructor <init>(Ljava/lang/String;Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-+    .registers 8
++    .registers 6
 +    .param p1, "str"    # Ljava/lang/String;
 +    .param p2, "mediaSpan$Type"    # Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;
 +    .param p3, "i"    # I
 +    .param p4, "defaultConstructorMarker"    # Lkotlin/jvm/internal/DefaultConstructorMarker;
 +
-+    .line 40
++    .prologue
++    .line 58
 +    and-int/lit8 v0, p3, 0x1
 +
-+    if-eqz v0, :cond_7
-+
-+    const-string v0, ""
-+
-+    goto :goto_8
++    if-eqz v0, :cond_6
  
 -    const-string v0, "url"
-+    :cond_7
-+    move-object v0, p1
++    const-string p1, ""
++
++    .end local p1    # "str":Ljava/lang/String;
++    :cond_6
++    and-int/lit8 v0, p3, 0x2
++
++    if-eqz v0, :cond_c
  
 -    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
-+    :goto_8
-+    and-int/lit8 v1, p3, 0x2
++    sget-object p2, Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;->Emote:Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;
  
 -    const-string v0, "type"
-+    if-eqz v1, :cond_f
++    .end local p2    # "mediaSpan$Type":Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;
++    :cond_c
++    const/4 v0, 0x0
  
 -    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
-+    sget-object v1, Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;->Emote:Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;
++    invoke-direct {p0, p1, p2, v0}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;-><init>(Ljava/lang/String;Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;Z)V
  
 -    .line 23
-+    goto :goto_10
-+
-+    :cond_f
-+    move-object v1, p2
-+
-+    :goto_10
-+    const/4 v2, 0x0
-+
-+    invoke-direct {p0, v0, v1, v2}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;-><init>(Ljava/lang/String;Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;Z)V
-+
-+    .line 41
++    .line 59
 +    return-void
 +.end method
 +
@@ -110,26 +132,34 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
 +    .param p2, "type"    # Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;
 +    .param p3, "wide"    # Z
 +
-+    .line 51
++    .prologue
++    .line 69
      invoke-direct {p0}, Landroid/graphics/drawable/BitmapDrawable;-><init>()V
  
 -    .line 21
-+    .line 27
++    .line 31
 +    const/4 v0, 0x0
 +
 +    iput-boolean v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->grey:Z
 +
-+    .line 52
++    .line 35
++    new-instance v0, Ljava/util/ArrayList;
++
++    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
++
++    iput-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->stack:Ljava/util/List;
++
++    .line 70
      iput-object p1, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->url:Ljava/lang/String;
  
 -    .line 22
-+    .line 53
++    .line 71
      iput-object p2, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->type:Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;
  
-+    .line 54
++    .line 72
 +    iput-boolean p3, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->wide:Z
 +
-+    .line 55
++    .line 73
      return-void
  .end method
  
@@ -140,14 +170,15 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
 +    .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
  
 -    and-int/lit8 p4, p3, 0x1
-+    .line 112
++    .prologue
++    .line 140
 +    iget-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->greyMatrix:Landroid/graphics/ColorMatrix;
  
 -    if-eqz p4, :cond_0
-+    if-nez v0, :cond_f
++    if-nez v0, :cond_11
  
 -    const-string p1, ""
-+    .line 113
++    .line 141
 +    new-instance v0, Landroid/graphics/ColorMatrix;
  
 -    :cond_0
@@ -159,7 +190,9 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
  
 -    .line 22
 -    sget-object p2, Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;->Emote:Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;
-+    .line 114
++    .line 142
++    iget-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->greyMatrix:Landroid/graphics/ColorMatrix;
++
 +    const/4 v1, 0x0
  
 -    .line 20
@@ -167,13 +200,13 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
 -    invoke-direct {p0, p1, p2}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;-><init>(Ljava/lang/String;Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;)V
 +    invoke-virtual {v0, v1}, Landroid/graphics/ColorMatrix;->setSaturation(F)V
  
-+    .line 116
-+    :cond_f
++    .line 144
++    :cond_11
 +    iget-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->greyFilter:Landroid/graphics/ColorMatrixColorFilter;
 +
-+    if-nez v0, :cond_1c
++    if-nez v0, :cond_1e
 +
-+    .line 117
++    .line 145
 +    new-instance v0, Landroid/graphics/ColorMatrixColorFilter;
 +
 +    iget-object v1, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->greyMatrix:Landroid/graphics/ColorMatrix;
@@ -182,243 +215,333 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
 +
 +    iput-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->greyFilter:Landroid/graphics/ColorMatrixColorFilter;
 +
-+    .line 120
-+    :cond_1c
++    .line 148
++    :cond_1e
 +    iget-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->greyFilter:Landroid/graphics/ColorMatrixColorFilter;
 +
 +    invoke-virtual {p1, v0}, Landroid/graphics/drawable/Drawable;->setColorFilter(Landroid/graphics/ColorFilter;)V
 +
-+    .line 121
++    .line 149
      return-void
  .end method
  
 +.method private static startAnimation(Landroid/graphics/drawable/Drawable;)V
-+    .registers 3
++    .registers 4
 +    .param p0, "drawable"    # Landroid/graphics/drawable/Drawable;
  
 -# virtual methods
 -.method public final destroy()V
 -    .locals 2
-+    .line 124
-+    instance-of v0, p0, Lcom/bumptech/glide/load/resource/gif/GifDrawable;
++    .prologue
++    .line 152
++    instance-of v2, p0, Lcom/bumptech/glide/load/resource/gif/GifDrawable;
  
 -    const/4 v0, 0x1
-+    if-eqz v0, :cond_11
++    if-eqz v2, :cond_11
  
 -    .line 71
 -    iput-boolean v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->isDestroyed:Z
-+    .line 125
 +    move-object v0, p0
  
 -    .line 72
 -    iget-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->drawable:Landroid/graphics/drawable/Drawable;
++    .line 153
 +    check-cast v0, Lcom/bumptech/glide/load/resource/gif/GifDrawable;
-+
-+    .line 126
-+    .local v0, "gifDrawable":Lcom/bumptech/glide/load/resource/gif/GifDrawable;
-+    invoke-virtual {v0}, Lcom/bumptech/glide/load/resource/gif/GifDrawable;->isRunning()Z
-+
-+    move-result v1
-+
-+    if-nez v1, :cond_22
-+
-+    .line 127
-+    invoke-virtual {v0}, Lcom/bumptech/glide/load/resource/gif/GifDrawable;->start()V
-+
-+    goto :goto_22
-+
-+    .line 129
-+    .end local v0    # "gifDrawable":Lcom/bumptech/glide/load/resource/gif/GifDrawable;
-+    :cond_11
-+    instance-of v0, p0, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;
-+
-+    if-eqz v0, :cond_22
-+
-+    .line 130
-+    move-object v0, p0
-+
-+    check-cast v0, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;
-+
-+    .line 131
-+    .local v0, "webpDrawable":Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;
-+    invoke-virtual {v0}, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;->isRunning()Z
-+
-+    move-result v1
-+
-+    if-nez v1, :cond_23
-+
-+    .line 132
-+    invoke-virtual {v0}, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;->start()V
-+
-+    goto :goto_23
  
 -    if-eqz v0, :cond_0
-+    .line 129
-+    .end local v0    # "webpDrawable":Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;
-+    :cond_22
-+    :goto_22
-+    nop
++    .line 154
++    .local v0, "gifDrawable":Lcom/bumptech/glide/load/resource/gif/GifDrawable;
++    invoke-virtual {v0}, Lcom/bumptech/glide/load/resource/gif/GifDrawable;->isRunning()Z
  
 -    .line 73
 -    instance-of v1, v0, Lcom/bumptech/glide/load/resource/gif/GifDrawable;
-+    .line 135
-+    :cond_23
-+    :goto_23
++    move-result v2
++
++    if-nez v2, :cond_10
++
++    .line 155
++    invoke-virtual {v0}, Lcom/bumptech/glide/load/resource/gif/GifDrawable;->start()V
++
++    .line 163
++    .end local v0    # "gifDrawable":Lcom/bumptech/glide/load/resource/gif/GifDrawable;
++    :cond_10
++    :goto_10
 +    return-void
++
++    .line 157
++    :cond_11
++    instance-of v2, p0, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;
+ 
+-    if-eqz v1, :cond_0
++    if-eqz v2, :cond_10
+ 
++    move-object v1, p0
++
++    .line 158
++    check-cast v1, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;
++
++    .line 159
++    .local v1, "webpDrawable":Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;
++    invoke-virtual {v1}, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;->isRunning()Z
++
++    move-result v2
++
++    if-nez v2, :cond_10
++
++    .line 160
++    invoke-virtual {v1}, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;->start()V
++
++    goto :goto_10
 +.end method
 +
 +.method private static stopAnimation(Landroid/graphics/drawable/Drawable;)V
-+    .registers 3
++    .registers 4
 +    .param p0, "drawable"    # Landroid/graphics/drawable/Drawable;
 +
-+    .line 138
-+    instance-of v0, p0, Lcom/bumptech/glide/load/resource/gif/GifDrawable;
- 
--    if-eqz v1, :cond_0
-+    if-eqz v0, :cond_11
++    .prologue
++    .line 166
++    instance-of v2, p0, Lcom/bumptech/glide/load/resource/gif/GifDrawable;
 +
-+    .line 139
++    if-eqz v2, :cond_11
++
 +    move-object v0, p0
- 
++
++    .line 167
      check-cast v0, Lcom/bumptech/glide/load/resource/gif/GifDrawable;
  
-+    .line 140
++    .line 168
 +    .local v0, "gifDrawable":Lcom/bumptech/glide/load/resource/gif/GifDrawable;
      invoke-virtual {v0}, Lcom/bumptech/glide/load/resource/gif/GifDrawable;->isRunning()Z
  
-     move-result v1
+-    move-result v1
++    move-result v2
  
 -    if-eqz v1, :cond_0
-+    if-eqz v1, :cond_22
++    if-eqz v2, :cond_10
  
 -    .line 74
-+    .line 141
++    .line 169
      invoke-virtual {v0}, Lcom/bumptech/glide/load/resource/gif/GifDrawable;->stop()V
  
 -    :cond_0
 -    const/4 v0, 0x0
-+    goto :goto_22
++    .line 177
++    .end local v0    # "gifDrawable":Lcom/bumptech/glide/load/resource/gif/GifDrawable;
++    :cond_10
++    :goto_10
++    return-void
  
 -    .line 77
 -    iput-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->drawable:Landroid/graphics/drawable/Drawable;
-+    .line 143
-+    .end local v0    # "gifDrawable":Lcom/bumptech/glide/load/resource/gif/GifDrawable;
++    .line 171
 +    :cond_11
-+    instance-of v0, p0, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;
++    instance-of v2, p0, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;
++
++    if-eqz v2, :cond_10
++
++    move-object v1, p0
  
 -    .line 78
 -    iput-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->onBoundsChangeListener:Lkotlin/jvm/functions/Function1;
-+    if-eqz v0, :cond_22
-+
-+    .line 144
-+    move-object v0, p0
-+
-+    check-cast v0, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;
-+
-+    .line 145
-+    .local v0, "webpDrawable":Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;
-+    invoke-virtual {v0}, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;->isRunning()Z
-+
-+    move-result v1
-+
-+    if-eqz v1, :cond_23
++    .line 172
++    check-cast v1, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;
  
-+    .line 146
-+    invoke-virtual {v0}, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;->stop()V
++    .line 173
++    .local v1, "webpDrawable":Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;
++    invoke-virtual {v1}, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;->isRunning()Z
 +
-+    goto :goto_23
++    move-result v2
 +
-+    .line 143
-+    .end local v0    # "webpDrawable":Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;
-+    :cond_22
-+    :goto_22
-+    nop
++    if-eqz v2, :cond_10
 +
-+    .line 149
-+    :cond_23
-+    :goto_23
++    .line 174
++    invoke-virtual {v1}, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;->stop()V
++
++    goto :goto_10
++.end method
++
++
++# virtual methods
++.method public addToStack(Ljava/util/List;)V
++    .registers 3
++    .annotation system Ldalvik/annotation/Signature;
++        value = {
++            "(",
++            "Ljava/util/List",
++            "<",
++            "Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;",
++            ">;)V"
++        }
++    .end annotation
++
++    .prologue
++    .line 46
++    .local p1, "drawables":Ljava/util/List;, "Ljava/util/List<Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;>;"
++    iget-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->stack:Ljava/util/List;
++
++    invoke-interface {v0, p1}, Ljava/util/List;->addAll(Ljava/util/Collection;)Z
++
++    .line 47
      return-void
  .end method
  
 -.method public draw(Landroid/graphics/Canvas;)V
 -    .locals 1
++.method public addToStack(Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;)V
++    .registers 3
++    .param p1, "drawable"    # Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++
++    .prologue
++    .line 42
++    iget-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->stack:Ljava/util/List;
++
++    invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
++
++    .line 43
++    return-void
++.end method
++
++.method public destroy()V
++    .registers 5
++
++    .prologue
++    const/4 v3, 0x0
++
++    .line 125
++    iget-object v1, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->stack:Ljava/util/List;
  
 -    const-string v0, "canvas"
-+# virtual methods
-+.method public destroy()V
-+    .registers 2
++    invoke-static {v1}, Ljava/util/Collections;->reverse(Ljava/util/List;)V
  
 -    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
-+    .line 103
-+    const/4 v0, 0x1
- 
--    .line 53
-+    iput-boolean v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->isDestroyed:Z
++    .line 127
++    invoke-virtual {p0}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->getStack()Ljava/util/List;
 +
-+    .line 104
-     iget-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->drawable:Landroid/graphics/drawable/Drawable;
- 
--    if-eqz v0, :cond_0
-+    invoke-static {v0}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->stopAnimation(Landroid/graphics/drawable/Drawable;)V
- 
--    .line 54
--    invoke-virtual {v0, p1}, Landroid/graphics/drawable/Drawable;->draw(Landroid/graphics/Canvas;)V
-+    .line 105
-+    const/4 v0, 0x0
- 
--    .line 55
--    instance-of p1, v0, Lcom/bumptech/glide/load/resource/gif/GifDrawable;
-+    iput-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->drawable:Landroid/graphics/drawable/Drawable;
++    move-result-object v1
 +
-+    .line 106
-+    iput-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->onBoundsChangeListener:Lkotlin/jvm/functions/Function1;
- 
--    if-eqz p1, :cond_0
-+    .line 107
-+    iput-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->greyMatrix:Landroid/graphics/ColorMatrix;
- 
--    check-cast v0, Lcom/bumptech/glide/load/resource/gif/GifDrawable;
-+    .line 108
-+    iput-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->greyFilter:Landroid/graphics/ColorMatrixColorFilter;
- 
--    invoke-virtual {v0}, Lcom/bumptech/glide/load/resource/gif/GifDrawable;->isRunning()Z
-+    .line 109
++    invoke-interface {v1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
++
++    move-result-object v1
++
++    :goto_e
++    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
++
++    move-result v2
++
++    if-eqz v2, :cond_1e
++
++    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
++
++    move-result-object v0
++
++    check-cast v0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++
++    .line 128
++    .local v0, "stack":Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    invoke-virtual {v0}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->destroy()V
++
++    goto :goto_e
++
++    .line 131
++    .end local v0    # "stack":Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    :cond_1e
++    const/4 v1, 0x1
++
++    iput-boolean v1, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->isDestroyed:Z
++
++    .line 132
++    iget-object v1, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->drawable:Landroid/graphics/drawable/Drawable;
++
++    invoke-static {v1}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->stopAnimation(Landroid/graphics/drawable/Drawable;)V
++
++    .line 133
++    iput-object v3, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->drawable:Landroid/graphics/drawable/Drawable;
++
++    .line 134
++    iput-object v3, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->onBoundsChangeListener:Lkotlin/jvm/functions/Function1;
++
++    .line 135
++    iput-object v3, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->greyMatrix:Landroid/graphics/ColorMatrix;
++
++    .line 136
++    iput-object v3, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->greyFilter:Landroid/graphics/ColorMatrixColorFilter;
++
++    .line 137
 +    return-void
 +.end method
  
--    move-result p1
+-    .line 53
 +.method public draw(Landroid/graphics/Canvas;)V
-+    .registers 4
++    .registers 6
 +    .param p1, "canvas"    # Landroid/graphics/Canvas;
++
++    .prologue
++    .line 101
+     iget-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->drawable:Landroid/graphics/drawable/Drawable;
  
--    if-nez p1, :cond_0
-+    .line 83
-+    iget-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->drawable:Landroid/graphics/drawable/Drawable;
- 
--    .line 56
--    invoke-virtual {v0}, Lcom/bumptech/glide/load/resource/gif/GifDrawable;->start()V
-+    .line 84
+-    if-eqz v0, :cond_0
++    .line 102
 +    .local v0, "drawable":Landroid/graphics/drawable/Drawable;
 +    if-eqz v0, :cond_11
  
--    :cond_0
-+    .line 85
-+    iget-boolean v1, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->grey:Z
+-    .line 54
++    .line 103
++    iget-boolean v2, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->grey:Z
 +
-+    if-eqz v1, :cond_b
++    if-eqz v2, :cond_b
 +
-+    .line 86
++    .line 104
 +    invoke-direct {p0, v0}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->setGreyFilter(Landroid/graphics/drawable/Drawable;)V
 +
-+    .line 88
++    .line 106
 +    :cond_b
-+    invoke-virtual {v0, p1}, Landroid/graphics/drawable/Drawable;->draw(Landroid/graphics/Canvas;)V
-+
-+    .line 89
+     invoke-virtual {v0, p1}, Landroid/graphics/drawable/Drawable;->draw(Landroid/graphics/Canvas;)V
+ 
+-    .line 55
+-    instance-of p1, v0, Lcom/bumptech/glide/load/resource/gif/GifDrawable;
++    .line 107
 +    invoke-static {v0}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->startAnimation(Landroid/graphics/drawable/Drawable;)V
-+
-+    .line 91
+ 
+-    if-eqz p1, :cond_0
++    .line 110
 +    :cond_11
++    invoke-virtual {p0}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->getStack()Ljava/util/List;
+ 
+-    check-cast v0, Lcom/bumptech/glide/load/resource/gif/GifDrawable;
++    move-result-object v2
+ 
+-    invoke-virtual {v0}, Lcom/bumptech/glide/load/resource/gif/GifDrawable;->isRunning()Z
++    invoke-interface {v2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+ 
+-    move-result p1
++    move-result-object v2
+ 
+-    if-nez p1, :cond_0
++    :goto_19
++    invoke-interface {v2}, Ljava/util/Iterator;->hasNext()Z
+ 
+-    .line 56
+-    invoke-virtual {v0}, Lcom/bumptech/glide/load/resource/gif/GifDrawable;->start()V
++    move-result v3
++
++    if-eqz v3, :cond_29
++
++    invoke-interface {v2}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+ 
+-    :cond_0
++    move-result-object v1
++
++    check-cast v1, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++
++    .line 111
++    .local v1, "stack":Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    invoke-virtual {v1, p1}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->draw(Landroid/graphics/Canvas;)V
++
++    goto :goto_19
++
++    .line 113
++    .end local v1    # "stack":Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    :cond_29
      return-void
  .end method
  
@@ -428,21 +551,42 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
 +    .registers 2
  
 -    .line 37
-+    .line 66
++    .prologue
++    .line 84
      iget-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->type:Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;
  
      invoke-virtual {v0}, Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;->getSizeDp()F
-@@ -182,75 +386,98 @@
+@@ -182,92 +494,140 @@
      return v0
  .end method
  
 -.method public final getUrl()Ljava/lang/String;
 -    .locals 1
-+.method public getUrl()Ljava/lang/String;
++.method public getStack()Ljava/util/List;
 +    .registers 2
++    .annotation system Ldalvik/annotation/Signature;
++        value = {
++            "()",
++            "Ljava/util/List",
++            "<",
++            "Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;",
++            ">;"
++        }
++    .end annotation
  
 -    .line 21
-+    .line 36
++    .prologue
++    .line 38
++    iget-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->stack:Ljava/util/List;
++
++    return-object v0
++.end method
++
++.method public getUrl()Ljava/lang/String;
++    .registers 2
++
++    .prologue
++    .line 54
      iget-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->url:Ljava/lang/String;
  
      return-object v0
@@ -454,7 +598,8 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
 +    .registers 2
  
 -    .line 42
-+    .line 70
++    .prologue
++    .line 88
      iget-boolean v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->isDestroyed:Z
  
      return v0
@@ -466,7 +611,8 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
 +    .registers 2
  
 -    .line 49
-+    .line 74
++    .prologue
++    .line 92
      iget-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->drawable:Landroid/graphics/drawable/Drawable;
  
 -    if-eqz v0, :cond_0
@@ -475,15 +621,16 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
      const/4 v0, 0x1
  
 -    goto :goto_0
-+    goto :goto_7
++    :goto_5
++    return v0
  
 -    :cond_0
 +    :cond_6
      const/4 v0, 0x0
  
 -    :goto_0
-+    :goto_7
-     return v0
+-    return v0
++    goto :goto_5
  .end method
  
 -.method protected onBoundsChange(Landroid/graphics/Rect;)V
@@ -492,7 +639,8 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
 +    .registers 2
  
 -    const-string v0, "bounds"
-+    .line 48
++    .prologue
++    .line 66
 +    iget-boolean v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->wide:Z
  
 -    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
@@ -504,23 +652,24 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
 +    .registers 3
 +    .param p1, "rect"    # Landroid/graphics/Rect;
 +
-+    .line 95
++    .prologue
++    .line 117
      invoke-super {p0, p1}, Landroid/graphics/drawable/BitmapDrawable;->onBoundsChange(Landroid/graphics/Rect;)V
  
 -    .line 64
-+    .line 96
++    .line 118
      iget-object v0, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->onBoundsChangeListener:Lkotlin/jvm/functions/Function1;
  
 -    if-eqz v0, :cond_0
-+    .line 97
++    .line 119
 +    .local v0, "function1":Lkotlin/jvm/functions/Function1;, "Lkotlin/jvm/functions/Function1<-Landroid/graphics/Rect;Lkotlin/Unit;>;"
 +    if-eqz v0, :cond_a
  
-+    .line 98
++    .line 120
      invoke-interface {v0, p1}, Lkotlin/jvm/functions/Function1;->invoke(Ljava/lang/Object;)Ljava/lang/Object;
  
 -    :cond_0
-+    .line 100
++    .line 122
 +    :cond_a
      return-void
  .end method
@@ -532,32 +681,40 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
 +    .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
  
 -    .line 25
-+    .line 58
++    .prologue
++    .line 76
      iput-object p1, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->drawable:Landroid/graphics/drawable/Drawable;
  
-+    .line 59
++    .line 77
++    return-void
++.end method
++
++.method public setGrey(Z)V
++    .registers 2
++    .param p1, "state"    # Z
++
++    .prologue
++    .line 96
++    iput-boolean p1, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->grey:Z
++
++    .line 97
      return-void
  .end method
  
 -.method public final setOnBoundsChangeListener(Lkotlin/jvm/functions/Function1;)V
 -    .locals 1
-+.method public setGrey(Z)V
-+    .registers 2
-+    .param p1, "state"    # Z
-+
-+    .line 78
-+    iput-boolean p1, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->grey:Z
-+
-+    .line 79
-+    return-void
-+.end method
-+
 +.method public setOnBoundsChangeListener(Lkotlin/jvm/functions/Function1;)V
 +    .registers 2
      .annotation system Ldalvik/annotation/Signature;
          value = {
              "(",
-@@ -262,12 +489,10 @@
+-            "Lkotlin/jvm/functions/Function1<",
+-            "-",
++            "Lkotlin/jvm/functions/Function1",
++            "<-",
+             "Landroid/graphics/Rect;",
+             "Lkotlin/Unit;",
+             ">;)V"
          }
      .end annotation
  
@@ -566,10 +723,11 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/span/UrlDrawabl
 -    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 -
 -    .line 33
-+    .line 62
++    .prologue
++    .line 80
 +    .local p1, "listener":Lkotlin/jvm/functions/Function1;, "Lkotlin/jvm/functions/Function1<-Landroid/graphics/Rect;Lkotlin/Unit;>;"
      iput-object p1, p0, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->onBoundsChangeListener:Lkotlin/jvm/functions/Function1;
  
-+    .line 63
++    .line 81
      return-void
  .end method

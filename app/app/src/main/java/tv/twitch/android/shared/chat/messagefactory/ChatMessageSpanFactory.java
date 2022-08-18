@@ -13,7 +13,6 @@ import tv.orange.features.badges.bridge.OrangeMessageBadge;
 import tv.orange.features.chat.ChatHookProvider;
 import tv.orange.features.chat.bridge.BackgroundUrlDrawable;
 import tv.orange.features.chat.bridge.StackEmoteToken;
-import tv.orange.features.chat.bridge.StackUrlDrawable;
 import tv.orange.features.emotes.bridge.EmoteToken;
 import tv.orange.models.abc.EmoteCardModelWrapper;
 import tv.orange.models.exception.VirtualImpl;
@@ -28,13 +27,16 @@ import tv.twitch.android.shared.chat.UrlImageClickableProvider;
 import tv.twitch.android.shared.chat.chatsource.IClickableUsernameSpanListener;
 import tv.twitch.android.shared.chat.util.ChatItemClickEvent;
 import tv.twitch.android.shared.chat.util.ClickableEmoteSpan;
+import tv.twitch.android.shared.emotes.utils.AnimatedEmotesUrlUtil;
 import tv.twitch.android.shared.preferences.chatfilters.ChatFiltersSettings;
-import tv.twitch.android.shared.ui.elements.GlideHelper;
+import tv.twitch.android.shared.ui.elements.span.CenteredImageSpan;
 import tv.twitch.android.shared.ui.elements.span.MediaSpan$Type;
 import tv.twitch.android.shared.ui.elements.span.TwitchUrlSpanClickListener;
 import tv.twitch.android.shared.ui.elements.span.UrlDrawable;
 
 public class ChatMessageSpanFactory {
+    private AnimatedEmotesUrlUtil animatedEmotesUrlUtil;
+
     /* ... */
 
     private final CharSequence imageSpannable(Drawable drawable, String str, String str2, UrlImageClickableProvider urlImageClickableProvider, boolean z) {
@@ -71,7 +73,7 @@ public class ChatMessageSpanFactory {
         if (token instanceof EmoteToken) { // TODO: __INJECT_CODE
             spannableStringBuilder.append(emoteSpannable((EmoteToken) token, chatMessageInterface, eventDispatcher));
         } else if (token instanceof StackEmoteToken) {
-            spannableStringBuilder.append(stackEmoteSpannable((StackEmoteToken) token, chatMessageInterface, eventDispatcher));
+            spannableStringBuilder.append(stackEmoteSpannable((StackEmoteToken) token, chatMessageInterface, num, eventDispatcher));
         }
 
         /* ... */
@@ -80,20 +82,36 @@ public class ChatMessageSpanFactory {
         return ChatHookProvider.get().fixDeletedMessage(ret, chatMessageInterface); // TODO: __INJECT_CODE
     }
 
-    private CharSequence stackEmoteSpannable(StackEmoteToken token, ChatMessageInterface chatMessageInterface, EventDispatcher<ChatItemClickEvent> eventDispatcher) {
+    private final CharSequence emoteSpannable(MessageToken.EmoticonToken emoticonToken, ChatMessageInterface chatMessageInterface, Integer num, EventDispatcher<ChatItemClickEvent> eventDispatcher) {
+        throw new VirtualImpl();
+    }
+
+    private CharSequence stackEmoteSpannable(StackEmoteToken stackEmoteToken, ChatMessageInterface chatMessageInterface, Integer num, EventDispatcher<ChatItemClickEvent> eventDispatcher) {
         List<UrlDrawable> stack = new ArrayList<>();
-        for (EmoteToken t : token.getStack()) {
+        for (EmoteToken t : stackEmoteToken.getStack()) {
             stack.add(new UrlDrawable(t.getEmoteUrl(), MediaSpan$Type.Emote, true));
         }
 
-        UrlDrawable drawable = new StackUrlDrawable(token.getCore().getEmoteUrl(), MediaSpan$Type.Emote, stack);
+        if (stackEmoteToken.getCore().isTwitchToken()) {
+            SpannableString spannable = (SpannableString) emoteSpannable(stackEmoteToken.getCore().getTwitchToken(), chatMessageInterface, num, eventDispatcher);
+            CenteredImageSpan[] spans = spannable.getSpans(0, spannable.length(), CenteredImageSpan.class);
+            CenteredImageSpan span = spans[0];
+            UrlDrawable drawable = (UrlDrawable) span.getImageDrawable();
+            drawable.addToStack(stack);
 
-        SpannableString spannable = new SpannableString(imageSpannable(drawable, token.getCore().getEmoteCode(), "", null, true));
-        if (eventDispatcher != null) {
-            spannable.setSpan(new ClickableEmoteSpan(new EmoteCardModelWrapper(token.getCore().getEmoteCode(), token.getCore().getEmoteCardUrl(), token.getCore().getPackageSet()).toJsonString(), chatMessageInterface, eventDispatcher), 0, spannable.length() - 1, 33);
+            return spannable;
+        } else {
+            EmoteToken token = stackEmoteToken.getCore().getOrangeToken();
+            UrlDrawable drawable = new UrlDrawable(token.getEmoteUrl(), MediaSpan$Type.Emote, true);
+            drawable.addToStack(stack);
+
+            SpannableString spannable = new SpannableString(imageSpannable(drawable, token.getEmoteCode(), "", null, true));
+            if (eventDispatcher != null) {
+                spannable.setSpan(new ClickableEmoteSpan(new EmoteCardModelWrapper(token.getEmoteCode(), token.getEmoteCardUrl(), token.getPackageSet()).toJsonString(), chatMessageInterface, eventDispatcher), 0, spannable.length() - 1, 33);
+            }
+
+            return spannable;
         }
-
-        return spannable;
     }
 
     private CharSequence badgeSpannable(OrangeMessageBadge messageBadge) { // TODO: __INJECT_METHOD

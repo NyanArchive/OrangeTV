@@ -10,6 +10,10 @@ import android.graphics.drawable.Drawable;
 import com.bumptech.glide.integration.webp.decoder.WebpDrawable;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import kotlin.jvm.internal.DefaultConstructorMarker;
@@ -27,6 +31,20 @@ public class UrlDrawable extends BitmapDrawable { // TODO: __REPLACE_CLASS
     private boolean grey = false;
     private ColorMatrix greyMatrix;
     private ColorMatrixColorFilter greyFilter;
+
+    private final List<UrlDrawable> stack = new ArrayList<>();
+
+    public List<UrlDrawable> getStack() {
+        return stack;
+    }
+
+    public void addToStack(UrlDrawable drawable) {
+        stack.add(drawable);
+    }
+
+    public void addToStack(List<UrlDrawable> drawables) {
+        stack.addAll(drawables);
+    }
 
     public UrlDrawable() {
         this(null, null, 3, null);
@@ -74,12 +92,12 @@ public class UrlDrawable extends BitmapDrawable { // TODO: __REPLACE_CLASS
         return this.drawable != null;
     }
 
-    public void setGrey(boolean state) { // TODO: __INJECT_METHOD
+    public void setGrey(boolean state) {
         grey = state;
     }
 
     @Override
-    public void draw(Canvas canvas) { // TODO: __REPLACE_METHOD
+    public void draw(Canvas canvas) {
         Drawable drawable = this.drawable;
         if (drawable != null) {
             if (grey) {
@@ -87,6 +105,10 @@ public class UrlDrawable extends BitmapDrawable { // TODO: __REPLACE_CLASS
             }
             drawable.draw(canvas);
             startAnimation(drawable);
+        }
+
+        for (UrlDrawable stack : getStack()) {
+            stack.draw(canvas);
         }
     }
 
@@ -100,6 +122,12 @@ public class UrlDrawable extends BitmapDrawable { // TODO: __REPLACE_CLASS
     }
 
     public void destroy() {
+        Collections.reverse(stack);
+
+        for (UrlDrawable stack : getStack()) {
+            stack.destroy();
+        }
+
         isDestroyed = true;
         stopAnimation(drawable);
         drawable = null;

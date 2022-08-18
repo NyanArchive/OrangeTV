@@ -8,9 +8,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import tv.orange.features.chat.bridge.StackUrlDrawable;
 import tv.orange.models.exception.VirtualImpl;
+import tv.twitch.android.app.core.ActivityUtilKt;
 import tv.twitch.android.shared.ui.elements.span.CenteredImageSpan;
+import tv.twitch.android.shared.ui.elements.span.FixedTimeCoordinatorDrawable;
 import tv.twitch.android.shared.ui.elements.span.GlideChatImageCustomTarget;
 import tv.twitch.android.shared.ui.elements.span.GlideChatImageTarget;
 import tv.twitch.android.shared.ui.elements.span.UrlDrawable;
@@ -42,50 +43,63 @@ public final class GlideHelper {
         throw new VirtualImpl();
     }
 
-    public static final void loadImagesFromSpanned(Context context, Spanned spanned, TextView textView) {
+    public static final void loadImagesFromSpanned(Context context, Spanned spanned, TextView textView) { // TODO: __REPLACE_METHOD
+        if (ActivityUtilKt.isInvalid(context)) {
+            return;
+        }
         Object[] spans = spanned.getSpans(0, spanned.length(), CenteredImageSpan.class);
         for (Object obj : spans) {
             Drawable imageDrawable = ((CenteredImageSpan) obj).getImageDrawable();
-            if (imageDrawable instanceof StackUrlDrawable) { // TODO: __INJECT_CODE
-                loadImagesForStackUrlDrawable(context, (StackUrlDrawable) imageDrawable, textView);
+            if (imageDrawable instanceof FixedTimeCoordinatorDrawable) {
+                FixedTimeCoordinatorDrawable fixedTimeCoordinatorDrawable = (FixedTimeCoordinatorDrawable) imageDrawable;
+                if (fixedTimeCoordinatorDrawable.shouldDisplayInitialDrawable()) {
+                    loadImagesForUrlDrawable(context, fixedTimeCoordinatorDrawable.getInitialUrlDrawable(), textView);
+                }
+                loadImagesForUrlDrawable(context, fixedTimeCoordinatorDrawable.getFinalUrlDrawable(), textView);
+            } else if (imageDrawable instanceof UrlDrawable) {
+                loadImagesForUrlDrawable(context, (UrlDrawable) imageDrawable, textView);
             }
         }
-
-        /* ... */
-
-        throw new VirtualImpl();
     }
 
-    public static final List<GlideChatImageCustomTarget> loadImagesFromSpannedAndGetTargets(Context context, Spanned spanned, TextView textView) {
-        List<GlideChatImageCustomTarget> emptyList;
+    public static final List<GlideChatImageCustomTarget> loadImagesFromSpannedAndGetTargets(Context context, Spanned spanned, TextView textView) { // TODO: __REPLACE_METHOD
+        if (ActivityUtilKt.isInvalid(context)) {
+            return new ArrayList<>();
+        }
         CenteredImageSpan[] spans = (CenteredImageSpan[]) spanned.getSpans(0, spanned.length(), CenteredImageSpan.class);
-        ArrayList<GlideChatImageCustomTarget> arrayList = new ArrayList();
+        ArrayList<GlideChatImageCustomTarget> arrayList = new ArrayList<>();
         for (CenteredImageSpan centeredImageSpan : spans) {
             Drawable imageDrawable = centeredImageSpan.getImageDrawable();
-            if (imageDrawable instanceof StackUrlDrawable) { // TODO: __INJECT_CODE
-                loadImagesForStackUrlDrawable(context, (StackUrlDrawable) imageDrawable, textView, arrayList);
+            if (imageDrawable instanceof FixedTimeCoordinatorDrawable) {
+                FixedTimeCoordinatorDrawable fixedTimeCoordinatorDrawable = (FixedTimeCoordinatorDrawable) imageDrawable;
+                if (fixedTimeCoordinatorDrawable.shouldDisplayInitialDrawable()) {
+                    arrayList.addAll(loadImagesForUrlDrawableAngGetTarget(context, fixedTimeCoordinatorDrawable.getInitialUrlDrawable(), textView));
+                }
+                arrayList.addAll(loadImagesForUrlDrawableAngGetTarget(context, fixedTimeCoordinatorDrawable.getFinalUrlDrawable(), textView));
+            } else if (imageDrawable instanceof UrlDrawable) {
+                arrayList.addAll(loadImagesForUrlDrawableAngGetTarget(context, (UrlDrawable) imageDrawable, textView));
             }
         }
-
-        /* ... */
-
-        throw new VirtualImpl();
+        return arrayList;
     }
 
-    private static void loadImagesForStackUrlDrawable(Context context, StackUrlDrawable imageDrawable, TextView textView, ArrayList<GlideChatImageCustomTarget> arrayList) { // TODO: __INJECT_METHOD
-        arrayList.add(loadImageForUrlDrawableAngGetTarget(context, imageDrawable, textView));
+    private static void loadImagesForUrlDrawable(Context context, UrlDrawable urlDrawable, TextView textView) { // TODO: __INJECT_METHOD
+        loadImageForUrlDrawable(context, urlDrawable, textView);
 
-        for (UrlDrawable drawable : imageDrawable.getStack()) {
-            arrayList.add(loadImageForUrlDrawableAngGetTarget(context, drawable, textView));
+        for (UrlDrawable drawable : urlDrawable.getStack()) {
+            loadImagesForUrlDrawable(context, drawable, textView);
         }
     }
 
-    private static void loadImagesForStackUrlDrawable(Context context, StackUrlDrawable imageDrawable, TextView textView) { // TODO: __INJECT_METHOD
-        loadImageForUrlDrawable(context, imageDrawable, textView);
+    private static List<GlideChatImageCustomTarget> loadImagesForUrlDrawableAngGetTarget(Context context, UrlDrawable urlDrawable, TextView textView) { // TODO: __INJECT_METHOD
+        ArrayList<GlideChatImageCustomTarget> arrayList = new ArrayList<>();
+        arrayList.add(loadImageForUrlDrawableAngGetTarget(context, urlDrawable, textView));
 
-        for (UrlDrawable drawable : imageDrawable.getStack()) {
-            loadImageForUrlDrawable(context, drawable, textView);
+        for (UrlDrawable drawable : urlDrawable.getStack()) {
+            arrayList.addAll(loadImagesForUrlDrawableAngGetTarget(context, drawable, textView));
         }
+
+        return arrayList;
     }
 
     /* ... */

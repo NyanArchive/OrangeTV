@@ -14,13 +14,13 @@ tasks.register('copyAppDex', Copy) {
     }
 }
 
-tasks.whenTaskAdded { task ->
-    if (task.name == 'mergeLibDexDebug') {
-        task.doFirst {
-            delete fileTree("$rootProject.projectDir/Twitch/build/.transforms") { include '**/*.dex' }
-        }
-    }
-}
+//tasks.whenTaskAdded { task ->
+//    if (task.name == 'mergeLibDexDebug') {
+//        task.doFirst {
+//            delete fileTree("$rootProject.projectDir/Twitch/build/.transforms") { include '**/*.dex' }
+//        }
+//    }
+//}
 
 genDex.dependsOn 'mergeLibDexDebug'
 genDex.finalizedBy 'copyAppDex'

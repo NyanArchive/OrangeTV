@@ -53,7 +53,7 @@ class PronounProvider @Inject constructor(
                     it.pronoun_id ?: run {
                         cache.put(userName, Optional.empty())
                         Logger.debug("Put to cache $userName=empty")
-                        return@map null
+                        return@map Optional.empty()
                     }
 
                     return@map idsMap[it.pronoun_id].also { text ->
@@ -63,7 +63,13 @@ class PronounProvider @Inject constructor(
                 }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                    { text -> text?.let { function.invoke(it.get()) } },
+                    { text ->
+                        text?.let {
+                            if (it.isPresent) {
+                                function.invoke(it.get())
+                            }
+                        }
+                    },
                     Throwable::printStackTrace
                 )
         )

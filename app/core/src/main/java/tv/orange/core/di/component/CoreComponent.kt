@@ -9,6 +9,7 @@ import tv.orange.core.CoreHook
 import tv.orange.core.di.module.CoreModule
 import tv.orange.core.di.module.NetworkModule
 import tv.orange.core.di.scope.AppScope
+import tv.twitch.android.core.user.TwitchAccountManager
 
 @AppScope
 @Component(modules = [CoreModule::class, NetworkModule::class])
@@ -22,6 +23,8 @@ interface CoreComponent {
 
     val retrofitBuilder: Retrofit.Builder
     val okHttpClient: OkHttpClient
+
+    val tam: TwitchAccountManager
 
     val coreHook: CoreHook
 }

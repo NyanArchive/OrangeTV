@@ -69,6 +69,11 @@ enum class Flag(
         "orange_settings_pronouns",
         BooleanValue()
     ),
+    AUTO_HIDE_MESSAGE_INPUT(
+        "auto_hide_message_input",
+        "orange_settings_auto_hide_message_input",
+        BooleanValue()
+    ),
     BTTV_EMOTES(
         "bttv_emotes",
         "orange_settings_bttv_emotes",
@@ -168,6 +173,11 @@ enum class Flag(
         "vibration_duration",
         "orange_settings_vibration_duration",
         IntegerRangeValue(10, 1000, 100, step = 10),
+    ),
+    LANDSCAPE_CHAT_OPACITY(
+        "landscape_chat_opacity",
+        "orange_settings_landscape_chat_opacity",
+        IntegerRangeValue(0, 100, 30),
     );
 
     constructor(key: String, default: ValueHolder) : this(

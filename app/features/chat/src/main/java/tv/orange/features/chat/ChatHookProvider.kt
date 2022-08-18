@@ -48,7 +48,6 @@ import tv.orange.models.abc.EmotePackageSet
 import tv.orange.models.abc.Feature
 import tv.orange.models.data.emotes.Emote
 import tv.twitch.android.core.adapters.RecyclerAdapterItem
-import tv.twitch.android.core.mvp.viewdelegate.EventDispatcher
 import tv.twitch.android.core.user.TwitchAccountManager
 import tv.twitch.android.models.chat.MessageBadge
 import tv.twitch.android.models.chat.MessageToken
@@ -58,12 +57,10 @@ import tv.twitch.android.provider.chat.ChatMessageInterface
 import tv.twitch.android.shared.chat.adapter.item.ChatMessageClickedEvents
 import tv.twitch.android.shared.chat.adapter.item.MessageRecyclerItem
 import tv.twitch.android.shared.chat.chomments.ChommentRecyclerItem
-import tv.twitch.android.shared.chat.messagefactory.ChatMessageFactory
 import tv.twitch.android.shared.chat.messagefactory.adapteritem.PrivateCalloutsMessageRecyclerItem
 import tv.twitch.android.shared.chat.messagefactory.adapteritem.RaidMessageRecyclerItem
 import tv.twitch.android.shared.chat.messagefactory.adapteritem.SubGoalUserNoticeRecyclerItem
 import tv.twitch.android.shared.chat.messagefactory.adapteritem.UserNoticeRecyclerItem
-import tv.twitch.android.shared.chat.util.ChatItemClickEvent
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerPresenter
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerViewDelegate
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteHeaderUiModel
@@ -178,7 +175,8 @@ class ChatHookProvider @Inject constructor(
                                 emote.getCode(),
                                 emote.getUrl(Emote.Size.MEDIUM),
                                 emote.getUrl(Emote.Size.LARGE),
-                                emote.getPackageSet()
+                                emote.getPackageSet(),
+                                emote.isZeroWidth()
                             )
                         )
                     } else {
@@ -191,10 +189,40 @@ class ChatHookProvider @Inject constructor(
         }
 
         if (injected) {
-            return stack
+            return zw(stack)
         }
 
         return tokens
+    }
+
+    private fun zw(tokens: Collection<MessageToken>): MutableList<MessageToken> {
+        val newTokens = mutableListOf<MessageToken>()
+
+        var stack: StackEmoteToken? = null
+        for (token in tokens) {
+            when (token) {
+                is MessageToken.TextToken -> {
+                    if (!token.text.isNullOrBlank()) {
+                        stack = null
+                    }
+                    newTokens.add(token)
+                }
+                is EmoteToken -> {
+                    if (!token.isZeroWidth) {
+                        stack = StackEmoteToken(token)
+                        newTokens.add(stack)
+                    } else {
+                        stack?.stack?.add(token) ?: newTokens.add(token)
+                    }
+                }
+                else -> {
+                    stack = null
+                    newTokens.add(token)
+                }
+            }
+        }
+
+        return newTokens
     }
 
     @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")

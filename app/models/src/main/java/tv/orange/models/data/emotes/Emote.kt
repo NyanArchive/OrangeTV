@@ -11,6 +11,8 @@ interface Emote {
 
     fun getPackageSet(): EmotePackageSet
 
+    fun isZeroWidth(): Boolean
+
     enum class Size {
         LARGE,
         MEDIUM,

@@ -18,7 +18,8 @@ class BttvApiMapper @Inject constructor() {
                 smallUrl = getEmoteUrl("1x", emote.id),
                 mediumUrl = getEmoteUrl("2x", emote.id),
                 largeUrl = getEmoteUrl("3x", emote.id),
-                packageSet = if (isChannelEmote) EmotePackageSet.BttvChannel else EmotePackageSet.BttvGlobal
+                packageSet = if (isChannelEmote) EmotePackageSet.BttvChannel else EmotePackageSet.BttvGlobal,
+                isZeroWidth = if (!isChannelEmote) BTTV_GLOBAL_ZW_CODES.contains(emote.code) else false
             )
         }
     }
@@ -44,6 +45,11 @@ class BttvApiMapper @Inject constructor() {
 
     companion object {
         private const val BTTV_EMOTE_CDN = "https://cdn.betterttv.net/emote/"
+
+        private val BTTV_GLOBAL_ZW_CODES = hashSetOf(
+            "SoSnowy", "IceCold", "SantaHat", "TopHat",
+            "ReinDeer", "CandyCane", "cvMask", "cvHazmat"
+        )
 
         private fun getEmoteUrl(size: String, emoteId: String): String {
             return "$BTTV_EMOTE_CDN$emoteId/$size"

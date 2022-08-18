@@ -8,13 +8,18 @@ data class EmoteImpl(
     private val mediumUrl: String?,
     private val largeUrl: String?,
     private val animated: Boolean,
-    private val packageSet: EmotePackageSet
+    private val packageSet: EmotePackageSet,
+    private val isZeroWidth: Boolean = false
 ) : Emote {
     override fun getCode() = emoteCode
 
     override fun isAnimated(): Boolean = animated
     override fun getPackageSet(): EmotePackageSet {
         return packageSet
+    }
+
+    override fun isZeroWidth(): Boolean {
+        return isZeroWidth
     }
 
     override fun getUrl(size: Emote.Size): String {

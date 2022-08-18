@@ -19,7 +19,8 @@ class StvApiMapper @Inject constructor() {
                 smallUrl = getEmoteUrl("1x", emote.id),
                 mediumUrl = getEmoteUrl("2x", emote.id),
                 largeUrl = getEmoteUrl("4x", emote.id),
-                packageSet = if (isChannelEmote) EmotePackageSet.StvChannel else EmotePackageSet.StvGlobal
+                packageSet = if (isChannelEmote) EmotePackageSet.StvChannel else EmotePackageSet.StvGlobal,
+                isZeroWidth = emote.visibility_simple.contains("ZERO_WIDTH")
             )
         }
     }

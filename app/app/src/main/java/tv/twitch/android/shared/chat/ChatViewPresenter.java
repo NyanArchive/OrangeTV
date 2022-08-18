@@ -2,6 +2,7 @@ package tv.twitch.android.shared.chat;
 
 import tv.orange.features.chathistory.ChatHistory;
 import tv.orange.features.spam.bridge.ChatSpamCommand;
+import tv.orange.features.ui.UI;
 import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.models.channel.ChannelInfo;
 import tv.twitch.android.shared.chat.command.ChatCommandAction;
@@ -11,6 +12,7 @@ import tv.twitch.android.shared.chat.model.ChatSendAction;
 public class ChatViewPresenter {
     public LiveChatSource liveChatSource;
     private ChannelInfo channel;
+    private ChatViewDelegate chatViewDelegate;
 
     /* ... */
 
@@ -35,6 +37,15 @@ public class ChatViewPresenter {
 
         throw new VirtualImpl();
     }
+
+    public void onConfigurationChanged() {
+        /* ... */
+
+        UI.get().onChatViewPresenterConfigurationChanged(chatViewDelegate); // TODO: __INJECT_CODE
+
+        throw new VirtualImpl();
+    }
+
 
     /* ... */
 }

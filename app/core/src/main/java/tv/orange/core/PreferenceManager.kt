@@ -6,10 +6,11 @@ import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.FlagListener
 import tv.orange.core.models.flag.Internal.*
 import tv.orange.models.abc.Feature
+import tv.twitch.android.app.core.ThemeManager
 import javax.inject.Inject
 
 class PreferenceManager @Inject constructor(
-    context: Context
+    val context: Context
 ) : SharedPreferences.OnSharedPreferenceChangeListener, Feature {
     private val twitch = android.preference.PreferenceManager.getDefaultSharedPreferences(context)
     private val orange = context.getSharedPreferences(ORANGE_PREFERENCES, Context.MODE_PRIVATE)
@@ -18,7 +19,8 @@ class PreferenceManager @Inject constructor(
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         if (sharedPreferences == twitch) {
             if (key == TWITCH_DARK_THEME_KEY) {
-                isDarkTheme = twitch.getBoolean(TWITCH_DARK_THEME_KEY, false)
+                isDarkTheme = ThemeManager.Companion!!.isNightModeEnabled(context)
+                Logger.debug("isDarkTheme: $isDarkTheme")
             }
             return
         }
@@ -96,7 +98,7 @@ class PreferenceManager @Inject constructor(
     }
 
     companion object {
-        private const val TWITCH_DARK_THEME_KEY = "dark_theme_enabled"
+        private const val TWITCH_DARK_THEME_KEY = "user_theme"
 
         private const val ORANGE_PREFERENCES = "orange"
 
@@ -116,6 +118,7 @@ class PreferenceManager @Inject constructor(
         orange.registerOnSharedPreferenceChangeListener(this)
         twitch.registerOnSharedPreferenceChangeListener(this)
 
-        isDarkTheme = twitch.getBoolean(TWITCH_DARK_THEME_KEY, false)
+        isDarkTheme = ThemeManager.Companion!!.isNightModeEnabled(context)
+        Logger.debug("isDarkTheme: $isDarkTheme")
     }
 }

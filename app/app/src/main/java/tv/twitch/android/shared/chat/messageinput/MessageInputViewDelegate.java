@@ -1,9 +1,19 @@
 package tv.twitch.android.shared.chat.messageinput;
 
-import tv.orange.features.chat.ChatHookProvider;
-import tv.orange.models.exception.VirtualImpl;
+import android.view.View;
 
-public class MessageInputViewDelegate {
+import tv.orange.features.chat.ChatHookProvider;
+import tv.orange.features.ui.UI;
+import tv.orange.models.exception.VirtualImpl;
+import tv.twitch.android.core.mvp.viewdelegate.BaseViewDelegate;
+
+public class MessageInputViewDelegate extends BaseViewDelegate {
+    public MessageInputViewDelegate(View view) {
+        super(view);
+
+        throw new VirtualImpl();
+    }
+
     /* ... */
 
     public final void render() {
@@ -15,6 +25,15 @@ public class MessageInputViewDelegate {
         /* ... */
 
         throw new VirtualImpl();
+    }
+
+    @Override
+    public void show() { // TODO: __INJECT_METHOD
+        if (UI.shouldHideMessageInput(getContext())) {
+            super.hide();
+        } else {
+            super.show();
+        }
     }
 
     /* ... */

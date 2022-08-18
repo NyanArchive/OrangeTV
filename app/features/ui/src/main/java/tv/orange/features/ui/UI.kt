@@ -1,11 +1,14 @@
 package tv.orange.features.ui
 
 import android.content.Context
+import android.content.res.Configuration
+import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.RecyclerView
 import tv.orange.core.Core
+import tv.orange.core.PreferenceManager
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.models.flag.Flag.Companion.asIntRange
@@ -15,6 +18,7 @@ import tv.orange.core.util.ViewUtil.getView
 import tv.orange.features.ui.di.scope.UIScope
 import tv.orange.models.abc.Feature
 import tv.twitch.android.core.strings.DateUtil
+import tv.twitch.android.shared.chat.ChatViewDelegate
 import tv.twitch.android.shared.ui.elements.navigation.BottomNavigationDestination
 import tv.twitch.android.shared.ui.elements.navigation.BottomNavigationItem
 import tv.twitch.android.shared.ui.menus.LogoutSectionRecyclerItem
@@ -70,6 +74,14 @@ class UI @Inject constructor(
         @JvmStatic
         val hideChatHeader: Boolean
             get() = Flag.HIDE_TOP_CHAT_PANEL_VODS.asBoolean()
+
+        private fun isLandscapeOrientation(context: Context): Boolean =
+            context.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+
+        @JvmStatic
+        fun shouldHideMessageInput(context: Context): Boolean {
+            return Flag.AUTO_HIDE_MESSAGE_INPUT.asBoolean() && isLandscapeOrientation(context)
+        }
     }
 
     val skipTwitchBrowserDialog: Boolean
@@ -133,6 +145,33 @@ class UI @Inject constructor(
                     }
                 )
             }
+        }
+    }
+
+    fun onChatViewPresenterConfigurationChanged(delegate: ChatViewDelegate) {
+        if (!Flag.AUTO_HIDE_MESSAGE_INPUT.asBoolean()) {
+            return
+        }
+
+        delegate.messageInputViewDelegate.apply {
+            if (isLandscapeOrientation(context)) {
+                hide()
+            } else {
+                show()
+            }
+        }
+    }
+
+    fun changeLandscapeChatContainerOpacity(viewGroup: ViewGroup?) {
+        if (PreferenceManager.isDarkTheme) {
+            viewGroup?.setBackgroundColor(
+                Color.argb(
+                    (255 * (Flag.LANDSCAPE_CHAT_OPACITY.asIntRange().currentValue / 100F)).toInt(),
+                    0,
+                    0,
+                    0
+                )
+            )
         }
     }
 }

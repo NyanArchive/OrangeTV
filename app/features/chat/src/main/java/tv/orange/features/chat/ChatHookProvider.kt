@@ -208,13 +208,8 @@ class ChatHookProvider @Inject constructor(
                     newTokens.add(token)
                 }
                 is MessageToken.EmoticonToken -> {
-                    if (stack == null) {
-                        stack = StackEmoteToken(StackEmoteToken.TokenHolder(token))
-                        newTokens.add(stack)
-                    } else {
-                        stack = null
-                        newTokens.add(token)
-                    }
+                    stack = StackEmoteToken(StackEmoteToken.TokenHolder(token))
+                    newTokens.add(stack)
                 }
                 is EmoteToken -> {
                     if (!token.isZeroWidth) {

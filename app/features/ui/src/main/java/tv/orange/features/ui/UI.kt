@@ -11,7 +11,7 @@ import tv.orange.core.Core
 import tv.orange.core.PreferenceManager
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
-import tv.orange.core.models.flag.Flag.Companion.asIntRange
+import tv.orange.core.models.flag.Flag.Companion.asInt
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.variants.BottomNavbarPosition
 import tv.orange.core.util.ViewUtil.getView
@@ -54,19 +54,19 @@ class UI @Inject constructor(
 
         @JvmStatic
         val landscapeContainerScale: Int
-            get() = Flag.LANDSCAPE_CHAT_SIZE.asIntRange().currentValue
+            get() = Flag.LANDSCAPE_CHAT_SIZE.asInt()
 
         @JvmStatic
         val forwardSeek: Int
-            get() = Flag.FORWARD_SEEK.asIntRange().currentValue
+            get() = Flag.FORWARD_SEEK.asInt()
 
         @JvmStatic
         val rewindSeek: Int
-            get() = -Flag.REWIND_SEEK.asIntRange().currentValue
+            get() = -Flag.REWIND_SEEK.asInt()
 
         @JvmStatic
         val miniPlayerSizeScale: Float
-            get() = Flag.MINI_PLAYER_SIZE.asIntRange().currentValue.div(100F)
+            get() = Flag.MINI_PLAYER_SIZE.asInt().div(100F)
 
         @JvmStatic
         fun hookMiniPlayerWidth(org: Int): Int = (miniPlayerSizeScale * org).toInt()
@@ -166,7 +166,7 @@ class UI @Inject constructor(
         if (PreferenceManager.isDarkTheme) {
             viewGroup?.setBackgroundColor(
                 Color.argb(
-                    (255 * (Flag.LANDSCAPE_CHAT_OPACITY.asIntRange().currentValue / 100F)).toInt(),
+                    (255 * (Flag.LANDSCAPE_CHAT_OPACITY.asInt() / 100F)).toInt(),
                     0,
                     0,
                     0

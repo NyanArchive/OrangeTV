@@ -22,7 +22,7 @@ import tv.orange.core.ResourceManager
 import tv.orange.core.compat.ClassCompat.getPrivateField
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
-import tv.orange.core.models.flag.Flag.Companion.asIntRange
+import tv.orange.core.models.flag.Flag.Companion.asInt
 import tv.orange.core.models.flag.Flag.Companion.asString
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.FlagListener
@@ -492,7 +492,7 @@ class ChatHookProvider @Inject constructor(
             Core.vibrate(
                 context = context,
                 delay = 200,
-                duration = Flag.VIBRATION_DURATION.asIntRange().currentValue
+                duration = Flag.VIBRATION_DURATION.asInt()
             )
         }
     }

@@ -222,7 +222,7 @@ enum class Flag(
                 return holder.value
             }
             if (holder is IntegerRangeValue) {
-                return holder.currentValue
+                return holder.getCurrentValue()
             }
 
             throw IllegalStateException("$holder")

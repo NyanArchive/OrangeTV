@@ -92,7 +92,7 @@ class PreferenceManager @Inject constructor(
             is IntegerValue -> flag.value = readInt(flag)
             is StringValue -> flag.value = readString(flag)
             is ListValue<*> -> value.set(readString(flag).value)
-            is IntegerRangeValue -> value.currentValue = readInt(flag).value
+            is IntegerRangeValue -> value.setCurrentValue(readInt(flag).value)
             else -> throw IllegalStateException("debug")
         }
     }

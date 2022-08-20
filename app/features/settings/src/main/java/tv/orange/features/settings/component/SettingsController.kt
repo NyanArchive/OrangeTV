@@ -7,7 +7,7 @@ import tv.orange.core.Logger
 import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
 import tv.orange.core.models.flag.Flag
-import tv.orange.core.models.flag.Flag.Companion.asIntRange
+import tv.orange.core.models.flag.Flag.Companion.asInt
 import tv.orange.core.models.flag.Flag.Companion.asString
 import tv.orange.core.models.flag.Internal
 import tv.orange.core.models.flag.variants.FontSize
@@ -93,8 +93,7 @@ class SettingsController(val activity: FragmentActivity) : SettingsPreferencesCo
     }
 
     override fun onSliderValueChanged(flag: Flag, value: Int) {
-        if (flag.asIntRange().currentValue == value) {
-            Logger.debug("Ignore: $flag")
+        if (flag.asInt() == value) {
             return
         }
 

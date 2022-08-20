@@ -21,13 +21,26 @@ class Internal {
     class IntegerRangeValue(
         val minValue: Int,
         val maxValue: Int,
-        var currentValue: Int,
+        private var currentValue: Int,
         val step: Int = 1
     ) : ValueHolder {
 
+        fun getCurrentValue(): Int {
+            return currentValue
+        }
+
+        fun setCurrentValue(value: Int) {
+            currentValue = if (value > maxValue) {
+                maxValue
+            } else if (value < minValue) {
+                minValue
+            } else {
+                value
+            }
+        }
+
         override val value: Any
             get() = currentValue
-
 
         override val type: Type
             get() = Type.INTEGER

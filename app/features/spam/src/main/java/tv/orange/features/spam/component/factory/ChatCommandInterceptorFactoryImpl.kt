@@ -9,6 +9,6 @@ import javax.inject.Inject
 @SpamScope
 class ChatCommandInterceptorFactoryImpl @Inject constructor() : ChatCommandInterceptorFactory {
     override fun createSpamCommandInterceptor(chatSource: LiveChatSource): ChatCommandInterceptor {
-        return SpamCommandInterceptor(chatSource)
+        return SpamCommandInterceptor(chatSource = chatSource)
     }
 }

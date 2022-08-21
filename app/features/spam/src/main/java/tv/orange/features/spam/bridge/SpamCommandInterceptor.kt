@@ -23,7 +23,7 @@ class SpamCommandInterceptor(
                 val textToSpam = if (i % 2 == 0L) {
                     text
                 } else {
-                    changeTextToSpam(text)
+                    changeTextToSpam(text = text)
                 }
                 chatSource.sendMessage(textToSpam, ChatSendAction.CLICK)
             }
@@ -36,12 +36,12 @@ class SpamCommandInterceptor(
                     simpleMessageSpammer(
                         count = action.count,
                         delay = action.delay,
-                        text = action.messageText
+                        text = action.messageText.trim()
                     ).subscribe()
                 )
             }
             is ChatSpamErrorCommand -> {
-                chatSource.addSystemMessage("spam: ${action.text}", false, null)
+                chatSource.addSystemMessage("Error: ${action.text}", false, null)
             }
         }
     }
@@ -57,8 +57,8 @@ class SpamCommandInterceptor(
     ): ChatCommandAction {
         strArr ?: return ChatCommandAction.NoOp.INSTANCE
 
-        if (strArr.size == 1 && strArr[0] == "/spam") {
-            return ChatSpamErrorCommand("Usage: /spam {count} {delay} {text} [*{num}]")
+        if (showSpamTutor(strArr)) {
+            return ChatSpamErrorCommand(text = "Usage: /spam {count} {delay} {text} [*{num}]")
         }
 
         if (strArr.size < 4) {
@@ -75,11 +75,11 @@ class SpamCommandInterceptor(
         }
 
         command = strArr[1]
-        val count = parseSpamCount(command)
-            ?: return ChatSpamErrorCommand("Wrong {count} param: '$command'")
+        val count = parseSpamCount(text = command)
+            ?: return ChatSpamErrorCommand(text = "Wrong {count} param: '$command'")
         command = strArr[2]
-        val delay = parseSpamDelay(command)
-            ?: return ChatSpamErrorCommand("Wrong {delay} param: '$command'")
+        val delay = parseSpamDelay(text = command)
+            ?: return ChatSpamErrorCommand(text = "Wrong {delay} param: '$command'")
 
         var text = getMultiplier(strArr)?.let { num ->
             val tmp = TextUtils.join(" ", strArr.copyOfRange(3, strArr.size - 1))
@@ -91,8 +91,9 @@ class SpamCommandInterceptor(
         } ?: TextUtils.join(" ", strArr.copyOfRange(3, strArr.size))
 
         if (text.isBlank()) {
-            return ChatSpamErrorCommand("Nothing to spam")
+            return ChatSpamErrorCommand(text = "Nothing to spam")
         }
+
         if (text.length > 498) {
             text = text.substring(0, 498)
         }
@@ -105,17 +106,33 @@ class SpamCommandInterceptor(
     }
 
     companion object {
+        private fun showSpamTutor(strArr: Array<out String>): Boolean {
+            if (strArr.isEmpty()) {
+                return false
+            }
+
+            if (strArr[0].trim().lowercase() != "/spam") {
+                return false
+            }
+
+            if (strArr.size < 4) {
+                return true
+            }
+
+            return false
+        }
+
         @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
-        private fun changeTextToSpam(org: String): String {
-            val f = org.trim()
-            if (!f.contentEquals(org)) {
+        private fun changeTextToSpam(text: String): String {
+            val f = text.trim()
+            if (!f.contentEquals(text)) {
                 return f
             }
 
             return if (f.contains(' ')) {
-                (org as java.lang.String).replaceFirst(" ", "  ")
+                (text as java.lang.String).replaceFirst(" ", "  ")
             } else {
-                "$org ."
+                "$text ."
             }
         }
 

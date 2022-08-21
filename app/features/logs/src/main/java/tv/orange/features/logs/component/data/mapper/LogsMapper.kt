@@ -15,13 +15,13 @@ import javax.inject.Inject
 
 @LogsScope
 class LogsMapper @Inject constructor() {
-    fun map(data: ModLogsMessagesBySenderQuery.Data): List<MessageItem> {
-        return convert(data.channel?.modLogs?.messagesBySender?.edges?.mapNotNull { edge ->
+    fun map(response: ModLogsMessagesBySenderQuery.Data): List<MessageItem> {
+        return convert(response.channel?.modLogs?.messagesBySender?.edges?.mapNotNull { edge ->
             edge.node?.let { node ->
                 val fragment = node.modChatHistoryMessageFragment
                     ?: node.autoModCaughtChatHistoryMessageFragment?.modLogsMessage?.modChatHistoryMessageFragment
                 fragment?.let { chatFragment ->
-                    map(chatFragment, data.channel?.id?.toInt() ?: 0)
+                    map(fragment = chatFragment, channelId = response.channel?.id?.toInt() ?: 0)
                 }
             }
         })
@@ -32,10 +32,10 @@ class LogsMapper @Inject constructor() {
         val stack = mutableListOf<MessageItem>()
         messages?.forEach { message ->
             if (!DateUtil.isSameDate(currentDate, message.timestamp)) {
-                stack.add(MessageItem.Header(message.timestamp))
+                stack.add(MessageItem.Header(date = message.timestamp))
                 currentDate = message.timestamp
             }
-            stack.add(MessageItem.Content(message))
+            stack.add(MessageItem.Content(content = message))
         }
 
         return stack

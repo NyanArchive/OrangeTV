@@ -8,7 +8,6 @@ import tv.orange.models.abc.Feature
 import tv.twitch.android.models.player.PlayerImplementation
 import javax.inject.Inject
 
-
 class CoreHook @Inject constructor() : Feature {
     companion object {
         @JvmStatic

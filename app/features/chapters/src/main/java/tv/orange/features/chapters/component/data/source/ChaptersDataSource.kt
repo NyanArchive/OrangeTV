@@ -15,11 +15,8 @@ class ChaptersDataSource @Inject constructor(
 ) {
     fun getChapters(vodId: String): Single<List<Chapter>> {
         return apolloClient.singleForQuery(
-            ChapterSelectButtonQuery(
-                videoID = Optional.presentIfNotNull(vodId)
-            ), { data: ChapterSelectButtonQuery.Data ->
-                return@singleForQuery mapper.map(data)
-            }, true, true, true, false
+            ChapterSelectButtonQuery(videoID = Optional.presentIfNotNull(vodId)),
+            mapper::map, true, true, true, false
         ).subscribeOn(Schedulers.io())
     }
 }

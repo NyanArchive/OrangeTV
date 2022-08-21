@@ -8,11 +8,11 @@ import tv.orange.core.models.flag.variants.PlayerImpl
 import java.util.*
 
 enum class Flag(
-    val prefKey: String,
-    val titleRes: String?,
-    val summaryRes: String?,
-    val default: ValueHolder,
-    var value: ValueHolder
+    val preferenceKey: String,
+    val titleResName: String?,
+    val summaryResName: String?,
+    val defaultHolder: ValueHolder,
+    var valueHolder: ValueHolder
 ) {
     DEV_MODE(
         "dev_mode",
@@ -180,41 +180,41 @@ enum class Flag(
         IntegerRangeValue(0, 100, 30),
     );
 
-    constructor(key: String, default: ValueHolder) : this(
-        prefKey = key,
-        titleRes = null,
-        summaryRes = null,
-        default = default,
-        value = default
+    constructor(prefKey: String, value: ValueHolder) : this(
+        preferenceKey = prefKey,
+        titleResName = null,
+        summaryResName = null,
+        defaultHolder = value,
+        valueHolder = value
     )
 
-    constructor(prefKey: String, titleRes: String, default: ValueHolder) : this(
-        prefKey = prefKey,
-        titleRes = titleRes,
-        summaryRes = titleRes + "_desc",
-        default = default,
-        value = default
+    constructor(prefKey: String, titleResName: String, value: ValueHolder) : this(
+        preferenceKey = prefKey,
+        titleResName = titleResName,
+        summaryResName = titleResName + "_desc",
+        defaultHolder = value,
+        valueHolder = value
     )
 
     companion object {
         fun Flag.asBoolean(): Boolean {
-            return getBoolean(this.value)
+            return getBoolean(holder = this.valueHolder)
         }
 
         fun Flag.asIntRange(): IntegerRangeValue {
-            return getIntegerRange(this.value)
+            return getIntegerRange(holder = this.valueHolder)
         }
 
         fun <T : Variant> Flag.asVariant(): T {
-            return getVariant(this.value)
+            return getVariant(holder = this.valueHolder)
         }
 
         fun Flag.asInt(): Int {
-            return getInt(this.value)
+            return getInt(holder = this.valueHolder)
         }
 
         fun Flag.asString(): String {
-            return getString(this.value)
+            return getString(holder = this.valueHolder)
         }
 
         fun getInt(holder: ValueHolder): Int {
@@ -263,9 +263,9 @@ enum class Flag(
             throw IllegalStateException("$holder")
         }
 
-        fun findByKey(key: String): Flag? {
+        fun findByKey(prefKey: String): Flag? {
             return EnumSet.allOf(Flag::class.java).firstOrNull {
-                it.prefKey == key
+                it.preferenceKey == prefKey
             }
         }
     }

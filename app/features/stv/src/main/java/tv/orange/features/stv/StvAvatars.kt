@@ -2,7 +2,6 @@ package tv.orange.features.stv
 
 import io.reactivex.Single
 import tv.orange.core.Core
-import tv.orange.core.Logger
 import tv.orange.core.LoggerWithTag
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
@@ -37,7 +36,7 @@ class StvAvatars @Inject constructor(
                 return profileImageUrl
             }
 
-            return set.get(channelName) ?: profileImageUrl
+            return set.get(channelName = channelName) ?: profileImageUrl
         }
 
         return profileImageUrl
@@ -46,7 +45,6 @@ class StvAvatars @Inject constructor(
     fun initialize() {}
 
     override fun onAllComponentDestroyed() {
-        Logger.debug("called")
         clear()
     }
 
@@ -58,7 +56,7 @@ class StvAvatars @Inject constructor(
         refresh(force = true)
     }
 
-    override fun onFlagChanged(flag: Flag) {
+    override fun onFlagValueChanged(flag: Flag) {
         if (flag == Flag.STV_AVATARS) {
             onAllComponentDestroyed()
             onFirstActivityCreated()

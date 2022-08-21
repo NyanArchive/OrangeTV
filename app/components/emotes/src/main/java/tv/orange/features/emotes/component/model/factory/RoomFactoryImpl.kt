@@ -20,24 +20,24 @@ class RoomFactoryImpl @Inject constructor(
             if (Flag.BTTV_EMOTES.asBoolean()) {
                 add(
                     EmotePackageImpl(
-                        EmoteFetcherFactoryImpl { bttv.getBttvChannelEmotes(channelId) },
-                        EmotePackageSet.BttvChannel
+                        source = EmoteFetcherFactoryImpl { bttv.getBttvChannelEmotes(channelId) },
+                        token = EmotePackageSet.BttvChannel
                     )
                 )
             }
             if (Flag.FFZ_EMOTES.asBoolean()) {
                 add(
                     EmotePackageImpl(
-                        EmoteFetcherFactoryImpl { bttv.getFfzChannelEmotes(channelId) },
-                        EmotePackageSet.FfzChannel
+                        source = EmoteFetcherFactoryImpl { bttv.getFfzChannelEmotes(channelId) },
+                        token = EmotePackageSet.FfzChannel
                     )
                 )
             }
             if (Flag.STV_EMOTES.asBoolean()) {
                 add(
                     EmotePackageImpl(
-                        EmoteFetcherFactoryImpl { stv.getStvChannelEmotes(channelId) },
-                        EmotePackageSet.StvChannel
+                        source = EmoteFetcherFactoryImpl { stv.getStvChannelEmotes(channelId) },
+                        token = EmotePackageSet.StvChannel
                     )
                 )
             }
@@ -49,24 +49,24 @@ class RoomFactoryImpl @Inject constructor(
             if (Flag.BTTV_EMOTES.asBoolean()) {
                 add(
                     EmotePackageImpl(
-                        EmoteFetcherFactoryImpl { bttv.getBttvGlobalEmotes() },
-                        EmotePackageSet.BttvGlobal
+                        source = EmoteFetcherFactoryImpl { bttv.getBttvGlobalEmotes() },
+                        token = EmotePackageSet.BttvGlobal
                     )
                 )
             }
             if (Flag.FFZ_EMOTES.asBoolean()) {
                 add(
                     EmotePackageImpl(
-                        EmoteFetcherFactoryImpl { bttv.getFfzGlobalEmotes() },
-                        EmotePackageSet.FfzGlobal
+                        source = EmoteFetcherFactoryImpl { bttv.getFfzGlobalEmotes() },
+                        token = EmotePackageSet.FfzGlobal
                     )
                 )
             }
             if (Flag.STV_EMOTES.asBoolean()) {
                 add(
                     EmotePackageImpl(
-                        EmoteFetcherFactoryImpl { stv.getStvGlobalEmotes() },
-                        EmotePackageSet.StvGlobal
+                        source = EmoteFetcherFactoryImpl { stv.getStvGlobalEmotes() },
+                        token = EmotePackageSet.StvGlobal
                     )
                 )
             }

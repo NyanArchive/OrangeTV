@@ -10,21 +10,31 @@ import tv.orange.models.retrofit.bttv.FfzImageType
 import javax.inject.Inject
 
 class BttvApiMapper @Inject constructor() {
-    fun mapBttvEmotes(emotes: List<BttvEmote>, isChannelEmote: Boolean): List<Emote> {
+    fun mapEmotes(response: BttvChannelData): List<Emote> {
+        return mapEmotes(
+            emotes = response.sharedEmotes,
+            isChannelEmotes = true
+        ) + mapEmotes(
+            emotes = response.channelEmotes,
+            isChannelEmotes = true
+        )
+    }
+
+    fun mapEmotes(emotes: List<BttvEmote>, isChannelEmotes: Boolean): List<Emote> {
         return emotes.map { emote ->
             EmoteImpl(
                 emoteCode = emote.code,
                 animated = emote.imageType == FfzImageType.GIF,
-                smallUrl = getEmoteUrl("1x", emote.id),
-                mediumUrl = getEmoteUrl("2x", emote.id),
-                largeUrl = getEmoteUrl("3x", emote.id),
-                packageSet = if (isChannelEmote) EmotePackageSet.BttvChannel else EmotePackageSet.BttvGlobal,
-                isZeroWidth = if (!isChannelEmote) BTTV_GLOBAL_ZW_CODES.contains(emote.code) else false
+                smallUrl = getBttvEmoteUrl("1x", emote.id),
+                mediumUrl = getBttvEmoteUrl("2x", emote.id),
+                largeUrl = getBttvEmoteUrl("3x", emote.id),
+                packageSet = if (isChannelEmotes) EmotePackageSet.BttvChannel else EmotePackageSet.BttvGlobal,
+                isZeroWidth = if (!isChannelEmotes) BTTV_GLOBAL_ZW_CODES.contains(emote.code) else false
             )
         }
     }
 
-    fun mapFfzEmotes(emotes: List<FfzEmote>, isChannelEmote: Boolean): List<Emote> {
+    fun mapFfzEmotes(emotes: List<FfzEmote>, isChannelEmotes: Boolean): List<Emote> {
         return emotes.mapNotNull { emote ->
             val small = emote.images["1x"] ?: return@mapNotNull null
 
@@ -34,14 +44,11 @@ class BttvApiMapper @Inject constructor() {
                 smallUrl = small,
                 mediumUrl = emote.images["2x"],
                 largeUrl = emote.images["4x"],
-                packageSet = if (isChannelEmote) EmotePackageSet.FfzChannel else EmotePackageSet.FfzGlobal
+                packageSet = if (isChannelEmotes) EmotePackageSet.FfzChannel else EmotePackageSet.FfzGlobal
             )
         }
     }
 
-    fun mapChannelEmotes(emotes: BttvChannelData): List<Emote> {
-        return mapBttvEmotes(emotes.sharedEmotes, true) + mapBttvEmotes(emotes.channelEmotes, true)
-    }
 
     companion object {
         private const val BTTV_EMOTE_CDN = "https://cdn.betterttv.net/emote/"
@@ -51,7 +58,7 @@ class BttvApiMapper @Inject constructor() {
             "ReinDeer", "CandyCane", "cvMask", "cvHazmat"
         )
 
-        private fun getEmoteUrl(size: String, emoteId: String): String {
+        private fun getBttvEmoteUrl(size: String, emoteId: String): String {
             return "$BTTV_EMOTE_CDN$emoteId/$size"
         }
     }

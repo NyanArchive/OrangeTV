@@ -1,8 +1,8 @@
 package tv.orange.features.emotes.component.model
 
 import tv.orange.core.LoggerWithTag
-import tv.orange.models.data.SimpleFetcher
 import tv.orange.models.abc.EmotePackageSet
+import tv.orange.models.data.SimpleFetcher
 import tv.orange.models.data.emotes.Emote
 import tv.orange.models.data.emotes.EmoteSet
 
@@ -14,7 +14,7 @@ class EmotePackageImpl(
     logger = LoggerWithTag(token.toString())
 ), EmotePackage {
     override fun getEmote(code: String): Emote? {
-        return getData()?.getEmote(code)
+        return getData()?.getEmote(code = code)
     }
 
     override fun getEmotes(): List<Emote> {

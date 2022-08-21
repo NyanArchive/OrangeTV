@@ -10,10 +10,10 @@ import javax.inject.Inject
 @VodSyncScope
 class ViewFactoryImpl @Inject constructor() : ViewFactory {
     override fun getChommentSeekerSection(delegate: BaseViewDelegate): ViewGroup {
-        return delegate.contentView.getView("stream_settings_fragment__chomment_seeker_wrapper")
+        return delegate.contentView.getView(resName = "stream_settings_fragment__chomment_seeker_wrapper")
     }
 
     override fun getChommentSeekerHeader(delegate: BaseViewDelegate): View {
-        return delegate.contentView.getView("stream_settings_fragment__chomment_seeker_header")
+        return delegate.contentView.getView(resName = "stream_settings_fragment__chomment_seeker_header")
     }
 }

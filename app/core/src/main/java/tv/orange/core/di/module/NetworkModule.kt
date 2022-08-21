@@ -7,8 +7,8 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import tv.orange.core.BuildConfig.USER_AGENT
-import tv.orange.core.Core
+import tv.orange.core.BuildConfigUtil
+import tv.orange.core.BuildConfigUtil.USER_AGENT_TEMPLATE
 import tv.orange.core.di.scope.AppScope
 import tv.orange.core.factory.StringConverterFactory
 import java.util.*
@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit
 @Module
 class NetworkModule {
     private val buildNumber: Int by lazy {
-        Core.get().buildConfig.number
+        BuildConfigUtil.buildConfig.number
     }
 
     @AppScope
@@ -33,7 +33,7 @@ class NetworkModule {
                             "User-Agent",
                             String.format(
                                 Locale.ENGLISH,
-                                USER_AGENT,
+                                USER_AGENT_TEMPLATE,
                                 buildNumber
                             )
                         ).build()

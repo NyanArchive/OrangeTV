@@ -19,10 +19,10 @@ class BttvRepository @Inject constructor(
     }
 
     fun getBttvChannelEmotes(channelId: Int): Single<EmoteSet> {
-        return bttvDataSource.getChannelBttvEmotes(channelId).map { EmoteSet(it) }
+        return bttvDataSource.getChannelBttvEmotes(channelId = channelId).map { EmoteSet(it) }
     }
 
     fun getFfzChannelEmotes(channelId: Int): Single<EmoteSet> {
-        return bttvDataSource.getChannelFfzEmotes(channelId).map { EmoteSet(it) }
+        return bttvDataSource.getChannelFfzEmotes(channelId = channelId).map { EmoteSet(it) }
     }
 }

@@ -9,6 +9,6 @@ class TwitchRepository @Inject constructor(
     val twitchApiSource: TwitchApiSource
 ) {
     fun getUserInfo(login: String): Single<UserInfo> {
-        return twitchApiSource.getUserInfo(login)
+        return twitchApiSource.getUserInfo(login = login)
     }
 }

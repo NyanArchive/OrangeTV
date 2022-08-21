@@ -9,11 +9,11 @@ import tv.orange.core.ResourceManager
 @Suppress("UNCHECKED_CAST")
 object ViewUtil {
     fun <T : View> View.getView(resName: String): T {
-        return this.findViewById(ResourceManager.get().getId(resName))
+        return this.findViewById(ResourceManager.get().getId(resName = resName))
     }
 
     fun LayoutInflater.inflate(container: ViewGroup?, resName: String): View {
-        val id = ResourceManager.get().getLayoutId(resName)
+        val id = ResourceManager.get().getLayoutId(resName = resName)
         if (id == 0 || id == -1) {
             throw Resources.NotFoundException(resName)
         }
@@ -26,7 +26,7 @@ object ViewUtil {
     }
 
     fun ViewGroup.inflate(inflater: LayoutInflater, resName: String): View {
-        val id = ResourceManager.get().getLayoutId(resName)
+        val id = ResourceManager.get().getLayoutId(resName = resName)
         if (id == 0 || id == -1) {
             throw Resources.NotFoundException(resName)
         }
@@ -40,5 +40,13 @@ object ViewUtil {
 
     fun ViewGroup.inflate(resName: String): View {
         return this.inflate(LayoutInflater.from(context), resName)
+    }
+
+    fun View.changeVisibility(isVisible: Boolean) {
+        this.visibility = if (isVisible) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
     }
 }

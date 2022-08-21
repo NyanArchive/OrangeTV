@@ -79,7 +79,7 @@ public class ChatMessageSpanFactory {
         /* ... */
 
         SpannedString ret = new SpannedString(spannableStringBuilder);
-        return ChatHookProvider.get().fixDeletedMessage(ret, chatMessageInterface); // TODO: __INJECT_CODE
+        return ChatHookProvider.fixDeletedMessage(ret, chatMessageInterface); // TODO: __INJECT_CODE
     }
 
     private final CharSequence emoteSpannable(MessageToken.EmoticonToken emoticonToken, ChatMessageInterface chatMessageInterface, Integer num, EventDispatcher<ChatItemClickEvent> eventDispatcher) {
@@ -115,7 +115,7 @@ public class ChatMessageSpanFactory {
     }
 
     private CharSequence badgeSpannable(OrangeMessageBadge messageBadge) { // TODO: __INJECT_METHOD
-        Drawable drawable = new BackgroundUrlDrawable(messageBadge.getBadgeUrl(), MediaSpan$Type.Badge, messageBadge.getBadgeColor());
+        Drawable drawable = new BackgroundUrlDrawable(messageBadge.getBadgeUrl(), MediaSpan$Type.Badge, messageBadge.getBadgeBackgroundColor());
         return imageSpannable(drawable, messageBadge.getBadgeName(), "", null, true);
     }
 

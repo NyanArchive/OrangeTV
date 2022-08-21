@@ -6,11 +6,11 @@ import tv.twitch.android.provider.chat.ChatMessageInterface
 
 class ChatMessageInterfaceWrapper(
     private val cmi: ChatMessageInterface,
-    private val badges: List<MessageBadge>,
-    private val tokens: List<MessageToken>
+    private val badges: MutableList<MessageBadge>,
+    private val tokens: MutableList<MessageToken>
 ) : ChatMessageInterface {
     override fun getBadges(): MutableList<MessageBadge> {
-        return badges.toMutableList()
+        return badges
     }
 
     override fun getDisplayName(): String {
@@ -22,7 +22,7 @@ class ChatMessageInterfaceWrapper(
     }
 
     override fun getTokens(): MutableList<MessageToken> {
-        return tokens.toMutableList()
+        return tokens
     }
 
     override fun getUserId(): Int {

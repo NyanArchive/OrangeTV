@@ -23,11 +23,11 @@ class OrangeSettingsPresenter @Inject constructor(
     }
 
     override fun getPrefController(): SettingsPreferencesController {
-        return OrangeSettings.get().getOrangeSettingsController(activity)
+        return OrangeSettings.get().getOrangeSettingsController(activity = activity)
     }
 
     override fun getToolbarTitle(): String {
-        return ResourceManager.get().getString("orange_settings_title")
+        return ResourceManager.get().getString(resName = "orange_settings_title")
     }
 
     override fun updateSettingModels() {

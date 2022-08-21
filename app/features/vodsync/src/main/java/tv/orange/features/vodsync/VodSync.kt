@@ -7,6 +7,7 @@ import android.widget.TextView
 import tv.orange.core.Core
 import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
+import tv.orange.core.util.ViewUtil.changeVisibility
 import tv.orange.core.util.ViewUtil.getView
 import tv.orange.features.vodsync.di.scope.VodSyncScope
 import tv.orange.features.vodsync.view.ViewFactory
@@ -18,18 +19,27 @@ import javax.inject.Inject
 
 @VodSyncScope
 class VodSync @Inject constructor(
-    val viewFactory: ViewFactory
+    val viewFactory: ViewFactory,
+    val prefManager: PreferenceManager
 ) : Feature {
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(VodSync::class.java)
+
+        private fun drawValue(view: TextView, value: Int) {
+            view.text = if (value > 0) {
+                "+$value"
+            } else {
+                value.toString()
+            }
+        }
     }
 
     fun hookChommentTimestamp(
         vodModel: VodModel,
         timestamp: Int
     ): Int {
-        val progress = PreferenceManager.get().getChommentSeekerValue(vodModel.id)
+        val progress = prefManager.getChommentSeekerValue(videoId = vodModel.id)
 
         if (progress == 0) {
             return timestamp
@@ -43,48 +53,48 @@ class VodSync @Inject constructor(
         header: View,
         player: StreamSettings.ConfigurablePlayer
     ) {
-        val seekbar = section.getView<SeekBar>("stream_settings_fragment__chomment_seeker")
-        val value = section.getView<TextView>("stream_settings_fragment__chomment_seeker_value")
+        val seekbar = section.getView<SeekBar>(
+            resName = "stream_settings_fragment__chomment_seeker"
+        )
+        val value = section.getView<TextView>(
+            resName = "stream_settings_fragment__chomment_seeker_value"
+        )
 
         val vodId = player.vod ?: run {
-            section.visibility = View.GONE
-            header.visibility = View.GONE
+            section.changeVisibility(false)
+            header.changeVisibility(false)
             seekbar.setOnSeekBarChangeListener(null)
             return
         }
 
-        val currentProgress = PreferenceManager.get().getChommentSeekerValue(vodId.id)
+        val savedSyncValue = prefManager.getChommentSeekerValue(videoId = vodId.id)
         if (header is TextView) {
-            header.text = ResourceManager.get().getString("orange_seeker_header_text")
+            header.text = ResourceManager.get().getString(
+                resName = "orange_seeker_header_text"
+            )
         }
 
-        section.visibility = View.VISIBLE
-        header.visibility = View.VISIBLE
+        section.changeVisibility(true)
+        header.changeVisibility(true)
 
         seekbar.apply {
             max = 180
-            progress = currentProgress + 60
+            progress = savedSyncValue + 60
         }
-        value.apply {
-            text = if (currentProgress > 0) {
-                "+$currentProgress"
-            } else {
-                currentProgress.toString()
-            }
-        }
+        drawValue(value, savedSyncValue)
+
         seekbar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(
                 seekBar: SeekBar?,
                 progress: Int,
                 fromUser: Boolean
             ) {
-                val realProgress = progress - 60
-                PreferenceManager.get().saveChommentSeekerValue(vodId.id, realProgress)
-                value.text = if (realProgress > 0) {
-                    "+$realProgress"
-                } else {
-                    realProgress.toString()
-                }
+                val currentSyncValue = progress - 60
+                PreferenceManager.get().saveChommentSeekerValue(
+                    videoId = vodId.id,
+                    value = currentSyncValue
+                )
+                drawValue(value, currentSyncValue)
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {}
@@ -93,11 +103,11 @@ class VodSync @Inject constructor(
     }
 
     fun getChommentSeekerSection(delegate: BaseViewDelegate): ViewGroup {
-        return viewFactory.getChommentSeekerSection(delegate)
+        return viewFactory.getChommentSeekerSection(delegate = delegate)
     }
 
     fun getChommentSeekerHeader(delegate: BaseViewDelegate): View {
-        return viewFactory.getChommentSeekerHeader(delegate)
+        return viewFactory.getChommentSeekerHeader(delegate = delegate)
     }
 
     override fun onDestroyFeature() {}

@@ -3,6 +3,7 @@ package tv.orange.core
 import android.content.Context
 import tv.orange.core.models.ResIdCache
 import tv.orange.models.abc.Feature
+import tv.twitch.android.core.strings.StringResource
 
 class ResourceManager(private val context: Context) : Feature {
     companion object {
@@ -37,6 +38,10 @@ class ResourceManager(private val context: Context) : Feature {
 
     fun getStringId(resName: String): Int {
         return Id.STRING.get(resName)
+    }
+
+    fun getStringResource(resName: String): StringResource {
+        return StringResource.Companion!!.fromStringId(getStringId(resName = resName))
     }
 
     fun getDrawableId(resName: String): Int {

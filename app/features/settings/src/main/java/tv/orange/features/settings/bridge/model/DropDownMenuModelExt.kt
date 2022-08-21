@@ -23,18 +23,20 @@ class DropDownMenuModelExt<T : Internal.Variant>(
                     if (raw) {
                         variant.toString()
                     } else {
-                        ResourceManager.get().getString("orange_${flag.prefKey}_$variant")
+                        ResourceManager.get().getString(
+                            resName = "orange_${flag.preferenceKey}_$variant"
+                        )
                     }
                 }
             },
-            ResourceManager.get().getLayoutId("twitch_spinner_dropdown_item")
+            ResourceManager.get().getLayoutId(resName = "twitch_spinner_dropdown_item")
         ),
         flag.asVariant<T>().getVariants().indexOf(flag.asVariant()),
-        flag.titleRes?.let { id ->
-            ResourceManager.get().getString(id)
+        flag.titleResName?.let { id ->
+            ResourceManager.get().getString(resName = id)
         },
-        flag.summaryRes?.let { id ->
-            ResourceManager.get().getString(id)
+        flag.summaryResName?.let { id ->
+            ResourceManager.get().getString(resName = id)
         },
         null,
         null,

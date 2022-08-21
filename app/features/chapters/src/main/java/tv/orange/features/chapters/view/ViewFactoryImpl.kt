@@ -9,7 +9,7 @@ import javax.inject.Provider
 
 class ViewFactoryImpl @Inject constructor(val provider: Provider<ChaptersFragment>) : ViewFactory {
     override fun createChaptersButton(delegate: PlayerOverlayViewDelegate): ImageView {
-        return delegate.contentView.getView("orange_chapters_button")
+        return delegate.contentView.getView(resName = "orange_chapters_button")
     }
 
     override fun getChaptersFragment(): ChaptersFragment {

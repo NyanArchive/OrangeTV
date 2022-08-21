@@ -7,6 +7,6 @@ import javax.inject.Inject
 
 class ViewFactoryImpl @Inject constructor() : ViewFactory {
     override fun createTimerButton(delegate: PlayerOverlayViewDelegate): ImageView {
-        return delegate.contentView.getView("orange_timer_button")
+        return delegate.contentView.getView(resName = "orange_timer_button")
     }
 }

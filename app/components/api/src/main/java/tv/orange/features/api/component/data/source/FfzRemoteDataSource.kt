@@ -12,8 +12,6 @@ class FfzRemoteDataSource @Inject constructor(
     val ffzMapper: FfzApiMapper
 ) {
     fun getBadges(): Single<BadgeSet> {
-        return ffzApi.globalBadges().subscribeOn(Schedulers.io()).map { badges ->
-            ffzMapper.mapBadges(badges)
-        }
+        return ffzApi.globalBadges().subscribeOn(Schedulers.io()).map(ffzMapper::mapBadges)
     }
 }

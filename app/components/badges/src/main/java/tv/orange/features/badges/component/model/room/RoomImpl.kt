@@ -12,7 +12,7 @@ class RoomImpl : Room {
 
     override fun getBadges(userId: Int): List<Badge> {
         return packages.flatMap { pack ->
-            pack.getBadges(userId)
+            pack.getBadges(userId = userId)
         }
     }
 
@@ -37,7 +37,7 @@ class RoomImpl : Room {
 
     override fun hasBadges(userId: Int): Boolean {
         return packages.any { pack ->
-            pack.hasBadges(userId)
+            pack.hasBadges(userId = userId)
         }
     }
 }

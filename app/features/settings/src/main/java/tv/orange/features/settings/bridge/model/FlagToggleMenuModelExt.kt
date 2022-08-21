@@ -5,13 +5,13 @@ import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 
 class FlagToggleMenuModelExt(val flag: Flag) : ToggleMenuModelExt(
-    primaryText = ResourceManager.get().getString(flag.titleRes!!),
-    secondaryText = flag.summaryRes?.let { id ->
+    primaryText = ResourceManager.get().getString(resName = flag.titleResName!!),
+    secondaryText = flag.summaryResName?.let { id ->
         ResourceManager.get().getString(id)
     },
     auxiliaryText = null,
     state = flag.asBoolean(),
-    eventName = flag.prefKey
+    eventName = flag.preferenceKey
 ) {
     override fun getToggleState(): Boolean {
         return flag.asBoolean()

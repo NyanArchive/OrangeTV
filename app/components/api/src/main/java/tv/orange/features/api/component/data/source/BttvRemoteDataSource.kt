@@ -14,31 +14,31 @@ class BttvRemoteDataSource @Inject constructor(
 ) {
     fun getGlobalEmotes(): Single<List<Emote>> {
         return bttvApi.globalBttvEmotes().subscribeOn(Schedulers.io()).map { emotes ->
-            bttvMapper.mapBttvEmotes(emotes, false)
+            bttvMapper.mapEmotes(emotes = emotes, isChannelEmotes = false)
         }
     }
 
     fun getGlobalFfzEmotes(): Single<List<Emote>> {
         return bttvApi.globalFfzEmotes().subscribeOn(Schedulers.io()).map { emotes ->
-            bttvMapper.mapFfzEmotes(emotes, false)
-        }
-    }
-
-    fun getChannelBttvEmotes(channelId: Int): Single<List<Emote>> {
-        return bttvApi.bttvEmotes(channelId).subscribeOn(Schedulers.io()).map { emotes ->
-            bttvMapper.mapChannelEmotes(emotes)
-        }.onErrorResumeNext {
-            Logger.warning("Cannot fetch emotes for channel: $channelId")
-            Single.just(emptyList())
+            bttvMapper.mapFfzEmotes(emotes = emotes, isChannelEmotes = false)
         }
     }
 
     fun getChannelFfzEmotes(channelId: Int): Single<List<Emote>> {
         return bttvApi.ffzEmotes(channelId).subscribeOn(Schedulers.io()).map { emotes ->
-            bttvMapper.mapFfzEmotes(emotes, true)
+            bttvMapper.mapFfzEmotes(emotes = emotes, isChannelEmotes = true)
         }.onErrorResumeNext {
             Logger.warning("Cannot fetch emotes for channel: $channelId")
             Single.just(emptyList())
         }
+    }
+
+    fun getChannelBttvEmotes(channelId: Int): Single<List<Emote>> {
+        return bttvApi.bttvEmotes(channelId).subscribeOn(Schedulers.io())
+            .map(bttvMapper::mapEmotes)
+            .onErrorResumeNext {
+                Logger.warning("Cannot fetch emotes for channel: $channelId")
+                Single.just(emptyList())
+            }
     }
 }

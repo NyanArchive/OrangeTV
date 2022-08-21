@@ -52,7 +52,7 @@ class BridgeImpl private constructor() : Bridge {
             }
         }
 
-        throw IllegalStateException("Cannot create $clazz feature: fabric not found")
+        throw IllegalStateException("[$clazz] Cannot create feature: factory not found")
     }
 
     override fun <T : Feature> destroyFeature(clazz: Class<T>) {
@@ -84,9 +84,8 @@ class BridgeImpl private constructor() : Bridge {
     }
 
     fun initialize(context: Context) {
-        component = DaggerBridgeComponent.builder().coreComponent(
-            DaggerCoreComponent.factory().create(context)
-        ).build()
+        component = DaggerBridgeComponent.builder()
+            .coreComponent(DaggerCoreComponent.factory().create(context)).build()
         buildFactoryMap()
     }
 

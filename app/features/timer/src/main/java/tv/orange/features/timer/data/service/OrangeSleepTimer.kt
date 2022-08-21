@@ -23,37 +23,48 @@ class OrangeSleepTimer : Service() {
     private var tick = 0
 
     private val builder: NotificationCompat.Builder by lazy {
+        val flags = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            PendingIntent.FLAG_IMMUTABLE
+        } else {
+            0
+        }
         NotificationCompat.Builder(baseContext, CHANNEL_ID)
-            .setSmallIcon(ResourceManager.get().getDrawableId("ic_twitch_glitch_uv_alpha_only"))
-            .setContentTitle(ResourceManager.get().getString("orange_timer_title"))
+            .setSmallIcon(
+                ResourceManager.get().getDrawableId(resName = "ic_twitch_glitch_uv_alpha_only")
+            )
+            .setContentTitle(ResourceManager.get().getString(resName = "orange_timer_title"))
             .setColor(
                 ContextCompat.getColor(
                     baseContext,
-                    ResourceManager.get().getColorId("twitch_purple")
+                    ResourceManager.get().getColorId(resName = "twitch_purple")
                 )
             )
             .setAutoCancel(false)
             .setOngoing(true)
             .setOnlyAlertOnce(true)
             .addAction(
-                ResourceManager.get().getDrawableId("ic_cancel"),
-                ResourceManager.get().getString("orange_timer_cancel"),
-                PendingIntent.getService(baseContext, 1, createStopServiceIntent(baseContext), 0)
-            ).addAction(
-                ResourceManager.get().getDrawableId("ic_add"), "+5",
+                ResourceManager.get().getDrawableId(resName = "ic_cancel"),
+                ResourceManager.get().getString(resName = "orange_timer_cancel"),
                 PendingIntent.getService(
-                    baseContext, 2, createAddTimeIntent(
-                        context = baseContext,
-                        seconds = 5 * 60
-                    ), 0
+                    baseContext,
+                    1,
+                    createStopServiceIntent(context = baseContext),
+                    flags
                 )
             ).addAction(
-                ResourceManager.get().getDrawableId("ic_add"), "+15",
+                ResourceManager.get().getDrawableId(resName = "ic_add"), "+5",
                 PendingIntent.getService(
-                    baseContext, 3, createAddTimeIntent(
-                        context = baseContext,
-                        seconds = 15 * 60
-                    ), 0
+                    baseContext,
+                    2,
+                    createAddTimeIntent(context = baseContext, seconds = 5 * 60), flags
+                )
+            ).addAction(
+                ResourceManager.get().getDrawableId(resName = "ic_add"), "+15",
+                PendingIntent.getService(
+                    baseContext,
+                    3,
+                    createAddTimeIntent(context = baseContext, seconds = 15 * 60),
+                    flags
                 )
             ).setPriority(NotificationCompat.PRIORITY_DEFAULT)
     }
@@ -148,11 +159,11 @@ class OrangeSleepTimer : Service() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val channel = NotificationChannel(
                     CHANNEL_ID,
-                    ResourceManager.get().getString("orange_notification_channel_name"),
+                    ResourceManager.get().getString(resName = "orange_notification_channel_name"),
                     NotificationManager.IMPORTANCE_DEFAULT
                 ).apply {
                     description =
-                        ResourceManager.get().getString("orange_notification_channel_desc")
+                        ResourceManager.get().getString(resName = "orange_notification_channel_desc")
                 }
                 context.getSystemService(NotificationManager::class.java)
                     .createNotificationChannel(channel)

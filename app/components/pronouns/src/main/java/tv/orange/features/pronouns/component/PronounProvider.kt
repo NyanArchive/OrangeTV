@@ -40,9 +40,7 @@ class PronounProvider @Inject constructor(
         cache.get(userName)?.let { opt ->
             opt.ifPresent { }
             if (opt.isPresent) {
-                val text = opt.get()
-                function.invoke(text)
-                Logger.debug("From cache $userName=$text")
+                function.invoke(opt.get())
             }
             return
         }
@@ -52,13 +50,11 @@ class PronounProvider @Inject constructor(
                 .map {
                     it.pronoun_id ?: run {
                         cache.put(userName, Optional.empty())
-                        Logger.debug("Put to cache $userName=empty")
                         return@map Optional.empty()
                     }
 
                     return@map idsMap[it.pronoun_id].also { text ->
                         cache.put(userName, text)
-                        Logger.debug("Put to cache $userName=$text")
                     }
                 }
                 .observeOn(AndroidSchedulers.mainThread())

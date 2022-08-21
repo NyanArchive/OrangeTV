@@ -25,12 +25,12 @@ class ChaptersFragment @Inject constructor(val repository: ChaptersRepository) :
 
     private val disposables = CompositeDisposable()
 
-    fun load(id: String) {
+    fun load(vodId: String) {
         disposables.clear()
         disposables.add(
-            repository.getChapters(id).observeOn(AndroidSchedulers.mainThread()).subscribe({
-                adapter.setData(it)
-            }, Throwable::printStackTrace)
+            repository.getChapters(vodId = vodId)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(adapter::setData, Throwable::printStackTrace)
         )
     }
 
@@ -43,9 +43,12 @@ class ChaptersFragment @Inject constructor(val repository: ChaptersRepository) :
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(container, "orangetv_chapters_container")
+        val view = inflater.inflate(
+            container = container,
+            resName = "orangetv_chapters_container"
+        )
 
-        rv = view.getView("orangetv_chapters_container_rv")
+        rv = view.getView(resName = "orangetv_chapters_container_rv")
         rv.adapter = adapter
         rv.layoutManager = LinearLayoutManager(
             inflater.context,
@@ -57,9 +60,12 @@ class ChaptersFragment @Inject constructor(val repository: ChaptersRepository) :
     }
 
     override fun onClicked(item: Chapter) {
-        if (item.timestamp >= 0) {
-            seekPresenter?.xSeekTo(item.timestamp)
+        item.timestamp.let { timestamp ->
+            if (timestamp >= 0) {
+                seekPresenter?.xSeekTo(timestamp)
+            }
         }
+
         dismiss()
     }
 

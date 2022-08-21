@@ -12,9 +12,9 @@ class SliderModel(
     val flag: Flag,
     val listener: SliderListener
 ) : MenuModel.SingleItemModel(
-    ResourceManager.get().getString(flag.titleRes!!),
-    flag.summaryRes?.let { id ->
-        ResourceManager.get().getString(id)
+    ResourceManager.get().getString(flag.titleResName!!),
+    flag.summaryResName?.let { id ->
+        ResourceManager.get().getString(resName = id)
     },
     null,
     null,

@@ -51,7 +51,7 @@ class ChatHistory @Inject constructor(
         }
 
         source.addChatHistoryMessage(
-            repository.getSystemMessage("[Twitch] Fetching messages..."),
+            repository.getSystemMessage(text = "[Twitch] Fetching messages..."),
             channelId
         )
 
@@ -68,7 +68,7 @@ class ChatHistory @Inject constructor(
                 }) {
                     it.printStackTrace()
                     source.addChatHistoryMessage(
-                        repository.getSystemMessage("[Twitch] Error: ${it.localizedMessage}"),
+                        repository.getSystemMessage(text ="[Twitch] Error: ${it.localizedMessage}"),
                         channelId
                     )
                 }

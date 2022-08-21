@@ -15,9 +15,8 @@ import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
 import tv.orange.core.Core
-import tv.orange.core.Logger
 import tv.orange.core.PreferenceManager
-import tv.orange.core.PreferenceManager.Companion.isDarkTheme
+import tv.orange.core.PreferenceManager.Companion.isDarkThemeEnabled
 import tv.orange.core.ResourceManager
 import tv.orange.core.compat.ClassCompat.getPrivateField
 import tv.orange.core.models.flag.Flag
@@ -89,30 +88,26 @@ class ChatHookProvider @Inject constructor(
 
     fun initialize() {}
 
-    fun maybeAddTimestamp(
-        message: Spanned,
-        userId: Int,
-        messageTimestamp: Int
-    ): Spanned {
-        if (!Flag.CHAT_TIMESTAMPS.asBoolean()) {
-            return message
-        }
-
-        return if (userId > 0) {
-            createTimestampSpanFromChatMessageSpan(message, Date(messageTimestamp.toLong() * 1000))
-        } else {
-            message
-        }
-    }
-
     fun hookMessageInterface(
         cmi: ChatMessageInterface,
         channelId: Int
     ): ChatMessageInterface {
-        val badges = injectBadges(cmi.badges, cmi.userId, channelId)
-        val tokens = injectEmotes(cmi.tokens, cmi.userId, channelId)
+        val badges = injectBadges(
+            badges = cmi.badges,
+            userId = cmi.userId,
+            channelId = channelId
+        )
+        val tokens = injectEmotes(
+            tokens = cmi.tokens,
+            userId = cmi.userId,
+            channelId = channelId
+        )
 
-        return ChatMessageInterfaceWrapper(cmi = cmi, badges = badges, tokens = tokens)
+        return ChatMessageInterfaceWrapper(
+            cmi = cmi,
+            badges = badges.toMutableList(),
+            tokens = tokens.toMutableList()
+        )
     }
 
     private fun injectBadges(
@@ -120,11 +115,11 @@ class ChatHookProvider @Inject constructor(
         userId: Int,
         channelId: Int
     ): List<MessageBadge> {
-        if (!badgeProvider.hasBadges(userId)) {
+        if (!badgeProvider.hasBadges(userId = userId)) {
             return badges
         }
 
-        val newBadges = badgeProvider.getBadges(userId).toMutableList()
+        val newBadges = badgeProvider.getBadges(userId = userId).toMutableList()
         if (newBadges.isEmpty()) {
             return badges
         }
@@ -136,9 +131,9 @@ class ChatHookProvider @Inject constructor(
             if (replaces != null) {
                 stack.add(
                     OrangeMessageBadge(
-                        replaces.getCode(),
-                        replaces.getUrl(),
-                        replaces.getBackgroundColor()
+                        badgeName = replaces.getCode(),
+                        badgeUrl = replaces.getUrl(),
+                        badgeBackgroundColor = replaces.getBackgroundColor()
                     )
                 )
                 newBadges.remove(replaces)
@@ -147,7 +142,11 @@ class ChatHookProvider @Inject constructor(
             }
         }
         stack.addAll(newBadges.map {
-            OrangeMessageBadge(it.getCode(), it.getUrl(), it.getBackgroundColor())
+            OrangeMessageBadge(
+                badgeName = it.getCode(),
+                badgeUrl = it.getUrl(),
+                badgeBackgroundColor = it.getBackgroundColor()
+            )
         })
 
         return stack
@@ -165,18 +164,18 @@ class ChatHookProvider @Inject constructor(
             if (token is MessageToken.TextToken) {
                 val words = token.text.split(" ")
                 for (word in words) {
-                    val emote = emoteProvider.getEmote(word, channelId)
+                    val emote = emoteProvider.getEmote(code = word, channelId = channelId)
                     if (emote != null) {
                         if (!injected) {
                             injected = true
                         }
                         stack.add(
                             EmoteToken(
-                                emote.getCode(),
-                                emote.getUrl(Emote.Size.MEDIUM),
-                                emote.getUrl(Emote.Size.LARGE),
-                                emote.getPackageSet(),
-                                emote.isZeroWidth()
+                                emoteCode = emote.getCode(),
+                                emoteUrl = emote.getUrl(Emote.Size.MEDIUM),
+                                emoteCardUrl = emote.getUrl(Emote.Size.LARGE),
+                                packageSet = emote.getPackageSet(),
+                                isZeroWidth = emote.isZeroWidth()
                             )
                         )
                     } else {
@@ -189,13 +188,13 @@ class ChatHookProvider @Inject constructor(
         }
 
         if (injected) {
-            return zw(stack)
+            return tryZwEmoteTokens(stack)
         }
 
         return tokens
     }
 
-    private fun zw(tokens: Collection<MessageToken>): MutableList<MessageToken> {
+    private fun tryZwEmoteTokens(tokens: Collection<MessageToken>): MutableList<MessageToken> {
         val newTokens = mutableListOf<MessageToken>()
 
         var stack: StackEmoteToken? = null
@@ -208,12 +207,12 @@ class ChatHookProvider @Inject constructor(
                     newTokens.add(token)
                 }
                 is MessageToken.EmoticonToken -> {
-                    stack = StackEmoteToken(StackEmoteToken.TokenHolder(token))
+                    stack = StackEmoteToken(core = StackEmoteToken.TokenHolder(token))
                     newTokens.add(stack)
                 }
                 is EmoteToken -> {
                     if (!token.isZeroWidth) {
-                        stack = StackEmoteToken(StackEmoteToken.TokenHolder(token))
+                        stack = StackEmoteToken(core = StackEmoteToken.TokenHolder(token))
                         newTokens.add(stack)
                     } else {
                         stack?.stack?.add(token) ?: newTokens.add(token)
@@ -235,7 +234,8 @@ class ChatHookProvider @Inject constructor(
         channelId: Integer
     ): Flowable<Pair<EmoteUiSet, MutableList<EmoteUiSet>>> {
         return map.map { pair ->
-            emoteProvider.getEmotesMap(channelId.toInt()).filter { it.second.isNotEmpty() }
+            emoteProvider.getEmotesMap(channelId = channelId.toInt())
+                .filter { it.second.isNotEmpty() }
                 .forEach { emotePair ->
                     pair.second.add(
                         EmoteUiSet(
@@ -263,7 +263,7 @@ class ChatHookProvider @Inject constructor(
             return null
         }
 
-        val model = EmoteCardModelWrapper.fromString(emoteId) ?: return null
+        val model = EmoteCardModelWrapper.fromString(str = emoteId) ?: return null
 
         return EmoteCardModelResponse.Success(
             OrangeEmoteCardModel(
@@ -277,17 +277,17 @@ class ChatHookProvider @Inject constructor(
     fun hookAutoCompleteMapProvider(emotesFlow: Flowable<List<EmoteSet>>): Flowable<List<EmoteSet>> {
         return emotesFlow.flatMap { orgList ->
             currentChannelSubject.flatMap {
-                Observable.just(it).delay(3, TimeUnit.SECONDS)
+                Observable.just(it).delay(DELAY_BEFORE_INJECT, TimeUnit.SECONDS)
             }.toFlowable(BackpressureStrategy.LATEST).flatMap { channelId ->
                 val newSets = emoteProvider.getEmotesMap(channelId = channelId).map { pair ->
-                    OrangeEmoteSet(pair.second.map {
+                    OrangeEmoteSet(orangeEmotes = pair.second.map {
                         OrangeEmoteModel(
                             emoteToken = it.getCode(),
                             emoteUrl = it.getUrl(Emote.Size.MEDIUM)
                         )
                     })
                 }
-                Flowable.just((orgList + newSets)).doOnNext { Logger.debug("Injected: $it") }
+                Flowable.just((orgList + newSets))
             }
         }
     }
@@ -307,8 +307,8 @@ class ChatHookProvider @Inject constructor(
                 eventDispatcher,
                 true
             )
-            DeletedMessages.Strikethrough -> createDeletedStrikethrough(message)
-            DeletedMessages.Grey -> createDeletedGrey(message)
+            DeletedMessages.Strikethrough -> createDeletedStrikethrough(message = message)
+            DeletedMessages.Grey -> createDeletedGrey(message = message)
             DeletedMessages.Default -> tv.twitch.android.shared.chat.util.ChatUtil.Companion!!.createDeletedSpanFromChatMessageSpan(
                 messageId,
                 message,
@@ -319,12 +319,11 @@ class ChatHookProvider @Inject constructor(
         }
     }
 
-    fun getOrangeEmotesButton(emotePickerViewDelegate: EmotePickerViewDelegate): ImageView? {
-        return viewFactory.createOrangeEmotesButton(emotePickerViewDelegate)
+    fun getOrangeEmotesButton(delegate: EmotePickerViewDelegate): ImageView {
+        return viewFactory.createOrangeEmotesButton(delegate = delegate)
     }
 
     fun rebuildEmotes() {
-        Logger.debug("called")
         emoteProvider.rebuild()
     }
 
@@ -336,6 +335,8 @@ class ChatHookProvider @Inject constructor(
     }
 
     companion object {
+        private const val DELAY_BEFORE_INJECT = 3L
+
         var fontSizeSp: Int = 0
         var fontSizePx: Float = 0F
         var fontSizeScaleFactory: Float = 0F
@@ -421,8 +422,53 @@ class ChatHookProvider @Inject constructor(
         }
 
         @JvmStatic
-        fun fixUsernameSpanColor(color: Int): Int {
-            return ChatUtil.fixUsernameColor(color, isDarkTheme)
+        fun fixUsernameSpanColor(usernameColor: Int): Int {
+            return ChatUtil.fixUsernameColor(
+                color = usernameColor,
+                isDarkThemeEnabled = isDarkThemeEnabled
+            )
+        }
+
+        @JvmStatic
+        fun maybeAddTimestamp(
+            message: Spanned,
+            userId: Int,
+            messageTimestamp: Int
+        ): Spanned {
+            if (!Flag.CHAT_TIMESTAMPS.asBoolean()) {
+                return message
+            }
+
+            return if (userId > 0) {
+                createTimestampSpanFromChatMessageSpan(
+                    message = message,
+                    date = Date(messageTimestamp.toLong() * 1000)
+                )
+            } else {
+                message
+            }
+        }
+
+        @JvmStatic
+        fun fixDeletedMessage(
+            ret: SpannedString,
+            cmi: ChatMessageInterface
+        ): SpannedString {
+            if (!cmi.isDeleted) {
+                return ret
+            }
+
+            val builder = SpannableStringBuilder(ret)
+            return SpannedString(
+                when (Flag.DELETED_MESSAGES.asVariant<DeletedMessages>()) {
+                    DeletedMessages.Strikethrough -> createDeletedStrikethrough(message = builder)
+                    DeletedMessages.Grey -> createDeletedGrey(message = builder)
+                    DeletedMessages.Default -> "<${
+                        ResourceManager.get().getString("chat_message_deleted")
+                    }>"
+                    else -> createDeletedGrey(message = builder)
+                }
+            )
         }
     }
 
@@ -440,8 +486,8 @@ class ChatHookProvider @Inject constructor(
 
     private fun updateFontSize() {
         fontSizeSp = Flag.CHAT_FONT_SIZE.asString().removeSuffix("sp").toInt()
-        fontSizePx = spToPx(context, fontSizeSp)
-        fontSizeScaleFactory = calcFontSizeScale(fontSizeSp)
+        fontSizePx = spToPx(context = context, sp = fontSizeSp)
+        fontSizeScaleFactory = calcFontSizeScale(fontSizeSp = fontSizeSp)
     }
 
     override fun onAllComponentDestroyed() {
@@ -462,18 +508,16 @@ class ChatHookProvider @Inject constructor(
     }
 
     override fun onConnectingToChannel(channelId: Int) {
-        Logger.debug("channelId: $channelId")
         emoteProvider.requestChannelEmotes(channelId)
         currentChannelSubject.onNext(channelId)
     }
 
-    override fun onFlagChanged(flag: Flag) {
+    override fun onFlagValueChanged(flag: Flag) {
         when (flag) {
             Flag.BTTV_EMOTES, Flag.FFZ_EMOTES, Flag.STV_EMOTES -> emoteProvider.rebuild()
             Flag.FFZ_BADGES, Flag.STV_BADGES, Flag.CHA_BADGES, Flag.CHE_BADGES -> badgeProvider.rebuild()
             Flag.CHAT_FONT_SIZE -> {
                 updateFontSize()
-                Logger.debug("sp: $fontSizeSp, px: $fontSizePx, scale: $fontSizeScaleFactory")
             }
             else -> {}
         }
@@ -481,9 +525,9 @@ class ChatHookProvider @Inject constructor(
 
     fun setShouldHighlightBackground(
         message: IMessageRecyclerItem,
-        chatMessageInterface: ChatMessageInterface
+        cmi: ChatMessageInterface
     ) {
-        if (!isUserMentioned(chatMessageInterface, twitchAccountManager.username)) {
+        if (!isUserMentioned(cmi = cmi, username = twitchAccountManager.username)) {
             return
         }
 
@@ -530,53 +574,32 @@ class ChatHookProvider @Inject constructor(
     ) {
         when (viewHolder) {
             is MessageRecyclerItem.ChatMessageViewHolder -> {
-                maybeChangeMessageFontSize(viewHolder.messageTextView)
+                maybeChangeMessageFontSize(textView = viewHolder.messageTextView)
             }
             is ChommentRecyclerItem.ChommentItemViewHolder -> {
-                maybeChangeMessageFontSize(viewHolder.chommentTextView)
+                maybeChangeMessageFontSize(textView = viewHolder.chommentTextView)
             }
             is UserNoticeRecyclerItem.UserNoticeViewHolder -> {
-                maybeChangeMessageFontSize(viewHolder.chatMessage)
-                maybeChangeMessageFontSize(viewHolder.systemMessage)
+                maybeChangeMessageFontSize(textView = viewHolder.chatMessage)
+                maybeChangeMessageFontSize(textView = viewHolder.systemMessage)
             }
             is SubGoalUserNoticeRecyclerItem.SubGoalUserNoticeViewHolder -> {
-                maybeChangeMessageFontSize(viewHolder.chatMessage)
-                maybeChangeMessageFontSize(viewHolder.goalProgressText)
-                maybeChangeMessageFontSize(viewHolder.systemMessage)
+                maybeChangeMessageFontSize(textView = viewHolder.chatMessage)
+                maybeChangeMessageFontSize(textView = viewHolder.goalProgressText)
+                maybeChangeMessageFontSize(textView = viewHolder.systemMessage)
             }
             is RaidMessageRecyclerItem.RaidMessageViewHolder -> {
-                maybeChangeMessageFontSize(viewHolder.text)
+                maybeChangeMessageFontSize(textView = viewHolder.text)
             }
             is PrivateCalloutsMessageRecyclerItem.CalloutMessageViewHolder -> {
-                maybeChangeMessageFontSize(viewHolder.body)
+                maybeChangeMessageFontSize(textView = viewHolder.body)
             }
         }
         when (item) {
             is IMessageRecyclerItem -> {
-                bindHighlightMessage(viewHolder, item.getHighlightColor())
+                bindHighlightMessage(vh = viewHolder, highlightColor = item.getHighlightColor())
             }
         }
-    }
-
-    fun fixDeletedMessage(
-        ret: SpannedString,
-        cmi: ChatMessageInterface
-    ): SpannedString {
-        if (!cmi.isDeleted) {
-            return ret
-        }
-
-        val builder = SpannableStringBuilder(ret)
-        return SpannedString(
-            when (Flag.DELETED_MESSAGES.asVariant<DeletedMessages>()) {
-                DeletedMessages.Strikethrough -> createDeletedStrikethrough(builder)
-                DeletedMessages.Grey -> createDeletedGrey(builder)
-                DeletedMessages.Default -> "<${
-                    ResourceManager.get().getString("chat_message_deleted")
-                }>"
-                else -> createDeletedGrey(builder)
-            }
-        )
     }
 
     fun bindPronoun(
@@ -591,11 +614,10 @@ class ChatHookProvider @Inject constructor(
             return null
         }
 
-        val userName =
-            item.getPrivateField<String?>("username") ?: return null // FIXME: just add getter, LOL?
-        val setter = PronounSetter(holder)
+        val userName = item.getPrivateField<String?>("username") ?: return null
+        val setter = PronounSetter(view = holder)
 
-        pronounProvider.getPronounText(userName) { pronounText: String ->
+        pronounProvider.getPronounText(userName = userName) { pronounText: String ->
             setter.setText(pronounText)
         }
 

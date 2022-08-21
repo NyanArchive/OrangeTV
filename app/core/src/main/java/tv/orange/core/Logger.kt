@@ -7,32 +7,32 @@ import tv.orange.models.util.Logger
 object Logger : Logger {
     private const val LOGGER_TAG = "TwitchMod"
 
-    override fun warning(msg: String) {
-        Log.w(LOGGER_TAG, createMessage(Thread.currentThread(), msg))
+    override fun warning(messageText: String) {
+        Log.w(LOGGER_TAG, createMessage(thread = Thread.currentThread(), messageText = messageText))
     }
 
-    override fun info(msg: String) {
-        Log.i(LOGGER_TAG, createMessage(Thread.currentThread(), msg))
+    override fun info(messageText: String) {
+        Log.i(LOGGER_TAG, createMessage(thread = Thread.currentThread(), messageText = messageText))
     }
 
-    override fun debug(msg: String) {
-        Log.d(LOGGER_TAG, createMessage(Thread.currentThread(), msg))
+    override fun debug(messageText: String) {
+        Log.d(LOGGER_TAG, createMessage(thread = Thread.currentThread(), messageText = messageText))
     }
 
-    override fun rawDebug(msg: String) {
-        Log.d(LOGGER_TAG, msg)
+    override fun error(messageText: String) {
+        Log.e(LOGGER_TAG, createMessage(thread = Thread.currentThread(), messageText = messageText))
     }
 
-    override fun error(msg: String) {
-        Log.e(LOGGER_TAG, createMessage(Thread.currentThread(), msg))
+    override fun rawDebug(messageText: String) {
+        Log.d(LOGGER_TAG, messageText)
     }
 
-    private fun createMessage(thread: Thread, message: String): String {
+    private fun createMessage(thread: Thread, messageText: String): String {
         val stack = TextUtils.join("->",
             thread.stackTrace.drop(4)
                 .take(3)
                 .map { it.toString() })
 
-        return "{\"message\": \"$message\", \"thread\": \"${thread.name}\", \"stack\": \"$stack\"}"
+        return "{\"message\": \"$messageText\", \"thread\": \"${thread.name}\", \"stack\": \"$stack\"}"
     }
 }

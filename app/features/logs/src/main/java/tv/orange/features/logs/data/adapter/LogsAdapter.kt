@@ -37,7 +37,7 @@ class LogsAdapter @Inject constructor(val factoryProvider: ChatMessageFactory.Fa
     }
 
     class DateViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val tv = view.getView<TextView>("orangetv_logs_date__tv")
+        private val tv = view.getView<TextView>(resName = "orangetv_logs_date__tv")
 
         fun onBind(date: Date) {
             tv.text = DateFormat.getDateInstance(DateFormat.SHORT).format(date)
@@ -45,7 +45,7 @@ class LogsAdapter @Inject constructor(val factoryProvider: ChatMessageFactory.Fa
     }
 
     class MessageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val tv = view.getView<TextView>("chat_message_item")
+        private val tv = view.getView<TextView>(resName = "chat_message_item")
 
         fun onBind(factory: ChatMessageFactory, message: ChatMessage) {
             val spanned = factory.createChatHistoryMessage(
@@ -62,8 +62,8 @@ class LogsAdapter @Inject constructor(val factoryProvider: ChatMessageFactory.Fa
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            HEADER_TYPE -> DateViewHolder(parent.inflate("orangetv_logs_date"))
-            else -> MessageViewHolder(parent.inflate("chat_message_item"))
+            HEADER_TYPE -> DateViewHolder(parent.inflate(resName = "orangetv_logs_date"))
+            else -> MessageViewHolder(parent.inflate(resName = "chat_message_item"))
         }
     }
 

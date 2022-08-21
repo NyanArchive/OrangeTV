@@ -23,17 +23,16 @@ class SettingsController(val activity: FragmentActivity) : SettingsPreferencesCo
     override fun updatePreferenceBooleanState(toggleMenuModel: ToggleMenuModel, state: Boolean) {
         val eventName = toggleMenuModel.eventName
         if (eventName.isNullOrBlank()) {
-            Logger.debug("Skip: blank eventName")
             return
         }
 
         val flag = Flag.findByKey(eventName) ?: run {
-            Logger.error("Flag not found for key: $eventName")
+            Logger.error("Flag not found: $eventName")
             return
         }
 
-        PreferenceManager.get().writeBoolean(flag, state)
-        checkIfNeedRestart(flag)
+        PreferenceManager.get().writeBoolean(flag = flag, value = state)
+        checkIfNeedRestart(flag = flag)
     }
 
     private fun checkIfNeedRestart(flag: Flag) {
@@ -44,11 +43,11 @@ class SettingsController(val activity: FragmentActivity) : SettingsPreferencesCo
         val alertDialog: AlertDialog = activity.let {
             val builder = AlertDialog.Builder(it)
             builder.apply {
-                setTitle(ResourceManager.get().getString("orange_restart_app_title"))
+                setTitle(ResourceManager.get().getString(resName = "orange_restart_app_title"))
                 setPositiveButton(
-                    ResourceManager.get().getString("orange_restart_app")
+                    ResourceManager.get().getString(resName = "orange_restart_app")
                 ) { _, _ ->
-                    Core.restart(activity)
+                    Core.restart(activity = activity)
                 }
                 setNegativeButton(
                     android.R.string.cancel
@@ -65,7 +64,7 @@ class SettingsController(val activity: FragmentActivity) : SettingsPreferencesCo
 
     fun getMainSettingModels(): Collection<MenuModel> {
         return Flag.values().mapNotNull {
-            when (it.value) {
+            when (it.valueHolder) {
                 is Internal.BooleanValue -> FlagToggleMenuModelExt(it)
                 is Internal.ListValue<*> -> if (it == Flag.CHAT_FONT_SIZE) {
                     DropDownMenuModelExt<FontSize>(it, this, true)
@@ -80,11 +79,10 @@ class SettingsController(val activity: FragmentActivity) : SettingsPreferencesCo
 
     fun onDropDownMenuItemSelection(flag: Flag, variant: Internal.Variant) {
         if (flag.asString() == variant.toString()) {
-            Logger.debug("Ignore: $flag")
             return
         }
 
-        PreferenceManager.get().writeString(flag, variant.toString())
+        PreferenceManager.get().writeString(flag = flag, value = variant.toString())
         checkIfNeedRestart(flag)
     }
 
@@ -97,7 +95,7 @@ class SettingsController(val activity: FragmentActivity) : SettingsPreferencesCo
             return
         }
 
-        PreferenceManager.get().writeInt(flag, value)
+        PreferenceManager.get().writeInt(flag = flag, value = value)
         checkIfNeedRestart(flag)
     }
 }

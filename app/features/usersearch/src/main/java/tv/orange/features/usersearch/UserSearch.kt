@@ -25,7 +25,7 @@ class UserSearch @Inject constructor(
     }
 
     fun getSearchBar(delegate: ViewerListViewDelegate): SearchView {
-        return viewFactory.createSearchBar(delegate).apply {
+        return viewFactory.createSearchBar(delegate = delegate).apply {
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     return false

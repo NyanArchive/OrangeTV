@@ -6,6 +6,7 @@ import dagger.Component
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import tv.orange.core.CoreHook
+import tv.orange.core.ResourceManager
 import tv.orange.core.di.module.CoreModule
 import tv.orange.core.di.module.NetworkModule
 import tv.orange.core.di.scope.AppScope
@@ -22,9 +23,9 @@ interface CoreComponent {
     val context: Context
 
     val retrofitBuilder: Retrofit.Builder
-    val okHttpClient: OkHttpClient
+    val defaultOkHttpClient: OkHttpClient
 
-    val tam: TwitchAccountManager
+    val twitchAccountManager: TwitchAccountManager
 
     val coreHook: CoreHook
 }

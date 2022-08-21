@@ -19,7 +19,7 @@ class NopRepository @Inject constructor(
         return nopApiDataSource.getHomiesBadges()
     }
 
-    fun ping(build: Int, deviceId: String): Completable {
-        return nopApiDataSource.ping(build = build, deviceId = deviceId)
+    fun ping(buildNumber: Int, deviceId: String): Completable {
+        return nopApiDataSource.ping(build = buildNumber, deviceId = deviceId)
     }
 }

@@ -19,7 +19,7 @@ class OrangeTimerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener
         }
 
         val context = ApplicationContext.Companion!!.instance.getContext()
-        OrangeSleepTimer.startService(context, toSeconds(hour, minute))
+        OrangeSleepTimer.startService(context = context, seconds = toSeconds(hour, minute))
     }
 
     companion object {

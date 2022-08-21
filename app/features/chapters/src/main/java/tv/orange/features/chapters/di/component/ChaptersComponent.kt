@@ -2,6 +2,7 @@ package tv.orange.features.chapters.di.component
 
 import dagger.BindsInstance
 import dagger.Component
+import tv.orange.core.ResourceManager
 import tv.orange.core.di.component.CoreComponent
 import tv.orange.features.chapters.VodChapters
 import tv.orange.features.chapters.data.view.ChaptersFragment
@@ -19,6 +20,7 @@ interface ChaptersComponent {
     interface Factory {
         fun create(
             coreComponent: CoreComponent,
+            @BindsInstance resourceManager: ResourceManager,
             @BindsInstance service: GraphQlService
         ): ChaptersComponent
     }

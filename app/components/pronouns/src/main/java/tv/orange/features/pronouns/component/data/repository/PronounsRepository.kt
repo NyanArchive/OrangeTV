@@ -10,12 +10,12 @@ import javax.inject.Inject
 @PronounScope
 class PronounsRepository @Inject constructor(
     val pronounsApiSource: PronounsApiSource
-): IRepository {
-    override fun getPronouns(): Single<List<PronounItemData>> {
+) {
+    fun getPronouns(): Single<List<PronounItemData>> {
         return pronounsApiSource.getPronouns()
     }
 
-    override fun getUserPronoun(userName: String): Single<UserPronoun> {
-        return pronounsApiSource.getUserPronoun(userName)
+    fun getUserPronoun(userName: String): Single<UserPronoun> {
+        return pronounsApiSource.getUserPronoun(userName = userName)
     }
 }

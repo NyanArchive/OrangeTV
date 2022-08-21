@@ -10,19 +10,19 @@ data class StackEmoteToken(
     class TokenHolder(private val token: MessageToken) {
         fun isTwitchToken(): Boolean = token is EmoticonToken
 
-        fun getTwitchToken(): EmoticonToken {
+        fun getTwitchToken(): EmoticonToken { // TODO: __rewrite
             if (token is EmoticonToken) {
                 return token
             } else {
-                throw IllegalStateException("debug")
+                throw IllegalStateException("fixme")
             }
         }
 
-        fun getOrangeToken(): EmoteToken {
+        fun getOrangeToken(): EmoteToken { // TODO: __rewrite
             if (token is EmoteToken) {
                 return token
             } else {
-                throw IllegalStateException("debug")
+                throw IllegalStateException("fixme")
             }
         }
     }

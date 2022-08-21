@@ -6,17 +6,15 @@ import tv.orange.models.retrofit.chatterino.BadgesData
 import javax.inject.Inject
 
 class ChatterinoApiMapper @Inject constructor() {
-    fun mapBadges(badges: BadgesData): BadgeSet {
-        val builder = BadgeSet.Builder()
-
-        badges.badges.forEach { badge ->
-            badge.users.forEach { userIdString ->
-                userIdString.toIntOrNull()?.let { userId ->
-                    builder.addBadge(BadgeImpl("chatterino", badge.image2), userId)
+    fun map(response: BadgesData): BadgeSet {
+        return BadgeSet.Builder().apply {
+            response.badges.forEach { badge ->
+                badge.users.forEach { userIdString ->
+                    userIdString.toIntOrNull()?.let { userId ->
+                        addBadge(BadgeImpl(code = "chatterino", url = badge.image2), userId)
+                    }
                 }
             }
-        }
-
-        return builder.build()
+        }.build()
     }
 }

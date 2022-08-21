@@ -18,6 +18,9 @@ class PronounsApiSource @Inject constructor(
     }
 
     fun getUserPronoun(userName: String): Single<UserPronoun> {
-        return pronounsApiMapper.mapPronounResult(userName, pronounsApi.getUserPronoun(userName))
+        return pronounsApiMapper.mapPronouns(
+            userName = userName,
+            response = pronounsApi.getUserPronoun(userName)
+        )
     }
 }

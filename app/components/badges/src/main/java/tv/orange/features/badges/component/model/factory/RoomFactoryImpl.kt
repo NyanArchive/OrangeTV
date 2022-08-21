@@ -24,39 +24,39 @@ class RoomFactoryImpl @Inject constructor(
             if (Flag.FFZ_BADGES.asBoolean()) {
                 add(
                     BadgePackageImpl(
-                        BadgeFetcherFactoryImpl { ffz.getFfzBadges() },
-                        BadgePackageSet.Ffz
+                        source = BadgeFetcherFactoryImpl { ffz.getFfzBadges() },
+                        token = BadgePackageSet.Ffz
                     )
                 )
             }
             if (Flag.STV_BADGES.asBoolean()) {
                 add(
                     BadgePackageImpl(
-                        BadgeFetcherFactoryImpl { stv.getStvBadges() },
-                        BadgePackageSet.Stv
+                        source = BadgeFetcherFactoryImpl { stv.getStvBadges() },
+                        token = BadgePackageSet.Stv
                     )
                 )
             }
             if (Flag.CHA_BADGES.asBoolean()) {
                 add(
                     BadgePackageImpl(
-                        BadgeFetcherFactoryImpl { chatterino.getChatterinoBadges() },
-                        BadgePackageSet.Chatterino
+                        source = BadgeFetcherFactoryImpl { chatterino.getChatterinoBadges() },
+                        token = BadgePackageSet.Chatterino
                     )
                 )
             }
             if (Flag.CHE_BADGES.asBoolean()) {
                 add(
                     BadgePackageImpl(
-                        BadgeFetcherFactoryImpl { nop.getHomiesBadges() },
-                        BadgePackageSet.Homies
+                        source = BadgeFetcherFactoryImpl { nop.getHomiesBadges() },
+                        token = BadgePackageSet.Homies
                     )
                 )
             }
             add(
                 BadgePackageImpl(
-                    BadgeFetcherFactoryImpl { nop.getTwitchModBadges() },
-                    BadgePackageSet.TwitchMod
+                    source = BadgeFetcherFactoryImpl { nop.getTwitchModBadges() },
+                    token = BadgePackageSet.TwitchMod
                 )
             )
         }

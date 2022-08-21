@@ -22,7 +22,7 @@ class FfzApiMapper @Inject constructor() {
                         builder.addBadge(
                             BadgeFfzImpl(
                                 type = if (ffzBadge.name == supporter.value) supporter else unknown,
-                                url = getUrl(ffzBadge.id),
+                                url = getFfzBadgeUrl(badgeId = ffzBadge.id),
                                 backgroundColor = ffzBadge.parseColor(),
                                 replaces = ffzBadge.replaces
                             ), userId
@@ -38,7 +38,7 @@ class FfzApiMapper @Inject constructor() {
     companion object {
         private const val FFZ_CDN = "https://cdn.frankerfacez.com/badge/"
 
-        private fun getUrl(badgeId: Int): String {
+        private fun getFfzBadgeUrl(badgeId: Int): String {
             return "$FFZ_CDN$badgeId/2"
         }
     }

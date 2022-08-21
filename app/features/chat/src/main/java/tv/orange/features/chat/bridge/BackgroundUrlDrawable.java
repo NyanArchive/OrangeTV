@@ -11,7 +11,11 @@ public class BackgroundUrlDrawable extends UrlDrawable {
     private final int backgroundColor;
 
     public BackgroundUrlDrawable(String url, MediaSpan$Type type, int backgroundColor) {
-        super(url, type);
+        this(url, type, false, backgroundColor);
+    }
+
+    public BackgroundUrlDrawable(String url, MediaSpan$Type type, boolean wide, int backgroundColor) {
+        super(url, type, wide);
         this.backgroundColor = backgroundColor;
     }
 

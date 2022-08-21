@@ -92,24 +92,20 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      instance-of v1, v0, Ltv/twitch/android/models/chat/MessageToken$EmoticonToken;
  
      if-eqz v1, :cond_8
-@@ -2741,6 +2802,16 @@
+@@ -2741,6 +2802,12 @@
  
      invoke-direct {v0, v14}, Landroid/text/SpannedString;-><init>(Ljava/lang/CharSequence;)V
  
-+    invoke-static {}, Ltv/orange/features/chat/ChatHookProvider;->get()Ltv/orange/features/chat/ChatHookProvider;
-+
-+    move-result-object v1
-+
 +    move-object/from16 v2, p1
 +
-+    invoke-virtual {v1, v0, v2}, Ltv/orange/features/chat/ChatHookProvider;->fixDeletedMessage(Landroid/text/SpannedString;Ltv/twitch/android/provider/chat/ChatMessageInterface;)Landroid/text/SpannedString;
++    invoke-static {v0, v2}, Ltv/orange/features/chat/ChatHookProvider;->fixDeletedMessage(Landroid/text/SpannedString;Ltv/twitch/android/provider/chat/ChatMessageInterface;)Landroid/text/SpannedString;
 +
 +    move-result-object v0
 +
      return-object v0
  .end method
  
-@@ -2819,3 +2890,385 @@
+@@ -2819,3 +2886,385 @@
      :goto_0
      return-object p1
  .end method
@@ -118,7 +114,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +    .registers 8
 +    .param p1, "messageBadge"    # Ltv/orange/features/badges/bridge/OrangeMessageBadge;
 +
-+    .line 78
++    .line 118
 +    new-instance v1, Ltv/orange/features/chat/bridge/BackgroundUrlDrawable;
 +
 +    invoke-virtual {p1}, Ltv/orange/features/badges/bridge/OrangeMessageBadge;->getBadgeUrl()Ljava/lang/String;
@@ -127,13 +123,13 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
 +    sget-object v2, Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;->Badge:Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;
 +
-+    invoke-virtual {p1}, Ltv/orange/features/badges/bridge/OrangeMessageBadge;->getBadgeColor()I
++    invoke-virtual {p1}, Ltv/orange/features/badges/bridge/OrangeMessageBadge;->getBadgeBackgroundColor()I
 +
 +    move-result v3
 +
 +    invoke-direct {v1, v0, v2, v3}, Ltv/orange/features/chat/bridge/BackgroundUrlDrawable;-><init>(Ljava/lang/String;Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;I)V
 +
-+    .line 79
++    .line 119
 +    .local v1, "drawable":Landroid/graphics/drawable/Drawable;
 +    invoke-virtual {p1}, Ltv/orange/features/badges/bridge/OrangeMessageBadge;->getBadgeName()Ljava/lang/String;
 +

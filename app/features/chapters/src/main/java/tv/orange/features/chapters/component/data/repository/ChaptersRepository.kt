@@ -7,6 +7,6 @@ import javax.inject.Inject
 
 class ChaptersRepository @Inject constructor(val source: ChaptersDataSource) {
     fun getChapters(vodId: String): Single<List<Chapter>> {
-        return source.getChapters(vodId)
+        return source.getChapters(vodId = vodId)
     }
 }

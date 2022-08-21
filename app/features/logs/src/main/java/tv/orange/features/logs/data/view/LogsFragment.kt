@@ -39,7 +39,7 @@ class LogsFragment @Inject constructor(
     fun load(userLogin: String, channelId: String) {
         disposables.clear()
         disposables.add(
-            logsRepository.getLogs(userLogin, channelId)
+            logsRepository.getLogs(userLogin = userLogin, channelId = channelId)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ render(it) }, Throwable::printStackTrace)
         )
@@ -55,10 +55,10 @@ class LogsFragment @Inject constructor(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(container, "orangetv_logs_container")
+        val view = inflater.inflate(container = container, resName = "orangetv_logs_container")
 
-        pb = view.getView("orangetv_logs_container__pb")
-        rv = view.getView<RecyclerView>("orangetv_logs_container__rv").apply {
+        pb = view.getView(resName = "orangetv_logs_container__pb")
+        rv = view.getView<RecyclerView>(resName = "orangetv_logs_container__rv").apply {
             adapter = logsAdapter
         }
 

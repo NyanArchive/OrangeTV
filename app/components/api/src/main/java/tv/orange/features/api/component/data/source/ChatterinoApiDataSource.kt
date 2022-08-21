@@ -12,8 +12,6 @@ class ChatterinoApiDataSource @Inject constructor(
     val chatterinoApiMapper: ChatterinoApiMapper
 ) {
     fun getBadges(): Single<BadgeSet> {
-        return chatterinoApi.getBadges().subscribeOn(Schedulers.io()).map { badges ->
-            chatterinoApiMapper.mapBadges(badges = badges)
-        }
+        return chatterinoApi.getBadges().subscribeOn(Schedulers.io()).map(chatterinoApiMapper::map)
     }
 }

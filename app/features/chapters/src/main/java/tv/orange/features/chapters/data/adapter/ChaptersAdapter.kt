@@ -12,18 +12,25 @@ import tv.orange.core.util.ViewUtil.getView
 import tv.orange.core.util.ViewUtil.inflate
 import tv.orange.features.chapters.component.data.model.Chapter
 
-class ChaptersAdapter(private val listener: OnChapterClickedListener) :
-    RecyclerView.Adapter<ChaptersAdapter.ChapterItemVH>() {
+class ChaptersAdapter(
+    private val listener: OnChapterClickedListener
+) : RecyclerView.Adapter<ChaptersAdapter.ChapterItemViewHolder>() {
     private var chapters: List<Chapter> = listOf()
 
     interface OnChapterClickedListener {
         fun onClicked(item: Chapter)
     }
 
-    class ChapterItemVH(view: View) : RecyclerView.ViewHolder(view) {
-        private val logo = view.getView<ImageView>("orangetv_chapters_item__logo")
-        private val title = view.getView<TextView>("orangetv_chapters_item__title")
-        private val timestamp = view.getView<TextView>("orangetv_chapters_item__timestamp")
+    class ChapterItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val logo = view.getView<ImageView>(
+            resName = "orangetv_chapters_item__logo"
+        )
+        private val title = view.getView<TextView>(
+            resName = "orangetv_chapters_item__title"
+        )
+        private val timestamp = view.getView<TextView>(
+            resName = "orangetv_chapters_item__timestamp"
+        )
 
         fun onBind(listener: OnChapterClickedListener, chapter: Chapter) {
             title.text = chapter.title
@@ -35,11 +42,11 @@ class ChaptersAdapter(private val listener: OnChapterClickedListener) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChapterItemVH {
-        return ChapterItemVH(parent.inflate("orangetv_chapters_item"))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChapterItemViewHolder {
+        return ChapterItemViewHolder(parent.inflate(resName = "orangetv_chapters_item"))
     }
 
-    override fun onBindViewHolder(holder: ChapterItemVH, position: Int) {
+    override fun onBindViewHolder(holder: ChapterItemViewHolder, position: Int) {
         holder.onBind(listener, chapters[position])
     }
 
@@ -48,8 +55,8 @@ class ChaptersAdapter(private val listener: OnChapterClickedListener) :
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(it: List<Chapter>) {
-        chapters = it
+    fun setData(chapters: List<Chapter>) {
+        this.chapters = chapters
         notifyDataSetChanged()
     }
 }

@@ -3,10 +3,10 @@ package tv.orange.features.ui
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Color
-import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.RecyclerView
+import tv.orange.core.BuildConfigUtil
 import tv.orange.core.Core
 import tv.orange.core.PreferenceManager
 import tv.orange.core.models.flag.Flag
@@ -14,6 +14,7 @@ import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.models.flag.Flag.Companion.asInt
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.variants.BottomNavbarPosition
+import tv.orange.core.util.ViewUtil.changeVisibility
 import tv.orange.core.util.ViewUtil.getView
 import tv.orange.features.ui.di.scope.UIScope
 import tv.orange.models.abc.Feature
@@ -80,7 +81,7 @@ class UI @Inject constructor(
 
         @JvmStatic
         fun shouldHideMessageInput(context: Context): Boolean {
-            return Flag.AUTO_HIDE_MESSAGE_INPUT.asBoolean() && isLandscapeOrientation(context)
+            return Flag.AUTO_HIDE_MESSAGE_INPUT.asBoolean() && isLandscapeOrientation(context = context)
         }
     }
 
@@ -111,8 +112,8 @@ class UI @Inject constructor(
     fun attachToMainActivityWrapper(wrapper: ViewGroup?) {
         wrapper ?: return
 
-        val frame = wrapper.getView<FrameLayout>("main_activity__main_wrapper")
-        val bottomNavigation = wrapper.getView<FrameLayout>("bottom_navigation")
+        val frame = wrapper.getView<FrameLayout>(resName = "main_activity__main_wrapper")
+        val bottomNavigation = wrapper.getView<FrameLayout>(resName = "bottom_navigation")
 
         when (Flag.BOTTOM_NAVBAR_POSITION.asVariant<BottomNavbarPosition>()) {
             BottomNavbarPosition.Top -> {
@@ -121,7 +122,7 @@ class UI @Inject constructor(
                 wrapper.addView(frame)
             }
             BottomNavbarPosition.Hidden -> {
-                bottomNavigation.visibility = View.GONE
+                bottomNavigation.changeVisibility(false)
             }
             else -> {}
         }
@@ -129,7 +130,7 @@ class UI @Inject constructor(
 
     fun updateLogoutSectionRecyclerItem(viewHolder: RecyclerView.ViewHolder) {
         if (viewHolder is LogoutSectionRecyclerItem.SectionFooterRecyclerItemViewHolder) {
-            Core.get().buildConfig.let { config ->
+            BuildConfigUtil.buildConfig.let { config ->
                 viewHolder.versionTextView.text = if (config.number > 0) {
                     "OrangeTV/${config.number}"
                 } else {
@@ -154,7 +155,7 @@ class UI @Inject constructor(
         }
 
         delegate.messageInputViewDelegate.apply {
-            if (isLandscapeOrientation(context)) {
+            if (isLandscapeOrientation(context = context)) {
                 hide()
             } else {
                 show()
@@ -163,7 +164,7 @@ class UI @Inject constructor(
     }
 
     fun changeLandscapeChatContainerOpacity(viewGroup: ViewGroup?) {
-        if (PreferenceManager.isDarkTheme) {
+        if (PreferenceManager.isDarkThemeEnabled) {
             viewGroup?.setBackgroundColor(
                 Color.argb(
                     (255 * (Flag.LANDSCAPE_CHAT_OPACITY.asInt() / 100F)).toInt(),

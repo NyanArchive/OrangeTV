@@ -23,9 +23,8 @@ enum class FontSize(val value: String) : Internal.Variant {
         return SP13
     }
 
-    override fun fromString(value: String): Internal.Variant {
-        return values().firstOrNull { it.value == value }
-            ?: getDefault()
+    override fun fromString(str: String): Internal.Variant? {
+        return values().firstOrNull { it.value == str }
     }
 
     override fun toString(): String {

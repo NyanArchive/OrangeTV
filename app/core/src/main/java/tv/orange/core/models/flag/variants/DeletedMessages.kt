@@ -16,9 +16,8 @@ enum class DeletedMessages(val value: String) : Internal.Variant {
         return Default
     }
 
-    override fun fromString(value: String): Internal.Variant {
-        return values().firstOrNull { it.value == value }
-            ?: throw IllegalStateException("Variant not found: $value")
+    override fun fromString(str: String): Internal.Variant? {
+        return values().firstOrNull { it.value == str }
     }
 
     override fun toString(): String {

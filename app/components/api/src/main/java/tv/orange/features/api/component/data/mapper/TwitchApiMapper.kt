@@ -5,8 +5,8 @@ import tv.orange.models.gql.twitch.UserInfoQuery
 import javax.inject.Inject
 
 class TwitchApiMapper @Inject constructor() {
-    fun map(data: UserInfoQuery.Data): UserInfo? {
-        return data.user?.let { user ->
+    fun map(response: UserInfoQuery.Data): UserInfo? {
+        return response.user?.let { user ->
             UserInfo(userId = user.id, userName = user.login)
         }
     }

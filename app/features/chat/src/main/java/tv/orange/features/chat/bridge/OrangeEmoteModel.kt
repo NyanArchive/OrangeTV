@@ -4,7 +4,10 @@ import tv.twitch.android.models.emotes.EmoteModel
 import tv.twitch.android.models.emotes.EmoteModelAssetType
 import tv.twitch.android.models.emotes.EmoteModelType
 
-class OrangeEmoteModel(private val emoteToken: String, val emoteUrl: String) : EmoteModel(null) {
+class OrangeEmoteModel(
+    private val emoteToken: String,
+    val emoteUrl: String
+) : EmoteModel(null) {
     override fun getAssetType(): EmoteModelAssetType {
         return EmoteModelAssetType.UNKNOWN
     }

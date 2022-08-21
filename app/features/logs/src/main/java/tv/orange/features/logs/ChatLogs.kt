@@ -2,7 +2,6 @@ package tv.orange.features.logs
 
 import androidx.fragment.app.FragmentActivity
 import tv.orange.core.Core
-import tv.orange.core.Logger
 import tv.orange.features.logs.di.scope.LogsScope
 import tv.orange.features.logs.view.ViewFactory
 import tv.orange.models.abc.Feature
@@ -40,7 +39,7 @@ class ChatLogs @Inject constructor(
         state: ModerationBottomSheetViewState
     ): List<BottomSheetListItemModel<*>> {
         return list.toMutableList().apply {
-            add(viewFactory.createModLogsButton(state))
+            add(viewFactory.createModLogsButton(state = state))
         }
     }
 

@@ -10,8 +10,8 @@ import javax.inject.Inject
 class ViewFactoryImpl @Inject constructor(val logsFragment: LogsFragment) : ViewFactory {
     override fun createModLogsButton(state: ModerationBottomSheetViewState): BottomSheetListItemModel<*> {
         return BottomSheetListItemModel(
-            ResourceManager.get().getId("chat_moderation_menu__mod_logs"),
-            ResourceManager.get().getString("orange_mod_logs"),
+            ResourceManager.get().getId(resName = "chat_moderation_menu__mod_logs"),
+            ResourceManager.get().getString(resName = "orange_mod_logs"),
             true,
             ModerationActionBottomSheetViewDelegate.ModerationActionButtonEvent.ViewLogs(
                 state.username,

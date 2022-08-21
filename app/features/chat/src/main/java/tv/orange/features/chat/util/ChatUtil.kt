@@ -7,8 +7,6 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.StrikethroughSpan
 import android.util.LruCache
 import android.util.TypedValue
-import okhttp3.internal.toHexString
-import tv.orange.core.Logger
 import tv.twitch.android.models.chat.MessageToken
 import tv.twitch.android.provider.chat.ChatMessageInterface
 import tv.twitch.android.shared.chat.util.ClickableUsernameSpan
@@ -22,8 +20,8 @@ object ChatUtil {
 
     private const val MIN_DARK_THEME_NICKNAME_HSV_VALUE = .3f
     private const val FIXED_DARK_THEME_NICKNAME_HSV_VALUE = .4f
-    private const val MIN_WHITE_THEME_NICKNAME_HSV_VALUE = .9f
-    private const val FIXED_WHITE_THEME_NICKNAME_HSV_VALUE = .8f
+    private const val MIN_DEFAULT_THEME_NICKNAME_HSV_VALUE = .9f
+    private const val FIXED_DEFAULT_THEME_NICKNAME_HSV_VALUE = .8f
 
     private const val CACHE_SIZE = 500
 
@@ -35,51 +33,47 @@ object ChatUtil {
                 return color
             }
             hsv[2] = FIXED_DARK_THEME_NICKNAME_HSV_VALUE
-            val res = Color.HSVToColor(hsv)
-            Logger.debug("org: ${color.toHexString()}, fixed: ${res.toHexString()}")
-            return res
+            return Color.HSVToColor(hsv)
         }
     }
 
-    private val lightThemeCache: LruCache<Int, Int> = object : LruCache<Int, Int>(CACHE_SIZE) {
+    private val defaultThemeCache: LruCache<Int, Int> = object : LruCache<Int, Int>(CACHE_SIZE) {
         override fun create(color: Int): Int {
             val hsv = FloatArray(3)
             Color.colorToHSV(color, hsv)
-            if (hsv[2] <= MIN_WHITE_THEME_NICKNAME_HSV_VALUE) {
+            if (hsv[2] <= MIN_DEFAULT_THEME_NICKNAME_HSV_VALUE) {
                 return color
             }
-            hsv[2] = FIXED_WHITE_THEME_NICKNAME_HSV_VALUE
-            val res = Color.HSVToColor(hsv)
-            Logger.debug("org: ${color.toHexString()}, fixed: ${res.toHexString()}")
-            return res
+            hsv[2] = FIXED_DEFAULT_THEME_NICKNAME_HSV_VALUE
+            return Color.HSVToColor(hsv)
         }
     }
 
-    fun fixUsernameColor(color: Int, darkTheme: Boolean): Int {
-        return if (darkTheme) {
+    fun fixUsernameColor(color: Int, isDarkThemeEnabled: Boolean): Int {
+        return if (isDarkThemeEnabled) {
             darkThemeCache[color]
         } else {
-            lightThemeCache[color]
+            defaultThemeCache[color]
         }
     }
 
-    fun createDeletedGrey(msg: Spanned?): Spanned? {
-        if (msg.isNullOrBlank()) {
-            return msg
+    fun createDeletedGrey(message: Spanned?): Spanned? {
+        if (message.isNullOrBlank()) {
+            return message
         }
 
-        msg.getSpans(0, msg.length, ForegroundColorSpan::class.java)?.forEach {
-            if (it.foregroundColor == Color.GRAY) {
-                return msg
+        message.getSpans(0, message.length, ForegroundColorSpan::class.java)?.forEach { colorSpan ->
+            if (colorSpan.foregroundColor == Color.GRAY) {
+                return message
             }
         }
 
-        val message = SpannableStringBuilder(msg)
-        message.getSpans(0, msg.length, ForegroundColorSpan::class.java)?.forEach {
+        val message = SpannableStringBuilder(message)
+
+        message.getSpans(0, message.length, ForegroundColorSpan::class.java)?.forEach {
             message.removeSpan(it)
         }
-
-        message.getSpans(0, msg.length, CenteredImageSpan::class.java)?.forEach {
+        message.getSpans(0, message.length, CenteredImageSpan::class.java)?.forEach {
             val drawable = it.imageDrawable
             if (drawable is UrlDrawable) {
                 drawable.setGrey(true)
@@ -91,65 +85,67 @@ object ChatUtil {
             message.length,
             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
+
         return SpannedString.valueOf(message)
     }
 
-    fun createDeletedStrikethrough(msg: Spanned?): Spanned? {
-        if (msg.isNullOrBlank()) {
-            return msg
+    fun createDeletedStrikethrough(message: Spanned?): Spanned? {
+        if (message.isNullOrBlank()) {
+            return message
         }
 
-        msg.getSpans(0, msg.length, StrikethroughSpan::class.java)?.let { spans ->
+        message.getSpans(0, message.length, StrikethroughSpan::class.java)?.let { spans ->
             if (spans.isNotEmpty()) {
-                return msg
+                return message
             }
         }
 
-        val message = SpannableStringBuilder(msg).apply {
+        return SpannedString.valueOf(SpannableStringBuilder(message).apply {
             setSpan(
                 StrikethroughSpan(),
-                getMessageStartPos(msg),
+                getMessageStartPos(message = message),
                 length,
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
             )
-        }
-        return SpannedString.valueOf(message)
+        })
     }
 
-    fun getMessageStartPos(msg: Spanned): Int {
+    fun getMessageStartPos(message: Spanned): Int {
         var usernameEndPos = 0
-        val spans = msg.getSpans(0, msg.length, ClickableUsernameSpan::class.java)
+        val spans = message.getSpans(0, message.length, ClickableUsernameSpan::class.java)
         if (spans.isEmpty()) {
             return usernameEndPos
         }
-        usernameEndPos = msg.getSpanEnd(spans[0])
+        usernameEndPos = message.getSpanEnd(spans[0])
         val pos = usernameEndPos + 2
-        if (pos < msg.length) {
-            if (TextUtils.equals(msg.subSequence(usernameEndPos, pos), ": ")) {
+        if (pos < message.length) {
+            if (TextUtils.equals(message.subSequence(usernameEndPos, pos), ": ")) {
                 usernameEndPos = pos
             }
         }
         return usernameEndPos
     }
 
-    fun formatTimestamp(msg: Spanned, timestamp: CharSequence): Spanned =
-        SpannableString.valueOf(SpannableStringBuilder(timestamp).append(" ").append(msg))
+    fun formatTimestamp(message: Spanned, timestamp: CharSequence): Spanned {
+        return SpannableString.valueOf(SpannableStringBuilder(timestamp).append(" ").append(message))
+    }
 
-    fun createTimestampSpanFromChatMessageSpan(msg: Spanned, date: Date): Spanned =
-        formatTimestamp(
-            msg = msg,
+    fun createTimestampSpanFromChatMessageSpan(message: Spanned, date: Date): Spanned {
+        return formatTimestamp(
+            message = message,
             timestamp = SimpleDateFormat(TIMESTAMP_DATE_FORMAT, Locale.ENGLISH).format(date)
         )
+    }
 
     fun isUserMentioned(
-        chatMessageInterface: ChatMessageInterface,
+        cmi: ChatMessageInterface,
         username: String
     ): Boolean {
         if (username.isBlank()) {
             return false
         }
 
-        return chatMessageInterface.tokens.any { token ->
+        return cmi.tokens.any { token ->
             if (token is MessageToken.MentionToken) {
                 token.userName?.let { username.equals(it, ignoreCase = true) } ?: false
             } else {

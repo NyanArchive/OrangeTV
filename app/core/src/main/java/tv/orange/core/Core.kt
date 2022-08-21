@@ -6,37 +6,17 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.*
-import io.reactivex.disposables.CompositeDisposable
-import org.json.JSONObject
 import tv.orange.core.models.lifecycle.LifecycleAware
 import tv.orange.core.models.lifecycle.LifecycleController
 import tv.orange.models.abc.Bridge
 import tv.orange.models.abc.Feature
-import tv.orange.models.abc.OrangeBuildConfig
 import javax.inject.Inject
 import kotlin.system.exitProcess
-
 
 class Core @Inject constructor(
     val context: Context
 ) : LifecycleController, LifecycleAware, Feature {
     private val modules = mutableSetOf<LifecycleAware>()
-
-    val buildConfig: OrangeBuildConfig by lazy {
-        return@lazy try {
-            with(JSONObject(rawBuildString)) {
-                OrangeBuildConfig(number = getInt("number"), timestamp = getInt("timestamp"))
-            }
-        } catch (e: Throwable) {
-            e.printStackTrace()
-            OrangeBuildConfig()
-        }
-    }
-
-    private val rawBuildString: String
-        get() = context.assets.open("build.json").bufferedReader().use {
-            it.readText()
-        }
 
     companion object {
         private lateinit var bridge: Bridge
@@ -51,7 +31,7 @@ class Core @Inject constructor(
 
         @JvmStatic
         fun <T : Feature> getFeature(clazz: Class<T>): T {
-            return getBridge().getFeature(clazz)
+            return getBridge().getFeature(clazz = clazz)
         }
 
         @JvmStatic
@@ -95,7 +75,7 @@ class Core @Inject constructor(
         }
 
         private fun intVibrate(context: Context, duration: Int) {
-            val v = getVibrator(context)
+            val v = getVibrator(context = context)
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 v?.vibrate(
@@ -134,56 +114,48 @@ class Core @Inject constructor(
     }
 
     override fun onAllComponentDestroyed() {
-        Logger.debug("onAllComponentDestroyed")
         modules.forEach {
             it.onAllComponentDestroyed()
         }
     }
 
     override fun onAllComponentStopped() {
-        Logger.debug("onAllComponentStopped")
         modules.forEach {
             it.onAllComponentStopped()
         }
     }
 
     override fun onSdkResume() {
-        Logger.debug("onSdkResume")
         modules.forEach {
             it.onSdkResume()
         }
     }
 
     override fun onAccountLogout() {
-        Logger.debug("onAccountLogout")
         modules.forEach {
             it.onAccountLogout()
         }
     }
 
     override fun onFirstActivityCreated() {
-        Logger.debug("onFirstActivityCreated")
         modules.forEach {
             it.onFirstActivityCreated()
         }
     }
 
     override fun onFirstActivityStarted() {
-        Logger.debug("onFirstActivityStarted")
         modules.forEach {
             it.onFirstActivityStarted()
         }
     }
 
     override fun onConnectedToChannel(channelId: Int) {
-        Logger.debug("onConnectedToChannel")
         modules.forEach {
             it.onConnectedToChannel(channelId)
         }
     }
 
     override fun onConnectingToChannel(channelId: Int) {
-        Logger.debug("onConnectingToChannel")
         modules.forEach {
             it.onConnectingToChannel(channelId)
         }
@@ -191,6 +163,6 @@ class Core @Inject constructor(
 
     override fun onDestroyFeature() {}
     override fun onCreateFeature() {
-        Logger.debug("OrangeTV:${buildConfig.number}")
+        Logger.debug("OrangeTV:${BuildConfigUtil.buildConfig.number}")
     }
 }

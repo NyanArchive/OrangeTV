@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import io.reactivex.Flowable
 import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
-import tv.orange.core.util.ViewUtil.getView
-import tv.orange.core.util.ViewUtil.inflate
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
+import tv.orange.core.util.ViewUtil.getView
+import tv.orange.core.util.ViewUtil.inflate
 import tv.orange.features.chat.ChatHookProvider
 import tv.twitch.android.core.mvp.viewdelegate.ViewDelegateState
 import tv.twitch.android.shared.chat.settings.entry.ChatSettingsViewDelegate
@@ -18,30 +18,34 @@ import tv.twitch.android.shared.ui.menus.infomenu.InfoMenuViewDelegate
 import tv.twitch.android.shared.ui.menus.togglemenu.SimpleToggleRowViewDelegate
 
 class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
-    private val modStuffContainer: ViewGroup = view.getView("orange_preferences_container")
+    private val resourceManager = ResourceManager.get()
+    private val preferenceManager = PreferenceManager.get()
 
+    private val modStuffContainer: ViewGroup = view.getView(
+        resName = "orange_preferences_container"
+    )
     private val refreshEmotes = SettingsViewDelegateItemsUtilKt.getValueRowItem(
         context,
         modStuffContainer,
     )
     private val toggleBttvEmotes = getToggleRowItem(
         modStuffContainer,
-        ResourceManager.get().getStringId("orange_settings_bttv_emotes")
+        resourceManager.getStringId(resName = "orange_settings_bttv_emotes")
     )
     private val toggleFfzEmotes = getToggleRowItem(
         modStuffContainer,
-        ResourceManager.get().getStringId("orange_settings_ffz_emotes")
+        resourceManager.getStringId(resName = "orange_settings_ffz_emotes")
     )
     private val toggleStvEmotes = getToggleRowItem(
         modStuffContainer,
-        ResourceManager.get().getStringId("orange_settings_stv_emotes")
+        resourceManager.getStringId(resName = "orange_settings_stv_emotes")
     )
 
     private fun getToggleRowItem(
         container: ViewGroup,
         resId: Int
     ): SimpleToggleRowViewDelegate {
-        return SimpleToggleRowViewDelegate(container.inflate("toggle_row_item"), resId)
+        return SimpleToggleRowViewDelegate(container.inflate(resName = "toggle_row_item"), resId)
     }
 
     init {
@@ -50,65 +54,70 @@ class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
         modStuffContainer.addView(toggleFfzEmotes.contentView)
         modStuffContainer.addView(toggleStvEmotes.contentView)
         renderEmotesState(
-            Flag.BTTV_EMOTES.asBoolean(),
-            Flag.FFZ_EMOTES.asBoolean(),
-            Flag.STV_EMOTES.asBoolean()
+            bttvState = Flag.BTTV_EMOTES.asBoolean(),
+            ffzState = Flag.FFZ_EMOTES.asBoolean(),
+            stvState = Flag.STV_EMOTES.asBoolean()
         )
     }
 
     fun render(state: ViewDelegateState) {
         refreshEmotes.render(
             InfoMenuViewDelegate.State(
-                ResourceManager.get().getString("orange_chat_settings_refresh"),
+                resourceManager.getString(resName = "orange_chat_settings_refresh"),
                 null,
                 null
             )
         )
     }
 
-    private fun renderEmotesState(bttv: Boolean, ffz: Boolean, stv: Boolean) {
-        toggleBttvEmotes.render(SimpleToggleRowViewDelegate.ToggleState(bttv))
-        toggleFfzEmotes.render(SimpleToggleRowViewDelegate.ToggleState(ffz))
-        toggleStvEmotes.render(SimpleToggleRowViewDelegate.ToggleState(stv))
-    }
-
-    private fun rebuildEmotes() {
-        ChatHookProvider.get().rebuildEmotes()
+    private fun renderEmotesState(bttvState: Boolean, ffzState: Boolean, stvState: Boolean) {
+        toggleBttvEmotes.render(SimpleToggleRowViewDelegate.ToggleState(bttvState))
+        toggleFfzEmotes.render(SimpleToggleRowViewDelegate.ToggleState(ffzState))
+        toggleStvEmotes.render(SimpleToggleRowViewDelegate.ToggleState(stvState))
     }
 
     fun injectEvents(listOf: List<Flowable<ChatSettingsViewDelegate.ChatSettingsEvents>>): List<Flowable<ChatSettingsViewDelegate.ChatSettingsEvents>> {
         return listOf.toMutableList().apply {
             add(refreshEmotes.eventObserver().doOnNext {
-                rebuildEmotes()
+                ChatHookProvider.get().rebuildEmotes()
             }.map {
                 ChatSettingsOrangeEvents.Closable()
             })
             add(toggleBttvEmotes.eventObserver().doOnNext {
-                PreferenceManager.get().writeBoolean(Flag.BTTV_EMOTES, it.isToggled)
+                preferenceManager.writeBoolean(
+                    flag = Flag.BTTV_EMOTES,
+                    value = it.isToggled
+                )
                 renderEmotesState(
-                    it.isToggled,
-                    Flag.FFZ_EMOTES.asBoolean(),
-                    Flag.STV_EMOTES.asBoolean()
+                    bttvState = it.isToggled,
+                    ffzState = Flag.FFZ_EMOTES.asBoolean(),
+                    stvState = Flag.STV_EMOTES.asBoolean()
                 )
             }.map {
                 ChatSettingsOrangeEvents.Toggle()
             })
             add(toggleFfzEmotes.eventObserver().doOnNext {
-                PreferenceManager.get().writeBoolean(Flag.FFZ_EMOTES, it.isToggled)
+                preferenceManager.writeBoolean(
+                    flag = Flag.FFZ_EMOTES,
+                    value = it.isToggled
+                )
                 renderEmotesState(
-                    Flag.BTTV_EMOTES.asBoolean(),
-                    it.isToggled,
-                    Flag.STV_EMOTES.asBoolean()
+                    bttvState = Flag.BTTV_EMOTES.asBoolean(),
+                    ffzState = it.isToggled,
+                    stvState = Flag.STV_EMOTES.asBoolean()
                 )
             }.map {
                 ChatSettingsOrangeEvents.Toggle()
             })
             add(toggleStvEmotes.eventObserver().doOnNext {
-                PreferenceManager.get().writeBoolean(Flag.STV_EMOTES, it.isToggled)
+                preferenceManager.writeBoolean(
+                    flag = Flag.STV_EMOTES,
+                    value = it.isToggled
+                )
                 renderEmotesState(
-                    Flag.BTTV_EMOTES.asBoolean(),
-                    Flag.FFZ_EMOTES.asBoolean(),
-                    it.isToggled
+                    bttvState = Flag.BTTV_EMOTES.asBoolean(),
+                    ffzState = Flag.FFZ_EMOTES.asBoolean(),
+                    stvState = it.isToggled
                 )
             }.map {
                 ChatSettingsOrangeEvents.Toggle()

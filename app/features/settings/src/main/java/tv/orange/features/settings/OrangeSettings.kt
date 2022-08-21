@@ -25,12 +25,12 @@ class OrangeSettings @Inject constructor(
 
         @JvmStatic
         fun getOrangeSettingsString(): String {
-            return ResourceManager.get().getString("orange_settings")
+            return ResourceManager.get().getString(resName = "orange_settings")
         }
     }
 
     fun getOrangeSettingsController(activity: FragmentActivity): SettingsController {
-        return SettingsController(activity)
+        return SettingsController(activity = activity)
     }
 
     fun inject(

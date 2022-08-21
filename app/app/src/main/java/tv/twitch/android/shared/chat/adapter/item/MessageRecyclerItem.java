@@ -48,7 +48,7 @@ public class MessageRecyclerItem implements IMessageRecyclerItem { // TODO: __IM
                                float f2, boolean z, boolean z2, List<String> mentionedUsers,
                                String str4, EventDispatcher<ChatItemClickEvent> eventDispatcher,
                                PublishSubject<ChatMessageClickedEvents> publishSubject, boolean z3) {
-        message = ChatHookProvider.get().maybeAddTimestamp(message, i, i2); // TODO: __INJECT_CODE
+        message = ChatHookProvider.maybeAddTimestamp(message, i, i2); // TODO: __INJECT_CODE
 
         /* ... */
 

@@ -13,15 +13,11 @@ class NopApiDataSource @Inject constructor(
     val nopApiMapper: NopApiMapper
 ) {
     fun getBadges(): Single<BadgeSet> {
-        return nopApi.globalBadges().subscribeOn(Schedulers.io()).map { donations ->
-            nopApiMapper.mapBadges(donations = donations)
-        }
+        return nopApi.globalBadges().subscribeOn(Schedulers.io()).map(nopApiMapper::map)
     }
 
     fun getHomiesBadges(): Single<BadgeSet> {
-        return nopApi.homiesBadges().subscribeOn(Schedulers.io()).map { homies ->
-            nopApiMapper.mapBadges(homies = homies)
-        }
+        return nopApi.homiesBadges().subscribeOn(Schedulers.io()).map(nopApiMapper::map)
     }
 
     fun ping(build: Int, deviceId: String): Completable {

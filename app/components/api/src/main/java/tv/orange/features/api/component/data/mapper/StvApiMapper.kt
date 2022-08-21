@@ -11,7 +11,7 @@ import tv.orange.models.retrofit.stv.StvEmote
 import javax.inject.Inject
 
 class StvApiMapper @Inject constructor() {
-    fun mapEmotes(emotes: List<StvEmote>, isChannelEmote: Boolean): List<Emote> {
+    fun mapEmotes(emotes: List<StvEmote>, isChannelEmotes: Boolean): List<Emote> {
         return emotes.map { emote ->
             EmoteImpl(
                 emoteCode = emote.name,
@@ -19,16 +19,16 @@ class StvApiMapper @Inject constructor() {
                 smallUrl = getEmoteUrl("1x", emote.id),
                 mediumUrl = getEmoteUrl("2x", emote.id),
                 largeUrl = getEmoteUrl("4x", emote.id),
-                packageSet = if (isChannelEmote) EmotePackageSet.StvChannel else EmotePackageSet.StvGlobal,
+                packageSet = if (isChannelEmotes) EmotePackageSet.StvChannel else EmotePackageSet.StvGlobal,
                 isZeroWidth = emote.visibility_simple.contains("ZERO_WIDTH")
             )
         }
     }
 
-    fun mapBadges(badges: BadgesData): BadgeSet {
+    fun map(response: BadgesData): BadgeSet {
         val builder = BadgeSet.Builder()
 
-        badges.badges.forEach { badge ->
+        response.badges.forEach { badge ->
             getBadgeUrl(badge.urls)?.let { url ->
                 badge.users.forEach { userIdString ->
                     userIdString.toIntOrNull()?.let { userId ->
@@ -41,13 +41,12 @@ class StvApiMapper @Inject constructor() {
         return builder.build()
     }
 
-    fun mapAvatars(map: HashMap<String, String>): AvatarSet {
-        val avatarSet = AvatarSet()
-        map.forEach {
-            avatarSet.add(channelName = it.key.lowercase(), url = it.value)
+    fun map(response: HashMap<String, String>): AvatarSet {
+        return AvatarSet().apply {
+            response.forEach {
+                add(channelName = it.key.lowercase(), url = it.value)
+            }
         }
-
-        return avatarSet
     }
 
     companion object {

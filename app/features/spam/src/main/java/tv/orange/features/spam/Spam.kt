@@ -18,8 +18,10 @@ class Spam @Inject constructor(
         fun get() = Core.getFeature(Spam::class.java)
     }
 
-    fun createSpamCommandInterceptor(bridge: VoteCommandInterceptor): ChatCommandInterceptor {
-        return factory.createSpamCommandInterceptor(bridge.getPrivateField("liveChatSource"))
+    fun createSpamCommandInterceptor(interceptor: VoteCommandInterceptor): ChatCommandInterceptor {
+        return factory.createSpamCommandInterceptor(
+            chatSource = interceptor.getPrivateField("liveChatSource")
+        )
     }
 
     override fun onDestroyFeature() {}

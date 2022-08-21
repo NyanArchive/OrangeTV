@@ -26,7 +26,7 @@ class RoomCache(private val roomFactory: RoomFactory, size: Int) : LruCache<Int,
         snapshot()?.let { snapshot ->
             clear()
             snapshot.keys.forEach { channelId ->
-                put(channelId, roomFactory.create(channelId))
+                put(channelId, roomFactory.create(channelId = channelId))
             }
         }
     }

@@ -2,6 +2,7 @@ package tv.orange.features.tracking
 
 import android.content.Context
 import io.reactivex.disposables.CompositeDisposable
+import tv.orange.core.BuildConfigUtil
 import tv.orange.core.Core
 import tv.orange.core.Logger
 import tv.orange.features.api.component.repository.NopRepository
@@ -25,8 +26,8 @@ class Tracking @Inject constructor(
     private fun ping() {
         disposables.add(
             nopRepository.ping(
-                Core.get().buildConfig.number,
-                UniqueDeviceIdentifier.getInstance().getUniqueID(context)
+                buildNumber = BuildConfigUtil.buildConfig.number,
+                deviceId = UniqueDeviceIdentifier.getInstance().getUniqueID(context)
             ).subscribe({
                 Logger.debug("OK")
             }, Throwable::printStackTrace)

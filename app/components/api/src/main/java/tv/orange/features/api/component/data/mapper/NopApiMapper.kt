@@ -6,31 +6,30 @@ import tv.orange.models.retrofit.nop.DonationsData
 import javax.inject.Inject
 
 class NopApiMapper @Inject constructor() {
-    fun mapBadges(donations: DonationsData): BadgeSet {
-        val builder = BadgeSet.Builder()
+    fun map(response: DonationsData): BadgeSet {
+        return BadgeSet.Builder().apply {
+            val defaultBadgeUrl = response.defaultBadgeUrl
 
-        val defaultBadgeUrl = donations.defaultBadgeUrl
-
-        donations.users?.let { users ->
-            users.forEach { user ->
-                val badgeUrl = user.badgeUrl?.ifBlank {
-                    defaultBadgeUrl
-                } ?: defaultBadgeUrl
-                user.userId.toIntOrNull()?.let { userId ->
-                    builder.addBadge(BadgeImpl("nop", badgeUrl), userId)
+            response.users?.let { users ->
+                users.forEach { user ->
+                    val badgeUrl = user.badgeUrl?.ifBlank { defaultBadgeUrl } ?: defaultBadgeUrl
+                    user.userId.toIntOrNull()?.let { userId ->
+                        addBadge(BadgeImpl(code = "nopbreak", url = badgeUrl), userId)
+                    }
                 }
             }
-        }
-
-        return builder.build()
+        }.build()
     }
 
-    fun mapBadges(homies: HashMap<String, String>): BadgeSet {
+    fun map(response: HashMap<String, String>): BadgeSet {
         val builder = BadgeSet.Builder()
 
-        homies.forEach { entry ->
+        response.forEach { entry ->
             entry.key.toIntOrNull()?.let { userId ->
-                builder.addBadge(BadgeImpl("homies", getHomiesUrl(entry.value)), userId)
+                builder.addBadge(
+                    BadgeImpl(code = "homies", url = getHomiesUrl(entry.value)),
+                    userId
+                )
             }
         }
 
@@ -39,7 +38,7 @@ class NopApiMapper @Inject constructor() {
 
     companion object {
         private fun getHomiesUrl(badgeId: String): String {
-            return "https://nopbreak.ru/shared/homies/badges/" + badgeId
+            return "https://nopbreak.ru/shared/homies/badges/$badgeId"
         }
     }
 }

@@ -17,18 +17,18 @@ class TwitchComponentProviderImpl private constructor() : TwitchComponentProvide
         return factory[cls] as Provider<T>
     }
 
-    private fun <T : Any> register(cls: KClass<T>, provider: Provider<T>) {
-        factory[cls] = provider
+    private fun <T : Any> register(clazz: KClass<T>, provider: Provider<T>) {
+        factory[clazz] = provider
     }
 
     fun initialize(appComponent: DaggerAppComponent) {
         register(
-            GraphQlService::class,
-            appComponent.getPrivateField("graphQlServiceProvider")
+            clazz = GraphQlService::class,
+            provider = appComponent.getPrivateField("graphQlServiceProvider")
         )
         register(
-            ChatMessageFactory.Factory::class,
-            appComponent.getPrivateField("factoryProvider2")
+            clazz = ChatMessageFactory.Factory::class,
+            provider = appComponent.getPrivateField("factoryProvider2")
         )
     }
 

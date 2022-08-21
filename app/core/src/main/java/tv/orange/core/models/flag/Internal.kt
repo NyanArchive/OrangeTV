@@ -3,17 +3,12 @@ package tv.orange.core.models.flag
 class Internal {
     interface ValueHolder {
         val value: Any
-        val type: Type
-    }
-
-    enum class Type {
-        BOOLEAN, INTEGER, STRING, LIST
     }
 
     interface Variant {
         fun getVariants(): List<Variant>
         fun getDefault(): Variant
-        fun fromString(value: String): Variant
+        fun fromString(str: String): Variant?
         fun isDefault(): Boolean
         override fun toString(): String
     }
@@ -41,32 +36,22 @@ class Internal {
 
         override val value: Any
             get() = currentValue
-
-        override val type: Type
-            get() = Type.INTEGER
     }
 
     @Suppress("UNCHECKED_CAST")
     class ListValue<T : Variant>(private val variant: T) : ValueHolder {
-        var currentVariant: Variant? = variant.getDefault()
+        private var currentVariant: Variant = variant.getDefault()
 
-        fun set(string: String): String {
-            currentVariant = variant.fromString(string)
-
-            return string
+        fun setCurrentVariant(value: String) {
+            currentVariant = variant.fromString(str = value) ?: variant.getDefault()
         }
 
-        fun set(variant: Variant): String {
-            currentVariant = variant
-
-            return value
+        fun getCurrentVariant(): Variant {
+            return currentVariant
         }
 
         override val value: String
             get() = currentVariant.toString()
-
-        override val type: Type
-            get() = Type.LIST
 
         fun <T : Variant> getVariant(): T {
             return currentVariant as T
@@ -80,8 +65,6 @@ class Internal {
             null -> false
             else -> bool.toString().toBoolean()
         }
-        override val type: Type
-            get() = Type.BOOLEAN
     }
 
     class IntegerValue(i: Any? = 0) : ValueHolder {
@@ -91,8 +74,6 @@ class Internal {
             null -> 0
             else -> i.toString().toInt()
         }
-        override val type: Type
-            get() = Type.INTEGER
     }
 
     class StringValue(s: Any? = null) : ValueHolder {
@@ -101,7 +82,5 @@ class Internal {
             null -> ""
             else -> s.toString()
         }
-        override val type: Type
-            get() = Type.STRING
     }
 }

@@ -17,7 +17,7 @@ class StvRepository @Inject constructor(
     }
 
     fun getStvChannelEmotes(channelId: Int): Single<EmoteSet> {
-        return stvDataSource.getChannelEmotes(channelId).map { EmoteSet(it) }
+        return stvDataSource.getChannelEmotes(channelId = channelId).map { EmoteSet(it) }
     }
 
     fun getStvAvatars(): Single<AvatarSet> {

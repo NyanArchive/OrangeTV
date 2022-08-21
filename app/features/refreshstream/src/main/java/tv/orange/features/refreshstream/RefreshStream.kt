@@ -17,8 +17,8 @@ class RefreshStream @Inject constructor(val viewFactory: ViewFactory) : Feature 
         fun get() = Core.getFeature(RefreshStream::class.java)
     }
 
-    fun getRefreshStreamButton(delegate: BottomPlayerControlOverlayViewDelegate): ImageView? {
-        return viewFactory.createRefreshStreamButton(delegate)?.apply {
+    fun getRefreshStreamButton(delegate: BottomPlayerControlOverlayViewDelegate): ImageView {
+        return viewFactory.createRefreshStreamButton(delegate = delegate).apply {
             setOnClickListener {
                 delegate.cast<IBottomPlayerControlOverlayViewDelegate>().onRefreshStreamClicked()
             }

@@ -7,6 +7,6 @@ import javax.inject.Inject
 
 class ViewFactoryImpl @Inject constructor() : ViewFactory {
     override fun createRefreshStreamButton(delegate: BottomPlayerControlOverlayViewDelegate): ImageView {
-        return delegate.contentView.getView("bottom_player_control_overlay_widget__refresh_button")
+        return delegate.contentView.getView(resName = "bottom_player_control_overlay_widget__refresh_button")
     }
 }

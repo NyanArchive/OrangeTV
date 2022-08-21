@@ -3,23 +3,23 @@ package tv.orange.core
 import tv.orange.models.util.Logger
 
 class LoggerWithTag(private val tag: String) : Logger {
-    override fun warning(msg: String) {
-        tv.orange.core.Logger.warning("[$tag] $msg")
+    override fun warning(messageText: String) {
+        tv.orange.core.Logger.warning(messageText = "[$tag] $messageText")
     }
 
-    override fun info(msg: String) {
-        tv.orange.core.Logger.info("[$tag] $msg")
+    override fun info(messageText: String) {
+        tv.orange.core.Logger.info(messageText = "[$tag] $messageText")
     }
 
-    override fun debug(msg: String) {
-        tv.orange.core.Logger.debug("[$tag] $msg")
+    override fun debug(messageText: String) {
+        tv.orange.core.Logger.debug(messageText = "[$tag] $messageText")
     }
 
-    override fun rawDebug(msg: String) {
-        tv.orange.core.Logger.rawDebug("[$tag] $msg")
+    override fun error(messageText: String) {
+        tv.orange.core.Logger.error(messageText = "[$tag] $messageText")
     }
 
-    override fun error(msg: String) {
-        tv.orange.core.Logger.error("[$tag] $msg")
+    override fun rawDebug(messageText: String) {
+        tv.orange.core.Logger.rawDebug(messageText = "[$tag] $messageText")
     }
 }

@@ -6,11 +6,11 @@ import tv.orange.models.retrofit.alejo.UserPronounData
 import javax.inject.Inject
 
 class PronounsApiMapper @Inject constructor() {
-    fun mapPronounResult(
+    fun mapPronouns(
         userName: String,
-        userPronoun: Single<List<UserPronounData>>
+        response: Single<List<UserPronounData>>
     ): Single<UserPronoun> {
-        return userPronoun.map {
+        return response.map {
             if (it.isEmpty()) {
                 return@map UserPronoun(userName = userName)
             }

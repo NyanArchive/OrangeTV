@@ -46,7 +46,6 @@ import tv.twitch.android.shared.chat.messagefactory.ChatMessageFactory
 class BridgeFeatureModule {
     @Provides
     fun provideRefreshStreamHook(coreComponent: CoreComponent): RefreshStream {
-        Logger.debug("called")
         return DaggerRefreshStreamComponent.builder()
             .coreComponent(coreComponent)
             .build().refreshStream
@@ -54,19 +53,18 @@ class BridgeFeatureModule {
 
     @Provides
     fun provideUserSearch(coreComponent: CoreComponent): UserSearch {
-        Logger.debug("called")
-        return DaggerUserSearchComponent.builder().coreComponent(coreComponent).build().userSearch
+        return DaggerUserSearchComponent.builder()
+            .coreComponent(coreComponent).build().userSearch
     }
 
     @Provides
     fun provideSleepTimer(coreComponent: CoreComponent): SleepTimer {
-        Logger.debug("called")
-        return DaggerTimerComponent.builder().coreComponent(coreComponent).build().sleepTimer
+        return DaggerTimerComponent.builder()
+            .coreComponent(coreComponent).build().sleepTimer
     }
 
     @Provides
     fun provideStvAvatars(coreComponent: CoreComponent, apiComponent: ApiComponent): StvAvatars {
-        Logger.debug("called")
         return DaggerStvComponent.builder()
             .coreComponent(coreComponent)
             .apiComponent(apiComponent).build().stvAvatars
@@ -74,46 +72,43 @@ class BridgeFeatureModule {
 
     @Provides
     fun provideOrangeSettings(coreComponent: CoreComponent): OrangeSettings {
-        Logger.debug("called")
-        return DaggerSettingsComponent.factory().create(
-            coreComponent = coreComponent
-        ).orangeSettings
+        return DaggerSettingsComponent.builder()
+            .coreComponent(coreComponent).build().orangeSettings
     }
 
     @Provides
     fun provideChatLogs(
         coreComponent: CoreComponent,
-        twitchComponentProvider: TwitchComponentProvider
+        tcp: TwitchComponentProvider
     ): ChatLogs {
-        Logger.debug("called")
         return DaggerLogsComponent.factory().create(
             coreComponent = coreComponent,
-            service = twitchComponentProvider.getProvider(GraphQlService::class).get(),
-            factory = twitchComponentProvider.getProvider(ChatMessageFactory.Factory::class).get()
+            service = tcp.getProvider(GraphQlService::class).get(),
+            factory = tcp.getProvider(ChatMessageFactory.Factory::class).get()
         ).chatLogs
     }
 
     @Provides
     fun provideChatHistory(
         coreComponent: CoreComponent,
-        twitchComponentProvider: TwitchComponentProvider
+        tcp: TwitchComponentProvider
     ): ChatHistory {
-        Logger.debug("called")
         return DaggerChatHistoryComponent.factory().create(
             coreComponent = coreComponent,
-            service = twitchComponentProvider.getProvider(GraphQlService::class).get()
+            service = tcp.getProvider(GraphQlService::class).get()
         ).chatHistory
     }
 
     @Provides
     fun provideChaptersHook(
         coreComponent: CoreComponent,
-        twitchComponentProvider: TwitchComponentProvider
+        resourceManager: ResourceManager,
+        tcp: TwitchComponentProvider
     ): VodChapters {
-        Logger.debug("called")
         return DaggerChaptersComponent.factory().create(
             coreComponent = coreComponent,
-            service = twitchComponentProvider.getProvider(GraphQlService::class).get()
+            resourceManager = resourceManager,
+            service = tcp.getProvider(GraphQlService::class).get()
         ).vodChapters
     }
 
@@ -121,8 +116,8 @@ class BridgeFeatureModule {
     fun provideVodSync(
         coreComponent: CoreComponent
     ): VodSync {
-        Logger.debug("called")
-        return DaggerVodSyncComponent.builder().coreComponent(coreComponent).build().vodSync
+        return DaggerVodSyncComponent.builder()
+            .coreComponent(coreComponent).build().vodSync
     }
 
     @Provides
@@ -132,7 +127,6 @@ class BridgeFeatureModule {
         emotesComponent: EmotesComponent,
         pronounComponent: PronounComponent
     ): ChatHookProvider {
-        Logger.debug("called")
         return DaggerChatComponent.builder()
             .coreComponent(coreComponent)
             .badgesComponent(badgesComponent)
@@ -143,27 +137,25 @@ class BridgeFeatureModule {
 
     @Provides
     fun provideUIProvider(coreComponent: CoreComponent): UI {
-        Logger.debug("called")
-        return DaggerUIComponent.builder().coreComponent(coreComponent).build().ui
+        return DaggerUIComponent.builder()
+            .coreComponent(coreComponent).build().ui
     }
 
     @Provides
     fun provideSpamProvider(coreComponent: CoreComponent): Spam {
-        Logger.debug("called")
-        return DaggerSpamComponent.builder().coreComponent(coreComponent).build().spam
+        return DaggerSpamComponent.builder()
+            .coreComponent(coreComponent).build().spam
     }
 
     @BridgeScope
     @Provides
     fun providePreferenceManager(context: Context): PreferenceManager {
-        Logger.debug("called")
         return PreferenceManager(context)
     }
 
     @BridgeScope
     @Provides
     fun provideResourceManager(context: Context): ResourceManager {
-        Logger.debug("called")
         return ResourceManager(context)
     }
 
@@ -173,7 +165,6 @@ class BridgeFeatureModule {
         coreComponent: CoreComponent,
         apiComponent: ApiComponent
     ): Tracking {
-        Logger.debug("called")
         return DaggerTrackingComponent.builder()
             .coreComponent(coreComponent)
             .apiComponent(apiComponent)

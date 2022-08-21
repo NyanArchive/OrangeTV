@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class ChatHistoryRepository @Inject constructor(val twitchApolloSource: TwitchApolloSource) {
     fun getMessages(channelName: String): Single<List<ChatMessageInfo>> {
-        return twitchApolloSource.getMessages(channelName)
+        return twitchApolloSource.getMessages(channelName = channelName)
     }
 
     fun getSystemMessage(text: String): ChatMessageInfo {

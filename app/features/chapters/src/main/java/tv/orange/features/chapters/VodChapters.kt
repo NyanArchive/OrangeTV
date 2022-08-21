@@ -1,9 +1,9 @@
 package tv.orange.features.chapters
 
-import android.view.View
 import android.widget.ImageView
 import androidx.fragment.app.FragmentActivity
 import tv.orange.core.Core
+import tv.orange.core.util.ViewUtil.changeVisibility
 import tv.orange.features.chapters.view.ViewFactory
 import tv.orange.models.abc.Feature
 import tv.twitch.android.models.videos.VodModel
@@ -17,14 +17,22 @@ class VodChapters @Inject constructor(
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(VodChapters::class.java)
+
+        private fun fixVodId(vodId: String): String {
+            return if (vodId.startsWith("v")) {
+                vodId.substring(1)
+            } else {
+                vodId
+            }
+        }
     }
 
-    fun getChaptersButton(delegate: PlayerOverlayViewDelegate): ImageView? {
-        return viewFactory.createChaptersButton(delegate)
+    fun getChaptersButton(delegate: PlayerOverlayViewDelegate): ImageView {
+        return viewFactory.createChaptersButton(delegate = delegate)
     }
 
     fun hideChaptersButton(button: ImageView) {
-        button.visibility = View.GONE
+        button.changeVisibility(isVisible = false)
     }
 
     fun bindChaptersButton(
@@ -32,18 +40,13 @@ class VodChapters @Inject constructor(
         vod: VodModel,
         presenter: SeekbarOverlayPresenter
     ) {
-        button.visibility = View.VISIBLE
+        button.changeVisibility(isVisible = true)
         button.setOnClickListener {
-            val id = if (vod.id.startsWith("v")) {
-                vod.id.substring(1)
-            } else {
-                vod.id
-            }
-            val sfm = (button.context as FragmentActivity).supportFragmentManager
+            val fragmentManager = (button.context as FragmentActivity).supportFragmentManager
             val fragment = viewFactory.getChaptersFragment()
             fragment.bindSeekPresenter(presenter)
-            fragment.show(sfm, "orange_chapters")
-            fragment.load(id)
+            fragment.show(fragmentManager, "orange_chapters")
+            fragment.load(fixVodId(vod.id))
         }
     }
 

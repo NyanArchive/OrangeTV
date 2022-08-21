@@ -14,9 +14,4 @@ interface ApiComponent {
     val ffzRepository: FfzRepository
     val chatterinoRepository: ChatterinoRepository
     val nopRepository: NopRepository
-
-    @Component.Factory
-    interface Factory {
-        fun create(coreComponent: CoreComponent): ApiComponent
-    }
 }

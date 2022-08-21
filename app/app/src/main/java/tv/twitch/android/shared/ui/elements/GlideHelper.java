@@ -5,6 +5,8 @@ import android.graphics.drawable.Drawable;
 import android.text.Spanned;
 import android.widget.TextView;
 
+import com.bumptech.glide.request.target.Target;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,13 @@ import tv.twitch.android.shared.ui.elements.span.GlideChatImageTarget;
 import tv.twitch.android.shared.ui.elements.span.UrlDrawable;
 
 public final class GlideHelper {
+    public static final GlideHelper INSTANCE = new GlideHelper();
+
     /* ... */
+
+    public final void clearPendingGlideLoad(Context context, Target<?> glideTarget) {
+        throw new VirtualImpl();
+    }
 
     private static GlideChatImageCustomTarget loadImageForUrlDrawableAngGetTarget(Context context, UrlDrawable urlDrawable, TextView textView) {
         GlideChatImageCustomTarget into = null;

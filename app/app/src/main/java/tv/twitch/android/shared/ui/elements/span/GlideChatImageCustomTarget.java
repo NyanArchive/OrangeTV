@@ -6,13 +6,16 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
+import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.transition.Transition;
 
 import java.lang.ref.WeakReference;
 
 import tv.orange.models.exception.VirtualImpl;
 
-public class GlideChatImageCustomTarget {
+public class GlideChatImageCustomTarget extends CustomTarget<Drawable> {
     private UrlDrawable mUrlDrawable;
     private WeakReference<View> mContainer; // TODO: __INJECT_FIELD
 
@@ -25,6 +28,11 @@ public class GlideChatImageCustomTarget {
 
         /* ... */
 
+        throw new VirtualImpl();
+    }
+
+    @Override
+    public void onLoadCleared(@Nullable Drawable placeholder) {
         throw new VirtualImpl();
     }
 

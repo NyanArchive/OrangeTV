@@ -96,4 +96,9 @@
     <string name="orange_settings_landscape_chat_opacity">Landscape chat opacity</string>
     <string name="orange_settings_landscape_chat_opacity_desc" />
     <string name="orange_chapters_unknown">Unknown</string>
+    <string name="orange_settings_emote_quality">Emotes quality</string>
+    <string name="orange_settings_emote_quality_desc" />
+    <string name="orange_emote_quality_low">Low</string>
+    <string name="orange_emote_quality_medium">Medium</string>
+    <string name="orange_emote_quality_large">Large</string>
 </resources>

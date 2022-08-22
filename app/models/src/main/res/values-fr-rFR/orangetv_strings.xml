@@ -65,4 +65,6 @@
     <string name="orange_settings_hide_top_chat_panel_vods">Masquer le haut panneau de discussion dans les vidéos</string>
     <string name="orange_settings_pronouns">Pronoms</string>
     <string name="orange_settings_auto_hide_message_input">Masquer la saisie de message en mode paysage</string>
+    <string name="orange_settings_landscape_chat_opacity">Opacité du chat en mode paysage</string>
+    <string name="orange_chapters_unknown">Inconnu</string>
 </resources>

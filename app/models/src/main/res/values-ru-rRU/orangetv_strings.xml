@@ -65,4 +65,6 @@
     <string name="orange_settings_hide_top_chat_panel_vods">Скрыть верхнюю панель чата в записях</string>
     <string name="orange_settings_pronouns">Включить поддержку Pronouns</string>
     <string name="orange_settings_auto_hide_message_input">Скрыть строку ввода в горизонтальной ориентации</string>
+    <string name="orange_settings_landscape_chat_opacity">Прозрачность чата в горизонтальной ориентации</string>
+    <string name="orange_chapters_unknown">Временные метки</string>
 </resources>

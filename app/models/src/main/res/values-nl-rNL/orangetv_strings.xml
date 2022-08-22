@@ -65,4 +65,6 @@
     <string name="orange_settings_hide_top_chat_panel_vods">Verberg het top chat paneel in VOD\'s</string>
     <string name="orange_settings_pronouns">Voornaamwoorden</string>
     <string name="orange_settings_auto_hide_message_input">Verberg berichten invoer in landscape</string>
+    <string name="orange_settings_landscape_chat_opacity">Verticale chat doorzichtigheid</string>
+    <string name="orange_chapters_unknown">Onbekend</string>
 </resources>

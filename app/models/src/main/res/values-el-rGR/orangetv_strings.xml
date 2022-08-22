@@ -65,4 +65,6 @@
     <string name="orange_settings_hide_top_chat_panel_vods">Απόκρυψη του πίνακα κορυφαίας συνομιλίας σε VODs</string>
     <string name="orange_settings_pronouns">Αντωνυμίες</string>
     <string name="orange_settings_auto_hide_message_input">Απόκρυψη εισόδου μηνύματος σε οριζόντια θέση</string>
+    <string name="orange_settings_landscape_chat_opacity">Αδιαφάνεια οριζόντιας συνομιλίας</string>
+    <string name="orange_chapters_unknown">Άγνωστο</string>
 </resources>

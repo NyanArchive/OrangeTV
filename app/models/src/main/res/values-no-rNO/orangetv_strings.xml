@@ -64,4 +64,7 @@
     <string name="orange_settings_vibration_duration">Vibrasjonsvarighet</string>
     <string name="orange_settings_hide_top_chat_panel_vods">Skjul toppchat-panelet i VODs</string>
     <string name="orange_settings_pronouns">Pronomen</string>
+    <string name="orange_settings_auto_hide_message_input">Skjul meldingsinndata i landskap</string>
+    <string name="orange_settings_landscape_chat_opacity">Landskap chat-gjennomsiktighet</string>
+    <string name="orange_chapters_unknown">Ukjent</string>
 </resources>

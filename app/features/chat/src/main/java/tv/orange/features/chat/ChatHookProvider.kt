@@ -26,6 +26,7 @@ import tv.orange.core.models.flag.Flag.Companion.asString
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.FlagListener
 import tv.orange.core.models.flag.variants.DeletedMessages
+import tv.orange.core.models.flag.variants.EmoteQuality
 import tv.orange.core.models.flag.variants.FontSize
 import tv.orange.core.models.lifecycle.LifecycleAware
 import tv.orange.features.badges.bridge.OrangeMessageBadge
@@ -172,7 +173,7 @@ class ChatHookProvider @Inject constructor(
                         stack.add(
                             EmoteToken(
                                 emoteCode = emote.getCode(),
-                                emoteUrl = emote.getUrl(Emote.Size.MEDIUM),
+                                emoteUrl = emote.getUrl(emoteSize),
                                 emoteCardUrl = emote.getUrl(Emote.Size.LARGE),
                                 packageSet = emote.getPackageSet(),
                                 isZeroWidth = emote.isZeroWidth()
@@ -340,6 +341,7 @@ class ChatHookProvider @Inject constructor(
         var fontSizeSp: Int = 0
         var fontSizePx: Float = 0F
         var fontSizeScaleFactory: Float = 0F
+        var emoteSize: Emote.Size = Emote.Size.MEDIUM
 
         @JvmStatic
         fun get() = Core.getFeature(ChatHookProvider::class.java)
@@ -518,6 +520,9 @@ class ChatHookProvider @Inject constructor(
             Flag.FFZ_BADGES, Flag.STV_BADGES, Flag.CHA_BADGES, Flag.CHE_BADGES -> badgeProvider.rebuild()
             Flag.CHAT_FONT_SIZE -> {
                 updateFontSize()
+            }
+            Flag.EMOTE_QUALITY -> {
+                emoteSize = Flag.EMOTE_QUALITY.asVariant<EmoteQuality>().toSize()
             }
             else -> {}
         }

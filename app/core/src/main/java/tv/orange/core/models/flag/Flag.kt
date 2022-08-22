@@ -1,10 +1,7 @@
 package tv.orange.core.models.flag
 
 import tv.orange.core.models.flag.Internal.*
-import tv.orange.core.models.flag.variants.BottomNavbarPosition
-import tv.orange.core.models.flag.variants.DeletedMessages
-import tv.orange.core.models.flag.variants.FontSize
-import tv.orange.core.models.flag.variants.PlayerImpl
+import tv.orange.core.models.flag.variants.*
 import java.util.*
 
 enum class Flag(
@@ -148,6 +145,11 @@ enum class Flag(
         "chat_font_size",
         "orange_settings_chat_font_size",
         ListValue(FontSize.SP13),
+    ),
+    EMOTE_QUALITY(
+        "emote_quality",
+        "orange_settings_emote_quality",
+        ListValue(EmoteQuality.MEDIUM),
     ),
     LANDSCAPE_CHAT_SIZE(
         "landscape_chat_size",

@@ -71,6 +71,11 @@ enum class Flag(
         "orange_settings_auto_hide_message_input",
         BooleanValue()
     ),
+    COMPACT_PLAYER_FOLLOW_VIEW(
+        "compact_player_follow_view",
+        "orange_settings_compact_player_follow_view",
+        BooleanValue()
+    ),
     BTTV_EMOTES(
         "bttv_emotes",
         "orange_settings_bttv_emotes",

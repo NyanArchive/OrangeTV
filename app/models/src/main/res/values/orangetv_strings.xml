@@ -101,4 +101,6 @@
     <string name="orange_emote_quality_low">Low</string>
     <string name="orange_emote_quality_medium">Medium</string>
     <string name="orange_emote_quality_large">Large</string>
+    <string name="orange_settings_compact_player_follow_view">Use compact follow view</string>
+    <string name="orange_settings_compact_player_follow_view_desc" />
 </resources>

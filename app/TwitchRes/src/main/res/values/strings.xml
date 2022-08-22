@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="notifications">Notifications</string>
+    <string name="subscribe">Subscribe</string>
+    <string name="following_title">Following</string>
+</resources>

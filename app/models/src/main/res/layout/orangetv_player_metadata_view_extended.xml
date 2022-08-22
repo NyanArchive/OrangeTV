@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tv.twitch.android.feature.theatre.NotifyTouchLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:twitch="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/notify_touch_container"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_base"
+    android:clickable="true"
+    android:elevation="@dimen/action_bar_elevation"
+    android:focusable="true"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/default_margin">
+
+        <tv.twitch.android.shared.ui.elements.image.NetworkImageWidget
+            android:id="@+id/metadata_thumbnail"
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
+            twitch:display="circle"
+            twitch:fallback="@drawable/user_placeholder_circular"
+            twitch:layout_constraintLeft_toLeftOf="parent"
+            twitch:layout_constraintTop_toTopOf="parent"
+            twitch:placeholder="@drawable/user_placeholder_circular" />
+
+        <LinearLayout
+            android:id="@+id/metadata_info"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:orientation="vertical"
+            twitch:layout_constraintEnd_toStartOf="@+id/follow_barrier"
+            twitch:layout_constraintStart_toEndOf="@+id/metadata_thumbnail"
+            twitch:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/metadata_channel_name"
+                style="@style/TitleText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/metadata_video_title"
+                style="@style/BodyText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2" />
+
+            <TextView
+                android:id="@+id/metadata_video_metadata"
+                style="@style/SubtitleText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/collapsed_follow_sub_button_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            twitch:layout_constraintRight_toRightOf="parent"
+            twitch:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            twitch:barrierDirection="bottom"
+            twitch:constraint_referenced_ids="metadata_info,metadata_thumbnail" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/follow_barrier"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            twitch:barrierDirection="left"
+            twitch:constraint_referenced_ids="collapsed_follow_sub_button_container,buttons_container" />
+
+        <FrameLayout
+            android:id="@+id/tags_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin_half"
+            android:layout_marginBottom="@dimen/default_margin_large"
+            twitch:layout_constraintLeft_toRightOf="@+id/metadata_thumbnail"
+            twitch:layout_constraintRight_toLeftOf="@+id/buttons_container"
+            twitch:layout_constraintTop_toBottomOf="@+id/barrier" />
+
+        <View
+            android:id="@+id/button_divider"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:visibility="gone"
+            twitch:layout_constraintStart_toStartOf="parent"
+            twitch:layout_constraintTop_toTopOf="parent" />
+
+
+        <LinearLayout
+            android:id="@+id/buttons_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            twitch:layout_constraintRight_toRightOf="parent"
+            twitch:layout_constraintTop_toBottomOf="@+id/collapsed_follow_sub_button_container">
+
+            <LinearLayout
+                android:id="@+id/extended_follow_button_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:background="?selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_square_side_default"
+                    android:layout_height="@dimen/icon_square_side_default"
+                    android:src="@drawable/ic_action_unfollow_up"
+                    twitch:tint="@color/twitch_purple" />
+
+                <TextView
+                    style="@style/BodyText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_half"
+                    android:ellipsize="middle"
+                    android:singleLine="true"
+                    android:text="@string/following_title"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/extended_notification_button_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin"
+                android:background="?selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/notification_icon"
+                    android:layout_width="@dimen/icon_square_side_default"
+                    android:layout_height="@dimen/icon_square_side_default"
+                    android:src="@drawable/ic_notification_disabled"
+                    twitch:tint="@color/text_base" />
+
+                <TextView
+                    android:id="@+id/notification_text"
+                    style="@style/BodyText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_half"
+                    android:ellipsize="middle"
+                    android:singleLine="true"
+                    android:text="@string/notifications"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/extended_subscribe_button_container"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="0dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="0dp"
+                android:visibility="gone"
+                twitch:layout_constraintEnd_toEndOf="parent"
+                twitch:layout_constraintStart_toEndOf="@+id/extended_notification_button_container"
+                twitch:layout_constraintTop_toBottomOf="@+id/button_divider">
+
+                <ImageView
+                    android:id="@+id/subscribe_icon"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="0dp"
+                    android:padding="0dp"
+                    android:src="@drawable/ic_subscribe_button_star_empty"
+                    android:visibility="gone"
+                    twitch:tint="@color/text_base" />
+
+                <TextView
+                    android:id="@+id/subscribe_text"
+                    style="@style/BodyText"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="0dp"
+                    android:padding="0dp"
+                    android:singleLine="true"
+                    android:text="@string/subscribe"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</tv.twitch.android.feature.theatre.NotifyTouchLinearLayout>

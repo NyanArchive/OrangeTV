@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import tv.orange.core.BuildConfigUtil
 import tv.orange.core.Core
 import tv.orange.core.PreferenceManager
+import tv.orange.core.ResourceManager
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.models.flag.Flag.Companion.asInt
@@ -82,6 +83,15 @@ class UI @Inject constructor(
         @JvmStatic
         fun shouldHideMessageInput(context: Context): Boolean {
             return Flag.AUTO_HIDE_MESSAGE_INPUT.asBoolean() && isLandscapeOrientation(context = context)
+        }
+
+        @JvmStatic
+        fun hookPlayerMetadataViewId(org: Int): Int {
+            if (!Flag.COMPACT_PLAYER_FOLLOW_VIEW.asBoolean()) {
+                return org
+            }
+
+            return ResourceManager.get().getLayoutId("orangetv_player_metadata_view_extended")
         }
     }
 

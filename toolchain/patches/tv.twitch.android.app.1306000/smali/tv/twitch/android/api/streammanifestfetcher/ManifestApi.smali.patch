@@ -1,0 +1,14 @@
+diff --git a/smali_classes4/tv/twitch/android/api/streammanifestfetcher/ManifestApi.smali b/smali_classes4/tv/twitch/android/api/streammanifestfetcher/ManifestApi.smali
+--- a/smali_classes4/tv/twitch/android/api/streammanifestfetcher/ManifestApi.smali
++++ b/smali_classes4/tv/twitch/android/api/streammanifestfetcher/ManifestApi.smali
+@@ -640,7 +640,9 @@
+ 
+     move-result-object v23
+ 
+-    const/4 v8, 0x1
++    invoke-static {}, Ltv/orange/core/CoreHook;->getFastBread()Z
++
++    move-result v8
+ 
+     const/4 v10, 0x1
+ 

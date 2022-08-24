@@ -1,0 +1,57 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali b/smali_classes5/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali
+--- a/smali_classes5/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali
++++ b/smali_classes5/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali
+@@ -677,7 +677,26 @@
+ 
+     invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+ 
++    invoke-static {}, Ltv/orange/features/vodsync/VodSync;->get()Ltv/orange/features/vodsync/VodSync;
++
++    move-result-object v0
++
++    iget-object v1, p0, Ltv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl;->vodModel:Ltv/twitch/android/models/videos/VodModel;
++
++    invoke-virtual {v0, v1, p2}, Ltv/orange/features/vodsync/VodSync;->hookChommentTimestamp(Ltv/twitch/android/models/videos/VodModel;I)I
++
++    move-result p2
++
++    if-gez p2, :cond_z
++
++    invoke-static {}, Lio/reactivex/Maybe;->empty()Lio/reactivex/Maybe;
++
++    move-result-object v0
++
++    return-object v0
++
+     .line 73
++    :cond_z
+     iget-boolean v0, p0, Ltv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl;->isRequestInFlight:Z
+ 
+     if-nez v0, :cond_1
+@@ -906,6 +925,26 @@
+ 
+     invoke-virtual {p1, v0}, Ltv/twitch/android/shared/badges/ChatBadgeProvider;->fetchChannelBadges(I)V
+ 
++    invoke-static {}, Ltv/orange/core/Core;->get()Ltv/orange/core/Core;
++
++    move-result-object v0
++
++    invoke-virtual {p2}, Ltv/twitch/android/models/channel/ChannelModel;->getId()I
++
++    move-result p1
++
++    invoke-virtual {v0, p1}, Ltv/orange/core/Core;->onConnectingToChannel(I)V
++
++    invoke-static {}, Ltv/orange/core/Core;->get()Ltv/orange/core/Core;
++
++    move-result-object v0
++
++    invoke-virtual {p2}, Ltv/twitch/android/models/channel/ChannelModel;->getId()I
++
++    move-result p1
++
++    invoke-virtual {v0, p1}, Ltv/orange/core/Core;->onConnectedToChannel(I)V
++
+     .line 63
+     iget-object p1, p0, Ltv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl;->twitchAccountManager:Ltv/twitch/android/core/user/TwitchAccountManager;
+ 

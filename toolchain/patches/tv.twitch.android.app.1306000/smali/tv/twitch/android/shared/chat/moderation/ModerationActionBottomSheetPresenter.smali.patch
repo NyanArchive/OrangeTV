@@ -1,0 +1,26 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetPresenter.smali b/smali_classes5/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetPresenter.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetPresenter.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetPresenter.smali
+@@ -960,7 +960,22 @@
+ 
+     move-object/from16 v0, p1
+ 
++    invoke-static {}, Ltv/orange/features/logs/ChatLogs;->get()Ltv/orange/features/logs/ChatLogs;
++
++    move-result-object v2
++
++    iget-object v1, v6, Ltv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetPresenter;->activity:Landroidx/fragment/app/FragmentActivity;
++
++    invoke-virtual {v2, v1, v0}, Ltv/orange/features/logs/ChatLogs;->showModLogs(Landroidx/fragment/app/FragmentActivity;Ltv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetViewDelegate$ModerationActionButtonEvent;)Z
++
++    move-result v2
++
++    if-eqz v2, :cond_z
++
++    return-void
++
+     .line 203
++    :cond_z
+     instance-of v1, v0, Ltv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetViewDelegate$ModerationActionButtonEvent$Ban;
+ 
+     const-string v2, "activity.getString(tv.tw\u2026sername, action.username)"

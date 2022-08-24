@@ -1,0 +1,46 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/messageinput/MessageInputViewDelegate.smali b/smali_classes5/tv/twitch/android/shared/chat/messageinput/MessageInputViewDelegate.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/messageinput/MessageInputViewDelegate.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/messageinput/MessageInputViewDelegate.smali
+@@ -2300,6 +2300,10 @@
+ 
+     move-result v1
+ 
++    invoke-static {v1}, Ltv/orange/features/chat/ChatHookProvider;->changeBitsButtonVisibility(Z)Z
++
++    move-result v1
++
+     invoke-static {v0, v1}, Ltv/twitch/android/app/core/ViewExtensionsKt;->visibilityForBoolean(Landroid/view/View;Z)V
+ 
+     .line 204
+@@ -3128,3 +3132,31 @@
+ 
+     return-void
+ .end method
++
++.method public show()V
++    .registers 2
++
++    .line 32
++    invoke-virtual {p0}, Ltv/twitch/android/shared/chat/messageinput/MessageInputViewDelegate;->getContext()Landroid/content/Context;
++
++    move-result-object v0
++
++    invoke-static {v0}, Ltv/orange/features/ui/UI;->shouldHideMessageInput(Landroid/content/Context;)Z
++
++    move-result v0
++
++    if-eqz v0, :cond_e
++
++    .line 33
++    invoke-super {p0}, Ltv/twitch/android/core/mvp/viewdelegate/BaseViewDelegate;->hide()V
++
++    goto :goto_11
++
++    .line 35
++    :cond_e
++    invoke-super {p0}, Ltv/twitch/android/core/mvp/viewdelegate/BaseViewDelegate;->show()V
++
++    .line 37
++    :goto_11
++    return-void
++.end method

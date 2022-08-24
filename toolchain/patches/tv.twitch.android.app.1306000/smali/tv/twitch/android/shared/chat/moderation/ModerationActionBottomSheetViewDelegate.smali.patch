@@ -1,0 +1,20 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetViewDelegate.smali b/smali_classes5/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetViewDelegate.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetViewDelegate.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetViewDelegate.smali
+@@ -872,6 +872,16 @@
+ 
+     move-result-object v2
+ 
++    move-object/from16 v3, p1
++
++    invoke-static {}, Ltv/orange/features/logs/ChatLogs;->get()Ltv/orange/features/logs/ChatLogs;
++
++    move-result-object v4
++
++    invoke-virtual {v4, v2, v3}, Ltv/orange/features/logs/ChatLogs;->injectModLogsButton(Ljava/util/List;Ltv/twitch/android/shared/chat/moderation/ModerationBottomSheetViewState;)Ljava/util/List;
++
++    move-result-object v2
++
+     .line 73
+     invoke-virtual {v1, v2}, Ltv/twitch/android/shared/ui/elements/bottomsheet/BottomSheetListViewDelegate;->configureItems(Ljava/util/List;)V
+ 

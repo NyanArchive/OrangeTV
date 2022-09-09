@@ -1,0 +1,655 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.smali b/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.smali
+--- a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.smali
++++ b/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.smali
+@@ -188,7 +188,9 @@
+ 
+     if-eqz v1, :cond_3
+ 
+-    invoke-virtual {v0}, Lcom/bumptech/glide/request/BaseRequestOptions;->fitCenter()Lcom/bumptech/glide/request/BaseRequestOptions;
++    invoke-direct {p0, v0}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->fitCenter(Lcom/bumptech/glide/request/RequestOptions;)Lcom/bumptech/glide/request/RequestOptions;
++
++    move-result-object v0
+ 
+     .line 248
+     :cond_3
+@@ -254,17 +256,17 @@
+ 
+     .line 253
+     :cond_6
+-    invoke-static {}, Ltv/twitch/android/shared/ui/elements/image/RoundedCornersTransformation;->get()Lcom/bumptech/glide/load/resource/bitmap/BitmapTransformation;
++    invoke-direct {p0, v0}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->transformRoundedCorners(Lcom/bumptech/glide/request/RequestOptions;)Lcom/bumptech/glide/request/RequestOptions;
+ 
+-    move-result-object p2
+-
+-    invoke-virtual {v0, p2}, Lcom/bumptech/glide/request/BaseRequestOptions;->transform(Lcom/bumptech/glide/load/Transformation;)Lcom/bumptech/glide/request/BaseRequestOptions;
++    move-result-object v0
+ 
+     goto :goto_1
+ 
+     .line 252
+     :cond_7
+-    invoke-virtual {v0}, Lcom/bumptech/glide/request/BaseRequestOptions;->circleCrop()Lcom/bumptech/glide/request/BaseRequestOptions;
++    invoke-direct {p0, v0}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->transformCircleCrop(Lcom/bumptech/glide/request/RequestOptions;)Lcom/bumptech/glide/request/RequestOptions;
++
++    move-result-object v0
+ 
+     .line 239
+     :goto_1
+@@ -395,6 +397,8 @@
+     .line 99
+     invoke-virtual {p0, v0}, Lcom/bumptech/glide/RequestBuilder;->into(Lcom/bumptech/glide/request/target/Target;)Lcom/bumptech/glide/request/target/Target;
+ 
++    invoke-virtual {v0, p2}, Ltv/twitch/android/shared/ui/elements/span/GlideChatImageTarget;->setContainer(Landroid/view/View;)V
++
+     return-void
+ .end method
+ 
+@@ -410,6 +414,8 @@
+ 
+     invoke-direct {v0, p0, p1, v1}, Ltv/twitch/android/shared/ui/elements/span/GlideChatImageCustomTarget;-><init>(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;I)V
+ 
++    invoke-virtual {v0, p2}, Ltv/twitch/android/shared/ui/elements/span/GlideChatImageCustomTarget;->setContainer(Landroid/view/View;)V
++
+     .line 146
+     invoke-static {p0}, Lcom/bumptech/glide/Glide;->with(Landroid/content/Context;)Lcom/bumptech/glide/RequestManager;
+ 
+@@ -455,31 +461,23 @@
+ .end method
+ 
+ .method public static final loadImagesFromSpanned(Landroid/content/Context;Landroid/text/Spanned;Landroid/widget/TextView;)V
+-    .locals 4
+-
+-    const-string v0, "context"
+-
+-    invoke-static {p0, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
++    .registers 10
++    .param p0, "context"    # Landroid/content/Context;
++    .param p1, "spanned"    # Landroid/text/Spanned;
++    .param p2, "textView"    # Landroid/widget/TextView;
+ 
+-    const-string v0, "spanned"
+-
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    const-string v0, "textView"
+-
+-    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 69
++    .line 47
+     invoke-static {p0}, Ltv/twitch/android/app/core/ActivityUtilKt;->isInvalid(Landroid/content/Context;)Z
+ 
+     move-result v0
+ 
+-    if-eqz v0, :cond_0
++    if-eqz v0, :cond_7
+ 
++    .line 48
+     return-void
+ 
+-    .line 73
+-    :cond_0
++    .line 50
++    :cond_7
+     invoke-interface {p1}, Landroid/text/Spanned;->length()I
+ 
+     move-result v0
+@@ -490,81 +488,102 @@
+ 
+     invoke-interface {p1, v2, v0, v1}, Landroid/text/Spanned;->getSpans(IILjava/lang/Class;)[Ljava/lang/Object;
+ 
+-    move-result-object p1
++    move-result-object v0
+ 
+-    const-string v0, "spanned.getSpans(0, span\u2026redImageSpan::class.java)"
++    .line 51
++    .local v0, "spans":[Ljava/lang/Object;
++    array-length v1, v0
+ 
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullExpressionValue(Ljava/lang/Object;Ljava/lang/String;)V
++    :goto_13
++    if-ge v2, v1, :cond_49
+ 
+-    .line 13536
+-    array-length v0, p1
++    aget-object v3, v0, v2
+ 
+-    :goto_0
+-    if-ge v2, v0, :cond_4
++    .line 52
++    .local v3, "obj":Ljava/lang/Object;
++    move-object v4, v3
+ 
+-    aget-object v1, p1, v2
++    check-cast v4, Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;
+ 
+-    check-cast v1, Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;
++    invoke-virtual {v4}, Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;->getImageDrawable()Landroid/graphics/drawable/Drawable;
+ 
+-    .line 74
+-    invoke-virtual {v1}, Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;->getImageDrawable()Landroid/graphics/drawable/Drawable;
++    move-result-object v4
+ 
+-    move-result-object v1
++    .line 53
++    .local v4, "imageDrawable":Landroid/graphics/drawable/Drawable;
++    instance-of v5, v4, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;
+ 
+-    .line 75
+-    instance-of v3, v1, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;
++    if-eqz v5, :cond_3a
+ 
+-    if-eqz v3, :cond_2
++    .line 54
++    move-object v5, v4
+ 
+-    .line 76
+-    check-cast v1, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;
++    check-cast v5, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;
+ 
+-    invoke-virtual {v1}, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;->shouldDisplayInitialDrawable()Z
++    .line 55
++    .local v5, "fixedTimeCoordinatorDrawable":Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;
++    invoke-virtual {v5}, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;->shouldDisplayInitialDrawable()Z
+ 
+-    move-result v3
++    move-result v6
+ 
+-    if-eqz v3, :cond_1
++    if-eqz v6, :cond_32
+ 
+-    .line 77
+-    invoke-virtual {v1}, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;->getInitialUrlDrawable()Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    .line 56
++    invoke-virtual {v5}, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;->getInitialUrlDrawable()Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
+ 
+-    move-result-object v3
++    move-result-object v6
+ 
+-    invoke-static {p0, v3, p2}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->loadImageForUrlDrawable(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)V
++    invoke-static {p0, v6, p2}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->loadImagesForUrlDrawable(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)V
+ 
+-    .line 80
+-    :cond_1
+-    invoke-virtual {v1}, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;->getFinalUrlDrawable()Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    .line 58
++    :cond_32
++    invoke-virtual {v5}, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;->getFinalUrlDrawable()Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
+ 
+-    move-result-object v1
++    move-result-object v6
+ 
+-    invoke-static {p0, v1, p2}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->loadImageForUrlDrawable(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)V
++    invoke-static {p0, v6, p2}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->loadImagesForUrlDrawable(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)V
+ 
+-    goto :goto_1
++    .end local v5    # "fixedTimeCoordinatorDrawable":Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;
++    goto :goto_45
+ 
+-    .line 82
+-    :cond_2
+-    instance-of v3, v1, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    .line 59
++    :cond_3a
++    instance-of v5, v4, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
+ 
+-    if-eqz v3, :cond_3
++    if-eqz v5, :cond_45
+ 
+-    .line 83
+-    check-cast v1, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    .line 60
++    move-object v5, v4
+ 
+-    invoke-static {p0, v1, p2}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->loadImageForUrlDrawable(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)V
++    check-cast v5, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
+ 
+-    :cond_3
+-    :goto_1
++    invoke-static {p0, v5, p2}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->loadImagesForUrlDrawable(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)V
++
++    goto :goto_46
++
++    .line 59
++    :cond_45
++    :goto_45
++    nop
++
++    .line 51
++    .end local v3    # "obj":Ljava/lang/Object;
++    .end local v4    # "imageDrawable":Landroid/graphics/drawable/Drawable;
++    :goto_46
+     add-int/lit8 v2, v2, 0x1
+ 
+-    goto :goto_0
++    goto :goto_13
+ 
+-    :cond_4
++    .line 63
++    :cond_49
+     return-void
+ .end method
+ 
+ .method public static final loadImagesFromSpannedAndGetTargets(Landroid/content/Context;Landroid/text/Spanned;Landroid/widget/TextView;)Ljava/util/List;
+-    .locals 5
++    .registers 11
++    .param p0, "context"    # Landroid/content/Context;
++    .param p1, "spanned"    # Landroid/text/Spanned;
++    .param p2, "textView"    # Landroid/widget/TextView;
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+             "(",
+@@ -578,34 +597,22 @@
+         }
+     .end annotation
+ 
+-    const-string v0, "context"
+-
+-    invoke-static {p0, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    const-string v0, "spanned"
+-
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    const-string v0, "textView"
+-
+-    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 116
++    .line 66
+     invoke-static {p0}, Ltv/twitch/android/app/core/ActivityUtilKt;->isInvalid(Landroid/content/Context;)Z
+ 
+     move-result v0
+ 
+-    if-eqz v0, :cond_0
++    if-eqz v0, :cond_c
+ 
+-    .line 117
+-    invoke-static {}, Lkotlin/collections/CollectionsKt;->emptyList()Ljava/util/List;
++    .line 67
++    new-instance v0, Ljava/util/ArrayList;
+ 
+-    move-result-object p0
++    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+ 
+-    return-object p0
++    return-object v0
+ 
+-    .line 120
+-    :cond_0
++    .line 69
++    :cond_c
+     invoke-interface {p1}, Landroid/text/Spanned;->length()I
+ 
+     move-result v0
+@@ -616,94 +623,111 @@
+ 
+     invoke-interface {p1, v2, v0, v1}, Landroid/text/Spanned;->getSpans(IILjava/lang/Class;)[Ljava/lang/Object;
+ 
+-    move-result-object p1
++    move-result-object v0
+ 
+-    check-cast p1, [Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;
++    check-cast v0, [Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;
+ 
+-    .line 121
+-    new-instance v0, Ljava/util/ArrayList;
++    .line 70
++    .local v0, "spans":[Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;
++    new-instance v1, Ljava/util/ArrayList;
+ 
+-    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
++    invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
+ 
+-    const-string v1, "spans"
++    .line 71
++    .local v1, "arrayList":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ltv/twitch/android/shared/ui/elements/span/GlideChatImageCustomTarget;>;"
++    array-length v3, v0
+ 
+-    .line 123
+-    invoke-static {p1, v1}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullExpressionValue(Ljava/lang/Object;Ljava/lang/String;)V
++    :goto_1f
++    if-ge v2, v3, :cond_5e
+ 
+-    array-length v1, p1
++    aget-object v4, v0, v2
+ 
+-    :goto_0
+-    if-ge v2, v1, :cond_4
++    .line 72
++    .local v4, "centeredImageSpan":Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;
++    invoke-virtual {v4}, Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;->getImageDrawable()Landroid/graphics/drawable/Drawable;
+ 
+-    aget-object v3, p1, v2
++    move-result-object v5
+ 
+-    .line 124
+-    invoke-virtual {v3}, Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;->getImageDrawable()Landroid/graphics/drawable/Drawable;
++    .line 73
++    .local v5, "imageDrawable":Landroid/graphics/drawable/Drawable;
++    instance-of v6, v5, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;
+ 
+-    move-result-object v3
++    if-eqz v6, :cond_4b
+ 
+-    .line 125
+-    instance-of v4, v3, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;
++    .line 74
++    move-object v6, v5
+ 
+-    if-eqz v4, :cond_2
++    check-cast v6, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;
+ 
+-    .line 126
+-    check-cast v3, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;
++    .line 75
++    .local v6, "fixedTimeCoordinatorDrawable":Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;
++    invoke-virtual {v6}, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;->shouldDisplayInitialDrawable()Z
+ 
+-    invoke-virtual {v3}, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;->shouldDisplayInitialDrawable()Z
++    move-result v7
+ 
+-    move-result v4
++    if-eqz v7, :cond_3f
+ 
+-    if-eqz v4, :cond_1
++    .line 76
++    invoke-virtual {v6}, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;->getInitialUrlDrawable()Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
+ 
+-    .line 127
+-    invoke-virtual {v3}, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;->getInitialUrlDrawable()Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    move-result-object v7
+ 
+-    move-result-object v4
++    invoke-static {p0, v7, p2}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->loadImagesForUrlDrawableAngGetTarget(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)Ljava/util/List;
+ 
+-    invoke-static {p0, v4, p2}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->loadImageForUrlDrawableAngGetTarget(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)Ltv/twitch/android/shared/ui/elements/span/GlideChatImageCustomTarget;
++    move-result-object v7
+ 
+-    move-result-object v4
++    invoke-virtual {v1, v7}, Ljava/util/ArrayList;->addAll(Ljava/util/Collection;)Z
+ 
+-    invoke-interface {v0, v4}, Ljava/util/List;->add(Ljava/lang/Object;)Z
++    .line 78
++    :cond_3f
++    invoke-virtual {v6}, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;->getFinalUrlDrawable()Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
+ 
+-    .line 130
+-    :cond_1
+-    invoke-virtual {v3}, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;->getFinalUrlDrawable()Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    move-result-object v7
+ 
+-    move-result-object v3
++    invoke-static {p0, v7, p2}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->loadImagesForUrlDrawableAngGetTarget(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)Ljava/util/List;
+ 
+-    invoke-static {p0, v3, p2}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->loadImageForUrlDrawableAngGetTarget(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)Ltv/twitch/android/shared/ui/elements/span/GlideChatImageCustomTarget;
++    move-result-object v7
+ 
+-    move-result-object v3
++    invoke-virtual {v1, v7}, Ljava/util/ArrayList;->addAll(Ljava/util/Collection;)Z
+ 
+-    invoke-interface {v0, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
++    .end local v6    # "fixedTimeCoordinatorDrawable":Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;
++    goto :goto_5a
+ 
+-    goto :goto_1
++    .line 79
++    :cond_4b
++    instance-of v6, v5, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
+ 
+-    .line 132
+-    :cond_2
+-    instance-of v4, v3, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    if-eqz v6, :cond_5a
+ 
+-    if-eqz v4, :cond_3
++    .line 80
++    move-object v6, v5
+ 
+-    .line 133
+-    check-cast v3, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    check-cast v6, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
+ 
+-    invoke-static {p0, v3, p2}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->loadImageForUrlDrawableAngGetTarget(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)Ltv/twitch/android/shared/ui/elements/span/GlideChatImageCustomTarget;
++    invoke-static {p0, v6, p2}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->loadImagesForUrlDrawableAngGetTarget(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)Ljava/util/List;
+ 
+-    move-result-object v3
++    move-result-object v6
+ 
+-    invoke-interface {v0, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
++    invoke-virtual {v1, v6}, Ljava/util/ArrayList;->addAll(Ljava/util/Collection;)Z
+ 
+-    :cond_3
+-    :goto_1
++    goto :goto_5b
++
++    .line 79
++    :cond_5a
++    :goto_5a
++    nop
++
++    .line 71
++    .end local v4    # "centeredImageSpan":Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;
++    .end local v5    # "imageDrawable":Landroid/graphics/drawable/Drawable;
++    :goto_5b
+     add-int/lit8 v2, v2, 0x1
+ 
+-    goto :goto_0
++    goto :goto_1f
+ 
+-    :cond_4
+-    return-object v0
++    .line 83
++    :cond_5e
++    return-object v1
+ .end method
+ 
+ .method public static final preloadMedia(Landroid/content/Context;Ljava/lang/String;J)V
+@@ -822,3 +846,207 @@
+ 
+     return-void
+ .end method
++
++.method private static loadImagesForUrlDrawable(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)V
++    .registers 5
++    .param p0, "context"    # Landroid/content/Context;
++    .param p1, "urlDrawable"    # Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    .param p2, "textView"    # Landroid/widget/TextView;
++
++    .line 87
++    invoke-static {p0, p1, p2}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->loadImageForUrlDrawable(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)V
++
++    .line 89
++    invoke-virtual {p1}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->getStack()Ljava/util/List;
++
++    move-result-object v0
++
++    invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
++
++    move-result-object v0
++
++    :goto_b
++    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
++
++    move-result v1
++
++    if-eqz v1, :cond_1b
++
++    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
++
++    move-result-object v1
++
++    check-cast v1, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++
++    .line 90
++    .local v1, "drawable":Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    invoke-static {p0, v1, p2}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->loadImagesForUrlDrawable(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)V
++
++    .line 91
++    .end local v1    # "drawable":Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    goto :goto_b
++
++    .line 92
++    :cond_1b
++    return-void
++.end method
++
++.method private static loadImagesForUrlDrawableAngGetTarget(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)Ljava/util/List;
++    .registers 7
++    .param p0, "context"    # Landroid/content/Context;
++    .param p1, "urlDrawable"    # Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    .param p2, "textView"    # Landroid/widget/TextView;
++    .annotation system Ldalvik/annotation/Signature;
++        value = {
++            "(",
++            "Landroid/content/Context;",
++            "Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;",
++            "Landroid/widget/TextView;",
++            ")",
++            "Ljava/util/List<",
++            "Ltv/twitch/android/shared/ui/elements/span/GlideChatImageCustomTarget;",
++            ">;"
++        }
++    .end annotation
++
++    .line 95
++    new-instance v0, Ljava/util/ArrayList;
++
++    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
++
++    .line 96
++    .local v0, "arrayList":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ltv/twitch/android/shared/ui/elements/span/GlideChatImageCustomTarget;>;"
++    invoke-static {p0, p1, p2}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->loadImageForUrlDrawableAngGetTarget(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)Ltv/twitch/android/shared/ui/elements/span/GlideChatImageCustomTarget;
++
++    move-result-object v1
++
++    invoke-virtual {v0, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
++
++    .line 98
++    invoke-virtual {p1}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->getStack()Ljava/util/List;
++
++    move-result-object v1
++
++    invoke-interface {v1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
++
++    move-result-object v1
++
++    :goto_14
++    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
++
++    move-result v2
++
++    if-eqz v2, :cond_28
++
++    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
++
++    move-result-object v2
++
++    check-cast v2, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++
++    .line 99
++    .local v2, "drawable":Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    invoke-static {p0, v2, p2}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->loadImagesForUrlDrawableAngGetTarget(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)Ljava/util/List;
++
++    move-result-object v3
++
++    invoke-virtual {v0, v3}, Ljava/util/ArrayList;->addAll(Ljava/util/Collection;)Z
++
++    .line 100
++    .end local v2    # "drawable":Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    goto :goto_14
++
++    .line 102
++    :cond_28
++    return-object v0
++.end method
++
++.method private transformRoundedCorners(Lcom/bumptech/glide/request/RequestOptions;)Lcom/bumptech/glide/request/RequestOptions;
++    .registers 5
++    .param p1, "options"    # Lcom/bumptech/glide/request/RequestOptions;
++
++    .prologue
++    invoke-static {}, Ltv/twitch/android/shared/ui/elements/image/RoundedCornersTransformation;->get()Lcom/bumptech/glide/load/resource/bitmap/BitmapTransformation;
++
++    move-result-object v0
++
++    invoke-virtual {p1, v0}, Lcom/bumptech/glide/request/RequestOptions;->transform(Lcom/bumptech/glide/load/Transformation;)Lcom/bumptech/glide/request/BaseRequestOptions;
++
++    move-result-object p1
++
++    check-cast p1, Lcom/bumptech/glide/request/RequestOptions;
++
++    const-class v1, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;
++
++    new-instance v2, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawableTransformation;
++
++    invoke-direct {v2, v0}, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawableTransformation;-><init>(Lcom/bumptech/glide/load/Transformation;)V
++
++    invoke-virtual {p1, v1, v2}, Lcom/bumptech/glide/request/RequestOptions;->transform(Ljava/lang/Class;Lcom/bumptech/glide/load/Transformation;)Lcom/bumptech/glide/request/BaseRequestOptions;
++
++    move-result-object v1
++
++    check-cast v1, Lcom/bumptech/glide/request/RequestOptions;
++
++    return-object v1
++.end method
++
++.method private transformCircleCrop(Lcom/bumptech/glide/request/RequestOptions;)Lcom/bumptech/glide/request/RequestOptions;
++    .registers 5
++    .param p1, "options"    # Lcom/bumptech/glide/request/RequestOptions;
++
++    .prologue
++    new-instance v0, Lcom/bumptech/glide/load/resource/bitmap/CircleCrop;
++
++    invoke-direct {v0}, Lcom/bumptech/glide/load/resource/bitmap/CircleCrop;-><init>()V
++
++    invoke-virtual {p1, v0}, Lcom/bumptech/glide/request/RequestOptions;->transform(Lcom/bumptech/glide/load/Transformation;)Lcom/bumptech/glide/request/BaseRequestOptions;
++
++    move-result-object p1
++
++    check-cast p1, Lcom/bumptech/glide/request/RequestOptions;
++
++    const-class v1, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;
++
++    new-instance v2, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawableTransformation;
++
++    invoke-direct {v2, v0}, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawableTransformation;-><init>(Lcom/bumptech/glide/load/Transformation;)V
++
++    invoke-virtual {p1, v1, v2}, Lcom/bumptech/glide/request/RequestOptions;->transform(Ljava/lang/Class;Lcom/bumptech/glide/load/Transformation;)Lcom/bumptech/glide/request/BaseRequestOptions;
++
++    move-result-object v1
++
++    check-cast v1, Lcom/bumptech/glide/request/RequestOptions;
++
++    return-object v1
++.end method
++
++.method private fitCenter(Lcom/bumptech/glide/request/RequestOptions;)Lcom/bumptech/glide/request/RequestOptions;
++    .registers 5
++    .param p1, "options"    # Lcom/bumptech/glide/request/RequestOptions;
++
++    .prologue
++    new-instance v0, Lcom/bumptech/glide/load/resource/bitmap/FitCenter;
++
++    invoke-direct {v0}, Lcom/bumptech/glide/load/resource/bitmap/FitCenter;-><init>()V
++
++    invoke-virtual {p1, v0}, Lcom/bumptech/glide/request/RequestOptions;->transform(Lcom/bumptech/glide/load/Transformation;)Lcom/bumptech/glide/request/BaseRequestOptions;
++
++    move-result-object p1
++
++    check-cast p1, Lcom/bumptech/glide/request/RequestOptions;
++
++    const-class v1, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawable;
++
++    new-instance v2, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawableTransformation;
++
++    invoke-direct {v2, v0}, Lcom/bumptech/glide/integration/webp/decoder/WebpDrawableTransformation;-><init>(Lcom/bumptech/glide/load/Transformation;)V
++
++    invoke-virtual {p1, v1, v2}, Lcom/bumptech/glide/request/RequestOptions;->transform(Ljava/lang/Class;Lcom/bumptech/glide/load/Transformation;)Lcom/bumptech/glide/request/BaseRequestOptions;
++
++    move-result-object v1
++
++    check-cast v1, Lcom/bumptech/glide/request/RequestOptions;
++
++    return-object v1
++.end method

@@ -1,0 +1,27 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/messageinput/autocomplete/EmoteAutoCompleteMapProvider.smali b/smali_classes5/tv/twitch/android/shared/chat/messageinput/autocomplete/EmoteAutoCompleteMapProvider.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/messageinput/autocomplete/EmoteAutoCompleteMapProvider.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/messageinput/autocomplete/EmoteAutoCompleteMapProvider.smali
+@@ -58,7 +58,7 @@
+ .end method
+ 
+ .method public constructor <init>(Ltv/twitch/android/shared/emotes/emotepicker/EmoteFetcher;)V
+-    .locals 2
++    .locals 3
+     .annotation runtime Ljavax/inject/Inject;
+     .end annotation
+ 
+@@ -88,6 +88,14 @@
+ 
+     move-result-object p1
+ 
++    invoke-static {}, Ltv/orange/features/chat/ChatHookProvider;->get()Ltv/orange/features/chat/ChatHookProvider;
++
++    move-result-object v2
++
++    invoke-virtual {v2, p1}, Ltv/orange/features/chat/ChatHookProvider;->hookAutoCompleteMapProvider(Lio/reactivex/Flowable;)Lio/reactivex/Flowable;
++
++    move-result-object p1
++
+     .line 28
+     new-instance v1, Ltv/twitch/android/shared/chat/messageinput/autocomplete/EmoteAutoCompleteMapProvider$1;
+ 

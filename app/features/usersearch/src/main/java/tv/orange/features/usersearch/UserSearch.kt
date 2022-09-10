@@ -5,7 +5,6 @@ import tv.orange.core.Core
 import tv.orange.core.compat.ClassCompat.cast
 import tv.orange.features.usersearch.bridge.IProxyEvent
 import tv.orange.features.usersearch.bridge.IViewerListViewDelegate
-import tv.orange.features.usersearch.di.scope.UserSearchScope
 import tv.orange.features.usersearch.view.ViewFactory
 import tv.orange.models.abc.Feature
 import tv.twitch.android.core.mvp.rxutil.DisposeOn
@@ -15,13 +14,17 @@ import tv.twitch.android.shared.chat.viewerlist.ViewerListPresenter
 import tv.twitch.android.shared.chat.viewerlist.ViewerListViewDelegate
 import javax.inject.Inject
 
-@UserSearchScope
 class UserSearch @Inject constructor(
     val viewFactory: ViewFactory
 ) : Feature {
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(UserSearch::class.java)
+
+        @JvmStatic
+        fun destroy() {
+            Core.destroyFeature(UserSearch::class.java)
+        }
     }
 
     fun getSearchBar(delegate: ViewerListViewDelegate): SearchView {

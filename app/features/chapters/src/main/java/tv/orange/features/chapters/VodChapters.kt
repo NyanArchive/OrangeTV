@@ -18,6 +18,11 @@ class VodChapters @Inject constructor(
         @JvmStatic
         fun get() = Core.getFeature(VodChapters::class.java)
 
+        @JvmStatic
+        fun destroy() {
+            Core.destroyFeature(VodChapters::class.java)
+        }
+
         private fun fixVodId(vodId: String): String {
             return if (vodId.startsWith("v")) {
                 vodId.substring(1)

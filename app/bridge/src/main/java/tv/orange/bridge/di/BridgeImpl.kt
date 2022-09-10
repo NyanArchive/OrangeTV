@@ -3,10 +3,7 @@ package tv.orange.bridge.di
 import android.content.Context
 import tv.orange.bridge.di.component.BridgeComponent
 import tv.orange.bridge.di.component.DaggerBridgeComponent
-import tv.orange.core.Core
-import tv.orange.core.CoreHook
-import tv.orange.core.PreferenceManager
-import tv.orange.core.ResourceManager
+import tv.orange.core.*
 import tv.orange.core.di.component.DaggerCoreComponent
 import tv.orange.features.chapters.VodChapters
 import tv.orange.features.chat.ChatHookProvider
@@ -21,9 +18,9 @@ import tv.orange.features.tracking.Tracking
 import tv.orange.features.ui.UI
 import tv.orange.features.usersearch.UserSearch
 import tv.orange.features.vodsync.VodSync
+import tv.orange.models.AutoInitialize
 import tv.orange.models.abc.Bridge
 import tv.orange.models.abc.Feature
-import java.util.concurrent.ConcurrentHashMap
 import javax.inject.Provider
 import kotlin.collections.set
 
@@ -32,21 +29,29 @@ class BridgeImpl private constructor() : Bridge {
 
     private val lock = Any()
 
-    private val factory = ConcurrentHashMap<Class<*>, () -> Provider<out Feature>>()
-
-    private val map = ConcurrentHashMap<Class<*>, Provider<out Feature>>()
+    private val featureFactoryMap = LinkedHashMap<Class<*>, () -> Provider<out Feature>>()
+    private val clazzProviderMap = LinkedHashMap<Class<*>, Provider<out Feature>>()
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : Feature> getFeature(clazz: Class<T>): T {
         synchronized(lock) {
-            map[clazz]?.let {
-                return it.get() as T
+            clazzProviderMap[clazz]?.let { provider ->
+                return provider.get() as T
             }
-            factory[clazz]?.let { func ->
-                func().run {
-                    val feature = get()
+            createFeature(clazz).let { feature ->
+                return feature
+            }
+        }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun <T : Feature> createFeature(clazz: Class<T>): T {
+        synchronized(lock) {
+            featureFactoryMap[clazz]?.let { providerFunc ->
+                providerFunc().let { provider ->
+                    val feature = provider.get()
                     feature.onCreateFeature()
-                    map[clazz] = Provider { feature }
+                    clazzProviderMap[clazz] = Provider { feature }
                     return feature as T
                 }
             }
@@ -57,30 +62,30 @@ class BridgeImpl private constructor() : Bridge {
 
     override fun <T : Feature> destroyFeature(clazz: Class<T>) {
         synchronized(lock) {
-            val feature = map[clazz]?.get()
-            map.remove(clazz)
+            val feature = clazzProviderMap[clazz]?.get()
+            clazzProviderMap.remove(clazz)
             feature?.onDestroyFeature()
         }
     }
 
     private fun buildFactoryMap() {
-        factory[PreferenceManager::class.java] = { component.preferenceManager }
-        factory[Core::class.java] = { component.core }
-        factory[RefreshStream::class.java] = { component.refreshStreamProvider }
-        factory[ChatHookProvider::class.java] = { component.chatHookProvider }
-        factory[VodChapters::class.java] = { component.vodChaptersProvider }
-        factory[ChatHistory::class.java] = { component.chatHistoryProvider }
-        factory[ChatLogs::class.java] = { component.chatLogsProvider }
-        factory[OrangeSettings::class.java] = { component.orangeSettingsProvider }
-        factory[StvAvatars::class.java] = { component.stvAvatarsProvider }
-        factory[SleepTimer::class.java] = { component.sleepTimerProvider }
-        factory[UserSearch::class.java] = { component.userSearchProvider }
-        factory[ResourceManager::class.java] = { component.resourceManagerProvider }
-        factory[VodSync::class.java] = { component.vodSyncProvider }
-        factory[CoreHook::class.java] = { component.coreHookProvider }
-        factory[UI::class.java] = { component.uiProvider }
-        factory[Spam::class.java] = { component.spamProvider }
-        factory[Tracking::class.java] = { component.trackingProvider }
+        featureFactoryMap[PreferenceManager::class.java] = { component.preferenceManager }
+        featureFactoryMap[Core::class.java] = { component.core }
+        featureFactoryMap[ResourceManager::class.java] = { component.resourceManagerProvider }
+        featureFactoryMap[StvAvatars::class.java] = { component.stvAvatarsProvider }
+        featureFactoryMap[ChatHookProvider::class.java] = { component.chatHookProvider }
+        featureFactoryMap[RefreshStream::class.java] = { component.refreshStreamProvider }
+        featureFactoryMap[VodChapters::class.java] = { component.vodChaptersProvider }
+        featureFactoryMap[ChatHistory::class.java] = { component.chatHistoryProvider }
+        featureFactoryMap[ChatLogs::class.java] = { component.chatLogsProvider }
+        featureFactoryMap[OrangeSettings::class.java] = { component.orangeSettingsProvider }
+        featureFactoryMap[SleepTimer::class.java] = { component.sleepTimerProvider }
+        featureFactoryMap[UserSearch::class.java] = { component.userSearchProvider }
+        featureFactoryMap[VodSync::class.java] = { component.vodSyncProvider }
+        featureFactoryMap[CoreHook::class.java] = { component.coreHookProvider }
+        featureFactoryMap[UI::class.java] = { component.uiProvider }
+        featureFactoryMap[Spam::class.java] = { component.spamProvider }
+        featureFactoryMap[Tracking::class.java] = { component.trackingProvider }
     }
 
     fun initialize(context: Context) {
@@ -89,17 +94,23 @@ class BridgeImpl private constructor() : Bridge {
         buildFactoryMap()
     }
 
+    @Suppress("UNCHECKED_CAST")
     fun initializeFeatures() {
-        getFeature(PreferenceManager::class.java).initialize()
-        getFeature(ChatHookProvider::class.java).initialize()
-        getFeature(StvAvatars::class.java).initialize()
-        getFeature(Tracking::class.java).initialize()
+        for (clazz in featureFactoryMap.keys) {
+            if (hasAutoInitAnnotation(clazz)) {
+                createFeature(clazz as Class<Feature>)
+            }
+        }
     }
 
     companion object {
         @JvmStatic
         fun create(): BridgeImpl {
             return BridgeImpl()
+        }
+
+        private fun hasAutoInitAnnotation(clazz: Class<*>): Boolean {
+            return clazz.annotations.any { annotation -> annotation is AutoInitialize }
         }
     }
 }

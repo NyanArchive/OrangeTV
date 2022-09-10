@@ -4,17 +4,18 @@ import com.apollographql.apollo3.api.Optional
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import tv.orange.features.api.component.data.mapper.TwitchApiMapper
+import tv.orange.models.abc.TwitchComponentProvider
 import tv.orange.models.data.UserInfo
 import tv.orange.models.gql.twitch.UserInfoQuery
 import tv.twitch.android.network.graphql.GraphQlService
 import javax.inject.Inject
 
 class TwitchApiSource @Inject constructor(
-    val apolloClient: GraphQlService,
+    val tcp: TwitchComponentProvider,
     val twitchApiMapper: TwitchApiMapper
 ) {
     fun getUserInfo(login: String): Single<UserInfo> {
-        return apolloClient.singleForQuery(
+        return tcp.getProvider(GraphQlService::class).get().singleForQuery(
             UserInfoQuery(
                 userLogin = Optional.presentIfNotNull(login),
                 userId = Optional.presentIfNotNull(null)

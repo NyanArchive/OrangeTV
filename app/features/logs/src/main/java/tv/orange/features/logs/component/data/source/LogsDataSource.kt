@@ -6,20 +6,19 @@ import io.reactivex.schedulers.Schedulers
 import tv.orange.features.api.component.repository.TwitchRepository
 import tv.orange.features.logs.component.data.mapper.LogsMapper
 import tv.orange.features.logs.component.data.model.MessageItem
-import tv.orange.features.logs.di.scope.LogsScope
+import tv.orange.models.abc.TwitchComponentProvider
 import tv.orange.models.gql.twitch.ModLogsMessagesBySenderQuery
 import tv.twitch.android.network.graphql.GraphQlService
 import javax.inject.Inject
 
-@LogsScope
 class LogsDataSource @Inject constructor(
-    val apolloClient: GraphQlService,
+    val tcp: TwitchComponentProvider,
     val twitchRepository: TwitchRepository,
     val mapper: LogsMapper
 ) {
     fun getMessages(userLogin: String, channelId: String): Single<List<MessageItem>> {
         return twitchRepository.getUserInfo(login = userLogin).flatMap { userInfo ->
-            apolloClient.singleForQuery(
+            tcp.getProvider(GraphQlService::class).get().singleForQuery(
                 ModLogsMessagesBySenderQuery(
                     senderID = userInfo.userId,
                     channelID = channelId,

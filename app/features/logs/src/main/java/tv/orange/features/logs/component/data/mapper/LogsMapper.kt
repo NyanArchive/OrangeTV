@@ -2,7 +2,6 @@ package tv.orange.features.logs.component.data.mapper
 
 import tv.orange.features.logs.component.data.model.ChatMessage
 import tv.orange.features.logs.component.data.model.MessageItem
-import tv.orange.features.logs.di.scope.LogsScope
 import tv.orange.models.gql.twitch.ModLogsMessagesBySenderQuery
 import tv.orange.models.gql.twitch.fragment.ModChatHistoryMessageFragment
 import tv.orange.models.util.DateUtil
@@ -13,7 +12,6 @@ import tv.twitch.android.provider.chat.model.ChatHistoryMessage
 import java.util.*
 import javax.inject.Inject
 
-@LogsScope
 class LogsMapper @Inject constructor() {
     fun map(response: ModLogsMessagesBySenderQuery.Data): List<MessageItem> {
         return convert(response.channel?.modLogs?.messagesBySender?.edges?.mapNotNull { edge ->

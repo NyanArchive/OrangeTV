@@ -4,21 +4,24 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import tv.orange.core.Core
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
-import tv.orange.models.abc.Feature
 import tv.orange.features.chathistory.bridge.ILiveChatSource
 import tv.orange.features.chathistory.data.repository.ChatHistoryRepository
-import tv.orange.features.chathistory.di.scope.ChatHistoryScope
+import tv.orange.models.abc.Feature
 import tv.twitch.android.models.channel.ChannelInfo
 import tv.twitch.android.shared.chat.events.ChatConnectionEvents
 import javax.inject.Inject
 
-@ChatHistoryScope
 class ChatHistory @Inject constructor(
     val repository: ChatHistoryRepository
 ) : Feature {
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(ChatHistory::class.java)
+
+        @JvmStatic
+        fun destroy() {
+            Core.destroyFeature(ChatHistory::class.java)
+        }
     }
 
     fun requestChatHistory(
@@ -68,7 +71,7 @@ class ChatHistory @Inject constructor(
                 }) {
                     it.printStackTrace()
                     source.addChatHistoryMessage(
-                        repository.getSystemMessage(text ="[Twitch] Error: ${it.localizedMessage}"),
+                        repository.getSystemMessage(text = "[Twitch] Error: ${it.localizedMessage}"),
                         channelId
                     )
                 }

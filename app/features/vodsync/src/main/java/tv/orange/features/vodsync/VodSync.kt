@@ -9,7 +9,6 @@ import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
 import tv.orange.core.util.ViewUtil.changeVisibility
 import tv.orange.core.util.ViewUtil.getView
-import tv.orange.features.vodsync.di.scope.VodSyncScope
 import tv.orange.features.vodsync.view.ViewFactory
 import tv.orange.models.abc.Feature
 import tv.twitch.android.core.mvp.viewdelegate.BaseViewDelegate
@@ -17,7 +16,6 @@ import tv.twitch.android.feature.theatre.common.StreamSettings
 import tv.twitch.android.models.videos.VodModel
 import javax.inject.Inject
 
-@VodSyncScope
 class VodSync @Inject constructor(
     val viewFactory: ViewFactory,
     val prefManager: PreferenceManager
@@ -25,6 +23,11 @@ class VodSync @Inject constructor(
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(VodSync::class.java)
+
+        @JvmStatic
+        fun destroy() {
+            Core.destroyFeature(VodSync::class.java)
+        }
 
         private fun drawValue(view: TextView, value: Int) {
             view.text = if (value > 0) {

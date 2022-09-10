@@ -43,6 +43,7 @@ import tv.orange.features.emotes.bridge.EmoteToken
 import tv.orange.features.emotes.component.EmoteProvider
 import tv.orange.features.pronouns.PronounSetter
 import tv.orange.features.pronouns.component.PronounProvider
+import tv.orange.models.AutoInitialize
 import tv.orange.models.abc.EmoteCardModelWrapper
 import tv.orange.models.abc.EmotePackageSet
 import tv.orange.models.abc.Feature
@@ -56,11 +57,6 @@ import tv.twitch.android.models.emotes.EmoteSet
 import tv.twitch.android.provider.chat.ChatMessageInterface
 import tv.twitch.android.shared.chat.adapter.item.ChatMessageClickedEvents
 import tv.twitch.android.shared.chat.adapter.item.MessageRecyclerItem
-import tv.twitch.android.shared.chat.chomments.ChommentRecyclerItem
-import tv.twitch.android.shared.chat.messagefactory.adapteritem.PrivateCalloutsMessageRecyclerItem
-import tv.twitch.android.shared.chat.messagefactory.adapteritem.RaidMessageRecyclerItem
-import tv.twitch.android.shared.chat.messagefactory.adapteritem.SubGoalUserNoticeRecyclerItem
-import tv.twitch.android.shared.chat.messagefactory.adapteritem.UserNoticeRecyclerItem
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerPresenter
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerViewDelegate
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteHeaderUiModel
@@ -72,22 +68,22 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
+@AutoInitialize
 class ChatHookProvider @Inject constructor(
     val context: Context,
     val emoteProvider: EmoteProvider,
     val badgeProvider: BadgeProvider,
     val pronounProvider: PronounProvider,
     val viewFactory: ViewFactory,
-    val twitchAccountManager: TwitchAccountManager
-) : LifecycleAware, FlagListener, Feature {
+    val twitchAccountManager: TwitchAccountManager,
+    val supportBridge: SupportBridge
+) : LifecycleAware, FlagListener, Feature, SupportBridge.Callback {
     private val currentChannelSubject = BehaviorSubject.create<Int>()
 
     override fun onAllComponentStopped() {}
     override fun onAccountLogout() {}
     override fun onFirstActivityStarted() {}
     override fun onConnectedToChannel(channelId: Int) {}
-
-    fun initialize() {}
 
     fun hookMessageInterface(
         cmi: ChatMessageInterface,
@@ -346,6 +342,11 @@ class ChatHookProvider @Inject constructor(
         @JvmStatic
         fun get() = Core.getFeature(ChatHookProvider::class.java)
 
+        @JvmStatic
+        fun destroy() {
+            Core.destroyFeature(ChatHookProvider::class.java)
+        }
+
         private fun packageTokenToId(token: EmotePackageSet): Int {
             val resName = when (token) {
                 EmotePackageSet.BttvGlobal -> "orange_bttv_global_emotes"
@@ -546,7 +547,7 @@ class ChatHookProvider @Inject constructor(
         }
     }
 
-    private fun maybeChangeMessageFontSize(textView: TextView) {
+    override fun maybeChangeMessageFontSize(textView: TextView) {
         if (Flag.CHAT_FONT_SIZE.asVariant<FontSize>().isDefault()) {
             return
         }
@@ -562,7 +563,7 @@ class ChatHookProvider @Inject constructor(
         textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSizePx)
     }
 
-    private fun bindHighlightMessage(
+    override fun bindHighlightMessage(
         vh: RecyclerView.ViewHolder,
         highlightColor: Int?
     ) {
@@ -577,34 +578,7 @@ class ChatHookProvider @Inject constructor(
         viewHolder: RecyclerView.ViewHolder,
         item: RecyclerAdapterItem
     ) {
-        when (viewHolder) {
-            is MessageRecyclerItem.ChatMessageViewHolder -> {
-                maybeChangeMessageFontSize(textView = viewHolder.messageTextView)
-            }
-            is ChommentRecyclerItem.ChommentItemViewHolder -> {
-                maybeChangeMessageFontSize(textView = viewHolder.chommentTextView)
-            }
-            is UserNoticeRecyclerItem.UserNoticeViewHolder -> {
-                maybeChangeMessageFontSize(textView = viewHolder.chatMessage)
-                maybeChangeMessageFontSize(textView = viewHolder.systemMessage)
-            }
-            is SubGoalUserNoticeRecyclerItem.SubGoalUserNoticeViewHolder -> {
-                maybeChangeMessageFontSize(textView = viewHolder.chatMessage)
-                maybeChangeMessageFontSize(textView = viewHolder.goalProgressText)
-                maybeChangeMessageFontSize(textView = viewHolder.systemMessage)
-            }
-            is RaidMessageRecyclerItem.RaidMessageViewHolder -> {
-                maybeChangeMessageFontSize(textView = viewHolder.text)
-            }
-            is PrivateCalloutsMessageRecyclerItem.CalloutMessageViewHolder -> {
-                maybeChangeMessageFontSize(textView = viewHolder.body)
-            }
-        }
-        when (item) {
-            is IMessageRecyclerItem -> {
-                bindHighlightMessage(vh = viewHolder, highlightColor = item.getHighlightColor())
-            }
-        }
+        supportBridge.onBindToViewHolder(viewHolder, item, this)
     }
 
     fun bindPronoun(

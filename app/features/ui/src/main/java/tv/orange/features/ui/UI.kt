@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.RecyclerView
-import tv.orange.core.BuildConfigUtil
 import tv.orange.core.Core
 import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
@@ -17,19 +16,16 @@ import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.variants.BottomNavbarPosition
 import tv.orange.core.util.ViewUtil.changeVisibility
 import tv.orange.core.util.ViewUtil.getView
-import tv.orange.features.ui.di.scope.UIScope
+import tv.orange.features.ui.bridge.SupportBridge
 import tv.orange.models.abc.Feature
-import tv.twitch.android.core.strings.DateUtil
 import tv.twitch.android.shared.chat.ChatViewDelegate
 import tv.twitch.android.shared.ui.elements.navigation.BottomNavigationDestination
 import tv.twitch.android.shared.ui.elements.navigation.BottomNavigationItem
-import tv.twitch.android.shared.ui.menus.LogoutSectionRecyclerItem
-import java.util.*
 import javax.inject.Inject
 
-@UIScope
 class UI @Inject constructor(
-    val context: Context
+    val context: Context,
+    val supportBridge: SupportBridge
 ) : Feature {
     override fun onDestroyFeature() {}
     override fun onCreateFeature() {}
@@ -37,6 +33,11 @@ class UI @Inject constructor(
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(UI::class.java)
+
+        @JvmStatic
+        fun destroy() {
+            Core.destroyFeature(UI::class.java)
+        }
 
         @JvmStatic
         val hideLeaderboards: Boolean
@@ -139,24 +140,7 @@ class UI @Inject constructor(
     }
 
     fun updateLogoutSectionRecyclerItem(viewHolder: RecyclerView.ViewHolder) {
-        if (viewHolder is LogoutSectionRecyclerItem.SectionFooterRecyclerItemViewHolder) {
-            BuildConfigUtil.buildConfig.let { config ->
-                viewHolder.versionTextView.text = if (config.number > 0) {
-                    "OrangeTV/${config.number}"
-                } else {
-                    "OrangeTV/Stub"
-                }
-
-                viewHolder.buildDateTextView.text = DateUtil.Companion!!.localizedDate(
-                    context,
-                    if (config.timestamp > 0) {
-                        config.timestampToDate()
-                    } else {
-                        Date(0)
-                    }
-                )
-            }
-        }
+        supportBridge.updateLogoutSectionRecyclerItem(viewHolder)
     }
 
     fun onChatViewPresenterConfigurationChanged(delegate: ChatViewDelegate) {

@@ -11,19 +11,21 @@ import tv.orange.core.util.ViewUtil.getView
 import tv.orange.core.util.ViewUtil.inflate
 import tv.orange.features.logs.component.data.model.ChatMessage
 import tv.orange.features.logs.component.data.model.MessageItem
+import tv.orange.models.abc.TwitchComponentProvider
+import tv.twitch.android.network.graphql.GraphQlService
 import tv.twitch.android.shared.chat.messagefactory.ChatMessageFactory
 import tv.twitch.android.shared.ui.elements.GlideHelper
 import java.text.DateFormat
 import java.util.*
 import javax.inject.Inject
 
-class LogsAdapter @Inject constructor(val factoryProvider: ChatMessageFactory.Factory) :
+class LogsAdapter @Inject constructor(val tcp: TwitchComponentProvider) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var messages: List<MessageItem> = listOf()
     lateinit var factory: ChatMessageFactory
 
     fun bindActivity(fragmentActivity: FragmentActivity) {
-        factory = factoryProvider.create(fragmentActivity)
+        factory = tcp.getProvider(ChatMessageFactory.Factory::class).get().create(fragmentActivity)
     }
 
     override fun getItemViewType(position: Int): Int {

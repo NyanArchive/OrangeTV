@@ -5,10 +5,12 @@ import android.content.SharedPreferences
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.FlagListener
 import tv.orange.core.models.flag.Internal.*
+import tv.orange.models.AutoInitialize
 import tv.orange.models.abc.Feature
 import tv.twitch.android.app.core.ThemeManager
 import javax.inject.Inject
 
+@AutoInitialize
 class PreferenceManager @Inject constructor(
     val context: Context
 ) : SharedPreferences.OnSharedPreferenceChangeListener, Feature {

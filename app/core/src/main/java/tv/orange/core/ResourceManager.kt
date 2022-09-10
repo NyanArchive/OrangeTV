@@ -2,9 +2,11 @@ package tv.orange.core
 
 import android.content.Context
 import tv.orange.core.models.ResIdCache
+import tv.orange.models.AutoInitialize
 import tv.orange.models.abc.Feature
 import tv.twitch.android.core.strings.StringResource
 
+@AutoInitialize
 class ResourceManager(private val context: Context) : Feature {
     companion object {
         @JvmStatic

@@ -9,19 +9,22 @@ import tv.orange.core.ResourceManager
 import tv.orange.features.settings.bridge.OrangeSettingsDaggerFactory
 import tv.orange.features.settings.bridge.fragment.OrangeSettingsFragment
 import tv.orange.features.settings.component.SettingsController
-import tv.orange.features.settings.di.scope.SettingsScope
 import tv.orange.models.abc.Feature
 import tv.twitch.android.app.consumer.dagger.DaggerAppComponent
 import javax.inject.Inject
 import javax.inject.Provider
 
-@SettingsScope
 class OrangeSettings @Inject constructor(
     val daggerFactory: OrangeSettingsDaggerFactory
 ) : Feature {
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(OrangeSettings::class.java)
+
+        @JvmStatic
+        fun destroy() {
+            Core.destroyFeature(OrangeSettings::class.java)
+        }
 
         @JvmStatic
         fun getOrangeSettingsString(): String {

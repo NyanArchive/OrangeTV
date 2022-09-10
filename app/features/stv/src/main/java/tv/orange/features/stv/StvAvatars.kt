@@ -2,19 +2,21 @@ package tv.orange.features.stv
 
 import io.reactivex.Single
 import tv.orange.core.Core
+import tv.orange.core.Logger
 import tv.orange.core.LoggerWithTag
+import tv.orange.core.PreferenceManager
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.models.flag.FlagListener
 import tv.orange.core.models.lifecycle.LifecycleAware
 import tv.orange.features.api.component.repository.StvRepository
-import tv.orange.features.stv.di.scope.StvScope
+import tv.orange.models.AutoInitialize
 import tv.orange.models.abc.Feature
 import tv.orange.models.data.SimpleFetcher
 import tv.orange.models.data.avatars.AvatarSet
 import javax.inject.Inject
 
-@StvScope
+@AutoInitialize
 class StvAvatars @Inject constructor(
     val stvRepository: StvRepository
 ) : SimpleFetcher<AvatarSet>(
@@ -28,6 +30,11 @@ class StvAvatars @Inject constructor(
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(StvAvatars::class.java)
+
+        @JvmStatic
+        fun destroy() {
+            Core.destroyFeature(StvAvatars::class.java)
+        }
     }
 
     fun hookProfileImageUrl(profileImageUrl: String, channelName: String): String {
@@ -41,8 +48,6 @@ class StvAvatars @Inject constructor(
 
         return profileImageUrl
     }
-
-    fun initialize() {}
 
     override fun onAllComponentDestroyed() {
         clear()
@@ -70,6 +75,14 @@ class StvAvatars @Inject constructor(
     override fun onConnectedToChannel(channelId: Int) {}
     override fun onConnectingToChannel(channelId: Int) {}
 
-    override fun onDestroyFeature() {}
-    override fun onCreateFeature() {}
+    override fun onDestroyFeature() {
+        PreferenceManager.get().unregisterFlagListeners(this)
+        Core.get().unregisterLifecycleListener(this)
+    }
+
+    override fun onCreateFeature() {
+        Logger.debug("called")
+        Core.get().registerLifecycleListeners(this)
+        PreferenceManager.get().registerFlagListeners(this)
+    }
 }

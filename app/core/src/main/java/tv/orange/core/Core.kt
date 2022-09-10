@@ -8,11 +8,13 @@ import android.content.Intent
 import android.os.*
 import tv.orange.core.models.lifecycle.LifecycleAware
 import tv.orange.core.models.lifecycle.LifecycleController
+import tv.orange.models.AutoInitialize
 import tv.orange.models.abc.Bridge
 import tv.orange.models.abc.Feature
 import javax.inject.Inject
 import kotlin.system.exitProcess
 
+@AutoInitialize
 class Core @Inject constructor(
     val context: Context
 ) : LifecycleController, LifecycleAware, Feature {
@@ -96,6 +98,11 @@ class Core @Inject constructor(
             } else {
                 context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator?
             }
+        }
+
+        @JvmStatic
+        fun <T : Feature> destroyFeature(clazz: Class<T>) {
+            getBridge().destroyFeature(clazz)
         }
     }
 

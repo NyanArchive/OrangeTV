@@ -47,7 +47,9 @@ class PreferenceManager @Inject constructor(
         throw IllegalStateException("PreferenceManager cannot be destroyed")
     }
 
-    override fun onCreateFeature() {}
+    override fun onCreateFeature() {
+        initialize()
+    }
 
     fun getChommentSeekerValue(videoId: String): Int {
         return chommentSeekerCache[videoId] ?: 0

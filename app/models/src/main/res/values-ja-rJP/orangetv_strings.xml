@@ -26,7 +26,7 @@
     <string name="orange_player_impl_exo">ExoPlayer</string>
     <string name="orange_settings_deleted_messages">メッセージの削除</string>
     <string name="orange_deleted_messages_default">デフォルト</string>
-    <string name="orange_deleted_messages_mod">Mod</string>
+    <string name="orange_deleted_messages_mod">モデレーター</string>
     <string name="orange_deleted_messages_strikethrough">取り消し線</string>
     <string name="orange_deleted_messages_grey">グレー</string>
     <string name="orange_emotecard_ffz_channel">FFZチャンネルエモート</string>
@@ -57,8 +57,8 @@
     <string name="orange_settings_title">OrangeTV設定</string>
     <string name="orange_settings_chat_font_size">チャットのフォントサイズ</string>
     <string name="orange_settings_landscape_chat_size">ランドスケープのチャット幅</string>
-    <string name="orange_settings_forward_seek">プレイヤーを前方にシークする</string>
-    <string name="orange_settings_rewind_seek">プレイヤーを後方にシークする</string>
+    <string name="orange_settings_forward_seek">プレイヤーの早送り</string>
+    <string name="orange_settings_rewind_seek">プレイヤーの巻き戻し</string>
     <string name="orange_settings_mini_player_size">ポップアウトプレイヤーのサイズ</string>
     <string name="orange_settings_vibrate_on_mention">メンション時のバイブレーション</string>
     <string name="orange_settings_vibration_duration">バイブレーションの持続時間</string>
@@ -67,4 +67,9 @@
     <string name="orange_settings_auto_hide_message_input">ランドスケープでのメッセージ入力の非表示</string>
     <string name="orange_settings_landscape_chat_opacity">ランドスケープチャットの不透明度</string>
     <string name="orange_chapters_unknown">不明</string>
+    <string name="orange_settings_emote_quality">エモートの品質</string>
+    <string name="orange_emote_quality_low">小</string>
+    <string name="orange_emote_quality_medium">中</string>
+    <string name="orange_emote_quality_large">大</string>
+    <string name="orange_settings_compact_player_follow_view">コンパクトなフォロー表示</string>
 </resources>

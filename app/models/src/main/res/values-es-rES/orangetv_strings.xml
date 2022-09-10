@@ -67,4 +67,9 @@
     <string name="orange_settings_auto_hide_message_input">Ocultar entrada de mensajes en modo horizontal</string>
     <string name="orange_settings_landscape_chat_opacity">Opacidad del chat en modo horizontal</string>
     <string name="orange_chapters_unknown">Desconocido</string>
+    <string name="orange_settings_emote_quality">Calidad de los emotes</string>
+    <string name="orange_emote_quality_low">Baja</string>
+    <string name="orange_emote_quality_medium">Media</string>
+    <string name="orange_emote_quality_large">Alta</string>
+    <string name="orange_settings_compact_player_follow_view">Usar la visualización compacta para seguidores</string>
 </resources>

@@ -65,6 +65,11 @@
     <string name="orange_settings_hide_top_chat_panel_vods">Ocultar el panel de chat superior en VODs</string>
     <string name="orange_settings_pronouns">Pronombres</string>
     <string name="orange_settings_auto_hide_message_input">Ocultar la entrada de mensajes en horizontal</string>
-    <string name="orange_settings_landscape_chat_opacity">Opacidad del chat en modo horizontal</string>
+    <string name="orange_settings_landscape_chat_opacity">Opacidad del chat en horizontal</string>
     <string name="orange_chapters_unknown">Desconocido</string>
+    <string name="orange_settings_emote_quality">Calidad de emotes</string>
+    <string name="orange_emote_quality_low">Baja</string>
+    <string name="orange_emote_quality_medium">Media</string>
+    <string name="orange_emote_quality_large">Alta</string>
+    <string name="orange_settings_compact_player_follow_view">Usar vista compacta para seguidores</string>
 </resources>

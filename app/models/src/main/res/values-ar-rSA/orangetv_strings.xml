@@ -67,4 +67,9 @@
     <string name="orange_settings_auto_hide_message_input">إخفاء إدخال الرسائل في الوضع الأفقي</string>
     <string name="orange_settings_landscape_chat_opacity">شفافية المحادثة الأفقية</string>
     <string name="orange_chapters_unknown">مجهول</string>
+    <string name="orange_settings_emote_quality">جودة الأيموتات</string>
+    <string name="orange_emote_quality_low">منخفضة</string>
+    <string name="orange_emote_quality_medium">متوسط</string>
+    <string name="orange_emote_quality_large">كبير</string>
+    <string name="orange_settings_compact_player_follow_view">استخدام عرض المتابعة المضغوط</string>
 </resources>

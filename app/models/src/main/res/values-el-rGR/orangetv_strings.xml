@@ -67,4 +67,9 @@
     <string name="orange_settings_auto_hide_message_input">Απόκρυψη εισόδου μηνύματος σε οριζόντια θέση</string>
     <string name="orange_settings_landscape_chat_opacity">Αδιαφάνεια οριζόντιας συνομιλίας</string>
     <string name="orange_chapters_unknown">Άγνωστο</string>
+    <string name="orange_settings_emote_quality">Ποιότητα Emotes</string>
+    <string name="orange_emote_quality_low">Χαμηλή</string>
+    <string name="orange_emote_quality_medium">Μεσαία</string>
+    <string name="orange_emote_quality_large">Μεγάλη</string>
+    <string name="orange_settings_compact_player_follow_view">Χρήση συμπαγούς προβολής ακολούθησης</string>
 </resources>

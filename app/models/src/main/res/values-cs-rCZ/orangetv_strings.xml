@@ -64,6 +64,12 @@
     <string name="orange_settings_vibration_duration">Trvání vibrací</string>
     <string name="orange_settings_hide_top_chat_panel_vods">Skrýt horní panel chatu ve VODs</string>
     <string name="orange_settings_pronouns">Zájmena</string>
+    <string name="orange_settings_auto_hide_message_input">Skrýt pole pro zadávání zpráv v režimu na šířku</string>
     <string name="orange_settings_landscape_chat_opacity">Průhlednost chatu v režimu na šířku</string>
     <string name="orange_chapters_unknown">Neznámé</string>
+    <string name="orange_settings_emote_quality">Kvalita emotů</string>
+    <string name="orange_emote_quality_low">Nízká</string>
+    <string name="orange_emote_quality_medium">Střední</string>
+    <string name="orange_emote_quality_large">Vysoká</string>
+    <string name="orange_settings_compact_player_follow_view">Použít kompaktní zobrazení tlačítka sledování</string>
 </resources>

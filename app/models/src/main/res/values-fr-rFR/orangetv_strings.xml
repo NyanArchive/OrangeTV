@@ -67,4 +67,9 @@
     <string name="orange_settings_auto_hide_message_input">Masquer la saisie de message en mode paysage</string>
     <string name="orange_settings_landscape_chat_opacity">Opacité du chat en mode paysage</string>
     <string name="orange_chapters_unknown">Inconnu</string>
+    <string name="orange_settings_emote_quality">Qualité des emotes</string>
+    <string name="orange_emote_quality_low">Faible</string>
+    <string name="orange_emote_quality_medium">Moyen</string>
+    <string name="orange_emote_quality_large">Grand</string>
+    <string name="orange_settings_compact_player_follow_view">Utiliser la vue de suivi compacte</string>
 </resources>

@@ -67,4 +67,9 @@
     <string name="orange_settings_auto_hide_message_input">Сховати поле вводу в повноекранному режимі</string>
     <string name="orange_settings_landscape_chat_opacity">Непрозорість чату в повноекранному режимі</string>
     <string name="orange_chapters_unknown">Невідомо</string>
+    <string name="orange_settings_emote_quality">Якість емоцій</string>
+    <string name="orange_emote_quality_low">Низька</string>
+    <string name="orange_emote_quality_medium">Середня</string>
+    <string name="orange_emote_quality_large">Висока</string>
+    <string name="orange_settings_compact_player_follow_view">Компактний інтерфейс відстеження</string>
 </resources>

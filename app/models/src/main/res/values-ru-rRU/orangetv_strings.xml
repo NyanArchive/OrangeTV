@@ -67,4 +67,9 @@
     <string name="orange_settings_auto_hide_message_input">Скрыть строку ввода в горизонтальной ориентации</string>
     <string name="orange_settings_landscape_chat_opacity">Прозрачность чата в горизонтальной ориентации</string>
     <string name="orange_chapters_unknown">Временные метки</string>
+    <string name="orange_settings_emote_quality">Качество смайликов</string>
+    <string name="orange_emote_quality_low">Низкое</string>
+    <string name="orange_emote_quality_medium">Среднее</string>
+    <string name="orange_emote_quality_large">Высокое</string>
+    <string name="orange_settings_compact_player_follow_view">Компактный интерфейс отслеживания</string>
 </resources>

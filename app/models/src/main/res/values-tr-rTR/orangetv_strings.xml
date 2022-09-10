@@ -67,4 +67,9 @@
     <string name="orange_settings_auto_hide_message_input">Yatayda mesaj kutusunu gizle</string>
     <string name="orange_settings_landscape_chat_opacity">Yatay sohbet opaklığı</string>
     <string name="orange_chapters_unknown">Bilinmiyor</string>
+    <string name="orange_settings_emote_quality">İfade Kalitesi</string>
+    <string name="orange_emote_quality_low">Düşük</string>
+    <string name="orange_emote_quality_medium">Orta</string>
+    <string name="orange_emote_quality_large">Yüksek</string>
+    <string name="orange_settings_compact_player_follow_view">Kompakt takip edilen görünümünü kullan</string>
 </resources>

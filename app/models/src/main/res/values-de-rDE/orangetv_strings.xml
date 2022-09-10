@@ -49,7 +49,7 @@
     <string name="orange_bottom_navbar_position_default">Standard</string>
     <string name="orange_bottom_navbar_position_top">Oben</string>
     <string name="orange_bottom_navbar_position_hidden">Ausgeblendet</string>
-    <string name="orange_settings_followed_full_cards">Zeige große Streamvorschau bei Following</string>
+    <string name="orange_settings_followed_full_cards">Große Streamvorschau bei Following</string>
     <string name="orange_settings_disable_hype_train">Hype Train ausblenden</string>
     <string name="orange_settings_hide_discover_tab">Entdecken Tab ausblenden</string>
     <string name="orange_restart_app">Restart</string>
@@ -67,4 +67,9 @@
     <string name="orange_settings_auto_hide_message_input">Nachrichteneingabefeld im Querformat ausblenden</string>
     <string name="orange_settings_landscape_chat_opacity">Durchsichtigkeit des Chats im Querformat</string>
     <string name="orange_chapters_unknown">Kapitel</string>
+    <string name="orange_settings_emote_quality">Emote Größe</string>
+    <string name="orange_emote_quality_low">Klein</string>
+    <string name="orange_emote_quality_medium">Mittel</string>
+    <string name="orange_emote_quality_large">Groß</string>
+    <string name="orange_settings_compact_player_follow_view">Kompakte Follow Ansicht benutzen</string>
 </resources>

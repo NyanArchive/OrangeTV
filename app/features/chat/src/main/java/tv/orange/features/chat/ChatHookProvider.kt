@@ -228,10 +228,10 @@ class ChatHookProvider @Inject constructor(
     @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
     fun hookEmoteSetsFlowable(
         map: Flowable<Pair<EmoteUiSet, MutableList<EmoteUiSet>>>,
-        channelId: Integer
+        channelId: Integer?
     ): Flowable<Pair<EmoteUiSet, MutableList<EmoteUiSet>>> {
         return map.map { pair ->
-            emoteProvider.getEmotesMap(channelId = channelId.toInt())
+            emoteProvider.getEmotesMap(channelId = channelId?.toInt() ?: 0)
                 .filter { it.second.isNotEmpty() }
                 .forEach { emotePair ->
                     pair.second.add(
@@ -244,7 +244,7 @@ class ChatHookProvider @Inject constructor(
                             ), emotePair.second.map { emote ->
                                 createEmoteUiModel(
                                     emote = emote,
-                                    channelId = channelId.toInt(),
+                                    channelId = channelId?.toInt() ?: 0,
                                     isAnimated = false
                                 )
                             })

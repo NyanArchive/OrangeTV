@@ -121,6 +121,9 @@ class PreferenceManager @Inject constructor(
     companion object {
         private const val ORANGE_SHARED_PREFERENCES_NAME = "orange"
 
+        private const val ORANGE_TIMER_HOURS_KEY = "orange_timer_hours"
+        private const val ORANGE_TIMER_MINUTES_KEY = "orange_timer_minutes"
+
         var isDarkThemeEnabled = false
 
         @JvmStatic
@@ -138,5 +141,20 @@ class PreferenceManager @Inject constructor(
         twitch.registerOnSharedPreferenceChangeListener(this)
 
         isDarkThemeEnabled = ThemeManager.Companion!!.isNightModeEnabled(context)
+    }
+
+    fun getLastTimer(): Pair<Int, Int> {
+        return orange.getInt(
+            ORANGE_TIMER_HOURS_KEY,
+            0
+        ) to orange.getInt(
+            ORANGE_TIMER_MINUTES_KEY,
+            1
+        )
+    }
+
+    fun saveLastTimer(data: Pair<Int, Int>) {
+        orange.edit().putInt(ORANGE_TIMER_HOURS_KEY, data.first).apply()
+        orange.edit().putInt(ORANGE_TIMER_MINUTES_KEY, data.second).apply()
     }
 }

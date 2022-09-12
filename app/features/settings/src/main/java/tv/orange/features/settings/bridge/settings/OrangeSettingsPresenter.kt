@@ -8,13 +8,12 @@ import tv.twitch.android.settings.base.SettingsNavigationController
 import tv.twitch.android.settings.base.SettingsTracker
 import tv.twitch.android.shared.ui.menus.SettingsPreferencesController
 import tv.twitch.android.shared.ui.menus.core.MenuAdapterBinder
-import javax.inject.Inject
 
-class OrangeSettingsPresenter @Inject constructor(
+class OrangeSettingsPresenter constructor(
     activity: FragmentActivity,
     adapterBinder: MenuAdapterBinder,
     settingsTracker: SettingsTracker,
-    val controller: OrangeSettingsController
+    private val controller: OrangeSettingsController
 ) : BaseSettingsPresenter(activity, adapterBinder, settingsTracker) {
     override fun getNavController(): SettingsNavigationController {
         return controller

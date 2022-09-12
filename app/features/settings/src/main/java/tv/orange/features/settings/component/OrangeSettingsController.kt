@@ -11,7 +11,7 @@ import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asInt
 import tv.orange.core.models.flag.Flag.Companion.asString
 import tv.orange.core.models.flag.Internal
-import tv.orange.features.settings.bridge.model.OrangeSubMenuWrapper
+import tv.orange.features.settings.bridge.model.OrangeSubMenu
 import tv.orange.features.settings.bridge.settings.*
 import tv.orange.features.settings.bridge.slider.SliderModel
 import tv.twitch.android.models.settings.SettingsDestination
@@ -70,7 +70,7 @@ class OrangeSettingsController(
     }
 
     fun getMainSettingModels(): Collection<MenuModel> {
-        return OrangeSubMenuWrapper.values().filter { it.items.isNotEmpty() }
+        return OrangeSubMenu.values().filter { it.items.isNotEmpty() }
             .map {
                 SubMenuModel(ResourceManager.get().getString(it.title), it.desc?.let { desc ->
                     ResourceManager.get().getString(desc)

@@ -1,14 +1,9 @@
 package tv.orange.features.settings.bridge.model
 
 import tv.orange.core.models.flag.Flag
-import tv.orange.core.models.flag.Internal
-import tv.orange.core.models.flag.variants.FontSize
-import tv.orange.features.settings.bridge.slider.SliderModel
-import tv.orange.features.settings.component.OrangeSettingsController
 import tv.twitch.android.models.settings.SettingsDestination
-import tv.twitch.android.shared.ui.menus.core.MenuModel
 
-enum class OrangeSubMenuWrapper(
+enum class OrangeSubMenu(
     val destination: SettingsDestination,
     val title: String,
     val desc: String? = null,
@@ -114,27 +109,4 @@ enum class OrangeSubMenuWrapper(
         destination = SettingsDestination.OrangeInfo,
         title = "orange_settings_menu_info"
     );
-
-    fun convertToMenuModels(controller: OrangeSettingsController): Collection<MenuModel> {
-        return items.mapNotNull { mapper(controller, it) }
-    }
-
-    companion object {
-        fun findByDestination(destination: SettingsDestination): OrangeSubMenuWrapper {
-            return values().find { predicate -> predicate.destination == destination }!!
-        }
-
-        private fun mapper(controller: OrangeSettingsController, flag: Flag): MenuModel? {
-            return when (flag.valueHolder) {
-                is Internal.BooleanValue -> FlagToggleMenuModelExt(flag)
-                is Internal.ListValue<*> -> if (flag == Flag.CHAT_FONT_SIZE) {
-                    DropDownMenuModelExt<FontSize>(flag, controller, true)
-                } else {
-                    DropDownMenuModelExt(flag, controller)
-                }
-                is Internal.IntegerRangeValue -> SliderModel(flag, controller)
-                else -> null
-            }
-        }
-    }
 }

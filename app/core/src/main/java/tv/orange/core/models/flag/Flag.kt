@@ -16,132 +16,132 @@ enum class Flag(
         "orange_settings_dev_mode",
         BooleanValue()
     ),
-    CHAT_TIMESTAMPS( // ++++++++++++++++++++++++++++++++++++++++++++
+    CHAT_TIMESTAMPS(
         "chat_timestamps",
         "orange_settings_chat_timestamps",
         BooleanValue()
     ),
-    DISABLE_LINK_DISCLAIMER( // ++++++++++++++++++++++++++++++++++++++++++++
+    DISABLE_LINK_DISCLAIMER(
         "disable_link_disclaimer",
         "orange_settings_disable_link_disclaimer",
         BooleanValue()
     ),
-    HIDE_LEADERBOARDS( // ++++++++++++++++++++++++++++++++++++++++++++
+    HIDE_LEADERBOARDS(
         "hide_leaderboards",
         "orange_settings_hide_leaderboards",
         BooleanValue()
     ),
-    DISABLE_FAST_BREAD( // ++++++++++++++++++++++++++++++++++++++++++++
+    DISABLE_FAST_BREAD(
         "disable_fast_bread",
         "orange_settings_disable_fast_bread",
         BooleanValue()
     ),
-    FOLLOWED_FULL_CARDS( // ++++++++++++++++++++++++++++++++++++++++++++
+    FOLLOWED_FULL_CARDS(
         "followed_full_cards",
         "orange_settings_followed_full_cards",
         BooleanValue()
     ),
-    DISABLE_HYPE_TRAIN( // ++++++++++++++++++++++++++++++++++++++++++++
+    DISABLE_HYPE_TRAIN(
         "disable_hype_train",
         "orange_settings_disable_hype_train",
         BooleanValue()
     ),
-    HIDE_DISCOVER_TAB( // ++++++++++++++++++++++++++++++++++++++++++++
+    HIDE_DISCOVER_TAB(
         "hide_discover_tab",
         "orange_settings_hide_discover_tab",
         BooleanValue()
     ),
-    VIBRATE_ON_MENTION( // ++++++++++++++++++++++++++++++++++++++++++++
+    VIBRATE_ON_MENTION(
         "vibrate_on_mention",
         "orange_settings_vibrate_on_mention",
         BooleanValue()
     ),
-    HIDE_TOP_CHAT_PANEL_VODS( // ++++++++++++++++++++++++++++++++++++++++++++
+    HIDE_TOP_CHAT_PANEL_VODS(
         "hide_top_chat_panel_vods",
         "orange_settings_hide_top_chat_panel_vods",
         BooleanValue()
     ),
-    PRONOUNS( // ++++++++++++++++++++++++++++++++++++++++++++
+    PRONOUNS(
         "pronouns",
         "orange_settings_pronouns",
         BooleanValue()
     ),
-    AUTO_HIDE_MESSAGE_INPUT( // ++++++++++++++++++++++++++++++++++++++++++++
+    AUTO_HIDE_MESSAGE_INPUT(
         "auto_hide_message_input",
         "orange_settings_auto_hide_message_input",
         BooleanValue()
     ),
-    COMPACT_PLAYER_FOLLOW_VIEW( // ++++++++++++++++++++++++++++++++++++++++++++
+    COMPACT_PLAYER_FOLLOW_VIEW(
         "compact_player_follow_view",
         "orange_settings_compact_player_follow_view",
         BooleanValue()
     ),
-    BTTV_EMOTES( // ++++++++++++++++++++++++++++++++++++++++++++
+    BTTV_EMOTES(
         "bttv_emotes",
         "orange_settings_bttv_emotes",
         BooleanValue(true)
     ),
-    FFZ_EMOTES( // ++++++++++++++++++++++++++++++++++++++++++++
+    FFZ_EMOTES(
         "ffz_emotes",
         "orange_settings_ffz_emotes",
         BooleanValue(true)
     ),
-    STV_EMOTES( // ++++++++++++++++++++++++++++++++++++++++++++
+    STV_EMOTES(
         "stv_emotes",
         "orange_settings_stv_emotes",
         BooleanValue(true)
     ),
-    FFZ_BADGES( // ++++++++++++++++++++++++++++++++++++++++++++
+    FFZ_BADGES(
         "ffz_badges",
         "orange_settings_ffz_badges",
         BooleanValue(true)
     ),
-    STV_BADGES( // ++++++++++++++++++++++++++++++++++++++++++++
+    STV_BADGES(
         "stv_badges",
         "orange_settings_stv_badges",
         BooleanValue(true)
     ),
-    CHE_BADGES( // ++++++++++++++++++++++++++++++++++++++++++++
+    CHE_BADGES(
         "che_badges",
         "orange_settings_che_badges",
         BooleanValue(true)
     ),
-    CHA_BADGES( // ++++++++++++++++++++++++++++++++++++++++++++
+    CHA_BADGES(
         "cha_badges",
         "orange_settings_cha_badges",
         BooleanValue(true)
     ),
-    STV_AVATARS( // ++++++++++++++++++++++++++++++++++++++++++++
+    STV_AVATARS(
         "stv_avatars",
         "orange_settings_stv_avatars",
         BooleanValue(true)
     ),
-    CHAT_HISTORY( // ++++++++++++++++++++++++++++++++++++++++++++
+    CHAT_HISTORY(
         "chat_history",
         "orange_settings_chat_history",
         BooleanValue(true)
     ),
-    DISABLE_STICKY_HEADERS_EP( // ++++++++++++++++++++++++++++++++++++++++++++
+    DISABLE_STICKY_HEADERS_EP(
         "disable_sticky_headers_ep",
         "orange_settings_disable_sticky_headers_ep",
         BooleanValue()
     ),
-    HIDE_BITS_BUTTON( // ++++++++++++++++++++++++++++++++++++++++++++
+    HIDE_BITS_BUTTON(
         "hide_bits_button",
         "orange_settings_hide_bits_button",
         BooleanValue()
     ),
-    PLAYER_IMPL( // ++++++++++++++++++++++++++++++++++++++++++++
+    PLAYER_IMPL(
         "player_impl",
         "orange_settings_player_impl",
         ListValue(PlayerImpl.Default)
     ),
-    DELETED_MESSAGES( // ++++++++++++++++++++++++++++++++++++++++++++
+    DELETED_MESSAGES(
         "deleted_messages",
         "orange_settings_deleted_messages",
         ListValue(DeletedMessages.Default),
     ),
-    BOTTOM_NAVBAR_POSITION( // ++++++++++++++++++++++++++++++++++++++++++++
+    BOTTOM_NAVBAR_POSITION(
         "bottom_navbar_position",
         "orange_settings_bottom_navbar_position",
         ListValue(BottomNavbarPosition.Default),
@@ -161,17 +161,17 @@ enum class Flag(
         "orange_settings_landscape_chat_size",
         IntegerRangeValue(10, 50, 30),
     ),
-    FORWARD_SEEK( // ++++++++++++++++++++++++++++++++++++++++++++
+    FORWARD_SEEK(
         "forward_seek",
         "orange_settings_forward_seek",
         IntegerRangeValue(5, 120, 30, step = 5),
     ),
-    REWIND_SEEK( // ++++++++++++++++++++++++++++++++++++++++++++
+    REWIND_SEEK(
         "backward_seek",
         "orange_settings_rewind_seek",
         IntegerRangeValue(5, 120, 10, step = 5),
     ),
-    MINI_PLAYER_SIZE( // ++++++++++++++++++++++++++++++++++++++++++++
+    MINI_PLAYER_SIZE(
         "mini_player_size",
         "orange_settings_mini_player_size",
         IntegerRangeValue(50, 200, 100, step = 5),

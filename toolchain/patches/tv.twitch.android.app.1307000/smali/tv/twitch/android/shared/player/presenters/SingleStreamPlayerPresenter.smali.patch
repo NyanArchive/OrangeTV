@@ -1,7 +1,7 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/player/presenters/SingleStreamPlayerPresenter.smali b/smali_classes6/tv/twitch/android/shared/player/presenters/SingleStreamPlayerPresenter.smali
 --- a/smali_classes6/tv/twitch/android/shared/player/presenters/SingleStreamPlayerPresenter.smali
 +++ b/smali_classes6/tv/twitch/android/shared/player/presenters/SingleStreamPlayerPresenter.smali
-@@ -451,11 +451,7 @@
+@@ -459,11 +459,7 @@
      iput-object v1, v0, Ltv/twitch/android/shared/player/presenters/SingleStreamPlayerPresenter;->stateObservable:Lio/reactivex/subjects/BehaviorSubject;
  
      .line 114

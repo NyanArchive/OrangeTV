@@ -1,6 +1,7 @@
 package tv.orange.features.settings.component
 
 import android.app.AlertDialog
+import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import tv.orange.core.Core
 import tv.orange.core.Logger
@@ -10,16 +11,22 @@ import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asInt
 import tv.orange.core.models.flag.Flag.Companion.asString
 import tv.orange.core.models.flag.Internal
-import tv.orange.core.models.flag.variants.FontSize
-import tv.orange.features.settings.bridge.model.DropDownMenuModelExt
-import tv.orange.features.settings.bridge.model.FlagToggleMenuModelExt
+import tv.orange.features.settings.bridge.model.OrangeSubMenuWrapper
+import tv.orange.features.settings.bridge.settings.*
 import tv.orange.features.settings.bridge.slider.SliderModel
+import tv.twitch.android.models.settings.SettingsDestination
+import tv.twitch.android.routing.routers.IFragmentRouter
+import tv.twitch.android.settings.base.SettingsNavigationController
 import tv.twitch.android.shared.ui.menus.SettingsPreferencesController
 import tv.twitch.android.shared.ui.menus.core.MenuModel
+import tv.twitch.android.shared.ui.menus.subscription.SubMenuModel
 import tv.twitch.android.shared.ui.menus.togglemenu.ToggleMenuModel
 
-class SettingsController(val activity: FragmentActivity) : SettingsPreferencesController,
-    SliderModel.SliderListener {
+class OrangeSettingsController(
+    val activity: FragmentActivity,
+    val fragmentRouter: IFragmentRouter
+) : SettingsPreferencesController,
+    SliderModel.SliderListener, SettingsNavigationController {
     override fun updatePreferenceBooleanState(toggleMenuModel: ToggleMenuModel, state: Boolean) {
         val eventName = toggleMenuModel.eventName
         if (eventName.isNullOrBlank()) {
@@ -63,18 +70,12 @@ class SettingsController(val activity: FragmentActivity) : SettingsPreferencesCo
     }
 
     fun getMainSettingModels(): Collection<MenuModel> {
-        return Flag.values().mapNotNull {
-            when (it.valueHolder) {
-                is Internal.BooleanValue -> FlagToggleMenuModelExt(it)
-                is Internal.ListValue<*> -> if (it == Flag.CHAT_FONT_SIZE) {
-                    DropDownMenuModelExt<FontSize>(it, this, true)
-                } else {
-                    DropDownMenuModelExt(it, this)
-                }
-                is Internal.IntegerRangeValue -> SliderModel(it, this)
-                else -> null
+        return OrangeSubMenuWrapper.values().filter { it.items.isNotEmpty() }
+            .map {
+                SubMenuModel(ResourceManager.get().getString(it.title), it.desc?.let { desc ->
+                    ResourceManager.get().getString(desc)
+                }, null, it.destination, true) as MenuModel
             }
-        }
     }
 
     fun onDropDownMenuItemSelection(flag: Flag, variant: Internal.Variant) {
@@ -96,6 +97,24 @@ class SettingsController(val activity: FragmentActivity) : SettingsPreferencesCo
         }
 
         PreferenceManager.get().writeInt(flag = flag, value = value)
-        checkIfNeedRestart(flag)
+        checkIfNeedRestart(flag = flag)
+    }
+
+    override fun navigateToSettingFragment(settingsDestination: SettingsDestination, p1: Bundle?) {
+        when (settingsDestination) {
+            SettingsDestination.OrangeThirdParty -> OrangeThirdPartySettingsFragment()
+            SettingsDestination.OrangeChat -> OrangeChatSettingsFragment()
+            SettingsDestination.OrangePlayer -> OrangePlayerSettingsFragment()
+            SettingsDestination.OrangeView -> OrangeViewSettingsFragment()
+            SettingsDestination.OrangeDev -> OrangeDevSettingsFragment()
+            else -> null
+        }?.let { fragment ->
+            fragmentRouter.addOrRecreateFragment(
+                activity,
+                fragment,
+                settingsDestination.toString(),
+                Bundle()
+            )
+        }
     }
 }

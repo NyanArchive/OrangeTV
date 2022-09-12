@@ -1,7 +1,7 @@
 diff --git a/smali_classes5/tv/twitch/android/feature/theatre/common/PlayerCoordinatorPresenter.smali b/smali_classes5/tv/twitch/android/feature/theatre/common/PlayerCoordinatorPresenter.smali
 --- a/smali_classes5/tv/twitch/android/feature/theatre/common/PlayerCoordinatorPresenter.smali
 +++ b/smali_classes5/tv/twitch/android/feature/theatre/common/PlayerCoordinatorPresenter.smali
-@@ -4889,3 +4889,19 @@
+@@ -4907,3 +4907,19 @@
  
      return-object v0
  .end method

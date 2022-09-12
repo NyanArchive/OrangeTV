@@ -4,15 +4,15 @@ import tv.orange.core.ResourceManager
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.Internal
-import tv.orange.features.settings.component.SettingsController
+import tv.orange.features.settings.component.OrangeSettingsController
 import tv.twitch.android.core.adapters.TwitchArrayAdapter
 import tv.twitch.android.core.adapters.TwitchArrayAdapterModel
 import tv.twitch.android.shared.ui.menus.dropdown.DropDownMenuModel
 import tv.twitch.android.shared.ui.menus.dropdown.DropDownMenuModel.DropDownMenuItemSelection
 
 class DropDownMenuModelExt<T : Internal.Variant>(
-    val flag: Flag,
-    controller: SettingsController,
+    private val flag: Flag,
+    controller: OrangeSettingsController,
     private val raw: Boolean = false
 ) :
     DropDownMenuModel<TwitchArrayAdapterModel>(

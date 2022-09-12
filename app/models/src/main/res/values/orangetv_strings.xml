@@ -103,4 +103,18 @@
     <string name="orange_emote_quality_large">Large</string>
     <string name="orange_settings_compact_player_follow_view">Use compact follow view</string>
     <string name="orange_settings_compact_player_follow_view_desc" />
+    <string name="orange_settings_menu_third_party">Third Party</string>
+    <string name="orange_settings_menu_chat">Chat</string>
+    <string name="orange_settings_menu_player">Player</string>
+    <string name="orange_settings_menu_adblock">AdBlock</string>
+    <string name="orange_settings_menu_gestures">Gestures</string>
+    <string name="orange_settings_menu_view">View</string>
+    <string name="orange_settings_menu_patches">Patches</string>
+    <string name="orange_settings_menu_lab">Lab</string>
+    <string name="orange_settings_menu_dev">Dev</string>
+    <string name="orange_settings_menu_support">Support</string>
+    <string name="orange_settings_menu_wiki">Wiki</string>
+    <string name="orange_settings_menu_ota">OTA</string>
+    <string name="orange_settings_menu_info">Info</string>
+    <string name="orange_settings_menu_main" translatable="false">@string/orange_settings_title</string>
 </resources>

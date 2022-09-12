@@ -14,6 +14,7 @@ public class DaggerAppComponent {
 
     private static final class SettingsActivitySubcomponentImpl {
         private SettingsActivitySubcomponentImpl settingsActivitySubcomponentImpl;
+        private DaggerAppComponent appComponent;
 
         /* ... */
 
@@ -23,7 +24,7 @@ public class DaggerAppComponent {
             MapBuilder builder = null;
 
             /* ... */
-            OrangeSettings.get().inject(builder, settingsActivitySubcomponentImpl); // TODO: __INJECT_CODE
+            OrangeSettings.get().inject(builder, settingsActivitySubcomponentImpl, appComponent); // TODO: __INJECT_CODE
 
             /* ... */
 

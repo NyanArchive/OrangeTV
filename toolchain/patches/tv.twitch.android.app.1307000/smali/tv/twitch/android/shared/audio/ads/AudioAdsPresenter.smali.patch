@@ -1,7 +1,7 @@
 diff --git a/smali_classes5/tv/twitch/android/shared/audio/ads/AudioAdsPresenter.smali b/smali_classes5/tv/twitch/android/shared/audio/ads/AudioAdsPresenter.smali
 --- a/smali_classes5/tv/twitch/android/shared/audio/ads/AudioAdsPresenter.smali
 +++ b/smali_classes5/tv/twitch/android/shared/audio/ads/AudioAdsPresenter.smali
-@@ -698,7 +698,7 @@
+@@ -702,7 +702,7 @@
      :cond_0
      new-instance p1, Landroid/content/Intent;
  

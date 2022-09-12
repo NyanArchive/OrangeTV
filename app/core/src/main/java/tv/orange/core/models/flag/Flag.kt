@@ -146,17 +146,17 @@ enum class Flag(
         "orange_settings_bottom_navbar_position",
         ListValue(BottomNavbarPosition.Default),
     ),
-    CHAT_FONT_SIZE(// ++++++++++++++++++++++++++++++++++++++++++++
+    CHAT_FONT_SIZE(
         "chat_font_size",
         "orange_settings_chat_font_size",
         ListValue(FontSize.SP13),
     ),
-    EMOTE_QUALITY(// ++++++++++++++++++++++++++++++++++++++++++++
+    EMOTE_QUALITY(
         "emote_quality",
         "orange_settings_emote_quality",
         ListValue(EmoteQuality.MEDIUM),
     ),
-    LANDSCAPE_CHAT_SIZE(// ++++++++++++++++++++++++++++++++++++++++++++
+    LANDSCAPE_CHAT_SIZE(
         "landscape_chat_size",
         "orange_settings_landscape_chat_size",
         IntegerRangeValue(10, 50, 30),
@@ -176,12 +176,12 @@ enum class Flag(
         "orange_settings_mini_player_size",
         IntegerRangeValue(50, 200, 100, step = 5),
     ),
-    VIBRATION_DURATION(// ++++++++++++++++++++++++++++++++++++++++++++
+    VIBRATION_DURATION(
         "vibration_duration",
         "orange_settings_vibration_duration",
         IntegerRangeValue(10, 1000, 100, step = 10),
     ),
-    LANDSCAPE_CHAT_OPACITY(// ++++++++++++++++++++++++++++++++++++++++++++
+    LANDSCAPE_CHAT_OPACITY(
         "landscape_chat_opacity",
         "orange_settings_landscape_chat_opacity",
         IntegerRangeValue(0, 100, 30),

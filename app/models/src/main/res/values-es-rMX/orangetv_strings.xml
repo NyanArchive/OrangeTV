@@ -72,4 +72,15 @@
     <string name="orange_emote_quality_medium">Media</string>
     <string name="orange_emote_quality_large">Alta</string>
     <string name="orange_settings_compact_player_follow_view">Usar vista compacta para seguidores</string>
+    <string name="orange_settings_menu_third_party">De terceros</string>
+    <string name="orange_settings_menu_chat">Chat</string>
+    <string name="orange_settings_menu_player">Reproductor</string>
+    <string name="orange_settings_menu_gestures">Gestos</string>
+    <string name="orange_settings_menu_view">Vista</string>
+    <string name="orange_settings_menu_patches">Parches</string>
+    <string name="orange_settings_menu_dev">Desarrollador</string>
+    <string name="orange_settings_menu_support">Soporte</string>
+    <string name="orange_settings_menu_wiki">Wiki</string>
+    <string name="orange_settings_menu_ota">Actualización de Software</string>
+    <string name="orange_settings_menu_info">Información</string>
 </resources>

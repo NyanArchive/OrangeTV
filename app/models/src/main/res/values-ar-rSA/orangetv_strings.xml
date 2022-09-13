@@ -72,4 +72,15 @@
     <string name="orange_emote_quality_medium">متوسط</string>
     <string name="orange_emote_quality_large">كبير</string>
     <string name="orange_settings_compact_player_follow_view">استخدام عرض المتابعة المضغوط</string>
+    <string name="orange_settings_menu_third_party">جهة خارجية</string>
+    <string name="orange_settings_menu_chat">الدردشة</string>
+    <string name="orange_settings_menu_player">المشغل</string>
+    <string name="orange_settings_menu_gestures">الإختصارات</string>
+    <string name="orange_settings_menu_view">العرض</string>
+    <string name="orange_settings_menu_patches">التعديلات</string>
+    <string name="orange_settings_menu_dev">المطور</string>
+    <string name="orange_settings_menu_support">الدعم</string>
+    <string name="orange_settings_menu_wiki">صفحة ويكي</string>
+    <string name="orange_settings_menu_ota">تحديث النظام</string>
+    <string name="orange_settings_menu_info">معلومات</string>
 </resources>

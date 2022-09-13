@@ -20,7 +20,7 @@
     <string name="orange_stv_channel_emotes">Емоції каналу 7TV</string>
     <string name="orange_settings_hide_bits_button">Сховати кнопку «Bits»</string>
     <string name="orange_settings_disable_sticky_headers_ep">Вимкнути фіксацію імен (Панель емоцій)</string>
-    <string name="orange_settings_player_impl">Реалізація плеєра</string>
+    <string name="orange_settings_player_impl">Вибір програвача</string>
     <string name="orange_player_impl_default">За замовчуванням</string>
     <string name="orange_player_impl_core">TwitchCore</string>
     <string name="orange_player_impl_exo">ExoPlayer</string>
@@ -59,7 +59,7 @@
     <string name="orange_settings_landscape_chat_size">Ширина чату в повноекранному режимі</string>
     <string name="orange_settings_forward_seek">Перемотка вперед на</string>
     <string name="orange_settings_rewind_seek">Перемотка назад на</string>
-    <string name="orange_settings_mini_player_size">Розмір мініплеєра</string>
+    <string name="orange_settings_mini_player_size">Розмір мініпрогравача</string>
     <string name="orange_settings_vibrate_on_mention">Вібрувати при згадці</string>
     <string name="orange_settings_vibration_duration">Тривалість вібрації</string>
     <string name="orange_settings_hide_top_chat_panel_vods">Сховати верхню панель чату у відеозаписах</string>
@@ -72,4 +72,15 @@
     <string name="orange_emote_quality_medium">Середня</string>
     <string name="orange_emote_quality_large">Висока</string>
     <string name="orange_settings_compact_player_follow_view">Компактний інтерфейс відстеження</string>
+    <string name="orange_settings_menu_third_party">Сторонні ресурси</string>
+    <string name="orange_settings_menu_chat">Чат</string>
+    <string name="orange_settings_menu_player">Програвач</string>
+    <string name="orange_settings_menu_gestures">Керування жестами</string>
+    <string name="orange_settings_menu_view">Зовнішній вигляд</string>
+    <string name="orange_settings_menu_patches">Патчі</string>
+    <string name="orange_settings_menu_dev">Меню розробника</string>
+    <string name="orange_settings_menu_support">Підтримати</string>
+    <string name="orange_settings_menu_wiki">Довідка</string>
+    <string name="orange_settings_menu_ota">Оновлення</string>
+    <string name="orange_settings_menu_info">Інформація</string>
 </resources>

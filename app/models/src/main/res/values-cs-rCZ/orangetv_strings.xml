@@ -72,4 +72,15 @@
     <string name="orange_emote_quality_medium">Střední</string>
     <string name="orange_emote_quality_large">Vysoká</string>
     <string name="orange_settings_compact_player_follow_view">Použít kompaktní zobrazení tlačítka sledování</string>
+    <string name="orange_settings_menu_third_party">Třetí strana</string>
+    <string name="orange_settings_menu_chat">Chat</string>
+    <string name="orange_settings_menu_player">Přehrávač</string>
+    <string name="orange_settings_menu_gestures">Gesta</string>
+    <string name="orange_settings_menu_view">Zobrazení</string>
+    <string name="orange_settings_menu_patches">Doplňky</string>
+    <string name="orange_settings_menu_dev">Vývojář</string>
+    <string name="orange_settings_menu_support">Podpora</string>
+    <string name="orange_settings_menu_wiki">Wiki</string>
+    <string name="orange_settings_menu_ota">OTA</string>
+    <string name="orange_settings_menu_info">Informace</string>
 </resources>

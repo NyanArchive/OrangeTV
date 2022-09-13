@@ -72,4 +72,15 @@
     <string name="orange_emote_quality_medium">Orta</string>
     <string name="orange_emote_quality_large">Yüksek</string>
     <string name="orange_settings_compact_player_follow_view">Kompakt takip edilen görünümünü kullan</string>
+    <string name="orange_settings_menu_third_party">Üçüncü Şahıs</string>
+    <string name="orange_settings_menu_chat">Sohbet</string>
+    <string name="orange_settings_menu_player">Oynatıcı</string>
+    <string name="orange_settings_menu_gestures">Hareketler</string>
+    <string name="orange_settings_menu_view">Görüntüleme</string>
+    <string name="orange_settings_menu_patches">Yamalar</string>
+    <string name="orange_settings_menu_dev">Geliştirici</string>
+    <string name="orange_settings_menu_support">Destek</string>
+    <string name="orange_settings_menu_wiki">Wiki</string>
+    <string name="orange_settings_menu_ota">OTA</string>
+    <string name="orange_settings_menu_info">Bilgi</string>
 </resources>

@@ -106,11 +106,9 @@
     <string name="orange_settings_menu_third_party">Third Party</string>
     <string name="orange_settings_menu_chat">Chat</string>
     <string name="orange_settings_menu_player">Player</string>
-    <string name="orange_settings_menu_adblock">AdBlock</string>
     <string name="orange_settings_menu_gestures">Gestures</string>
     <string name="orange_settings_menu_view">View</string>
     <string name="orange_settings_menu_patches">Patches</string>
-    <string name="orange_settings_menu_lab">Lab</string>
     <string name="orange_settings_menu_dev">Dev</string>
     <string name="orange_settings_menu_support">Support</string>
     <string name="orange_settings_menu_wiki">Wiki</string>

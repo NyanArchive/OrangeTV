@@ -61,10 +61,6 @@ enum class OrangeSubMenu(
             Flag.MINI_PLAYER_SIZE
         )
     ),
-    Adblock(
-        destination = SettingsDestination.OrangeAdblock,
-        title = "orange_settings_menu_adblock"
-    ),
     Gestures(
         destination = SettingsDestination.OrangeGestures,
         title = "orange_settings_menu_gestures"
@@ -82,10 +78,6 @@ enum class OrangeSubMenu(
     Patches(
         destination = SettingsDestination.OrangePatches,
         title = "orange_settings_menu_patches"
-    ),
-    Lab(
-        destination = SettingsDestination.OrangeLab,
-        title = "orange_settings_menu_lab"
     ),
     Dev(
         destination = SettingsDestination.OrangeDev,

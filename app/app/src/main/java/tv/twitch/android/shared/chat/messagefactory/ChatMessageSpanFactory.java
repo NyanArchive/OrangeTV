@@ -36,6 +36,7 @@ import tv.twitch.android.shared.ui.elements.span.UrlDrawable;
 
 public class ChatMessageSpanFactory {
     private AnimatedEmotesUrlUtil animatedEmotesUrlUtil;
+    private final ChatHookProvider chatHookProvider = ChatHookProvider.get(); // TODO: __INJECT_FIELD
 
     /* ... */
 
@@ -52,7 +53,7 @@ public class ChatMessageSpanFactory {
     }
 
     public final ChatMessageSpanGroup createChatMessageSpanGroup(ChatMessageInterface chatMessageInfo, boolean z, boolean z2, int i, int i2, IClickableUsernameSpanListener iClickableUsernameSpanListener, TwitchUrlSpanClickListener twitchUrlSpanClickListener, WebViewSource webViewSource, String str, boolean z3, ChatFiltersSettings chatFiltersSettings, Integer num, EventDispatcher<ChatItemClickEvent> eventDispatcher, List<String> list, Set<EmoteModel.WithOwner> followerEmotes, CheermotesHelper cheermotesHelper) {
-        chatMessageInfo = ChatHookProvider.get().hookMessageInterface(chatMessageInfo, i2); // TODO: __INJECT_CODE
+        chatMessageInfo = chatHookProvider.hookMessageInterface(chatMessageInfo, i2); // TODO: __INJECT_CODE
 
         throw new VirtualImpl();
     }

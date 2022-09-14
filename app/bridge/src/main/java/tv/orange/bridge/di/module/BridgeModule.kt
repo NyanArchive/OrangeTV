@@ -26,7 +26,7 @@ class BridgeModule {
             return context.provideTCP()
         }
 
-        throw IllegalStateException("context must provide injector")
+        throw IllegalStateException("Application context must provide injector")
     }
 
     @BridgeScope

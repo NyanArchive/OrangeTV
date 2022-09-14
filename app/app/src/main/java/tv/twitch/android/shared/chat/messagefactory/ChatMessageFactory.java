@@ -26,6 +26,8 @@ import tv.twitch.android.shared.ui.elements.span.TwitchUrlSpanClickListener;
 import tv.twitch.chat.ChatMessageInfo;
 
 public class ChatMessageFactory {
+    private final ChatHookProvider chatHookProvider = ChatHookProvider.get(); // TODO: __INJECT_FIELD
+
     /* ... */
 
     public enum TextStyle {
@@ -56,7 +58,7 @@ public class ChatMessageFactory {
 
         /* ... */
 
-        ChatHookProvider.get().setShouldHighlightBackground(ret, chatMessageInfo); // TODO: __INJECT_CODE
+        chatHookProvider.setShouldHighlightBackground(ret, chatMessageInfo); // TODO: __INJECT_CODE
 
         throw new VirtualImpl();
     }

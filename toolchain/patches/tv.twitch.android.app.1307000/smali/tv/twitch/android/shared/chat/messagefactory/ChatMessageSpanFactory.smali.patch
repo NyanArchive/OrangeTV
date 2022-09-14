@@ -1,7 +1,29 @@
 diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory.smali b/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory.smali
 --- a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory.smali
 +++ b/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory.smali
-@@ -151,7 +151,22 @@
+@@ -37,6 +37,8 @@
+ 
+ .field private final webViewDialogRouter:Ltv/twitch/android/routing/routers/WebViewDialogRouter;
+ 
++.field private final chatHookProvider:Ltv/orange/features/chat/ChatHookProvider;
++
+ 
+ # direct methods
+ .method public static synthetic $r8$lambda$ZSA2jM2aPNt5h6aLk6mPCSBNB_I(Landroidx/fragment/app/FragmentActivity;Ltv/twitch/android/models/webview/WebViewSource;Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;Ljava/lang/String;)Landroid/text/style/ClickableSpan;
+@@ -127,6 +129,12 @@
+     .line 72
+     iput-object p8, p0, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;->webViewDialogRouter:Ltv/twitch/android/routing/routers/WebViewDialogRouter;
+ 
++    invoke-static {}, Ltv/orange/features/chat/ChatHookProvider;->get()Ltv/orange/features/chat/ChatHookProvider;
++
++    move-result-object v0
++
++    iput-object v0, p0, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;->chatHookProvider:Ltv/orange/features/chat/ChatHookProvider;
++
+     return-void
+ .end method
+ 
+@@ -151,7 +159,22 @@
  .method private final badgeSpannable(Ltv/twitch/android/models/chat/MessageBadge;I)Ljava/lang/CharSequence;
      .locals 11
  
@@ -25,7 +47,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      iget-object v0, p0, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;->badgeProvider:Ltv/twitch/android/shared/badges/ChatBadgeProvider;
  
      invoke-virtual {p1}, Ltv/twitch/android/models/chat/MessageBadge;->getName()Ljava/lang/String;
-@@ -1957,6 +1972,10 @@
+@@ -1957,6 +1980,10 @@
  .method private final usernameSpannable(Ltv/twitch/android/provider/chat/ChatMessageInterface;ILtv/twitch/android/shared/chat/chatsource/IClickableUsernameSpanListener;ZLjava/lang/String;Ljava/lang/String;)Ljava/lang/CharSequence;
      .locals 12
  
@@ -36,13 +58,13 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      if-eqz p4, :cond_0
  
      const/4 v0, 0x0
-@@ -2128,6 +2147,18 @@
+@@ -2128,6 +2155,18 @@
          }
      .end annotation
  
-+    invoke-static {}, Ltv/orange/features/chat/ChatHookProvider;->get()Ltv/orange/features/chat/ChatHookProvider;
++    move-object/from16 v1, p0
 +
-+    move-result-object v0
++    iget-object v0, v1, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;->chatHookProvider:Ltv/orange/features/chat/ChatHookProvider;
 +
 +    move-object/from16 v1, p1
 +
@@ -55,7 +77,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      const-string v0, "chatMessageInfo"
  
      move-object/from16 v15, p1
-@@ -2585,6 +2616,36 @@
+@@ -2585,6 +2624,36 @@
  
      .line 197
      :cond_7
@@ -92,7 +114,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      instance-of v1, v0, Ltv/twitch/android/models/chat/MessageToken$EmoticonToken;
  
      if-eqz v1, :cond_8
-@@ -2741,6 +2802,12 @@
+@@ -2741,6 +2810,12 @@
  
      invoke-direct {v0, v14}, Landroid/text/SpannedString;-><init>(Ljava/lang/CharSequence;)V
  
@@ -105,7 +127,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      return-object v0
  .end method
  
-@@ -2819,3 +2886,385 @@
+@@ -2819,3 +2894,385 @@
      :goto_0
      return-object p1
  .end method

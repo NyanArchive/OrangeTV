@@ -78,7 +78,7 @@
     <string name="orange_settings_menu_gestures">Gestos</string>
     <string name="orange_settings_menu_view">Vista</string>
     <string name="orange_settings_menu_patches">Parches</string>
-    <string name="orange_settings_menu_dev">Desarrollador</string>
+    <string name="orange_settings_menu_dev">Dev</string>
     <string name="orange_settings_menu_support">Soporte</string>
     <string name="orange_settings_menu_wiki">Wiki</string>
     <string name="orange_settings_menu_ota">Actualización de Software</string>

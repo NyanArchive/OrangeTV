@@ -76,6 +76,10 @@ public class MessageRecyclerItem implements IMessageRecyclerItem { // TODO: __IM
         throw new VirtualImpl();
     }
 
+    public final boolean getHasBeenDeleted() {
+        return this.hasBeenDeleted;
+    }
+
     @Override
     public void setHighlightColor(@Nullable Integer highlightColor) { // TODO: __INJECT_METHOD
         this.highlightColor = highlightColor;

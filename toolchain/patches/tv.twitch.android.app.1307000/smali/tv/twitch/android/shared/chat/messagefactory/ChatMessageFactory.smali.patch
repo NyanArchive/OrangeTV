@@ -23,7 +23,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      return-void
  .end method
  
-@@ -805,6 +813,14 @@
+@@ -805,6 +813,16 @@
  
      move-result-object v1
  
@@ -35,10 +35,12 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
 +    invoke-virtual {v0, v1, v2}, Ltv/orange/features/chat/ChatHookProvider;->setShouldHighlightBackground(Ltv/orange/features/chat/bridge/IMessageRecyclerItem;Ltv/twitch/android/provider/chat/ChatMessageInterface;)V
 +
++    invoke-static {v0, v2}, Ltv/orange/features/chat/ChatHookProvider;->fixDeletedMessage(Ltv/orange/features/chat/bridge/IMessageRecyclerItem;Ltv/twitch/android/provider/chat/ChatMessageInterface;)V
++
      return-object v1
  .end method
  
-@@ -2269,3 +2285,81 @@
+@@ -2269,3 +2287,81 @@
  
      return-void
  .end method

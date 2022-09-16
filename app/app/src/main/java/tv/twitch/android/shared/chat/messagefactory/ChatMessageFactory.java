@@ -59,6 +59,7 @@ public class ChatMessageFactory {
         /* ... */
 
         chatHookProvider.setShouldHighlightBackground(ret, chatMessageInfo); // TODO: __INJECT_CODE
+        ChatHookProvider.fixDeletedMessage(ret, chatMessageInfo);
 
         throw new VirtualImpl();
     }

@@ -454,24 +454,12 @@ class ChatHookProvider @Inject constructor(
 
         @JvmStatic
         fun fixDeletedMessage(
-            ret: SpannedString,
+            ret: IMessageRecyclerItem,
             cmi: ChatMessageInterface
-        ): SpannedString {
-            if (!cmi.isDeleted) {
-                return ret
+        ) {
+            if (cmi.isDeleted && !ret.getHasBeenDeleted()) {
+                ret.markAsDeleted()
             }
-
-            val builder = SpannableStringBuilder(ret)
-            return SpannedString(
-                when (Flag.DELETED_MESSAGES.asVariant<DeletedMessages>()) {
-                    DeletedMessages.Strikethrough -> createDeletedStrikethrough(message = builder)
-                    DeletedMessages.Grey -> createDeletedGrey(message = builder)
-                    DeletedMessages.Default -> "<${
-                        ResourceManager.get().getString("chat_message_deleted")
-                    }>"
-                    else -> createDeletedGrey(message = builder)
-                }
-            )
         }
     }
 

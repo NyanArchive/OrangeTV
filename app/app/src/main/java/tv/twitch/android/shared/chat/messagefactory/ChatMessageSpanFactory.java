@@ -79,8 +79,7 @@ public class ChatMessageSpanFactory {
 
         /* ... */
 
-        SpannedString ret = new SpannedString(spannableStringBuilder);
-        return ChatHookProvider.fixDeletedMessage(ret, chatMessageInterface); // TODO: __INJECT_CODE
+        throw new VirtualImpl();
     }
 
     private final CharSequence emoteSpannable(MessageToken.EmoticonToken emoticonToken, ChatMessageInterface chatMessageInterface, Integer num, EventDispatcher<ChatItemClickEvent> eventDispatcher) {

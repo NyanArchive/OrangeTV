@@ -25,7 +25,7 @@
     <string name="orange_player_impl_core">TwitchCore</string>
     <string name="orange_player_impl_exo">ExoPlayer</string>
     <string name="orange_settings_deleted_messages">Стиль видалених повідомлень</string>
-    <string name="orange_deleted_messages_default">Стандартний</string>
+    <string name="orange_deleted_messages_default">За замовчуванням</string>
     <string name="orange_deleted_messages_mod">Клікабельний</string>
     <string name="orange_deleted_messages_strikethrough">Закреслений</string>
     <string name="orange_deleted_messages_grey">Сірий</string>

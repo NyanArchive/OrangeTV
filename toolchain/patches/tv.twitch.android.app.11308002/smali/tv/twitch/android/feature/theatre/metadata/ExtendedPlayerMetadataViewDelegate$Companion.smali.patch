@@ -1,0 +1,14 @@
+diff --git a/smali_classes5/tv/twitch/android/feature/theatre/metadata/ExtendedPlayerMetadataViewDelegate$Companion.smali b/smali_classes5/tv/twitch/android/feature/theatre/metadata/ExtendedPlayerMetadataViewDelegate$Companion.smali
+--- a/smali_classes5/tv/twitch/android/feature/theatre/metadata/ExtendedPlayerMetadataViewDelegate$Companion.smali
++++ b/smali_classes5/tv/twitch/android/feature/theatre/metadata/ExtendedPlayerMetadataViewDelegate$Companion.smali
+@@ -59,6 +59,10 @@
+ 
+     sget v2, Ltv/twitch/android/feature/theatre/R$layout;->player_metadata_view_extended:I
+ 
++    invoke-static {v2}, Ltv/orange/features/ui/UI;->hookPlayerMetadataViewId(I)I
++
++    move-result v2
++
+     const/4 v3, 0x0
+ 
+     invoke-virtual {v1, v2, p2, v3}, Landroid/view/LayoutInflater;->inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;

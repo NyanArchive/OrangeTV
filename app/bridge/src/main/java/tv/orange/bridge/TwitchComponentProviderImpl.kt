@@ -28,7 +28,7 @@ class TwitchComponentProviderImpl private constructor() : TwitchComponentProvide
         )
         register(
             clazz = ChatMessageFactory.Factory::class,
-            provider = appComponent.getPrivateField("factoryProvider2")
+            provider = appComponent.getPrivateField("factoryProvider")
         )
     }
 

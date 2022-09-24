@@ -1,0 +1,41 @@
+diff --git a/smali_classes4/kotlin/jvm/internal/Intrinsics.smali b/smali_classes4/kotlin/jvm/internal/Intrinsics.smali
+--- a/smali_classes4/kotlin/jvm/internal/Intrinsics.smali
++++ b/smali_classes4/kotlin/jvm/internal/Intrinsics.smali
+@@ -550,3 +550,37 @@
+ 
+     return-void
+ .end method
++
++.method public static checkNotNull(Ljava/lang/Object;Ljava/lang/String;)V
++    .locals 0
++    .param p0, "object"    # Ljava/lang/Object;
++    .param p1, "message"    # Ljava/lang/String;
++
++    .line 30
++    if-nez p0, :cond_0
++
++    .line 31
++    invoke-static {p1}, Lkotlin/jvm/internal/Intrinsics;->throwJavaNpe(Ljava/lang/String;)V
++
++    .line 33
++    :cond_0
++    return-void
++.end method
++
++.method public static throwJavaNpe(Ljava/lang/String;)V
++    .locals 1
++    .param p0, "message"    # Ljava/lang/String;
++
++    .line 50
++    new-instance v0, Ljava/lang/NullPointerException;
++
++    invoke-direct {v0, p0}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
++
++    invoke-static {v0}, Lkotlin/jvm/internal/Intrinsics;->sanitizeStackTrace(Ljava/lang/Throwable;)Ljava/lang/Throwable;
++
++    move-result-object v0
++
++    check-cast v0, Ljava/lang/NullPointerException;
++
++    throw v0
++.end method

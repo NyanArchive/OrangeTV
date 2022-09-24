@@ -53,7 +53,7 @@
     <string name="orange_settings_disable_hype_train">Сховати «Хайпотяг»</string>
     <string name="orange_settings_hide_discover_tab">Сховати вкладку «Discover»</string>
     <string name="orange_restart_app">Перезапуск</string>
-    <string name="orange_restart_app_title">Оновити та перезапустити додаток?</string>
+    <string name="orange_restart_app_title">Оновити та перезапустити застосунок?</string>
     <string name="orange_settings_title">Налаштування OrangeTV</string>
     <string name="orange_settings_chat_font_size">Розмір шрифту у чаті</string>
     <string name="orange_settings_landscape_chat_size">Ширина чату в повноекранному режимі</string>

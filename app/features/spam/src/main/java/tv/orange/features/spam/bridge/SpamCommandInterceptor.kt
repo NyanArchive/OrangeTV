@@ -5,6 +5,7 @@ import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import tv.twitch.android.models.channel.ChannelInfo
 import tv.twitch.android.shared.chat.LiveChatSource
 import tv.twitch.android.shared.chat.command.ChatCommandAction
 import tv.twitch.android.shared.chat.command.ChatCommandInterceptor
@@ -52,7 +53,7 @@ class SpamCommandInterceptor(
 
     override fun parseChatCommand(
         strArr: Array<out String>?,
-        channelId: Int?,
+        p1: ChannelInfo?,
         p2: Long?
     ): ChatCommandAction {
         strArr ?: return ChatCommandAction.NoOp.INSTANCE

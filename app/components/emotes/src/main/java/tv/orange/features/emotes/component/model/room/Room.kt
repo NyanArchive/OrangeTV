@@ -13,6 +13,8 @@ interface Room {
 
     fun getEmote(code: String): Emote?
 
+    fun getEmote(code: String, emotePackageSet: EmotePackageSet): Emote?
+
     fun fetch()
 
     fun refresh()

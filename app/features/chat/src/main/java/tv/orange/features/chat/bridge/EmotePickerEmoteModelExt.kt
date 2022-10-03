@@ -6,29 +6,29 @@ import tv.twitch.android.models.emotes.EmoteModelAssetType
 import tv.twitch.android.models.emotes.EmoteModelType
 
 open class EmotePickerEmoteModelExt(
-    id: String?,
-    token: String?,
-    val channelId: Int,
+    emoteId: String?,
+    emoteToken: String?,
     isAnimated: Boolean,
+    val channelId: Int,
     val packageSet: EmotePackageSet
 ) : EmoteModel.Generic(
-    id,
-    token,
+    emoteId,
+    emoteToken,
     if (isAnimated) EmoteModelAssetType.ANIMATED else EmoteModelAssetType.STATIC,
     EmoteModelType.OTHER
 ) {
     class EmotePickerEmoteModelFav(
         val uid: Int,
-        id: String?,
-        token: String?,
-        channelId: Int,
+        emoteId: String?,
+        emoteToken: String?,
         isAnimated: Boolean,
+        channelId: Int,
         packageSet: EmotePackageSet
     ) : EmotePickerEmoteModelExt(
-        id,
-        token,
-        channelId,
-        isAnimated,
-        packageSet
+        emoteId = emoteId,
+        emoteToken = emoteToken,
+        isAnimated = isAnimated,
+        channelId = channelId,
+        packageSet = packageSet
     )
 }

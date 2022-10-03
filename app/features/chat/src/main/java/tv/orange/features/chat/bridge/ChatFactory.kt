@@ -2,7 +2,7 @@ package tv.orange.features.chat.bridge
 
 import tv.orange.core.ResourceManager
 import tv.orange.models.abc.EmotePackageSet
-import tv.orange.models.abc.OrangeEmoteType
+import tv.orange.models.data.emotes.Emote
 import tv.twitch.android.models.emotes.EmoteModelAssetType
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerPresenter
 import tv.twitch.android.shared.emotes.emotepicker.models.*
@@ -14,21 +14,19 @@ class ChatFactory @Inject constructor(
 ) {
     fun createFavEmoteUiModel(
         uid: Int,
-        emoteCode: String,
         emoteId: String,
+        emoteToken: String,
+        isAnimated: Boolean,
         channelId: Int,
-        animated: Boolean,
         packageSet: EmotePackageSet
     ): EmoteUiModel {
-        val emoteMessageInput = EmoteMessageInput(emoteCode, emoteId, true)
+        val emoteMessageInput = EmoteMessageInput(emoteToken, emoteId, true)
         val picker = EmotePickerEmoteModelExt.EmotePickerEmoteModelFav(
             uid = uid,
-            id = emoteId,
-            token = emoteCode,
+            emoteId = emoteId,
+            emoteToken = emoteToken,
+            isAnimated = isAnimated,
             channelId = channelId,
-            isAnimated = animated,
-            isTwitchEmote = packageSet.type == OrangeEmoteType.TWITCH,
-            isGlobalEmote = packageSet.isGlobal,
             packageSet = packageSet
         )
         return EmoteUiModel(
@@ -39,8 +37,8 @@ class ChatFactory @Inject constructor(
                 null,
                 emptyList()
             ),
-            if (animated) EmoteModelAssetType.ANIMATED else EmoteModelAssetType.STATIC,
-            if (animated) EmoteImageDescriptor.ANIMATED else EmoteImageDescriptor.NONE
+            if (isAnimated) EmoteModelAssetType.ANIMATED else EmoteModelAssetType.STATIC,
+            if (isAnimated) EmoteImageDescriptor.ANIMATED else EmoteImageDescriptor.NONE
         )
     }
 
@@ -69,12 +67,10 @@ class ChatFactory @Inject constructor(
         val emotePicker =
             EmotePickerEmoteModelExt.EmotePickerEmoteModelFav(
                 uid = uid,
-                id = emoteId,
-                token = emoteCode,
-                channelId = channelId,
+                emoteId = emoteId,
+                emoteToken = emoteCode,
                 isAnimated = animated,
-                isTwitchEmote = packageSet.type == OrangeEmoteType.TWITCH,
-                isGlobalEmote = packageSet.isGlobal,
+                channelId = channelId,
                 packageSet = packageSet
             )
         val clickedEmote = EmotePickerPresenter.ClickedEmote.Unlocked(
@@ -84,5 +80,31 @@ class ChatFactory @Inject constructor(
             emptyList()
         )
         return EmoteUiModelExt.EmoteUiModelWithUrl(emoteId, clickedEmote, url, animated)
+    }
+
+    fun createEmoteUiModel(
+        emote: Emote,
+        channelId: Int,
+        isAnimated: Boolean,
+        packageSet: EmotePackageSet
+    ): EmoteUiModel {
+        val emoteMessageInput = EmoteMessageInput(emote.getCode(), "-1", false)
+        val emotePicker = EmotePickerEmoteModelExt(
+            emoteId = "-1",
+            emoteToken = emote.getCode(),
+            isAnimated = isAnimated,
+            channelId = channelId,
+            packageSet = packageSet
+        )
+        val clickedEmote = EmotePickerPresenter.ClickedEmote.Unlocked(
+            emotePicker,
+            emoteMessageInput,
+            null,
+            emptyList()
+        )
+        return EmoteUiModelExt.EmoteUiModelWithUrl(
+            "-1", clickedEmote,
+            emote.getUrl(Emote.Size.LARGE), isAnimated
+        )
     }
 }

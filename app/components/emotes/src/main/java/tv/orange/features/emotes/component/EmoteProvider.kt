@@ -23,6 +23,13 @@ class EmoteProvider @Inject constructor(
         return channel[channelId]?.getEmote(code = code) ?: global.getEmote(code = code)
     }
 
+    fun getEmote(code: String, channelId: Int, emotePackageSet: EmotePackageSet): Emote? {
+        return channel[channelId]?.getEmote(
+            code = code,
+            emotePackageSet = emotePackageSet
+        ) ?: global.getEmote(code = code)
+    }
+
     fun requestChannelEmotes(channelId: Int) {
         channel[channelId]?.refresh() ?: fetchChannelEmotes(channelId = channelId)
     }

@@ -28,7 +28,7 @@ class FavEmotesDataSource @Inject constructor(
                     } else {
                         channelId
                     },
-                    emoteType = packageSet.type.name
+                    emoteType = packageSet.name
                 )
             )
         )

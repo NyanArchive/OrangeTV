@@ -16,6 +16,7 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
 import tv.orange.core.Core
+import tv.orange.core.Logger
 import tv.orange.core.PreferenceManager
 import tv.orange.core.PreferenceManager.Companion.isDarkThemeEnabled
 import tv.orange.core.ResourceManager
@@ -248,11 +249,10 @@ class ChatHookProvider @Inject constructor(
                                 EmotePickerSection.ORANGE,
                                 false
                             ), emotePair.second.map { emote ->
-                                createEmoteUiModel(
+                                chatFactory.createEmoteUiModel(
                                     emote = emote,
                                     channelId = channelId?.toInt() ?: 0,
                                     isAnimated = false,
-                                    isGlobalEmote = false,
                                     packageSet = emote.getPackageSet()
                                 )
                             })
@@ -268,20 +268,28 @@ class ChatHookProvider @Inject constructor(
         channelId: Int
     ): List<EmoteUiModel> {
         return entities.mapNotNull { entity ->
-            when (OrangeEmoteType.values().first { it.name == entity.emoteType }) {
+            Logger.debug("entity: $entity")
+            val packageSet = EmotePackageSet.values().first {
+                it.type.name == entity.emoteType
+            }
+            when (packageSet.type) {
                 OrangeEmoteType.TWITCH -> {
                     chatFactory.createFavEmoteUiModel(
                         uid = entity.uid,
-                        emoteCode = entity.emoteCode,
+                        emoteToken = entity.emoteCode,
                         emoteId = entity.emoteId ?: "",
                         channelId = entity.channelId.toIntOrNull() ?: -1,
-                        animated = false,
-                        packageSet = EmotePackageSet.TwitchChannel
+                        isAnimated = false,
+                        packageSet = packageSet
                     )
                 }
                 else -> {
-                    val emote = emoteProvider.getEmote(entity.emoteCode, channelId)
-                        ?: return@mapNotNull null
+                    val emote = emoteProvider.getEmote(
+                        code = entity.emoteCode,
+                        channelId = channelId,
+                        emotePackageSet = packageSet
+                    ) ?: return@mapNotNull null
+
                     chatFactory.createOrangeFavEmoteUiModel(
                         emote.getUrl(Emote.Size.LARGE),
                         uid = entity.uid,
@@ -289,7 +297,7 @@ class ChatHookProvider @Inject constructor(
                         emoteId = entity.emoteId ?: "",
                         channelId = entity.channelId.toIntOrNull() ?: -1,
                         animated = false,
-                        packageSet = EmotePackageSet.BttvChannel
+                        packageSet = packageSet
                     )
                 }
             }
@@ -439,34 +447,6 @@ class ChatHookProvider @Inject constructor(
             }
 
             return org
-        }
-
-        private fun createEmoteUiModel(
-            emote: Emote,
-            channelId: Int,
-            isAnimated: Boolean,
-            isGlobalEmote: Boolean,
-            packageSet: EmotePackageSet
-        ): EmoteUiModel {
-            val emoteMessageInput = EmoteMessageInput(emote.getCode(), "-1", false)
-            val emotePicker = EmotePickerEmoteModelExt(
-                "-1",
-                emote.getCode(),
-                channelId,
-                isAnimated,
-                isGlobalEmote,
-                packageSet
-            )
-            val clickedEmote = EmotePickerPresenter.ClickedEmote.Unlocked(
-                emotePicker,
-                emoteMessageInput,
-                null,
-                emptyList()
-            )
-            return EmoteUiModelExt.EmoteUiModelWithUrl(
-                "-1", clickedEmote,
-                emote.getUrl(Emote.Size.LARGE), isAnimated
-            )
         }
 
         @JvmStatic

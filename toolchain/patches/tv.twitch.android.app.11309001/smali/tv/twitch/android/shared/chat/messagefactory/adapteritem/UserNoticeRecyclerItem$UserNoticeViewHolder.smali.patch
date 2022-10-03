@@ -1,7 +1,7 @@
 diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder.smali b/smali_classes5/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder.smali
 --- a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder.smali
 +++ b/smali_classes5/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder.smali
-@@ -46,6 +46,17 @@
+@@ -48,6 +48,17 @@
  
  .field private final systemMessage:Landroid/widget/TextView;
  
@@ -19,7 +19,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/adapter
  
  # direct methods
  .method public constructor <init>(Landroid/view/View;)V
-@@ -219,3 +230,127 @@
+@@ -245,3 +256,127 @@
  
      return-void
  .end method

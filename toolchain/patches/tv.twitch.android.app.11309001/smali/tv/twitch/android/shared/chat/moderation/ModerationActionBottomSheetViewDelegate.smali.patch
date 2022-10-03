@@ -1,7 +1,7 @@
 diff --git a/smali_classes5/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetViewDelegate.smali b/smali_classes5/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetViewDelegate.smali
 --- a/smali_classes5/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetViewDelegate.smali
 +++ b/smali_classes5/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetViewDelegate.smali
-@@ -872,6 +872,16 @@
+@@ -876,6 +876,16 @@
  
      move-result-object v2
  

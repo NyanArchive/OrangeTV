@@ -1,7 +1,7 @@
 diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMessageFactory.smali b/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMessageFactory.smali
 --- a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMessageFactory.smali
 +++ b/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMessageFactory.smali
-@@ -43,6 +43,8 @@
+@@ -49,6 +49,8 @@
  
  .field private final useSDKForTokenization:Z
  
@@ -10,7 +10,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
  
  # direct methods
  .method public static synthetic $r8$lambda$-aTwVR7LrletfOzqefWHXSgUGz0()V
-@@ -169,6 +171,12 @@
+@@ -196,6 +198,12 @@
  
      iput-object p2, p0, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageFactory;->annotationSpanHelper:Ltv/twitch/android/shared/ui/elements/span/annotation/AnnotationSpanHelper;
  
@@ -23,7 +23,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      return-void
  .end method
  
-@@ -805,6 +813,16 @@
+@@ -838,6 +846,16 @@
  
      move-result-object v1
  
@@ -40,7 +40,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      return-object v1
  .end method
  
-@@ -2269,3 +2287,81 @@
+@@ -2798,3 +2816,81 @@
  
      return-void
  .end method

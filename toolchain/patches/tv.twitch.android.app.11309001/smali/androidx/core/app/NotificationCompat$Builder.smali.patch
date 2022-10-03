@@ -1,7 +1,7 @@
 diff --git a/smali/androidx/core/app/NotificationCompat$Builder.smali b/smali/androidx/core/app/NotificationCompat$Builder.smali
 --- a/smali/androidx/core/app/NotificationCompat$Builder.smali
 +++ b/smali/androidx/core/app/NotificationCompat$Builder.smali
-@@ -857,3 +857,16 @@
+@@ -866,3 +866,16 @@
  
      return-object p0
  .end method

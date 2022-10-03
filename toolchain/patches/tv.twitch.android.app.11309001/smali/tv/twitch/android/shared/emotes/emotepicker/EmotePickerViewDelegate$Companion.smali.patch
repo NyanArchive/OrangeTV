@@ -1,0 +1,21 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate$Companion.smali b/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate$Companion.smali
+--- a/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate$Companion.smali
++++ b/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate$Companion.smali
+@@ -128,10 +128,17 @@
+ 
+     move-result-object p2
+ 
++    invoke-static {}, Ltv/orange/features/chat/ChatHookProvider;->enableStickyHeaders()Z
++
++    move-result v1
++
++    if-eqz v1, :cond_z
++
+     .line 61
+     invoke-virtual {p2}, Ltv/twitch/android/shared/ui/elements/list/ContentListViewDelegate;->enableStickyHeaders()V
+ 
+     .line 64
++    :cond_z
+     sget v1, Ltv/twitch/android/core/resources/R$id;->emote_palette:I
+ 
+     invoke-virtual {p2, v1}, Ltv/twitch/android/shared/ui/elements/list/ContentListViewDelegate;->setGridViewId(I)V

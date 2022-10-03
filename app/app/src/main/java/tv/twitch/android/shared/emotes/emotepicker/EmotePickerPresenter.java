@@ -30,5 +30,7 @@ public class EmotePickerPresenter {
         return map;
     }
 
+    public static abstract class ClickEvent {}
+
     /* ... */
 }

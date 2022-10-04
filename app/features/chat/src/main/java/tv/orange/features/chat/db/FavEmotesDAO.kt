@@ -14,12 +14,12 @@ interface FavEmotesDAO {
     @Query("SELECT * FROM emotes")
     fun getAll(): Single<List<FavEmoteEntity>>
 
-    @Query("SELECT * FROM emotes WHERE channelId LIKE :channelId OR channelId = '-1'")
-    fun  getForChannel(channelId: String): Single<List<FavEmoteEntity>>
+    @Query("SELECT * FROM emotes WHERE (channelId = :channelId AND channelId != 1) OR isGlobalEmote = 1 OR (isTwitchEmote = 1 AND channelId = -1)")
+    fun getForChannel(channelId: String): Single<List<FavEmoteEntity>>
 
     @Insert
     fun insert(favEmoteEntity: List<FavEmoteEntity>): Completable
 
-    @Query("DELETE FROM emotes WHERE uid = :uid")
-    fun deleteByUid(uid: Int): Completable
+    @Query("DELETE FROM emotes WHERE emoteType = :type AND channelId = :channelId AND emoteCode = :code")
+    fun delete(type: String, channelId: String, code: String): Completable
 }

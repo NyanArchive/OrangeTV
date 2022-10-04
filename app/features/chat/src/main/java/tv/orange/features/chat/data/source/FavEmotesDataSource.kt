@@ -2,43 +2,31 @@ package tv.orange.features.chat.data.source
 
 import io.reactivex.Completable
 import io.reactivex.Single
+import tv.orange.core.Logger
+import tv.orange.features.chat.data.mapper.FavEmotesMapper
+import tv.orange.features.chat.data.model.FavEmote
 import tv.orange.features.chat.db.FavEmotesDatabase
-import tv.orange.features.chat.db.entities.FavEmoteEntity
-import tv.orange.models.abc.EmotePackageSet
-import tv.orange.models.abc.OrangeEmoteType
 import javax.inject.Inject
 
 class FavEmotesDataSource @Inject constructor(
+    val mapper: FavEmotesMapper,
     val db: FavEmotesDatabase
 ) {
-    fun addEmote(
-        channelId: String,
-        emoteCode: String,
-        emoteId: String?,
-        packageSet: EmotePackageSet
-    ): Completable {
-        return db.favEmotesDAO().insert(
-            listOf(
-                FavEmoteEntity(
-                    isTwitchEmote = packageSet.type == OrangeEmoteType.TWITCH,
-                    emoteId = emoteId,
-                    emoteCode = emoteCode,
-                    channelId = if (packageSet.isGlobal) {
-                        "-1"
-                    } else {
-                        channelId
-                    },
-                    emoteType = packageSet.name
-                )
-            )
-        )
+    fun addEmote(favEmote: FavEmote): Completable {
+        Logger.debug("favEmote: $favEmote")
+        val entity = mapper.mapEmote(favEmote)
+        Logger.debug("entity: $entity")
+        return db.favEmotesDAO().insert(listOf(entity))
     }
 
-    fun delete(uid: Int): Completable {
-        return db.favEmotesDAO().deleteByUid(uid = uid)
+    fun delete(type: String, channelId: String, code: String): Completable {
+        Logger.debug("type: $type, channelId: $channelId, code: $code")
+        return db.favEmotesDAO().delete(type, channelId, code)
     }
 
-    fun getChannelEmotes(channelId: Int): Single<List<FavEmoteEntity>> {
+    fun getChannelEmotes(channelId: Int): Single<List<FavEmote>> {
+        Logger.debug("channelId: $channelId")
         return db.favEmotesDAO().getForChannel(channelId = channelId.toString())
+            .map { mapper.mapEmotes(it) }
     }
 }

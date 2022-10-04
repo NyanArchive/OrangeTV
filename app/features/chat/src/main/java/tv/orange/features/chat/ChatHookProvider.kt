@@ -16,7 +16,6 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
 import tv.orange.core.Core
-import tv.orange.core.Logger
 import tv.orange.core.PreferenceManager
 import tv.orange.core.PreferenceManager.Companion.isDarkThemeEnabled
 import tv.orange.core.ResourceManager
@@ -34,8 +33,10 @@ import tv.orange.core.models.lifecycle.LifecycleAware
 import tv.orange.features.badges.bridge.OrangeMessageBadge
 import tv.orange.features.badges.component.BadgeProvider
 import tv.orange.features.chat.bridge.*
+import tv.orange.features.chat.data.model.FavEmote
+import tv.orange.features.chat.data.model.OrangeFavEmote
+import tv.orange.features.chat.data.model.TwitchFavEmote
 import tv.orange.features.chat.data.repository.FavEmotesRepository
-import tv.orange.features.chat.db.entities.FavEmoteEntity
 import tv.orange.features.chat.util.ChatUtil
 import tv.orange.features.chat.util.ChatUtil.createDeletedGrey
 import tv.orange.features.chat.util.ChatUtil.createDeletedStrikethrough
@@ -51,13 +52,14 @@ import tv.orange.models.AutoInitialize
 import tv.orange.models.abc.EmoteCardModelWrapper
 import tv.orange.models.abc.EmotePackageSet
 import tv.orange.models.abc.Feature
-import tv.orange.models.abc.OrangeEmoteType
 import tv.orange.models.data.emotes.Emote
 import tv.twitch.android.core.adapters.RecyclerAdapterItem
 import tv.twitch.android.core.user.TwitchAccountManager
 import tv.twitch.android.models.chat.MessageBadge
 import tv.twitch.android.models.chat.MessageToken
 import tv.twitch.android.models.emotes.EmoteCardModelResponse
+import tv.twitch.android.models.emotes.EmoteModelAssetType
+import tv.twitch.android.models.emotes.EmoteModelType
 import tv.twitch.android.models.emotes.EmoteSet
 import tv.twitch.android.provider.chat.ChatMessageInterface
 import tv.twitch.android.shared.chat.adapter.item.ChatMessageClickedEvents
@@ -68,7 +70,6 @@ import tv.twitch.android.shared.emotes.emotepicker.models.EmoteHeaderUiModel
 import tv.twitch.android.shared.emotes.emotepicker.models.EmotePickerSection
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiModel
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiSet
-import tv.twitch.android.shared.emotes.models.EmoteMessageInput
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -264,40 +265,36 @@ class ChatHookProvider @Inject constructor(
     }
 
     private fun mapDBEmotesToUiSet(
-        entities: List<FavEmoteEntity>,
+        entities: List<FavEmote>,
         channelId: Int
     ): List<EmoteUiModel> {
-        return entities.mapNotNull { entity ->
-            Logger.debug("entity: $entity")
-            val packageSet = EmotePackageSet.values().first {
-                it.type.name == entity.emoteType
-            }
-            when (packageSet.type) {
-                OrangeEmoteType.TWITCH -> {
+        return entities.filter {
+            it.getChannelId() == -1 || it.getChannelId() == channelId
+        }.mapNotNull {
+            when (it) {
+                is TwitchFavEmote -> {
                     chatFactory.createFavEmoteUiModel(
-                        uid = entity.uid,
-                        emoteToken = entity.emoteCode,
-                        emoteId = entity.emoteId ?: "",
-                        channelId = entity.channelId.toIntOrNull() ?: -1,
-                        isAnimated = false,
-                        packageSet = packageSet
+                        emoteToken = it.getCode(),
+                        emoteId = it.emoteId,
+                        channelId = it.getChannelId(),
+                        isAnimated = it.isAnimated(),
+                        packageSet = it.getPackageSet()
                     )
                 }
-                else -> {
+                is OrangeFavEmote -> {
                     val emote = emoteProvider.getEmote(
-                        code = entity.emoteCode,
-                        channelId = channelId,
-                        emotePackageSet = packageSet
+                        code = it.getCode(),
+                        channelId = it.getChannelId(),
+                        emotePackageSet = it.getPackageSet()
                     ) ?: return@mapNotNull null
 
                     chatFactory.createOrangeFavEmoteUiModel(
                         emote.getUrl(Emote.Size.LARGE),
-                        uid = entity.uid,
-                        emoteCode = entity.emoteCode,
-                        emoteId = entity.emoteId ?: "",
-                        channelId = entity.channelId.toIntOrNull() ?: -1,
-                        animated = false,
-                        packageSet = packageSet
+                        emoteCode = it.getCode(),
+                        emoteId = "",
+                        channelId = it.getChannelId(),
+                        animated = it.isAnimated(),
+                        packageSet = it.getPackageSet()
                     )
                 }
             }
@@ -313,7 +310,7 @@ class ChatHookProvider @Inject constructor(
             favEmotesRepository.getChannelEmotes(channelId = channelId?.toInt() ?: -1).observeOn(
                 Schedulers.computation()
             ).map {
-                mapDBEmotesToUiSet(it, channelId = channelId?.toInt() ?: -1)
+                mapDBEmotesToUiSet(it, channelId?.toInt() ?: -1)
             }.map {
                 chatFactory.createFavEmoteUiSet(it)
             }.observeOn(AndroidSchedulers.mainThread()).map { set: EmoteUiSet ->
@@ -419,6 +416,16 @@ class ChatHookProvider @Inject constructor(
         @JvmStatic
         fun destroy() {
             Core.destroyFeature(ChatHookProvider::class.java)
+        }
+
+        @JvmStatic
+        fun sortEmoteSets(list: MutableList<EmoteUiSet>): MutableList<EmoteUiSet> {
+            list.find { it.header.emotePickerSection.equals(EmotePickerSection.FAV) }?.let {
+                list.remove(it)
+                list.add(0, it)
+            }
+
+            return list
         }
 
         private fun packageTokenToId(token: EmotePackageSet): Int {
@@ -660,30 +667,39 @@ class ChatHookProvider @Inject constructor(
 
         if (model is EmotePickerEmoteModelExt) {
             if (model is EmotePickerEmoteModelExt.EmotePickerEmoteModelFav) {
-                favEmotesRepository.deleteEmote(model.uid)
+                favEmotesRepository.deleteEmote(
+                    type = model.packageSet.name,
+                    channelId = model.channelId.toString(),
+                    code = model.token
+                )
                 Toast.makeText(
                     Core.get().context,
-                    "Deleted: ${model.token} [${model.uid}]",
-                    Toast.LENGTH_LONG
+                    "Deleted: ${model.token}",
+                    Toast.LENGTH_SHORT
                 ).show()
             } else {
                 favEmotesRepository.addEmote(
-                    channelId = model.channelId,
-                    emoteCode = model.token,
-                    emoteId = model.id,
-                    packageSet = model.packageSet
+                    OrangeFavEmote(
+                        code = model.token,
+                        isAnimated = model.assetType == EmoteModelAssetType.ANIMATED,
+                        channelId = model.channelId,
+                        packageSet = model.packageSet
+                    )
                 )
-                Toast.makeText(Core.get().context, "Added: ${model.token}", Toast.LENGTH_LONG)
+                Toast.makeText(Core.get().context, "Added: ${model.token}", Toast.LENGTH_SHORT)
                     .show()
             }
         } else {
             favEmotesRepository.addEmote(
-                channelId = -1,
-                emoteCode = model.token,
-                emoteId = model.id,
-                packageSet = EmotePackageSet.TwitchChannel
+                TwitchFavEmote(
+                    code = model.token,
+                    isAnimated = model.assetType == EmoteModelAssetType.ANIMATED,
+                    channelId = clickedEmote.trackingMetadata?.chatChannelId ?: -1,
+                    packageSet = EmotePackageSet.TwitchChannel,
+                    emoteId = model.id
+                )
             )
-            Toast.makeText(Core.get().context, "Added: ${model.token}", Toast.LENGTH_LONG).show()
+            Toast.makeText(Core.get().context, "Added: ${model.token}", Toast.LENGTH_SHORT).show()
         }
 
         return true

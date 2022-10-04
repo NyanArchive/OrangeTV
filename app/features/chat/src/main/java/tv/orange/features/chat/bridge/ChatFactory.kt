@@ -13,7 +13,6 @@ class ChatFactory @Inject constructor(
     val resourceManager: ResourceManager
 ) {
     fun createFavEmoteUiModel(
-        uid: Int,
         emoteId: String,
         emoteToken: String,
         isAnimated: Boolean,
@@ -22,7 +21,6 @@ class ChatFactory @Inject constructor(
     ): EmoteUiModel {
         val emoteMessageInput = EmoteMessageInput(emoteToken, emoteId, true)
         val picker = EmotePickerEmoteModelExt.EmotePickerEmoteModelFav(
-            uid = uid,
             emoteId = emoteId,
             emoteToken = emoteToken,
             isAnimated = isAnimated,
@@ -56,7 +54,6 @@ class ChatFactory @Inject constructor(
 
     fun createOrangeFavEmoteUiModel(
         url: String,
-        uid: Int,
         emoteCode: String,
         emoteId: String,
         channelId: Int,
@@ -66,7 +63,6 @@ class ChatFactory @Inject constructor(
         val emoteMessageInput = EmoteMessageInput(emoteCode, emoteId, false)
         val emotePicker =
             EmotePickerEmoteModelExt.EmotePickerEmoteModelFav(
-                uid = uid,
                 emoteId = emoteId,
                 emoteToken = emoteCode,
                 isAnimated = animated,

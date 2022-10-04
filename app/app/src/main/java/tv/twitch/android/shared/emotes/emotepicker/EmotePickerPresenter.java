@@ -5,6 +5,7 @@ import java.util.List;
 import io.reactivex.Flowable;
 import kotlin.Pair;
 import tv.orange.features.chat.ChatHookProvider;
+import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.core.mvp.presenter.PresenterState;
 import tv.twitch.android.core.mvp.viewdelegate.ViewDelegateState;
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiSet;
@@ -29,6 +30,13 @@ public class EmotePickerPresenter {
 
         return map;
     }
+
+    public final void updateOnNewEmoteSets(List<EmoteUiSet> list, boolean z) {
+        list = ChatHookProvider.sortEmoteSets(list); // TODO: __INJECT_CODE
+
+        throw new VirtualImpl();
+    }
+
 
     public static abstract class ClickEvent {}
 

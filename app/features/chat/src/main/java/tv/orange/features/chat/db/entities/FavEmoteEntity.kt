@@ -7,8 +7,10 @@ import androidx.room.PrimaryKey
 data class FavEmoteEntity(
     @PrimaryKey(autoGenerate = true) var uid: Int = 0,
     val isTwitchEmote: Boolean,
+    val isGlobalEmote: Boolean,
     val emoteId: String?,
     val emoteCode: String,
     val channelId: String,
-    val emoteType: String
+    val emoteType: String,
+    val isAnimated: Boolean
 )

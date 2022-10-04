@@ -18,7 +18,6 @@ open class EmotePickerEmoteModelExt(
     EmoteModelType.OTHER
 ) {
     class EmotePickerEmoteModelFav(
-        val uid: Int,
         emoteId: String?,
         emoteToken: String?,
         isAnimated: Boolean,

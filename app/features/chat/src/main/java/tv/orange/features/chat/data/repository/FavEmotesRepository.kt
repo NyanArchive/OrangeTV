@@ -3,9 +3,8 @@ package tv.orange.features.chat.data.repository
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import tv.orange.features.chat.data.model.FavEmote
 import tv.orange.features.chat.data.source.FavEmotesDataSource
-import tv.orange.features.chat.db.entities.FavEmoteEntity
-import tv.orange.models.abc.EmotePackageSet
 import javax.inject.Inject
 
 class FavEmotesRepository @Inject constructor(
@@ -13,29 +12,20 @@ class FavEmotesRepository @Inject constructor(
 ) {
     private val disposables = CompositeDisposable()
 
-    fun getChannelEmotes(channelId: Int): Single<List<FavEmoteEntity>> {
+    fun getChannelEmotes(channelId: Int): Single<List<FavEmote>> {
         return source.getChannelEmotes(channelId)
     }
 
-    fun deleteEmote(uid: Int) {
+    fun deleteEmote(type: String, channelId: String, code: String) {
         disposables.add(
-            source.delete(uid).subscribeOn(Schedulers.io()).subscribe({}, { it.printStackTrace() })
+            source.delete(type, channelId, code).subscribeOn(Schedulers.io()).subscribe({}, { it.printStackTrace() })
         )
     }
 
-    fun addEmote(
-        channelId: Int,
-        emoteCode: String,
-        emoteId: String?,
-        packageSet: EmotePackageSet
-    ) {
+    fun addEmote(favEmote: FavEmote) {
         disposables.add(
-            source.addEmote(
-                channelId = channelId.toString(),
-                emoteCode = emoteCode,
-                emoteId = emoteId,
-                packageSet = packageSet
-            ).subscribeOn(Schedulers.io()).subscribe({}, { it.printStackTrace() })
+            source.addEmote(favEmote).subscribeOn(Schedulers.io())
+                .subscribe({}, { it.printStackTrace() })
         )
     }
 }

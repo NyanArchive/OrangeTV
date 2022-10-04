@@ -3,15 +3,67 @@ package tv.orange.models.abc
 enum class EmotePackageSet(
     val value: String,
     val resName: String,
-    val type: OrangeEmoteType,
+    val emoteType: OrangeEmoteType,
     val isGlobal: Boolean
 ) {
-    TwitchChannel("TWITCH-CHANNEL", "orange_emotecard_twitch_channel", OrangeEmoteType.TWITCH, false),
-    BttvChannel("BTTV-CHANNEL", "orange_emotecard_bttv_channel", OrangeEmoteType.BTTV, false),
-    FfzChannel("FFZ-CHANNEL", "orange_emotecard_ffz_channel", OrangeEmoteType.FFZ, false),
-    StvChannel("7TV-CHANNEL", "orange_emotecard_stv_channel", OrangeEmoteType.STV, false),
-    TwitchGlobal("TWITCH-CHANNEL", "orange_emotecard_twitch_global", OrangeEmoteType.TWITCH, true),
-    BttvGlobal("BTTV-GLOBAL", "orange_emotecard_bttv_global", OrangeEmoteType.BTTV, true),
-    FfzGlobal("FFZ-GLOBAL", "orange_emotecard_ffz_global", OrangeEmoteType.FFZ, true),
-    StvGlobal("7TV-GLOBAL", "orange_emotecard_stv_global", OrangeEmoteType.STV, true)
+    Unknown(
+        value = "UNKNOWN",
+        resName = "orange_emotecard_unknown",
+        emoteType = OrangeEmoteType.UNKNOWN,
+        isGlobal = false
+    ),
+    TwitchChannel(
+        value = "TWITCH-CHANNEL",
+        resName = "orange_emotecard_twitch_channel",
+        emoteType = OrangeEmoteType.TWITCH,
+        isGlobal = false
+    ),
+    BttvChannel(
+        value = "BTTV-CHANNEL",
+        resName = "orange_emotecard_bttv_channel",
+        emoteType = OrangeEmoteType.BTTV,
+        isGlobal = false
+    ),
+    FfzChannel(
+        value = "FFZ-CHANNEL",
+        resName = "orange_emotecard_ffz_channel",
+        emoteType = OrangeEmoteType.FFZ,
+        isGlobal = false
+    ),
+    StvChannel(
+        value = "7TV-CHANNEL",
+        resName = "orange_emotecard_stv_channel",
+        emoteType = OrangeEmoteType.STV,
+        isGlobal = false
+    ),
+    TwitchGlobal(
+        value = "TWITCH-CHANNEL",
+        "orange_emotecard_twitch_global",
+        emoteType = OrangeEmoteType.TWITCH,
+        isGlobal = true
+    ),
+    BttvGlobal(
+        value = "BTTV-GLOBAL",
+        resName = "orange_emotecard_bttv_global",
+        emoteType = OrangeEmoteType.BTTV,
+        isGlobal = true
+    ),
+    FfzGlobal(
+        value = "FFZ-GLOBAL",
+        resName = "orange_emotecard_ffz_global",
+        emoteType = OrangeEmoteType.FFZ,
+        isGlobal = true
+    ),
+    StvGlobal(
+        value = "7TV-GLOBAL",
+        resName = "orange_emotecard_stv_global",
+        emoteType = OrangeEmoteType.STV,
+        isGlobal = true
+    );
+
+    companion object {
+        fun from(name: String): EmotePackageSet {
+            return values().firstOrNull { it.name == name } ?: Unknown
+        }
+    }
 }

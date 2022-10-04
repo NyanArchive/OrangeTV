@@ -11,7 +11,7 @@ abstract class FavEmotesDatabase : RoomDatabase() {
     abstract fun favEmotesDAO(): FavEmotesDAO
 
     companion object {
-        private const val DATABASE_NAME = "favemotes_v2"
+        private const val DATABASE_NAME = "orange_favemotes_v2"
 
         val INSTANCE by lazy {
             Room.databaseBuilder(

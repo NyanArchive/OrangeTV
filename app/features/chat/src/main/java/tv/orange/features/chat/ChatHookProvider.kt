@@ -2,16 +2,17 @@ package tv.orange.features.chat
 
 import android.content.Context
 import android.graphics.Color
-import android.text.SpannableStringBuilder
 import android.text.Spanned
-import android.text.SpannedString
 import android.util.TypedValue
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
 import tv.orange.core.Core
@@ -32,6 +33,10 @@ import tv.orange.core.models.lifecycle.LifecycleAware
 import tv.orange.features.badges.bridge.OrangeMessageBadge
 import tv.orange.features.badges.component.BadgeProvider
 import tv.orange.features.chat.bridge.*
+import tv.orange.features.chat.data.model.FavEmote
+import tv.orange.features.chat.data.model.OrangeFavEmote
+import tv.orange.features.chat.data.model.TwitchFavEmote
+import tv.orange.features.chat.data.repository.FavEmotesRepository
 import tv.orange.features.chat.util.ChatUtil
 import tv.orange.features.chat.util.ChatUtil.createDeletedGrey
 import tv.orange.features.chat.util.ChatUtil.createDeletedStrikethrough
@@ -53,6 +58,8 @@ import tv.twitch.android.core.user.TwitchAccountManager
 import tv.twitch.android.models.chat.MessageBadge
 import tv.twitch.android.models.chat.MessageToken
 import tv.twitch.android.models.emotes.EmoteCardModelResponse
+import tv.twitch.android.models.emotes.EmoteModelAssetType
+import tv.twitch.android.models.emotes.EmoteModelType
 import tv.twitch.android.models.emotes.EmoteSet
 import tv.twitch.android.provider.chat.ChatMessageInterface
 import tv.twitch.android.shared.chat.adapter.item.ChatMessageClickedEvents
@@ -63,7 +70,6 @@ import tv.twitch.android.shared.emotes.emotepicker.models.EmoteHeaderUiModel
 import tv.twitch.android.shared.emotes.emotepicker.models.EmotePickerSection
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiModel
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiSet
-import tv.twitch.android.shared.emotes.models.EmoteMessageInput
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -76,7 +82,9 @@ class ChatHookProvider @Inject constructor(
     val pronounProvider: PronounProvider,
     val viewFactory: ViewFactory,
     val twitchAccountManager: TwitchAccountManager,
-    val supportBridge: SupportBridge
+    val supportBridge: SupportBridge,
+    val favEmotesRepository: FavEmotesRepository,
+    val chatFactory: ChatFactory
 ) : LifecycleAware, FlagListener, Feature, SupportBridge.Callback {
     private val currentChannelSubject = BehaviorSubject.create<Int>()
 
@@ -226,7 +234,7 @@ class ChatHookProvider @Inject constructor(
     }
 
     @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
-    fun hookEmoteSetsFlowable(
+    private fun injectThirdPartyUISets(
         map: Flowable<Pair<EmoteUiSet, MutableList<EmoteUiSet>>>,
         channelId: Integer?
     ): Flowable<Pair<EmoteUiSet, MutableList<EmoteUiSet>>> {
@@ -242,16 +250,79 @@ class ChatHookProvider @Inject constructor(
                                 EmotePickerSection.ORANGE,
                                 false
                             ), emotePair.second.map { emote ->
-                                createEmoteUiModel(
+                                chatFactory.createEmoteUiModel(
                                     emote = emote,
                                     channelId = channelId?.toInt() ?: 0,
-                                    isAnimated = false
+                                    isAnimated = false,
+                                    packageSet = emote.getPackageSet()
                                 )
                             })
                     )
                 }
 
             return@map pair
+        }
+    }
+
+    private fun mapDBEmotesToUiSet(
+        entities: List<FavEmote>,
+        channelId: Int
+    ): List<EmoteUiModel> {
+        return entities.filter {
+            it.getChannelId() == -1 || it.getChannelId() == channelId
+        }.mapNotNull {
+            when (it) {
+                is TwitchFavEmote -> {
+                    chatFactory.createFavEmoteUiModel(
+                        emoteToken = it.getCode(),
+                        emoteId = it.emoteId,
+                        channelId = it.getChannelId(),
+                        isAnimated = it.isAnimated(),
+                        packageSet = it.getPackageSet()
+                    )
+                }
+                is OrangeFavEmote -> {
+                    val emote = emoteProvider.getEmote(
+                        code = it.getCode(),
+                        channelId = it.getChannelId(),
+                        emotePackageSet = it.getPackageSet()
+                    ) ?: return@mapNotNull null
+
+                    chatFactory.createOrangeFavEmoteUiModel(
+                        emote.getUrl(Emote.Size.LARGE),
+                        emoteCode = it.getCode(),
+                        emoteId = "",
+                        channelId = it.getChannelId(),
+                        animated = it.isAnimated(),
+                        packageSet = it.getPackageSet()
+                    )
+                }
+            }
+        }
+    }
+
+    @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
+    fun hookEmoteSetsFlowable(
+        map: Flowable<Pair<EmoteUiSet, MutableList<EmoteUiSet>>>,
+        channelId: Integer?
+    ): Flowable<Pair<EmoteUiSet, MutableList<EmoteUiSet>>> {
+        return injectThirdPartyUISets(map, channelId).flatMap { pair ->
+            favEmotesRepository.getChannelEmotes(channelId = channelId?.toInt() ?: -1).observeOn(
+                Schedulers.computation()
+            ).map {
+                mapDBEmotesToUiSet(it, channelId?.toInt() ?: -1)
+            }.map {
+                chatFactory.createFavEmoteUiSet(it)
+            }.observeOn(AndroidSchedulers.mainThread()).map { set: EmoteUiSet ->
+                pair.second.find { it.header.emotePickerSection.equals(EmotePickerSection.FAV) }
+                    ?.let {
+                        pair.second.remove(it)
+                    }
+                if (set.emotes.isNotEmpty()) {
+                    pair.second.add(0, set)
+                }
+                pair
+            }.toFlowable()
         }
     }
 
@@ -347,6 +418,16 @@ class ChatHookProvider @Inject constructor(
             Core.destroyFeature(ChatHookProvider::class.java)
         }
 
+        @JvmStatic
+        fun sortEmoteSets(list: MutableList<EmoteUiSet>): MutableList<EmoteUiSet> {
+            list.find { it.header.emotePickerSection.equals(EmotePickerSection.FAV) }?.let {
+                list.remove(it)
+                list.add(0, it)
+            }
+
+            return list
+        }
+
         private fun packageTokenToId(token: EmotePackageSet): Int {
             val resName = when (token) {
                 EmotePackageSet.BttvGlobal -> "orange_bttv_global_emotes"
@@ -373,25 +454,6 @@ class ChatHookProvider @Inject constructor(
             }
 
             return org
-        }
-
-        private fun createEmoteUiModel(
-            emote: Emote,
-            channelId: Int,
-            isAnimated: Boolean
-        ): EmoteUiModel {
-            val emoteMessageInput = EmoteMessageInput(emote.getCode(), "-1", false)
-            val emotePicker = EmotePickerEmoteModelExt("-1", emote.getCode(), channelId, isAnimated)
-            val clickedEmote = EmotePickerPresenter.ClickedEmote.Unlocked(
-                emotePicker,
-                emoteMessageInput,
-                null,
-                emptyList()
-            )
-            return EmoteUiModelExt.EmoteUiModelWithUrl(
-                "-1", clickedEmote,
-                emote.getUrl(Emote.Size.LARGE), isAnimated
-            )
         }
 
         @JvmStatic
@@ -589,5 +651,57 @@ class ChatHookProvider @Inject constructor(
         }
 
         return setter
+    }
+
+    fun hookEmotePickerPresenterLongEmoteClick(clickEvent: EmotePickerPresenter.ClickEvent): Boolean {
+        if (clickEvent !is EmotePickerPresenter.ClickEvent.LongClick) {
+            return false
+        }
+
+        val clickedEmote = clickEvent.getClickedEmote()
+        if (clickedEmote !is EmotePickerPresenter.ClickedEmote.Unlocked) {
+            return false
+        }
+
+        val model = clickedEmote.emote ?: return false
+
+        if (model is EmotePickerEmoteModelExt) {
+            if (model is EmotePickerEmoteModelExt.EmotePickerEmoteModelFav) {
+                favEmotesRepository.deleteEmote(
+                    type = model.packageSet.name,
+                    channelId = model.channelId.toString(),
+                    code = model.token
+                )
+                Toast.makeText(
+                    Core.get().context,
+                    "Deleted: ${model.token}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                favEmotesRepository.addEmote(
+                    OrangeFavEmote(
+                        code = model.token,
+                        isAnimated = model.assetType == EmoteModelAssetType.ANIMATED,
+                        channelId = model.channelId,
+                        packageSet = model.packageSet
+                    )
+                )
+                Toast.makeText(Core.get().context, "Added: ${model.token}", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        } else {
+            favEmotesRepository.addEmote(
+                TwitchFavEmote(
+                    code = model.token,
+                    isAnimated = model.assetType == EmoteModelAssetType.ANIMATED,
+                    channelId = clickedEmote.trackingMetadata?.chatChannelId ?: -1,
+                    packageSet = EmotePackageSet.TwitchChannel,
+                    emoteId = model.id
+                )
+            )
+            Toast.makeText(Core.get().context, "Added: ${model.token}", Toast.LENGTH_SHORT).show()
+        }
+
+        return true
     }
 }

@@ -1,0 +1,124 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMessageFactory.smali b/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMessageFactory.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMessageFactory.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMessageFactory.smali
+@@ -49,6 +49,8 @@
+ 
+ .field private final useSDKForTokenization:Z
+ 
++.field private final chatHookProvider:Ltv/orange/features/chat/ChatHookProvider;
++
+ 
+ # direct methods
+ .method public static synthetic $r8$lambda$-aTwVR7LrletfOzqefWHXSgUGz0()V
+@@ -196,6 +198,12 @@
+ 
+     iput-object p2, p0, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageFactory;->annotationSpanHelper:Ltv/twitch/android/shared/ui/elements/span/annotation/AnnotationSpanHelper;
+ 
++    invoke-static {}, Ltv/orange/features/chat/ChatHookProvider;->get()Ltv/orange/features/chat/ChatHookProvider;
++
++    move-result-object v0
++
++    iput-object v0, p0, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageFactory;->chatHookProvider:Ltv/orange/features/chat/ChatHookProvider;
++
+     return-void
+ .end method
+ 
+@@ -838,6 +846,16 @@
+ 
+     move-result-object v1
+ 
++    move-object/from16 v2, p0
++
++    iget-object v0, v2, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageFactory;->chatHookProvider:Ltv/orange/features/chat/ChatHookProvider;
++
++    move-object/from16 v2, p1
++
++    invoke-virtual {v0, v1, v2}, Ltv/orange/features/chat/ChatHookProvider;->setShouldHighlightBackground(Ltv/orange/features/chat/bridge/IMessageRecyclerItem;Ltv/twitch/android/provider/chat/ChatMessageInterface;)V
++
++    invoke-static {v0, v2}, Ltv/orange/features/chat/ChatHookProvider;->fixDeletedMessage(Ltv/orange/features/chat/bridge/IMessageRecyclerItem;Ltv/twitch/android/provider/chat/ChatMessageInterface;)V
++
+     return-object v1
+ .end method
+ 
+@@ -2798,3 +2816,81 @@
+ 
+     return-void
+ .end method
++
++.method public createChatHistoryMessage(Ltv/twitch/chat/ChatMessageInfo;I)Ltv/twitch/android/provider/chat/ChatAdapterItem;
++    .registers 13
++    .param p1, "message"    # Ltv/twitch/chat/ChatMessageInfo;
++    .param p2, "channelId"    # I
++
++    .prologue
++    const/4 v4, 0x0
++
++    .line 45
++    const/4 v7, 0x0
++
++    .line 46
++    .local v7, "header":Landroid/text/Spanned;
++    iget-object v0, p1, Ltv/twitch/chat/ChatMessageInfo;->userMode:Ltv/twitch/chat/ChatUserMode;
++
++    iget-boolean v0, v0, Ltv/twitch/chat/ChatUserMode;->system:Z
++
++    if-nez v0, :cond_25
++
++    .line 47
++    new-instance v7, Landroid/text/SpannedString;
++
++    .end local v7    # "header":Landroid/text/Spanned;
++    new-instance v0, Ljava/text/SimpleDateFormat;
++
++    const-string v1, "HH:mm"
++
++    sget-object v2, Ljava/util/Locale;->ENGLISH:Ljava/util/Locale;
++
++    invoke-direct {v0, v1, v2}, Ljava/text/SimpleDateFormat;-><init>(Ljava/lang/String;Ljava/util/Locale;)V
++
++    new-instance v1, Ljava/util/Date;
++
++    iget v2, p1, Ltv/twitch/chat/ChatMessageInfo;->timestamp:I
++
++    int-to-long v2, v2
++
++    const-wide/16 v8, 0x3e8
++
++    mul-long/2addr v2, v8
++
++    invoke-direct {v1, v2, v3}, Ljava/util/Date;-><init>(J)V
++
++    invoke-virtual {v0, v1}, Ljava/text/SimpleDateFormat;->format(Ljava/util/Date;)Ljava/lang/String;
++
++    move-result-object v0
++
++    invoke-direct {v7, v0}, Landroid/text/SpannedString;-><init>(Ljava/lang/CharSequence;)V
++
++    .line 49
++    .restart local v7    # "header":Landroid/text/Spanned;
++    :cond_25
++    iget v2, p1, Ltv/twitch/chat/ChatMessageInfo;->nameColorARGB:I
++
++    invoke-static {}, Ljava/util/Collections;->emptySet()Ljava/util/Set;
++
++    move-result-object v9
++
++    move-object v0, p0
++
++    move-object v1, p1
++
++    move v3, p2
++
++    move-object v5, v4
++
++    move-object v6, v4
++
++    move-object v8, v4
++
++    invoke-direct/range {v0 .. v9}, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageFactory;->createUserNoticeRecyclerItem(Ltv/twitch/chat/ChatMessageInfo;IILtv/twitch/android/shared/chat/chatsource/IClickableUsernameSpanListener;Ljava/lang/String;Ljava/lang/Integer;Landroid/text/Spanned;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;Ljava/util/Set;)Ltv/twitch/android/provider/chat/ChatAdapterItem;
++
++    move-result-object v0
++
++    return-object v0
++.end method
++

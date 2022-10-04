@@ -27,6 +27,11 @@ android {
 }
 
 dependencies {
+    def room_version = "2.2.5"
+
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
+
     implementation project(path: ':core')
     implementation project(path: ':components:emotes')
     implementation project(path: ':components:badges')

@@ -1,0 +1,60 @@
+diff --git a/smali_classes4/tv/twitch/android/core/crashreporter/CrashReporter.smali b/smali_classes4/tv/twitch/android/core/crashreporter/CrashReporter.smali
+--- a/smali_classes4/tv/twitch/android/core/crashreporter/CrashReporter.smali
++++ b/smali_classes4/tv/twitch/android/core/crashreporter/CrashReporter.smali
+@@ -379,52 +379,13 @@
+ .end method
+ 
+ .method public final logException(Ljava/lang/Throwable;)V
+-    .locals 4
+-
+-    const-string v0, "throwable"
+-
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 229
+-    sget-object v0, Ltv/twitch/android/core/crashreporter/CrashReporter;->crashReporterListener:Ltv/twitch/android/core/crashreporter/CrashReporter$CrashReporterListener;
+-
+-    if-eqz v0, :cond_0
+-
+-    .line 230
+-    invoke-static {}, Ljava/util/UUID;->randomUUID()Ljava/util/UUID;
+-
+-    move-result-object v1
+-
+-    invoke-virtual {v1}, Ljava/util/UUID;->toString()Ljava/lang/String;
+-
+-    move-result-object v1
+-
+-    const-string v2, "randomUUID().toString()"
+-
+-    invoke-static {v1, v2}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullExpressionValue(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 231
+-    invoke-interface {v0, p1, v1}, Ltv/twitch/android/core/crashreporter/CrashReporter$CrashReporterListener;->reportNonFatalToTwitchAnalytics(Ljava/lang/Throwable;Ljava/lang/String;)V
+-
+-    .line 232
+-    sget-object v0, Ltv/twitch/android/core/crashreporter/CrashReporter;->INSTANCE:Ltv/twitch/android/core/crashreporter/CrashReporter;
+-
+-    invoke-direct {v0}, Ltv/twitch/android/core/crashreporter/CrashReporter;->getCrashlytics()Lcom/google/firebase/crashlytics/FirebaseCrashlytics;
+-
+-    move-result-object v2
+-
+-    const-string v3, "non_fatal_uuid"
+-
+-    invoke-virtual {v2, v3, v1}, Lcom/google/firebase/crashlytics/FirebaseCrashlytics;->setCustomKey(Ljava/lang/String;Ljava/lang/String;)V
++    .locals 0
+ 
+-    .line 233
+-    invoke-direct {v0}, Ltv/twitch/android/core/crashreporter/CrashReporter;->getCrashlytics()Lcom/google/firebase/crashlytics/FirebaseCrashlytics;
++    if-eqz p1, :cond_z
+ 
+-    move-result-object v0
++    invoke-virtual {p1}, Ljava/lang/Throwable;->printStackTrace()V
+ 
+-    invoke-virtual {v0, p1}, Lcom/google/firebase/crashlytics/FirebaseCrashlytics;->recordException(Ljava/lang/Throwable;)V
+-
+-    :cond_0
++    :cond_z
+     return-void
+ .end method
+ 

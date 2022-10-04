@@ -115,4 +115,5 @@
     <string name="orange_settings_menu_ota">OTA</string>
     <string name="orange_settings_menu_info">Info</string>
     <string name="orange_settings_menu_main" translatable="false">@string/orange_settings_title</string>
+    <string name="orange_emote_picker_fav_emotes">Fav emotes</string>
 </resources>

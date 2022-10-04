@@ -32,6 +32,12 @@ class RoomImpl : Room {
         return null
     }
 
+    override fun getEmote(code: String, emotePackageSet: EmotePackageSet): Emote? {
+        return packages.firstOrNull { it.getToken() == emotePackageSet }?.let {
+            it.getEmote(code)
+        }
+    }
+
     override fun fetch() {
         packages.forEach { pack ->
             pack.refresh(force = true)

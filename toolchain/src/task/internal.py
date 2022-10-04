@@ -149,17 +149,14 @@ class IncreaseBuildNumber(BaseTask):
         with open(env.build, "r", encoding="utf-8") as fp:
             js = json.load(fp)
 
-        number = js["number"]
-        number += 1
-
-        js["number"] += number
+        js["number"] += 1
         js['timestamp'] = int(datetime.now().timestamp())
 
         with open(env.build, "w", encoding="utf-8") as fp:
             json.dump(js, fp)
 
         shutil.copy(env.build.as_posix(), self._apk.decompile_dir.joinpath("assets").joinpath(self.BUILD_FILENAME))
-        self._apk.out_apk = Path(self._apk.out_apk.parent, "OrangeTV_b{}_{}.apk".format(number, self._apk.version_code))
+        self._apk.out_apk = Path(self._apk.out_apk.parent, "OrangeTV_b{}_{}.apk".format(js["number"], self._apk.version_code))
 
     def cancel(self):
         pass

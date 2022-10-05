@@ -36,10 +36,19 @@ class LogsFragment @Inject constructor(
         rv.visibility = View.VISIBLE
     }
 
-    fun load(userLogin: String, channelId: String) {
+    fun loadTwitchLogs(userLogin: String, channelId: String) {
         disposables.clear()
         disposables.add(
-            logsRepository.getLogs(userLogin = userLogin, channelId = channelId)
+            logsRepository.getTwitchLogs(userLogin = userLogin, channelId = channelId)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ render(it) }, Throwable::printStackTrace)
+        )
+    }
+
+    fun loadLocalLogs(userId: Int, channelId: Int) {
+        disposables.clear()
+        disposables.add(
+            logsRepository.getLocalLogs(userId = userId, channelId = channelId)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ render(it) }, Throwable::printStackTrace)
         )

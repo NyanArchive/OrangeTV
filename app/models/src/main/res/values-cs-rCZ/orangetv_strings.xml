@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="orange_settings_dev_mode">Režim vývojáře</string>
+    <string name="orange_settings_dev_mode">Vývojářský režim</string>
     <string name="orange_settings_bttv_emotes">BTTV emoty</string>
     <string name="orange_settings_ffz_emotes">FFZ emoty</string>
     <string name="orange_settings_stv_emotes">7TV emoty</string>

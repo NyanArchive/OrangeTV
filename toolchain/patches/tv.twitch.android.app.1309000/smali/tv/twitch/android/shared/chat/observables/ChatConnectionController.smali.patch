@@ -1,7 +1,24 @@
 diff --git a/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnectionController.smali b/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnectionController.smali
 --- a/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnectionController.smali
 +++ b/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnectionController.smali
-@@ -2392,6 +2392,11 @@
+@@ -869,6 +869,16 @@
+     :cond_2
+     iput-object v4, v0, Ltv/twitch/android/shared/chat/observables/ChatConnectionController;->viewer:Ltv/twitch/android/models/UserModel;
+ 
++    invoke-static {}, Ltv/orange/features/logs/ChatLogs;->get()Ltv/orange/features/logs/ChatLogs;
++
++    move-result-object v0
++
++    move-object/from16 v2, p0
++
++    iget-object v1, v2, Ltv/twitch/android/shared/chat/observables/ChatConnectionController;->messagesSubject:Lio/reactivex/subjects/PublishSubject;
++
++    invoke-virtual {v0, v2, v1}, Ltv/orange/features/logs/ChatLogs;->subscribeToMessages(Ltv/twitch/android/core/mvp/presenter/BasePresenter;Lio/reactivex/subjects/PublishSubject;)V
++
+     return-void
+ .end method
+ 
+@@ -2392,6 +2402,11 @@
  
      invoke-virtual {v0, p1}, Ltv/twitch/android/shared/badges/ChatBadgeProvider;->fetchChannelBadges(I)V
  
@@ -13,7 +30,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnec
      goto :goto_1
  
      .line 610
-@@ -2404,6 +2409,12 @@
+@@ -2404,6 +2419,12 @@
  
      invoke-virtual {v0, v2}, Lio/reactivex/subjects/BehaviorSubject;->onNext(Ljava/lang/Object;)V
  

@@ -1,6 +1,7 @@
 package tv.orange.features.logs.component.data.mapper
 
 import tv.orange.features.logs.component.data.model.ChatMessage
+import tv.orange.features.logs.component.data.model.MessageInfo
 import tv.orange.features.logs.component.data.model.MessageItem
 import tv.orange.models.gql.twitch.ModLogsMessagesBySenderQuery
 import tv.orange.models.gql.twitch.fragment.ModChatHistoryMessageFragment
@@ -13,13 +14,16 @@ import java.util.*
 import javax.inject.Inject
 
 class LogsMapper @Inject constructor() {
-    fun map(response: ModLogsMessagesBySenderQuery.Data): List<MessageItem> {
+    fun mapTwitchLogs(response: ModLogsMessagesBySenderQuery.Data): List<MessageItem> {
         return convert(response.channel?.modLogs?.messagesBySender?.edges?.mapNotNull { edge ->
             edge.node?.let { node ->
                 val fragment = node.modChatHistoryMessageFragment
                     ?: node.autoModCaughtChatHistoryMessageFragment?.modLogsMessage?.modChatHistoryMessageFragment
                 fragment?.let { chatFragment ->
-                    map(fragment = chatFragment, channelId = response.channel?.id?.toInt() ?: 0)
+                    mapTwitchLogs(
+                        fragment = chatFragment,
+                        channelId = response.channel?.id?.toInt() ?: 0
+                    )
                 }
             }
         })
@@ -39,7 +43,10 @@ class LogsMapper @Inject constructor() {
         return stack
     }
 
-    private fun map(fragment: ModChatHistoryMessageFragment, channelId: Int): ChatMessage? {
+    private fun mapTwitchLogs(
+        fragment: ModChatHistoryMessageFragment,
+        channelId: Int
+    ): ChatMessage? {
         val tokens = mutableListOf<MessageToken>()
         fragment.content.fragments.forEach { tokenFragment ->
             tokenFragment.content?.let { content ->
@@ -78,5 +85,15 @@ class LogsMapper @Inject constructor() {
                 channelId
             )
         }
+    }
+
+    fun mapLocalLogs(messages: List<MessageInfo>): List<MessageItem> {
+        return convert(messages.map {
+            ChatMessage(
+                token = it.msg,
+                timestamp = DateUtil.getStandardizeDateString(it.timestamp.toString()) ?: Date(),
+                channelId = it.channelId
+            )
+        })
     }
 }

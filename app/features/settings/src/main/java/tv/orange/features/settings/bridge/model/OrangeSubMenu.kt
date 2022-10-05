@@ -45,7 +45,8 @@ enum class OrangeSubMenu(
             Flag.DELETED_MESSAGES,
             Flag.CHAT_FONT_SIZE,
             Flag.LANDSCAPE_CHAT_SIZE,
-            Flag.LANDSCAPE_CHAT_OPACITY
+            Flag.LANDSCAPE_CHAT_OPACITY,
+            Flag.LOCAL_LOGS
         )
     ),
     Player(

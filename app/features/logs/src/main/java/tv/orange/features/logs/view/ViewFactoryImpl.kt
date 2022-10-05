@@ -1,6 +1,9 @@
 package tv.orange.features.logs.view
 
+import android.view.View
+import android.widget.TextView
 import tv.orange.core.ResourceManager
+import tv.orange.core.util.ViewUtil.getView
 import tv.orange.features.logs.component.data.repository.LogsRepository
 import tv.orange.features.logs.data.adapter.LogsAdapter
 import tv.orange.features.logs.data.view.LogsFragment
@@ -23,6 +26,10 @@ class ViewFactoryImpl @Inject constructor(
                 state.channelId
             )
         )
+    }
+
+    override fun createLocalLogsButton(view: View): TextView {
+        return view.getView("chat_user_dialog_fragment_view__local_logs")
     }
 
     override fun createLogsFragment(): LogsFragment {

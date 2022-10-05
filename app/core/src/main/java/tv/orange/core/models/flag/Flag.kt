@@ -156,6 +156,11 @@ enum class Flag(
         "orange_settings_emote_quality",
         ListValue(EmoteQuality.MEDIUM),
     ),
+    LOCAL_LOGS(
+        "local_logs",
+        "orange_settings_local_logs",
+        ListValue(LocalLogs.L0),
+    ),
     LANDSCAPE_CHAT_SIZE(
         "landscape_chat_size",
         "orange_settings_landscape_chat_size",

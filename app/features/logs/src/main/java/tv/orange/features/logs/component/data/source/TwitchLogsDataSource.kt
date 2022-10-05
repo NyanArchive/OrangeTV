@@ -11,7 +11,7 @@ import tv.orange.models.gql.twitch.ModLogsMessagesBySenderQuery
 import tv.twitch.android.network.graphql.GraphQlService
 import javax.inject.Inject
 
-class LogsDataSource @Inject constructor(
+class TwitchLogsDataSource @Inject constructor(
     val tcp: TwitchComponentProvider,
     val twitchRepository: TwitchRepository,
     val mapper: LogsMapper
@@ -23,7 +23,7 @@ class LogsDataSource @Inject constructor(
                     senderID = userInfo.userId,
                     channelID = channelId,
                     first = Optional.presentIfNotNull(200)
-                ), mapper::map, true, true, true, false
+                ), mapper::mapTwitchLogs, true, true, true, false
             ).subscribeOn(Schedulers.io())
         }.subscribeOn(Schedulers.io())
     }

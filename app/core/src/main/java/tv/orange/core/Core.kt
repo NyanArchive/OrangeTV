@@ -11,6 +11,9 @@ import tv.orange.core.models.lifecycle.LifecycleController
 import tv.orange.models.AutoInitialize
 import tv.orange.models.abc.Bridge
 import tv.orange.models.abc.Feature
+import tv.orange.models.abc.TCPProvider
+import tv.orange.models.abc.TwitchComponentProvider
+import tv.twitch.android.app.core.ApplicationContext
 import javax.inject.Inject
 import kotlin.system.exitProcess
 
@@ -39,6 +42,11 @@ class Core @Inject constructor(
         @JvmStatic
         private fun getBridge(): Bridge {
             return bridge
+        }
+
+        @JvmStatic
+        fun provideTCP(): TwitchComponentProvider {
+            return (ApplicationContext.getInstance().getContext() as TCPProvider).provideTCP()
         }
 
         @JvmStatic

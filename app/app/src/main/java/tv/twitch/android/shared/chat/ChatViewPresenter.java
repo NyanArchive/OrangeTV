@@ -1,6 +1,8 @@
 package tv.twitch.android.shared.chat;
 
 import tv.orange.features.chathistory.ChatHistory;
+import tv.orange.features.logs.bridge.ChatLocalLogsCommand;
+import tv.orange.features.logs.bridge.ChatTwitchLogsCommand;
 import tv.orange.features.spam.bridge.ChatSpamCommand;
 import tv.orange.features.ui.UI;
 import tv.orange.models.exception.VirtualImpl;
@@ -30,6 +32,14 @@ public class ChatViewPresenter {
         /* ... */
 
         if (processChatCommand instanceof ChatSpamCommand) { // TODO: __INJECT_CODE
+            return true;
+        }
+
+        if (processChatCommand instanceof ChatLocalLogsCommand) { // TODO: __INJECT_CODE
+            return true;
+        }
+
+        if (processChatCommand instanceof ChatTwitchLogsCommand) { // TODO: __INJECT_CODE
             return true;
         }
 

@@ -16,6 +16,10 @@ class LogsRepository @Inject constructor(
         return localLogsDataSource.getMessages(userId = userId, channelId = channelId)
     }
 
+    fun getLocalLogs(userName: String, channelId: Int): Single<List<MessageItem>> {
+        return localLogsDataSource.getMessages(userName = userName, channelId = channelId)
+    }
+
     fun getTwitchLogs(userLogin: String, channelId: String): Single<List<MessageItem>> {
         return twitchLogsDataSource.getMessages(userLogin = userLogin, channelId = channelId)
     }

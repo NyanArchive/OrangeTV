@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -32,14 +33,29 @@ class LogsFragment @Inject constructor(
 
     private fun render(messages: List<MessageItem>) {
         logsAdapter.setData(messages)
-        pb.visibility = View.GONE
-        rv.visibility = View.VISIBLE
+        if (messages.isEmpty()) {
+            pb.visibility = View.VISIBLE
+            rv.visibility = View.GONE
+            Toast.makeText(requireContext(), "No messages!", Toast.LENGTH_SHORT).show()
+        } else {
+            pb.visibility = View.GONE
+            rv.visibility = View.VISIBLE
+        }
     }
 
     fun loadTwitchLogs(userLogin: String, channelId: String) {
         disposables.clear()
         disposables.add(
             logsRepository.getTwitchLogs(userLogin = userLogin, channelId = channelId)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ render(it) }, Throwable::printStackTrace)
+        )
+    }
+
+    fun loadLocalLogs(userName: String, channelId: Int) {
+        disposables.clear()
+        disposables.add(
+            logsRepository.getLocalLogs(userName = userName, channelId = channelId)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ render(it) }, Throwable::printStackTrace)
         )

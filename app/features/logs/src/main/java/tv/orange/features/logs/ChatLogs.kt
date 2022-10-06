@@ -6,11 +6,12 @@ import androidx.fragment.app.FragmentActivity
 import io.reactivex.BackpressureStrategy
 import io.reactivex.subjects.PublishSubject
 import tv.orange.core.Core
-import tv.orange.core.Logger
+import tv.orange.core.compat.ClassCompat.getPrivateField
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.variants.LocalLogs
 import tv.orange.core.util.ViewUtil.changeVisibility
+import tv.orange.features.logs.bridge.LogsCommandInterceptor
 import tv.orange.features.logs.component.data.repository.LogsRepository
 import tv.orange.features.logs.view.ViewFactory
 import tv.orange.models.abc.Feature
@@ -22,6 +23,8 @@ import tv.twitch.android.provider.chat.events.MessagesReceivedEvent
 import tv.twitch.android.provider.chat.model.ChatHistoryMessage
 import tv.twitch.android.shared.chat.ChatMessageParser
 import tv.twitch.android.shared.chat.chatuserdialog.ChatUserDialogInfo
+import tv.twitch.android.shared.chat.command.ChatCommandInterceptor
+import tv.twitch.android.shared.chat.command.VoteCommandInterceptor
 import tv.twitch.android.shared.chat.moderation.ModerationActionBottomSheetViewDelegate
 import tv.twitch.android.shared.chat.moderation.ModerationBottomSheetViewState
 import tv.twitch.android.shared.ui.elements.bottomsheet.BottomSheetListItemModel
@@ -58,6 +61,20 @@ class ChatLogs @Inject constructor(
         }
     }
 
+    fun showLocalLogs(activity: FragmentActivity, channelId: Int, userName: String) {
+        val fragment = viewFactory.createLogsFragment()
+        fragment.bind(activity)
+        fragment.show(activity.supportFragmentManager, "orange_logs")
+        fragment.loadLocalLogs(channelId = channelId, userName = userName)
+    }
+
+    fun showModLogs(activity: FragmentActivity, channelId: String, userName: String) {
+        val fragment = viewFactory.createLogsFragment()
+        fragment.bind(activity)
+        fragment.show(activity.supportFragmentManager, "orange_logs")
+        fragment.loadTwitchLogs(userName, channelId)
+    }
+
     fun showModLogs(
         activity: FragmentActivity,
         event: ModerationActionBottomSheetViewDelegate.ModerationActionButtonEvent
@@ -91,7 +108,10 @@ class ChatLogs @Inject constructor(
     override fun onDestroyFeature() {}
     override fun onCreateFeature() {}
 
-    private fun maybeAddMessagesToLocalStore(channelId: Int, chatLiveMessageArr: List<ChatLiveMessage>) {
+    private fun maybeAddMessagesToLocalStore(
+        channelId: Int,
+        chatLiveMessageArr: List<ChatLiveMessage>
+    ) {
         if (Flag.LOCAL_LOGS.asVariant<LocalLogs>() == LocalLogs.L0) {
             return
         }
@@ -127,6 +147,13 @@ class ChatLogs @Inject constructor(
             }, {
                 it.printStackTrace()
             }, DisposeOn.DESTROY
+        )
+    }
+
+    fun createLogsCommandInterceptor(vci: VoteCommandInterceptor): ChatCommandInterceptor {
+        return LogsCommandInterceptor(
+            activity = vci.getPrivateField("activity"),
+            chatSource = vci.getPrivateField("liveChatSource")
         )
     }
 }

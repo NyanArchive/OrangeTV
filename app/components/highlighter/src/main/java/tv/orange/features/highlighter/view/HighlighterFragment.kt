@@ -126,4 +126,8 @@ class HighlighterFragment : Fragment(), HighlighterContract.View, ClickListener 
     override fun onChangeColorClicked(item: KeywordData) {
         presenter.onChangeColorItemClicked(keyword = item)
     }
+
+    override fun onVibrationClicked(item: KeywordData) {
+        presenter.onVibrationItemClicked(keyword = item)
+    }
 }

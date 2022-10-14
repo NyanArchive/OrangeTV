@@ -41,9 +41,8 @@ class HighlighterPresenter(view: HighlighterContract.View) : HighlighterContract
 
     override fun onItemColorChanged(keyword: KeywordData, newColor: Int) {
         disposables.add(
-            repository.changeColor(
-                item = keyword,
-                newColor = KeywordData.Color.resolve(newColor)
+            repository.update(
+                item = keyword.copy(color = KeywordData.Color.resolve(newColor).value)
             ).observeOn(AndroidSchedulers.mainThread()).subscribe({
                 Logger.debug("Keyword: $keyword, newColor: $newColor")
             }, { it.printStackTrace() })
@@ -56,6 +55,16 @@ class HighlighterPresenter(view: HighlighterContract.View) : HighlighterContract
                 .subscribe({
                     Logger.debug("text: $rawText")
                 }, { it.printStackTrace() })
+        )
+    }
+
+    override fun onVibrationItemClicked(keyword: KeywordData) {
+        disposables.add(
+            repository.update(
+                item = keyword.copy(vibration = !keyword.vibration),
+            ).observeOn(AndroidSchedulers.mainThread()).subscribe({
+                Logger.debug("Changed: $keyword")
+            }, { it.printStackTrace() })
         )
     }
 

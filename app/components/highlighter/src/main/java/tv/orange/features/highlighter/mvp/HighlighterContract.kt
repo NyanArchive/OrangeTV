@@ -24,6 +24,7 @@ interface HighlighterContract {
 
         abstract fun onChangeTypeItemClicked(keyword: KeywordData)
         abstract fun onChangeColorItemClicked(keyword: KeywordData)
+        abstract fun onVibrationItemClicked(keyword: KeywordData)
 
         abstract fun onItemRemoved(keyword: KeywordData)
         abstract fun onItemColorChanged(keyword: KeywordData, newColor: Int)

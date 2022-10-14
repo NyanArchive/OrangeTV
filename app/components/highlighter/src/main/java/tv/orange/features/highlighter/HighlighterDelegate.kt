@@ -3,6 +3,7 @@ package tv.orange.features.highlighter
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import tv.orange.core.Logger
+import tv.orange.features.highlighter.data.model.HighlightDesc
 import tv.orange.features.highlighter.data.model.KeywordData
 import tv.orange.features.highlighter.data.source.HighlighterSource
 import tv.twitch.android.models.chat.MessageToken
@@ -12,9 +13,9 @@ import javax.inject.Inject
 class HighlighterDelegate @Inject constructor(val source: HighlighterSource) {
     private val disposables = CompositeDisposable()
 
-    var usernames = LinkedHashMap<String, Int>()
-    var sensitive = LinkedHashMap<String, Int>()
-    var insensitive = LinkedHashMap<String, Int>()
+    var usernames = LinkedHashMap<String, HighlightDesc>()
+    var sensitive = LinkedHashMap<String, HighlightDesc>()
+    var insensitive = LinkedHashMap<String, HighlightDesc>()
 
     var isEnabled: Boolean = false
 
@@ -22,19 +23,19 @@ class HighlighterDelegate @Inject constructor(val source: HighlighterSource) {
         disposables.add(
             source.getFlow().subscribeOn(Schedulers.single())
                 .subscribe({ keywords ->
-                    val usernames = LinkedHashMap<String, Int>()
-                    val sensitive = LinkedHashMap<String, Int>()
-                    val insensitive = LinkedHashMap<String, Int>()
+                    val usernames = LinkedHashMap<String, HighlightDesc>()
+                    val sensitive = LinkedHashMap<String, HighlightDesc>()
+                    val insensitive = LinkedHashMap<String, HighlightDesc>()
                     keywords?.forEach {
                         when (it.type) {
                             KeywordData.Type.INSENSITIVE -> {
-                                insensitive[it.word.lowercase()] = it.color
+                                insensitive[it.word.lowercase()] = HighlightDesc(it.color, it.vibration)
                             }
                             KeywordData.Type.CASESENSITIVE -> {
-                                sensitive[it.word] = it.color
+                                sensitive[it.word] = HighlightDesc(it.color, it.vibration)
                             }
                             KeywordData.Type.USERNAME -> {
-                                usernames[it.word.lowercase()] = it.color
+                                usernames[it.word.lowercase()] = HighlightDesc(it.color, it.vibration)
                             }
                         }
                     }
@@ -53,7 +54,7 @@ class HighlighterDelegate @Inject constructor(val source: HighlighterSource) {
     }
 
 
-    fun getHighlightColor(cmi: ChatMessageInterface): Int? {
+    fun getHighlightDesc(cmi: ChatMessageInterface): HighlightDesc? {
         if (!isEnabled) {
             return null
         }
@@ -64,7 +65,7 @@ class HighlighterDelegate @Inject constructor(val source: HighlighterSource) {
 
         cmi.tokens.forEach { token ->
             if (token is MessageToken.TextToken) {
-                token.text.split("\\s+".toRegex()).map { it.trim(' ', '.', ',', '?', '!') }
+                token.text.split("\\s+".toRegex()).map { it.trim(' ') }
                     .forEach { word ->
                         if (word.isNotBlank()) {
                             sensitive[word]?.let { color ->

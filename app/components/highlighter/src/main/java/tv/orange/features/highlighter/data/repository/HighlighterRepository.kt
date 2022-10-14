@@ -25,11 +25,11 @@ class HighlighterRepository @Inject constructor(
         return source.changeType(item, newType)
     }
 
-    fun changeColor(item: KeywordData, newColor: KeywordData.Color): Completable {
-        return source.changeColor(item, newColor)
-    }
-
     fun addNewItems(rawText: String): Completable {
         return source.addRawText(rawText)
+    }
+
+    fun update(item: KeywordData): Completable {
+        return source.update(item)
     }
 }

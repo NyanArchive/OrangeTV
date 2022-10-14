@@ -14,6 +14,7 @@ class KeywordViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val keyword = view.getView<TextView>("orangetv_highlighter_item__keyword")
     private val picker = view.getView<ImageView>("orangetv_highlighter_item__picker")
     private val type = view.getView<ImageView>("orangetv_highlighter_item__type")
+    private val vibration = view.getView<ImageView>("orangetv_highlighter_item__vibration")
 
     fun bind(item: KeywordData, listener: ClickListener) {
         keyword.text = item.word
@@ -22,6 +23,27 @@ class KeywordViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         }
         picker.setImageDrawable(ColorDrawable(item.color))
         renderType(item.type)
+        vibration.setOnClickListener {
+            listener.onVibrationClicked(item)
+        }
+        renderVibration(item.vibration)
+    }
+
+    private fun renderVibration(vibration: Boolean) {
+        val resId = ResourceManager.get().getDrawableId(
+            if (vibration) {
+                "ic_orangetv_vibration"
+            } else {
+                "ic_orangetv_no_vibration"
+            }
+        )
+
+        this.vibration.setImageDrawable(
+            ContextCompat.getDrawable(
+                itemView.context,
+                resId
+            )
+        )
     }
 
     private fun renderType(keywordType: KeywordData.Type) {

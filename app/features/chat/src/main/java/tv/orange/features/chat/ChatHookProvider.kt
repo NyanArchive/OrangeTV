@@ -589,17 +589,24 @@ class ChatHookProvider @Inject constructor(
         if (isUserMentioned(cmi = cmi, username = twitchAccountManager.username)) {
             message.setHighlightColor(Color.argb(100, 255, 0, 0))
             if (Flag.VIBRATE_ON_MENTION.asBoolean()) {
-                Core.vibrate(
-                    context = context,
-                    delay = 200,
-                    duration = Flag.VIBRATION_DURATION.asInt()
-                )
+                vibrate()
             }
         } else if (highlighter.isEnabled()) {
-            highlighter.getHighlightColor(cmi)?.let { color ->
-                message.setHighlightColor(color)
+            highlighter.getHighlightDesc(cmi)?.let { desc ->
+                message.setHighlightColor(desc.color)
+                if (desc.vibrate) {
+                    vibrate()
+                }
             }
         }
+    }
+
+    private fun vibrate() {
+        Core.vibrate(
+            context = context,
+            delay = 200,
+            duration = Flag.VIBRATION_DURATION.asInt()
+        )
     }
 
     override fun maybeChangeMessageFontSize(textView: TextView) {

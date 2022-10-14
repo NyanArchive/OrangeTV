@@ -82,4 +82,16 @@ class HighlighterSource @Inject constructor(
                 }
         }).subscribeOn(Schedulers.io())
     }
+
+    fun update(item: KeywordData): Completable {
+        return db.highlighterDAO().get(
+            word = item.word,
+            type = item.type.name
+        ).subscribeOn(Schedulers.io()).flatMapCompletable { entity ->
+            db.highlighterDAO().update(entity.apply {
+                this.color = item.color
+                this.vibration = item.vibration
+            })
+        }
+    }
 }

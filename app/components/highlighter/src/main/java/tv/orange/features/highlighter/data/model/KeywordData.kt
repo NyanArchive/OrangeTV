@@ -3,7 +3,8 @@ package tv.orange.features.highlighter.data.model
 data class KeywordData(
     val word: String,
     val type: Type,
-    val color: Int
+    val color: Int,
+    val vibration: Boolean = false
 ) {
     enum class Color(color: String) {
         DEFAULT("#ff7961"),

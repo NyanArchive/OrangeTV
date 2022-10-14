@@ -7,11 +7,7 @@ import javax.inject.Inject
 class HighlighterMapper @Inject constructor() {
     fun map(entities: List<KeywordEntity>): List<KeywordData> {
         return entities.map { entity ->
-            KeywordData(
-                word = entity.word,
-                type = KeywordData.Type.valueOf(entity.type),
-                color = entity.color ?: KeywordData.Color.DEFAULT.value
-            )
+            map(entity)
         }
     }
 
@@ -19,7 +15,8 @@ class HighlighterMapper @Inject constructor() {
         return KeywordData(
             word = entity.word,
             type = KeywordData.Type.valueOf(entity.type),
-            color = entity.color ?: KeywordData.Color.DEFAULT.value
+            color = entity.color ?: KeywordData.Color.DEFAULT.value,
+            vibration = entity.vibration
         )
     }
 
@@ -27,7 +24,8 @@ class HighlighterMapper @Inject constructor() {
         return KeywordEntity(
             word = keyword.word,
             type = keyword.type.name,
-            color = keyword.color
+            color = keyword.color,
+            vibration = keyword.vibration
         )
     }
 

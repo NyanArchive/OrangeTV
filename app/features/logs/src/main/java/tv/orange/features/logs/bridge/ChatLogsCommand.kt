@@ -2,8 +2,7 @@ package tv.orange.features.logs.bridge
 
 import tv.twitch.android.shared.chat.command.ChatCommandAction
 
-
-abstract class ChatLogsCommand: ChatCommandAction(null)
+abstract class ChatLogsCommand : ChatCommandAction(null)
 
 data class ChatLocalLogsCommand(
     val channelId: Int,

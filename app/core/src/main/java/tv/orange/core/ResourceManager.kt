@@ -21,7 +21,10 @@ class ResourceManager(private val context: Context) : Feature {
         STRING("string", 100),
         DRAWABLE("drawable", 10),
         COLOR("color", 10),
-        LAYOUT("layout", 10);
+        LAYOUT("layout", 10),
+        DIMEN("dimen", 10),
+        ARRAY("array", 10),
+        ATTR("attr", 100);
 
         private val cache: ResIdCache = ResIdCache(type, size)
 
@@ -52,6 +55,18 @@ class ResourceManager(private val context: Context) : Feature {
 
     fun getColorId(resName: String): Int {
         return Id.COLOR.get(resName)
+    }
+
+    fun getDimenId(resName: String): Int {
+        return Id.DIMEN.get(resName)
+    }
+
+    fun getArrayId(resName: String): Int {
+        return Id.ARRAY.get(resName)
+    }
+
+    fun getAttrId(resName: String): Int {
+        return Id.ATTR.get(resName)
     }
 
     fun getString(resName: String): String {

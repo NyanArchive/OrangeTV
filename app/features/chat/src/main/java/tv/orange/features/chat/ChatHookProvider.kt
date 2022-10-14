@@ -46,6 +46,7 @@ import tv.orange.features.chat.util.ChatUtil.spToPx
 import tv.orange.features.chat.view.ViewFactory
 import tv.orange.features.emotes.bridge.EmoteToken
 import tv.orange.features.emotes.component.EmoteProvider
+import tv.orange.features.highlighter.Highlighter
 import tv.orange.features.pronouns.PronounSetter
 import tv.orange.features.pronouns.component.PronounProvider
 import tv.orange.models.AutoInitialize
@@ -59,7 +60,6 @@ import tv.twitch.android.models.chat.MessageBadge
 import tv.twitch.android.models.chat.MessageToken
 import tv.twitch.android.models.emotes.EmoteCardModelResponse
 import tv.twitch.android.models.emotes.EmoteModelAssetType
-import tv.twitch.android.models.emotes.EmoteModelType
 import tv.twitch.android.models.emotes.EmoteSet
 import tv.twitch.android.provider.chat.ChatMessageInterface
 import tv.twitch.android.shared.chat.adapter.item.ChatMessageClickedEvents
@@ -84,7 +84,8 @@ class ChatHookProvider @Inject constructor(
     val twitchAccountManager: TwitchAccountManager,
     val supportBridge: SupportBridge,
     val favEmotesRepository: FavEmotesRepository,
-    val chatFactory: ChatFactory
+    val chatFactory: ChatFactory,
+    val highlighter: Highlighter
 ) : LifecycleAware, FlagListener, Feature, SupportBridge.Callback {
     private val currentChannelSubject = BehaviorSubject.create<Int>()
 
@@ -529,12 +530,14 @@ class ChatHookProvider @Inject constructor(
         PreferenceManager.get().unregisterFlagListeners(this)
         Core.get().unregisterLifecycleListener(this)
         onAllComponentDestroyed()
+        highlighter.dispose()
     }
 
     override fun onCreateFeature() {
         Core.get().registerLifecycleListeners(this)
         PreferenceManager.get().registerFlagListeners(this)
         updateFontSize()
+        highlighter.pull()
     }
 
     private fun updateFontSize() {
@@ -583,17 +586,19 @@ class ChatHookProvider @Inject constructor(
         message: IMessageRecyclerItem,
         cmi: ChatMessageInterface
     ) {
-        if (!isUserMentioned(cmi = cmi, username = twitchAccountManager.username)) {
-            return
-        }
-
-        message.setHighlightColor(Color.argb(100, 255, 0, 0))
-        if (Flag.VIBRATE_ON_MENTION.asBoolean()) {
-            Core.vibrate(
-                context = context,
-                delay = 200,
-                duration = Flag.VIBRATION_DURATION.asInt()
-            )
+        if (isUserMentioned(cmi = cmi, username = twitchAccountManager.username)) {
+            message.setHighlightColor(Color.argb(100, 255, 0, 0))
+            if (Flag.VIBRATE_ON_MENTION.asBoolean()) {
+                Core.vibrate(
+                    context = context,
+                    delay = 200,
+                    duration = Flag.VIBRATION_DURATION.asInt()
+                )
+            }
+        } else if (highlighter.isEnabled()) {
+            highlighter.getHighlightColor(cmi)?.let { color ->
+                message.setHighlightColor(color)
+            }
         }
     }
 

@@ -50,5 +50,6 @@ public enum SettingsDestination {
     OrangeSupport,
     OrangeWiki,
     OrangeOTA,
-    OrangeInfo
+    OrangeInfo,
+    OrangeHighlighter
 }

@@ -117,9 +117,12 @@
     <string name="orange_settings_menu_main" translatable="false">@string/orange_settings_title</string>
     <string name="orange_emote_picker_fav_emotes">Fav emotes</string>
     <string name="orange_chat_user_dialog_fragment_view_local_logs">View local logs</string>
+    <string name="orange_settings_local_logs">Local logs</string>
+    <string name="orange_settings_local_logs_desc" />
     <string name="orange_local_logs_0">Disabled</string>
     <string name="orange_local_logs_500" translatable="false">500</string>
     <string name="orange_local_logs_1000" translatable="false">1000</string>
     <string name="orange_local_logs_5000" translatable="false">5000</string>
     <string name="orange_local_logs_10000" translatable="false">10000</string>
+    <string name="orange_settings_menu_highlighter">Highlighter</string>
 </resources>

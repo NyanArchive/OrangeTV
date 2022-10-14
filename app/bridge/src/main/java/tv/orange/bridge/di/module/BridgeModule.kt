@@ -10,6 +10,8 @@ import tv.orange.features.badges.component.BadgeProvider
 import tv.orange.features.badges.di.component.BadgesComponent
 import tv.orange.features.emotes.component.EmoteProvider
 import tv.orange.features.emotes.di.component.EmotesComponent
+import tv.orange.features.highlighter.Highlighter
+import tv.orange.features.highlighter.di.component.HighlighterComponent
 import tv.orange.features.pronouns.component.PronounProvider
 import tv.orange.features.pronouns.di.component.PronounComponent
 import tv.orange.models.abc.TCPProvider
@@ -31,7 +33,7 @@ class BridgeModule {
 
     @BridgeScope
     @Provides
-    fun provideEmotes(emotesComponent : EmotesComponent): EmoteProvider {
+    fun provideEmotes(emotesComponent: EmotesComponent): EmoteProvider {
         return emotesComponent.emoteProvider
     }
 
@@ -57,5 +59,11 @@ class BridgeModule {
     @Provides
     fun provideNopRepository(apiComponent: ApiComponent): NopRepository {
         return apiComponent.nopRepository
+    }
+
+    @BridgeScope
+    @Provides
+    fun provideHighlighter(highlighterComponent: HighlighterComponent): Highlighter {
+        return highlighterComponent.highlighter
     }
 }

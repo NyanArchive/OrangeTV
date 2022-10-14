@@ -70,7 +70,7 @@ class HighlighterDelegate @Inject constructor(val source: HighlighterSource) {
                             sensitive[word]?.let { color ->
                                 return color
                             }
-                            insensitive[word]?.let { color ->
+                            insensitive[word.lowercase()]?.let { color ->
                                 return color
                             }
                         }

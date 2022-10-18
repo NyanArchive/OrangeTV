@@ -131,6 +131,11 @@ enum class Flag(
         "orange_settings_hide_bits_button",
         BooleanValue()
     ),
+    CLIPFINITY(
+        "clipfinity",
+        "orange_settings_clipfinity",
+        BooleanValue()
+    ),
     PLAYER_IMPL(
         "player_impl",
         "orange_settings_player_impl",

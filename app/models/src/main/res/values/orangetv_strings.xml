@@ -130,4 +130,6 @@
     <string name="cpv_custom">Custom</string>
     <string name="cpv_select">Select</string>
     <string name="cpv_transparency">Transparency</string>
+    <string name="orange_settings_clipfinity">Clipfinity</string>
+    <string name="orange_settings_clipfinity_desc" />
 </resources>

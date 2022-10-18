@@ -94,6 +94,10 @@ class UI @Inject constructor(
 
             return ResourceManager.get().getLayoutId("orangetv_player_metadata_view_extended")
         }
+
+        @JvmStatic
+        val showClipfinity: Boolean
+            get() = Flag.CLIPFINITY.asBoolean()
     }
 
     val skipTwitchBrowserDialog: Boolean

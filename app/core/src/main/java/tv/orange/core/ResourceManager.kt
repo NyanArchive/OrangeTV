@@ -78,4 +78,8 @@ class ResourceManager(private val context: Context) : Feature {
             context.getString(id)
         }
     }
+
+    fun getString(resId: Int): String {
+        return context.getString(resId)
+    }
 }

@@ -15,7 +15,7 @@ class HighlighterMapper @Inject constructor() {
         return KeywordData(
             word = entity.word,
             type = KeywordData.Type.valueOf(entity.type),
-            color = entity.color ?: KeywordData.Color.DEFAULT.value,
+            color = entity.color,
             vibration = entity.vibration
         )
     }
@@ -40,7 +40,7 @@ class HighlighterMapper @Inject constructor() {
                         KeywordData(
                             word = word.substring(1).lowercase(),
                             type = KeywordData.Type.USERNAME,
-                            color = KeywordData.Color.DEFAULT.value
+                            color = KeywordData.DEFAULT_COLOR
                         )
                     }
                     '#' -> {
@@ -50,14 +50,14 @@ class HighlighterMapper @Inject constructor() {
                         KeywordData(
                             word = word.substring(1).lowercase(),
                             type = KeywordData.Type.INSENSITIVE,
-                            color = KeywordData.Color.DEFAULT.value
+                            color = KeywordData.DEFAULT_COLOR
                         )
                     }
                     else -> {
                         KeywordData(
                             word = word,
                             type = KeywordData.Type.CASESENSITIVE,
-                            color = KeywordData.Color.DEFAULT.value
+                            color = KeywordData.DEFAULT_COLOR
                         )
                     }
                 }

@@ -8,6 +8,6 @@ data class KeywordEntity(
     @PrimaryKey(autoGenerate = true) var uid: Int = 0,
     val word: String,
     var type: String,
-    var color: Int?,
+    var color: Int,
     var vibration: Boolean = false
 )

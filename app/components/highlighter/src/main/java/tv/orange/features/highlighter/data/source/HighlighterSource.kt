@@ -46,17 +46,6 @@ class HighlighterSource @Inject constructor(
         }
     }
 
-    fun changeColor(item: KeywordData, newColor: KeywordData.Color): Completable {
-        return db.highlighterDAO().get(
-            word = item.word,
-            type = item.type.name
-        ).subscribeOn(Schedulers.io()).flatMapCompletable { entity ->
-            db.highlighterDAO().update(entity.apply {
-                this.color = newColor.value
-            })
-        }
-    }
-
     fun get(keyword: KeywordData): Maybe<KeywordData> {
         return get(word = keyword.word, type = keyword.type.name)
     }

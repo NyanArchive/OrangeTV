@@ -42,7 +42,7 @@ class HighlighterPresenter(view: HighlighterContract.View) : HighlighterContract
     override fun onItemColorChanged(keyword: KeywordData, newColor: Int) {
         disposables.add(
             repository.update(
-                item = keyword.copy(color = KeywordData.Color.resolve(newColor).value)
+                item = keyword.copy(color = newColor)
             ).observeOn(AndroidSchedulers.mainThread()).subscribe({
                 Logger.debug("Keyword: $keyword, newColor: $newColor")
             }, { it.printStackTrace() })

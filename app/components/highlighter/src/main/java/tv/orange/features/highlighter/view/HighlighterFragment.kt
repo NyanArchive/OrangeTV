@@ -12,8 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.kizitonwose.colorpreference.ColorShape
-import com.kizitonwose.colorpreference.ColorUtils
+import com.jaredrummler.android.colorpicker.ColorPickerDialog
+import com.jaredrummler.android.colorpicker.ColorPickerDialogListener
 import tv.orange.core.Logger
 import tv.orange.core.ResourceManager
 import tv.orange.core.util.ViewUtil.changeVisibility
@@ -109,18 +109,20 @@ class HighlighterFragment : Fragment(), HighlighterContract.View, ClickListener 
     }
 
     override fun showChangeItemColorDialog(keyword: KeywordData) {
-        Logger.debug("keyword: $keyword")
-        ColorUtils.showDialog(
-            requireContext(),
-            { newColor, tag ->
-                presenter.onItemColorChanged(keyword, newColor)
-            },
-            "orangetv_color_picker",
-            4,
-            ColorShape.CIRCLE,
-            KeywordData.Color.colors,
-            keyword.color
-        )
+        val dialog = ColorPickerDialog.newBuilder()
+            .setColor(keyword.color)
+            .create()
+
+        dialog.addColorPickerDialogListener(object : ColorPickerDialogListener {
+            override fun onColorSelected(dialogId: Int, newColor: Int) {
+                presenter.onItemColorChanged(keyword = keyword, newColor = newColor)
+            }
+
+            override fun onDialogDismissed(dialogId: Int) {
+                Logger.debug("called!")
+            }
+        })
+        dialog.show(requireActivity().supportFragmentManager, "orange_change_color")
     }
 
     override fun onChangeColorClicked(item: KeywordData) {

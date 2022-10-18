@@ -11,7 +11,7 @@ abstract class HighlighterDatabase : RoomDatabase() {
     abstract fun highlighterDAO(): HighlighterDAO
 
     companion object {
-        private const val DATABASE_NAME = "orange_highlighter_v7"
+        private const val DATABASE_NAME = "orange_highlighter_v8"
 
         val INSTANCE by lazy {
             Room.databaseBuilder(

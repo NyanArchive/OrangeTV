@@ -1,5 +1,6 @@
 package tv.orange.core.util
 
+import android.content.Context
 import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
@@ -40,6 +41,15 @@ object ViewUtil {
 
     fun ViewGroup.inflate(resName: String): View {
         return this.inflate(LayoutInflater.from(context), resName)
+    }
+
+    fun Context.inflate(resName: String): View {
+        val id = ResourceManager.get().getLayoutId(resName = resName)
+        if (id == 0 || id == -1) {
+            throw Resources.NotFoundException(resName)
+        }
+
+        return View.inflate(this, id, null)
     }
 
     fun View.changeVisibility(isVisible: Boolean) {

@@ -83,4 +83,9 @@
     <string name="orange_settings_menu_wiki">Wiki</string>
     <string name="orange_settings_menu_ota">OTA</string>
     <string name="orange_settings_menu_info">Informace</string>
+    <string name="orange_emote_picker_fav_emotes">Oblíbené emoty</string>
+    <string name="orange_chat_user_dialog_fragment_view_local_logs">Zobrazit místní logy</string>
+    <string name="orange_settings_local_logs">Místní logy</string>
+    <string name="orange_local_logs_0">Vypnuto</string>
+    <string name="orange_settings_menu_highlighter">Zvýraznění</string>
 </resources>

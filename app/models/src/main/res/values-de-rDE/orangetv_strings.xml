@@ -83,4 +83,9 @@
     <string name="orange_settings_menu_wiki">Wiki</string>
     <string name="orange_settings_menu_ota">OTA Update</string>
     <string name="orange_settings_menu_info">Info</string>
+    <string name="orange_emote_picker_fav_emotes">Favorisierte Emotes</string>
+    <string name="orange_chat_user_dialog_fragment_view_local_logs">Lokale Logs anzeigen</string>
+    <string name="orange_settings_local_logs">Lokale Logs</string>
+    <string name="orange_local_logs_0">Deaktiviert</string>
+    <string name="orange_settings_menu_highlighter">Hervorhebung</string>
 </resources>

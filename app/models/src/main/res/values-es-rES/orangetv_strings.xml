@@ -83,4 +83,9 @@
     <string name="orange_settings_menu_wiki">Enciclopedia</string>
     <string name="orange_settings_menu_ota">Actualización de software</string>
     <string name="orange_settings_menu_info">Información</string>
+    <string name="orange_emote_picker_fav_emotes">Emotes favoritos</string>
+    <string name="orange_chat_user_dialog_fragment_view_local_logs">Ver registros locales</string>
+    <string name="orange_settings_local_logs">Registros locales</string>
+    <string name="orange_local_logs_0">Deshabilitado</string>
+    <string name="orange_settings_menu_highlighter">Resaltado</string>
 </resources>

@@ -26,7 +26,7 @@
     <string name="orange_player_impl_exo">ExoPlayer</string>
     <string name="orange_settings_deleted_messages">Silinmiş mesajlar</string>
     <string name="orange_deleted_messages_default">Varsayılan</string>
-    <string name="orange_deleted_messages_mod">Mod</string>
+    <string name="orange_deleted_messages_mod">Moderatör</string>
     <string name="orange_deleted_messages_strikethrough">Üstü çizili</string>
     <string name="orange_deleted_messages_grey">Gri</string>
     <string name="orange_emotecard_ffz_channel">FFZ Kanal İfadeleri</string>
@@ -83,4 +83,9 @@
     <string name="orange_settings_menu_wiki">Wiki</string>
     <string name="orange_settings_menu_ota">OTA</string>
     <string name="orange_settings_menu_info">Bilgi</string>
+    <string name="orange_emote_picker_fav_emotes">Favori ifadeler</string>
+    <string name="orange_chat_user_dialog_fragment_view_local_logs">Yerel günlükleri göster</string>
+    <string name="orange_settings_local_logs">Yerel günlükler</string>
+    <string name="orange_local_logs_0">Devre dışı</string>
+    <string name="orange_settings_menu_highlighter">Vurgulayıcı</string>
 </resources>

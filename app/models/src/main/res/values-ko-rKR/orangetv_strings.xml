@@ -68,7 +68,7 @@
     <string name="orange_settings_landscape_chat_opacity">가로 모드에서 채팅 투명도</string>
     <string name="orange_chapters_unknown">알 수 없음</string>
     <string name="orange_settings_emote_quality">이모티콘 품질</string>
-    <string name="orange_emote_quality_low">낮음</string>
+    <string name="orange_emote_quality_low">작게</string>
     <string name="orange_emote_quality_medium">중간</string>
     <string name="orange_emote_quality_large">크게</string>
     <string name="orange_settings_compact_player_follow_view">팔로우 뷰 간단히 보기</string>
@@ -83,4 +83,9 @@
     <string name="orange_settings_menu_wiki">위키</string>
     <string name="orange_settings_menu_ota">OTA</string>
     <string name="orange_settings_menu_info">정보</string>
+    <string name="orange_emote_picker_fav_emotes">즐겨찾는 이모티콘</string>
+    <string name="orange_chat_user_dialog_fragment_view_local_logs">로컬 로그 보기</string>
+    <string name="orange_settings_local_logs">로컬 로그</string>
+    <string name="orange_local_logs_0">비활성화</string>
+    <string name="orange_settings_menu_highlighter">강조 표시</string>
 </resources>

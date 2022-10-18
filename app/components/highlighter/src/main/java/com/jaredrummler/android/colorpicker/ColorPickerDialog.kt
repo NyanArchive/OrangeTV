@@ -23,8 +23,6 @@ import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.text.Editable
-import android.text.InputFilter
-import android.text.InputFilter.LengthFilter
 import android.text.TextWatcher
 import android.view.View
 import android.view.View.OnFocusChangeListener
@@ -47,8 +45,6 @@ import java.util.*
 import kotlin.math.roundToInt
 
 class ColorPickerDialog : DialogFragment(), OnColorChangedListener, TextWatcher {
-    private val listeners = mutableListOf<ColorPickerDialogListener>()
-
     private lateinit var rootView: FrameLayout
     private lateinit var colorPicker: ColorPickerView
     private lateinit var newColorPanel: ColorPanelView
@@ -63,15 +59,15 @@ class ColorPickerDialog : DialogFragment(), OnColorChangedListener, TextWatcher 
     private var dialogId = 0
     private var dialogType = TYPE_PRESETS
 
-    private var showAlphaSlider = true
-    private var showColorShades = true
-
     @ColorInt
     private var color = 0
 
     private var presetsButtonStringRes = 0
-    private var fromEditText = false
     private var customButtonStringRes = 0
+
+    private var fromEditText = false
+
+    private val listeners = mutableListOf<ColorPickerDialogListener>()
 
     @SuppressLint("ClickableViewAccessibility")
     private val onPickerTouchListener = OnTouchListener { v, _ ->
@@ -86,21 +82,12 @@ class ColorPickerDialog : DialogFragment(), OnColorChangedListener, TextWatcher 
         false
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    override fun onCreateDialog(bundle: Bundle?): Dialog {
         dialogId = requireArguments().getInt(ARG_ID)
-        showAlphaSlider = requireArguments().getBoolean(ARG_ALPHA)
-        showColorShades = requireArguments().getBoolean(ARG_SHOW_COLOR_SHADES)
-
-        savedInstanceState?.let { sis ->
-            color = sis.getInt(ARG_COLOR)
-            dialogType = sis.getInt(ARG_TYPE)
-        } ?: run {
-            color = requireArguments().getInt(ARG_COLOR)
-            dialogType = requireArguments().getInt(ARG_TYPE)
-        }
+        color = bundle?.getInt(ARG_COLOR) ?: requireArguments().getInt(ARG_COLOR)
+        dialogType = bundle?.getInt(ARG_TYPE) ?: requireArguments().getInt(ARG_TYPE)
 
         rootView = FrameLayout(requireActivity())
-
         if (dialogType == TYPE_CUSTOM) {
             rootView.addView(createPickerView())
         } else if (dialogType == TYPE_PRESETS) {
@@ -125,22 +112,19 @@ class ColorPickerDialog : DialogFragment(), OnColorChangedListener, TextWatcher 
         presetsButtonStringRes = requireArguments().getInt(ARG_PRESETS_BUTTON_TEXT)
         customButtonStringRes = requireArguments().getInt(ARG_CUSTOM_BUTTON_TEXT)
 
-        val neutralButtonStringRes =
-            if (dialogType == TYPE_CUSTOM && requireArguments().getBoolean(ARG_ALLOW_PRESETS)) {
-                if (presetsButtonStringRes != 0) {
-                    presetsButtonStringRes
-                } else {
-                    ResourceManager.get().getStringId("cpv_presets")
-                }
-            } else if (dialogType == TYPE_PRESETS && requireArguments().getBoolean(ARG_ALLOW_CUSTOM)) {
-                if (customButtonStringRes != 0) {
-                    customButtonStringRes
-                } else {
-                    ResourceManager.get().getStringId("cpv_custom")
-                }
+        val neutralButtonStringRes = when (dialogType) {
+            TYPE_CUSTOM -> if (presetsButtonStringRes != 0) {
+                presetsButtonStringRes
             } else {
-                0
+                ResourceManager.get().getStringId("cpv_presets")
             }
+            TYPE_PRESETS -> if (customButtonStringRes != 0) {
+                customButtonStringRes
+            } else {
+                ResourceManager.get().getStringId("cpv_custom")
+            }
+            else -> 0
+        }
 
         if (neutralButtonStringRes != 0) {
             builder.setNeutralButton(ResourceManager.get().getString(neutralButtonStringRes), null)
@@ -215,17 +199,12 @@ class ColorPickerDialog : DialogFragment(), OnColorChangedListener, TextWatcher 
         oldColorPanel = contentView.getView("cpv_color_panel_old")
         hexEditText = contentView.getView("cpv_hex")
 
-        colorPicker.setAlphaSliderVisible(showAlphaSlider)
         colorPicker.setColor(color, true)
 
         newColorPanel.setColor(color)
         oldColorPanel.setColor(color)
 
         setHex(color)
-
-        if (!showAlphaSlider) {
-            hexEditText.filters = arrayOf<InputFilter>(LengthFilter(6))
-        }
 
         newColorPanel.setOnClickListener {
             if (newColorPanel.getColor() == color) {
@@ -278,11 +257,7 @@ class ColorPickerDialog : DialogFragment(), OnColorChangedListener, TextWatcher 
     }
 
     private fun setHex(color: Int) {
-        if (showAlphaSlider) {
-            hexEditText.setText(String.format("%08X", color))
-        } else {
-            hexEditText.setText(String.format("%06X", 0xFFFFFF and color))
-        }
+        hexEditText.setText(String.format("%08X", color))
     }
 
     @Throws(NumberFormatException::class)
@@ -357,12 +332,7 @@ class ColorPickerDialog : DialogFragment(), OnColorChangedListener, TextWatcher 
 
         val gridView = contentView.getView<GridView>("gridView")
         loadPresets()
-        if (showColorShades) {
-            createColorShades(color)
-        } else {
-            shadesLayout.visibility = View.GONE
-            contentView.getView<View>("shades_divider").visibility = View.GONE
-        }
+        createColorShades(color)
         adapter = ColorPaletteAdapter(object : OnColorSelectedListener {
             override fun onColorSelected(color: Int) {
                 if (this@ColorPickerDialog.color == color) {
@@ -371,37 +341,28 @@ class ColorPickerDialog : DialogFragment(), OnColorChangedListener, TextWatcher 
                     return
                 }
                 this@ColorPickerDialog.color = color
-                if (showColorShades) {
-                    createColorShades(this@ColorPickerDialog.color)
-                }
+                createColorShades(this@ColorPickerDialog.color)
             }
         }, presets, selectedItemPosition)
 
         gridView.adapter = adapter
-        if (showAlphaSlider) {
-            setupTransparency()
-        } else {
-            contentView.getView<View>("transparency_layout").visibility = View.GONE
-            contentView.getView<View>("transparency_title").visibility = View.GONE
-        }
+        setupTransparency()
 
         return contentView
     }
 
     private fun loadPresets() {
         val alpha = Color.alpha(color)
-        val res = requireArguments().getIntArray(ARG_PRESETS) ?: MATERIAL_COLORS
 
-        presets = res.copyOf(res.size)
-        if (showAlphaSlider) {
-            if (alpha != 255) {
-                for (i in presets.indices) {
-                    val color = presets.get(i)
-                    val red = Color.red(color)
-                    val green = Color.green(color)
-                    val blue = Color.blue(color)
-                    presets[i] = Color.argb(alpha, red, green, blue)
-                }
+        presets = MATERIAL_COLORS.copyOf(MATERIAL_COLORS.size)
+
+        if (alpha != 255) {
+            for (i in presets.indices) {
+                val color = presets.get(i)
+                val red = Color.red(color)
+                val green = Color.green(color)
+                val blue = Color.blue(color)
+                presets[i] = Color.argb(alpha, red, green, blue)
             }
         }
         presets = unshiftIfNotExists(presets, color)
@@ -586,50 +547,19 @@ class ColorPickerDialog : DialogFragment(), OnColorChangedListener, TextWatcher 
     }
 
     private fun unshiftIfNotExists(array: IntArray, value: Int): IntArray {
-        var present = false
-        for (i in array) {
-            if (i == value) {
-                present = true
-                break
-            }
-        }
-        if (!present) {
-            val newArray = IntArray(array.size + 1)
-            newArray[0] = value
-            System.arraycopy(array, 0, newArray, 1, newArray.size - 1)
-            return newArray
+        array.find { it == value }?.let {
+            return array
         }
 
-        return array
-    }
-
-    private fun pushIfNotExists(array: IntArray, value: Int): IntArray {
-        var present = false
-        for (i in array) {
-            if (i == value) {
-                present = true
-                break
-            }
+        val buf = IntArray(array.size + 1).apply {
+            set(0, value)
         }
-        if (!present) {
-            val newArray = IntArray(array.size + 1)
-            newArray[newArray.size - 1] = value
-            System.arraycopy(array, 0, newArray, 0, newArray.size - 1)
-            return newArray
-        }
-
-        return array
+        System.arraycopy(array, 0, buf, 1, buf.size - 1)
+        return buf
     }
 
     private val selectedItemPosition: Int
-        get() {
-            for (i in presets.indices) {
-                if (presets[i] == color) {
-                    return i
-                }
-            }
-            return -1
-        }
+        get() = presets.firstOrNull { it == color } ?: -1
 
     class Builder internal constructor() {
         @StringRes
@@ -645,10 +575,15 @@ class ColorPickerDialog : DialogFragment(), OnColorChangedListener, TextWatcher 
         var selectedButtonText = ResourceManager.get().getStringId("cpv_select")
 
         @ColorInt
-        var color = Color.BLACK
+        private var color = Color.BLACK
 
-        var allowPresets = true
-        var allowCustom = true
+        private var dialogId: Int = 0
+
+        fun setDialogId(id: Int): Builder {
+            return this.apply {
+                this@Builder.dialogId = id
+            }
+        }
 
         fun setColor(@ColorInt color: Int): Builder {
             return this.apply {
@@ -658,15 +593,9 @@ class ColorPickerDialog : DialogFragment(), OnColorChangedListener, TextWatcher 
 
         fun create() = ColorPickerDialog().apply {
             arguments = Bundle().apply {
-                putInt(ARG_ID, dialogId)
-                putInt(ARG_TYPE, dialogType)
+                putInt(ARG_ID, this@Builder.dialogId)
                 putInt(ARG_COLOR, this@Builder.color)
-                putBoolean(ARG_ALLOW_CUSTOM, this@Builder.allowCustom)
-                putBoolean(ARG_ALLOW_PRESETS, this@Builder.allowPresets)
-                putIntArray(ARG_PRESETS, MATERIAL_COLORS)
-                putBoolean(ARG_ALPHA, showAlphaSlider)
                 putInt(ARG_DIALOG_TITLE, dialogTitle)
-                putBoolean(ARG_SHOW_COLOR_SHADES, showColorShades)
                 putInt(ARG_PRESETS_BUTTON_TEXT, presetsButtonText)
                 putInt(ARG_CUSTOM_BUTTON_TEXT, customButtonText)
                 putInt(ARG_SELECTED_BUTTON_TEXT, selectedButtonText)
@@ -706,12 +635,7 @@ class ColorPickerDialog : DialogFragment(), OnColorChangedListener, TextWatcher 
         private const val ARG_ID = "id"
         private const val ARG_TYPE = "dialogType"
         private const val ARG_COLOR = "color"
-        private const val ARG_ALPHA = "alpha"
-        private const val ARG_PRESETS = "presets"
-        private const val ARG_ALLOW_PRESETS = "allowPresets"
-        private const val ARG_ALLOW_CUSTOM = "allowCustom"
         private const val ARG_DIALOG_TITLE = "dialogTitle"
-        private const val ARG_SHOW_COLOR_SHADES = "showColorShades"
         private const val ARG_PRESETS_BUTTON_TEXT = "presetsButtonText"
         private const val ARG_CUSTOM_BUTTON_TEXT = "customButtonText"
         private const val ARG_SELECTED_BUTTON_TEXT = "selectedButtonText"

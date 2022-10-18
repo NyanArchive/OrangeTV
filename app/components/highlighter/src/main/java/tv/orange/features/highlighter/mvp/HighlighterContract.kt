@@ -11,8 +11,6 @@ interface HighlighterContract {
         sealed class State {
             object Loading : State()
             data class Update(val keywords: List<KeywordData>) : State()
-            data class Added(val keyword: KeywordData) : State()
-            data class Deleted(val keyword: KeywordData) : State()
         }
     }
 

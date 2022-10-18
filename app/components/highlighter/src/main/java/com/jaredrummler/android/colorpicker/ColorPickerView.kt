@@ -17,7 +17,6 @@ package com.jaredrummler.android.colorpicker
 
 import android.content.Context
 import android.graphics.*
-import android.graphics.Paint.Align
 import android.graphics.Shader.TileMode
 import android.os.Bundle
 import android.os.Parcelable
@@ -25,7 +24,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import com.jaredrummler.android.colorpicker.DrawingUtils.dpToPx
-import tv.orange.core.ResourceManager.Companion.get
+import tv.orange.core.ResourceManager
 import kotlin.math.roundToInt
 
 class ColorPickerView @JvmOverloads constructor(
@@ -33,23 +32,50 @@ class ColorPickerView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyle: Int = 0
 ) : View(context, attrs, defStyle) {
-    private var huePanelWidthPx = 0
-    private var alphaPanelHeightPx = 0
-    private var panelSpacingPx = 0
-    private var circleTrackerRadiusPx = 0
-    private var sliderTrackerOffsetPx = 0
-    private var sliderTrackerSizePx = 0
+    private val huePanelWidthPx = dpToPx(
+        c = getContext(),
+        dipValue = HUE_PANEL_WIDTH_DP.toFloat()
+    )
+    private val alphaPanelHeightPx = dpToPx(
+        c = getContext(),
+        dipValue = ALPHA_PANEL_HEIGHT_DP.toFloat()
+    )
+    private val panelSpacingPx: Int = dpToPx(
+        c = getContext(),
+        dipValue = PANEL_SPACING_DP.toFloat()
+    )
+    private val circleTrackerRadiusPx: Int = dpToPx(
+        c = getContext(),
+        dipValue = CIRCLE_TRACKER_RADIUS_DP.toFloat()
+    )
+    private val sliderTrackerOffsetPx: Int = dpToPx(
+        c = getContext(),
+        dipValue = SLIDER_TRACKER_OFFSET_DP.toFloat()
+    )
+    private val sliderTrackerSizePx: Int = dpToPx(
+        c = getContext(),
+        dipValue = SLIDER_TRACKER_SIZE_DP.toFloat()
+    )
+
+    private val alphaPaint = Paint()
+    private val satValPaint = Paint()
+    private val borderPaint = Paint()
+
+    private val satValTrackerPaint = Paint().apply {
+        style = Paint.Style.STROKE
+        strokeWidth = dpToPx(context, 2f).toFloat()
+        isAntiAlias = true
+    }
+    private val hueAlphaTrackerPaint = Paint().apply {
+        color = sliderTrackerColor
+        style = Paint.Style.STROKE
+        strokeWidth = dpToPx(context, 2f).toFloat()
+        isAntiAlias = true
+    }
 
     private var valShader: Shader? = null
     private var satShader: Shader? = null
     private var alphaShader: Shader? = null
-
-    private lateinit var alphaTextPaint: Paint
-    private lateinit var satValTrackerPaint: Paint
-    private lateinit var alphaPaint: Paint
-    private lateinit var hueAlphaTrackerPaint: Paint
-    private lateinit var satValPaint: Paint
-    private lateinit var borderPaint: Paint
 
     private var satValBackgroundCache: BitmapCache? = null
     private var hueBackgroundCache: BitmapCache? = null
@@ -58,14 +84,14 @@ class ColorPickerView @JvmOverloads constructor(
     private var hue = 360f
     private var sat = 0f
     private var v = 0f
-    private var showAlphaPanel = false
 
-    private var alphaSliderText: String? = null
+    private var showAlphaPanel = true
 
     private var sliderTrackerColor = DEFAULT_SLIDER_COLOR
     private var borderColor = DEFAULT_BORDER_COLOR
 
-    private var mRequiredPadding = 0
+    private var mRequiredPadding =
+        resources.getDimensionPixelSize(ResourceManager.get().getDimenId("cpv_required_padding"))
 
     private var drawingRect: Rect = Rect()
     private var satValRect: Rect = Rect()
@@ -91,7 +117,6 @@ class ColorPickerView @JvmOverloads constructor(
         state.putFloat("sat", sat)
         state.putFloat("val", v)
         state.putBoolean("show_alpha", showAlphaPanel)
-        state.putString("alpha_text", alphaSliderText)
         return state
     }
 
@@ -102,52 +127,10 @@ class ColorPickerView @JvmOverloads constructor(
             sat = state.getFloat("sat")
             v = state.getFloat("val")
             showAlphaPanel = state.getBoolean("show_alpha")
-            alphaSliderText = state.getString("alpha_text")
             super.onRestoreInstanceState(state.getParcelable("instanceState"))
             return
         }
         super.onRestoreInstanceState(state)
-    }
-
-    private fun init(context: Context, attrs: AttributeSet?) {
-        showAlphaPanel = true
-        sliderTrackerColor = -0x424243
-        borderColor = -0x919192
-        huePanelWidthPx = dpToPx(getContext(), HUE_PANEL_WDITH_DP.toFloat())
-        alphaPanelHeightPx = dpToPx(getContext(), ALPHA_PANEL_HEIGH_DP.toFloat())
-        panelSpacingPx = dpToPx(getContext(), PANEL_SPACING_DP.toFloat())
-        circleTrackerRadiusPx = dpToPx(getContext(), CIRCLE_TRACKER_RADIUS_DP.toFloat())
-        sliderTrackerSizePx = dpToPx(getContext(), SLIDER_TRACKER_SIZE_DP.toFloat())
-        sliderTrackerOffsetPx = dpToPx(getContext(), SLIDER_TRACKER_OFFSET_DP.toFloat())
-        mRequiredPadding = resources.getDimensionPixelSize(get().getDimenId("cpv_required_padding"))
-        initPaintTools()
-
-        isFocusable = true
-        isFocusableInTouchMode = true
-    }
-
-    private fun initPaintTools() {
-        satValPaint = Paint()
-        alphaPaint = Paint()
-        borderPaint = Paint()
-        satValTrackerPaint = Paint().apply {
-            style = Paint.Style.STROKE
-            strokeWidth = dpToPx(context, 2f).toFloat()
-            isAntiAlias = true
-        }
-        alphaTextPaint = Paint().apply {
-            color = -0xe3e3e4
-            textSize = dpToPx(context, 14f).toFloat()
-            isAntiAlias = true
-            textAlign = Align.CENTER
-            isFakeBoldText = true
-        }
-        hueAlphaTrackerPaint = Paint().apply {
-            color = sliderTrackerColor
-            style = Paint.Style.STROKE
-            strokeWidth = dpToPx(context, 2f).toFloat()
-            isAntiAlias = true
-        }
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -330,14 +313,6 @@ class ColorPickerView @JvmOverloads constructor(
             )
         alphaPaint.shader = alphaShader
         canvas.drawRect(rect, alphaPaint)
-        if (alphaSliderText != null && alphaSliderText != "") {
-            canvas.drawText(
-                alphaSliderText!!, rect.centerX().toFloat(), (rect.centerY() + dpToPx(
-                    context, 4f
-                )).toFloat(),
-                alphaTextPaint
-            )
-        }
         val p = alphaToPoint(alpha)
         val r = RectF()
         r.left = (p.x - sliderTrackerSizePx / 2).toFloat()
@@ -376,28 +351,28 @@ class ColorPickerView @JvmOverloads constructor(
     }
 
     private fun pointToSatVal(x: Float, y: Float): FloatArray {
-        var x = x
-        var y = y
+        var xTemp = x
+        var yTemp = y
         val rect = satValRect
         val result = FloatArray(2)
         val width = rect.width().toFloat()
         val height = rect.height().toFloat()
-        x = if (x < rect.left) {
+        xTemp = if (xTemp < rect.left) {
             0f
-        } else if (x > rect.right) {
+        } else if (xTemp > rect.right) {
             width
         } else {
-            x - rect.left
+            xTemp - rect.left
         }
-        y = if (y < rect.top) {
+        yTemp = if (yTemp < rect.top) {
             0f
-        } else if (y > rect.bottom) {
+        } else if (yTemp > rect.bottom) {
             height
         } else {
-            y - rect.top
+            yTemp - rect.top
         }
-        result[0] = 1f / width * x
-        result[1] = 1f - 1f / height * y
+        result[0] = 1f / width * xTemp
+        result[1] = 1f - 1f / height * yTemp
         return result
     }
 
@@ -416,17 +391,17 @@ class ColorPickerView @JvmOverloads constructor(
     }
 
     private fun pointToAlpha(x: Int): Int {
-        var x = x
+        var xTemp = x
         val rect = alphaRect
         val width = rect.width()
-        x = if (x < rect.left) {
+        xTemp = if (xTemp < rect.left) {
             0
-        } else if (x > rect.right) {
+        } else if (xTemp > rect.right) {
             width
         } else {
-            x - rect.left
+            xTemp - rect.left
         }
-        return 0xff - x * 0xff / width
+        return 0xff - xTemp * 0xff / width
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
@@ -653,26 +628,13 @@ class ColorPickerView @JvmOverloads constructor(
         invalidate()
     }
 
-    fun setAlphaSliderVisible(visible: Boolean) {
-        if (showAlphaPanel != visible) {
-            showAlphaPanel = visible
-
-            valShader = null
-            satShader = null
-            alphaShader = null
-            hueBackgroundCache = null
-            satValBackgroundCache = null
-            requestLayout()
-        }
-    }
-
     private data class BitmapCache(val canvas: Canvas, val bitmap: Bitmap, var value: Float = 0f)
 
     companion object {
         private const val DEFAULT_BORDER_COLOR = -0x919192
         private const val DEFAULT_SLIDER_COLOR = -0x424243
-        private const val HUE_PANEL_WDITH_DP = 30
-        private const val ALPHA_PANEL_HEIGH_DP = 20
+        private const val HUE_PANEL_WIDTH_DP = 30
+        private const val ALPHA_PANEL_HEIGHT_DP = 20
         private const val PANEL_SPACING_DP = 10
         private const val CIRCLE_TRACKER_RADIUS_DP = 5
         private const val SLIDER_TRACKER_SIZE_DP = 4
@@ -681,6 +643,7 @@ class ColorPickerView @JvmOverloads constructor(
     }
 
     init {
-        init(context, attrs)
+        isFocusable = true
+        isFocusableInTouchMode = true
     }
 }

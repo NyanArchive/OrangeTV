@@ -14,10 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jaredrummler.android.colorpicker.ColorPickerDialog
 import com.jaredrummler.android.colorpicker.ColorPickerDialogListener
-import tv.orange.core.Logger
-import tv.orange.core.ResourceManager
 import tv.orange.core.util.ViewUtil.changeVisibility
 import tv.orange.core.util.ViewUtil.getView
+import tv.orange.core.util.ViewUtil.inflate
 import tv.orange.features.highlighter.data.model.KeywordData
 import tv.orange.features.highlighter.mvp.HighlighterContract
 import tv.orange.features.highlighter.presenter.HighlighterPresenter
@@ -29,7 +28,7 @@ class HighlighterFragment : Fragment(), HighlighterContract.View, ClickListener 
     private lateinit var addButton: TextView
 
     private val presenter = HighlighterPresenter(this)
-    val adapter = HighlighterAdapter(this)
+    private val adapter = HighlighterAdapter(this)
 
     override fun onStart() {
         super.onStart()
@@ -44,12 +43,9 @@ class HighlighterFragment : Fragment(), HighlighterContract.View, ClickListener 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(
-            ResourceManager.get().getLayoutId("orangetv_highlighter"),
-            container,
-            false
-        )
+    ): View {
+        val view = inflater.inflate(container, "orangetv_highlighter")
+
         addButton = view.getView("orangetv_highlighter__add_button")
         loading = view.getView("orangetv_highlighter__loading")
         rv = view.getView("orangetv_highlighter__rv")
@@ -74,15 +70,8 @@ class HighlighterFragment : Fragment(), HighlighterContract.View, ClickListener 
         return view
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = HighlighterFragment()
-    }
-
     override fun render(state: HighlighterContract.View.State) {
         when (state) {
-            is HighlighterContract.View.State.Added -> TODO()
-            is HighlighterContract.View.State.Deleted -> TODO()
             HighlighterContract.View.State.Loading -> {
                 loading.changeVisibility(isVisible = true)
                 rv.changeVisibility(isVisible = false)
@@ -97,7 +86,7 @@ class HighlighterFragment : Fragment(), HighlighterContract.View, ClickListener 
 
     override fun showAddKeywordsDialog() {
         val editText = EditText(requireActivity())
-        val dialog = AlertDialog.Builder(requireContext())
+        val dialog = AlertDialog.Builder(requireActivity())
             .setView(editText)
             .setPositiveButton(android.R.string.ok) { _, _ ->
                 val rawText = editText.text.toString().trim()
@@ -110,6 +99,7 @@ class HighlighterFragment : Fragment(), HighlighterContract.View, ClickListener 
 
     override fun showChangeItemColorDialog(keyword: KeywordData) {
         val dialog = ColorPickerDialog.newBuilder()
+            .setDialogId(0)
             .setColor(keyword.color)
             .create()
 
@@ -118,9 +108,7 @@ class HighlighterFragment : Fragment(), HighlighterContract.View, ClickListener 
                 presenter.onItemColorChanged(keyword = keyword, newColor = newColor)
             }
 
-            override fun onDialogDismissed(dialogId: Int) {
-                Logger.debug("called!")
-            }
+            override fun onDialogDismissed(dialogId: Int) {}
         })
         dialog.show(requireActivity().supportFragmentManager, "orange_change_color")
     }
@@ -131,5 +119,9 @@ class HighlighterFragment : Fragment(), HighlighterContract.View, ClickListener 
 
     override fun onVibrationClicked(item: KeywordData) {
         presenter.onVibrationItemClicked(keyword = item)
+    }
+
+    companion object {
+        fun newInstance() = HighlighterFragment()
     }
 }

@@ -2,6 +2,7 @@ package tv.orange.features.highlighter.view
 
 import android.annotation.SuppressLint
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import tv.orange.core.util.ViewUtil.inflate
 import tv.orange.features.highlighter.data.model.KeywordData
@@ -35,15 +36,12 @@ class HighlighterAdapter(
         notifyItemRemoved(adapterPosition)
     }
 
-    fun addAll(vararg keywords: KeywordData) {
-        items.addAll(keywords)
-        notifyDataSetChanged()
-    }
-
     fun setData(keywords: List<KeywordData>) {
+        val callback = HighlighterDiffUtilCallback(items, keywords)
+        val result = DiffUtil.calculateDiff(callback)
         items.clear()
         items.addAll(keywords)
-        notifyDataSetChanged()
+        result.dispatchUpdatesTo(this)
     }
 
     fun getItem(pos: Int): KeywordData? {

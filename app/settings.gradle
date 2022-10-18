@@ -27,6 +27,7 @@ include ':components:emotes'
 include ':components:badges'
 include ':components:api'
 include ':components:pronouns'
+include ':components:highlighter'
 
 include ':features:usersearch'
 include ':features:refreshstream'

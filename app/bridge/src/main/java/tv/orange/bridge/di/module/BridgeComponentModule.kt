@@ -10,6 +10,8 @@ import tv.orange.features.badges.di.component.BadgesComponent
 import tv.orange.features.badges.di.component.DaggerBadgesComponent
 import tv.orange.features.emotes.di.component.DaggerEmotesComponent
 import tv.orange.features.emotes.di.component.EmotesComponent
+import tv.orange.features.highlighter.di.component.DaggerHighlighterComponent
+import tv.orange.features.highlighter.di.component.HighlighterComponent
 import tv.orange.features.pronouns.di.component.DaggerPronounComponent
 import tv.orange.features.pronouns.di.component.PronounComponent
 
@@ -49,6 +51,13 @@ class BridgeComponentModule {
     @Provides
     fun provideApiComponent(coreComponent: CoreComponent): ApiComponent {
         return DaggerApiComponent.builder()
+            .coreComponent(coreComponent).build()
+    }
+
+    @BridgeScope
+    @Provides
+    fun provideHighlighter(coreComponent: CoreComponent): HighlighterComponent {
+        return DaggerHighlighterComponent.builder()
             .coreComponent(coreComponent).build()
     }
 }

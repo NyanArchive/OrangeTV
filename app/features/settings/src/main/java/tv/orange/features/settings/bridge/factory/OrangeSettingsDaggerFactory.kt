@@ -4,7 +4,7 @@ import androidx.fragment.app.FragmentActivity
 import dagger.android.AndroidInjector
 import dagger.internal.MapBuilder
 import tv.orange.core.compat.ClassCompat.getPrivateField
-import tv.orange.features.settings.OrangeSettings
+import tv.orange.features.highlighter.Highlighter
 import tv.orange.features.settings.bridge.DaggerMapper
 import tv.orange.features.settings.bridge.IFragment
 import tv.orange.features.settings.bridge.settings.OrangeSettingsFragment
@@ -17,7 +17,9 @@ import tv.twitch.android.shared.ui.menus.core.MenuAdapterBinder
 import javax.inject.Inject
 import javax.inject.Provider
 
-class OrangeSettingsDaggerFactory @Inject constructor() {
+class OrangeSettingsDaggerFactory @Inject constructor(
+    val highlighter: Highlighter
+) {
     fun injectSubcomponentSettingsProvider(
         mapBuilder: MapBuilder<Class<*>, Provider<AndroidInjector.Factory<*>>>,
         settingsActivitySubcomponentImpl: DaggerAppComponent.SettingsActivitySubcomponentImpl,
@@ -43,13 +45,14 @@ class OrangeSettingsDaggerFactory @Inject constructor() {
         appComponent: DaggerAppComponent
     ): Provider<OrangeSettingsController> {
         return Provider {
-            OrangeSettings.get().getOrangeSettingsController(
-                settingsActivitySubcomponentImpl.getPrivateField<Provider<FragmentActivity>>(
+            OrangeSettingsController(
+                activity = settingsActivitySubcomponentImpl.getPrivateField<Provider<FragmentActivity>>(
                     "provideFragmentActivityProvider"
                 ).get(),
-                appComponent.getPrivateField<Provider<IFragmentRouter>>(
+                fragmentRouter = appComponent.getPrivateField<Provider<IFragmentRouter>>(
                     "provideFragmentRouterProvider"
-                ).get()
+                ).get(),
+                highlighter = highlighter
             )
         }
     }

@@ -27,8 +27,6 @@ android {
 }
 
 dependencies {
-    def room_version = "2.2.5"
-
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-rxjava2:$room_version"
 
@@ -36,6 +34,7 @@ dependencies {
     implementation project(path: ':components:emotes')
     implementation project(path: ':components:badges')
     implementation project(path: ':components:pronouns')
+    implementation project(path: ':components:highlighter')
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

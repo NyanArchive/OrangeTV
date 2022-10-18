@@ -11,6 +11,7 @@ import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asInt
 import tv.orange.core.models.flag.Flag.Companion.asString
 import tv.orange.core.models.flag.Internal
+import tv.orange.features.highlighter.Highlighter
 import tv.orange.features.settings.bridge.model.OrangeSubMenu
 import tv.orange.features.settings.bridge.settings.*
 import tv.orange.features.settings.bridge.slider.SliderModel
@@ -21,10 +22,12 @@ import tv.twitch.android.shared.ui.menus.SettingsPreferencesController
 import tv.twitch.android.shared.ui.menus.core.MenuModel
 import tv.twitch.android.shared.ui.menus.subscription.SubMenuModel
 import tv.twitch.android.shared.ui.menus.togglemenu.ToggleMenuModel
+import javax.inject.Inject
 
-class OrangeSettingsController(
+class OrangeSettingsController @Inject constructor(
     val activity: FragmentActivity,
-    val fragmentRouter: IFragmentRouter
+    val fragmentRouter: IFragmentRouter,
+    val highlighter: Highlighter
 ) : SettingsPreferencesController,
     SliderModel.SliderListener, SettingsNavigationController {
     override fun updatePreferenceBooleanState(toggleMenuModel: ToggleMenuModel, state: Boolean) {
@@ -107,6 +110,7 @@ class OrangeSettingsController(
             SettingsDestination.OrangePlayer -> OrangePlayerSettingsFragment()
             SettingsDestination.OrangeView -> OrangeViewSettingsFragment()
             SettingsDestination.OrangeDev -> OrangeDevSettingsFragment()
+            SettingsDestination.OrangeHighlighter -> highlighter.createHighlighterFragment()
             else -> null
         }?.let { fragment ->
             fragmentRouter.addOrRecreateFragment(

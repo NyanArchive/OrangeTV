@@ -31,6 +31,8 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    sourceSets.main.java.filter.exclude 'com/**/*.java'
 }
 
 dependencies {

@@ -133,6 +133,9 @@ def handle_args(args, env: Env, apk: ApkDescriptor):
         tasks.append(git.ApplyPatches(apk, check=False))
         create_recompile_tasks(tasks)
 
+    if args.install:
+        tasks.append(internal.Install(apk))
+
     run(env=env, tasks=tasks)
 
 
@@ -155,6 +158,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='OrangeTV toolchain')
     parser.add_argument('-f', '--file', type=parse_file_arg)
     parser.add_argument('--force', action='store_true')
+    parser.add_argument('--install', action='store_true')
 
     group = parser.add_mutually_exclusive_group()
     group.add_argument('--decompile', action='store_true', help="Decompile apk and create git repo")

@@ -90,6 +90,8 @@ class FixClasses(BaseTask):
         move_classes(Path(self._apk.decompile_dir).joinpath("smali_classes4/jp"), md)
         move_classes(Path(self._apk.decompile_dir).joinpath("smali_classes5/tv/twitch/android/models"),
                      md.joinpath("tv/twitch/android"))
+        move_classes(Path(self._apk.decompile_dir).joinpath("smali/berlin/volders/badger"),
+                     md.joinpath("berlin/volder"))
 
     def cancel(self):
         pass
@@ -132,7 +134,6 @@ class SignApk(BaseTask):
         dig.unlink()
 
         signed.rename(out_apk.as_posix())
-        self._apk.out_apk = signed
 
     def cancel(self):
         pass

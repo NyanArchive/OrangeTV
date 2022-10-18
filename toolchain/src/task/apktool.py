@@ -134,7 +134,6 @@ class SignApk(BaseTask):
         dig.unlink()
 
         signed.rename(out_apk.as_posix())
-        self._apk.out_apk = signed
 
     def cancel(self):
         pass

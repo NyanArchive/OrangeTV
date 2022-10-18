@@ -160,3 +160,12 @@ class IncreaseBuildNumber(BaseTask):
 
     def cancel(self):
         pass
+
+class Install(BaseTask):
+    __NAME__ = "Install"
+
+    def run(self, env: Env):
+        subprocess.run(["adb", "install", "-r", self._apk.out_apk])
+
+    def cancel(self):
+        pass

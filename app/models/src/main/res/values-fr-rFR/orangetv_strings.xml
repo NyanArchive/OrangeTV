@@ -88,4 +88,10 @@
     <string name="orange_settings_local_logs">Journaux locaux</string>
     <string name="orange_local_logs_0">Désactivé</string>
     <string name="orange_settings_menu_highlighter">Surligneur</string>
+    <string name="cpv_default_title">Sélectionner une couleur</string>
+    <string name="cpv_presets">Préréglages</string>
+    <string name="cpv_custom">Personnalisé</string>
+    <string name="cpv_select">Sélectionner</string>
+    <string name="cpv_transparency">Transparence</string>
+    <string name="orange_settings_clipfinity">Clipfinity</string>
 </resources>

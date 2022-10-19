@@ -88,4 +88,9 @@
     <string name="orange_settings_local_logs">로컬 로그</string>
     <string name="orange_local_logs_0">비활성화</string>
     <string name="orange_settings_menu_highlighter">강조 표시</string>
+    <string name="cpv_default_title">색상 선택</string>
+    <string name="cpv_presets">사전 설정</string>
+    <string name="cpv_custom">사용자 정의</string>
+    <string name="cpv_select">선택</string>
+    <string name="cpv_transparency">투명도</string>
 </resources>

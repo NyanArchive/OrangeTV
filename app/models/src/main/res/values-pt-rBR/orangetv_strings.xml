@@ -88,4 +88,10 @@
     <string name="orange_settings_local_logs">Registros locais</string>
     <string name="orange_local_logs_0">Desativado</string>
     <string name="orange_settings_menu_highlighter">Realçar</string>
+    <string name="cpv_default_title">Escolha uma Cor</string>
+    <string name="cpv_presets">Pré‑ajustes</string>
+    <string name="cpv_custom">Personalizado</string>
+    <string name="cpv_select">Escolher</string>
+    <string name="cpv_transparency">Transparência</string>
+    <string name="orange_settings_clipfinity">Clipfinity</string>
 </resources>

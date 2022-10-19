@@ -88,4 +88,10 @@
     <string name="orange_settings_local_logs">Yerel günlükler</string>
     <string name="orange_local_logs_0">Devre dışı</string>
     <string name="orange_settings_menu_highlighter">Vurgulayıcı</string>
+    <string name="cpv_default_title">Bir Renk Seç</string>
+    <string name="cpv_presets">Hazır Ayarlar</string>
+    <string name="cpv_custom">Özel</string>
+    <string name="cpv_select">Seç</string>
+    <string name="cpv_transparency">Şeffaflık</string>
+    <string name="orange_settings_clipfinity">Clipfinity</string>
 </resources>

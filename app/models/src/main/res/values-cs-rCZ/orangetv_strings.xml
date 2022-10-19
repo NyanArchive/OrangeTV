@@ -88,4 +88,10 @@
     <string name="orange_settings_local_logs">Místní logy</string>
     <string name="orange_local_logs_0">Vypnuto</string>
     <string name="orange_settings_menu_highlighter">Zvýraznění</string>
+    <string name="cpv_default_title">Vyberte barvu</string>
+    <string name="cpv_presets">Předvolby</string>
+    <string name="cpv_custom">Vlastní</string>
+    <string name="cpv_select">Vybrat</string>
+    <string name="cpv_transparency">Průhlednost</string>
+    <string name="orange_settings_clipfinity">Clipfinity</string>
 </resources>

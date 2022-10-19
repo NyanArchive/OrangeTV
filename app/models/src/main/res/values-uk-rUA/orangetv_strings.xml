@@ -88,4 +88,10 @@
     <string name="orange_settings_local_logs">Кількість недавніх повідомлень</string>
     <string name="orange_local_logs_0">Не зберігати</string>
     <string name="orange_settings_menu_highlighter">Виділенні повідомлення</string>
+    <string name="cpv_default_title">Оберіть колір</string>
+    <string name="cpv_presets">Шаблони</string>
+    <string name="cpv_custom">Власний</string>
+    <string name="cpv_select">Обрати</string>
+    <string name="cpv_transparency">Прозорість</string>
+    <string name="orange_settings_clipfinity">Clipfinity</string>
 </resources>

@@ -1,0 +1,22 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/settings/entry/ChatSettingsPresenter$handleViewEvents$1.smali b/smali_classes5/tv/twitch/android/shared/chat/settings/entry/ChatSettingsPresenter$handleViewEvents$1.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/settings/entry/ChatSettingsPresenter$handleViewEvents$1.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/settings/entry/ChatSettingsPresenter$handleViewEvents$1.smali
+@@ -66,7 +66,18 @@
+ 
+     invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+ 
++    instance-of v0, p1, Ltv/orange/features/chat/bridge/ChatSettingsOrangeEvents$Closable;
++
++    if-eqz v0, :cond_z
++
++    iget-object p1, p0, Ltv/twitch/android/shared/chat/settings/entry/ChatSettingsPresenter$handleViewEvents$1;->this$0:Ltv/twitch/android/shared/chat/settings/entry/ChatSettingsPresenter;
++
++    invoke-static {p1}, Ltv/twitch/android/shared/chat/settings/entry/ChatSettingsPresenter;->access$close(Ltv/twitch/android/shared/chat/settings/entry/ChatSettingsPresenter;)V
++
++    return-void
++
+     .line 261
++    :cond_z
+     instance-of v0, p1, Ltv/twitch/android/shared/chat/settings/entry/ChatSettingsViewDelegate$ChatSettingsEvents$EmoteOnlyToggled;
+ 
+     if-eqz v0, :cond_0

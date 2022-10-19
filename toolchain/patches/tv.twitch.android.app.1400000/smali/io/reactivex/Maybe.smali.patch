@@ -1,0 +1,36 @@
+diff --git a/smali_classes3/io/reactivex/Maybe.smali b/smali_classes3/io/reactivex/Maybe.smali
+--- a/smali_classes3/io/reactivex/Maybe.smali
++++ b/smali_classes3/io/reactivex/Maybe.smali
+@@ -1431,3 +1431,31 @@
+ 
+     return-object p1
+ .end method
++
++.method public final flatMapCompletable(Lio/reactivex/functions/Function;)Lio/reactivex/Completable;
++    .registers 3
++    .annotation system Ldalvik/annotation/Signature;
++        value = {
++            "(",
++            "Lio/reactivex/functions/Function<",
++            "-TT;+",
++            "Lio/reactivex/CompletableSource;",
++            ">;)",
++            "Lio/reactivex/Completable;"
++        }
++    .end annotation
++
++    const-string v0, "mapper is null"
++
++    invoke-static {p1, v0}, Lio/reactivex/internal/functions/ObjectHelper;->requireNonNull(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
++
++    new-instance v0, Lio/reactivex/internal/operators/maybe/MaybeFlatMapCompletable;
++
++    invoke-direct {v0, p0, p1}, Lio/reactivex/internal/operators/maybe/MaybeFlatMapCompletable;-><init>(Lio/reactivex/MaybeSource;Lio/reactivex/functions/Function;)V
++
++    invoke-static {v0}, Lio/reactivex/plugins/RxJavaPlugins;->onAssembly(Lio/reactivex/Completable;)Lio/reactivex/Completable;
++
++    move-result-object v0
++
++    return-object v0
++.end method
+\ No newline at end of file

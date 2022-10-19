@@ -1,6 +1,6 @@
-diff --git a/smali_classes5/tv/twitch/android/shared/chat/settings/entry/ChatSettingsPresenter$handleViewEvents$1.smali b/smali_classes5/tv/twitch/android/shared/chat/settings/entry/ChatSettingsPresenter$handleViewEvents$1.smali
---- a/smali_classes5/tv/twitch/android/shared/chat/settings/entry/ChatSettingsPresenter$handleViewEvents$1.smali
-+++ b/smali_classes5/tv/twitch/android/shared/chat/settings/entry/ChatSettingsPresenter$handleViewEvents$1.smali
+diff --git a/smali_classes6/tv/twitch/android/shared/chat/settings/entry/ChatSettingsPresenter$handleViewEvents$1.smali b/smali_classes6/tv/twitch/android/shared/chat/settings/entry/ChatSettingsPresenter$handleViewEvents$1.smali
+--- a/smali_classes6/tv/twitch/android/shared/chat/settings/entry/ChatSettingsPresenter$handleViewEvents$1.smali
++++ b/smali_classes6/tv/twitch/android/shared/chat/settings/entry/ChatSettingsPresenter$handleViewEvents$1.smali
 @@ -66,7 +66,18 @@
  
      invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V

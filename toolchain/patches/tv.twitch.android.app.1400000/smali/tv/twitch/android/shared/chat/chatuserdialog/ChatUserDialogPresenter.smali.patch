@@ -28,7 +28,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/chatuserdialog/ChatUse
  
      .line 108
      iget-object v0, p0, Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogPresenter;->viewDelegate:Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate;
-@@ -1695,3 +1713,49 @@
+@@ -1714,3 +1732,49 @@
  
      return-void
  .end method

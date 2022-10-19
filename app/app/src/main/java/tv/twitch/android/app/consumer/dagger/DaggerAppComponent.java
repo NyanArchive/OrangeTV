@@ -8,13 +8,20 @@ import dagger.android.AndroidInjector;
 import dagger.internal.MapBuilder;
 import tv.orange.features.settings.OrangeSettings;
 import tv.orange.models.exception.VirtualImpl;
+import tv.twitch.android.app.consumer.TwitchApplication;
 
 public class DaggerAppComponent {
+    private static final class AppComponentImpl implements AppComponent {
+        @Override
+        public void inject(TwitchApplication twitchApplication) {
+            throw new VirtualImpl();
+        }
+    }
     /* ... */
 
     private static final class SettingsActivitySubcomponentImpl {
         private SettingsActivitySubcomponentImpl settingsActivitySubcomponentImpl;
-        private DaggerAppComponent appComponent;
+        private DaggerAppComponent.AppComponentImpl appComponentImpl;
 
         /* ... */
 
@@ -24,7 +31,7 @@ public class DaggerAppComponent {
             MapBuilder builder = null;
 
             /* ... */
-            OrangeSettings.get().inject(builder, settingsActivitySubcomponentImpl, appComponent); // TODO: __INJECT_CODE
+            OrangeSettings.get().inject(builder, settingsActivitySubcomponentImpl, appComponentImpl); // TODO: __INJECT_CODE
 
             /* ... */
 

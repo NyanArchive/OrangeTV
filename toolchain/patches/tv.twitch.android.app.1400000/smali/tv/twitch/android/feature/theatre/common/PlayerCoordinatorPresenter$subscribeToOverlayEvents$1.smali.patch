@@ -15,7 +15,7 @@ diff --git a/smali_classes5/tv/twitch/android/feature/theatre/common/PlayerCoord
 +
 +    return-void
 +
-     .line 597
+     .line 596
 +    :cond_z
      sget-object v0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents$ShowChat;->INSTANCE:Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents$ShowChat;
  

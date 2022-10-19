@@ -26,7 +26,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePic
  .end method
  
  .method private static final createAllEmoteSetsFlowable$lambda-10(Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter;Ljava/lang/Integer;Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerSource;Lkotlin/Triple;)Lkotlin/Pair;
-@@ -3332,6 +3340,10 @@
+@@ -3344,6 +3352,10 @@
          }
      .end annotation
  

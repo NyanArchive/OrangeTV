@@ -1,7 +1,7 @@
 diff --git a/smali_classes4/kotlin/jvm/internal/Intrinsics.smali b/smali_classes4/kotlin/jvm/internal/Intrinsics.smali
 --- a/smali_classes4/kotlin/jvm/internal/Intrinsics.smali
 +++ b/smali_classes4/kotlin/jvm/internal/Intrinsics.smali
-@@ -550,3 +550,37 @@
+@@ -579,3 +579,37 @@
  
      return-void
  .end method

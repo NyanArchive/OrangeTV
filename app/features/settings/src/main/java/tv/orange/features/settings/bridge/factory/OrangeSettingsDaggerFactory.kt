@@ -9,6 +9,7 @@ import tv.orange.features.settings.bridge.DaggerMapper
 import tv.orange.features.settings.bridge.IFragment
 import tv.orange.features.settings.bridge.settings.OrangeSettingsFragment
 import tv.orange.features.settings.component.OrangeSettingsController
+import tv.twitch.android.app.consumer.dagger.AppComponent
 import tv.twitch.android.app.consumer.dagger.DaggerAppComponent
 import tv.twitch.android.routing.routers.IFragmentRouter
 import tv.twitch.android.settings.base.BaseSettingsPresenter
@@ -23,7 +24,7 @@ class OrangeSettingsDaggerFactory @Inject constructor(
     fun injectSubcomponentSettingsProvider(
         mapBuilder: MapBuilder<Class<*>, Provider<AndroidInjector.Factory<*>>>,
         settingsActivitySubcomponentImpl: DaggerAppComponent.SettingsActivitySubcomponentImpl,
-        appComponent: DaggerAppComponent
+        appComponent: AppComponent
     ) {
         val orangeSettingsControllerProvider = provideOrangeSettingsController(
             settingsActivitySubcomponentImpl,
@@ -42,7 +43,7 @@ class OrangeSettingsDaggerFactory @Inject constructor(
 
     private fun provideOrangeSettingsController(
         settingsActivitySubcomponentImpl: DaggerAppComponent.SettingsActivitySubcomponentImpl,
-        appComponent: DaggerAppComponent
+        appComponent: AppComponent
     ): Provider<OrangeSettingsController> {
         return Provider {
             OrangeSettingsController(

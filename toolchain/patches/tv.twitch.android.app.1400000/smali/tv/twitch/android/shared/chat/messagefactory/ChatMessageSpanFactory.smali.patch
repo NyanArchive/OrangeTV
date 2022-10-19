@@ -47,7 +47,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      iget-object v0, p0, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;->badgeProvider:Ltv/twitch/android/shared/badges/ChatBadgeProvider;
  
      invoke-virtual {p1}, Ltv/twitch/android/models/chat/MessageBadge;->getName()Ljava/lang/String;
-@@ -1957,6 +1980,10 @@
+@@ -1961,6 +1984,10 @@
  .method private final usernameSpannable(Ltv/twitch/android/provider/chat/ChatMessageInterface;ILtv/twitch/android/shared/chat/chatsource/IClickableUsernameSpanListener;ZLjava/lang/String;Ljava/lang/String;)Ljava/lang/CharSequence;
      .locals 12
  
@@ -58,7 +58,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      if-eqz p4, :cond_0
  
      const/4 v0, 0x0
-@@ -2128,6 +2155,18 @@
+@@ -2132,6 +2159,18 @@
          }
      .end annotation
  
@@ -77,7 +77,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      const-string v0, "chatMessageInfo"
  
      move-object/from16 v15, p1
-@@ -2352,48 +2391,7 @@
+@@ -2356,48 +2395,7 @@
  
      invoke-static {v12, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
  
@@ -126,7 +126,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      new-instance v14, Landroid/text/SpannableStringBuilder;
  
      invoke-direct {v14}, Landroid/text/SpannableStringBuilder;-><init>()V
-@@ -2585,6 +2583,36 @@
+@@ -2589,6 +2587,36 @@
  
      .line 197
      :cond_7
@@ -163,7 +163,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      instance-of v1, v0, Ltv/twitch/android/models/chat/MessageToken$EmoticonToken;
  
      if-eqz v1, :cond_8
-@@ -2819,3 +2847,385 @@
+@@ -2823,3 +2851,385 @@
      :goto_0
      return-object p1
  .end method

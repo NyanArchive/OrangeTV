@@ -1,7 +1,7 @@
 diff --git a/smali_classes5/tv/twitch/android/feature/theatre/common/StreamSettingsViewDelegate.smali b/smali_classes5/tv/twitch/android/feature/theatre/common/StreamSettingsViewDelegate.smali
 --- a/smali_classes5/tv/twitch/android/feature/theatre/common/StreamSettingsViewDelegate.smali
 +++ b/smali_classes5/tv/twitch/android/feature/theatre/common/StreamSettingsViewDelegate.smali
-@@ -110,6 +110,10 @@
+@@ -124,6 +124,10 @@
  
  .field private final viewingOptionsHeader:Landroid/widget/TextView;
  
@@ -11,36 +11,35 @@ diff --git a/smali_classes5/tv/twitch/android/feature/theatre/common/StreamSetti
 +
  
  # direct methods
- .method public static synthetic $r8$lambda$0AzaqHODTlO13ZgkaldtF0-dP9w(Ltv/twitch/android/feature/theatre/common/StreamSettingsViewDelegate;Landroid/view/View;)V
-@@ -772,6 +776,27 @@
+ .method public static synthetic $r8$lambda$-4a0nXoKCqe5haOyFM5fc1JEYe4(Ltv/twitch/android/feature/theatre/common/StreamSettingsViewDelegate;Landroid/view/View;)V
+@@ -955,6 +959,26 @@
  
-     invoke-virtual {v3, p1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+     invoke-virtual {v4, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
  
 +    invoke-static {}, Ltv/orange/features/vodsync/VodSync;->get()Ltv/orange/features/vodsync/VodSync;
 +
 +    move-result-object v0
 +
-+    invoke-virtual {v0, p0}, Ltv/orange/features/vodsync/VodSync;->getChommentSeekerSection(Ltv/twitch/android/core/mvp/viewdelegate/BaseViewDelegate;)Landroid/view/ViewGroup;
++    invoke-virtual {v0, v6}, Ltv/orange/features/vodsync/VodSync;->getChommentSeekerSection(Ltv/twitch/android/core/mvp/viewdelegate/BaseViewDelegate;)Landroid/view/ViewGroup;
 +
 +    move-result-object v0
 +
-+    iput-object v0, p0, Ltv/twitch/android/feature/theatre/common/StreamSettingsViewDelegate;->chommentSeekerSection:Landroid/view/ViewGroup;
++    iput-object v0, v6, Ltv/twitch/android/feature/theatre/common/StreamSettingsViewDelegate;->chommentSeekerSection:Landroid/view/ViewGroup;
 +
-+    .line 24
 +    invoke-static {}, Ltv/orange/features/vodsync/VodSync;->get()Ltv/orange/features/vodsync/VodSync;
 +
 +    move-result-object v0
 +
-+    invoke-virtual {v0, p0}, Ltv/orange/features/vodsync/VodSync;->getChommentSeekerHeader(Ltv/twitch/android/core/mvp/viewdelegate/BaseViewDelegate;)Landroid/view/View;
++    invoke-virtual {v0, v6}, Ltv/orange/features/vodsync/VodSync;->getChommentSeekerHeader(Ltv/twitch/android/core/mvp/viewdelegate/BaseViewDelegate;)Landroid/view/View;
 +
 +    move-result-object v0
 +
-+    iput-object v0, p0, Ltv/twitch/android/feature/theatre/common/StreamSettingsViewDelegate;->chommentSeekerHeader:Landroid/view/View;
++    iput-object v0, v6, Ltv/twitch/android/feature/theatre/common/StreamSettingsViewDelegate;->chommentSeekerHeader:Landroid/view/View;
 +
      return-void
  .end method
  
-@@ -2624,6 +2649,24 @@
+@@ -3041,6 +3065,24 @@
  
      invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
  
@@ -62,6 +61,6 @@ diff --git a/smali_classes5/tv/twitch/android/feature/theatre/common/StreamSetti
 +
 +    invoke-virtual {v0, v1, v2, v3}, Ltv/orange/features/vodsync/VodSync;->renderChommentSeekerSection(Landroid/view/ViewGroup;Landroid/view/View;Ltv/twitch/android/feature/theatre/common/StreamSettings$ConfigurablePlayer;)V
 +
-     .line 134
+     .line 149
      invoke-virtual {p1}, Ltv/twitch/android/feature/theatre/common/StreamSettingsViewDelegate$State;->getSettingsModel()Ltv/twitch/android/feature/theatre/common/StreamSettingsPresenter$StreamSettingsModel;
  

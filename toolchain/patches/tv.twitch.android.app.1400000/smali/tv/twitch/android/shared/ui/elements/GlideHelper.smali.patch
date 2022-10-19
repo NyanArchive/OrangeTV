@@ -76,7 +76,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 -    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 -
 -    .line 69
-+    .line 47
++    .line 55
      invoke-static {p0}, Ltv/twitch/android/app/core/ActivityUtilKt;->isInvalid(Landroid/content/Context;)Z
  
      move-result v0
@@ -84,12 +84,12 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 -    if-eqz v0, :cond_0
 +    if-eqz v0, :cond_7
  
-+    .line 48
++    .line 56
      return-void
  
 -    .line 73
 -    :cond_0
-+    .line 50
++    .line 58
 +    :cond_7
      invoke-interface {p1}, Landroid/text/Spanned;->length()I
  
@@ -102,7 +102,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 +    move-result-object v0
  
 -    const-string v0, "spanned.getSpans(0, span\u2026redImageSpan::class.java)"
-+    .line 51
++    .line 59
 +    .local v0, "spans":[Ljava/lang/Object;
 +    array-length v1, v0
  
@@ -110,13 +110,13 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 +    :goto_13
 +    if-ge v2, v1, :cond_49
  
--    .line 13536
+-    .line 13543
 -    array-length v0, p1
 +    aget-object v3, v0, v2
  
 -    :goto_0
 -    if-ge v2, v0, :cond_4
-+    .line 52
++    .line 60
 +    .local v3, "obj":Ljava/lang/Object;
 +    move-object v4, v3
  
@@ -131,7 +131,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 +    move-result-object v4
  
 -    move-result-object v1
-+    .line 53
++    .line 61
 +    .local v4, "imageDrawable":Landroid/graphics/drawable/Drawable;
 +    instance-of v5, v4, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;
  
@@ -140,7 +140,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 +    if-eqz v5, :cond_3a
  
 -    if-eqz v3, :cond_2
-+    .line 54
++    .line 62
 +    move-object v5, v4
  
 -    .line 76
@@ -148,7 +148,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 +    check-cast v5, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;
  
 -    invoke-virtual {v1}, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;->shouldDisplayInitialDrawable()Z
-+    .line 55
++    .line 63
 +    .local v5, "fixedTimeCoordinatorDrawable":Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;
 +    invoke-virtual {v5}, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;->shouldDisplayInitialDrawable()Z
  
@@ -160,7 +160,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
  
 -    .line 77
 -    invoke-virtual {v1}, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;->getInitialUrlDrawable()Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
-+    .line 56
++    .line 64
 +    invoke-virtual {v5}, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;->getInitialUrlDrawable()Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
  
 -    move-result-object v3
@@ -172,7 +172,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 -    .line 80
 -    :cond_1
 -    invoke-virtual {v1}, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;->getFinalUrlDrawable()Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
-+    .line 58
++    .line 66
 +    :cond_32
 +    invoke-virtual {v5}, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;->getFinalUrlDrawable()Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
  
@@ -189,7 +189,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 -    .line 82
 -    :cond_2
 -    instance-of v3, v1, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
-+    .line 59
++    .line 67
 +    :cond_3a
 +    instance-of v5, v4, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
  
@@ -198,7 +198,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
  
 -    .line 83
 -    check-cast v1, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
-+    .line 60
++    .line 68
 +    move-object v5, v4
  
 -    invoke-static {p0, v1, p2}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->loadImageForUrlDrawable(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)V
@@ -210,12 +210,12 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 +
 +    goto :goto_46
 +
-+    .line 59
++    .line 67
 +    :cond_45
 +    :goto_45
 +    nop
 +
-+    .line 51
++    .line 59
 +    .end local v3    # "obj":Ljava/lang/Object;
 +    .end local v4    # "imageDrawable":Landroid/graphics/drawable/Drawable;
 +    :goto_46
@@ -225,7 +225,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 +    goto :goto_13
  
 -    :cond_4
-+    .line 63
++    .line 71
 +    :cond_49
      return-void
  .end method
@@ -256,7 +256,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 -    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 -
 -    .line 116
-+    .line 66
++    .line 74
      invoke-static {p0}, Ltv/twitch/android/app/core/ActivityUtilKt;->isInvalid(Landroid/content/Context;)Z
  
      move-result v0
@@ -266,7 +266,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
  
 -    .line 117
 -    invoke-static {}, Lkotlin/collections/CollectionsKt;->emptyList()Ljava/util/List;
-+    .line 67
++    .line 75
 +    new-instance v0, Ljava/util/ArrayList;
  
 -    move-result-object p0
@@ -277,7 +277,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
  
 -    .line 120
 -    :cond_0
-+    .line 69
++    .line 77
 +    :cond_c
      invoke-interface {p1}, Landroid/text/Spanned;->length()I
  
@@ -294,7 +294,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
  
 -    .line 121
 -    new-instance v0, Ljava/util/ArrayList;
-+    .line 70
++    .line 78
 +    .local v0, "spans":[Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;
 +    new-instance v1, Ljava/util/ArrayList;
  
@@ -302,7 +302,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 +    invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
  
 -    const-string v1, "spans"
-+    .line 71
++    .line 79
 +    .local v1, "arrayList":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ltv/twitch/android/shared/ui/elements/span/GlideChatImageCustomTarget;>;"
 +    array-length v3, v0
  
@@ -316,7 +316,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
  
 -    :goto_0
 -    if-ge v2, v1, :cond_4
-+    .line 72
++    .line 80
 +    .local v4, "centeredImageSpan":Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;
 +    invoke-virtual {v4}, Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;->getImageDrawable()Landroid/graphics/drawable/Drawable;
  
@@ -325,7 +325,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
  
 -    .line 124
 -    invoke-virtual {v3}, Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;->getImageDrawable()Landroid/graphics/drawable/Drawable;
-+    .line 73
++    .line 81
 +    .local v5, "imageDrawable":Landroid/graphics/drawable/Drawable;
 +    instance-of v6, v5, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;
  
@@ -334,7 +334,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
  
 -    .line 125
 -    instance-of v4, v3, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;
-+    .line 74
++    .line 82
 +    move-object v6, v5
  
 -    if-eqz v4, :cond_2
@@ -342,7 +342,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
  
 -    .line 126
 -    check-cast v3, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;
-+    .line 75
++    .line 83
 +    .local v6, "fixedTimeCoordinatorDrawable":Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;
 +    invoke-virtual {v6}, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;->shouldDisplayInitialDrawable()Z
  
@@ -353,7 +353,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 +    if-eqz v7, :cond_3f
  
 -    if-eqz v4, :cond_1
-+    .line 76
++    .line 84
 +    invoke-virtual {v6}, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;->getInitialUrlDrawable()Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
  
 -    .line 127
@@ -370,7 +370,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 +    invoke-virtual {v1, v7}, Ljava/util/ArrayList;->addAll(Ljava/util/Collection;)Z
  
 -    invoke-interface {v0, v4}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-+    .line 78
++    .line 86
 +    :cond_3f
 +    invoke-virtual {v6}, Ltv/twitch/android/shared/ui/elements/span/FixedTimeCoordinatorDrawable;->getFinalUrlDrawable()Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
  
@@ -393,7 +393,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 +    goto :goto_5a
  
 -    goto :goto_1
-+    .line 79
++    .line 87
 +    :cond_4b
 +    instance-of v6, v5, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
  
@@ -403,7 +403,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 +    if-eqz v6, :cond_5a
  
 -    if-eqz v4, :cond_3
-+    .line 80
++    .line 88
 +    move-object v6, v5
  
 -    .line 133
@@ -423,12 +423,12 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 -    :goto_1
 +    goto :goto_5b
 +
-+    .line 79
++    .line 87
 +    :cond_5a
 +    :goto_5a
 +    nop
 +
-+    .line 71
++    .line 79
 +    .end local v4    # "centeredImageSpan":Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;
 +    .end local v5    # "imageDrawable":Landroid/graphics/drawable/Drawable;
 +    :goto_5b
@@ -439,7 +439,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
  
 -    :cond_4
 -    return-object v0
-+    .line 83
++    .line 91
 +    :cond_5e
 +    return-object v1
  .end method
@@ -456,10 +456,10 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 +    .param p1, "urlDrawable"    # Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
 +    .param p2, "textView"    # Landroid/widget/TextView;
 +
-+    .line 87
++    .line 95
 +    invoke-static {p0, p1, p2}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->loadImageForUrlDrawable(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)V
 +
-+    .line 89
++    .line 97
 +    invoke-virtual {p1}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->getStack()Ljava/util/List;
 +
 +    move-result-object v0
@@ -481,15 +481,15 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 +
 +    check-cast v1, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
 +
-+    .line 90
++    .line 98
 +    .local v1, "drawable":Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
 +    invoke-static {p0, v1, p2}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->loadImagesForUrlDrawable(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)V
 +
-+    .line 91
++    .line 99
 +    .end local v1    # "drawable":Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
 +    goto :goto_b
 +
-+    .line 92
++    .line 100
 +    :cond_1b
 +    return-void
 +.end method
@@ -512,12 +512,12 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 +        }
 +    .end annotation
 +
-+    .line 95
++    .line 103
 +    new-instance v0, Ljava/util/ArrayList;
 +
 +    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 +
-+    .line 96
++    .line 104
 +    .local v0, "arrayList":Ljava/util/ArrayList;, "Ljava/util/ArrayList<Ltv/twitch/android/shared/ui/elements/span/GlideChatImageCustomTarget;>;"
 +    invoke-static {p0, p1, p2}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->loadImageForUrlDrawableAngGetTarget(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)Ltv/twitch/android/shared/ui/elements/span/GlideChatImageCustomTarget;
 +
@@ -525,7 +525,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 +
 +    invoke-virtual {v0, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 +
-+    .line 98
++    .line 106
 +    invoke-virtual {p1}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->getStack()Ljava/util/List;
 +
 +    move-result-object v1
@@ -547,7 +547,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 +
 +    check-cast v2, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
 +
-+    .line 99
++    .line 107
 +    .local v2, "drawable":Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
 +    invoke-static {p0, v2, p2}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->loadImagesForUrlDrawableAngGetTarget(Landroid/content/Context;Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;Landroid/widget/TextView;)Ljava/util/List;
 +
@@ -555,11 +555,11 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/GlideHelper.sma
 +
 +    invoke-virtual {v0, v3}, Ljava/util/ArrayList;->addAll(Ljava/util/Collection;)Z
 +
-+    .line 100
++    .line 108
 +    .end local v2    # "drawable":Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
 +    goto :goto_14
 +
-+    .line 102
++    .line 110
 +    :cond_28
 +    return-object v0
 +.end method

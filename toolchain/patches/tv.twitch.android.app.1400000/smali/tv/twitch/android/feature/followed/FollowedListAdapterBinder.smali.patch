@@ -1,7 +1,7 @@
 diff --git a/smali_classes4/tv/twitch/android/feature/followed/FollowedListAdapterBinder.smali b/smali_classes4/tv/twitch/android/feature/followed/FollowedListAdapterBinder.smali
 --- a/smali_classes4/tv/twitch/android/feature/followed/FollowedListAdapterBinder.smali
 +++ b/smali_classes4/tv/twitch/android/feature/followed/FollowedListAdapterBinder.smali
-@@ -1220,9 +1220,16 @@
+@@ -1224,9 +1224,16 @@
      .line 270
      iget-boolean v8, v0, Ltv/twitch/android/feature/followed/FollowedListAdapterBinder;->showingTabletUI:Z
  

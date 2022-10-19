@@ -1,7 +1,7 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/ui/elements/navigation/BottomNavigationViewDelegate.smali b/smali_classes6/tv/twitch/android/shared/ui/elements/navigation/BottomNavigationViewDelegate.smali
 --- a/smali_classes6/tv/twitch/android/shared/ui/elements/navigation/BottomNavigationViewDelegate.smali
 +++ b/smali_classes6/tv/twitch/android/shared/ui/elements/navigation/BottomNavigationViewDelegate.smali
-@@ -351,6 +351,14 @@
+@@ -365,6 +365,14 @@
  
      move-result p1
  

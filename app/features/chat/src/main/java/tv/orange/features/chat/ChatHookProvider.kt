@@ -586,17 +586,20 @@ class ChatHookProvider @Inject constructor(
         message: IMessageRecyclerItem,
         cmi: ChatMessageInterface
     ) {
-        if (isUserMentioned(cmi = cmi, username = twitchAccountManager.username)) {
-            message.setHighlightColor(Color.argb(100, 255, 0, 0))
-            if (Flag.VIBRATE_ON_MENTION.asBoolean()) {
-                vibrate()
-            }
-        } else if (highlighter.isEnabled()) {
+        if (highlighter.isEnabled()) {
             highlighter.getHighlightDesc(cmi)?.let { desc ->
                 message.setHighlightColor(desc.color)
                 if (desc.vibrate) {
                     vibrate()
                 }
+                return
+            }
+        }
+
+        if (isUserMentioned(cmi = cmi, username = twitchAccountManager.username)) {
+            message.setHighlightColor(Color.argb(100, 255, 0, 0))
+            if (Flag.VIBRATE_ON_MENTION.asBoolean()) {
+                vibrate()
             }
         }
     }

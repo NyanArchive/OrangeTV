@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import tv.orange.bridge.TwitchComponentProviderImpl;
 import tv.orange.bridge.di.BridgeImpl;
 import tv.orange.core.Core;
+import tv.orange.features.tracking.SentrySDK;
 import tv.orange.models.abc.Bridge;
 import tv.orange.models.abc.BridgeProvider;
 import tv.orange.models.abc.TCPProvider;
@@ -23,6 +24,7 @@ public class TwitchApplication extends Application implements TCPProvider, Bridg
 
     public void onCreate() {
         super.onCreate();
+        SentrySDK.INSTANCE.setupSentrySDK(this);
 
         /* ... */
 

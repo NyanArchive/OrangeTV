@@ -13,7 +13,8 @@ object BuildConfigUtil {
             with(JSONObject(getRawBuildString())) {
                 OrangeBuildConfig(
                     number = getInt("number"),
-                    timestamp = getInt("timestamp")
+                    timestamp = getInt("timestamp"),
+                    sentryDNS = getString("sentryDNS")
                 )
             }
         } catch (e: Throwable) {

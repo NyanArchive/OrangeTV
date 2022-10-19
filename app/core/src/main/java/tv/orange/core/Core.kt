@@ -114,8 +114,6 @@ class Core @Inject constructor(
         }
     }
 
-    fun initialize() {}
-
     override fun registerLifecycleListeners(vararg listeners: LifecycleAware) {
         listeners.forEach { listener ->
             modules.add(listener)

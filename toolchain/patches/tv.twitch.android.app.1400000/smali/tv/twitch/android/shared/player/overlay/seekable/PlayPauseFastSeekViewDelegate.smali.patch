@@ -1,0 +1,25 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/seekable/PlayPauseFastSeekViewDelegate.smali b/smali_classes6/tv/twitch/android/shared/player/overlay/seekable/PlayPauseFastSeekViewDelegate.smali
+--- a/smali_classes6/tv/twitch/android/shared/player/overlay/seekable/PlayPauseFastSeekViewDelegate.smali
++++ b/smali_classes6/tv/twitch/android/shared/player/overlay/seekable/PlayPauseFastSeekViewDelegate.smali
+@@ -317,7 +317,9 @@
+     .line 103
+     iget-object v1, p0, Ltv/twitch/android/shared/player/overlay/seekable/PlayPauseFastSeekViewDelegate;->fastSeekRewindButton:Landroid/widget/ImageView;
+ 
+-    const/16 v2, -0xa
++    invoke-static {}, Ltv/orange/features/ui/UI;->getRewindSeek()I
++
++    move-result v2
+ 
+     invoke-static {v2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+ 
+@@ -333,7 +335,9 @@
+ 
+     iget-object v1, p0, Ltv/twitch/android/shared/player/overlay/seekable/PlayPauseFastSeekViewDelegate;->fastSeekForwardButton:Landroid/widget/ImageView;
+ 
+-    const/16 v2, 0x1e
++    invoke-static {}, Ltv/orange/features/ui/UI;->getForwardSeek()I
++
++    move-result v2
+ 
+     invoke-static {v2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+ 

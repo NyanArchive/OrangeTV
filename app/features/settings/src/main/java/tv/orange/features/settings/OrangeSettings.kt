@@ -8,6 +8,7 @@ import tv.orange.core.ResourceManager
 import tv.orange.features.settings.bridge.factory.OrangeSettingsDaggerFactory
 import tv.orange.features.settings.bridge.settings.OrangeSettingsFragment
 import tv.orange.models.abc.Feature
+import tv.twitch.android.app.consumer.dagger.AppComponent
 import tv.twitch.android.app.consumer.dagger.DaggerAppComponent
 import javax.inject.Inject
 import javax.inject.Provider
@@ -33,7 +34,7 @@ class OrangeSettings @Inject constructor(
     fun inject(
         builder: MapBuilder<Class<*>, Provider<AndroidInjector.Factory<*>>>,
         settingsActivitySubcomponentImpl: DaggerAppComponent.SettingsActivitySubcomponentImpl,
-        appComponent: DaggerAppComponent
+        appComponent: AppComponent
     ) {
         daggerFactory.injectSubcomponentSettingsProvider(
             mapBuilder = builder,

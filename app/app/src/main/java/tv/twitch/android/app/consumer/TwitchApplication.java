@@ -14,7 +14,6 @@ import tv.orange.models.abc.TCPProvider;
 import tv.orange.models.abc.TwitchComponentProvider;
 import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.app.consumer.dagger.AppComponent;
-import tv.twitch.android.app.consumer.dagger.DaggerAppComponent;
 
 public class TwitchApplication extends Application implements TCPProvider, BridgeProvider { // TODO: __IMPLEMENT
     private volatile TwitchComponentProvider twitchComponentProvider = null; // TODO: __ADD_FIELD
@@ -39,7 +38,7 @@ public class TwitchApplication extends Application implements TCPProvider, Bridg
 
     private void initOranges(AppComponent appComponent) { // TODO: __INJECT_METHOD
         twitchComponentProvider = TwitchComponentProviderImpl.create();
-        ((TwitchComponentProviderImpl) twitchComponentProvider).initialize((DaggerAppComponent) appComponent);
+        ((TwitchComponentProviderImpl) twitchComponentProvider).initialize((AppComponent) appComponent);
         orangeBridge = BridgeImpl.create();
         ((BridgeImpl) orangeBridge).initialize(this);
         Core.setBridge(orangeBridge);

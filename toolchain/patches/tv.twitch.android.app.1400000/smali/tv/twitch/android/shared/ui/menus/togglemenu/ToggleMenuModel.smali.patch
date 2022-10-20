@@ -1,0 +1,18 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/ui/menus/togglemenu/ToggleMenuModel.smali b/smali_classes6/tv/twitch/android/shared/ui/menus/togglemenu/ToggleMenuModel.smali
+--- a/smali_classes6/tv/twitch/android/shared/ui/menus/togglemenu/ToggleMenuModel.smali
++++ b/smali_classes6/tv/twitch/android/shared/ui/menus/togglemenu/ToggleMenuModel.smali
+@@ -1,4 +1,4 @@
+-.class public final Ltv/twitch/android/shared/ui/menus/togglemenu/ToggleMenuModel;
++.class public Ltv/twitch/android/shared/ui/menus/togglemenu/ToggleMenuModel;
+ .super Ltv/twitch/android/shared/ui/menus/core/MenuModel$SingleItemModel;
+ .source "ToggleMenuModel.kt"
+ 
+@@ -314,7 +314,7 @@
+     return-object v0
+ .end method
+ 
+-.method public final getToggleState()Z
++.method public getToggleState()Z
+     .locals 1
+ 
+     .line 23

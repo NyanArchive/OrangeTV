@@ -1,0 +1,38 @@
+diff --git a/smali_classes3/io/reactivex/Observable.smali b/smali_classes3/io/reactivex/Observable.smali
+--- a/smali_classes3/io/reactivex/Observable.smali
++++ b/smali_classes3/io/reactivex/Observable.smali
+@@ -3510,3 +3510,33 @@
+ 
+     return-object p1
+ .end method
++
++.method public final unsubscribeOn(Lio/reactivex/Scheduler;)Lio/reactivex/Observable;
++    .registers 3
++    .param p1, "scheduler"    # Lio/reactivex/Scheduler;
++    .annotation system Ldalvik/annotation/Signature;
++        value = {
++            "(",
++            "Lio/reactivex/Scheduler;",
++            ")",
++            "Lio/reactivex/Observable<",
++            "TT;>;"
++        }
++    .end annotation
++
++    .line 14491
++    const-string v0, "scheduler is null"
++
++    invoke-static {p1, v0}, Lio/reactivex/internal/functions/ObjectHelper;->requireNonNull(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
++
++    .line 14492
++    new-instance v0, Lio/reactivex/internal/operators/observable/ObservableUnsubscribeOn;
++
++    invoke-direct {v0, p0, p1}, Lio/reactivex/internal/operators/observable/ObservableUnsubscribeOn;-><init>(Lio/reactivex/ObservableSource;Lio/reactivex/Scheduler;)V
++
++    invoke-static {v0}, Lio/reactivex/plugins/RxJavaPlugins;->onAssembly(Lio/reactivex/Observable;)Lio/reactivex/Observable;
++
++    move-result-object v0
++
++    return-object v0
++.end method
+\ No newline at end of file

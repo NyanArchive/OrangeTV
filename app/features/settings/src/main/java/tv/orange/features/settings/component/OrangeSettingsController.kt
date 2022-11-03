@@ -15,6 +15,7 @@ import tv.orange.features.highlighter.Highlighter
 import tv.orange.features.settings.bridge.model.OrangeSubMenu
 import tv.orange.features.settings.bridge.settings.*
 import tv.orange.features.settings.bridge.slider.SliderModel
+import tv.orange.features.updater.Updater
 import tv.twitch.android.models.settings.SettingsDestination
 import tv.twitch.android.routing.routers.IFragmentRouter
 import tv.twitch.android.settings.base.SettingsNavigationController
@@ -104,6 +105,12 @@ class OrangeSettingsController @Inject constructor(
     }
 
     override fun navigateToSettingFragment(settingsDestination: SettingsDestination, p1: Bundle?) {
+        if (settingsDestination == SettingsDestination.OrangeUpdater) {
+            Logger.debug("called")
+            Updater.get().createUpdaterFragment(activity)
+            return
+        }
+
         when (settingsDestination) {
             SettingsDestination.OrangeThirdParty -> OrangeThirdPartySettingsFragment()
             SettingsDestination.OrangeChat -> OrangeChatSettingsFragment()

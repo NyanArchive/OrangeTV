@@ -3,11 +3,14 @@ package tv.orange.features.settings.bridge.settings
 import androidx.fragment.app.FragmentActivity
 import tv.orange.core.ResourceManager
 import tv.orange.features.settings.component.OrangeSettingsController
+import tv.twitch.android.models.settings.SettingsDestination
 import tv.twitch.android.settings.base.BaseSettingsPresenter
 import tv.twitch.android.settings.base.SettingsNavigationController
 import tv.twitch.android.settings.base.SettingsTracker
 import tv.twitch.android.shared.ui.menus.SettingsPreferencesController
 import tv.twitch.android.shared.ui.menus.core.MenuAdapterBinder
+import tv.twitch.android.shared.ui.menus.core.MenuModel
+import tv.twitch.android.shared.ui.menus.subscription.SubMenuModel
 
 class OrangeSettingsPresenter constructor(
     activity: FragmentActivity,
@@ -30,5 +33,14 @@ class OrangeSettingsPresenter constructor(
     override fun updateSettingModels() {
         settingModels.clear()
         settingModels.addAll(controller.getMainSettingModels())
+        settingModels.add(
+            SubMenuModel(
+                ResourceManager.get().getString("orange_settings_menu_updater"),
+                null,
+                null,
+                SettingsDestination.OrangeUpdater,
+                true
+            ) as MenuModel
+        )
     }
 }

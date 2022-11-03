@@ -28,9 +28,6 @@ android {
 
 dependencies {
     implementation project(path: ':core')
-    implementation project(path: ':components:highlighter')
-
-    implementation project(path: ':features:updater')
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

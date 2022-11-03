@@ -49,6 +49,7 @@ dependencies {
     api project(path: ':features:ui')
     api project(path: ':features:spam')
     api project(path: ':features:tracking')
+    api project(path: ':features:updater')
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

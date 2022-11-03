@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/default_margin_double">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/orangetv_updater_g1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/orangetv_updater_g2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp" />
+
+    <ImageView
+        android:id="@+id/orangetv_updater__close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/orangetv_updater_g1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_orangetv_cancel" />
+
+    <TextView
+        android:id="@+id/orangetv_updater__title"
+        style="@style/TitleExtraLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/orange_app_name"
+        android:textColor="@color/hinted_grey_10"
+        app:layout_constraintBottom_toTopOf="@+id/orangetv_updater__build"
+        app:layout_constraintEnd_toStartOf="@+id/orangetv_updater_g2"
+        app:layout_constraintStart_toStartOf="@+id/orangetv_updater_g1" />
+
+    <Button
+        android:id="@+id/orangetv_updater__install_button"
+        style="@style/ButtonStyle.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_margin_quintuple"
+        android:text="Update"
+        app:layout_constraintBottom_toTopOf="@+id/orangetv_updater__title"
+        app:layout_constraintEnd_toStartOf="@+id/orangetv_updater_g2"
+        app:layout_constraintStart_toStartOf="@+id/orangetv_updater_g1" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/default_margin_double"
+        android:layout_marginBottom="@dimen/default_margin_quintuple"
+        app:layout_constraintBottom_toTopOf="@+id/orangetv_updater__install_button"
+        app:layout_constraintEnd_toStartOf="@+id/orangetv_updater_g2"
+        app:layout_constraintStart_toStartOf="@+id/orangetv_updater_g1"
+        app:layout_constraintTop_toBottomOf="@+id/orangetv_updater__ds">
+
+        <TextView
+            android:id="@+id/orangetv_updater__changelog"
+            style="@style/SubtitleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/hinted_grey_8" />
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/orangetv_updater__image_logo"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="@dimen/default_margin_decuple"
+        app:layout_constraintEnd_toStartOf="@+id/orangetv_updater_g2"
+        app:layout_constraintStart_toStartOf="@+id/orangetv_updater_g1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_logo_glitch" />
+
+    <TextView
+        android:id="@+id/orangetv_updater__t1"
+        style="@style/SubtitleText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin_double"
+        android:text="@string/orange_updater_msg1"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/orangetv_updater_g2"
+        app:layout_constraintStart_toStartOf="@+id/orangetv_updater_g1"
+        app:layout_constraintTop_toBottomOf="@+id/orangetv_updater__image_logo" />
+
+    <TextView
+        android:id="@+id/orangetv_updater__ds"
+        style="@style/SubtitleText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin_double"
+        android:text="@string/orange_updater_ds"
+        app:layout_constraintEnd_toStartOf="@+id/orangetv_updater_g2"
+        app:layout_constraintStart_toStartOf="@+id/orangetv_updater_g1"
+        app:layout_constraintTop_toBottomOf="@+id/orangetv_updater__t1" />
+
+    <TextView
+        android:id="@+id/orangetv_updater__build"
+        style="@style/SubtitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_margin_quintuple"
+        android:textColor="@color/hinted_grey_10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/orangetv_updater_g2"
+        app:layout_constraintStart_toStartOf="@+id/orangetv_updater_g1" />
+
+    <ProgressBar
+        android:id="@+id/orangetv_updater__downloading_progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/default_margin_quintuple"
+        android:indeterminate="true"
+        app:layout_constraintBottom_toTopOf="@id/orangetv_updater__title"
+        app:layout_constraintEnd_toStartOf="@id/orangetv_updater__cancel_downloading"
+        app:layout_constraintStart_toEndOf="@id/orangetv_updater_g1" />
+
+    <ProgressBar
+        android:id="@+id/orangetv_updater__pogress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:progressTint="@color/hinted_grey_10"
+        android:scaleType="center"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/orangetv_updater__cancel_downloading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/orangetv_updater__downloading_progress"
+        app:layout_constraintEnd_toStartOf="@id/orangetv_updater_g2"
+        app:layout_constraintTop_toTopOf="@id/orangetv_updater__downloading_progress"
+        app:layout_constraintBottom_toBottomOf="@id/orangetv_updater__downloading_progress"
+        app:srcCompat="@drawable/ic_orangetv_cancel" />
+
+    <TextView
+        android:id="@+id/orangetv_updater__download_progress_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_margin"
+        android:text="@string/orange_updater_ds2"
+        app:layout_constraintBottom_toTopOf="@+id/orangetv_updater__downloading_progress"
+        app:layout_constraintStart_toStartOf="@+id/orangetv_updater_g1" />
+
+    <TextView
+        android:id="@+id/orangetv_updater__download_progress_label2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/default_margin"
+        android:text="@string/orange_updater_ds3"
+        app:layout_constraintBottom_toTopOf="@+id/orangetv_updater__downloading_progress"
+        app:layout_constraintEnd_toEndOf="@id/orangetv_updater__downloading_progress"/>
+
+    <TextView
+        style="@style/Title"
+        android:textColor="@color/red"
+        android:id="@+id/orangetv_updater__error_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/orangetv_updater_g2"
+        app:layout_constraintStart_toStartOf="@+id/orangetv_updater_g1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

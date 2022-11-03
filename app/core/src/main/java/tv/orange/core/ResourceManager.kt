@@ -1,6 +1,7 @@
 package tv.orange.core
 
 import android.content.Context
+import androidx.core.content.ContextCompat
 import tv.orange.core.models.ResIdCache
 import tv.orange.models.AutoInitialize
 import tv.orange.models.abc.Feature
@@ -57,6 +58,10 @@ class ResourceManager(private val context: Context) : Feature {
         return Id.COLOR.get(resName)
     }
 
+    fun getColor(resName: String): Int {
+        return ContextCompat.getColor(context, getColorId(resName))
+    }
+
     fun getDimenId(resName: String): Int {
         return Id.DIMEN.get(resName)
     }
@@ -67,6 +72,16 @@ class ResourceManager(private val context: Context) : Feature {
 
     fun getAttrId(resName: String): Int {
         return Id.ATTR.get(resName)
+    }
+
+    fun getString(resName: String, vararg formatArgs : Any): String {
+        val id = Id.STRING.get(resName)
+
+        return if (id == 0 || id == -1) {
+            "$resName: ID NOT FOUND"
+        } else {
+            context.getString(id, *formatArgs)
+        }
     }
 
     fun getString(resName: String): String {

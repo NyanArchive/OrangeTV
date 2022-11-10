@@ -6,6 +6,5 @@ data class UpdateData(
     val url: String,
     val logoUrl: String?,
     val changelog: String?,
-    val size: Long = -1,
-    val primaryColor: Int = -1
+    val size: Long = -1
 )

@@ -138,4 +138,11 @@
     <string name="orange_updater_error_msg">Error: %s</string>
     <string name="orange_updater_msg1">PurpleTV needs an update</string>
     <string name="orange_app_name">PurpleTV</string>
+    <string name="orange_settings_updater_channel">Update channel</string>
+    <string name="orange_settings_updater_channel_desc"></string>
+    <string name="orange_updater_release">Release</string>
+    <string name="orange_updater_beta">Beta</string>
+    <string name="orange_updater_dev">Dev</string>
+    <string name="orange_updater_disabled">Disabled</string>
+    <string name="orange_settings_check_update">Check updates</string>
 </resources>

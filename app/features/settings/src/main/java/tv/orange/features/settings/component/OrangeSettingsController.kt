@@ -117,6 +117,7 @@ class OrangeSettingsController @Inject constructor(
             SettingsDestination.OrangePlayer -> OrangePlayerSettingsFragment()
             SettingsDestination.OrangeView -> OrangeViewSettingsFragment()
             SettingsDestination.OrangeDev -> OrangeDevSettingsFragment()
+            SettingsDestination.OrangeOTA -> OrangeUpdaterSettingsFragment()
             SettingsDestination.OrangeHighlighter -> highlighter.createHighlighterFragment()
             else -> null
         }?.let { fragment ->

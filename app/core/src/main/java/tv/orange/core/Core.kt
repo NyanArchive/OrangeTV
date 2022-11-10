@@ -6,6 +6,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.*
+import android.widget.Toast
 import tv.orange.core.models.lifecycle.LifecycleAware
 import tv.orange.core.models.lifecycle.LifecycleController
 import tv.orange.models.AutoInitialize
@@ -52,6 +53,11 @@ class Core @Inject constructor(
         @JvmStatic
         fun killApp() {
             exitProcess(0);
+        }
+
+        @JvmStatic
+        fun toast(msg: String) {
+            Toast.makeText(get().context, msg, Toast.LENGTH_SHORT).show()
         }
 
         @JvmStatic

@@ -97,7 +97,8 @@ enum class OrangeSubMenu(
     ),
     OTA(
         destination = SettingsDestination.OrangeOTA,
-        title = "orange_settings_menu_ota"
+        title = "orange_settings_menu_ota",
+        items = listOf(Flag.UPDATER)
     ),
     Info(
         destination = SettingsDestination.OrangeInfo,

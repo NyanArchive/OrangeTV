@@ -35,8 +35,7 @@ interface UpdaterContract {
             url: String,
             logoUrl: String?,
             build: Int,
-            changelog: String?,
-            primaryColor: Int
+            changelog: String?
         )
 
         abstract fun onViewEvent(event: Event)

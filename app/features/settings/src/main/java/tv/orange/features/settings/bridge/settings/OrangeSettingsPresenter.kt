@@ -33,14 +33,5 @@ class OrangeSettingsPresenter constructor(
     override fun updateSettingModels() {
         settingModels.clear()
         settingModels.addAll(controller.getMainSettingModels())
-        settingModels.add(
-            SubMenuModel(
-                ResourceManager.get().getString("orange_settings_menu_updater"),
-                null,
-                null,
-                SettingsDestination.OrangeUpdater,
-                true
-            ) as MenuModel
-        )
     }
 }

@@ -5,6 +5,7 @@ import io.reactivex.Single
 import tv.orange.features.api.component.data.source.NopApiDataSource
 import tv.orange.features.api.di.scope.ApiScope
 import tv.orange.models.data.badges.BadgeSet
+import tv.orange.models.retrofit.nop.OrangeUpdateData
 import javax.inject.Inject
 
 @ApiScope
@@ -13,6 +14,10 @@ class NopRepository @Inject constructor(
 ) {
     fun getTwitchModBadges(): Single<BadgeSet> {
         return nopApiDataSource.getBadges()
+    }
+
+    fun getUpdateData(): Single<OrangeUpdateData> {
+        return nopApiDataSource.getOrangeUpdate()
     }
 
     fun getHomiesBadges(): Single<BadgeSet> {

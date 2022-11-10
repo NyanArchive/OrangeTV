@@ -141,16 +141,14 @@ class UpdaterPresenter(
         url: String,
         logoUrl: String?,
         build: Int,
-        changelog: String?,
-        primaryColor: Int
+        changelog: String?
     ) {
         updateData = UpdateData(
             build = build,
             codename = codename ?: "Unknown",
             url = url,
             logoUrl = logoUrl,
-            changelog = changelog,
-            primaryColor = primaryColor
+            changelog = changelog
         )
     }
 

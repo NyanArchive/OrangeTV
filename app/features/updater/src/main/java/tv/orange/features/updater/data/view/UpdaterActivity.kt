@@ -26,7 +26,6 @@ import tv.orange.features.updater.data.mvp.UpdaterContract
 import tv.orange.features.updater.data.mvp.UpdaterPresenter
 import java.io.File
 
-
 class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
     private val presenter = UpdaterPresenter(this)
 
@@ -77,8 +76,7 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
             intent.getStringExtra(EXTRA_URL)!!,
             intent.getStringExtra(EXTRA_LOGO_URL),
             intent.getIntExtra(EXTRA_BUILD, -1),
-            intent.getStringExtra(EXTRA_CHANGELOG),
-            intent.getIntExtra(EXTRA_PRIMARY_COLOR, -1),
+            intent.getStringExtra(EXTRA_CHANGELOG)
         )
     }
 
@@ -103,7 +101,6 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
         const val EXTRA_LOGO_URL = "EXTRA_LOGO_URL"
         const val EXTRA_BUILD = "EXTRA_BUILD"
         const val EXTRA_CHANGELOG = "EXTRA_CHANGELOG"
-        const val EXTRA_PRIMARY_COLOR = "EXTRA_PRIMARY_COLOR"
 
         const val TEMP_OTA_DIR = "tmp_ota"
         const val INSTALL_OTA_DIR = "install_ota"
@@ -116,8 +113,7 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
             url: String,
             logoUrl: String?,
             build: Int?,
-            changelog: String?,
-            color: Int?
+            changelog: String?
         ) {
             context.startActivity(Intent(context, UpdaterActivity::class.java).apply {
                 putExtra(EXTRA_CODENAME, codename)
@@ -125,7 +121,6 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
                 putExtra(EXTRA_LOGO_URL, logoUrl)
                 putExtra(EXTRA_BUILD, build)
                 putExtra(EXTRA_CHANGELOG, changelog)
-                putExtra(EXTRA_PRIMARY_COLOR, color)
             })
         }
     }
@@ -168,15 +163,6 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
                             "Unknown"
                         }
                     )
-                }
-
-                val pc = state.updateData.primaryColor
-                if (pc != -1) {
-                    logo.colorFilter = PorterDuffColorFilter(
-                        pc,
-                        PorterDuff.Mode.SRC_ATOP
-                    )
-                    actionButton.setBackgroundColor(pc)
                 }
 
                 state.updateData.logoUrl?.let { url ->

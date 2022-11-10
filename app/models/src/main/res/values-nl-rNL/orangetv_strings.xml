@@ -35,9 +35,7 @@
     <string name="orange_emotecard_ffz_global">FFZ Globale Emotes</string>
     <string name="orange_emotecard_stv_global">7TV Globale Emotes</string>
     <string name="orange_emotecard_bttv_global">BTTV Globale Emotes</string>
-    <string name="orange_chat_settings_preferences_subtitle">OrangeTV</string>
     <string name="orange_chat_settings_refresh">Vernieuwen</string>
-    <string name="orange_timer_title">OrangeTV Timer</string>
     <string name="orange_timer_cancel">Annuleren</string>
     <string name="orange_mod_logs">Bekijk logs</string>
     <string name="orange_seeker_header_text">Vod synchroniseren</string>
@@ -54,7 +52,6 @@
     <string name="orange_settings_hide_discover_tab">Verberg Ontdek tab</string>
     <string name="orange_restart_app">Opnieuw opstarten</string>
     <string name="orange_restart_app_title">Update en herstart de app?</string>
-    <string name="orange_settings_title">OrangeTV instellingen</string>
     <string name="orange_settings_chat_font_size">Chat lettertype groote</string>
     <string name="orange_settings_landscape_chat_size">Verticale chat breedte</string>
     <string name="orange_settings_forward_seek">Videospeler doorspoelen</string>

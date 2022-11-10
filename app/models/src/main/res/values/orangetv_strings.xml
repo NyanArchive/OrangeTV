@@ -48,9 +48,9 @@
     <string name="orange_emotecard_ffz_global">FFZ Global Emote</string>
     <string name="orange_emotecard_stv_global">7TV Global Emote</string>
     <string name="orange_emotecard_bttv_global">BTTV Global Emote</string>
-    <string name="orange_chat_settings_preferences_subtitle">OrangeTV</string>
+    <string name="orange_chat_settings_preferences_subtitle">PurpleTV</string>
     <string name="orange_chat_settings_refresh">Refresh</string>
-    <string name="orange_timer_title">OrangeTV Timer</string>
+    <string name="orange_timer_title">PurpleTV Timer</string>
     <string name="orange_timer_cancel">Cancel</string>
     <string name="orange_mod_logs">View logs</string>
     <string name="orange_seeker_header_text">Vod sync</string>
@@ -75,7 +75,7 @@
     <string name="orange_settings_hide_discover_tab_desc" />
     <string name="orange_restart_app">Restart</string>
     <string name="orange_restart_app_title">Update and restart the app?</string>
-    <string name="orange_settings_title">OrangeTV Settings</string>
+    <string name="orange_settings_title">PurpleTV Settings</string>
     <string name="orange_settings_chat_font_size">Chat font size</string>
     <string name="orange_settings_chat_font_size_desc" />
     <string name="orange_settings_landscape_chat_size">Landscape chat width</string>
@@ -88,7 +88,7 @@
     <string name="orange_settings_vibration_duration">Vibration duration</string>
     <string name="orange_settings_hide_top_chat_panel_vods">Hide the top chat panel in VODs</string>
     <string name="orange_settings_hide_top_chat_panel_vods_desc" />
-    <string name="orange_settings" translatable="false">OrangeTV</string>
+    <string name="orange_settings" translatable="false">PurpleTV</string>
     <string name="orange_settings_pronouns">Pronouns</string>
     <string name="orange_settings_pronouns_desc" translatable="false">https://pronouns.alejo.io/</string>
     <string name="orange_settings_auto_hide_message_input">Hide message input on landscape</string>
@@ -139,7 +139,7 @@
     <string name="orange_updater_msg1">PurpleTV needs an update</string>
     <string name="orange_app_name">PurpleTV</string>
     <string name="orange_settings_updater_channel">Update channel</string>
-    <string name="orange_settings_updater_channel_desc"></string>
+    <string name="orange_settings_updater_channel_desc" />
     <string name="orange_updater_release">Release</string>
     <string name="orange_updater_beta">Beta</string>
     <string name="orange_updater_dev">Dev</string>

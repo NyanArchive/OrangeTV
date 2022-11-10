@@ -35,9 +35,7 @@
     <string name="orange_emotecard_ffz_global">Παγκόσμια FFZ Emote</string>
     <string name="orange_emotecard_stv_global">Παγκόσμια 7TV Emote</string>
     <string name="orange_emotecard_bttv_global">Παγκόσμια BTTV Emote</string>
-    <string name="orange_chat_settings_preferences_subtitle">OrangeTV</string>
     <string name="orange_chat_settings_refresh">Ανανέωση</string>
-    <string name="orange_timer_title">OrangeTV Χρονοδιακόπτης</string>
     <string name="orange_timer_cancel">Ακύρωση</string>
     <string name="orange_mod_logs">Προβολή αρχείων καταγραφής</string>
     <string name="orange_seeker_header_text">Συγχρονισμός βίντεο VODs</string>
@@ -54,7 +52,6 @@
     <string name="orange_settings_hide_discover_tab">Απόκρυψη της καρτέλας «Ανακάλυψε»</string>
     <string name="orange_restart_app">Επανεκκίνηση</string>
     <string name="orange_restart_app_title">Ενημέρωση και επανεκκίνηση της εφαρμογής;</string>
-    <string name="orange_settings_title">Ρυθμίσεις OrangeTV</string>
     <string name="orange_settings_chat_font_size">Μέγεθος γραμματοσειράς συνομιλιών</string>
     <string name="orange_settings_landscape_chat_size">Πλάτος οριζόντιας συνομιλίας</string>
     <string name="orange_settings_forward_seek">Αναπαραγωγέα επιδίωξη μπροστά</string>

@@ -35,9 +35,7 @@
     <string name="orange_emotecard_ffz_global">อีโมติคอน FFZ แบบทั่วไป</string>
     <string name="orange_emotecard_stv_global">อีโมติคอน 7TV แบบทั่วไป</string>
     <string name="orange_emotecard_bttv_global">อีโมติคอน BTTV แบบทั่วไป</string>
-    <string name="orange_chat_settings_preferences_subtitle">OrangeTV</string>
     <string name="orange_chat_settings_refresh">รีเฟรช</string>
-    <string name="orange_timer_title">OrangeTV Timer</string>
     <string name="orange_timer_cancel">ยกเลิก</string>
     <string name="orange_mod_logs">ดูล็อก</string>
     <string name="orange_seeker_header_text">Vod sync</string>
@@ -54,7 +52,6 @@
     <string name="orange_settings_hide_discover_tab">ซ่อนแท็ป Discover</string>
     <string name="orange_restart_app">รีสตาร์ท</string>
     <string name="orange_restart_app_title">อัพเดตและรีสตาร์ทแอฟหรือไม่?</string>
-    <string name="orange_settings_title">ตั้งค่า OrangeTV</string>
     <string name="orange_settings_chat_font_size">ขนาดตัวหนังสือช่องแชท</string>
     <string name="orange_settings_landscape_chat_size">ความกว้างในแนวนอน</string>
     <string name="orange_settings_forward_seek">ค้นหาการเล่นไปข้างหน้า</string>

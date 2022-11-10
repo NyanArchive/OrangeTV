@@ -35,9 +35,7 @@
     <string name="orange_emotecard_ffz_global">ايموتات قناة FFZ</string>
     <string name="orange_emotecard_stv_global">ايموتات 7tv العامة</string>
     <string name="orange_emotecard_bttv_global">ايموتات BTTV العامة</string>
-    <string name="orange_chat_settings_preferences_subtitle">OrangeTV</string>
     <string name="orange_chat_settings_refresh">تنشيط الدردشة</string>
-    <string name="orange_timer_title">موقت OrangeTV</string>
     <string name="orange_timer_cancel">الغاء</string>
     <string name="orange_mod_logs">عرض سجل الدردشة</string>
     <string name="orange_seeker_header_text">توقيت تزامن الدردشة لي VOD</string>
@@ -54,7 +52,6 @@
     <string name="orange_settings_hide_discover_tab">اخغاء نافذة الاكتشاف</string>
     <string name="orange_restart_app">إعادة تشغيل</string>
     <string name="orange_restart_app_title">تحديث وإعادة تشغيل التطبيق؟</string>
-    <string name="orange_settings_title">اعدادات OrangeTV</string>
     <string name="orange_settings_chat_font_size">حجم خط الدردشة</string>
     <string name="orange_settings_landscape_chat_size">اتساع الدردشة في الوضع الافقي</string>
     <string name="orange_settings_forward_seek">التماس المشغل للأمام</string>

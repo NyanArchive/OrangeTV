@@ -35,9 +35,7 @@
     <string name="orange_emotecard_ffz_global">FFZ 글로벌 이모티콘</string>
     <string name="orange_emotecard_stv_global">7TV 글로벌 이모티콘</string>
     <string name="orange_emotecard_bttv_global">BTTV 글로벌 이모티콘</string>
-    <string name="orange_chat_settings_preferences_subtitle">OrangeTV</string>
     <string name="orange_chat_settings_refresh">새로고침</string>
-    <string name="orange_timer_title">OrangeTV 타이머</string>
     <string name="orange_timer_cancel">취소</string>
     <string name="orange_mod_logs">로그 보기</string>
     <string name="orange_seeker_header_text">Vod 동기화</string>
@@ -54,7 +52,6 @@
     <string name="orange_settings_hide_discover_tab">찾기 탭 숨기기</string>
     <string name="orange_restart_app">재시작</string>
     <string name="orange_restart_app_title">업데이트후 재시작합니까?</string>
-    <string name="orange_settings_title">OrangeTV 설정</string>
     <string name="orange_settings_chat_font_size">채팅 글꼴 크기</string>
     <string name="orange_settings_landscape_chat_size">가로 모드에서 채팅 너비</string>
     <string name="orange_settings_forward_seek">플레이어 빨리 감기</string>

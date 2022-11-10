@@ -13,9 +13,9 @@ class SupportBridge @Inject constructor(val context: Context) {
         if (viewHolder is LogoutSectionRecyclerItem.SectionFooterRecyclerItemViewHolder) {
             BuildConfigUtil.buildConfig.let { config ->
                 viewHolder.versionTextView.text = if (config.number > 0) {
-                    "OrangeTV/${config.number}"
+                    "PurpleTV/${config.number}"
                 } else {
-                    "OrangeTV/Stub"
+                    "PurpleTV/Stub"
                 }
 
                 viewHolder.buildDateTextView.text = DateUtil.Companion!!.localizedDate(

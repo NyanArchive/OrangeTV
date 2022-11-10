@@ -35,9 +35,7 @@
     <string name="orange_emotecard_ffz_global">FFZ Global hymiöt</string>
     <string name="orange_emotecard_stv_global">7TV Global Emotes</string>
     <string name="orange_emotecard_bttv_global">BTTV Global hymiöt</string>
-    <string name="orange_chat_settings_preferences_subtitle">OrangeTV</string>
     <string name="orange_chat_settings_refresh">Päivitä</string>
-    <string name="orange_timer_title">OrangeTV Ajastin</string>
     <string name="orange_timer_cancel">Peruuta</string>
     <string name="orange_mod_logs">Näytä lokitiedot</string>
     <string name="orange_seeker_header_text">Vod sync</string>
@@ -54,7 +52,6 @@
     <string name="orange_settings_hide_discover_tab">Piilota «Discover» tabi</string>
     <string name="orange_restart_app">Käynnistä uudelleen</string>
     <string name="orange_restart_app_title">Päivitä ja käynnistä sovellus uudelleen?</string>
-    <string name="orange_settings_title">OrangeTV Asetukset</string>
     <string name="orange_settings_chat_font_size">Chatin fontti koko</string>
     <string name="orange_settings_landscape_chat_size">Vaakatasossa chatin leveys</string>
     <string name="orange_settings_forward_seek">Pelaajan etenemissalaisuus</string>

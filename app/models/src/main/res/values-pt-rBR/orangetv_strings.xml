@@ -35,9 +35,7 @@
     <string name="orange_emotecard_ffz_global">Emote Global da FFZ</string>
     <string name="orange_emotecard_stv_global">Emote Global da 7TV</string>
     <string name="orange_emotecard_bttv_global">Emote Global da BTTV</string>
-    <string name="orange_chat_settings_preferences_subtitle">OrangeTV</string>
     <string name="orange_chat_settings_refresh">Atualizar</string>
-    <string name="orange_timer_title">Temporizador de OrangeTV</string>
     <string name="orange_timer_cancel">Cancelar</string>
     <string name="orange_mod_logs">Ver registros</string>
     <string name="orange_seeker_header_text">Sincronização do VOD</string>
@@ -54,7 +52,6 @@
     <string name="orange_settings_hide_discover_tab">Ocultar a aba Descubra</string>
     <string name="orange_restart_app">Reiniciar</string>
     <string name="orange_restart_app_title">Atualizar e reiniciar o app?</string>
-    <string name="orange_settings_title">Configurações de OrangeTV</string>
     <string name="orange_settings_chat_font_size">Tamanho da fonte do chat</string>
     <string name="orange_settings_landscape_chat_size">Largura do chat no modo paisagem</string>
     <string name="orange_settings_forward_seek">Avançar no reprodutor</string>

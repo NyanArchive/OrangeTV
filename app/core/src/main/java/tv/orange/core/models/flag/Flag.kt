@@ -166,6 +166,11 @@ enum class Flag(
         "orange_settings_local_logs",
         ListValue(LocalLogs.L0),
     ),
+    UPDATER(
+        "updater",
+        "orange_settings_updater_channel",
+        ListValue(UpdateChannel.Dev),
+    ),
     LANDSCAPE_CHAT_SIZE(
         "landscape_chat_size",
         "orange_settings_landscape_chat_size",

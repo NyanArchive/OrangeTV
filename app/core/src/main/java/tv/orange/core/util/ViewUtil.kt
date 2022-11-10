@@ -1,5 +1,6 @@
 package tv.orange.core.util
 
+import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
 import android.view.LayoutInflater
@@ -11,6 +12,14 @@ import tv.orange.core.ResourceManager
 object ViewUtil {
     fun <T : View> View.getView(resName: String): T {
         return this.findViewById(ResourceManager.get().getId(resName = resName))
+    }
+
+    fun <T : View> Activity.getView(resName: String): T {
+        return this.findViewById(ResourceManager.get().getId(resName = resName))
+    }
+
+    fun Activity.setContentView(resName: String) {
+        this.setContentView(ResourceManager.get().getLayoutId(resName))
     }
 
     fun LayoutInflater.inflate(container: ViewGroup?, resName: String): View {
@@ -58,5 +67,13 @@ object ViewUtil {
         } else {
             View.GONE
         }
+    }
+
+    fun show(vararg views: View) {
+        views.forEach { it.changeVisibility(true) }
+    }
+
+    fun hide(vararg views: View) {
+        views.forEach { it.changeVisibility(false) }
     }
 }

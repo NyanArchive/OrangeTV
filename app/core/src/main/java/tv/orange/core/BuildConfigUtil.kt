@@ -14,7 +14,8 @@ object BuildConfigUtil {
                 OrangeBuildConfig(
                     number = getInt("number"),
                     timestamp = getInt("timestamp"),
-                    sentryDNS = getString("sentryDNS")
+                    sentryDNS = getString("sentryDNS"),
+                    codename = getString("codename")
                 )
             }
         } catch (e: Throwable) {

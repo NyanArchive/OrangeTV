@@ -1,4 +1,5 @@
 <resources>
+
     <style name="ChatMessageView">
         <item name="android:textSize">@dimen/font_small</item>
         <item name="android:textColor">@color/text_base</item>
@@ -7,25 +8,22 @@
         <item name="android:minHeight">@dimen/chat_message_min_height</item>
         <item name="android:lineSpacingExtra">2.0dip</item>
     </style>
-    <style name="TitleText" parent="@style/SemiboldFont">
-        <item name="android:textSize">@dimen/font_title</item>
-        <item name="android:textColor">@color/text_base</item>
-        <item name="android:textColorLink">@color/text_link</item>
-    </style>
+
     <style name="RowItemStyleWithForeground" />
+
     <style name="SemiboldFont" />
+
     <style name="BodyText">
         <item name="android:textSize">@dimen/font_small</item>
         <item name="android:textColor">@color/text_alt</item>
         <item name="android:textColorLink">@color/text_link</item>
         <item name="android:lineSpacingMultiplier">1.2</item>
     </style>
-    <style name="SubtitleText">
-        <item name="android:textSize">@dimen/font_small</item>
-        <item name="android:textColor">@color/text_alt_2</item>
-    </style>
-    <style name="ButtonStyle.Primary" parent="@style/ButtonStyle">
-    </style>
+
+    <style name="ButtonStyle.Primary" parent="@style/ButtonStyle" />
+
+    <style name="ButtonStyle.Secondary" parent="@style/ButtonStyle" />
+
     <style name="ButtonStyle">
         <item name="android:textSize">@dimen/font_small</item>
         <item name="android:gravity">center</item>
@@ -35,5 +33,54 @@
         <item name="android:paddingBottom">@dimen/default_margin</item>
         <item name="android:foreground">?selectableItemBackground</item>
         <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="BoldFont">
+        <item name="fontFamily">@font/roobert_bold</item>
+    </style>
+
+    <style name="Title" parent="@style/BoldFont">
+        <item name="android:textSize">@dimen/font_large</item>
+        <item name="android:textColor">@color/text_base</item>
+    </style>
+
+    <style name="Title2Text" parent="@style/SemiboldFont">
+        <item name="android:textSize">@dimen/font_title</item>
+        <item name="android:textColor">@color/text_alt_2</item>
+    </style>
+
+    <style name="TitleExtraLarge" parent="@style/BoldFont">
+        <item name="android:textSize">@dimen/font_xxxxlarge</item>
+        <item name="android:textColor">@color/text_base</item>
+    </style>
+
+    <style name="TitleLarge" parent="@style/BoldFont">
+        <item name="android:textSize">@dimen/font_xxxlarge</item>
+        <item name="android:textColor">@color/text_base</item>
+    </style>
+
+    <style name="TitleText" parent="@style/SemiboldFont">
+        <item name="android:textSize">@dimen/font_title</item>
+        <item name="android:textColor">@color/text_base</item>
+        <item name="android:textColorLink">@color/text_link</item>
+    </style>
+
+    <style name="Subtitle">
+        <item name="android:textSize">@dimen/font_large</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SubtitleLarge">
+        <item name="android:textSize">@dimen/font_xxxlarge</item>
+    </style>
+
+    <style name="SubtitleText">
+        <item name="android:textSize">@dimen/font_small</item>
+        <item name="android:textColor">@color/text_alt_2</item>
+    </style>
+
+    <style name="orangetv_updater__changelog">
+        <item name="android:textSize">@dimen/font_xsmall</item>
+        <item name="android:textColor">@color/text_alt_2</item>
     </style>
 </resources>

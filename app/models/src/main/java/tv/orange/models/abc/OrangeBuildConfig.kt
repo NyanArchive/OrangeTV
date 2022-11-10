@@ -5,7 +5,8 @@ import java.util.*
 data class OrangeBuildConfig(
     val number: Int = 0,
     val timestamp: Int = 0,
-    val sentryDNS: String? = null
+    val sentryDNS: String? = null,
+    val codename: String = "Orange"
 ) {
     fun timestampToDate(): Date? {
         if (timestamp <= 0) {

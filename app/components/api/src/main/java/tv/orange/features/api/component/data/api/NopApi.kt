@@ -5,6 +5,7 @@ import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 import tv.orange.models.retrofit.nop.DonationsData
+import tv.orange.models.retrofit.nop.OrangeUpdateData
 
 interface NopApi {
     @GET("/orange/twitchmod/donations")
@@ -12,6 +13,9 @@ interface NopApi {
 
     @GET("/orange/homies")
     fun homiesBadges(): Single<HashMap<String, String>>
+
+    @GET("/orange/update")
+    fun update(): Single<OrangeUpdateData>
 
     @GET("/orange/ping")
     fun ping(

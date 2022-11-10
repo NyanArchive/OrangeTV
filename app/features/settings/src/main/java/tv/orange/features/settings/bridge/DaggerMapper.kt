@@ -27,5 +27,9 @@ enum class DaggerMapper(val fragment: Class<*>, val presenter: Class<out BaseSet
     Dev(
         fragment = OrangeDevSettingsFragment::class.java,
         presenter = OrangeDevSettingsPresenter::class.java
+    ),
+    Ota(
+        fragment = OrangeUpdaterSettingsFragment::class.java,
+        presenter = OrangeUpdaterSettingsPresenter::class.java
     )
 }

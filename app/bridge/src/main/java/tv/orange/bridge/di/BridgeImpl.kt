@@ -3,7 +3,10 @@ package tv.orange.bridge.di
 import android.content.Context
 import tv.orange.bridge.di.component.BridgeComponent
 import tv.orange.bridge.di.component.DaggerBridgeComponent
-import tv.orange.core.*
+import tv.orange.core.Core
+import tv.orange.core.CoreHook
+import tv.orange.core.PreferenceManager
+import tv.orange.core.ResourceManager
 import tv.orange.core.di.component.DaggerCoreComponent
 import tv.orange.features.chapters.VodChapters
 import tv.orange.features.chat.ChatHookProvider
@@ -16,6 +19,7 @@ import tv.orange.features.stv.StvAvatars
 import tv.orange.features.timer.SleepTimer
 import tv.orange.features.tracking.Tracking
 import tv.orange.features.ui.UI
+import tv.orange.features.updater.Updater
 import tv.orange.features.usersearch.UserSearch
 import tv.orange.features.vodsync.VodSync
 import tv.orange.models.AutoInitialize
@@ -86,6 +90,7 @@ class BridgeImpl private constructor() : Bridge {
         featureFactoryMap[UI::class.java] = { component.uiProvider }
         featureFactoryMap[Spam::class.java] = { component.spamProvider }
         featureFactoryMap[Tracking::class.java] = { component.trackingProvider }
+        featureFactoryMap[Updater::class.java] = { component.updaterProvider }
     }
 
     fun initialize(context: Context) {

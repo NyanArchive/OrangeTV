@@ -25,8 +25,6 @@ object SentrySDK {
             options.release = "$0.1+${BuildConfigUtil.buildConfig.number}"
             options.enableAllAutoBreadcrumbs(false)
             options.sampleRate = 1.0
-            options.isEnableUserInteractionTracing = true
-            options.isDebug = true
         }
         isInitialized = true
         Logger.debug("OK")

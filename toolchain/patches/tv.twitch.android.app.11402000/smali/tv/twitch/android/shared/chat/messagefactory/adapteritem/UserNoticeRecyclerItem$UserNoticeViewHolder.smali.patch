@@ -1,0 +1,149 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder.smali b/smali_classes6/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder.smali
+--- a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder.smali
++++ b/smali_classes6/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder.smali
+@@ -48,6 +48,17 @@
+ 
+ .field private final systemMessage:Landroid/widget/TextView;
+ 
++.field private volatile loadedImageTargets:Ljava/util/List;
++    .annotation system Ldalvik/annotation/Signature;
++        value = {
++            "Ljava/util/List",
++            "<",
++            "Ltv/twitch/android/shared/ui/elements/span/GlideChatImageCustomTarget;",
++            ">;"
++        }
++    .end annotation
++.end field
++
+ 
+ # direct methods
+ .method public constructor <init>(Landroid/view/View;)V
+@@ -245,3 +256,127 @@
+ 
+     return-void
+ .end method
++
++.method public final addTargetsToClear(Ljava/util/List;)V
++    .registers 3
++    .annotation system Ldalvik/annotation/Signature;
++        value = {
++            "(",
++            "Ljava/util/List",
++            "<",
++            "Ltv/twitch/android/shared/ui/elements/span/GlideChatImageCustomTarget;",
++            ">;)V"
++        }
++    .end annotation
++
++    .prologue
++    .line 72
++    .local p1, "targets":Ljava/util/List;, "Ljava/util/List<Ltv/twitch/android/shared/ui/elements/span/GlideChatImageCustomTarget;>;"
++    iget-object v0, p0, Ltv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder;->loadedImageTargets:Ljava/util/List;
++
++    if-nez v0, :cond_13
++
++    .line 73
++    monitor-enter p0
++
++    .line 74
++    :try_start_5
++    iget-object v0, p0, Ltv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder;->loadedImageTargets:Ljava/util/List;
++
++    if-nez v0, :cond_12
++
++    .line 75
++    new-instance v0, Ljava/util/ArrayList;
++
++    invoke-direct {v0, p1}, Ljava/util/ArrayList;-><init>(Ljava/util/Collection;)V
++
++    iput-object v0, p0, Ltv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder;->loadedImageTargets:Ljava/util/List;
++
++    .line 76
++    monitor-exit p0
++
++    .line 81
++    :goto_11
++    return-void
++
++    .line 78
++    :cond_12
++    monitor-exit p0
++    :try_end_13
++    .catchall {:try_start_5 .. :try_end_13} :catchall_19
++
++    .line 80
++    :cond_13
++    iget-object v0, p0, Ltv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder;->loadedImageTargets:Ljava/util/List;
++
++    invoke-interface {v0, p1}, Ljava/util/List;->addAll(Ljava/util/Collection;)Z
++
++    goto :goto_11
++
++    .line 78
++    :catchall_19
++    move-exception v0
++
++    :try_start_1a
++    monitor-exit p0
++    :try_end_1b
++    .catchall {:try_start_1a .. :try_end_1b} :catchall_19
++
++    throw v0
++.end method
++
++.method public onRecycled()V
++    .registers 6
++
++    .prologue
++    .line 85
++    iget-object v2, p0, Ltv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder;->loadedImageTargets:Ljava/util/List;
++
++    .line 86
++    .local v2, "targets":Ljava/util/List;, "Ljava/util/List<+Ltv/twitch/android/shared/ui/elements/span/GlideChatImageCustomTarget;>;"
++    if-eqz v2, :cond_24
++
++    .line 87
++    invoke-interface {v2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
++
++    move-result-object v3
++
++    :goto_8
++    invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
++
++    move-result v4
++
++    if-eqz v4, :cond_24
++
++    invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
++
++    move-result-object v1
++
++    check-cast v1, Ltv/twitch/android/shared/ui/elements/span/GlideChatImageCustomTarget;
++
++    .line 88
++    .local v1, "target":Ltv/twitch/android/shared/ui/elements/span/GlideChatImageCustomTarget;
++    iget-object v4, p0, Ltv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder;->itemView:Landroid/view/View;
++
++    invoke-virtual {v4}, Landroid/view/View;->getContext()Landroid/content/Context;
++
++    move-result-object v4
++
++    invoke-virtual {v4}, Landroid/content/Context;->getApplicationContext()Landroid/content/Context;
++
++    move-result-object v0
++
++    .line 89
++    .local v0, "applicationContext":Landroid/content/Context;
++    sget-object v4, Ltv/twitch/android/shared/ui/elements/GlideHelper;->INSTANCE:Ltv/twitch/android/shared/ui/elements/GlideHelper;
++
++    invoke-virtual {v4, v0, v1}, Ltv/twitch/android/shared/ui/elements/GlideHelper;->clearPendingGlideLoad(Landroid/content/Context;Lcom/bumptech/glide/request/target/Target;)V
++
++    goto :goto_8
++
++    .line 92
++    .end local v0    # "applicationContext":Landroid/content/Context;
++    .end local v1    # "target":Ltv/twitch/android/shared/ui/elements/span/GlideChatImageCustomTarget;
++    :cond_24
++    return-void
++.end method

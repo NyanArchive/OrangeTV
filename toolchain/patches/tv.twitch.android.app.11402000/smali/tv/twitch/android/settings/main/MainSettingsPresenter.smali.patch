@@ -1,0 +1,21 @@
+diff --git a/smali_classes5/tv/twitch/android/settings/main/MainSettingsPresenter.smali b/smali_classes5/tv/twitch/android/settings/main/MainSettingsPresenter.smali
+--- a/smali_classes5/tv/twitch/android/settings/main/MainSettingsPresenter.smali
++++ b/smali_classes5/tv/twitch/android/settings/main/MainSettingsPresenter.smali
+@@ -731,16 +731,10 @@
+ 
+     move-result-object v1
+ 
+-    sget v2, Ltv/twitch/android/core/strings/R$string;->system:I
+-
+-    invoke-virtual {v1, v2}, Landroid/content/Context;->getString(I)Ljava/lang/String;
++    invoke-static {}, Ltv/orange/features/settings/OrangeSettings;->getOrangeSettingsString()Ljava/lang/String;
+ 
+     move-result-object v2
+ 
+-    const-string v1, "activity.getString(tv.tw\u2026.strings.R.string.system)"
+-
+-    invoke-static {v2, v1}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullExpressionValue(Ljava/lang/Object;Ljava/lang/String;)V
+-
+     const/4 v3, 0x0
+ 
+     const/4 v4, 0x0

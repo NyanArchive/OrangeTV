@@ -1,0 +1,22 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/leaderboards/webview/LeaderboardsWebViewPresenter.smali b/smali_classes6/tv/twitch/android/shared/leaderboards/webview/LeaderboardsWebViewPresenter.smali
+--- a/smali_classes6/tv/twitch/android/shared/leaderboards/webview/LeaderboardsWebViewPresenter.smali
++++ b/smali_classes6/tv/twitch/android/shared/leaderboards/webview/LeaderboardsWebViewPresenter.smali
+@@ -1172,7 +1172,18 @@
+ .method private final shouldFetchLeaderboards(Ltv/twitch/android/models/chat/ChatBroadcaster;)Z
+     .locals 2
+ 
++    invoke-static {}, Ltv/orange/features/ui/UI;->getHideLeaderboards()Z
++
++    move-result v0
++
++    if-eqz v0, :cond_z
++
++    const/4 v0, 0x0
++
++    return v0
++
+     .line 314
++    :cond_z
+     invoke-virtual {p1}, Ltv/twitch/android/models/chat/ChatBroadcaster;->getChannelInfo()Ltv/twitch/android/models/channel/ChannelInfo;
+ 
+     move-result-object v0

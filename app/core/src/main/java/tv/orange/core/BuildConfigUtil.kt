@@ -6,7 +6,7 @@ import tv.twitch.android.app.core.ApplicationContext
 
 object BuildConfigUtil {
     const val BUILD_JSON_FILENAME = "build.json"
-    const val USER_AGENT_TEMPLATE = "OrangeTV/0.2 Build/%d"
+    const val USER_AGENT_TEMPLATE = "PurpleTV/0.1 Build/%d"
 
     val buildConfig: OrangeBuildConfig by lazy {
         return@lazy try {

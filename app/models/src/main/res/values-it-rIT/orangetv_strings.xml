@@ -35,9 +35,7 @@
     <string name="orange_emotecard_ffz_global">Emote Globali FFZ</string>
     <string name="orange_emotecard_stv_global">Emote Globali 7TV</string>
     <string name="orange_emotecard_bttv_global">Emote Globali BTTV</string>
-    <string name="orange_chat_settings_preferences_subtitle">OrangeTV</string>
     <string name="orange_chat_settings_refresh">Aggiorna</string>
-    <string name="orange_timer_title">Timer di OrangeTV</string>
     <string name="orange_timer_cancel">Annulla</string>
     <string name="orange_mod_logs">Visualizza i log</string>
     <string name="orange_seeker_header_text">Sincronizzazione del Vod</string>
@@ -54,7 +52,6 @@
     <string name="orange_settings_hide_discover_tab">Nascondi la scheda « Discover »</string>
     <string name="orange_restart_app">Riavvia</string>
     <string name="orange_restart_app_title">Aggiornare e riavviare l\'app?</string>
-    <string name="orange_settings_title">Impostazioni OrangeTV</string>
     <string name="orange_settings_chat_font_size">Dimensione dei caratteri in chat</string>
     <string name="orange_settings_landscape_chat_size">Larghezza della chat orizzontale</string>
     <string name="orange_settings_forward_seek">Avanzamento rapido</string>
@@ -87,4 +84,6 @@
     <string name="orange_chat_user_dialog_fragment_view_local_logs">Visualizza log locali</string>
     <string name="orange_settings_local_logs">Log locali</string>
     <string name="orange_local_logs_0">Disabilitate</string>
+    <string name="cpv_default_title">Scegli un colore</string>
+    <string name="cpv_transparency">Trasparenza</string>
 </resources>

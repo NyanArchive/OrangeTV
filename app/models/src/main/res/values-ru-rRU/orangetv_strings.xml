@@ -35,9 +35,7 @@
     <string name="orange_emotecard_ffz_global">Глобальный смайлик FFZ</string>
     <string name="orange_emotecard_stv_global">Глобальный смайлик 7TV</string>
     <string name="orange_emotecard_bttv_global">Глобальный смайлик BTTV</string>
-    <string name="orange_chat_settings_preferences_subtitle">OrangeTV</string>
     <string name="orange_chat_settings_refresh">Обновить</string>
-    <string name="orange_timer_title">Таймер OrangeTV</string>
     <string name="orange_timer_cancel">Отменить</string>
     <string name="orange_mod_logs">Просмотр логов</string>
     <string name="orange_seeker_header_text">Синхронизация чата</string>
@@ -54,7 +52,6 @@
     <string name="orange_settings_hide_discover_tab">Скрыть вкладку «Поиск»</string>
     <string name="orange_restart_app">Перезапустить</string>
     <string name="orange_restart_app_title">Обновить и перезапустить приложение?</string>
-    <string name="orange_settings_title">Настройки OrangeTV</string>
     <string name="orange_settings_chat_font_size">Размер шрифта в чате</string>
     <string name="orange_settings_landscape_chat_size">Ширина чата в горизонтальной ориентации</string>
     <string name="orange_settings_forward_seek">Шаг перемотки вперёд</string>

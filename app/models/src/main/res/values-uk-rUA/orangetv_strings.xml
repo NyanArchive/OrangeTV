@@ -35,9 +35,7 @@
     <string name="orange_emotecard_ffz_global">Глобальні емоції FFZ</string>
     <string name="orange_emotecard_stv_global">Глобальні емоції 7TV</string>
     <string name="orange_emotecard_bttv_global">Глобальні емоції BTTV</string>
-    <string name="orange_chat_settings_preferences_subtitle">OrangeTV</string>
     <string name="orange_chat_settings_refresh">Оновити</string>
-    <string name="orange_timer_title">OrangeTV Таймер</string>
     <string name="orange_timer_cancel">Скасувати</string>
     <string name="orange_mod_logs">Історія глядача</string>
     <string name="orange_seeker_header_text">Синхронізація відеозапису</string>
@@ -54,7 +52,6 @@
     <string name="orange_settings_hide_discover_tab">Сховати вкладку «Discover»</string>
     <string name="orange_restart_app">Перезапуск</string>
     <string name="orange_restart_app_title">Оновити та перезапустити застосунок?</string>
-    <string name="orange_settings_title">Налаштування OrangeTV</string>
     <string name="orange_settings_chat_font_size">Розмір шрифту у чаті</string>
     <string name="orange_settings_landscape_chat_size">Ширина чату в повноекранному режимі</string>
     <string name="orange_settings_forward_seek">Перемотка вперед на</string>

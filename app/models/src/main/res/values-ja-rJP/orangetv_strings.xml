@@ -35,9 +35,7 @@
     <string name="orange_emotecard_ffz_global">FFZグローバルエモート</string>
     <string name="orange_emotecard_stv_global">7TVグローバルエモート</string>
     <string name="orange_emotecard_bttv_global">BTTVグローバルエモート</string>
-    <string name="orange_chat_settings_preferences_subtitle">OrangeTV</string>
     <string name="orange_chat_settings_refresh">更新</string>
-    <string name="orange_timer_title">OrangeTVタイマー</string>
     <string name="orange_timer_cancel">キャンセル</string>
     <string name="orange_mod_logs">ログの表示</string>
     <string name="orange_seeker_header_text">Vodシンク</string>
@@ -54,7 +52,6 @@
     <string name="orange_settings_hide_discover_tab">発見タブの非表示</string>
     <string name="orange_restart_app">再起動</string>
     <string name="orange_restart_app_title">アプリを更新して再起動しますか?</string>
-    <string name="orange_settings_title">OrangeTV設定</string>
     <string name="orange_settings_chat_font_size">チャットのフォントサイズ</string>
     <string name="orange_settings_landscape_chat_size">ランドスケープのチャット幅</string>
     <string name="orange_settings_forward_seek">プレイヤーの早送り</string>

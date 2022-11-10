@@ -1,0 +1,12 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/audio/ads/AudioAdsPresenter.smali b/smali_classes6/tv/twitch/android/shared/audio/ads/AudioAdsPresenter.smali
+--- a/smali_classes6/tv/twitch/android/shared/audio/ads/AudioAdsPresenter.smali
++++ b/smali_classes6/tv/twitch/android/shared/audio/ads/AudioAdsPresenter.smali
+@@ -702,7 +702,7 @@
+     :cond_0
+     new-instance p1, Landroid/content/Intent;
+ 
+-    const-string v0, "tv.twitch.android.media.action.sendAudioAdsContext"
++    const-string v0, "tv.orange.action.sendAudioAdsContext"
+ 
+     invoke-direct {p1, v0}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+ 

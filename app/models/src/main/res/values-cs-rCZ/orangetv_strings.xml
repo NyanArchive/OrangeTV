@@ -35,9 +35,7 @@
     <string name="orange_emotecard_ffz_global">Globální FFZ emoty</string>
     <string name="orange_emotecard_stv_global">Globální 7TV Emoty</string>
     <string name="orange_emotecard_bttv_global">Globální BTTV Emoty</string>
-    <string name="orange_chat_settings_preferences_subtitle">OrangeTV</string>
     <string name="orange_chat_settings_refresh">Obnovit</string>
-    <string name="orange_timer_title">OrangeTV Časovač</string>
     <string name="orange_timer_cancel">Zrušit</string>
     <string name="orange_mod_logs">Zobrazit logy</string>
     <string name="orange_seeker_header_text">Synchronizace Vod</string>
@@ -54,7 +52,6 @@
     <string name="orange_settings_hide_discover_tab">Skrýt záložku Objevit</string>
     <string name="orange_restart_app">Restartovat</string>
     <string name="orange_restart_app_title">Aktualizovat a restartovat aplikaci?</string>
-    <string name="orange_settings_title">Nastavení OrangeTV</string>
     <string name="orange_settings_chat_font_size">Velikost písma chatu</string>
     <string name="orange_settings_landscape_chat_size">Šířka chatu v režimu na šířku</string>
     <string name="orange_settings_forward_seek">Náhled přehrávače dopředu</string>

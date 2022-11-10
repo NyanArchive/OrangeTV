@@ -1,0 +1,12 @@
+diff --git a/smali_classes2/com/google/android/exoplayer2/source/hls/HlsMediaSource.smali b/smali_classes2/com/google/android/exoplayer2/source/hls/HlsMediaSource.smali
+--- a/smali_classes2/com/google/android/exoplayer2/source/hls/HlsMediaSource.smali
++++ b/smali_classes2/com/google/android/exoplayer2/source/hls/HlsMediaSource.smali
+@@ -325,7 +325,7 @@
+ 
+     move-result v4
+ 
+-    add-int/lit8 v4, v4, -0x3
++    add-int/lit8 v4, v4, -0x1
+ 
+     invoke-static {v3, v4}, Ljava/lang/Math;->max(II)I
+ 

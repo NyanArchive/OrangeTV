@@ -35,9 +35,7 @@
     <string name="orange_emotecard_ffz_global">BTTV Küresel İfadeleri</string>
     <string name="orange_emotecard_stv_global">7TV Küresel İfadeleri</string>
     <string name="orange_emotecard_bttv_global">BTTV Küresel İfadeleri</string>
-    <string name="orange_chat_settings_preferences_subtitle">OrangeTV</string>
     <string name="orange_chat_settings_refresh">Yenile</string>
-    <string name="orange_timer_title">OrangeTV zamanlayıcısı</string>
     <string name="orange_timer_cancel">İptal</string>
     <string name="orange_mod_logs">Günlükleri göster</string>
     <string name="orange_seeker_header_text">VOD senkronizasyonu</string>
@@ -54,7 +52,6 @@
     <string name="orange_settings_hide_discover_tab">Keşfet sekmesini gizle</string>
     <string name="orange_restart_app">Yeniden başlat</string>
     <string name="orange_restart_app_title">Uygulama güncellenip yeniden başlatılsın mı?</string>
-    <string name="orange_settings_title">OrangeTV Ayarları</string>
     <string name="orange_settings_chat_font_size">Sohbet yazı tipi boyutu</string>
     <string name="orange_settings_landscape_chat_size">Yatay sohbet genişliği</string>
     <string name="orange_settings_forward_seek">Oynatıcı ileri sarma</string>
@@ -72,7 +69,7 @@
     <string name="orange_emote_quality_medium">Orta</string>
     <string name="orange_emote_quality_large">Yüksek</string>
     <string name="orange_settings_compact_player_follow_view">Kompakt takip edilen görünümünü kullan</string>
-    <string name="orange_settings_menu_third_party">Üçüncü Şahıs</string>
+    <string name="orange_settings_menu_third_party">Harici Eklentiler</string>
     <string name="orange_settings_menu_chat">Sohbet</string>
     <string name="orange_settings_menu_player">Oynatıcı</string>
     <string name="orange_settings_menu_gestures">Hareketler</string>

@@ -1,0 +1,561 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter.smali b/smali_classes6/tv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter.smali
+--- a/smali_classes6/tv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter.smali
++++ b/smali_classes6/tv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter.smali
+@@ -365,8 +365,12 @@
+ 
+     const/4 v2, 0x2
+ 
++    const-string v1, "StreamDisplayAdsPresenter"
++
+     .line 215
+-    invoke-static {v0, v6, v11, v2, v11}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->registerStateMachine$default(Ltv/twitch/android/core/mvp/presenter/RxPresenter;Ltv/twitch/android/core/mvp/presenter/StateMachine;Ljava/lang/String;ILjava/lang/Object;)V
++    invoke-static {v0, v6, v1, v11, v11}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->registerStateMachine$default(Ltv/twitch/android/core/mvp/presenter/RxPresenter;Ltv/twitch/android/core/mvp/presenter/StateMachine;Ljava/lang/String;ILjava/lang/Object;)V
++
++    move-object/from16 v1, p1
+ 
+     const/4 v6, 0x3
+ 
+@@ -584,67 +588,18 @@
+ .end method
+ 
+ .method private final convertMultiAdFormatToDisplayAdType(Ltv/twitch/android/models/ads/MultiAdFormat;)Ltv/twitch/android/shared/ads/models/display/DisplayAdType;
+-    .locals 1
+-
+-    .line 428
+-    sget-object v0, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$WhenMappings;->$EnumSwitchMapping$0:[I
+-
+-    invoke-virtual {p1}, Ljava/lang/Enum;->ordinal()I
+-
+-    move-result p1
+-
+-    aget p1, v0, p1
+-
+-    const/4 v0, 0x1
+-
+-    if-eq p1, v0, :cond_1
+-
+-    const/4 v0, 0x2
+-
+-    if-eq p1, v0, :cond_0
++    .locals 0
+ 
+     const/4 p1, 0x0
+ 
+-    goto :goto_0
+-
+-    .line 430
+-    :cond_0
+-    sget-object p1, Ltv/twitch/android/shared/ads/models/display/DisplayAdType;->Squeezeback:Ltv/twitch/android/shared/ads/models/display/DisplayAdType;
+-
+-    goto :goto_0
+-
+-    .line 429
+-    :cond_1
+-    sget-object p1, Ltv/twitch/android/shared/ads/models/display/DisplayAdType;->LeftThird:Ltv/twitch/android/shared/ads/models/display/DisplayAdType;
+-
+-    :goto_0
+     return-object p1
+ .end method
+ 
+ .method private final convertStateToViewState(Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State;)Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsViewDelegate$StreamDisplayAdsViewState;
+-    .locals 1
+-
+-    .line 395
+-    instance-of v0, p1, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State$Active;
+-
+-    if-eqz v0, :cond_0
+-
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State;->canAdBeShown()Z
+-
+-    move-result p1
+-
+-    if-eqz p1, :cond_0
+-
+-    .line 396
+-    sget-object p1, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsViewDelegate$StreamDisplayAdsViewState$Visible;->INSTANCE:Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsViewDelegate$StreamDisplayAdsViewState$Visible;
+-
+-    goto :goto_0
++    .locals 0
+ 
+-    .line 398
+-    :cond_0
+     sget-object p1, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsViewDelegate$StreamDisplayAdsViewState$Hidden;->INSTANCE:Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsViewDelegate$StreamDisplayAdsViewState$Hidden;
+ 
+-    :goto_0
+     return-object p1
+ .end method
+ 
+@@ -993,87 +948,15 @@
+ .end method
+ 
+ .method private final getDropReason(Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State;)Ltv/twitch/android/shared/ads/models/edge/api/ResponseDropReason;
+-    .locals 2
+-
+-    .line 485
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State;->getEligibilityState()Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$EligibilityState;
+-
+-    move-result-object v0
+-
+-    invoke-virtual {v0}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$EligibilityState;->isInterruptiveAdPlaying()Z
+-
+-    move-result v0
+-
+-    if-eqz v0, :cond_0
+-
+-    sget-object p1, Ltv/twitch/android/shared/ads/models/edge/api/ResponseDropReason;->INTERRUPTIVE_AD_ALREADY_RUNNING:Ltv/twitch/android/shared/ads/models/edge/api/ResponseDropReason;
+-
+-    goto :goto_0
+-
+-    .line 486
+-    :cond_0
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State;->getVisibilityState()Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$VisibilityState;
+-
+-    move-result-object v0
+-
+-    invoke-virtual {v0}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$VisibilityState;->isLandscape()Z
+-
+-    move-result v0
+-
+-    if-nez v0, :cond_1
+-
+-    sget-object p1, Ltv/twitch/android/shared/ads/models/edge/api/ResponseDropReason;->PORTRAIT:Ltv/twitch/android/shared/ads/models/edge/api/ResponseDropReason;
+-
+-    goto :goto_0
+-
+-    .line 487
+-    :cond_1
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State;->getVisibilityState()Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$VisibilityState;
+-
+-    move-result-object v0
+-
+-    invoke-virtual {v0}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$VisibilityState;->getPlayerMode()Ltv/twitch/android/models/player/PlayerMode;
+-
+-    move-result-object v0
+-
+-    sget-object v1, Ltv/twitch/android/models/player/PlayerMode;->MINIMIZED:Ltv/twitch/android/models/player/PlayerMode;
+-
+-    if-ne v0, v1, :cond_2
+-
+-    sget-object p1, Ltv/twitch/android/shared/ads/models/edge/api/ResponseDropReason;->MINI_PLAYER:Ltv/twitch/android/shared/ads/models/edge/api/ResponseDropReason;
+-
+-    goto :goto_0
+-
+-    .line 488
+-    :cond_2
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State;->getVisibilityState()Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$VisibilityState;
+-
+-    move-result-object p1
+-
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$VisibilityState;->getPlayerViewState()Ltv/twitch/android/shared/player/models/PlayerCoordinatorViewState;
+-
+-    move-result-object p1
+-
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/player/models/PlayerCoordinatorViewState;->isKeyboardOrBitsUiVisible()Z
+-
+-    move-result p1
+-
+-    if-eqz p1, :cond_3
+-
+-    sget-object p1, Ltv/twitch/android/shared/ads/models/edge/api/ResponseDropReason;->KEYBOARD:Ltv/twitch/android/shared/ads/models/edge/api/ResponseDropReason;
+-
+-    goto :goto_0
++    .locals 0
+ 
+-    .line 489
+-    :cond_3
+     sget-object p1, Ltv/twitch/android/shared/ads/models/edge/api/ResponseDropReason;->OTHER:Ltv/twitch/android/shared/ads/models/edge/api/ResponseDropReason;
+ 
+-    :goto_0
+     return-object p1
+ .end method
+ 
+ .method private final getReadyToShowAdOrAbort(Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State;Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$UpdateEvent$DisplayAdReady;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+-    .locals 9
++    .locals 0
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+             "(",
+@@ -1087,123 +970,12 @@
+         }
+     .end annotation
+ 
+-    .line 292
+-    invoke-virtual {p2}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$UpdateEvent$DisplayAdReady;->getDisplayAdsEnabled()Z
+-
+-    move-result v0
+-
+-    if-nez v0, :cond_0
+-
+-    .line 293
+     sget-object p2, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$Action$AdFormatDeclined;->INSTANCE:Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$Action$AdFormatDeclined;
+ 
+     invoke-static {p1, p2}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->plus(Ltv/twitch/android/core/mvp/presenter/PresenterState;Ltv/twitch/android/core/mvp/presenter/PresenterAction;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+ 
+     move-result-object p1
+ 
+-    goto :goto_0
+-
+-    .line 294
+-    :cond_0
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State;->getEligibilityState()Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$EligibilityState;
+-
+-    move-result-object v0
+-
+-    invoke-virtual {v0}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$EligibilityState;->canShowDisplayAd()Z
+-
+-    move-result v0
+-
+-    if-eqz v0, :cond_1
+-
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State;->isPlayerLayoutValid()Z
+-
+-    move-result v0
+-
+-    if-eqz v0, :cond_1
+-
+-    .line 296
+-    invoke-virtual {p2}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$UpdateEvent$DisplayAdReady;->getDisplayAdInfo()Ltv/twitch/android/shared/ads/models/display/DisplayAdInfo;
+-
+-    move-result-object v0
+-
+-    invoke-virtual {v0}, Ltv/twitch/android/shared/ads/models/display/DisplayAdInfo;->getDurationSeconds()I
+-
+-    move-result v2
+-
+-    .line 297
+-    invoke-virtual {p2}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$UpdateEvent$DisplayAdReady;->getDisplayAdInfo()Ltv/twitch/android/shared/ads/models/display/DisplayAdInfo;
+-
+-    move-result-object v0
+-
+-    invoke-virtual {v0}, Ltv/twitch/android/shared/ads/models/display/DisplayAdInfo;->getDisplayAdType()Ltv/twitch/android/shared/ads/models/display/DisplayAdType;
+-
+-    move-result-object v4
+-
+-    .line 298
+-    sget-object v5, Ltv/twitch/android/shared/display/ads/DisplayAdPresenter$State$Inactive;->INSTANCE:Ltv/twitch/android/shared/display/ads/DisplayAdPresenter$State$Inactive;
+-
+-    .line 299
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State;->getVisibilityState()Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$VisibilityState;
+-
+-    move-result-object v7
+-
+-    .line 300
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State;->getEligibilityState()Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$EligibilityState;
+-
+-    move-result-object v8
+-
+-    .line 301
+-    invoke-virtual {p2}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$UpdateEvent$DisplayAdReady;->getAdSessionId()Ljava/lang/String;
+-
+-    move-result-object v6
+-
+-    .line 302
+-    invoke-virtual {p2}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$UpdateEvent$DisplayAdReady;->getDisplayAdInfo()Ltv/twitch/android/shared/ads/models/display/DisplayAdInfo;
+-
+-    move-result-object p1
+-
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/ads/models/display/DisplayAdInfo;->getDurationSeconds()I
+-
+-    move-result v3
+-
+-    .line 295
+-    new-instance p1, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State$Active;
+-
+-    move-object v1, p1
+-
+-    invoke-direct/range {v1 .. v8}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State$Active;-><init>(IILtv/twitch/android/shared/ads/models/display/DisplayAdType;Ltv/twitch/android/shared/display/ads/DisplayAdPresenter$State;Ljava/lang/String;Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$VisibilityState;Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$EligibilityState;)V
+-
+-    .line 303
+-    new-instance v0, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$Action$ShowDisplayAd;
+-
+-    invoke-virtual {p2}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$UpdateEvent$DisplayAdReady;->getDisplayAdInfo()Ltv/twitch/android/shared/ads/models/display/DisplayAdInfo;
+-
+-    move-result-object p2
+-
+-    invoke-direct {v0, p2}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$Action$ShowDisplayAd;-><init>(Ltv/twitch/android/shared/ads/models/display/DisplayAdInfo;)V
+-
+-    .line 295
+-    invoke-static {p1, v0}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->plus(Ltv/twitch/android/core/mvp/presenter/PresenterState;Ltv/twitch/android/core/mvp/presenter/PresenterAction;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+-
+-    move-result-object p1
+-
+-    goto :goto_0
+-
+-    .line 305
+-    :cond_1
+-    new-instance p2, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$Action$AbortDisplayAd;
+-
+-    invoke-direct {p0, p1}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter;->getDropReason(Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State;)Ltv/twitch/android/shared/ads/models/edge/api/ResponseDropReason;
+-
+-    move-result-object v0
+-
+-    invoke-direct {p2, v0}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$Action$AbortDisplayAd;-><init>(Ltv/twitch/android/shared/ads/models/edge/api/ResponseDropReason;)V
+-
+-    invoke-static {p1, p2}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->plus(Ltv/twitch/android/core/mvp/presenter/PresenterState;Ltv/twitch/android/core/mvp/presenter/PresenterAction;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+-
+-    move-result-object p1
+-
+-    :goto_0
+     return-object p1
+ .end method
+ 
+@@ -1618,7 +1390,7 @@
+ .end method
+ 
+ .method private final showDisplayAdOrAbort(Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State;Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$UpdateEvent$DisplayAdStateUpdate;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+-    .locals 11
++    .locals 0
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+             "(",
+@@ -1632,176 +1404,11 @@
+         }
+     .end annotation
+ 
+-    .line 311
+-    instance-of v0, p1, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State$Active;
+-
+-    if-eqz v0, :cond_3
+-
+-    .line 312
+-    move-object v0, p1
+-
+-    check-cast v0, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State$Active;
+-
+-    const/4 v2, 0x0
+-
+-    const/4 v3, 0x0
+-
+-    const/4 v4, 0x0
+-
+-    invoke-virtual {p2}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$UpdateEvent$DisplayAdStateUpdate;->getDisplayAdsState()Ltv/twitch/android/shared/display/ads/DisplayAdPresenter$State;
+-
+-    move-result-object v5
+-
+-    const/4 v6, 0x0
+-
+-    const/4 v7, 0x0
+-
+-    const/4 v8, 0x0
+-
+-    const/16 v9, 0x77
+-
+-    const/4 v10, 0x0
+-
+-    move-object v1, v0
+-
+-    invoke-static/range {v1 .. v10}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State$Active;->copy$default(Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State$Active;IILtv/twitch/android/shared/ads/models/display/DisplayAdType;Ltv/twitch/android/shared/display/ads/DisplayAdPresenter$State;Ljava/lang/String;Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$VisibilityState;Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$EligibilityState;ILjava/lang/Object;)Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State$Active;
+-
+-    move-result-object p2
+-
+-    .line 314
+-    invoke-virtual {p2}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State$Active;->getDisplayAdsState()Ltv/twitch/android/shared/display/ads/DisplayAdPresenter$State;
+-
+-    move-result-object v1
+-
+-    instance-of v1, v1, Ltv/twitch/android/shared/display/ads/DisplayAdPresenter$State$Active;
+-
+-    if-eqz v1, :cond_2
+-
+-    invoke-virtual {p2}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State$Active;->getDisplayAdsState()Ltv/twitch/android/shared/display/ads/DisplayAdPresenter$State;
+-
+-    move-result-object v1
+-
+-    check-cast v1, Ltv/twitch/android/shared/display/ads/DisplayAdPresenter$State$Active;
+-
+-    invoke-virtual {v1}, Ltv/twitch/android/shared/display/ads/DisplayAdPresenter$State$Active;->isHtmlLoaded()Z
+-
+-    move-result v1
+-
+-    if-eqz v1, :cond_2
+-
+-    .line 315
+-    invoke-virtual {v0}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State$Active;->getDisplayAdsState()Ltv/twitch/android/shared/display/ads/DisplayAdPresenter$State;
+-
+-    move-result-object v0
+-
+-    instance-of v0, v0, Ltv/twitch/android/shared/display/ads/DisplayAdPresenter$State$Active;
+-
+-    if-eqz v0, :cond_0
+-
+-    invoke-virtual {p2}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State$Active;->getDisplayAdsState()Ltv/twitch/android/shared/display/ads/DisplayAdPresenter$State;
+-
+-    move-result-object v0
+-
+-    check-cast v0, Ltv/twitch/android/shared/display/ads/DisplayAdPresenter$State$Active;
+-
+-    invoke-virtual {v0}, Ltv/twitch/android/shared/display/ads/DisplayAdPresenter$State$Active;->isHtmlLoaded()Z
+-
+-    move-result v0
+-
+-    if-nez v0, :cond_2
+-
+-    .line 317
+-    :cond_0
+-    invoke-virtual {p2}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State;->canAdBeShown()Z
+-
+-    move-result v0
+-
+-    if-eqz v0, :cond_1
+-
+-    .line 318
+-    new-instance p1, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$Action$DisplayAdStart;
+-
+-    invoke-virtual {p2}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State$Active;->getDisplayAdsState()Ltv/twitch/android/shared/display/ads/DisplayAdPresenter$State;
+-
+-    move-result-object v0
+-
+-    check-cast v0, Ltv/twitch/android/shared/display/ads/DisplayAdPresenter$State$Active;
+-
+-    invoke-virtual {v0}, Ltv/twitch/android/shared/display/ads/DisplayAdPresenter$State$Active;->getDisplayAdInfo()Ltv/twitch/android/shared/ads/models/display/DisplayAdInfo;
+-
+-    move-result-object v0
+-
+-    invoke-direct {p1, v0}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$Action$DisplayAdStart;-><init>(Ltv/twitch/android/shared/ads/models/display/DisplayAdInfo;)V
+-
+-    invoke-static {p2, p1}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->plus(Ltv/twitch/android/core/mvp/presenter/PresenterState;Ltv/twitch/android/core/mvp/presenter/PresenterAction;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+-
+-    move-result-object p1
+-
+-    goto :goto_0
+-
+-    .line 320
+-    :cond_1
+-    new-instance p2, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State$Inactive;
+-
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State;->getVisibilityState()Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$VisibilityState;
+-
+-    move-result-object v1
+-
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State;->getEligibilityState()Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$EligibilityState;
+-
+-    move-result-object v2
+-
+-    const/4 v3, 0x0
+-
+-    const/4 v4, 0x4
+-
+-    const/4 v5, 0x0
+-
+-    move-object v0, p2
+-
+-    invoke-direct/range {v0 .. v5}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State$Inactive;-><init>(Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$VisibilityState;Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$EligibilityState;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+-
+-    new-instance v0, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$Action$AbortDisplayAd;
+-
+-    invoke-direct {p0, p1}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter;->getDropReason(Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State;)Ltv/twitch/android/shared/ads/models/edge/api/ResponseDropReason;
+-
+-    move-result-object p1
+-
+-    invoke-direct {v0, p1}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$Action$AbortDisplayAd;-><init>(Ltv/twitch/android/shared/ads/models/edge/api/ResponseDropReason;)V
+-
+-    invoke-static {p2, v0}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->plus(Ltv/twitch/android/core/mvp/presenter/PresenterState;Ltv/twitch/android/core/mvp/presenter/PresenterAction;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+-
+-    move-result-object p1
+-
+-    goto :goto_0
+-
+-    .line 323
+-    :cond_2
+-    invoke-static {p1}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->noAction(Ltv/twitch/android/core/mvp/presenter/PresenterState;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+-
+-    move-result-object p1
+-
+-    goto :goto_0
+-
+-    .line 326
+-    :cond_3
+-    instance-of p2, p1, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State$Inactive;
+-
+-    if-eqz p2, :cond_4
+-
+     invoke-static {p1}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->noAction(Ltv/twitch/android/core/mvp/presenter/PresenterState;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+ 
+     move-result-object p1
+ 
+-    :goto_0
+     return-object p1
+-
+-    :cond_4
+-    new-instance p1, Lkotlin/NoWhenBranchMatchedException;
+-
+-    invoke-direct {p1}, Lkotlin/NoWhenBranchMatchedException;-><init>()V
+-
+-    throw p1
+ .end method
+ 
+ .method private final updateEligibility(Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State;Z)Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$State;
+@@ -2183,72 +1790,7 @@
+ .end method
+ 
+ .method public final showDisplayAd(Ltv/twitch/android/models/ads/MultiAdFormat;Ljava/lang/String;ILtv/twitch/android/shared/ads/models/display/DisplayAdResponse;)V
+-    .locals 8
+-
+-    const-string v0, "multiAdFormat"
+-
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    const-string v0, "adSessionId"
+-
+-    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    const-string v0, "displayAdResponse"
+-
+-    invoke-static {p4, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 273
+-    invoke-direct {p0, p1}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter;->convertMultiAdFormatToDisplayAdType(Ltv/twitch/android/models/ads/MultiAdFormat;)Ltv/twitch/android/shared/ads/models/display/DisplayAdType;
+-
+-    move-result-object v5
+-
+-    .line 274
+-    iget-object p1, p0, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter;->displayAdsExperimentHelper:Ltv/twitch/android/provider/experiments/helpers/DisplayAdsExperimentHelper;
+-
+-    invoke-virtual {p1}, Ltv/twitch/android/provider/experiments/helpers/DisplayAdsExperimentHelper;->areDisplayAdsEnabled()Z
+-
+-    move-result p1
+-
+-    if-eqz v5, :cond_0
+-
+-    .line 277
+-    invoke-virtual {p4}, Ltv/twitch/android/shared/ads/models/display/DisplayAdResponse;->getImpressionUrl()Ljava/lang/String;
+-
+-    move-result-object v4
+-
+-    .line 278
+-    invoke-virtual {p4}, Ltv/twitch/android/shared/ads/models/display/DisplayAdResponse;->getWidth()I
+-
+-    move-result v2
+-
+-    .line 279
+-    invoke-virtual {p4}, Ltv/twitch/android/shared/ads/models/display/DisplayAdResponse;->getHeight()I
+-
+-    move-result v3
+-
+-    .line 282
+-    invoke-virtual {p4}, Ltv/twitch/android/shared/ads/models/display/DisplayAdResponse;->getHtmlContent()Ljava/lang/String;
+-
+-    move-result-object v7
+-
+-    .line 276
+-    new-instance p4, Ltv/twitch/android/shared/ads/models/display/DisplayAdInfo;
+-
+-    move-object v1, p4
+-
+-    move v6, p3
+-
+-    invoke-direct/range {v1 .. v7}, Ltv/twitch/android/shared/ads/models/display/DisplayAdInfo;-><init>(IILjava/lang/String;Ltv/twitch/android/shared/ads/models/display/DisplayAdType;ILjava/lang/String;)V
+-
+-    .line 284
+-    iget-object p3, p0, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter;->stateMachine:Ltv/twitch/android/core/mvp/presenter/StateMachine;
+-
+-    new-instance v0, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$UpdateEvent$DisplayAdReady;
+-
+-    invoke-direct {v0, p4, p2, p1}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter$UpdateEvent$DisplayAdReady;-><init>(Ltv/twitch/android/shared/ads/models/display/DisplayAdInfo;Ljava/lang/String;Z)V
+-
+-    invoke-virtual {p3, v0}, Ltv/twitch/android/core/mvp/presenter/StateMachine;->pushEvent(Ltv/twitch/android/core/mvp/presenter/StateUpdateEvent;)V
++    .locals 0
+ 
+-    :cond_0
+     return-void
+ .end method

@@ -1,0 +1,32 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/activityfeed/ui/overflow/OverflowMenuViewState$OverflowMenuShownState.smali b/smali_classes6/tv/twitch/android/shared/activityfeed/ui/overflow/OverflowMenuViewState$OverflowMenuShownState.smali
+--- a/smali_classes6/tv/twitch/android/shared/activityfeed/ui/overflow/OverflowMenuViewState$OverflowMenuShownState.smali
++++ b/smali_classes6/tv/twitch/android/shared/activityfeed/ui/overflow/OverflowMenuViewState$OverflowMenuShownState.smali
+@@ -149,10 +149,25 @@
+ .end method
+ 
+ .method public final getAvatarUrl()Ljava/lang/String;
+-    .locals 1
++    .registers 4
+ 
+-    .line 23
+-    iget-object v0, p0, Ltv/twitch/android/shared/activityfeed/ui/overflow/OverflowMenuViewState$OverflowMenuShownState;->avatarUrl:Ljava/lang/String;
++    .prologue
++    .line 16
++    invoke-static {}, Ltv/orange/features/stv/StvAvatars;->get()Ltv/orange/features/stv/StvAvatars;
++
++    move-result-object v0
++
++    iget-object v1, p0, Ltv/twitch/android/shared/activityfeed/ui/overflow/OverflowMenuViewState$OverflowMenuShownState;->avatarUrl:Ljava/lang/String;
++
++    iget-object v2, p0, Ltv/twitch/android/shared/activityfeed/ui/overflow/OverflowMenuViewState$OverflowMenuShownState;->channelInfo:Ltv/twitch/android/models/channel/ChannelInfo;
++
++    invoke-interface {v2}, Ltv/twitch/android/models/channel/ChannelInfo;->getName()Ljava/lang/String;
++
++    move-result-object v2
++
++    invoke-virtual {v0, v1, v2}, Ltv/orange/features/stv/StvAvatars;->hookProfileImageUrl(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
++
++    move-result-object v0
+ 
+     return-object v0
+ .end method

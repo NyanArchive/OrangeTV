@@ -1,0 +1,9 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/chat/emotecard/EmoteCardUiModel.smali b/smali_classes6/tv/twitch/android/shared/chat/emotecard/EmoteCardUiModel.smali
+--- a/smali_classes6/tv/twitch/android/shared/chat/emotecard/EmoteCardUiModel.smali
++++ b/smali_classes6/tv/twitch/android/shared/chat/emotecard/EmoteCardUiModel.smali
+@@ -1,4 +1,4 @@
+-.class public final Ltv/twitch/android/shared/chat/emotecard/EmoteCardUiModel;
++.class public Ltv/twitch/android/shared/chat/emotecard/EmoteCardUiModel;
+ .super Ljava/lang/Object;
+ .source "EmoteCardUiModel.kt"
+ 

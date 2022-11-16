@@ -156,7 +156,7 @@ class IncreaseBuildNumber(BaseTask):
             json.dump(js, fp)
 
         shutil.copy(env.build.as_posix(), self._apk.decompile_dir.joinpath("assets").joinpath(self.BUILD_FILENAME))
-        self._apk.out_apk = Path(self._apk.out_apk.parent, "OrangeTV_b{}_{}.apk".format(js["number"], self._apk.version_code))
+        self._apk.out_apk = Path(self._apk.out_apk.parent, "PurpleTV_b{}_{}.apk".format(js["number"], self._apk.version_code))
 
     def cancel(self):
         pass

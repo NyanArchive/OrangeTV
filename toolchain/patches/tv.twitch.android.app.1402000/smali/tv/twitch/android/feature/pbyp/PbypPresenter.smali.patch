@@ -1,0 +1,142 @@
+diff --git a/smali_classes5/tv/twitch/android/feature/pbyp/PbypPresenter.smali b/smali_classes5/tv/twitch/android/feature/pbyp/PbypPresenter.smali
+--- a/smali_classes5/tv/twitch/android/feature/pbyp/PbypPresenter.smali
++++ b/smali_classes5/tv/twitch/android/feature/pbyp/PbypPresenter.smali
+@@ -484,10 +484,10 @@
+     .line 192
+     invoke-virtual {v0, v1}, Ltv/twitch/android/core/mvp/presenter/BasePresenter;->registerSubPresentersForLifecycleEvents([Ltv/twitch/android/core/mvp/presenter/BasePresenter;)V
+ 
+-    const/4 v1, 0x2
++    const-string v1, "PbypPresenter"
+ 
+     .line 193
+-    invoke-static {v0, v2, v10, v1, v10}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->registerStateMachine$default(Ltv/twitch/android/core/mvp/presenter/RxPresenter;Ltv/twitch/android/core/mvp/presenter/StateMachine;Ljava/lang/String;ILjava/lang/Object;)V
++    invoke-static {v0, v2, v1, v10, v10}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->registerStateMachine$default(Ltv/twitch/android/core/mvp/presenter/RxPresenter;Ltv/twitch/android/core/mvp/presenter/StateMachine;Ljava/lang/String;ILjava/lang/Object;)V
+ 
+     .line 195
+     invoke-direct/range {p0 .. p0}, Ltv/twitch/android/feature/pbyp/PbypPresenter;->subscribeToActiveStreamPubSub()V
+@@ -620,43 +620,7 @@
+ .end method
+ 
+ .method private final bindActiveStream()V
+-    .locals 8
+-
+-    .line 424
+-    iget-object v0, p0, Ltv/twitch/android/feature/pbyp/PbypPresenter;->streamModelProvider:Ltv/twitch/android/core/data/source/DataProvider;
+-
+-    .line 425
+-    invoke-interface {v0}, Ltv/twitch/android/core/data/source/DataProvider;->dataObserver()Lio/reactivex/Flowable;
+-
+-    move-result-object v0
+-
+-    new-instance v1, Ltv/twitch/android/feature/pbyp/PbypPresenter$$ExternalSyntheticLambda6;
+-
+-    invoke-direct {v1}, Ltv/twitch/android/feature/pbyp/PbypPresenter$$ExternalSyntheticLambda6;-><init>()V
+-
+-    .line 426
+-    invoke-virtual {v0, v1}, Lio/reactivex/Flowable;->distinctUntilChanged(Lio/reactivex/functions/BiPredicate;)Lio/reactivex/Flowable;
+-
+-    move-result-object v3
+-
+-    const-string v0, "streamModelProvider\n    \u20262.channelId\n            }"
+-
+-    invoke-static {v3, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullExpressionValue(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 429
+-    new-instance v5, Ltv/twitch/android/feature/pbyp/PbypPresenter$bindActiveStream$2;
+-
+-    invoke-direct {v5, p0}, Ltv/twitch/android/feature/pbyp/PbypPresenter$bindActiveStream$2;-><init>(Ltv/twitch/android/feature/pbyp/PbypPresenter;)V
+-
+-    const/4 v4, 0x0
+-
+-    const/4 v6, 0x1
+-
+-    const/4 v7, 0x0
+-
+-    move-object v2, p0
+-
+-    invoke-static/range {v2 .. v7}, Ltv/twitch/android/core/mvp/rxutil/ISubscriptionHelper$DefaultImpls;->directSubscribe$default(Ltv/twitch/android/core/mvp/rxutil/ISubscriptionHelper;Lio/reactivex/Flowable;Ltv/twitch/android/core/mvp/rxutil/DisposeOn;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
++    .locals 0
+ 
+     return-void
+ .end method
+@@ -2857,41 +2821,19 @@
+ .end method
+ 
+ .method public final bindMainPlayerTracking(Ltv/twitch/android/shared/player/trackers/IPlayerPresenterTracker;)V
+-    .locals 1
+-
+-    const-string v0, "playerTracker"
+-
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 219
+-    iget-object v0, p0, Ltv/twitch/android/feature/pbyp/PbypPresenter;->pbypTracker:Ltv/twitch/android/feature/pbyp/PbypTracker;
+-
+-    invoke-virtual {v0, p1}, Ltv/twitch/android/feature/pbyp/PbypTracker;->bindMainPlayerTracking(Ltv/twitch/android/shared/player/trackers/IPlayerPresenterTracker;)V
++    .locals 0
+ 
+     return-void
+ .end method
+ 
+ .method public final bindPbyp(Ltv/twitch/android/models/streams/StreamModel;)V
+-    .locals 2
+-
+-    const-string v0, "streamModel"
+-
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 215
+-    iget-object v0, p0, Ltv/twitch/android/feature/pbyp/PbypPresenter;->stateMachine:Ltv/twitch/android/core/mvp/presenter/StateMachine;
+-
+-    new-instance v1, Ltv/twitch/android/feature/pbyp/PbypPresenter$Event$BindStream;
+-
+-    invoke-direct {v1, p1}, Ltv/twitch/android/feature/pbyp/PbypPresenter$Event$BindStream;-><init>(Ltv/twitch/android/models/streams/StreamModel;)V
+-
+-    invoke-virtual {v0, v1}, Ltv/twitch/android/core/mvp/presenter/StateMachine;->pushEvent(Ltv/twitch/android/core/mvp/presenter/StateUpdateEvent;)V
++    .locals 0
+ 
+     return-void
+ .end method
+ 
+ .method public final bindPlayerMetadataForVLA(Lio/reactivex/Flowable;)V
+-    .locals 7
++    .locals 0
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+             "(",
+@@ -2901,35 +2843,6 @@
+         }
+     .end annotation
+ 
+-    const-string v0, "playerMetadataObservable"
+-
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 227
+-    const-class v0, Ltv/twitch/android/models/player/PlayerEvent$Ads$OnPbypPreflightMessage;
+-
+-    invoke-virtual {p1, v0}, Lio/reactivex/Flowable;->ofType(Ljava/lang/Class;)Lio/reactivex/Flowable;
+-
+-    move-result-object v2
+-
+-    const-string p1, "playerMetadataObservable\u2026lightMessage::class.java)"
+-
+-    invoke-static {v2, p1}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullExpressionValue(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    new-instance v4, Ltv/twitch/android/feature/pbyp/PbypPresenter$bindPlayerMetadataForVLA$1;
+-
+-    invoke-direct {v4, p0}, Ltv/twitch/android/feature/pbyp/PbypPresenter$bindPlayerMetadataForVLA$1;-><init>(Ltv/twitch/android/feature/pbyp/PbypPresenter;)V
+-
+-    const/4 v3, 0x0
+-
+-    const/4 v5, 0x1
+-
+-    const/4 v6, 0x0
+-
+-    move-object v1, p0
+-
+-    invoke-static/range {v1 .. v6}, Ltv/twitch/android/core/mvp/rxutil/ISubscriptionHelper$DefaultImpls;->directSubscribe$default(Ltv/twitch/android/core/mvp/rxutil/ISubscriptionHelper;Lio/reactivex/Flowable;Ltv/twitch/android/core/mvp/rxutil/DisposeOn;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+-
+     return-void
+ .end method
+ 

@@ -7,7 +7,7 @@ import io.sentry.android.core.SentryAndroid
 import io.sentry.android.core.SentryAndroidOptions
 import io.sentry.protocol.User
 import tv.orange.core.BuildConfigUtil
-import tv.orange.core.Logger
+import tv.orange.core.LoggerImpl
 import java.lang.Integer.min
 
 object SentrySDK {
@@ -16,7 +16,7 @@ object SentrySDK {
     fun setupSentrySDK(application: Application) {
         val sentryDns = BuildConfigUtil.buildConfig.sentryDNS
         if (sentryDns.isNullOrBlank()) {
-            Logger.error("Cannot setup SentrySDK: DNS not found")
+            LoggerImpl.error("Cannot setup SentrySDK: DNS not found")
             return
         }
 
@@ -27,17 +27,17 @@ object SentrySDK {
             options.sampleRate = 1.0
         }
         isInitialized = true
-        Logger.debug("OK")
+        LoggerImpl.debug("OK")
     }
 
     fun logException(th: Throwable?, context: String) {
         if (!isInitialized) {
-            Logger.debug("called")
+            LoggerImpl.debug("called")
             return
         }
 
         th ?: run {
-            Logger.warning("th is null")
+            LoggerImpl.warning("th is null")
             return
         }
 
@@ -48,7 +48,7 @@ object SentrySDK {
 
     fun setTag(key: String?, value: String?) {
         if (!isInitialized) {
-            Logger.debug("called")
+            LoggerImpl.debug("called")
             return
         }
         key ?: return
@@ -59,7 +59,7 @@ object SentrySDK {
 
     private fun addBreadcrumb(message: String, category: String) {
         if (!isInitialized) {
-            Logger.debug("called")
+            LoggerImpl.debug("called")
             return
         }
 
@@ -68,7 +68,7 @@ object SentrySDK {
 
     fun setBool(key: String?, z: Boolean) {
         if (!isInitialized) {
-            Logger.debug("called")
+            LoggerImpl.debug("called")
             return
         }
         key ?: return
@@ -89,7 +89,7 @@ object SentrySDK {
 
     fun setInteger(key: String?, i: Int) {
         if (!isInitialized) {
-            Logger.debug("called")
+            LoggerImpl.debug("called")
             return
         }
         key ?: return
@@ -99,7 +99,7 @@ object SentrySDK {
 
     fun setLong(key: String?, j: Long) {
         if (!isInitialized) {
-            Logger.debug("called")
+            LoggerImpl.debug("called")
             return
         }
         key ?: return
@@ -109,11 +109,11 @@ object SentrySDK {
 
     fun logEvent(level: String, msg: String) {
         if (!isInitialized) {
-            Logger.debug("called")
+            LoggerImpl.debug("called")
             return
         }
 
-        Sentry.captureMessage(msg, level.toLevel())
+        // Sentry.captureMessage(msg, level.toLevel())
     }
 }
 

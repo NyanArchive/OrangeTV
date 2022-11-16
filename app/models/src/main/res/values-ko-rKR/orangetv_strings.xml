@@ -4,6 +4,7 @@
     <string name="orange_settings_bttv_emotes">BTTV 이모티콘</string>
     <string name="orange_settings_ffz_emotes">FFZ 이모티콘</string>
     <string name="orange_settings_stv_emotes">7TV 이모티콘</string>
+    <string name="orange_settings_itz_emotes">Homies 이모티콘</string>
     <string name="orange_settings_ffz_badges">FFZ 배지</string>
     <string name="orange_settings_stv_badges">7TV 배지</string>
     <string name="orange_settings_che_badges">Homies 배지</string>
@@ -35,7 +36,11 @@
     <string name="orange_emotecard_ffz_global">FFZ 글로벌 이모티콘</string>
     <string name="orange_emotecard_stv_global">7TV 글로벌 이모티콘</string>
     <string name="orange_emotecard_bttv_global">BTTV 글로벌 이모티콘</string>
+    <string name="orange_emotecard_itz_channel">Homies 채널 이모티콘</string>
+    <string name="orange_emotecard_itz_global">Homies 글로벌 이모티콘</string>
+    <string name="orange_chat_settings_preferences_subtitle">PurpleTV</string>
     <string name="orange_chat_settings_refresh">새로고침</string>
+    <string name="orange_timer_title">PurpleTV 타이머</string>
     <string name="orange_timer_cancel">취소</string>
     <string name="orange_mod_logs">로그 보기</string>
     <string name="orange_seeker_header_text">Vod 동기화</string>
@@ -52,6 +57,7 @@
     <string name="orange_settings_hide_discover_tab">찾기 탭 숨기기</string>
     <string name="orange_restart_app">재시작</string>
     <string name="orange_restart_app_title">업데이트후 재시작합니까?</string>
+    <string name="orange_settings_title">PurpleTV 설정</string>
     <string name="orange_settings_chat_font_size">채팅 글꼴 크기</string>
     <string name="orange_settings_landscape_chat_size">가로 모드에서 채팅 너비</string>
     <string name="orange_settings_forward_seek">플레이어 빨리 감기</string>
@@ -90,4 +96,19 @@
     <string name="cpv_custom">사용자 정의</string>
     <string name="cpv_select">선택</string>
     <string name="cpv_transparency">투명도</string>
+    <string name="orange_settings_clipfinity">Clipfinity</string>
+    <string name="orange_updater_ds">다운로드 크기: %s</string>
+    <string name="orange_updater_ds2">%1$s/%2$s</string>
+    <string name="orange_updater_ds3">%s\%%</string>
+    <string name="orange_updater_error_msg">오류: %s</string>
+    <string name="orange_updater_msg1">PurpleTV 업데이트가 필요합니다</string>
+    <string name="orange_app_name">PurpleTV</string>
+    <string name="orange_settings_updater_channel">채널 업데이트</string>
+    <string name="orange_updater_release">릴리즈</string>
+    <string name="orange_updater_beta">베타</string>
+    <string name="orange_updater_dev">개발자</string>
+    <string name="orange_updater_disabled">비활성화</string>
+    <string name="orange_settings_check_update">업데이트 확인</string>
+    <string name="orange_itz_global_emotes">Homies 글로벌 이모티콘</string>
+    <string name="orange_itz_channel_emotes">Homies 채널 이모티콘</string>
 </resources>

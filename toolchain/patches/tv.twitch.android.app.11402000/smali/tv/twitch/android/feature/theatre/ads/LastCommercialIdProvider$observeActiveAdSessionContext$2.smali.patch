@@ -1,0 +1,24 @@
+diff --git a/smali_classes5/tv/twitch/android/feature/theatre/ads/LastCommercialIdProvider$observeActiveAdSessionContext$2.smali b/smali_classes5/tv/twitch/android/feature/theatre/ads/LastCommercialIdProvider$observeActiveAdSessionContext$2.smali
+--- a/smali_classes5/tv/twitch/android/feature/theatre/ads/LastCommercialIdProvider$observeActiveAdSessionContext$2.smali
++++ b/smali_classes5/tv/twitch/android/feature/theatre/ads/LastCommercialIdProvider$observeActiveAdSessionContext$2.smali
+@@ -64,19 +64,7 @@
+ .end method
+ 
+ .method public final invoke(Ljava/lang/String;)V
+-    .locals 1
+-
+-    if-eqz p1, :cond_0
+-
+-    .line 72
+-    iget-object v0, p0, Ltv/twitch/android/feature/theatre/ads/LastCommercialIdProvider$observeActiveAdSessionContext$2;->this$0:Ltv/twitch/android/feature/theatre/ads/LastCommercialIdProvider;
+-
+-    invoke-static {v0}, Ltv/twitch/android/feature/theatre/ads/LastCommercialIdProvider;->access$getCommercialIdDispatcher$p(Ltv/twitch/android/feature/theatre/ads/LastCommercialIdProvider;)Ltv/twitch/android/core/mvp/presenter/StateObserver;
+-
+-    move-result-object v0
+-
+-    invoke-virtual {v0, p1}, Ltv/twitch/android/core/mvp/presenter/StateObserver;->pushState(Ljava/lang/Object;)V
++    .locals 0
+ 
+-    :cond_0
+     return-void
+ .end method

@@ -2,7 +2,7 @@ package tv.orange.features.stv
 
 import io.reactivex.Single
 import tv.orange.core.Core
-import tv.orange.core.Logger
+import tv.orange.core.LoggerImpl
 import tv.orange.core.LoggerWithTag
 import tv.orange.core.PreferenceManager
 import tv.orange.core.models.flag.Flag
@@ -81,7 +81,7 @@ class StvAvatars @Inject constructor(
     }
 
     override fun onCreateFeature() {
-        Logger.debug("called")
+        LoggerImpl.debug("called")
         Core.get().registerLifecycleListeners(this)
         PreferenceManager.get().registerFlagListeners(this)
     }

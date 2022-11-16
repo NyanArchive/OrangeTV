@@ -4,20 +4,23 @@ import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import tv.orange.core.BuildConfigUtil
-import tv.orange.core.BuildConfigUtil.USER_AGENT_TEMPLATE
 import tv.orange.core.di.scope.AppScope
 import tv.orange.core.factory.StringConverterFactory
-import java.util.*
+import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import java.util.concurrent.TimeUnit
 
 @Module
 class NetworkModule {
-    private val buildNumber: Int by lazy {
-        BuildConfigUtil.buildConfig.number
+    private val httpInterceptor by lazy {
+        HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
     }
 
     @AppScope
@@ -25,19 +28,18 @@ class NetworkModule {
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient().newBuilder()
             .readTimeout(15000, TimeUnit.MILLISECONDS)
-            .writeTimeout(15000, TimeUnit.MILLISECONDS)
-            .addInterceptor { chain ->
-                chain.proceed(
-                    chain.request().newBuilder()
-                        .header(
+            .writeTimeout(15000, TimeUnit.MILLISECONDS).apply {
+                addNetworkInterceptor { chain ->
+                    chain.proceed(
+                        chain.request().newBuilder().header(
                             "User-Agent",
-                            String.format(
-                                Locale.ENGLISH,
-                                USER_AGENT_TEMPLATE,
-                                buildNumber
-                            )
+                            BuildConfigUtil.userAgent
                         ).build()
-                )
+                    )
+                }
+                if (Flag.OKHTTP_LOGGING.asBoolean()) {
+                    addInterceptor(httpInterceptor)
+                }
             }
             .retryOnConnectionFailure(true).build()
     }

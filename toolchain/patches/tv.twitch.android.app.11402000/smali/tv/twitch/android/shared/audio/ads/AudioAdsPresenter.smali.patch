@@ -1,7 +1,133 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/audio/ads/AudioAdsPresenter.smali b/smali_classes6/tv/twitch/android/shared/audio/ads/AudioAdsPresenter.smali
 --- a/smali_classes6/tv/twitch/android/shared/audio/ads/AudioAdsPresenter.smali
 +++ b/smali_classes6/tv/twitch/android/shared/audio/ads/AudioAdsPresenter.smali
-@@ -702,7 +702,7 @@
+@@ -224,8 +224,12 @@
+ 
+     const/4 v5, 0x2
+ 
++    const-string v1, "AudioAdsPresenter"
++
+     .line 222
+-    invoke-static {v0, v4, v8, v5, v8}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->registerStateMachine$default(Ltv/twitch/android/core/mvp/presenter/RxPresenter;Ltv/twitch/android/core/mvp/presenter/StateMachine;Ljava/lang/String;ILjava/lang/Object;)V
++    invoke-static {v0, v4, v1, v8, v8}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->registerStateMachine$default(Ltv/twitch/android/core/mvp/presenter/RxPresenter;Ltv/twitch/android/core/mvp/presenter/StateMachine;Ljava/lang/String;ILjava/lang/Object;)V
++
++    move-object/from16 v1, p1
+ 
+     new-array v4, v5, [Ltv/twitch/android/core/mvp/presenter/BasePresenter;
+ 
+@@ -350,111 +354,12 @@
+         }
+     .end annotation
+ 
+-    .line 302
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/ads/models/AudioAdsContext;->getMultiAdFormatMetadata()Ltv/twitch/android/models/ads/MultiAdFormatMetadata;
+-
+-    move-result-object v6
+-
+-    .line 303
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/ads/models/AudioAdsContext;->getAudioAdsPod()Ltv/twitch/android/shared/ads/models/AudioAdsPod;
+-
+-    move-result-object v0
+-
+-    invoke-virtual {v0}, Ltv/twitch/android/shared/ads/models/AudioAdsPod;->getAudioAds()Ljava/util/List;
+-
+-    move-result-object v0
+-
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/ads/models/AudioAdsContext;->getCurrentAdPosition()I
+-
+-    move-result v1
+-
+-    invoke-static {v0, v1}, Lkotlin/collections/CollectionsKt;->getOrNull(Ljava/util/List;I)Ljava/lang/Object;
+-
+-    move-result-object v0
+-
+-    move-object v7, v0
+-
+-    check-cast v7, Ltv/twitch/android/shared/ads/models/AudioAd;
+-
+-    if-eqz v7, :cond_0
+-
+-    .line 305
+-    new-instance v8, Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter$State$Active;
+-
+-    .line 306
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/ads/models/AudioAdsContext;->getAudioAdsPod()Ltv/twitch/android/shared/ads/models/AudioAdsPod;
+-
+-    move-result-object v1
+-
+-    .line 307
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/ads/models/AudioAdsContext;->getCurrentAdPosition()I
+-
+-    move-result v2
+-
+-    .line 308
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/ads/models/AudioAdsContext;->getSecondsPlayed()I
+-
+-    move-result v3
+-
+-    move-object v0, v8
+-
+-    move-object v4, v7
+-
+-    move-object v5, v6
+-
+-    .line 305
+-    invoke-direct/range {v0 .. v5}, Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter$State$Active;-><init>(Ltv/twitch/android/shared/ads/models/AudioAdsPod;IILtv/twitch/android/shared/ads/models/AudioAd;Ltv/twitch/android/models/ads/MultiAdFormatMetadata;)V
+-
+-    .line 311
+-    new-instance v9, Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter$Action$PlayUnfinishedAd;
+-
+-    .line 312
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/ads/models/AudioAdsContext;->getAudioAdsPod()Ltv/twitch/android/shared/ads/models/AudioAdsPod;
+-
+-    move-result-object v1
+-
+-    .line 313
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/ads/models/AudioAdsContext;->getCurrentAdPosition()I
+-
+-    move-result v2
+-
+-    .line 315
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/ads/models/AudioAdsContext;->getSecondsPlayed()I
+-
+-    move-result v4
+-
+-    .line 316
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/ads/models/AudioAdsContext;->getPlayerAudioLevel()F
+-
+-    move-result p1
+-
+-    invoke-static {p1}, Ljava/lang/Float;->valueOf(F)Ljava/lang/Float;
+-
+-    move-result-object v5
+-
+-    move-object v0, v9
+-
+-    move-object v3, v7
+-
+-    .line 311
+-    invoke-direct/range {v0 .. v6}, Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter$Action$PlayUnfinishedAd;-><init>(Ltv/twitch/android/shared/ads/models/AudioAdsPod;ILtv/twitch/android/shared/ads/models/AudioAd;ILjava/lang/Float;Ltv/twitch/android/models/ads/MultiAdFormatMetadata;)V
+-
+-    .line 305
+-    invoke-static {v8, v9}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->plus(Ltv/twitch/android/core/mvp/presenter/PresenterState;Ltv/twitch/android/core/mvp/presenter/PresenterAction;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+-
+-    move-result-object p1
+-
+-    goto :goto_0
+-
+-    .line 324
+-    :cond_0
+     sget-object p1, Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter$State$Inactive;->INSTANCE:Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter$State$Inactive;
+ 
+     invoke-static {p1}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->noAction(Ltv/twitch/android/core/mvp/presenter/PresenterState;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+ 
+     move-result-object p1
+ 
+-    :goto_0
+     return-object p1
+ .end method
+ 
+@@ -702,7 +607,7 @@
      :cond_0
      new-instance p1, Landroid/content/Intent;
  
@@ -10,3 +136,126 @@ diff --git a/smali_classes6/tv/twitch/android/shared/audio/ads/AudioAdsPresenter
  
      invoke-direct {p1, v0}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
  
+@@ -721,7 +626,7 @@
+ .end method
+ 
+ .method private final startAudioAdsOrAbort(Ltv/twitch/android/shared/ads/models/AudioAdsPod;Ltv/twitch/android/models/ads/MultiAdFormatMetadata;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+-    .locals 8
++    .locals 0
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+             "(",
+@@ -735,86 +640,19 @@
+         }
+     .end annotation
+ 
+-    .line 282
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/ads/models/AudioAdsPod;->getAudioAds()Ljava/util/List;
+-
+-    move-result-object v0
+-
+-    invoke-static {v0}, Lkotlin/collections/CollectionsKt;->firstOrNull(Ljava/util/List;)Ljava/lang/Object;
+-
+-    move-result-object v0
+-
+-    check-cast v0, Ltv/twitch/android/shared/ads/models/AudioAd;
+-
+-    if-eqz v0, :cond_0
+-
+-    .line 284
+-    new-instance v7, Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter$State$Active;
+-
+-    const/4 v3, 0x0
+-
+-    const/4 v4, 0x0
+-
+-    move-object v1, v7
+-
+-    move-object v2, p1
+-
+-    move-object v5, v0
+-
+-    move-object v6, p2
+-
+-    invoke-direct/range {v1 .. v6}, Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter$State$Active;-><init>(Ltv/twitch/android/shared/ads/models/AudioAdsPod;IILtv/twitch/android/shared/ads/models/AudioAd;Ltv/twitch/android/models/ads/MultiAdFormatMetadata;)V
+-
+-    .line 290
+-    new-instance p2, Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter$Action$PlayNewAd;
+-
+-    invoke-direct {p2, p1, v0}, Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter$Action$PlayNewAd;-><init>(Ltv/twitch/android/shared/ads/models/AudioAdsPod;Ltv/twitch/android/shared/ads/models/AudioAd;)V
+-
+-    .line 284
+-    invoke-static {v7, p2}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->plus(Ltv/twitch/android/core/mvp/presenter/PresenterState;Ltv/twitch/android/core/mvp/presenter/PresenterAction;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+-
+-    move-result-object p1
+-
+-    goto :goto_0
+-
+-    .line 296
+-    :cond_0
+-    iget-object p1, p0, Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter;->audioAdErrorReporter:Ltv/twitch/android/shared/audio/ads/AudioAdErrorReporter;
+-
+-    sget-object p2, Ltv/twitch/android/shared/ads/models/sdk/errors/PlaybackError;->ERROR_EMPTY_AD_POD:Ltv/twitch/android/shared/ads/models/sdk/errors/PlaybackError;
+-
+-    const-string v0, "attempted to play an ad pod with 0 ads"
+-
+-    invoke-virtual {p1, p2, v0}, Ltv/twitch/android/shared/audio/ads/AudioAdErrorReporter;->recordSpadeError(Ltv/twitch/android/shared/ads/models/sdk/errors/AmazonVideoAdsError;Ljava/lang/String;)V
+-
+-    .line 297
+     sget-object p1, Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter$State$Inactive;->INSTANCE:Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter$State$Inactive;
+ 
+     invoke-static {p1}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->noAction(Ltv/twitch/android/core/mvp/presenter/PresenterState;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+ 
+     move-result-object p1
+ 
+-    :goto_0
+     return-object p1
+ .end method
+ 
+ 
+ # virtual methods
+ .method public final continueAudioAds(Ltv/twitch/android/shared/ads/models/AudioAdsContext;)V
+-    .locals 2
+-
+-    const-string v0, "audioAdsContext"
+-
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 235
+-    iget-object v0, p0, Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter;->stateMachine:Ltv/twitch/android/core/mvp/presenter/StateMachine;
+-
+-    new-instance v1, Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter$Event$ContinuedAudioAdsReceived;
+-
+-    invoke-direct {v1, p1}, Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter$Event$ContinuedAudioAdsReceived;-><init>(Ltv/twitch/android/shared/ads/models/AudioAdsContext;)V
+-
+-    invoke-virtual {v0, v1}, Ltv/twitch/android/core/mvp/presenter/StateMachine;->pushEvent(Ltv/twitch/android/core/mvp/presenter/StateUpdateEvent;)V
++    .locals 0
+ 
+     return-void
+ .end method
+@@ -905,24 +743,7 @@
+ .end method
+ 
+ .method public final startAudioAds(Ltv/twitch/android/shared/ads/models/AudioAdsPod;Ltv/twitch/android/models/ads/MultiAdFormatMetadata;)V
+-    .locals 2
+-
+-    const-string v0, "audioAdsPod"
+-
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    const-string v0, "multiAdFormatMetadata"
+-
+-    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 231
+-    iget-object v0, p0, Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter;->stateMachine:Ltv/twitch/android/core/mvp/presenter/StateMachine;
+-
+-    new-instance v1, Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter$Event$AudioAdsPodReceived;
+-
+-    invoke-direct {v1, p1, p2}, Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter$Event$AudioAdsPodReceived;-><init>(Ltv/twitch/android/shared/ads/models/AudioAdsPod;Ltv/twitch/android/models/ads/MultiAdFormatMetadata;)V
+-
+-    invoke-virtual {v0, v1}, Ltv/twitch/android/core/mvp/presenter/StateMachine;->pushEvent(Ltv/twitch/android/core/mvp/presenter/StateUpdateEvent;)V
++    .locals 0
+ 
+     return-void
+ .end method

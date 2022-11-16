@@ -5,5 +5,6 @@ enum class OrangeEmoteType {
     TWITCH,
     BTTV,
     FFZ,
-    STV
+    STV,
+    ITZ
 }

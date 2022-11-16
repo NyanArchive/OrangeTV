@@ -4,7 +4,6 @@ import android.util.LruCache
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import tv.orange.core.Logger
 import tv.orange.features.pronouns.component.data.repository.PronounsRepository
 import tv.orange.features.pronouns.di.scope.PronounScope
 import tv.twitch.android.util.Optional

@@ -14,4 +14,5 @@ interface ApiComponent {
     val ffzRepository: FfzRepository
     val chatterinoRepository: ChatterinoRepository
     val nopRepository: NopRepository
+    val itzRepository: ItzRepository
 }

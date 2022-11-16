@@ -39,6 +39,13 @@ class ApiModule {
 
     @ApiScope
     @Provides
+    @Named("itz")
+    fun provideItzRetrofitClient(builder: Retrofit.Builder): Retrofit {
+        return builder.baseUrl("https://itzalex.github.io/").build()
+    }
+
+    @ApiScope
+    @Provides
     @Named("nop")
     fun provideNopRetrofitClient(builder: Retrofit.Builder): Retrofit {
         return builder.baseUrl("https://api.nopbreak.ru/").build()
@@ -48,6 +55,12 @@ class ApiModule {
     @Provides
     fun provideBttvApi(@Named("bttv") retrofit: Retrofit): BttvApi {
         return retrofit.create(BttvApi::class.java)
+    }
+
+    @ApiScope
+    @Provides
+    fun provideItzApi(@Named("itz") retrofit: Retrofit): ItzalexApi {
+        return retrofit.create(ItzalexApi::class.java)
     }
 
     @ApiScope

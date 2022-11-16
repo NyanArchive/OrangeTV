@@ -35,7 +35,9 @@
     <string name="orange_emotecard_ffz_global">ايموتات قناة FFZ</string>
     <string name="orange_emotecard_stv_global">ايموتات 7tv العامة</string>
     <string name="orange_emotecard_bttv_global">ايموتات BTTV العامة</string>
+    <string name="orange_chat_settings_preferences_subtitle">PurpleTV</string>
     <string name="orange_chat_settings_refresh">تنشيط الدردشة</string>
+    <string name="orange_timer_title">مؤقت PurpleTV</string>
     <string name="orange_timer_cancel">الغاء</string>
     <string name="orange_mod_logs">عرض سجل الدردشة</string>
     <string name="orange_seeker_header_text">توقيت تزامن الدردشة لي VOD</string>
@@ -52,6 +54,7 @@
     <string name="orange_settings_hide_discover_tab">اخغاء نافذة الاكتشاف</string>
     <string name="orange_restart_app">إعادة تشغيل</string>
     <string name="orange_restart_app_title">تحديث وإعادة تشغيل التطبيق؟</string>
+    <string name="orange_settings_title">اعدادات PurpleTV</string>
     <string name="orange_settings_chat_font_size">حجم خط الدردشة</string>
     <string name="orange_settings_landscape_chat_size">اتساع الدردشة في الوضع الافقي</string>
     <string name="orange_settings_forward_seek">التماس المشغل للأمام</string>
@@ -80,4 +83,27 @@
     <string name="orange_settings_menu_wiki">صفحة ويكي</string>
     <string name="orange_settings_menu_ota">تحديث النظام</string>
     <string name="orange_settings_menu_info">معلومات</string>
+    <string name="orange_emote_picker_fav_emotes">الايموتات المفضلة</string>
+    <string name="orange_chat_user_dialog_fragment_view_local_logs">عرض سجلات الدردشة المحلية للمستخدم</string>
+    <string name="orange_settings_local_logs">السجلات المحلية</string>
+    <string name="orange_local_logs_0">معطل</string>
+    <string name="orange_settings_menu_highlighter">تظليل النص</string>
+    <string name="cpv_default_title">اختر لون</string>
+    <string name="cpv_presets">الألوان المسبقة</string>
+    <string name="cpv_custom">مخصص</string>
+    <string name="cpv_select">تحديد</string>
+    <string name="cpv_transparency">الشفافية</string>
+    <string name="orange_settings_clipfinity">عرض اللقطات المعدلة</string>
+    <string name="orange_updater_ds">حجم التنزيل</string>
+    <string name="orange_updater_ds2">‏%1$s، ‏%2$s‏</string>
+    <string name="orange_updater_ds3">%s\%%</string>
+    <string name="orange_updater_error_msg">خطاء: %s</string>
+    <string name="orange_updater_msg1">PurpleTV يحتاج إلى تحديث</string>
+    <string name="orange_app_name">PurpleTV</string>
+    <string name="orange_settings_updater_channel">قنوات التحديثات</string>
+    <string name="orange_updater_release">تم إصداره</string>
+    <string name="orange_updater_beta">إصدار تجريبي</string>
+    <string name="orange_updater_dev">إصدار المطور</string>
+    <string name="orange_updater_disabled">معطل</string>
+    <string name="orange_settings_check_update">التحقق من التحديثات</string>
 </resources>

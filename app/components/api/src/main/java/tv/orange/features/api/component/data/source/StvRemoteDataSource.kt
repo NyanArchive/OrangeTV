@@ -2,7 +2,7 @@ package tv.orange.features.api.component.data.source
 
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import tv.orange.core.Logger
+import tv.orange.core.LoggerImpl
 import tv.orange.features.api.component.data.api.StvApi
 import tv.orange.features.api.component.data.mapper.StvApiMapper
 import tv.orange.models.data.avatars.AvatarSet
@@ -24,7 +24,7 @@ class StvRemoteDataSource @Inject constructor(
         return stvApi.emotes(channelId).subscribeOn(Schedulers.io()).map { emotes ->
             stvMapper.mapEmotes(emotes = emotes, isChannelEmotes = true)
         }.onErrorResumeNext {
-            Logger.warning("Cannot fetch emotes for channel: $channelId")
+            LoggerImpl.warning("Cannot fetch emotes for channel: $channelId")
             Single.just(emptyList())
         }
     }

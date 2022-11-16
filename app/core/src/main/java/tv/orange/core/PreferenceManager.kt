@@ -123,6 +123,7 @@ class PreferenceManager @Inject constructor(
 
         private const val ORANGE_TIMER_HOURS_KEY = "orange_timer_hours"
         private const val ORANGE_TIMER_MINUTES_KEY = "orange_timer_minutes"
+        private const val ORANGE_LAST_BUILD_NUM_KEY = "orange_last_build_num"
 
         var isDarkThemeEnabled = false
 
@@ -156,5 +157,15 @@ class PreferenceManager @Inject constructor(
     fun saveLastTimer(data: Pair<Int, Int>) {
         orange.edit().putInt(ORANGE_TIMER_HOURS_KEY, data.first).apply()
         orange.edit().putInt(ORANGE_TIMER_MINUTES_KEY, data.second).apply()
+    }
+
+    fun getLastBuildNum(): Int {
+        return orange.getInt(ORANGE_LAST_BUILD_NUM_KEY, -1)
+    }
+
+    fun saveLastBuildNum(build: Int) {
+        if (build > 0) {
+            orange.edit().putInt(ORANGE_LAST_BUILD_NUM_KEY, build).apply()
+        }
     }
 }

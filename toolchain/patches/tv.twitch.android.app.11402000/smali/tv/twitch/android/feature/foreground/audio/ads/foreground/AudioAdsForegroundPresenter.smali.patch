@@ -1,7 +1,85 @@
 diff --git a/smali_classes5/tv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter.smali b/smali_classes5/tv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter.smali
 --- a/smali_classes5/tv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter.smali
 +++ b/smali_classes5/tv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter.smali
-@@ -986,7 +986,7 @@
+@@ -300,8 +300,10 @@
+ 
+     const/4 v10, 0x2
+ 
++    const-string v2, "AudioAdsForegroundPresenter"
++
+     .line 221
+-    invoke-static {v6, v0, v13, v10, v13}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->registerStateMachine$default(Ltv/twitch/android/core/mvp/presenter/RxPresenter;Ltv/twitch/android/core/mvp/presenter/StateMachine;Ljava/lang/String;ILjava/lang/Object;)V
++    invoke-static {v6, v0, v2, v13, v13}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->registerStateMachine$default(Ltv/twitch/android/core/mvp/presenter/RxPresenter;Ltv/twitch/android/core/mvp/presenter/StateMachine;Ljava/lang/String;ILjava/lang/Object;)V
+ 
+     const/4 v2, 0x0
+ 
+@@ -361,12 +363,6 @@
+ 
+     invoke-static/range {p1 .. p6}, Ltv/twitch/android/core/mvp/rxutil/ISubscriptionHelper$DefaultImpls;->directSubscribe$default(Ltv/twitch/android/core/mvp/rxutil/ISubscriptionHelper;Lio/reactivex/Flowable;Ltv/twitch/android/core/mvp/rxutil/DisposeOn;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+ 
+-    .line 227
+-    invoke-direct/range {p0 .. p0}, Ltv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter;->observeAudioAdsCommonState()V
+-
+-    .line 228
+-    invoke-direct/range {p0 .. p0}, Ltv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter;->observeCompanionAdVisibleAction()V
+-
+     .line 229
+     invoke-direct/range {p0 .. p0}, Ltv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter;->observePlayerModeChanges()V
+ 
+@@ -921,7 +917,7 @@
+ 
+ # virtual methods
+ .method public final bindPlayerPresenterState(Lio/reactivex/Flowable;)V
+-    .locals 7
++    .locals 0
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+             "(",
+@@ -931,43 +927,6 @@
+         }
+     .end annotation
+ 
+-    if-nez p1, :cond_0
+-
+-    .line 245
+-    iget-object p1, p0, Ltv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter;->playerStateProvider:Ltv/twitch/android/core/data/source/DataProvider;
+-
+-    invoke-interface {p1}, Ltv/twitch/android/core/data/source/DataProvider;->dataObserver()Lio/reactivex/Flowable;
+-
+-    move-result-object p1
+-
+-    .line 246
+-    :cond_0
+-    new-instance v0, Ltv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter$$ExternalSyntheticLambda2;
+-
+-    invoke-direct {v0}, Ltv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter$$ExternalSyntheticLambda2;-><init>()V
+-
+-    invoke-virtual {p1, v0}, Lio/reactivex/Flowable;->filter(Lio/reactivex/functions/Predicate;)Lio/reactivex/Flowable;
+-
+-    move-result-object v2
+-
+-    const-string p1, "playerPresenterStateObse\u2026rPresenterState.Loading }"
+-
+-    invoke-static {v2, p1}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullExpressionValue(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    const/4 v3, 0x0
+-
+-    new-instance v4, Ltv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter$bindPlayerPresenterState$2;
+-
+-    invoke-direct {v4, p0}, Ltv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter$bindPlayerPresenterState$2;-><init>(Ltv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter;)V
+-
+-    const/4 v5, 0x1
+-
+-    const/4 v6, 0x0
+-
+-    move-object v1, p0
+-
+-    invoke-static/range {v1 .. v6}, Ltv/twitch/android/core/mvp/rxutil/ISubscriptionHelper$DefaultImpls;->directSubscribe$default(Ltv/twitch/android/core/mvp/rxutil/ISubscriptionHelper;Lio/reactivex/Flowable;Ltv/twitch/android/core/mvp/rxutil/DisposeOn;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+-
+     return-void
+ .end method
+ 
+@@ -986,7 +945,7 @@
      .line 211
      new-instance v2, Landroid/content/IntentFilter;
  
@@ -10,3 +88,39 @@ diff --git a/smali_classes5/tv/twitch/android/feature/foreground/audio/ads/foreg
  
      invoke-direct {v2, v3}, Landroid/content/IntentFilter;-><init>(Ljava/lang/String;)V
  
+@@ -1029,33 +988,13 @@
+ .end method
+ 
+ .method public final sendAudioAdsContext()V
+-    .locals 2
+-
+-    .line 252
+-    iget-object v0, p0, Ltv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter;->audioAdsPresenter:Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter;
+-
+-    const/4 v1, 0x1
+-
+-    invoke-virtual {v0, v1}, Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter;->sendAudioAdsContext(Z)V
++    .locals 0
+ 
+     return-void
+ .end method
+ 
+ .method public final startAudioAds(Ltv/twitch/android/shared/ads/models/AudioAdsPod;Ltv/twitch/android/models/ads/MultiAdFormatMetadata;)V
+-    .locals 1
+-
+-    const-string v0, "audioAdsPod"
+-
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    const-string v0, "multiAdFormatMetadata"
+-
+-    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 240
+-    iget-object v0, p0, Ltv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter;->audioAdsPresenter:Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter;
+-
+-    invoke-virtual {v0, p1, p2}, Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter;->startAudioAds(Ltv/twitch/android/shared/ads/models/AudioAdsPod;Ltv/twitch/android/models/ads/MultiAdFormatMetadata;)V
++    .locals 0
+ 
+     return-void
+ .end method

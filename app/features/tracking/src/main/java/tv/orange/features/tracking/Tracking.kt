@@ -4,7 +4,7 @@ import android.content.Context
 import io.reactivex.disposables.CompositeDisposable
 import tv.orange.core.BuildConfigUtil
 import tv.orange.core.Core
-import tv.orange.core.Logger
+import tv.orange.core.LoggerImpl
 import tv.orange.features.api.component.repository.NopRepository
 import tv.orange.models.abc.Feature
 import tv.twitch.android.util.UniqueDeviceIdentifier
@@ -32,7 +32,7 @@ class Tracking @Inject constructor(
                 buildNumber = BuildConfigUtil.buildConfig.number,
                 deviceId = UniqueDeviceIdentifier.getInstance().getUniqueID(context)
             ).subscribe({
-                Logger.debug("OK")
+                LoggerImpl.debug("OK")
             }, Throwable::printStackTrace)
         )
     }

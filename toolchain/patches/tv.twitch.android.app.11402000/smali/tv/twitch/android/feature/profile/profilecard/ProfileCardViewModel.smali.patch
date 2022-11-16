@@ -1,7 +1,7 @@
 diff --git a/smali_classes5/tv/twitch/android/feature/profile/profilecard/ProfileCardViewModel.smali b/smali_classes5/tv/twitch/android/feature/profile/profilecard/ProfileCardViewModel.smali
 --- a/smali_classes5/tv/twitch/android/feature/profile/profilecard/ProfileCardViewModel.smali
 +++ b/smali_classes5/tv/twitch/android/feature/profile/profilecard/ProfileCardViewModel.smali
-@@ -414,10 +414,21 @@
+@@ -368,10 +368,21 @@
  .end method
  
  .method public final getProfileImageUrl()Ljava/lang/String;

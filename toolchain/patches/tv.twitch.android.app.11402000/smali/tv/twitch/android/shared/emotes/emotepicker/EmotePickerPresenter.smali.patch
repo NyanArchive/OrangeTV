@@ -1,7 +1,7 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter.smali b/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter.smali
 --- a/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter.smali
 +++ b/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter.smali
-@@ -608,13 +608,21 @@
+@@ -610,13 +610,21 @@
  
      invoke-virtual {v0, v1}, Lio/reactivex/Flowable;->map(Lio/reactivex/functions/Function;)Lio/reactivex/Flowable;
  
@@ -26,7 +26,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePic
  .end method
  
  .method private static final createAllEmoteSetsFlowable$lambda-10(Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter;Ljava/lang/Integer;Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerSource;Lkotlin/Triple;)Lkotlin/Pair;
-@@ -3344,6 +3352,10 @@
+@@ -3346,6 +3354,10 @@
          }
      .end annotation
  

@@ -1,7 +1,7 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem.smali b/smali_classes6/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem.smali
 --- a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem.smali
 +++ b/smali_classes6/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem.smali
-@@ -391,10 +391,13 @@
+@@ -402,10 +402,13 @@
      return-void
  .end method
  
@@ -18,7 +18,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/adapter
      invoke-static {p2}, Ltv/twitch/android/util/StringUtils;->isEmpty(Ljava/lang/CharSequence;)Z
  
      move-result v0
-@@ -403,17 +406,26 @@
+@@ -414,17 +417,26 @@
  
      invoke-static {p1, v0}, Ltv/twitch/android/app/core/ViewExtensionsKt;->visibilityForBoolean(Landroid/view/View;Z)V
  
@@ -50,7 +50,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/adapter
      return-void
  .end method
  
-@@ -517,7 +529,7 @@
+@@ -528,7 +540,7 @@
  
      iget-object v1, p0, Ltv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem;->systemMessageSpan:Landroid/text/Spanned;
  
@@ -59,7 +59,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/adapter
  
      .line 96
      invoke-virtual {p1}, Ltv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder;->getChatMessage()Landroid/widget/TextView;
-@@ -526,7 +538,7 @@
+@@ -537,7 +549,7 @@
  
      iget-object v1, p0, Ltv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem;->messageSpan:Landroid/text/Spanned;
  

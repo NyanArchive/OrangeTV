@@ -1,10 +1,10 @@
 package tv.orange.features.updater.data.view
 
 import android.app.Activity
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
-import android.graphics.PorterDuff
-import android.graphics.PorterDuffColorFilter
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -16,12 +16,14 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import tv.orange.core.Logger
+import tv.orange.core.LoggerImpl
 import tv.orange.core.ResourceManager
 import tv.orange.core.util.PackageHelper
 import tv.orange.core.util.ViewUtil
 import tv.orange.core.util.ViewUtil.getView
 import tv.orange.core.util.ViewUtil.setContentView
+import tv.orange.features.updater.Updater.Companion.getOtaDir
+import tv.orange.features.updater.Updater.Companion.getTempDir
 import tv.orange.features.updater.data.mvp.UpdaterContract
 import tv.orange.features.updater.data.mvp.UpdaterPresenter
 import java.io.File
@@ -54,6 +56,10 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
         actionButton = getView<Button>("orangetv_updater__install_button").apply {
             setOnClickListener {
                 presenter.onViewEvent(UpdaterContract.Presenter.Event.OnActionClicked)
+            }
+            setOnLongClickListener {
+                presenter.onViewEvent(UpdaterContract.Presenter.Event.OnLongActionClicked)
+                true
             }
         }
         changelogTv = getView("orangetv_updater__changelog")
@@ -130,7 +136,7 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
     }
 
     override fun render(state: UpdaterContract.View.State) {
-        Logger.debug("state: $state")
+        LoggerImpl.debug("state: $state")
         when (state) {
             UpdaterContract.View.State.Prepare -> {
                 ViewUtil.hide(
@@ -217,32 +223,12 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
         }
     }
 
-    private fun getTempDir(): File {
-        val tmp = File(applicationContext.cacheDir, TEMP_OTA_DIR)
-        if (tmp.exists()) {
-            return tmp
-        }
-        tmp.mkdir()
-
-        return tmp
-    }
-
-    private fun getOtaDir(): File {
-        val ota = File(applicationContext.cacheDir, INSTALL_OTA_DIR)
-        if (ota.exists()) {
-            return ota
-        }
-        ota.mkdir()
-
-        return ota
-    }
-
     override fun createTempFile(): File {
-        return File(getTempDir(), "${System.currentTimeMillis()}.tmp")
+        return File(getTempDir(this), "${System.currentTimeMillis()}.tmp")
     }
 
     override fun getOtaFile(build: Int): File {
-        return File(getOtaDir(), "$build.apk")
+        return File(getOtaDir(this), "$build.apk")
     }
 
     override fun requestInstallPermission() {
@@ -260,6 +246,11 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
 
     override fun canInstallApk(): Boolean {
         return PackageHelper.canInstallApk(this)
+    }
+
+    override fun saveTextToClipboard(text: String) {
+        val clip = ClipData.newPlainText("URL", text)
+        (getSystemService(CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(clip)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

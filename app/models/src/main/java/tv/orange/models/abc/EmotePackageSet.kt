@@ -30,6 +30,12 @@ enum class EmotePackageSet(
         emoteType = OrangeEmoteType.FFZ,
         isGlobal = false
     ),
+    ItzChannel(
+        value = "ITZ-CHANNEL",
+        resName = "orange_emotecard_itz_channel",
+        emoteType = OrangeEmoteType.ITZ,
+        isGlobal = false
+    ),
     StvChannel(
         value = "7TV-CHANNEL",
         resName = "orange_emotecard_stv_channel",
@@ -58,6 +64,12 @@ enum class EmotePackageSet(
         value = "7TV-GLOBAL",
         resName = "orange_emotecard_stv_global",
         emoteType = OrangeEmoteType.STV,
+        isGlobal = true
+    ),
+    ItzGlobal(
+        value = "ITZ-GLOBAL",
+        resName = "orange_emotecard_itz_global",
+        emoteType = OrangeEmoteType.ITZ,
         isGlobal = true
     );
 

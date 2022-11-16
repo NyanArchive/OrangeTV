@@ -1,7 +1,7 @@
 diff --git a/smali/io/reactivex/Observable.smali b/smali/io/reactivex/Observable.smali
 --- a/smali/io/reactivex/Observable.smali
 +++ b/smali/io/reactivex/Observable.smali
-@@ -3510,3 +3510,33 @@
+@@ -3470,3 +3470,33 @@
  
      return-object p1
  .end method

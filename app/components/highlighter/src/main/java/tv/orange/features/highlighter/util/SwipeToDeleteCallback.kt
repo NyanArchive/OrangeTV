@@ -6,7 +6,6 @@ import android.graphics.drawable.ColorDrawable
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import tv.orange.core.Logger
 import tv.orange.core.ResourceManager
 import kotlin.math.absoluteValue
 

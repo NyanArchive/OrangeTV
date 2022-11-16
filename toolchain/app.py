@@ -93,12 +93,13 @@ def create_decompile_tasks(tasks):
     tasks.append(git.CreateGitRepo(apk))
 
 
-def create_recompile_tasks(tasks):
+def create_recompile_tasks(tasks, skip_app = False):
     tasks.append(internal.CopySo(apk))
     tasks.append(internal.InjectRes(apk))
     tasks.append(internal.IncreaseBuildNumber(apk))
     tasks.append(apktool.RecompileApk(apk))
-    tasks.append(internal.BuildAppDex(apk))
+    if not skip_app:
+        tasks.append(internal.BuildAppDex(apk))
     tasks.append(internal.InjectAppDexs(apk))
     tasks.append(apktool.SignApk(apk))
 
@@ -120,7 +121,7 @@ def handle_args(args, env: Env, apk: ApkDescriptor):
     if args.apply:
         tasks.append(git.ApplyPatches(apk, check=False))
     if args.recompile:
-        create_recompile_tasks(tasks)
+        create_recompile_tasks(tasks, args.skip_app)
     if args.debug:
         tasks.append(internal.InjectRes(apk))
     if args.restore:
@@ -131,7 +132,7 @@ def handle_args(args, env: Env, apk: ApkDescriptor):
 
         create_decompile_tasks(tasks)
         tasks.append(git.ApplyPatches(apk, check=False))
-        create_recompile_tasks(tasks)
+        create_recompile_tasks(tasks, args.skip_app)
 
     if args.install:
         tasks.append(internal.Install(apk))
@@ -159,6 +160,7 @@ if __name__ == '__main__':
     parser.add_argument('-f', '--file', type=parse_file_arg)
     parser.add_argument('--force', action='store_true')
     parser.add_argument('--install', action='store_true')
+    parser.add_argument('--skip_app', action='store_true')
 
     group = parser.add_mutually_exclusive_group()
     group.add_argument('--decompile', action='store_true', help="Decompile apk and create git repo")

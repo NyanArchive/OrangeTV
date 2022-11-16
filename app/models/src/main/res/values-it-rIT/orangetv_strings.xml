@@ -35,7 +35,9 @@
     <string name="orange_emotecard_ffz_global">Emote Globali FFZ</string>
     <string name="orange_emotecard_stv_global">Emote Globali 7TV</string>
     <string name="orange_emotecard_bttv_global">Emote Globali BTTV</string>
+    <string name="orange_chat_settings_preferences_subtitle">PurpleTV</string>
     <string name="orange_chat_settings_refresh">Aggiorna</string>
+    <string name="orange_timer_title">Timer PurpleTV</string>
     <string name="orange_timer_cancel">Annulla</string>
     <string name="orange_mod_logs">Visualizza i log</string>
     <string name="orange_seeker_header_text">Sincronizzazione del Vod</string>
@@ -52,6 +54,7 @@
     <string name="orange_settings_hide_discover_tab">Nascondi la scheda « Discover »</string>
     <string name="orange_restart_app">Riavvia</string>
     <string name="orange_restart_app_title">Aggiornare e riavviare l\'app?</string>
+    <string name="orange_settings_title">Impostazioni PurpleTV</string>
     <string name="orange_settings_chat_font_size">Dimensione dei caratteri in chat</string>
     <string name="orange_settings_landscape_chat_size">Larghezza della chat orizzontale</string>
     <string name="orange_settings_forward_seek">Avanzamento rapido</string>
@@ -84,6 +87,23 @@
     <string name="orange_chat_user_dialog_fragment_view_local_logs">Visualizza log locali</string>
     <string name="orange_settings_local_logs">Log locali</string>
     <string name="orange_local_logs_0">Disabilitate</string>
+    <string name="orange_settings_menu_highlighter">Evidenziatore</string>
     <string name="cpv_default_title">Scegli un colore</string>
+    <string name="cpv_presets">Predefiniti</string>
+    <string name="cpv_custom">Personalizzato</string>
+    <string name="cpv_select">Seleziona</string>
     <string name="cpv_transparency">Trasparenza</string>
+    <string name="orange_settings_clipfinity">Clipfinity</string>
+    <string name="orange_updater_ds">Dimensione del download: %s</string>
+    <string name="orange_updater_ds2">%1$s/%2$s</string>
+    <string name="orange_updater_ds3">%s\%%</string>
+    <string name="orange_updater_error_msg">Errore: %s</string>
+    <string name="orange_updater_msg1">PurpleTV necessita di un aggiornamento</string>
+    <string name="orange_app_name">PurpleTV</string>
+    <string name="orange_settings_updater_channel">Canale di aggiornamento</string>
+    <string name="orange_updater_release">Rilascio</string>
+    <string name="orange_updater_beta">Beta</string>
+    <string name="orange_updater_dev">Sviluppatore</string>
+    <string name="orange_updater_disabled">Disabilitate</string>
+    <string name="orange_settings_check_update">Controlla aggiornamenti</string>
 </resources>

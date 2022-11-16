@@ -4,6 +4,7 @@
     <string name="orange_settings_bttv_emotes">BTTV emoty</string>
     <string name="orange_settings_ffz_emotes">FFZ emoty</string>
     <string name="orange_settings_stv_emotes">7TV emoty</string>
+    <string name="orange_settings_itz_emotes">Homies emoty</string>
     <string name="orange_settings_ffz_badges">Odznaky FFZ</string>
     <string name="orange_settings_stv_badges">Odznaky 7TV</string>
     <string name="orange_settings_che_badges">Odznaky homies</string>
@@ -35,7 +36,11 @@
     <string name="orange_emotecard_ffz_global">Globální FFZ emoty</string>
     <string name="orange_emotecard_stv_global">Globální 7TV Emoty</string>
     <string name="orange_emotecard_bttv_global">Globální BTTV Emoty</string>
+    <string name="orange_emotecard_itz_channel">Homies emoty tohoto kanálu</string>
+    <string name="orange_emotecard_itz_global">Globální Homies emoty</string>
+    <string name="orange_chat_settings_preferences_subtitle">PurpleTV</string>
     <string name="orange_chat_settings_refresh">Obnovit</string>
+    <string name="orange_timer_title">PurpleTV časovač</string>
     <string name="orange_timer_cancel">Zrušit</string>
     <string name="orange_mod_logs">Zobrazit logy</string>
     <string name="orange_seeker_header_text">Synchronizace Vod</string>
@@ -52,6 +57,7 @@
     <string name="orange_settings_hide_discover_tab">Skrýt záložku Objevit</string>
     <string name="orange_restart_app">Restartovat</string>
     <string name="orange_restart_app_title">Aktualizovat a restartovat aplikaci?</string>
+    <string name="orange_settings_title">Nastavení PurpleTV</string>
     <string name="orange_settings_chat_font_size">Velikost písma chatu</string>
     <string name="orange_settings_landscape_chat_size">Šířka chatu v režimu na šířku</string>
     <string name="orange_settings_forward_seek">Náhled přehrávače dopředu</string>
@@ -91,4 +97,18 @@
     <string name="cpv_select">Vybrat</string>
     <string name="cpv_transparency">Průhlednost</string>
     <string name="orange_settings_clipfinity">Clipfinity</string>
+    <string name="orange_updater_ds">Velikost: %s</string>
+    <string name="orange_updater_ds2">%1$s/%2$s</string>
+    <string name="orange_updater_ds3">%s\%%</string>
+    <string name="orange_updater_error_msg">Chyba: %s</string>
+    <string name="orange_updater_msg1">PurpleTV potřebuje aktualizaci</string>
+    <string name="orange_app_name">PurpleTV</string>
+    <string name="orange_settings_updater_channel">Kanál pro aktualizace</string>
+    <string name="orange_updater_release">Vydání</string>
+    <string name="orange_updater_beta">Beta</string>
+    <string name="orange_updater_dev">Dev</string>
+    <string name="orange_updater_disabled">Vypnuto</string>
+    <string name="orange_settings_check_update">Zkontrolovat aktualizace</string>
+    <string name="orange_itz_global_emotes">Globální Homies emoty</string>
+    <string name="orange_itz_channel_emotes">Homies emoty tohoto kanálu</string>
 </resources>

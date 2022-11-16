@@ -7,7 +7,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import tv.orange.core.BuildConfigUtil
 import tv.orange.core.Core
-import tv.orange.core.Logger
+import tv.orange.core.LoggerImpl
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.variants.UpdateChannel
@@ -15,6 +15,7 @@ import tv.orange.features.api.component.repository.NopRepository
 import tv.orange.features.updater.data.view.UpdaterActivity
 import tv.orange.models.abc.Feature
 import tv.orange.models.retrofit.nop.UpdateChannelData
+import java.io.File
 import javax.inject.Inject
 
 class Updater @Inject constructor(val nopRepository: NopRepository) : Feature {
@@ -27,6 +28,38 @@ class Updater @Inject constructor(val nopRepository: NopRepository) : Feature {
         @JvmStatic
         fun destroy() {
             Core.destroyFeature(Updater::class.java)
+        }
+
+        fun getTempDir(context: Context): File {
+            val tmp = File(context.cacheDir, UpdaterActivity.TEMP_OTA_DIR)
+            if (tmp.exists()) {
+                return tmp
+            }
+            tmp.mkdir()
+
+            return tmp
+        }
+
+        fun getOtaDir(context: Context): File {
+            val ota = File(context.cacheDir, UpdaterActivity.INSTALL_OTA_DIR)
+            if (ota.exists()) {
+                return ota
+            }
+            ota.mkdir()
+
+            return ota
+        }
+
+        fun File.deleteDir() {
+            deleteRecursive(this)
+        }
+
+        private fun deleteRecursive(fileOrDirectory: File) {
+            for (child in fileOrDirectory.listFiles() ?: emptyArray()) {
+                deleteRecursive(child)
+            }
+
+            fileOrDirectory.delete()
         }
     }
 
@@ -55,14 +88,14 @@ class Updater @Inject constructor(val nopRepository: NopRepository) : Feature {
 
     private fun tryInstall(context: Context, channel: UpdateChannelData, silent: Boolean = true) {
         if (!channel.active) {
-            Logger.debug("DISABLED")
+            LoggerImpl.debug("DISABLED")
             if (!silent) {
                 Core.toast("Updates disabled")
             }
             return
         }
         if ((channel.build ?: 0) <= BuildConfigUtil.buildConfig.number) {
-            Logger.debug("BUILD")
+            LoggerImpl.debug("BUILD")
             if (!silent) {
                 Core.toast("You are using the latest version")
             }
@@ -80,15 +113,21 @@ class Updater @Inject constructor(val nopRepository: NopRepository) : Feature {
     }
 
     fun checkUpdates(context: Context, silent: Boolean = true) {
-        Logger.debug("called")
+        clearCache(context = context)
+        LoggerImpl.debug("called")
         when (val variant = Flag.UPDATER.asVariant<UpdateChannel>()) {
             UpdateChannel.Disabled -> {
-                Logger.debug("DISABLED")
+                LoggerImpl.debug("DISABLED")
             }
             else -> {
                 checkUpdates(context = context, variant = variant, silent = silent)
             }
         }
+    }
+
+    private fun clearCache(context: Context) {
+        getTempDir(context = context).deleteDir()
+        getOtaDir(context = context).deleteDir()
     }
 
     fun createUpdaterFragment(context: Context) {

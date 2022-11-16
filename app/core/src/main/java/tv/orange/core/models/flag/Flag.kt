@@ -91,6 +91,11 @@ enum class Flag(
         "orange_settings_stv_emotes",
         BooleanValue(true)
     ),
+    ITZ_EMOTES(
+        "itz_emotes",
+        "orange_settings_itz_emotes",
+        BooleanValue(false)
+    ),
     FFZ_BADGES(
         "ffz_badges",
         "orange_settings_ffz_badges",
@@ -134,6 +139,11 @@ enum class Flag(
     CLIPFINITY(
         "clipfinity",
         "orange_settings_clipfinity",
+        BooleanValue()
+    ),
+    OKHTTP_LOGGING(
+        "okhttp_logging",
+        "orange_settings_okhttp_logging",
         BooleanValue()
     ),
     PLAYER_IMPL(

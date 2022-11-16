@@ -3,10 +3,19 @@ package tv.orange.core
 import org.json.JSONObject
 import tv.orange.models.abc.OrangeBuildConfig
 import tv.twitch.android.app.core.ApplicationContext
+import java.util.*
 
 object BuildConfigUtil {
     const val BUILD_JSON_FILENAME = "build.json"
     const val USER_AGENT_TEMPLATE = "PurpleTV/0.1 Build/%d"
+
+    val userAgent by lazy {
+        String.format(
+            Locale.ENGLISH,
+            USER_AGENT_TEMPLATE,
+            BuildConfigUtil.buildConfig.number
+        )
+    }
 
     val buildConfig: OrangeBuildConfig by lazy {
         return@lazy try {

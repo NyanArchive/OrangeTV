@@ -6,7 +6,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
-import tv.orange.core.Logger
+import tv.orange.core.LoggerImpl
 import tv.orange.core.util.FileUtil.copyTo
 import tv.orange.core.util.NetUtil
 import tv.orange.core.util.NetUtil.getFileSize
@@ -33,7 +33,7 @@ class UpdaterPresenter(
             subject.subscribeOn(Schedulers.from(Executors.newSingleThreadExecutor()))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ state ->
-                    Logger.debug("state: $state")
+                    LoggerImpl.debug("state: $state")
                     when (state) {
                         State.Starting -> {
                             view.render(UpdaterContract.View.State.Prepare)
@@ -86,6 +86,9 @@ class UpdaterPresenter(
                                 )
                             )
                         }
+                        State.CopyApkUrl -> {
+                            view.saveTextToClipboard(updateData.url)
+                        }
                     }
                 }, {
                     subject.onNext(State.Error(it.localizedMessage ?: "Throwable"))
@@ -93,7 +96,7 @@ class UpdaterPresenter(
     }
 
     override fun onViewEvent(event: Event) {
-        Logger.debug("event: $event")
+        LoggerImpl.debug("event: $event")
         when (event) {
             Event.OnCancelClicked -> {
                 view.close()
@@ -114,6 +117,9 @@ class UpdaterPresenter(
             }
             Event.OnPermissionDenied -> {
                 subject.onNext(State.Error("Permissions"))
+            }
+            Event.OnLongActionClicked -> {
+                subject.onNext(State.CopyApkUrl)
             }
         }
     }

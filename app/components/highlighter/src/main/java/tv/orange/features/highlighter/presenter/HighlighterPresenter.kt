@@ -2,7 +2,7 @@ package tv.orange.features.highlighter.presenter
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import tv.orange.core.Logger
+import tv.orange.core.LoggerImpl
 import tv.orange.features.highlighter.data.mapper.HighlighterMapper_Factory
 import tv.orange.features.highlighter.data.model.KeywordData
 import tv.orange.features.highlighter.data.repository.HighlighterRepository
@@ -34,7 +34,7 @@ class HighlighterPresenter(view: HighlighterContract.View) : HighlighterContract
         disposables.add(
             repository.delete(keyword = keyword).observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    Logger.debug("Removed: $keyword")
+                    LoggerImpl.debug("Removed: $keyword")
                 }, { it.printStackTrace() })
         )
     }
@@ -44,7 +44,7 @@ class HighlighterPresenter(view: HighlighterContract.View) : HighlighterContract
             repository.update(
                 item = keyword.copy(color = newColor)
             ).observeOn(AndroidSchedulers.mainThread()).subscribe({
-                Logger.debug("Keyword: $keyword, newColor: $newColor")
+                LoggerImpl.debug("Keyword: $keyword, newColor: $newColor")
             }, { it.printStackTrace() })
         )
     }
@@ -53,7 +53,7 @@ class HighlighterPresenter(view: HighlighterContract.View) : HighlighterContract
         disposables.add(
             repository.addNewItems(rawText)
                 .subscribe({
-                    Logger.debug("text: $rawText")
+                    LoggerImpl.debug("text: $rawText")
                 }, { it.printStackTrace() })
         )
     }
@@ -63,7 +63,7 @@ class HighlighterPresenter(view: HighlighterContract.View) : HighlighterContract
             repository.update(
                 item = keyword.copy(vibration = !keyword.vibration),
             ).observeOn(AndroidSchedulers.mainThread()).subscribe({
-                Logger.debug("Changed: $keyword")
+                LoggerImpl.debug("Changed: $keyword")
             }, { it.printStackTrace() })
         )
     }
@@ -82,7 +82,7 @@ class HighlighterPresenter(view: HighlighterContract.View) : HighlighterContract
                     KeywordData.Type.USERNAME -> KeywordData.Type.CASESENSITIVE
                 }
             ).observeOn(AndroidSchedulers.mainThread()).subscribe({
-                Logger.debug("Changed: $keyword")
+                LoggerImpl.debug("Changed: $keyword")
             }, { it.printStackTrace() })
         )
     }

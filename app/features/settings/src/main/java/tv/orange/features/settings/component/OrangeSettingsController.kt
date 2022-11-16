@@ -4,7 +4,7 @@ import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import tv.orange.core.Core
-import tv.orange.core.Logger
+import tv.orange.core.LoggerImpl
 import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
 import tv.orange.core.models.flag.Flag
@@ -38,7 +38,7 @@ class OrangeSettingsController @Inject constructor(
         }
 
         val flag = Flag.findByKey(eventName) ?: run {
-            Logger.error("Flag not found: $eventName")
+            LoggerImpl.error("Flag not found: $eventName")
             return
         }
 
@@ -106,7 +106,7 @@ class OrangeSettingsController @Inject constructor(
 
     override fun navigateToSettingFragment(settingsDestination: SettingsDestination, p1: Bundle?) {
         if (settingsDestination == SettingsDestination.OrangeUpdater) {
-            Logger.debug("called")
+            LoggerImpl.debug("called")
             Updater.get().createUpdaterFragment(activity)
             return
         }

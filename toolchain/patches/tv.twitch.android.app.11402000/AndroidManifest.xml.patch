@@ -80,7 +80,7 @@ diff --git a/AndroidManifest.xml b/AndroidManifest.xml
          <service android:enabled="true" android:exported="false" android:name="com.google.android.gms.ads.AdService"/>
          <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
          <meta-data android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule" android:value="GlideModule"/>
-@@ -337,6 +340,8 @@
+@@ -337,10 +340,12 @@
                  <action android:name="com.amazon.dcp.sso.action.session.users.changed"/>
              </intent-filter>
          </receiver>
@@ -89,3 +89,9 @@ diff --git a/AndroidManifest.xml b/AndroidManifest.xml
          <meta-data android:name="com.android.dynamic.apk.fused.modules" android:value="base"/>
          <meta-data android:name="com.android.stamp.source" android:value="https://play.google.com/store"/>
          <meta-data android:name="com.android.stamp.type" android:value="STAMP_TYPE_STANDALONE_APK"/>
+         <meta-data android:name="com.android.vending.splits" android:value="@xml/splits0"/>
+-        <meta-data android:name="com.android.vending.derived.apk.id" android:value="2"/>
++        <meta-data android:name="com.android.vending.derived.apk.id" android:value="1"/>
+     </application>
+ </manifest>
+\ No newline at end of file

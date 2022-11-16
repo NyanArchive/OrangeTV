@@ -12,6 +12,7 @@ interface UpdaterContract {
         fun requestInstallPermission()
         fun installApk(file: File)
         fun canInstallApk(): Boolean
+        fun saveTextToClipboard(text: String)
 
         sealed class State {
             object Prepare : State()
@@ -44,6 +45,7 @@ interface UpdaterContract {
             object OnCloseClicked : Event()
             object OnCancelClicked : Event()
             object OnActionClicked : Event()
+            object OnLongActionClicked : Event()
             object OnPermissionGiven : Event()
             object OnPermissionDenied : Event()
         }
@@ -59,6 +61,8 @@ interface UpdaterContract {
             data class ReadyToInstall(val file: File) : State()
             object StartInstalling: State()
             object CheckPermissions: State()
+            object CopyApkUrl : State()
+
             data class Installing(val file: File): State()
 
             data class UpdateProgress(val progress: Int, val downloaded: Int, val total: Int): State()

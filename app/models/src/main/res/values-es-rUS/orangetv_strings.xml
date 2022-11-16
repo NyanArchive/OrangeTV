@@ -4,6 +4,7 @@
     <string name="orange_settings_bttv_emotes">Emotes de BTTV</string>
     <string name="orange_settings_ffz_emotes">Emotes de FFZ</string>
     <string name="orange_settings_stv_emotes">Emotes de 7TV</string>
+    <string name="orange_settings_itz_emotes">Homies Emotes</string>
     <string name="orange_settings_ffz_badges">Insignias de FFZ</string>
     <string name="orange_settings_stv_badges">Insignias de 7TV</string>
     <string name="orange_settings_che_badges">Insignias de Homies</string>
@@ -35,7 +36,11 @@
     <string name="orange_emotecard_ffz_global">Emote Global de FFZ</string>
     <string name="orange_emotecard_stv_global">Emote Global de 7TV</string>
     <string name="orange_emotecard_bttv_global">Emote Global de BTTV</string>
+    <string name="orange_emotecard_itz_channel">Emote de Homies del Canal</string>
+    <string name="orange_emotecard_itz_global">Emote Global de Homies</string>
+    <string name="orange_chat_settings_preferences_subtitle">PurpleTV</string>
     <string name="orange_chat_settings_refresh">Recargar</string>
+    <string name="orange_timer_title">Temporizador de PurpleTV</string>
     <string name="orange_timer_cancel">Cancelar</string>
     <string name="orange_mod_logs">Ver registros</string>
     <string name="orange_seeker_header_text">Sincronización del Vod</string>
@@ -52,6 +57,7 @@
     <string name="orange_settings_hide_discover_tab">Ocultar la pestaña Descubrir</string>
     <string name="orange_restart_app">Reiniciar</string>
     <string name="orange_restart_app_title">¿Actualizar y reiniciar la aplicación?</string>
+    <string name="orange_settings_title">Ajustes de PurpleTV</string>
     <string name="orange_settings_chat_font_size">Tamaño de fuente del chat</string>
     <string name="orange_settings_landscape_chat_size">Ancho del chat en horizontal</string>
     <string name="orange_settings_forward_seek">Búsqueda hacia adelante del reproductor</string>
@@ -85,4 +91,24 @@
     <string name="orange_settings_local_logs">Registros locales</string>
     <string name="orange_local_logs_0">Desactivado</string>
     <string name="orange_settings_menu_highlighter">Resaltado</string>
+    <string name="cpv_default_title">Selecciona un Color</string>
+    <string name="cpv_presets">Preajustes</string>
+    <string name="cpv_custom">Personalizado</string>
+    <string name="cpv_select">Seleccionar</string>
+    <string name="cpv_transparency">Transparencia</string>
+    <string name="orange_settings_clipfinity">Clipfinity</string>
+    <string name="orange_updater_ds">Tamaño de la descarga: %s</string>
+    <string name="orange_updater_ds2">%1$s/%2$s</string>
+    <string name="orange_updater_ds3">%s\%%</string>
+    <string name="orange_updater_error_msg">Error: %s</string>
+    <string name="orange_updater_msg1">PurpleTV necesita actualizarse</string>
+    <string name="orange_app_name">PurpleTV</string>
+    <string name="orange_settings_updater_channel">Actualizar canal</string>
+    <string name="orange_updater_release">Release</string>
+    <string name="orange_updater_beta">Beta</string>
+    <string name="orange_updater_dev">Dev</string>
+    <string name="orange_updater_disabled">Desactivado</string>
+    <string name="orange_settings_check_update">Comprobar actualizaciones</string>
+    <string name="orange_itz_global_emotes">Emotes Globales de Homies</string>
+    <string name="orange_itz_channel_emotes">Emotes de Homies del Canal</string>
 </resources>

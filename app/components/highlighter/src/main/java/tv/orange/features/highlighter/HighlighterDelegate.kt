@@ -2,7 +2,7 @@ package tv.orange.features.highlighter
 
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import tv.orange.core.Logger
+import tv.orange.core.LoggerImpl
 import tv.orange.features.highlighter.data.model.HighlightDesc
 import tv.orange.features.highlighter.data.model.KeywordData
 import tv.orange.features.highlighter.data.source.HighlighterSource
@@ -46,7 +46,7 @@ class HighlighterDelegate @Inject constructor(val source: HighlighterSource) {
 
                     isEnabled =
                         usernames.isNotEmpty() || sensitive.isNotEmpty() || insensitive.isNotEmpty()
-                    Logger.debug("Update!")
+                    LoggerImpl.debug("Update!")
                 }, {
                     it.printStackTrace()
                 })

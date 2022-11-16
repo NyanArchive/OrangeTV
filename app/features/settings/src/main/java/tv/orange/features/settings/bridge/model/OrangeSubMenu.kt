@@ -17,6 +17,7 @@ enum class OrangeSubMenu(
             Flag.BTTV_EMOTES,
             Flag.FFZ_EMOTES,
             Flag.STV_EMOTES,
+            Flag.ITZ_EMOTES,
             Flag.EMOTE_QUALITY,
             Flag.FFZ_BADGES,
             Flag.STV_BADGES,
@@ -85,7 +86,10 @@ enum class OrangeSubMenu(
         destination = SettingsDestination.OrangeDev,
         title = "orange_settings_menu_dev",
         desc = null,
-        items = listOf(Flag.DEV_MODE)
+        items = listOf(
+            Flag.DEV_MODE,
+            Flag.OKHTTP_LOGGING
+        )
     ),
     Support(
         destination = SettingsDestination.OrangeSupport,

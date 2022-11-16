@@ -8,6 +8,8 @@
     <string name="orange_settings_ffz_emotes_desc" />
     <string name="orange_settings_stv_emotes">7TV emotes</string>
     <string name="orange_settings_stv_emotes_desc" />
+    <string name="orange_settings_itz_emotes">Homies emotes</string>
+    <string name="orange_settings_itz_emotes_desc" />
     <string name="orange_settings_ffz_badges">FFZ badges</string>
     <string name="orange_settings_ffz_badges_desc" />
     <string name="orange_settings_stv_badges">7TV badges</string>
@@ -48,6 +50,8 @@
     <string name="orange_emotecard_ffz_global">FFZ Global Emote</string>
     <string name="orange_emotecard_stv_global">7TV Global Emote</string>
     <string name="orange_emotecard_bttv_global">BTTV Global Emote</string>
+    <string name="orange_emotecard_itz_channel">Homies Channel Emote</string>
+    <string name="orange_emotecard_itz_global">Homies Global Emote</string>
     <string name="orange_chat_settings_preferences_subtitle">PurpleTV</string>
     <string name="orange_chat_settings_refresh">Refresh</string>
     <string name="orange_timer_title">PurpleTV Timer</string>
@@ -145,4 +149,8 @@
     <string name="orange_updater_dev">Dev</string>
     <string name="orange_updater_disabled">Disabled</string>
     <string name="orange_settings_check_update">Check updates</string>
+    <string name="orange_itz_global_emotes">Homies Global Emotes</string>
+    <string name="orange_itz_channel_emotes">Homies Channel Emotes</string>
+    <string name="orange_settings_okhttp_logging">OkHttp Logging</string>
+    <string name="orange_settings_okhttp_logging_desc" />
 </resources>

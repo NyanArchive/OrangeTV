@@ -4,6 +4,7 @@
     <string name="orange_settings_bttv_emotes">BTTV емоції</string>
     <string name="orange_settings_ffz_emotes">FFZ емоції</string>
     <string name="orange_settings_stv_emotes">7TV емоції</string>
+    <string name="orange_settings_itz_emotes">Homies емоції</string>
     <string name="orange_settings_ffz_badges">FFZ значки</string>
     <string name="orange_settings_stv_badges">7TV значки</string>
     <string name="orange_settings_che_badges">Homies значки</string>
@@ -35,7 +36,11 @@
     <string name="orange_emotecard_ffz_global">Глобальні емоції FFZ</string>
     <string name="orange_emotecard_stv_global">Глобальні емоції 7TV</string>
     <string name="orange_emotecard_bttv_global">Глобальні емоції BTTV</string>
+    <string name="orange_emotecard_itz_channel">Емоція каналу Homies</string>
+    <string name="orange_emotecard_itz_global">Глобальна емоція Homies</string>
+    <string name="orange_chat_settings_preferences_subtitle">PurpleTV</string>
     <string name="orange_chat_settings_refresh">Оновити</string>
+    <string name="orange_timer_title">Таймер PurpleTV</string>
     <string name="orange_timer_cancel">Скасувати</string>
     <string name="orange_mod_logs">Історія глядача</string>
     <string name="orange_seeker_header_text">Синхронізація відеозапису</string>
@@ -52,6 +57,7 @@
     <string name="orange_settings_hide_discover_tab">Сховати вкладку «Discover»</string>
     <string name="orange_restart_app">Перезапуск</string>
     <string name="orange_restart_app_title">Оновити та перезапустити застосунок?</string>
+    <string name="orange_settings_title">Параметри PurpleTV</string>
     <string name="orange_settings_chat_font_size">Розмір шрифту у чаті</string>
     <string name="orange_settings_landscape_chat_size">Ширина чату в повноекранному режимі</string>
     <string name="orange_settings_forward_seek">Перемотка вперед на</string>
@@ -91,4 +97,18 @@
     <string name="cpv_select">Обрати</string>
     <string name="cpv_transparency">Прозорість</string>
     <string name="orange_settings_clipfinity">Clipfinity</string>
+    <string name="orange_updater_ds">Розмір завантаження: %s</string>
+    <string name="orange_updater_ds2">%1$s/%2$s</string>
+    <string name="orange_updater_ds3">%s\%%</string>
+    <string name="orange_updater_error_msg">Помилка: %s</string>
+    <string name="orange_updater_msg1">Потрібне оновлення PurpleTV</string>
+    <string name="orange_app_name">PurpleTV</string>
+    <string name="orange_settings_updater_channel">Канал оновлень</string>
+    <string name="orange_updater_release">Реліз</string>
+    <string name="orange_updater_beta">Бета</string>
+    <string name="orange_updater_dev">Дев</string>
+    <string name="orange_updater_disabled">Вимкнено</string>
+    <string name="orange_settings_check_update">Перевірити наявність оновлень</string>
+    <string name="orange_itz_global_emotes">Глобальні емоції Homies</string>
+    <string name="orange_itz_channel_emotes">Емоції каналу Homies</string>
 </resources>

@@ -437,6 +437,8 @@ class ChatHookProvider @Inject constructor(
                 EmotePackageSet.FfzChannel -> "orange_ffz_channel_emotes"
                 EmotePackageSet.StvGlobal -> "orange_stv_global_emotes"
                 EmotePackageSet.StvChannel -> "orange_stv_channel_emotes"
+                EmotePackageSet.ItzChannel -> "orange_itz_channel_emotes"
+                EmotePackageSet.ItzGlobal -> "orange_itz_global_emotes"
                 else -> "orange_unknown_emotes"
             }
 
@@ -570,7 +572,7 @@ class ChatHookProvider @Inject constructor(
 
     override fun onFlagValueChanged(flag: Flag) {
         when (flag) {
-            Flag.BTTV_EMOTES, Flag.FFZ_EMOTES, Flag.STV_EMOTES -> emoteProvider.rebuild()
+            Flag.BTTV_EMOTES, Flag.FFZ_EMOTES, Flag.STV_EMOTES, Flag.ITZ_EMOTES -> emoteProvider.rebuild()
             Flag.FFZ_BADGES, Flag.STV_BADGES, Flag.CHA_BADGES, Flag.CHE_BADGES -> badgeProvider.rebuild()
             Flag.CHAT_FONT_SIZE -> {
                 updateFontSize()

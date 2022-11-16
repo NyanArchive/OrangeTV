@@ -2,7 +2,7 @@ package tv.orange.features.api.component.data.source
 
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import tv.orange.core.Logger
+import tv.orange.core.LoggerImpl
 import tv.orange.features.api.component.data.api.BttvApi
 import tv.orange.features.api.component.data.mapper.BttvApiMapper
 import tv.orange.models.data.emotes.Emote
@@ -28,7 +28,7 @@ class BttvRemoteDataSource @Inject constructor(
         return bttvApi.ffzEmotes(channelId).subscribeOn(Schedulers.io()).map { emotes ->
             bttvMapper.mapFfzEmotes(emotes = emotes, isChannelEmotes = true)
         }.onErrorResumeNext {
-            Logger.warning("Cannot fetch emotes for channel: $channelId")
+            LoggerImpl.warning("Cannot fetch emotes for channel: $channelId")
             Single.just(emptyList())
         }
     }
@@ -37,7 +37,7 @@ class BttvRemoteDataSource @Inject constructor(
         return bttvApi.bttvEmotes(channelId).subscribeOn(Schedulers.io())
             .map(bttvMapper::mapEmotes)
             .onErrorResumeNext {
-                Logger.warning("Cannot fetch emotes for channel: $channelId")
+                LoggerImpl.warning("Cannot fetch emotes for channel: $channelId")
                 Single.just(emptyList())
             }
     }

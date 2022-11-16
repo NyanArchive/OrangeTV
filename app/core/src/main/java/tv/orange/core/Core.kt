@@ -182,6 +182,6 @@ class Core @Inject constructor(
 
     override fun onDestroyFeature() {}
     override fun onCreateFeature() {
-        Logger.debug("OrangeTV:${BuildConfigUtil.buildConfig.number}")
+        LoggerImpl.debug("OrangeTV:${BuildConfigUtil.buildConfig.number}")
     }
 }

@@ -19,7 +19,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/pip/NativePictureInPictureP
  
      :cond_1
 -    const-string p2, "tv.twitch.android.media.action.pause_playback"
-+    const-string p2, "tv.orange.action..pause_playback"
++    const-string p2, "tv.orange.action.pause_playback"
  
      invoke-virtual {p1, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
  
@@ -28,7 +28,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/pip/NativePictureInPictureP
  
      :cond_3
 -    const-string p2, "tv.twitch.android.media.action.resume_playback"
-+    const-string p2, "tv.orange.action..resume_playback"
++    const-string p2, "tv.orange.action.resume_playback"
  
      .line 160
      invoke-virtual {p1, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z

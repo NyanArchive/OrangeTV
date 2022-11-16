@@ -11,7 +11,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/LiveChatSource.smali b
  
  # annotations
  .annotation system Ldalvik/annotation/MemberClasses;
-@@ -3986,3 +3989,37 @@
+@@ -3998,3 +4001,37 @@
  
      return-void
  .end method

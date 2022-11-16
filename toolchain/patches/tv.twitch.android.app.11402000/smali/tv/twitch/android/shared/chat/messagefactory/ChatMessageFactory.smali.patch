@@ -40,7 +40,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMes
      return-object v1
  .end method
  
-@@ -2798,3 +2816,81 @@
+@@ -2802,3 +2820,81 @@
  
      return-void
  .end method

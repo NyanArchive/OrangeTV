@@ -35,7 +35,9 @@
     <string name="orange_emotecard_ffz_global">Παγκόσμια FFZ Emote</string>
     <string name="orange_emotecard_stv_global">Παγκόσμια 7TV Emote</string>
     <string name="orange_emotecard_bttv_global">Παγκόσμια BTTV Emote</string>
+    <string name="orange_chat_settings_preferences_subtitle">PurpleTV</string>
     <string name="orange_chat_settings_refresh">Ανανέωση</string>
+    <string name="orange_timer_title">PurpleTV Χρονόμετρο</string>
     <string name="orange_timer_cancel">Ακύρωση</string>
     <string name="orange_mod_logs">Προβολή αρχείων καταγραφής</string>
     <string name="orange_seeker_header_text">Συγχρονισμός βίντεο VODs</string>
@@ -52,6 +54,7 @@
     <string name="orange_settings_hide_discover_tab">Απόκρυψη της καρτέλας «Ανακάλυψε»</string>
     <string name="orange_restart_app">Επανεκκίνηση</string>
     <string name="orange_restart_app_title">Ενημέρωση και επανεκκίνηση της εφαρμογής;</string>
+    <string name="orange_settings_title">PurpleTV Ρυθμίσεις</string>
     <string name="orange_settings_chat_font_size">Μέγεθος γραμματοσειράς συνομιλιών</string>
     <string name="orange_settings_landscape_chat_size">Πλάτος οριζόντιας συνομιλίας</string>
     <string name="orange_settings_forward_seek">Αναπαραγωγέα επιδίωξη μπροστά</string>
@@ -85,4 +88,16 @@
     <string name="orange_settings_local_logs">Τοπικά αρχεία καταγραφής</string>
     <string name="orange_local_logs_0">Απενεργοποιημένο</string>
     <string name="orange_settings_menu_highlighter">Επισήμανση</string>
+    <string name="orange_updater_ds">Μέγεθος Λήψης: %s</string>
+    <string name="orange_updater_ds2">%1$s/%2$s</string>
+    <string name="orange_updater_ds3">%s\%%</string>
+    <string name="orange_updater_error_msg">Σφάλμα: %s</string>
+    <string name="orange_updater_msg1">PurpleTV χρειάζεται ενημέρωση</string>
+    <string name="orange_app_name">PurpleTV</string>
+    <string name="orange_settings_updater_channel">Ενημέρωση καναλιού</string>
+    <string name="orange_updater_release">Έκδοση</string>
+    <string name="orange_updater_beta">Beta</string>
+    <string name="orange_updater_dev">Dev</string>
+    <string name="orange_updater_disabled">Απενεργοποιημένο</string>
+    <string name="orange_settings_check_update">Έλεγχος ενημερώσεων</string>
 </resources>

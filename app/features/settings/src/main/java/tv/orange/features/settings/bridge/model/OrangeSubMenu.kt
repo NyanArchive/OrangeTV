@@ -47,7 +47,10 @@ enum class OrangeSubMenu(
             Flag.CHAT_FONT_SIZE,
             Flag.LANDSCAPE_CHAT_SIZE,
             Flag.LANDSCAPE_CHAT_OPACITY,
-            Flag.LOCAL_LOGS
+            Flag.LOCAL_LOGS,
+            Flag.BYPASS_CHAT_BAN,
+            Flag.HIDE_CHAT_HEADER,
+            Flag.PINNED_MESSAGE
         )
     ),
     Player(
@@ -60,7 +63,8 @@ enum class OrangeSubMenu(
             Flag.PLAYER_IMPL,
             Flag.FORWARD_SEEK,
             Flag.REWIND_SEEK,
-            Flag.MINI_PLAYER_SIZE
+            Flag.MINI_PLAYER_SIZE,
+            Flag.VODHUNTER
         )
     ),
     Gestures(
@@ -75,7 +79,11 @@ enum class OrangeSubMenu(
             Flag.CLIPFINITY,
             Flag.FOLLOWED_FULL_CARDS,
             Flag.HIDE_DISCOVER_TAB,
-            Flag.BOTTOM_NAVBAR_POSITION
+            Flag.BOTTOM_NAVBAR_POSITION,
+            Flag.HIDE_GAME_SECTION,
+            Flag.HIDE_RECOMMENDATION_SECTION,
+            Flag.HIDE_RESUME_WATCHING_SECTION,
+            Flag.HIDE_OFFLINE_CHANNEL_SECTION,
         )
     ),
     Patches(

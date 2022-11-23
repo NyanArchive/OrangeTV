@@ -50,6 +50,7 @@ dependencies {
     api project(path: ':features:spam')
     api project(path: ':features:tracking')
     api project(path: ':features:updater')
+    api project(path: ':features:vodhunter')
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

@@ -101,6 +101,16 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
         presenter.onDestroy()
     }
 
+    override fun onStart() {
+        super.onStart()
+        presenter.onStart()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        presenter.onStop()
+    }
+
     companion object {
         const val EXTRA_CODENAME = "EXTRA_CODENAME"
         const val EXTRA_URL = "EXTRA_URL"

@@ -30,6 +30,8 @@ interface UpdaterContract {
         abstract fun onDestroy()
         abstract fun onResume()
         abstract fun onPause()
+        abstract fun onStart()
+        abstract fun onStop()
 
         abstract fun init(
             codename: String?,

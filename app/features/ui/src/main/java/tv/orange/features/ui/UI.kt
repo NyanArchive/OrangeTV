@@ -40,6 +40,22 @@ class UI @Inject constructor(
         }
 
         @JvmStatic
+        val hideResumeWatching: Boolean
+            get() = Flag.HIDE_RESUME_WATCHING_SECTION.asBoolean()
+
+        @JvmStatic
+        val hideRecommendedStreams: Boolean
+            get() = Flag.HIDE_RECOMMENDATION_SECTION.asBoolean()
+
+        @JvmStatic
+        val hideGames: Boolean
+            get() = Flag.HIDE_GAME_SECTION.asBoolean()
+
+        @JvmStatic
+        val hideOfflineChannels: Boolean
+            get() = Flag.HIDE_OFFLINE_CHANNEL_SECTION.asBoolean()
+
+        @JvmStatic
         val hideLeaderboards: Boolean
             get() = Flag.HIDE_LEADERBOARDS.asBoolean()
 

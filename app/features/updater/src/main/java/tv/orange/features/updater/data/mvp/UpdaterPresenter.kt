@@ -133,12 +133,16 @@ class UpdaterPresenter(
         observerDisposable.dispose()
     }
 
-    override fun onResume() {
+    override fun onResume() {}
+
+    override fun onPause() {}
+
+    override fun onStart() {
         subject.onNext(State.Starting)
         subject.onNext(State.Update(updateData))
     }
 
-    override fun onPause() {
+    override fun onStop() {
         disposables.clear()
     }
 

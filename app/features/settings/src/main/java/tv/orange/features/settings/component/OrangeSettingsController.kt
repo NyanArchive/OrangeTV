@@ -74,7 +74,7 @@ class OrangeSettingsController @Inject constructor(
     }
 
     fun getMainSettingModels(): Collection<MenuModel> {
-        return OrangeSubMenu.values().filter { it.items.isNotEmpty() }
+        return OrangeSubMenu.values().filter { it.items.isNotEmpty() || it == OrangeSubMenu.Info }
             .map {
                 SubMenuModel(ResourceManager.get().getString(it.title), it.desc?.let { desc ->
                     ResourceManager.get().getString(desc)
@@ -118,6 +118,7 @@ class OrangeSettingsController @Inject constructor(
             SettingsDestination.OrangeView -> OrangeViewSettingsFragment()
             SettingsDestination.OrangeDev -> OrangeDevSettingsFragment()
             SettingsDestination.OrangeOTA -> OrangeUpdaterSettingsFragment()
+            SettingsDestination.OrangeInfo -> OrangeInfoSettingsFragment()
             SettingsDestination.OrangeHighlighter -> highlighter.createHighlighterFragment()
             else -> null
         }?.let { fragment ->

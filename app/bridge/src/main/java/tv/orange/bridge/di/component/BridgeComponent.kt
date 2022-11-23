@@ -21,6 +21,7 @@ import tv.orange.features.timer.SleepTimer
 import tv.orange.features.tracking.Tracking
 import tv.orange.features.ui.UI
 import tv.orange.features.usersearch.UserSearch
+import tv.orange.features.vodhunter.Vodhunter
 import tv.orange.features.vodsync.VodSync
 import javax.inject.Provider
 
@@ -43,6 +44,7 @@ interface BridgeComponent {
     val spamProvider: Provider<Spam>
     val trackingProvider: Provider<Tracking>
     val updaterProvider: Provider<Updater>
+    val vodhunterProvider: Provider<Vodhunter>
 
     val preferenceManager: Provider<PreferenceManager>
     val core: Provider<Core>

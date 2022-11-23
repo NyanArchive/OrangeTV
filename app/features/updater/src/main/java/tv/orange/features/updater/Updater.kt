@@ -95,7 +95,6 @@ class Updater @Inject constructor(val nopRepository: NopRepository) : Feature {
             return
         }
         if ((channel.build ?: 0) <= BuildConfigUtil.buildConfig.number) {
-            LoggerImpl.debug("BUILD")
             if (!silent) {
                 Core.toast("You are using the latest version")
             }

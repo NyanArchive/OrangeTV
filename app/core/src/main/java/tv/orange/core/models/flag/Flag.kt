@@ -146,6 +146,41 @@ enum class Flag(
         "orange_settings_okhttp_logging",
         BooleanValue()
     ),
+    VODHUNTER(
+        "vodhunter",
+        "orange_settings_vodhunter",
+        BooleanValue()
+    ),
+    BYPASS_CHAT_BAN(
+        "bypass_chat_ban",
+        "orange_settings_bypass_chat_ban",
+        BooleanValue()
+    ),
+    HIDE_CHAT_HEADER(
+        "hide_chat_header",
+        "orange_settings_hide_chat_header",
+        BooleanValue()
+    ),
+    HIDE_GAME_SECTION(
+        "hide_game_section",
+        "orange_settings_hide_game_section",
+        BooleanValue()
+    ),
+    HIDE_RECOMMENDATION_SECTION(
+        "hide_recommendation_section",
+        "orange_settings_hide_recommendation_section",
+        BooleanValue()
+    ),
+    HIDE_RESUME_WATCHING_SECTION(
+        "hide_resume_watching_section",
+        "orange_settings_hide_resume_watching_section",
+        BooleanValue()
+    ),
+    HIDE_OFFLINE_CHANNEL_SECTION(
+        "hide_offline_channel_section",
+        "orange_settings_hide_offline_channel_section",
+        BooleanValue()
+    ),
     PLAYER_IMPL(
         "player_impl",
         "orange_settings_player_impl",
@@ -180,6 +215,11 @@ enum class Flag(
         "updater",
         "orange_settings_updater_channel",
         ListValue(UpdateChannel.Dev),
+    ),
+    PINNED_MESSAGE(
+        "pinned_message",
+        "orange_settings_pinned_message",
+        ListValue(PinnedMessageStrategy.Default),
     ),
     LANDSCAPE_CHAT_SIZE(
         "landscape_chat_size",

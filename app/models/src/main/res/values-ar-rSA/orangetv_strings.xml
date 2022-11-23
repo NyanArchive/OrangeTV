@@ -4,6 +4,7 @@
     <string name="orange_settings_bttv_emotes">ايموتات BTTV</string>
     <string name="orange_settings_ffz_emotes">ايموتات FFZ</string>
     <string name="orange_settings_stv_emotes">ايموتات 7TV</string>
+    <string name="orange_settings_itz_emotes">ايموتات Homies</string>
     <string name="orange_settings_ffz_badges">شارات FFZ</string>
     <string name="orange_settings_stv_badges">7TV شارات</string>
     <string name="orange_settings_che_badges">شارات HOMIES</string>
@@ -35,6 +36,8 @@
     <string name="orange_emotecard_ffz_global">ايموتات قناة FFZ</string>
     <string name="orange_emotecard_stv_global">ايموتات 7tv العامة</string>
     <string name="orange_emotecard_bttv_global">ايموتات BTTV العامة</string>
+    <string name="orange_emotecard_itz_channel">ايموت Homies الخاصة في القناة</string>
+    <string name="orange_emotecard_itz_global">ايموت Homies الاساسية</string>
     <string name="orange_chat_settings_preferences_subtitle">PurpleTV</string>
     <string name="orange_chat_settings_refresh">تنشيط الدردشة</string>
     <string name="orange_timer_title">مؤقت PurpleTV</string>
@@ -106,4 +109,20 @@
     <string name="orange_updater_dev">إصدار المطور</string>
     <string name="orange_updater_disabled">معطل</string>
     <string name="orange_settings_check_update">التحقق من التحديثات</string>
+    <string name="orange_itz_global_emotes">ايموتات Homies الاساسية</string>
+    <string name="orange_itz_channel_emotes">ايموتات Homies الخاصة في القناة</string>
+    <string name="orange_settings_okhttp_logging">مسجل OkHttp</string>
+    <string name="orange_settings_info_dev">المطور الرئيسي</string>
+    <string name="orange_settings_info_tg">دردشة تيليغرام</string>
+    <string name="orange_settings_info_discord">سيرفر الديسكورد</string>
+    <string name="orange_settings_info_itsfadixx">مساعد المطور</string>
+    <string name="orange_settings_vodhunter">VODHunter</string>
+    <string name="orange_settings_vodhunter_desc">آنا أشوف الفيديوهات بدون الاشتراك</string>
+    <string name="orange_settings_bypass_chat_ban">تجاوز الحضر من الدردشة</string>
+    <string name="orange_settings_bypass_chat_ban_desc">انضم للدردشة في الوضع المجهول عندما تكون محظور. أنت لا تستطع إرسال أو استقبال الرسائل أو استخدام نِقَاط القناة عندما تكون محضورً</string>
+    <string name="orange_settings_hide_chat_header">إخفاء الجزء العلوي الموجود في رأس المحادثة</string>
+    <string name="orange_settings_hide_recommendation_section">اخفاء《البثوث المقترحة》</string>
+    <string name="orange_settings_hide_resume_watching_section">إخفاء《شوهد مؤخرا》</string>
+    <string name="orange_settings_hide_offline_channel_section">إخفاء《القنوات الغير متصلة》</string>
+    <string name="orange_settings_hide_game_section">إخفاء《الألعاب المتّبعة》</string>
 </resources>

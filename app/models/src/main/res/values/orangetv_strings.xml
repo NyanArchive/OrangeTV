@@ -153,4 +153,31 @@
     <string name="orange_itz_channel_emotes">Homies Channel Emotes</string>
     <string name="orange_settings_okhttp_logging">OkHttp Logging</string>
     <string name="orange_settings_okhttp_logging_desc" />
+    <string name="orange_settings_info_dev">Main dev</string>
+    <string name="orange_settings_info_dev_desc" translatable="false">t.me/nopbreak</string>
+    <string name="orange_settings_info_tg">Telegram chat</string>
+    <string name="orange_settings_info_tg_desc" translatable="false">t.me/pubChat</string>
+    <string name="orange_settings_info_discord">Discord server</string>
+    <string name="orange_settings_info_discord_desc" translatable="false">https://discord.gg/DkjMM4ThhG</string>
+    <string name="orange_settings_info_itsfadixx">Development Assistant</string>
+    <string name="orange_settings_info_itsfadixx_desc" translatable="false">https://t.me/itsfadixx</string>
+    <string name="orange_settings_vodhunter">VODHunter</string>
+    <string name="orange_settings_vodhunter_desc">I See Dead VODs</string>
+    <string name="orange_settings_bypass_chat_ban">Bypass chat ban</string>
+    <string name="orange_settings_bypass_chat_ban_desc">Joins chat anonymously when you are banned. You can\'t send messages, receive/spend channel points.</string>
+    <string name="orange_settings_hide_chat_header">Hide chat header container</string>
+    <string name="orange_settings_hide_chat_header_desc" />
+    <string name="orange_settings_hide_recommendation_section">Hide «Recommended Streams»</string>
+    <string name="orange_settings_hide_recommendation_section_desc" />
+    <string name="orange_settings_hide_resume_watching_section">Hide «Recent Watching»</string>
+    <string name="orange_settings_hide_resume_watching_section_desc" />
+    <string name="orange_settings_hide_offline_channel_section">Hide «Offline Channels»</string>
+    <string name="orange_settings_hide_offline_channel_section_desc" />
+    <string name="orange_settings_hide_game_section">Hide «Followed Games»</string>
+    <string name="orange_settings_hide_game_section_desc" />
+    <string name="orange_settings_pinned_message">Pinned messages</string>
+    <string name="orange_settings_pinned_message_desc" />
+    <string name="orange_pinned_message_default">Default</string>
+    <string name="orange_pinned_message_disabled">Disabled</string>
+    <string name="orange_pinned_message_sec30">30 sec.</string>
 </resources>

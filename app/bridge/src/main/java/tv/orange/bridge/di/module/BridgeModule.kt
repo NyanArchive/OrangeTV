@@ -14,6 +14,7 @@ import tv.orange.features.highlighter.Highlighter
 import tv.orange.features.highlighter.di.component.HighlighterComponent
 import tv.orange.features.pronouns.component.PronounProvider
 import tv.orange.features.pronouns.di.component.PronounComponent
+import tv.orange.features.vodhunter.Vodhunter
 import tv.orange.models.abc.TCPProvider
 import tv.orange.models.abc.TwitchComponentProvider
 import tv.twitch.android.app.core.ApplicationContext

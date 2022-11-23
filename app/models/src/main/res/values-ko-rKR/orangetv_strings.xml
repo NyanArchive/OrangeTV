@@ -103,7 +103,7 @@
     <string name="orange_updater_error_msg">오류: %s</string>
     <string name="orange_updater_msg1">PurpleTV 업데이트가 필요합니다</string>
     <string name="orange_app_name">PurpleTV</string>
-    <string name="orange_settings_updater_channel">채널 업데이트</string>
+    <string name="orange_settings_updater_channel">업데이트 채널</string>
     <string name="orange_updater_release">릴리즈</string>
     <string name="orange_updater_beta">베타</string>
     <string name="orange_updater_dev">개발자</string>
@@ -111,4 +111,22 @@
     <string name="orange_settings_check_update">업데이트 확인</string>
     <string name="orange_itz_global_emotes">Homies 글로벌 이모티콘</string>
     <string name="orange_itz_channel_emotes">Homies 채널 이모티콘</string>
+    <string name="orange_settings_okhttp_logging">OkHttp 로그 작성</string>
+    <string name="orange_settings_info_dev">주요 개발자</string>
+    <string name="orange_settings_info_tg">텔레그램 채팅</string>
+    <string name="orange_settings_info_discord">디스코드 서버</string>
+    <string name="orange_settings_info_itsfadixx">개발 지원</string>
+    <string name="orange_settings_vodhunter">VODHunter</string>
+    <string name="orange_settings_vodhunter_desc">어떤 VOD라도 다 볼 수 있다</string>
+    <string name="orange_settings_bypass_chat_ban">채팅 밴 우회</string>
+    <string name="orange_settings_bypass_chat_ban_desc">채팅에서 밴을 당했을 때 익명으로 참여합니다. 메시지를 보낼 수 없고 채널 포인트를 받거나 사용할 수 없습니다.</string>
+    <string name="orange_settings_hide_chat_header">채팅 헤더 컨테이너 숨기기</string>
+    <string name="orange_settings_hide_recommendation_section">«추천 채널» 숨기기</string>
+    <string name="orange_settings_hide_resume_watching_section">«계속 보기» 숨기기</string>
+    <string name="orange_settings_hide_offline_channel_section">«오프라인 채널» 숨기기</string>
+    <string name="orange_settings_hide_game_section">«팔로우 중인 카테고리» 숨기기</string>
+    <string name="orange_settings_pinned_message">고정된 메세지</string>
+    <string name="orange_pinned_message_default">기본값</string>
+    <string name="orange_pinned_message_disabled">비활성화</string>
+    <string name="orange_pinned_message_sec30">30초</string>
 </resources>

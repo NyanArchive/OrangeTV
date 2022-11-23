@@ -64,6 +64,9 @@ import tv.twitch.android.models.emotes.EmoteSet
 import tv.twitch.android.provider.chat.ChatMessageInterface
 import tv.twitch.android.shared.chat.adapter.item.ChatMessageClickedEvents
 import tv.twitch.android.shared.chat.adapter.item.MessageRecyclerItem
+import tv.twitch.android.shared.chat.network.creatorpinnedchatmessage.model.CreatorPinnedChatMessageChannelModel
+import tv.twitch.android.shared.chat.network.creatorpinnedchatmessage.model.CreatorPinnedChatMessageMessageModel
+import tv.twitch.android.shared.chat.network.creatorpinnedchatmessage.model.CreatorPinnedChatMessagePinnedByUserModel
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerPresenter
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerViewDelegate
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteHeaderUiModel
@@ -420,6 +423,16 @@ class ChatHookProvider @Inject constructor(
         }
 
         @JvmStatic
+        fun bypassChatBan(): Boolean {
+            return Flag.BYPASS_CHAT_BAN.asBoolean()
+        }
+
+        @JvmStatic
+        fun hideChatHeader(): Boolean {
+            return Flag.HIDE_CHAT_HEADER.asBoolean()
+        }
+
+        @JvmStatic
         fun sortEmoteSets(list: MutableList<EmoteUiSet>): MutableList<EmoteUiSet> {
             list.find { it.header.emotePickerSection.equals(EmotePickerSection.FAV) }?.let {
                 list.remove(it)
@@ -720,5 +733,21 @@ class ChatHookProvider @Inject constructor(
         }
 
         return true
+    }
+
+    fun hookPinnedMessage(
+        pinnedMessage: CreatorPinnedChatMessageMessageModel,
+        channel: CreatorPinnedChatMessageChannelModel,
+        pinnedByUser: CreatorPinnedChatMessagePinnedByUserModel
+    ): CreatorPinnedChatMessageMessageModel {
+        return channel.channelId.toIntOrNull()?.let { channelId ->
+            pinnedByUser.getPrivateField<String>("pinnedByUserId").toIntOrNull()?.let { userId ->
+                CreatorPinnedChatMessageMessageModel(
+                    pinnedMessage.pinnedMessageId,
+                    pinnedMessage.getPrivateField("pinnedMessageText"),
+                    injectEmotes(pinnedMessage.tokens, userId, channelId)
+                )
+            }
+        } ?: pinnedMessage
     }
 }

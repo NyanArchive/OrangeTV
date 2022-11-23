@@ -36,7 +36,11 @@
     <string name="orange_emotecard_ffz_global">Émoticône globale FFZ</string>
     <string name="orange_emotecard_stv_global">Émoticône globale 7TV</string>
     <string name="orange_emotecard_bttv_global">Émoticone globale BTTV</string>
+    <string name="orange_emotecard_itz_channel">Émoticône de chaîne Homies</string>
+    <string name="orange_emotecard_itz_global">Émoticône Global Homies</string>
+    <string name="orange_chat_settings_preferences_subtitle">PurpleTV</string>
     <string name="orange_chat_settings_refresh">Actualiser</string>
+    <string name="orange_timer_title">Minuterie PurpleTV</string>
     <string name="orange_timer_cancel">Annuler</string>
     <string name="orange_mod_logs">Consultez les journaux d\'activité</string>
     <string name="orange_seeker_header_text">Synchronisation de la vidéo</string>
@@ -53,6 +57,7 @@
     <string name="orange_settings_hide_discover_tab">Masquer l\'onglet « Découvrir »</string>
     <string name="orange_restart_app">Redémarrer</string>
     <string name="orange_restart_app_title">Mettre à jour et redémarrer l\'application ?</string>
+    <string name="orange_settings_title">Paramètres de PurpleTV</string>
     <string name="orange_settings_chat_font_size">Taille de police du tchat</string>
     <string name="orange_settings_landscape_chat_size">Largeur du tchat en mode plein écran</string>
     <string name="orange_settings_forward_seek">Avancer</string>
@@ -92,4 +97,26 @@
     <string name="cpv_select">Sélectionner</string>
     <string name="cpv_transparency">Transparence</string>
     <string name="orange_settings_clipfinity">Clipfinity</string>
+    <string name="orange_updater_ds">Taille du téléchargement : %s</string>
+    <string name="orange_updater_ds2">%1$s/%2$s</string>
+    <string name="orange_updater_ds3">%s\%%</string>
+    <string name="orange_updater_error_msg">Erreur : %s</string>
+    <string name="orange_updater_msg1">PurpleTV nécessite une mise à jour</string>
+    <string name="orange_app_name">PurpleTV</string>
+    <string name="orange_settings_updater_channel">Mettre à jour la chaine</string>
+    <string name="orange_updater_release">Publication</string>
+    <string name="orange_updater_beta">Beta</string>
+    <string name="orange_updater_dev">Dev</string>
+    <string name="orange_updater_disabled">Désactivé</string>
+    <string name="orange_settings_check_update">Vérifier les mises à jour</string>
+    <string name="orange_itz_global_emotes">Émoticônes Global Homies</string>
+    <string name="orange_itz_channel_emotes">Émoticônes de chaîne Homies</string>
+    <string name="orange_settings_okhttp_logging">Journalisation OkHttp</string>
+    <string name="orange_settings_info_dev">Dév principal</string>
+    <string name="orange_settings_info_tg">Chat Telegram</string>
+    <string name="orange_settings_info_discord">Serveur Discord</string>
+    <string name="orange_settings_info_itsfadixx">Assistant de développement</string>
+    <string name="orange_settings_vodhunter">Chasseur de VOD</string>
+    <string name="orange_settings_vodhunter_desc">Je vois des VOD mortes</string>
+    <string name="orange_settings_bypass_chat_ban">Contourner le bannissement du chat</string>
 </resources>

@@ -111,4 +111,22 @@
     <string name="orange_settings_check_update">Перевірити наявність оновлень</string>
     <string name="orange_itz_global_emotes">Глобальні емоції Homies</string>
     <string name="orange_itz_channel_emotes">Емоції каналу Homies</string>
+    <string name="orange_settings_okhttp_logging">Журнал OkHttp</string>
+    <string name="orange_settings_info_dev">Бос качалки</string>
+    <string name="orange_settings_info_tg">Telegram чат</string>
+    <string name="orange_settings_info_discord">Discord сервер</string>
+    <string name="orange_settings_info_itsfadixx">Допомога в розробці</string>
+    <string name="orange_settings_vodhunter">VODHunter</string>
+    <string name="orange_settings_vodhunter_desc">Перегляд відеозаписів для підписників</string>
+    <string name="orange_settings_bypass_chat_ban">Обхід блокування в чаті</string>
+    <string name="orange_settings_bypass_chat_ban_desc">Анонімно приєднуватися до чату коли ви заблоковані. Ви не зможете надсилати повідомлення, отримувати/витрачати бали каналу.</string>
+    <string name="orange_settings_hide_chat_header">Сховати заголовок чату</string>
+    <string name="orange_settings_hide_recommendation_section">Сховати блок «Рекомендовані трансляції»</string>
+    <string name="orange_settings_hide_resume_watching_section">Сховати блок «Продовжити перегляд»</string>
+    <string name="orange_settings_hide_offline_channel_section">Сховати блок «Офлайн канали»</string>
+    <string name="orange_settings_hide_game_section">Сховати блок «Відстежувані категорії»</string>
+    <string name="orange_settings_pinned_message">Закріплені повідомлення</string>
+    <string name="orange_pinned_message_default">За замовчуванням</string>
+    <string name="orange_pinned_message_disabled">Вимкнені</string>
+    <string name="orange_pinned_message_sec30">30 сек.</string>
 </resources>

@@ -21,6 +21,7 @@ import tv.orange.features.tracking.Tracking
 import tv.orange.features.ui.UI
 import tv.orange.features.updater.Updater
 import tv.orange.features.usersearch.UserSearch
+import tv.orange.features.vodhunter.Vodhunter
 import tv.orange.features.vodsync.VodSync
 import tv.orange.models.AutoInitialize
 import tv.orange.models.abc.Bridge
@@ -91,6 +92,7 @@ class BridgeImpl private constructor() : Bridge {
         featureFactoryMap[Spam::class.java] = { component.spamProvider }
         featureFactoryMap[Tracking::class.java] = { component.trackingProvider }
         featureFactoryMap[Updater::class.java] = { component.updaterProvider }
+        featureFactoryMap[Vodhunter::class.java] = { component.vodhunterProvider }
     }
 
     fun initialize(context: Context) {

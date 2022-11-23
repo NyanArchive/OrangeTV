@@ -6,11 +6,13 @@ import tv.orange.features.logs.ChatLogs;
 import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.ErrorCode;
 import tv.twitch.android.core.mvp.presenter.BasePresenter;
+import tv.twitch.android.models.channel.ChannelInfo;
 import tv.twitch.android.provider.chat.events.MessagesReceivedEvent;
 import tv.twitch.android.sdk.ChannelState;
 
 public class ChatConnectionController extends BasePresenter {
     private PublishSubject<MessagesReceivedEvent> messagesSubject;
+    private int viewerId;
 
     /* ... */
 
@@ -34,6 +36,18 @@ public class ChatConnectionController extends BasePresenter {
             Core.get().onConnectedToChannel(i); // TODO: __INJECT_CODE
         }
 
+        throw new VirtualImpl();
+    }
+
+    public final void setViewerId(int id) { // TODO: __INJECT_METHOD
+        viewerId = id;
+    }
+
+    private final void connect(int i) {
+        throw new VirtualImpl();
+    }
+
+    public final void disconnect(ChannelInfo channelInfo) {
         throw new VirtualImpl();
     }
 

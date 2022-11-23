@@ -111,4 +111,16 @@
     <string name="orange_settings_check_update">Zkontrolovat aktualizace</string>
     <string name="orange_itz_global_emotes">Globální Homies emoty</string>
     <string name="orange_itz_channel_emotes">Homies emoty tohoto kanálu</string>
+    <string name="orange_settings_okhttp_logging">OkHttp protokolování</string>
+    <string name="orange_settings_info_dev">Hlavní vývojář</string>
+    <string name="orange_settings_info_tg">Telegram kanál</string>
+    <string name="orange_settings_info_discord">Discord server</string>
+    <string name="orange_settings_info_itsfadixx">Vývojářský asistent</string>
+    <string name="orange_settings_bypass_chat_ban">Obejít ban v chatu</string>
+    <string name="orange_settings_bypass_chat_ban_desc">Připojí se anonymně k chatu, když jste zabanováni. Nemůžete posílat zprávy, získávat/utrácet věrnostní body.</string>
+    <string name="orange_settings_hide_chat_header">Skrýt záhlaví chatu</string>
+    <string name="orange_settings_hide_recommendation_section">Skrýt «Doporučené Streamy»</string>
+    <string name="orange_settings_hide_resume_watching_section">Skrýt «Nedávná Sledování»</string>
+    <string name="orange_settings_hide_offline_channel_section">Skrýt \"Offline Kanály\"</string>
+    <string name="orange_settings_hide_game_section">Skrýt «Sledované Hry»</string>
 </resources>

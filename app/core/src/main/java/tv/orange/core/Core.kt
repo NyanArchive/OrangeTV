@@ -7,6 +7,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.*
 import android.widget.Toast
+import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.Flag.Companion.asVariant
+import tv.orange.core.models.flag.variants.PinnedMessageStrategy
 import tv.orange.core.models.lifecycle.LifecycleAware
 import tv.orange.core.models.lifecycle.LifecycleController
 import tv.orange.models.AutoInitialize
@@ -15,6 +18,9 @@ import tv.orange.models.abc.Feature
 import tv.orange.models.abc.TCPProvider
 import tv.orange.models.abc.TwitchComponentProvider
 import tv.twitch.android.app.core.ApplicationContext
+import tv.twitch.android.shared.chat.network.creatorpinnedchatmessage.model.CreatorPinnedChatMessageChannelModel
+import tv.twitch.android.shared.chat.network.creatorpinnedchatmessage.model.CreatorPinnedChatMessageMessageModel
+import tv.twitch.android.util.CoreDateUtil
 import javax.inject.Inject
 import kotlin.system.exitProcess
 
@@ -117,6 +123,29 @@ class Core @Inject constructor(
         @JvmStatic
         fun <T : Feature> destroyFeature(clazz: Class<T>) {
             getBridge().destroyFeature(clazz)
+        }
+
+        @JvmStatic
+        fun isPinnedChatMessageEnabled(): Boolean {
+            return Flag.PINNED_MESSAGE.asVariant<PinnedMessageStrategy>() != PinnedMessageStrategy.Disabled
+        }
+
+        @JvmStatic
+        fun hookUnpinnedMS(timeMessageUnpinnedMS: Long?): Long? {
+            return when (Flag.PINNED_MESSAGE.asVariant<PinnedMessageStrategy>()) {
+                PinnedMessageStrategy.Disabled,
+                PinnedMessageStrategy.Default -> timeMessageUnpinnedMS
+                PinnedMessageStrategy.SEC30 -> {
+                    val calc = CoreDateUtil().currentTimeInMillis + 30 * 1000
+                    timeMessageUnpinnedMS?.let { ms ->
+                        if (ms - calc <= 0) {
+                            ms
+                        } else {
+                            calc
+                        }
+                    } ?: calc
+                }
+            }
         }
     }
 

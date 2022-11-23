@@ -2,6 +2,7 @@ package tv.orange.features.api.component.data.api
 
 import io.reactivex.Completable
 import io.reactivex.Single
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 import tv.orange.models.retrofit.nop.DonationsData
@@ -16,6 +17,9 @@ interface NopApi {
 
     @GET("/orange/update")
     fun update(): Single<OrangeUpdateData>
+
+    @GET("/orange/vodhunter")
+    fun vodhunter(@Query("vod_id") vodId: Int): Single<Response<String>>
 
     @GET("/orange/ping")
     fun ping(

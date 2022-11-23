@@ -3,6 +3,7 @@ package tv.orange.features.api.component.data.source
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
+import retrofit2.Response
 import tv.orange.features.api.component.data.api.NopApi
 import tv.orange.features.api.component.data.mapper.NopApiMapper
 import tv.orange.models.data.badges.BadgeSet
@@ -27,5 +28,9 @@ class NopApiDataSource @Inject constructor(
 
     fun getOrangeUpdate(): Single<OrangeUpdateData> {
         return nopApi.update()
+    }
+
+    fun getVodHunterPlaylist(vodId: Int): Single<Response<String>> {
+        return nopApi.vodhunter(vodId = vodId)
     }
 }

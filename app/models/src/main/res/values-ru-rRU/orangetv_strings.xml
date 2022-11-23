@@ -4,6 +4,7 @@
     <string name="orange_settings_bttv_emotes">Смайлики BTTV</string>
     <string name="orange_settings_ffz_emotes">Смайлики FFZ</string>
     <string name="orange_settings_stv_emotes">Смайлики 7TV</string>
+    <string name="orange_settings_itz_emotes">Смайлики Homies</string>
     <string name="orange_settings_ffz_badges">Значки FFZ</string>
     <string name="orange_settings_stv_badges">Значки 7TV</string>
     <string name="orange_settings_che_badges">Значки Homies</string>
@@ -35,7 +36,11 @@
     <string name="orange_emotecard_ffz_global">Глобальный смайлик FFZ</string>
     <string name="orange_emotecard_stv_global">Глобальный смайлик 7TV</string>
     <string name="orange_emotecard_bttv_global">Глобальный смайлик BTTV</string>
+    <string name="orange_emotecard_itz_channel">Смайлики канала Homies</string>
+    <string name="orange_emotecard_itz_global">Глобальные смайлики Homies</string>
+    <string name="orange_chat_settings_preferences_subtitle">PurpleTV</string>
     <string name="orange_chat_settings_refresh">Обновить</string>
+    <string name="orange_timer_title">Таймер PurpleTV</string>
     <string name="orange_timer_cancel">Отменить</string>
     <string name="orange_mod_logs">Просмотр логов</string>
     <string name="orange_seeker_header_text">Синхронизация чата</string>
@@ -47,11 +52,12 @@
     <string name="orange_bottom_navbar_position_default">По умолчанию</string>
     <string name="orange_bottom_navbar_position_top">Сверху</string>
     <string name="orange_bottom_navbar_position_hidden">Скрыть полностью</string>
-    <string name="orange_settings_followed_full_cards">Включить крупные превью трансляций</string>
+    <string name="orange_settings_followed_full_cards">Крупные превью трансляций</string>
     <string name="orange_settings_disable_hype_train">Отключить Хайповоз</string>
     <string name="orange_settings_hide_discover_tab">Скрыть вкладку «Поиск»</string>
     <string name="orange_restart_app">Перезапустить</string>
     <string name="orange_restart_app_title">Обновить и перезапустить приложение?</string>
+    <string name="orange_settings_title">Настройки PurpleTV</string>
     <string name="orange_settings_chat_font_size">Размер шрифта в чате</string>
     <string name="orange_settings_landscape_chat_size">Ширина чата в горизонтальной ориентации</string>
     <string name="orange_settings_forward_seek">Шаг перемотки вперёд</string>
@@ -60,7 +66,7 @@
     <string name="orange_settings_vibrate_on_mention">Вибрация при упоминании</string>
     <string name="orange_settings_vibration_duration">Продолжительность вибрации</string>
     <string name="orange_settings_hide_top_chat_panel_vods">Скрыть верхнюю панель чата в записях</string>
-    <string name="orange_settings_pronouns">Включить поддержку Pronouns</string>
+    <string name="orange_settings_pronouns">Интегрировать Pronouns в чат</string>
     <string name="orange_settings_auto_hide_message_input">Скрыть строку ввода в горизонтальной ориентации</string>
     <string name="orange_settings_landscape_chat_opacity">Прозрачность чата в горизонтальной ориентации</string>
     <string name="orange_chapters_unknown">Временные метки в чате</string>
@@ -81,6 +87,44 @@
     <string name="orange_settings_menu_ota">Обновление</string>
     <string name="orange_settings_menu_info">Информация</string>
     <string name="orange_emote_picker_fav_emotes">Избранные смайлики</string>
+    <string name="orange_chat_user_dialog_fragment_view_local_logs">Просмотр истории сообщений пользователя</string>
+    <string name="orange_settings_local_logs">Просмотр истории сообщений</string>
     <string name="orange_local_logs_0">Отключить</string>
     <string name="orange_settings_menu_highlighter">Выделение сообщений</string>
+    <string name="cpv_default_title">Выберите цвет</string>
+    <string name="cpv_presets">Шаблоны</string>
+    <string name="cpv_custom">Настроить</string>
+    <string name="cpv_select">Готово</string>
+    <string name="cpv_transparency">Прозрачность</string>
+    <string name="orange_settings_clipfinity">Clipfinity</string>
+    <string name="orange_updater_ds">Размер файла: %s</string>
+    <string name="orange_updater_ds2">%1$s/%2$s</string>
+    <string name="orange_updater_ds3">%s\%%</string>
+    <string name="orange_updater_error_msg">Ошибка: %s</string>
+    <string name="orange_updater_msg1">Доступно обновление PurpleTV</string>
+    <string name="orange_app_name">PurpleTV</string>
+    <string name="orange_settings_updater_channel">Канал обновлений</string>
+    <string name="orange_updater_release">Релиз</string>
+    <string name="orange_updater_beta">Бета</string>
+    <string name="orange_updater_dev">Альфа</string>
+    <string name="orange_updater_disabled">Отключить поиск обновлений</string>
+    <string name="orange_settings_check_update">Проверить наличие обновлений</string>
+    <string name="orange_itz_global_emotes">Глобальные смайлики Homies</string>
+    <string name="orange_itz_channel_emotes">Смайлики канала Homies</string>
+    <string name="orange_settings_okhttp_logging">Логирование OkHttp</string>
+    <string name="orange_settings_info_dev">Босс качалки</string>
+    <string name="orange_settings_info_tg">Обсудить приложение в Telegram</string>
+    <string name="orange_settings_info_discord">Обсудить приложение в Discord</string>
+    <string name="orange_settings_info_itsfadixx">Подельник</string>
+    <string name="orange_settings_vodhunter">Доступ к записям «только для подписчиков»</string>
+    <string name="orange_settings_vodhunter_desc">Я не вижу записи «только для подписчиков»</string>
+    <string name="orange_settings_bypass_chat_ban">Обойти блокировку в чате</string>
+    <string name="orange_settings_bypass_chat_ban_desc">Анонимный вход в чат.
+Нельзя писать сообщения.
+Нельзя получать/тратить баллы канала.</string>
+    <string name="orange_settings_hide_chat_header">Скрыть содержимое заголовка чата</string>
+    <string name="orange_settings_hide_recommendation_section">Скрыть блок «Рекомендуемые каналы»</string>
+    <string name="orange_settings_hide_resume_watching_section">Скрыть блок «Продолжить просмотр»</string>
+    <string name="orange_settings_hide_offline_channel_section">Скрыть блок «Неактивные каналы»</string>
+    <string name="orange_settings_hide_game_section">Скрыть блок «Отслеживаемые категории»</string>
 </resources>

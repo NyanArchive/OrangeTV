@@ -111,4 +111,18 @@
     <string name="orange_settings_check_update">Buscar atualizações</string>
     <string name="orange_itz_global_emotes">Emotes Globais da Homies</string>
     <string name="orange_itz_channel_emotes">Emotes de Canal da Homies</string>
+    <string name="orange_settings_okhttp_logging">Acesso por OkHttp</string>
+    <string name="orange_settings_info_dev">Desenvolvedor principal</string>
+    <string name="orange_settings_info_tg">Bate-papo no Telegram</string>
+    <string name="orange_settings_info_discord">Servidor do Discord</string>
+    <string name="orange_settings_info_itsfadixx">Assistente de Desenvolvimento</string>
+    <string name="orange_settings_vodhunter">VODHunter</string>
+    <string name="orange_settings_vodhunter_desc">Vejo VODs Mortos</string>
+    <string name="orange_settings_bypass_chat_ban">Contornar banimento de chat</string>
+    <string name="orange_settings_bypass_chat_ban_desc">Entra em anônimo no chat se estiver banido. Você não pode enviar mensagens, receber/gastar pontos do canal.</string>
+    <string name="orange_settings_hide_chat_header">Ocultar cabeçalho do chat</string>
+    <string name="orange_settings_hide_recommendation_section">Ocultar «Canais recomendados para você»</string>
+    <string name="orange_settings_hide_resume_watching_section">Ocultar «Continuar assistindo»</string>
+    <string name="orange_settings_hide_offline_channel_section">Ocultar «Seus canais off-line»</string>
+    <string name="orange_settings_hide_game_section">Ocultar «Categorias seguidas»</string>
 </resources>

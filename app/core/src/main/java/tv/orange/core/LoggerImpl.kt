@@ -166,7 +166,7 @@ object LoggerImpl : Logger {
         messageText: String?,
         thread: Thread = Thread.currentThread(),
         includeStacktrace: Boolean = true,
-        dropStackElements: Int = 4,
+        dropStackElements: Int = 5,
         takeStackElements: Int = 3
     ): String {
         return StringBuilder().apply {

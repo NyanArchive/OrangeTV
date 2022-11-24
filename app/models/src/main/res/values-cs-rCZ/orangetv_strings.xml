@@ -123,4 +123,6 @@
     <string name="orange_settings_hide_resume_watching_section">Skrýt «Nedávná Sledování»</string>
     <string name="orange_settings_hide_offline_channel_section">Skrýt \"Offline Kanály\"</string>
     <string name="orange_settings_hide_game_section">Skrýt «Sledované Hry»</string>
+    <string name="orange_settings_brightness_gesture">Ovládání jasu gestem</string>
+    <string name="orange_settings_volume_gesture">Ovládání hlasitosti gestem</string>
 </resources>

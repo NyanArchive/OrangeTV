@@ -125,4 +125,8 @@
     <string name="orange_settings_hide_resume_watching_section">Ocultar «Continuar assistindo»</string>
     <string name="orange_settings_hide_offline_channel_section">Ocultar «Seus canais off-line»</string>
     <string name="orange_settings_hide_game_section">Ocultar «Categorias seguidas»</string>
+    <string name="orange_settings_pinned_message">Mensagens fixadas</string>
+    <string name="orange_pinned_message_default">Padrão</string>
+    <string name="orange_pinned_message_disabled">Desativado</string>
+    <string name="orange_pinned_message_sec30">30 seg.</string>
 </resources>

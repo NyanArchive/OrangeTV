@@ -129,4 +129,6 @@
     <string name="orange_pinned_message_default">Por defecto</string>
     <string name="orange_pinned_message_disabled">Deshabilitado</string>
     <string name="orange_pinned_message_sec30">30 seg.</string>
+    <string name="orange_settings_brightness_gesture">Control de brillo gestual</string>
+    <string name="orange_settings_volume_gesture">Control de volumen gestual</string>
 </resources>

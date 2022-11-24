@@ -125,4 +125,10 @@
     <string name="orange_settings_hide_resume_watching_section">Απόκρυψη «Πρόσφατης Παρακολούθησης»</string>
     <string name="orange_settings_hide_offline_channel_section">Απόκρυψη «Καναλιών Εκτός Σύνδεσης»</string>
     <string name="orange_settings_hide_game_section">Απόκρυψη «Ακολουθούμενων Παιχνιδιών»</string>
+    <string name="orange_settings_pinned_message">Καρφιτσωμένα μηνύματα</string>
+    <string name="orange_pinned_message_default">Προεπιλογή</string>
+    <string name="orange_pinned_message_disabled">Απενεργοποιημένο</string>
+    <string name="orange_pinned_message_sec30">30 δευτ.</string>
+    <string name="orange_settings_brightness_gesture">Έλεγχος χειρονομίας φωτεινότητας</string>
+    <string name="orange_settings_volume_gesture">Έλεγχος χειρονομίας έντασης ήχου</string>
 </resources>

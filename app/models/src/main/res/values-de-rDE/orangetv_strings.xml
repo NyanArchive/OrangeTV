@@ -129,4 +129,6 @@
     <string name="orange_pinned_message_default">Standard</string>
     <string name="orange_pinned_message_disabled">Deaktiviert</string>
     <string name="orange_pinned_message_sec30">30 Sekunden</string>
+    <string name="orange_settings_brightness_gesture">Helligkeit Gestensteuerung</string>
+    <string name="orange_settings_volume_gesture">Lautstärke Gestensteuerung</string>
 </resources>

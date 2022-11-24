@@ -1,0 +1,31 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/chat/creatorpinnedchatmessage/presenters/CreatorPinnedChatMessagePresenter.smali b/smali_classes6/tv/twitch/android/shared/chat/creatorpinnedchatmessage/presenters/CreatorPinnedChatMessagePresenter.smali
+--- a/smali_classes6/tv/twitch/android/shared/chat/creatorpinnedchatmessage/presenters/CreatorPinnedChatMessagePresenter.smali
++++ b/smali_classes6/tv/twitch/android/shared/chat/creatorpinnedchatmessage/presenters/CreatorPinnedChatMessagePresenter.smali
+@@ -1390,14 +1390,23 @@
+ 
+ # virtual methods
+ .method public onActive()V
+-    .locals 0
++    .registers 2
++
++    .line 11
++    invoke-static {}, Ltv/orange/core/Core;->isPinnedChatMessageEnabled()Z
++
++    move-result v0
++
++    if-eqz v0, :cond_c
+ 
+-    .line 245
+-    invoke-super {p0}, Ltv/twitch/android/core/mvp/presenter/BasePresenter;->onActive()V
++    .line 12
++    invoke-super {p0}, Ltv/twitch/android/core/mvp/presenter/RxPresenter;->onActive()V
+ 
+-    .line 246
++    .line 13
+     invoke-direct {p0}, Ltv/twitch/android/shared/chat/creatorpinnedchatmessage/presenters/CreatorPinnedChatMessagePresenter;->setupPinnedMessage()V
+ 
++    .line 15
++    :cond_c
+     return-void
+ .end method
+ 

@@ -3,6 +3,7 @@ package tv.orange.core.util
 import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
+import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -75,5 +76,18 @@ object ViewUtil {
 
     fun hide(vararg views: View) {
         views.forEach { it.changeVisibility(false) }
+    }
+
+    fun ViewGroup.isHit(rect: Rect, x: Int, y: Int): Boolean {
+        this.getHitRect(rect)
+        return rect.contains(x, y)
+    }
+
+    fun View.isVisible(): Boolean {
+        return this.visibility == View.VISIBLE
+    }
+
+    fun ViewGroup.getFirstChild(): View? {
+        return this.getChildAt(0)
     }
 }

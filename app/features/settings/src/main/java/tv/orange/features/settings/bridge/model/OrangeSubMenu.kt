@@ -12,7 +12,6 @@ enum class OrangeSubMenu(
     ThirdParty(
         destination = SettingsDestination.OrangeThirdParty,
         title = "orange_settings_menu_third_party",
-        desc = null,
         items = listOf(
             Flag.BTTV_EMOTES,
             Flag.FFZ_EMOTES,
@@ -30,7 +29,6 @@ enum class OrangeSubMenu(
     Chat(
         destination = SettingsDestination.OrangeChat,
         title = "orange_settings_menu_chat",
-        desc = null,
         items = listOf(
             Flag.CHAT_TIMESTAMPS,
             Flag.DISABLE_LINK_DISCLAIMER,
@@ -56,7 +54,6 @@ enum class OrangeSubMenu(
     Player(
         destination = SettingsDestination.OrangePlayer,
         title = "orange_settings_menu_player",
-        desc = null,
         items = listOf(
             Flag.DISABLE_FAST_BREAD,
             Flag.COMPACT_PLAYER_FOLLOW_VIEW,
@@ -69,12 +66,15 @@ enum class OrangeSubMenu(
     ),
     Gestures(
         destination = SettingsDestination.OrangeGestures,
-        title = "orange_settings_menu_gestures"
+        title = "orange_settings_menu_gestures",
+        items = listOf(
+            Flag.VOLUME_GESTURE,
+            Flag.BRIGHTNESS_GESTURE
+        )
     ),
     View(
         destination = SettingsDestination.OrangeView,
         title = "orange_settings_menu_view",
-        desc = null,
         items = listOf(
             Flag.CLIPFINITY,
             Flag.FOLLOWED_FULL_CARDS,
@@ -93,7 +93,6 @@ enum class OrangeSubMenu(
     Dev(
         destination = SettingsDestination.OrangeDev,
         title = "orange_settings_menu_dev",
-        desc = null,
         items = listOf(
             Flag.DEV_MODE,
             Flag.OKHTTP_LOGGING

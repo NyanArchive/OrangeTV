@@ -180,4 +180,8 @@
     <string name="orange_pinned_message_default">Default</string>
     <string name="orange_pinned_message_disabled">Disabled</string>
     <string name="orange_pinned_message_sec30">30 sec.</string>
+    <string name="orange_settings_brightness_gesture">Brightness gesture control</string>
+    <string name="orange_settings_brightness_gesture_desc" />
+    <string name="orange_settings_volume_gesture">Volume gesture control</string>
+    <string name="orange_settings_volume_gesture_desc" />
 </resources>

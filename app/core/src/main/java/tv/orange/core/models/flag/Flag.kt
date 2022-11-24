@@ -126,6 +126,16 @@ enum class Flag(
         "orange_settings_chat_history",
         BooleanValue(true)
     ),
+    BRIGHTNESS_GESTURE(
+        "brightness_gesture",
+        "orange_settings_brightness_gesture",
+        BooleanValue(false)
+    ),
+    VOLUME_GESTURE(
+        "volume_gesture",
+        "orange_settings_volume_gesture",
+        BooleanValue(false)
+    ),
     DISABLE_STICKY_HEADERS_EP(
         "disable_sticky_headers_ep",
         "orange_settings_disable_sticky_headers_ep",

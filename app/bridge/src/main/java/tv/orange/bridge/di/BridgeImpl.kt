@@ -16,6 +16,7 @@ import tv.orange.features.refreshstream.RefreshStream
 import tv.orange.features.settings.OrangeSettings
 import tv.orange.features.spam.Spam
 import tv.orange.features.stv.StvAvatars
+import tv.orange.features.swipper.Swipper
 import tv.orange.features.timer.SleepTimer
 import tv.orange.features.tracking.Tracking
 import tv.orange.features.ui.UI
@@ -93,6 +94,7 @@ class BridgeImpl private constructor() : Bridge {
         featureFactoryMap[Tracking::class.java] = { component.trackingProvider }
         featureFactoryMap[Updater::class.java] = { component.updaterProvider }
         featureFactoryMap[Vodhunter::class.java] = { component.vodhunterProvider }
+        featureFactoryMap[Swipper::class.java] = { component.vodhunterProvider }
     }
 
     fun initialize(context: Context) {

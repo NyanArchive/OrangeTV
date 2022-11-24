@@ -12,14 +12,15 @@ import tv.orange.features.chapters.VodChapters
 import tv.orange.features.chat.ChatHookProvider
 import tv.orange.features.chathistory.ChatHistory
 import tv.orange.features.logs.ChatLogs
-import tv.orange.features.updater.Updater
 import tv.orange.features.refreshstream.RefreshStream
 import tv.orange.features.settings.OrangeSettings
 import tv.orange.features.spam.Spam
 import tv.orange.features.stv.StvAvatars
+import tv.orange.features.swipper.Swipper
 import tv.orange.features.timer.SleepTimer
 import tv.orange.features.tracking.Tracking
 import tv.orange.features.ui.UI
+import tv.orange.features.updater.Updater
 import tv.orange.features.usersearch.UserSearch
 import tv.orange.features.vodhunter.Vodhunter
 import tv.orange.features.vodsync.VodSync
@@ -45,6 +46,7 @@ interface BridgeComponent {
     val trackingProvider: Provider<Tracking>
     val updaterProvider: Provider<Updater>
     val vodhunterProvider: Provider<Vodhunter>
+    val swipperProvider: Provider<Swipper>
 
     val preferenceManager: Provider<PreferenceManager>
     val core: Provider<Core>

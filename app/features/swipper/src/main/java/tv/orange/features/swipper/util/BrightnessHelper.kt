@@ -4,13 +4,15 @@ import android.app.Activity
 import kotlin.math.max
 
 object BrightnessHelper {
-    fun getWindowBrightness(context: Activity): Int {
-        return max((context.window.attributes.screenBrightness * 100).toInt(), 0)
+    fun getWindowBrightness(activity: Activity): Float {
+        return max(activity.window.attributes.screenBrightness, 0f)
     }
 
-    fun setWindowBrightness(context: Activity, value: Int) {
-        context.window.attributes = context.window.attributes.apply {
-            screenBrightness = max(0.01f, value.toFloat().div(100))
+    fun setWindowBrightness(activity: Activity, value: Float) {
+        activity.window.apply {
+            attributes = attributes.apply {
+                screenBrightness = max(0.01f, value)
+            }
         }
     }
 }

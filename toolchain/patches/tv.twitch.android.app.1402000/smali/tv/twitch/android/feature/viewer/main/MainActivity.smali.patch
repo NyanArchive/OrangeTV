@@ -14,18 +14,3 @@ diff --git a/smali_classes5/tv/twitch/android/feature/viewer/main/MainActivity.s
      .line 304
      sget p1, Ltv/twitch/android/feature/viewer/main/R$id;->main_content_coordinator_layout:I
  
-@@ -1646,6 +1652,14 @@
-     .line 375
-     invoke-virtual {p1, v0}, Lio/reactivex/disposables/CompositeDisposable;->add(Lio/reactivex/disposables/Disposable;)Z
- 
-+    invoke-static {}, Ltv/orange/features/updater/Updater;->get()Ltv/orange/features/updater/Updater;
-+
-+    move-result-object v0
-+
-+    const/4 v1, 0x1
-+
-+    invoke-virtual {v0, p0, v1}, Ltv/orange/features/updater/Updater;->checkUpdates(Landroid/content/Context;Z)V
-+
-     .line 381
-     invoke-static {}, Ltv/twitch/android/util/TraceUtil;->endSection()V
- 

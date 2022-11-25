@@ -16,21 +16,24 @@ import tv.orange.features.swipper.util.BrightnessHelper.setWindowBrightness
 import tv.orange.features.swipper.view.SwipperOverlay
 import kotlin.math.*
 
-class PlayerWrapperDelegate(private val wrapper: PlayerWrapper, private val context: Activity) {
-    private val overlay = SwipperOverlay(context = context)
-    private val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+class PlayerWrapperDelegate(
+    private val wrapper: PlayerWrapper
+) {
+    private val context = wrapper.context
     private val handler = Handler(context.mainLooper)
-    private val mTouchSlop = ViewConfiguration.get(context).scaledTouchSlop * 2
-    private val mPaddingDeviceIgnore: Int =
-        (PADDING_DEFAULT_IGNORE * context.resources.displayMetrics.density).roundToInt()
+
+    private val overlay = SwipperOverlay(context = context)
+
+    private val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+
+    private val touchSlop = ViewConfiguration.get(context).scaledTouchSlop * 2
+    private val paddingDeviceIgnore: Int = calcPaddingDeviceIgnore(context = context)
 
     private var progressHideTask: Runnable? = null
 
     private var inBrightnessArea = false
-    private var oldVolume = 0
-    private var oldBrightness = 0
-    private var isVolumeSwipeEnabled = false
-    private var isBrightnessSwipeEnabled = false
+    private var currentVolume = 0
+    private var currentBrightness = 0
     private var initTouchPosX = -1f
     private var initTouchPosY = -1f
     private var inScrollArea = false
@@ -38,7 +41,11 @@ class PlayerWrapperDelegate(private val wrapper: PlayerWrapper, private val cont
 
     private val hitRect = Rect()
 
-    fun setOverlay(viewGroup: ViewGroup) {
+    var isVolumeSwipeEnabled = false
+    var isBrightnessSwipeEnabled = false
+
+    fun setOverlayToPlayerContainer(viewGroup: ViewGroup) {
+        overlay.prepare()
         val relativeLayout = RelativeLayout(context).apply {
             gravity = Gravity.CENTER
             addView(this@PlayerWrapperDelegate.overlay)
@@ -50,27 +57,19 @@ class PlayerWrapperDelegate(private val wrapper: PlayerWrapper, private val cont
         viewGroup.addView(relativeLayout, overlayParams)
         overlay.maxVolume = systemMaxVolume
         overlay.setVolume(systemVolume)
-        overlay.setBrightness(getWindowBrightness(context))
+        overlay.setBrightness(getProcFromBrightness(brightness = getWindowBrightness(context as Activity)))
         overlay.visibility = View.VISIBLE
         overlay.invalidate()
         overlay.requestLayout()
     }
 
-    fun setVolumeEnabled(state: Boolean) {
-        isVolumeSwipeEnabled = state
-    }
-
-    fun setBrightnessEnabled(state: Boolean) {
-        isBrightnessSwipeEnabled = state
-    }
-
-    val systemMaxVolume: Int
+    private val systemMaxVolume: Int
         get() = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
-    var systemVolume: Int
+
+    private var systemVolume: Int
         get() = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
-        set(index) {
-            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, index, 0)
-        }
+        set(index) = audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, index, 0)
+
     private val overlayHeight: Int
         get() = overlay.height
 
@@ -88,20 +87,20 @@ class PlayerWrapperDelegate(private val wrapper: PlayerWrapper, private val cont
     }
 
     private fun updateVolumeProgress(delta: Float) {
-        val value = calculate(delta = delta, oldStep = oldVolume, max = maxVolume)
+        val value = calculate(delta = delta, oldStep = currentVolume, max = maxVolume)
         systemVolume = value
         overlay.setVolume(value = value)
         overlay.showVolume()
     }
 
     private fun updateBrightnessProgress(delta: Float) {
-        val value = calculate(delta = delta, oldStep = oldBrightness, max = maxBrightness)
-        setWindowBrightness(context = context, value = value)
+        val value = calculate(delta = delta, oldStep = currentBrightness, max = maxBrightness)
+        setWindowBrightness(activity = context as Activity, value = getBrightnessFromProc(value))
         overlay.setBrightness(value = value)
         overlay.showBrightness()
     }
 
-    private fun delayHideProgress() {
+    private fun clearProgressHideTask() {
         progressHideTask?.let {
             synchronized(handler) {
                 progressHideTask?.let {
@@ -110,6 +109,10 @@ class PlayerWrapperDelegate(private val wrapper: PlayerWrapper, private val cont
                 }
             }
         }
+    }
+
+    private fun delayHideProgress() {
+        clearProgressHideTask()
 
         progressHideTask = Runnable { hideProgress() }
         progressHideTask?.let {
@@ -118,14 +121,8 @@ class PlayerWrapperDelegate(private val wrapper: PlayerWrapper, private val cont
     }
 
     private fun hideProgress() {
-        progressHideTask?.let {
-            synchronized(handler) {
-                progressHideTask?.let {
-                    handler.removeCallbacks(it)
-                    progressHideTask = null
-                }
-            }
-        }
+        clearProgressHideTask()
+
         overlay.hideVolume()
         overlay.hideBrightness()
     }
@@ -140,8 +137,10 @@ class PlayerWrapperDelegate(private val wrapper: PlayerWrapper, private val cont
                 return false
             }
             MotionEvent.ACTION_DOWN -> {
-                oldBrightness = getWindowBrightness(context = context)
-                oldVolume = systemVolume
+                currentBrightness = getProcFromBrightness(
+                    brightness = getWindowBrightness(activity = context as Activity)
+                )
+                currentVolume = systemVolume
                 inBrightnessArea = event.x < overlay.width / 2.0f
                 initTouchPosX = event.x
                 initTouchPosY = event.y
@@ -189,7 +188,7 @@ class PlayerWrapperDelegate(private val wrapper: PlayerWrapper, private val cont
                     inScrollArea = false
                     return false
                 }
-                if (abs(initTouchPosY - motionEvent.y) > mTouchSlop) {
+                if (abs(initTouchPosY - motionEvent.y) > touchSlop) {
                     if (inBrightnessArea) {
                         if (!isBrightnessSwipeEnabled) return false
                     } else {
@@ -218,28 +217,31 @@ class PlayerWrapperDelegate(private val wrapper: PlayerWrapper, private val cont
 
         val debugPanel = wrapper.debugPanelContainer
         if (debugPanel.childCount > 0) {
-            val list = debugPanel.getView<ViewGroup>("video_debug_list")
-            if (list.isVisible() &&
-                list.isHit(rect = hitRect, x = initTouchPosX.toInt(), y = initTouchPosY.toInt())
+            val list = debugPanel.getView<ViewGroup>(VIDEO_DEBUG_LIST_ID)
+            if (list.isVisible() && list.isHit(
+                    rect = hitRect,
+                    x = initTouchPosX.toInt(),
+                    y = initTouchPosY.toInt()
+                )
             ) return false
         }
         return true
     }
 
     private fun checkArea(event: MotionEvent): Boolean {
-        if (initTouchPosY <= mPaddingDeviceIgnore) {
-            return false
-        }
-        val overlayBottomY = wrapper.playerOverlayContainer.let {
-            it.y + it.height
-        }
-        if (initTouchPosY >= overlayBottomY - mPaddingDeviceIgnore) {
+        if (initTouchPosY <= paddingDeviceIgnore) {
             return false
         }
         if (event.pointerCount > 1) {
             return false
         }
         if (context.resources.configuration.orientation != Configuration.ORIENTATION_LANDSCAPE) {
+            return false
+        }
+        val overlayBottomY = wrapper.playerOverlayContainer.let {
+            it.y + it.height
+        }
+        if (initTouchPosY >= overlayBottomY - paddingDeviceIgnore) {
             return false
         }
         return checkCollisions()
@@ -249,5 +251,18 @@ class PlayerWrapperDelegate(private val wrapper: PlayerWrapper, private val cont
         private const val PADDING_DEFAULT_IGNORE = 30
         private const val DELAY_TIMEOUT_MILLISECONDS = 500
         private const val GESTURE_SCALE_FACTORY = 0.7f
+        private const val VIDEO_DEBUG_LIST_ID = "video_debug_list"
+
+        private fun calcPaddingDeviceIgnore(context: Context): Int {
+            return (PADDING_DEFAULT_IGNORE * context.resources.displayMetrics.density).roundToInt()
+        }
+
+        private fun getProcFromBrightness(brightness: Float): Int {
+            return max(0, min(100, (brightness * 100).toInt()))
+        }
+
+        private fun getBrightnessFromProc(proc: Int): Float {
+            return min(1.0f, max(0.1f, proc.toFloat().div(100)))
+        }
     }
 }

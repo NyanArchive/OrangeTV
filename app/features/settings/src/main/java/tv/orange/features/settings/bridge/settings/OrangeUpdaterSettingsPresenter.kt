@@ -3,6 +3,7 @@ package tv.orange.features.settings.bridge.settings
 import androidx.fragment.app.FragmentActivity
 import tv.orange.core.ResourceManager
 import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.variants.UpdateChannel
 import tv.orange.features.settings.bridge.model.OrangeSubMenu
@@ -34,9 +35,7 @@ class OrangeUpdaterSettingsPresenter constructor(
                 null,
                 null, null, null, null
             ) {
-                if (Flag.UPDATER.asVariant<UpdateChannel>() != UpdateChannel.Disabled) {
-                    Updater.get().checkUpdates(activity, silent = false)
-                }
+                Updater.get().checkUpdates(activity)
             } as MenuModel
         )
     }

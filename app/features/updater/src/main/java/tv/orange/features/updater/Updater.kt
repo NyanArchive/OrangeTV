@@ -1,25 +1,35 @@
 package tv.orange.features.updater
 
 import android.content.Context
-import android.widget.Toast
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.subjects.BehaviorSubject
 import tv.orange.core.BuildConfigUtil
 import tv.orange.core.Core
 import tv.orange.core.LoggerImpl
+import tv.orange.core.ResourceManager
 import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.variants.UpdateChannel
-import tv.orange.features.api.component.repository.NopRepository
+import tv.orange.features.updater.component.data.model.UpdateData
+import tv.orange.features.updater.component.data.repository.UpdaterRepository
 import tv.orange.features.updater.data.view.UpdaterActivity
 import tv.orange.models.abc.Feature
-import tv.orange.models.retrofit.nop.UpdateChannelData
+import tv.twitch.android.core.mvp.rxutil.ISubscriptionHelper
+import tv.twitch.android.feature.update.UpdatePromptPresenter
+import tv.twitch.android.util.Optional
 import java.io.File
 import javax.inject.Inject
 
-class Updater @Inject constructor(val nopRepository: NopRepository) : Feature {
+class Updater @Inject constructor(
+    val resourceManager: ResourceManager,
+    val updaterRepository: UpdaterRepository
+) : Feature {
     private val disposables = CompositeDisposable()
+
+    private var updateData: Optional<UpdateData> = Optional.empty()
 
     companion object {
         @JvmStatic
@@ -61,78 +71,117 @@ class Updater @Inject constructor(val nopRepository: NopRepository) : Feature {
 
             fileOrDirectory.delete()
         }
-    }
 
-    private fun checkUpdates(context: Context, variant: UpdateChannel, silent: Boolean = true) {
-        disposables.add(
-            nopRepository.getUpdateData().subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe({ data ->
-                    when (variant) {
-                        UpdateChannel.Disabled -> null
-                        UpdateChannel.Release -> data.release
-                        UpdateChannel.Beta -> data.beta
-                        UpdateChannel.Dev -> data.dev
-                    }?.let { channel ->
-                        tryInstall(context = context, channel = channel, silent = silent)
-                    }
-                }, { th ->
-                    th.printStackTrace()
-                    Toast.makeText(
-                        context,
-                        "Updater::Error::${th.localizedMessage}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                })
+        @JvmStatic
+        val orangeAppUpdateAvailable: Int = ResourceManager.get().getStringId(
+            "orange_app_update_available"
+        )
+
+        @JvmStatic
+        val orangeAppUpdateAvailableCta: Int = ResourceManager.get().getStringId(
+            "orange_app_update_available_cta"
         )
     }
 
-    private fun tryInstall(context: Context, channel: UpdateChannelData, silent: Boolean = true) {
-        if (!channel.active) {
-            LoggerImpl.debug("DISABLED")
-            if (!silent) {
-                Core.toast("Updates disabled")
-            }
-            return
-        }
-        if ((channel.build ?: 0) <= BuildConfigUtil.buildConfig.number) {
-            if (!silent) {
-                Core.toast("You are using the latest version")
-            }
-            return
-        }
-
-        UpdaterActivity.startActivity(
-            context = context,
-            codename = channel.codename,
-            url = channel.apkUrl?.get(0)!!, // FIXME
-            logoUrl = channel.logoUrl,
-            build = channel.build,
-            changelog = channel.changelog
-        )
-    }
-
-    fun checkUpdates(context: Context, silent: Boolean = true) {
+    fun checkUpdates(context: Context) {
         clearCache(context = context)
         LoggerImpl.debug("called")
-        when (val variant = Flag.UPDATER.asVariant<UpdateChannel>()) {
+        when (Flag.UPDATER.asVariant<UpdateChannel>()) {
             UpdateChannel.Disabled -> {
                 LoggerImpl.debug("DISABLED")
+                Core.toast(resourceManager.getString("orange_updater_channel_disabled"))
+                return
             }
             else -> {
-                checkUpdates(context = context, variant = variant, silent = silent)
+                fetchDataAndCheck(context = context)
             }
         }
     }
 
-    private fun clearCache(context: Context) {
+    private fun fetchDataAndCheck(context: Context) {
+        disposables.add(
+            updaterRepository.observeUpdate()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ optionalData ->
+                    checkUpdateData(context, optionalData)
+                }, Throwable::printStackTrace)
+        )
+    }
+
+    private fun checkUpdateData(
+        context: Context,
+        optional: Optional<UpdateData>
+    ) {
+        if (!optional.isPresent) {
+            Core.toast(resourceManager.getString("orange_updater_not_found"))
+            return
+        }
+
+        optional.ifPresent { data ->
+            if (!needShowPrompt(optional)) {
+                Core.toast(resourceManager.getString("orange_updater_latest_version"))
+                return@ifPresent
+            }
+
+            UpdaterActivity.startActivity(context = context, data = data)
+        }
+    }
+
+    fun clearCache(context: Context) {
         getTempDir(context = context).deleteDir()
         getOtaDir(context = context).deleteDir()
     }
 
-    fun createUpdaterFragment(context: Context) {
-        checkUpdates(context)
-    }
-
     override fun onDestroyFeature() {}
     override fun onCreateFeature() {}
+
+    fun injectToUpdatePromptPresenter(
+        updatePromptPresenter: UpdatePromptPresenter,
+        listenerBehaviorSubject: BehaviorSubject<Optional<UpdatePromptPresenter.UpdatePromptPresenterListener>>
+    ) {
+        ISubscriptionHelper.DefaultImpls.`autoDispose$default`(
+            updatePromptPresenter,
+            updaterRepository.observeUpdate()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .flatMapObservable { updateData ->
+                    updatePromptPresenter.onActiveObserver().toObservable().switchMap { status ->
+                        listenerBehaviorSubject.map { listenerOptional ->
+                            Triple(updateData, status, listenerOptional)
+                        }
+                    }
+                }.subscribe({
+                    updateData = it.first
+                    if (it.second) {
+                        it.third.ifPresent { listener ->
+                            if (needShowPrompt(it.first)) {
+                                listener.updateDownloadedAndReadyToInstall()
+                            }
+                        }
+                    }
+                }, {
+                    it.printStackTrace()
+                    LoggerImpl.debug("ex: $it")
+                }),
+            null,
+            1,
+            null
+        )
+        updatePromptPresenter.onActiveObserver()
+    }
+
+    private fun needShowPrompt(first: Optional<UpdateData>): Boolean {
+        if (!first.isPresent) {
+            return false
+        }
+
+        return !(!Flag.DEV_MODE.asBoolean() && (first.get().build <= BuildConfigUtil.buildConfig.number))
+    }
+
+    fun installUpdate(context: Context) {
+        updateData.ifPresent { data ->
+            UpdaterActivity.startActivity(context = context, data = data)
+        }
+    }
 }

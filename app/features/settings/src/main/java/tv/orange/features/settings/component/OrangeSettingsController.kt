@@ -105,12 +105,6 @@ class OrangeSettingsController @Inject constructor(
     }
 
     override fun navigateToSettingFragment(settingsDestination: SettingsDestination, p1: Bundle?) {
-        if (settingsDestination == SettingsDestination.OrangeUpdater) {
-            LoggerImpl.debug("called")
-            Updater.get().createUpdaterFragment(activity)
-            return
-        }
-
         when (settingsDestination) {
             SettingsDestination.OrangeThirdParty -> OrangeThirdPartySettingsFragment()
             SettingsDestination.OrangeChat -> OrangeChatSettingsFragment()

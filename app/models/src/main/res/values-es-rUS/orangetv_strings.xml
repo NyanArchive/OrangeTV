@@ -39,7 +39,7 @@
     <string name="orange_emotecard_itz_channel">Emote de Homies del Canal</string>
     <string name="orange_emotecard_itz_global">Emote Global de Homies</string>
     <string name="orange_chat_settings_preferences_subtitle">PurpleTV</string>
-    <string name="orange_chat_settings_refresh">Actualizar</string>
+    <string name="orange_chat_settings_refresh">Recargar</string>
     <string name="orange_timer_title">Temporizador de PurpleTV</string>
     <string name="orange_timer_cancel">Cancelar</string>
     <string name="orange_mod_logs">Ver registros</string>
@@ -116,6 +116,8 @@
     <string name="orange_app_update_available_cta">¡Nueva versión de PurpleTV disponible! Pulsa aquí para instalar la actualización</string>
     <string name="orange_updater_not_found">Actualización no encontrada</string>
     <string name="orange_settings_check_update">Comprobar actualizaciones</string>
+    <string name="orange_settings_clear_update_cache">Borrar caché</string>
+    <string name="orange_updater_done">¡Listo!</string>
     <string name="orange_itz_global_emotes">Emotes Globales de Homies</string>
     <string name="orange_itz_channel_emotes">Emotes de Homies del Canal</string>
     <string name="orange_settings_okhttp_logging">Acceso de OkHttp</string>
@@ -138,4 +140,8 @@
     <string name="orange_pinned_message_sec30">30 seg.</string>
     <string name="orange_settings_brightness_gesture">Control de brillo por gestos</string>
     <string name="orange_settings_volume_gesture">Control de volumen por gestos</string>
+    <string name="orange_settings_disable_theatre_autoplay">Desactivar la reproducción automática</string>
+    <string name="orange_settings_disable_theatre_autoplay_desc">Desactivar la reproducción automática del siguiente vídeo</string>
+    <string name="orange_settings_show_timer_button">Mostrar botón de temporizador</string>
+    <string name="orange_settings_show_refresh_button">Mostrar botón de recargar</string>
 </resources>

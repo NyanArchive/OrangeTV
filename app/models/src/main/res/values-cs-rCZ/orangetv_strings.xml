@@ -108,7 +108,16 @@
     <string name="orange_updater_beta">Beta</string>
     <string name="orange_updater_dev">Dev</string>
     <string name="orange_updater_disabled">Vypnuto</string>
+    <string name="orange_updater_install_action">Instalovat</string>
+    <string name="orange_updater_update_action">Aktualizovat</string>
+    <string name="orange_updater_channel_disabled">Aktuální kanál aktualizací je zakázán</string>
+    <string name="orange_updater_latest_version">Používáš nejnovější verzi</string>
+    <string name="orange_app_update_available">K dispozici je nová aktualizace</string>
+    <string name="orange_app_update_available_cta">Je dostupná nová verze PurpleTV! Klepnutím nainstalujete aktualizaci</string>
+    <string name="orange_updater_not_found">Aktualizace nebyla nalezena</string>
     <string name="orange_settings_check_update">Zkontrolovat aktualizace</string>
+    <string name="orange_settings_clear_update_cache">Vymazat mezipaměť</string>
+    <string name="orange_updater_done">Hotovo!</string>
     <string name="orange_itz_global_emotes">Globální Homies emoty</string>
     <string name="orange_itz_channel_emotes">Homies emoty tohoto kanálu</string>
     <string name="orange_settings_okhttp_logging">OkHttp protokolování</string>
@@ -116,6 +125,8 @@
     <string name="orange_settings_info_tg">Telegram kanál</string>
     <string name="orange_settings_info_discord">Discord server</string>
     <string name="orange_settings_info_itsfadixx">Vývojářský asistent</string>
+    <string name="orange_settings_vodhunter">VODLovec</string>
+    <string name="orange_settings_vodhunter_desc">Vidím mrtvé VODS</string>
     <string name="orange_settings_bypass_chat_ban">Obejít ban v chatu</string>
     <string name="orange_settings_bypass_chat_ban_desc">Připojí se anonymně k chatu, když jste zabanováni. Nemůžete posílat zprávy, získávat/utrácet věrnostní body.</string>
     <string name="orange_settings_hide_chat_header">Skrýt záhlaví chatu</string>
@@ -123,6 +134,10 @@
     <string name="orange_settings_hide_resume_watching_section">Skrýt «Nedávná Sledování»</string>
     <string name="orange_settings_hide_offline_channel_section">Skrýt \"Offline Kanály\"</string>
     <string name="orange_settings_hide_game_section">Skrýt «Sledované Hry»</string>
+    <string name="orange_settings_pinned_message">Připnuté zprávy</string>
+    <string name="orange_pinned_message_default">Výchozí</string>
+    <string name="orange_pinned_message_disabled">Vypnuto</string>
+    <string name="orange_pinned_message_sec30">30 sek.</string>
     <string name="orange_settings_brightness_gesture">Ovládání jasu gestem</string>
     <string name="orange_settings_volume_gesture">Ovládání hlasitosti gestem</string>
 </resources>

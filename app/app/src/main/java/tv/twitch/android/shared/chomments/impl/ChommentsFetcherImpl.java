@@ -4,6 +4,7 @@ import java.util.List;
 
 import io.reactivex.Maybe;
 import tv.orange.core.Core;
+import tv.orange.features.chat.ChatHookProvider;
 import tv.orange.features.vodsync.VodSync;
 import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.models.channel.ChannelModel;
@@ -28,7 +29,7 @@ public class ChommentsFetcherImpl {
 
     public Maybe<List<ChommentModel>> fetchChommentsForTimestamp(String str, int i) {
         i = VodSync.get().hookChommentTimestamp(vodModel, i); // TODO: __INJECT_CODE
-        if (i < 0) { // TODO: __INJECT_CODE
+        if (i < 0 || ChatHookProvider.isChatKilled()) { // TODO: __INJECT_CODE
             return Maybe.empty();
         }
 

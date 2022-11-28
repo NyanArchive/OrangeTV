@@ -16,6 +16,7 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
 import tv.orange.core.Core
+import tv.orange.core.LoggerImpl
 import tv.orange.core.PreferenceManager
 import tv.orange.core.PreferenceManager.Companion.isDarkThemeEnabled
 import tv.orange.core.ResourceManager
@@ -414,6 +415,8 @@ class ChatHookProvider @Inject constructor(
         var fontSizeScaleFactory: Float = 0F
         var emoteSize: Emote.Size = Emote.Size.MEDIUM
 
+        private var killChat = false
+
         @JvmStatic
         fun get() = Core.getFeature(ChatHookProvider::class.java)
 
@@ -539,6 +542,10 @@ class ChatHookProvider @Inject constructor(
                 ret.markAsDeleted()
             }
         }
+
+        @JvmStatic
+        val isChatKilled
+            get() = killChat
     }
 
     override fun onDestroyFeature() {
@@ -749,5 +756,9 @@ class ChatHookProvider @Inject constructor(
                 )
             }
         } ?: pinnedMessage
+    }
+
+    fun switchKillChat() {
+        killChat = !killChat
     }
 }

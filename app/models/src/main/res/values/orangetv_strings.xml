@@ -199,4 +199,5 @@
     <string name="orange_settings_show_timer_button_desc" />
     <string name="orange_settings_show_refresh_button">Show refresh button</string>
     <string name="orange_settings_show_refresh_button_desc" />
+    <string name="orange_chat_kill_chat">Kill chat</string>
 </resources>

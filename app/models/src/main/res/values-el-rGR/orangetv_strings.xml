@@ -108,6 +108,13 @@
     <string name="orange_updater_beta">Beta</string>
     <string name="orange_updater_dev">Dev</string>
     <string name="orange_updater_disabled">Απενεργοποιημένο</string>
+    <string name="orange_updater_install_action">Εγκατάσταση</string>
+    <string name="orange_updater_update_action">Ενημέρωση</string>
+    <string name="orange_updater_channel_disabled">Το τρέχον κανάλι ενημέρωσης είναι απενεργοποιημένο</string>
+    <string name="orange_updater_latest_version">Χρησιμοποιείτε την τελευταία έκδοση</string>
+    <string name="orange_app_update_available">Νέα Διαθέσιμη Ενημέρωση</string>
+    <string name="orange_app_update_available_cta">Μια νέα έκδοση του PurpleTV είναι διαθέσιμη! Πατήστε εδώ για να εγκαταστήσετε την ενημέρωση</string>
+    <string name="orange_updater_not_found">Δεν βρέθηκε ενημέρωση</string>
     <string name="orange_settings_check_update">Έλεγχος ενημερώσεων</string>
     <string name="orange_itz_global_emotes">Παγκόσμια Homies Emotes</string>
     <string name="orange_itz_channel_emotes">Homies Emotes Καναλιού</string>

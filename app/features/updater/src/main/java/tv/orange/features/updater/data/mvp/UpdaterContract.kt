@@ -14,7 +14,7 @@ interface UpdaterContract {
         fun installApk(file: File)
         fun canInstallApk(): Boolean
         fun saveTextToClipboard(text: String)
-        fun clearCache()
+        fun clearTempCache()
 
         sealed class State {
             object Prepare : State()

@@ -25,7 +25,7 @@ public class MainActivity extends TwitchDaggerActivity {
 
         @Override
         public void installUpdate() { // TODO: __REPLACE_METHOD
-            Updater.get().installUpdate(MainActivity.this);
+            Updater.get().onBannerInstallUpdateClicked(MainActivity.this);
         }
     };
 

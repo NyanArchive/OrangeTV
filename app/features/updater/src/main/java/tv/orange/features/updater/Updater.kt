@@ -13,6 +13,8 @@ import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.variants.UpdateChannel
+import tv.orange.core.util.FileUtil.deleteDir
+import tv.orange.core.util.FileUtil.dirSize
 import tv.orange.features.updater.component.data.model.UpdateData
 import tv.orange.features.updater.component.data.repository.UpdaterRepository
 import tv.orange.features.updater.data.view.UpdaterActivity
@@ -32,6 +34,9 @@ class Updater @Inject constructor(
     private var updateData: Optional<UpdateData> = Optional.empty()
 
     companion object {
+        const val TEMP_OTA_DIR = "tmp_ota"
+        const val INSTALL_OTA_DIR = "install_ota"
+
         @JvmStatic
         fun get() = Core.getFeature(Updater::class.java)
 
@@ -41,7 +46,7 @@ class Updater @Inject constructor(
         }
 
         fun getTempDir(context: Context): File {
-            val tmp = File(context.cacheDir, UpdaterActivity.TEMP_OTA_DIR)
+            val tmp = File(context.cacheDir, TEMP_OTA_DIR)
             if (tmp.exists()) {
                 return tmp
             }
@@ -51,25 +56,13 @@ class Updater @Inject constructor(
         }
 
         fun getOtaDir(context: Context): File {
-            val ota = File(context.cacheDir, UpdaterActivity.INSTALL_OTA_DIR)
+            val ota = File(context.cacheDir, INSTALL_OTA_DIR)
             if (ota.exists()) {
                 return ota
             }
             ota.mkdir()
 
             return ota
-        }
-
-        fun File.deleteDir() {
-            deleteRecursive(this)
-        }
-
-        private fun deleteRecursive(fileOrDirectory: File) {
-            for (child in fileOrDirectory.listFiles() ?: emptyArray()) {
-                deleteRecursive(child)
-            }
-
-            fileOrDirectory.delete()
         }
 
         @JvmStatic
@@ -83,9 +76,15 @@ class Updater @Inject constructor(
         )
     }
 
-    fun checkUpdates(context: Context) {
-        clearCache(context = context)
-        LoggerImpl.debug("called")
+    fun onClearCacheClicked(context: Context) {
+        clearTempCache(context = context)
+        clearOtaDir(context = context)
+
+        Core.toast(resourceManager.getString("orange_updater_done"))
+    }
+
+    fun onCheckUpdateClicked(context: Context) {
+        clearTempCache(context = context)
         when (Flag.UPDATER.asVariant<UpdateChannel>()) {
             UpdateChannel.Disabled -> {
                 LoggerImpl.debug("DISABLED")
@@ -93,12 +92,18 @@ class Updater @Inject constructor(
                 return
             }
             else -> {
-                fetchDataAndCheck(context = context)
+                maybeStartActivity(context = context)
             }
         }
     }
 
-    private fun fetchDataAndCheck(context: Context) {
+    fun onBannerInstallUpdateClicked(context: Context) {
+        updateData.ifPresent { data ->
+            UpdaterActivity.startActivity(context = context, data = data)
+        }
+    }
+
+    private fun maybeStartActivity(context: Context) {
         disposables.add(
             updaterRepository.observeUpdate()
                 .subscribeOn(Schedulers.io())
@@ -119,7 +124,7 @@ class Updater @Inject constructor(
         }
 
         optional.ifPresent { data ->
-            if (!needShowPrompt(optional)) {
+            if (!shouldShowPrompt(optional)) {
                 Core.toast(resourceManager.getString("orange_updater_latest_version"))
                 return@ifPresent
             }
@@ -128,8 +133,11 @@ class Updater @Inject constructor(
         }
     }
 
-    fun clearCache(context: Context) {
+    fun clearTempCache(context: Context) {
         getTempDir(context = context).deleteDir()
+    }
+
+    fun clearOtaDir(context: Context) {
         getOtaDir(context = context).deleteDir()
     }
 
@@ -155,7 +163,7 @@ class Updater @Inject constructor(
                     updateData = it.first
                     if (it.second) {
                         it.third.ifPresent { listener ->
-                            if (needShowPrompt(it.first)) {
+                            if (shouldShowPrompt(it.first)) {
                                 listener.updateDownloadedAndReadyToInstall()
                             }
                         }
@@ -171,7 +179,7 @@ class Updater @Inject constructor(
         updatePromptPresenter.onActiveObserver()
     }
 
-    private fun needShowPrompt(first: Optional<UpdateData>): Boolean {
+    private fun shouldShowPrompt(first: Optional<UpdateData>): Boolean {
         if (!first.isPresent) {
             return false
         }
@@ -179,9 +187,7 @@ class Updater @Inject constructor(
         return !(!Flag.DEV_MODE.asBoolean() && (first.get().build <= BuildConfigUtil.buildConfig.number))
     }
 
-    fun installUpdate(context: Context) {
-        updateData.ifPresent { data ->
-            UpdaterActivity.startActivity(context = context, data = data)
-        }
+    fun calcCacheSize(context: Context): Long {
+        return getOtaDir(context).dirSize() + getTempDir(context).dirSize()
     }
 }

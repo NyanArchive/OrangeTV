@@ -108,6 +108,13 @@
     <string name="orange_updater_beta">Beta</string>
     <string name="orange_updater_dev">Desarrollador</string>
     <string name="orange_updater_disabled">Desactivado</string>
+    <string name="orange_updater_install_action">Instalar</string>
+    <string name="orange_updater_update_action">Actualizar</string>
+    <string name="orange_updater_channel_disabled">El canal de actualización actual está desactivado</string>
+    <string name="orange_updater_latest_version">Estás usando la versión más reciente</string>
+    <string name="orange_app_update_available">Nueva Actualización Disponible</string>
+    <string name="orange_app_update_available_cta">¡Nueva versión de PurpleTV disponible! Pulsa aquí para instalar la actualización</string>
+    <string name="orange_updater_not_found">Actualización no encontrada</string>
     <string name="orange_settings_check_update">Comprobar actualizaciones</string>
     <string name="orange_itz_global_emotes">Emotes Globales de Homies</string>
     <string name="orange_itz_channel_emotes">Emotes de Homies del Canal</string>

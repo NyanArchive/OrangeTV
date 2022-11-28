@@ -156,6 +156,8 @@
     <string name="orange_app_update_available_cta">A new version of the PurpleTV is available! Tap here to install the update</string>
     <string name="orange_updater_not_found">Update not found</string>
     <string name="orange_settings_check_update">Check updates</string>
+    <string name="orange_settings_clear_update_cache">Clear cache</string>
+    <string name="orange_updater_done">Done!</string>
     <string name="orange_itz_global_emotes">Homies Global Emotes</string>
     <string name="orange_itz_channel_emotes">Homies Channel Emotes</string>
     <string name="orange_settings_okhttp_logging">OkHttp Logging</string>

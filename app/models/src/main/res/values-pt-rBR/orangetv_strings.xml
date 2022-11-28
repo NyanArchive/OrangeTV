@@ -108,6 +108,13 @@
     <string name="orange_updater_beta">Beta</string>
     <string name="orange_updater_dev">Desenvolvedor</string>
     <string name="orange_updater_disabled">Desativado</string>
+    <string name="orange_updater_install_action">Instalar</string>
+    <string name="orange_updater_update_action">Atualizar</string>
+    <string name="orange_updater_channel_disabled">Canal de atualização atual está desativado</string>
+    <string name="orange_updater_latest_version">Você usa a última versão</string>
+    <string name="orange_app_update_available">Nova atualização disponível</string>
+    <string name="orange_app_update_available_cta">Há disponível uma versão nova de PurpleTV! Toque aqui para instalá-la</string>
+    <string name="orange_updater_not_found">Atualização não encontrada</string>
     <string name="orange_settings_check_update">Buscar atualizações</string>
     <string name="orange_itz_global_emotes">Emotes Globais da Homies</string>
     <string name="orange_itz_channel_emotes">Emotes de Canal da Homies</string>
@@ -129,4 +136,6 @@
     <string name="orange_pinned_message_default">Padrão</string>
     <string name="orange_pinned_message_disabled">Desativado</string>
     <string name="orange_pinned_message_sec30">30 seg.</string>
+    <string name="orange_settings_brightness_gesture">Controlar brilho por gesto</string>
+    <string name="orange_settings_volume_gesture">Controlar volume por gesto</string>
 </resources>

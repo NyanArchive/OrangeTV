@@ -129,4 +129,6 @@
     <string name="orange_pinned_message_default">Predvolené</string>
     <string name="orange_pinned_message_disabled">Deaktivované</string>
     <string name="orange_pinned_message_sec30">30 sekúnd</string>
+    <string name="orange_settings_brightness_gesture">Ovládanie jasu gestami</string>
+    <string name="orange_settings_volume_gesture">Ovládanie hlasitosti gestami</string>
 </resources>

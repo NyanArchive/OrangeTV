@@ -114,9 +114,6 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
     companion object {
         const val EXTRA_UPDATE_DATA = "EXTRA_UPDATE_DATA"
 
-        const val TEMP_OTA_DIR = "tmp_ota"
-        const val INSTALL_OTA_DIR = "install_ota"
-
         private const val REQUEST_INSTALL_ACTIVITY_CODE = 1
 
         fun startActivity(context: Context, data: UpdateData) {
@@ -273,8 +270,8 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
         (getSystemService(CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(clip)
     }
 
-    override fun clearCache() {
-        Updater.get().clearCache(this)
+    override fun clearTempCache() {
+        Updater.get().clearTempCache(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

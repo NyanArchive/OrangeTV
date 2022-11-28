@@ -12,4 +12,25 @@ object FileUtil {
             }
         }
     }
+
+    fun File.deleteDir() {
+        deleteRecursive(this)
+    }
+
+    fun File.dirSize(): Long {
+        var size = 0L
+        for (child in this.listFiles() ?: emptyArray()) {
+            size += child.dirSize()
+        }
+
+        return size
+    }
+
+    private fun deleteRecursive(fileOrDirectory: File) {
+        for (child in fileOrDirectory.listFiles() ?: emptyArray()) {
+            deleteRecursive(child)
+        }
+
+        fileOrDirectory.delete()
+    }
 }

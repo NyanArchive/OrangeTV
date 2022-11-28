@@ -7,14 +7,10 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import tv.orange.core.LoggerImpl
-import tv.orange.core.models.flag.Flag
-import tv.orange.core.models.flag.Flag.Companion.asVariant
-import tv.orange.core.models.flag.variants.UpdateChannel
 import tv.orange.core.util.FileUtil.copyTo
 import tv.orange.core.util.NetUtil
 import tv.orange.core.util.NetUtil.getFileSize
 import tv.orange.features.updater.component.data.model.UpdateData
-import tv.orange.features.updater.component.data.repository.UpdaterRepository
 import tv.orange.features.updater.data.view.UpdaterActivity
 import java.io.File
 import java.net.URL
@@ -70,7 +66,7 @@ class UpdaterPresenter(
                 when (state) {
                     State.Starting -> {
                         view.render(UpdaterContract.View.State.Prepare)
-                        view.clearCache()
+                        view.clearTempCache()
                     }
                     is State.Initial -> {
                         view.render(UpdaterContract.View.State.Loading)

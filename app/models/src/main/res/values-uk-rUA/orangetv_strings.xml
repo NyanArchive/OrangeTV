@@ -108,6 +108,13 @@
     <string name="orange_updater_beta">Бета</string>
     <string name="orange_updater_dev">Дев</string>
     <string name="orange_updater_disabled">Вимкнено</string>
+    <string name="orange_updater_install_action">Встановити</string>
+    <string name="orange_updater_update_action">Оновити</string>
+    <string name="orange_updater_channel_disabled">Поточний канал оновлень вимкнено</string>
+    <string name="orange_updater_latest_version">Ви використовуєте актуальну версію</string>
+    <string name="orange_app_update_available">Доступне нове оновлення</string>
+    <string name="orange_app_update_available_cta">Доступна нова версія PurpleTV! Натисніть тут, щоб встановити оновлення</string>
+    <string name="orange_updater_not_found">Оновлень не знайдено</string>
     <string name="orange_settings_check_update">Перевірити наявність оновлень</string>
     <string name="orange_itz_global_emotes">Глобальні емоції Homies</string>
     <string name="orange_itz_channel_emotes">Емоції каналу Homies</string>
@@ -129,4 +136,6 @@
     <string name="orange_pinned_message_default">За замовчуванням</string>
     <string name="orange_pinned_message_disabled">Вимкнені</string>
     <string name="orange_pinned_message_sec30">30 сек.</string>
+    <string name="orange_settings_brightness_gesture">Регулювання яскравості жестом</string>
+    <string name="orange_settings_volume_gesture">Регулювання гучності жестом</string>
 </resources>

@@ -44,6 +44,10 @@ class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
         modStuffContainer,
         resourceManager.getStringId(resName = "orange_settings_itz_emotes")
     )
+    private val killChat = getToggleRowItem(
+        modStuffContainer,
+        resourceManager.getStringId(resName = "orange_chat_kill_chat")
+    )
 
     private fun getToggleRowItem(
         container: ViewGroup,
@@ -58,6 +62,7 @@ class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
         modStuffContainer.addView(toggleFfzEmotes.contentView)
         modStuffContainer.addView(toggleStvEmotes.contentView)
         modStuffContainer.addView(toggleItzEmotes.contentView)
+        modStuffContainer.addView(killChat.contentView)
         renderEmotesState(
             bttvState = Flag.BTTV_EMOTES.asBoolean(),
             ffzState = Flag.FFZ_EMOTES.asBoolean(),
@@ -74,6 +79,7 @@ class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
                 null
             )
         )
+        killChat.render(SimpleToggleRowViewDelegate.ToggleState(ChatHookProvider.isChatKilled))
     }
 
     private fun renderEmotesState(
@@ -94,6 +100,12 @@ class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
                 ChatHookProvider.get().rebuildEmotes()
             }.map {
                 ChatSettingsOrangeEvents.Closable()
+            })
+            add(killChat.eventObserver().doOnNext {
+                ChatHookProvider.get().switchKillChat()
+            }.map {
+                killChat.render(SimpleToggleRowViewDelegate.ToggleState(ChatHookProvider.isChatKilled))
+                ChatSettingsOrangeEvents.Toggle()
             })
             add(toggleBttvEmotes.eventObserver().doOnNext {
                 preferenceManager.writeBoolean(

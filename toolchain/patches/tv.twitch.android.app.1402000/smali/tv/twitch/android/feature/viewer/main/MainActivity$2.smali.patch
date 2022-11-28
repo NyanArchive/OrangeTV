@@ -19,7 +19,7 @@ diff --git a/smali_classes5/tv/twitch/android/feature/viewer/main/MainActivity$2
 -    invoke-virtual {v0}, Ltv/twitch/android/feature/update/UpdatePromptPresenter;->installUpdate()Z
 +    iget-object v1, p0, Ltv/twitch/android/feature/viewer/main/MainActivity$2;->this$0:Ltv/twitch/android/feature/viewer/main/MainActivity;
  
-+    invoke-virtual {v0, v1}, Ltv/orange/features/updater/Updater;->installUpdate(Landroid/content/Context;)V
++    invoke-virtual {v0, v1}, Ltv/orange/features/updater/Updater;->onBannerInstallUpdateClicked(Landroid/content/Context;)V
 +
 +    .line 29
      return-void

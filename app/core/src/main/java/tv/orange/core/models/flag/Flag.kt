@@ -136,6 +136,11 @@ enum class Flag(
         "orange_settings_volume_gesture",
         BooleanValue(false)
     ),
+    DISABLE_THEATRE_AUTOPLAY(
+        "disable_theatre_autoplay",
+        "orange_settings_disable_theatre_autoplay",
+        BooleanValue(false)
+    ),
     DISABLE_STICKY_HEADERS_EP(
         "disable_sticky_headers_ep",
         "orange_settings_disable_sticky_headers_ep",
@@ -190,6 +195,16 @@ enum class Flag(
         "hide_offline_channel_section",
         "orange_settings_hide_offline_channel_section",
         BooleanValue()
+    ),
+    SHOW_TIMER_BUTTON(
+        "show_timer_button",
+        "orange_settings_show_timer_button",
+        BooleanValue(true)
+    ),
+    SHOW_REFRESH_BUTTON(
+        "show_refresh_button",
+        "orange_settings_show_refresh_button",
+        BooleanValue(true)
     ),
     PLAYER_IMPL(
         "player_impl",

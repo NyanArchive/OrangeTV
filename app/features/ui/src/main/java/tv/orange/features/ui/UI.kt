@@ -94,6 +94,10 @@ class UI @Inject constructor(
         val hideChatHeader: Boolean
             get() = Flag.HIDE_TOP_CHAT_PANEL_VODS.asBoolean()
 
+        @JvmStatic
+        val isAutoplayDisabled: Boolean
+            get() = Flag.DISABLE_THEATRE_AUTOPLAY.asBoolean()
+
         private fun isLandscapeOrientation(context: Context): Boolean =
             context.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 

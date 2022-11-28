@@ -61,7 +61,8 @@ enum class OrangeSubMenu(
             Flag.FORWARD_SEEK,
             Flag.REWIND_SEEK,
             Flag.MINI_PLAYER_SIZE,
-            Flag.VODHUNTER
+            Flag.VODHUNTER,
+            Flag.DISABLE_THEATRE_AUTOPLAY
         )
     ),
     Gestures(
@@ -84,6 +85,8 @@ enum class OrangeSubMenu(
             Flag.HIDE_RECOMMENDATION_SECTION,
             Flag.HIDE_RESUME_WATCHING_SECTION,
             Flag.HIDE_OFFLINE_CHANNEL_SECTION,
+            Flag.SHOW_TIMER_BUTTON,
+            Flag.SHOW_REFRESH_BUTTON
         )
     ),
     Patches(
@@ -109,7 +112,9 @@ enum class OrangeSubMenu(
     OTA(
         destination = SettingsDestination.OrangeOTA,
         title = "orange_settings_menu_ota",
-        items = listOf(Flag.UPDATER)
+        items = listOf(
+            Flag.UPDATER
+        )
     ),
     Info(
         destination = SettingsDestination.OrangeInfo,

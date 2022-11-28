@@ -195,4 +195,8 @@
     <string name="orange_settings_volume_gesture_desc" />
     <string name="orange_settings_disable_theatre_autoplay">Turn off autoplay</string>
     <string name="orange_settings_disable_theatre_autoplay_desc">Disable autoplay of the next video</string>
+    <string name="orange_settings_show_timer_button">Show timer button</string>
+    <string name="orange_settings_show_timer_button_desc" />
+    <string name="orange_settings_show_refresh_button">Show refresh button</string>
+    <string name="orange_settings_show_refresh_button_desc" />
 </resources>

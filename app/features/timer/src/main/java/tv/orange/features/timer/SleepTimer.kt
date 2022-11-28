@@ -3,6 +3,10 @@ package tv.orange.features.timer
 import android.widget.ImageView
 import androidx.fragment.app.FragmentActivity
 import tv.orange.core.Core
+import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.Flag.Companion.asBoolean
+import tv.orange.core.util.ViewUtil
+import tv.orange.core.util.ViewUtil.changeVisibility
 import tv.orange.features.timer.bridge.OrangeTimerFragment
 import tv.orange.features.timer.view.ViewFactory
 import tv.orange.models.abc.Feature
@@ -30,7 +34,11 @@ class SleepTimer @Inject constructor(
                     "orange_timer"
                 )
             }
+            if (!Flag.SHOW_TIMER_BUTTON.asBoolean()) {
+                changeVisibility(false)
+            }
         }
+
     }
 
     override fun onDestroyFeature() {}

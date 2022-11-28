@@ -196,6 +196,16 @@ enum class Flag(
         "orange_settings_hide_offline_channel_section",
         BooleanValue()
     ),
+    SHOW_TIMER_BUTTON(
+        "show_timer_button",
+        "orange_settings_show_timer_button",
+        BooleanValue(true)
+    ),
+    SHOW_REFRESH_BUTTON(
+        "show_refresh_button",
+        "orange_settings_show_refresh_button",
+        BooleanValue(true)
+    ),
     PLAYER_IMPL(
         "player_impl",
         "orange_settings_player_impl",

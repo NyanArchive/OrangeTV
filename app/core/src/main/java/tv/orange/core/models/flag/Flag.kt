@@ -136,6 +136,11 @@ enum class Flag(
         "orange_settings_volume_gesture",
         BooleanValue(false)
     ),
+    DISABLE_THEATRE_AUTOPLAY(
+        "disable_theatre_autoplay",
+        "orange_settings_disable_theatre_autoplay",
+        BooleanValue(false)
+    ),
     DISABLE_STICKY_HEADERS_EP(
         "disable_sticky_headers_ep",
         "orange_settings_disable_sticky_headers_ep",

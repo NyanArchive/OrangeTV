@@ -193,4 +193,6 @@
     <string name="orange_settings_brightness_gesture_desc" />
     <string name="orange_settings_volume_gesture">Volume gesture control</string>
     <string name="orange_settings_volume_gesture_desc" />
+    <string name="orange_settings_disable_theatre_autoplay">Turn off autoplay</string>
+    <string name="orange_settings_disable_theatre_autoplay_desc">Disable autoplay of the next video</string>
 </resources>

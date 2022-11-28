@@ -125,4 +125,10 @@
     <string name="orange_settings_hide_resume_watching_section">إخفاء《شوهد مؤخرا》</string>
     <string name="orange_settings_hide_offline_channel_section">إخفاء《القنوات الغير متصلة》</string>
     <string name="orange_settings_hide_game_section">إخفاء《الألعاب المتّبعة》</string>
+    <string name="orange_settings_pinned_message">رسائل مثبتة</string>
+    <string name="orange_pinned_message_default">الافتراضي</string>
+    <string name="orange_pinned_message_disabled">معطل</string>
+    <string name="orange_pinned_message_sec30">لمدة ٣٠ ثانية.</string>
+    <string name="orange_settings_brightness_gesture">التحكم في إيماءة السطوع</string>
+    <string name="orange_settings_volume_gesture">التحكم في إيماءات الصوت</string>
 </resources>

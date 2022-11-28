@@ -43,3 +43,18 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/observables/ChatConnec
      .line 637
      :goto_1
      sget-object v0, Ltv/twitch/android/sdk/ChannelState;->Disconnected:Ltv/twitch/android/sdk/ChannelState;
+@@ -4435,3 +4456,14 @@
+ 
+     return-void
+ .end method
++
++.method public final setViewerId(I)V
++    .registers 2
++    .param p1, "id"    # I
++
++    .line 42
++    iput p1, p0, Ltv/twitch/android/shared/chat/observables/ChatConnectionController;->viewerId:I
++
++    .line 43
++    return-void
++.end method

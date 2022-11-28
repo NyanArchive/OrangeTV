@@ -125,4 +125,10 @@
     <string name="orange_settings_hide_resume_watching_section">Skryť «Pokračovať v pozeraní»</string>
     <string name="orange_settings_hide_offline_channel_section">Skryť «Offline Kanály»</string>
     <string name="orange_settings_hide_game_section">Skryť «Sledované Hry»</string>
+    <string name="orange_settings_pinned_message">Pripnuté správy</string>
+    <string name="orange_pinned_message_default">Predvolené</string>
+    <string name="orange_pinned_message_disabled">Deaktivované</string>
+    <string name="orange_pinned_message_sec30">30 sekúnd</string>
+    <string name="orange_settings_brightness_gesture">Ovládanie jasu gestami</string>
+    <string name="orange_settings_volume_gesture">Ovládanie hlasitosti gestami</string>
 </resources>

@@ -8,23 +8,24 @@ import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
-import tv.orange.features.swipper.util.DimensionConverter.dipToPix
+import tv.orange.core.util.ViewUtil.dipToPix
 
 class SwipperOverlay(context: Context) : RelativeLayout(context) {
     private val volumeProgressBar = VerticalProgressBar(context)
     private val brightnessProgressBar = VerticalProgressBar(context)
     private val progress = TextView(context)
 
-    private fun initialize() {
+    fun prepare() {
         id = generateViewId()
         gravity = Gravity.CENTER_VERTICAL
         layoutParams = LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT
         )
-        val volumeBarParams = LayoutParams(dipToPix(context, 14), dipToPix(context, 110)).apply {
+
+        val volumeBarParams = LayoutParams(dipToPix(14), dipToPix(110)).apply {
             addRule(CENTER_VERTICAL)
-            setMargins(dipToPix(context, 12), 0, dipToPix(context, 10), 0)
+            setMargins(dipToPix(12), 0, dipToPix(10), 0)
         }
 
         this.addView(volumeProgressBar.apply {
@@ -32,12 +33,11 @@ class SwipperOverlay(context: Context) : RelativeLayout(context) {
             visibility = INVISIBLE
         }, volumeBarParams)
 
-        val brightnessBarParams =
-            LayoutParams(dipToPix(context, 14), dipToPix(context, 110)).apply {
-                addRule(CENTER_VERTICAL)
-                addRule(ALIGN_PARENT_RIGHT)
-                setMargins(dipToPix(context, 12), 0, dipToPix(context, 10), 0)
-            }
+        val brightnessBarParams = LayoutParams(dipToPix(14), dipToPix(110)).apply {
+            addRule(CENTER_VERTICAL)
+            addRule(ALIGN_PARENT_RIGHT)
+            setMargins(dipToPix(12), 0, dipToPix(10), 0)
+        }
 
         this.addView(brightnessProgressBar.apply {
             layoutParams = brightnessBarParams
@@ -45,14 +45,13 @@ class SwipperOverlay(context: Context) : RelativeLayout(context) {
             visibility = INVISIBLE
         }, brightnessBarParams)
 
-        val textParam =
-            LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            ).apply {
-                addRule(CENTER_VERTICAL)
-                addRule(CENTER_HORIZONTAL)
-            }
+        val textParam = LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        ).apply {
+            addRule(CENTER_VERTICAL)
+            addRule(CENTER_HORIZONTAL)
+        }
         this.addView(progress.apply {
             id = generateViewId()
             textSize = PROGRESS_TEXT_SIZE.toFloat()
@@ -165,9 +164,5 @@ class SwipperOverlay(context: Context) : RelativeLayout(context) {
         private const val MAX_BRIGHTNESS = 100
         private const val PROGRESS_TEXT_SIZE = 45
         private const val SHADOW_SIZE = 2.0f
-    }
-
-    init {
-        initialize()
     }
 }

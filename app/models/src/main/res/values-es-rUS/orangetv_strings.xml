@@ -60,8 +60,8 @@
     <string name="orange_settings_title">Ajustes de PurpleTV</string>
     <string name="orange_settings_chat_font_size">Tamaño de fuente del chat</string>
     <string name="orange_settings_landscape_chat_size">Ancho del chat en modo horizontal</string>
-    <string name="orange_settings_forward_seek">Saltos hacia adelante del reproductor</string>
-    <string name="orange_settings_rewind_seek">Saltos hacia atrás del reproductor</string>
+    <string name="orange_settings_forward_seek">Saltos hacia adelante en el reproductor</string>
+    <string name="orange_settings_rewind_seek">Saltos hacia atrás en el reproductor</string>
     <string name="orange_settings_mini_player_size">Tamaño del Mini Reproductor</string>
     <string name="orange_settings_vibrate_on_mention">Vibrar cuando seas mencionado</string>
     <string name="orange_settings_vibration_duration">Duración de la vibración</string>
@@ -108,6 +108,13 @@
     <string name="orange_updater_beta">Beta</string>
     <string name="orange_updater_dev">Desarrollador</string>
     <string name="orange_updater_disabled">Desactivado</string>
+    <string name="orange_updater_install_action">Instalar</string>
+    <string name="orange_updater_update_action">Actualizar</string>
+    <string name="orange_updater_channel_disabled">El canal de actualización actual está desactivado</string>
+    <string name="orange_updater_latest_version">Estás usando la versión más reciente</string>
+    <string name="orange_app_update_available">Nueva Actualización Disponible</string>
+    <string name="orange_app_update_available_cta">¡Nueva versión de PurpleTV disponible! Pulsa aquí para instalar la actualización</string>
+    <string name="orange_updater_not_found">Actualización no encontrada</string>
     <string name="orange_settings_check_update">Comprobar actualizaciones</string>
     <string name="orange_itz_global_emotes">Emotes Globales de Homies</string>
     <string name="orange_itz_channel_emotes">Emotes de Homies del Canal</string>
@@ -129,4 +136,6 @@
     <string name="orange_pinned_message_default">Predeterminado</string>
     <string name="orange_pinned_message_disabled">Desactivado</string>
     <string name="orange_pinned_message_sec30">30 seg.</string>
+    <string name="orange_settings_brightness_gesture">Control de brillo por gestos</string>
+    <string name="orange_settings_volume_gesture">Control de volumen por gestos</string>
 </resources>

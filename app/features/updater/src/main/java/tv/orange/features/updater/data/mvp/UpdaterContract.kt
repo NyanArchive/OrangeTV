@@ -1,6 +1,7 @@
 package tv.orange.features.updater.data.mvp
 
 import tv.orange.features.updater.component.data.model.UpdateData
+import tv.orange.features.updater.component.data.repository.UpdaterRepository
 import java.io.File
 
 interface UpdaterContract {
@@ -13,6 +14,7 @@ interface UpdaterContract {
         fun installApk(file: File)
         fun canInstallApk(): Boolean
         fun saveTextToClipboard(text: String)
+        fun clearTempCache()
 
         sealed class State {
             object Prepare : State()
@@ -33,13 +35,7 @@ interface UpdaterContract {
         abstract fun onStart()
         abstract fun onStop()
 
-        abstract fun init(
-            codename: String?,
-            url: String,
-            logoUrl: String?,
-            build: Int,
-            changelog: String?
-        )
+        abstract fun init(data: UpdateData)
 
         abstract fun onViewEvent(event: Event)
 
@@ -54,10 +50,7 @@ interface UpdaterContract {
 
         sealed class State {
             object Starting : State()
-            data class Update(
-                val updateData: UpdateData
-            ) : State()
-
+            data class Initial(val updateData: UpdateData) : State()
             data class ReadyToDownload(val updateData: UpdateData) : State()
             object StartDownloading: State()
             data class ReadyToInstall(val file: File) : State()

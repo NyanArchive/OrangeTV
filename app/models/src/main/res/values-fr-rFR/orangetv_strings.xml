@@ -119,4 +119,16 @@
     <string name="orange_settings_vodhunter">Chasseur de VOD</string>
     <string name="orange_settings_vodhunter_desc">Je vois des VOD mortes</string>
     <string name="orange_settings_bypass_chat_ban">Contourner le bannissement du chat</string>
+    <string name="orange_settings_bypass_chat_ban_desc">Rejoint le chat de manière anonyme lorsque vous êtes banni. Vous ne pouvez pas envoyer de messages, recevoir/dépenser des points de chaîne.</string>
+    <string name="orange_settings_hide_chat_header">Masquer le conteneur d\'en-tête du chat</string>
+    <string name="orange_settings_hide_recommendation_section">Masquer « Diffusion recommandés »</string>
+    <string name="orange_settings_hide_resume_watching_section">Masquer « Diffusion récemment vue »</string>
+    <string name="orange_settings_hide_offline_channel_section">Masquer « Streams hors ligne »</string>
+    <string name="orange_settings_hide_game_section">Masquer l\'onglet « Jeux suivis »</string>
+    <string name="orange_settings_pinned_message">Messages épinglés</string>
+    <string name="orange_pinned_message_default">Par défaut</string>
+    <string name="orange_pinned_message_disabled">Désactivé</string>
+    <string name="orange_pinned_message_sec30">30 sec.</string>
+    <string name="orange_settings_brightness_gesture">Contrôle du geste de luminosité</string>
+    <string name="orange_settings_volume_gesture">Contrôle du geste avec les touches volume</string>
 </resources>

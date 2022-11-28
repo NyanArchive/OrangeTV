@@ -1,0 +1,46 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher$$ExternalSyntheticLambda0.smali b/smali_classes6/tv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher$$ExternalSyntheticLambda0.smali
+deleted file mode 100644
+index 3194c5b0b..000000000
+--- a/smali_classes6/tv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher$$ExternalSyntheticLambda0.smali
++++ /dev/null
+@@ -1,40 +0,0 @@
+-.class public final synthetic Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher$$ExternalSyntheticLambda0;
+-.super Ljava/lang/Object;
+-.source "R8$$SyntheticClass"
+-
+-# interfaces
+-.implements Lio/reactivex/SingleOnSubscribe;
+-
+-
+-# instance fields
+-.field public final synthetic f$0:Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher;
+-
+-.field public final synthetic f$1:Ltv/twitch/android/shared/ads/models/AdRequestInfo;
+-
+-
+-# direct methods
+-.method public synthetic constructor <init>(Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher;Ltv/twitch/android/shared/ads/models/AdRequestInfo;)V
+-    .locals 0
+-
+-    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+-
+-    iput-object p1, p0, Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher$$ExternalSyntheticLambda0;->f$0:Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher;
+-
+-    iput-object p2, p0, Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher$$ExternalSyntheticLambda0;->f$1:Ltv/twitch/android/shared/ads/models/AdRequestInfo;
+-
+-    return-void
+-.end method
+-
+-
+-# virtual methods
+-.method public final subscribe(Lio/reactivex/SingleEmitter;)V
+-    .locals 2
+-
+-    iget-object v0, p0, Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher$$ExternalSyntheticLambda0;->f$0:Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher;
+-
+-    iget-object v1, p0, Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher$$ExternalSyntheticLambda0;->f$1:Ltv/twitch/android/shared/ads/models/AdRequestInfo;
+-
+-    invoke-static {v0, v1, p1}, Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher;->$r8$lambda$pDgjedkPp5zaCmztcYT5nSZ5Yas(Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher;Ltv/twitch/android/shared/ads/models/AdRequestInfo;Lio/reactivex/SingleEmitter;)V
+-
+-    return-void
+-.end method

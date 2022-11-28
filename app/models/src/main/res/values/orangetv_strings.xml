@@ -148,7 +148,16 @@
     <string name="orange_updater_beta">Beta</string>
     <string name="orange_updater_dev">Dev</string>
     <string name="orange_updater_disabled">Disabled</string>
+    <string name="orange_updater_install_action">Install</string>
+    <string name="orange_updater_update_action">Update</string>
+    <string name="orange_updater_channel_disabled">Current update channel is disabled</string>
+    <string name="orange_updater_latest_version">You are using the latest version</string>
+    <string name="orange_app_update_available">New Update is Available</string>
+    <string name="orange_app_update_available_cta">A new version of the PurpleTV is available! Tap here to install the update</string>
+    <string name="orange_updater_not_found">Update not found</string>
     <string name="orange_settings_check_update">Check updates</string>
+    <string name="orange_settings_clear_update_cache">Clear cache</string>
+    <string name="orange_updater_done">Done!</string>
     <string name="orange_itz_global_emotes">Homies Global Emotes</string>
     <string name="orange_itz_channel_emotes">Homies Channel Emotes</string>
     <string name="orange_settings_okhttp_logging">OkHttp Logging</string>

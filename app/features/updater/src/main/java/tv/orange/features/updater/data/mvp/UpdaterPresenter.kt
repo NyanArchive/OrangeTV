@@ -23,77 +23,11 @@ class UpdaterPresenter(
     private lateinit var installFile: File
 
     private val disposables = CompositeDisposable()
-    private lateinit var observerDisposable: Disposable
     private val subject = BehaviorSubject.create<State>()
 
-    private var readyToInstall = false
+    private lateinit var observer: Disposable
 
-    private fun observerStates() {
-        observerDisposable =
-            subject.subscribeOn(Schedulers.from(Executors.newSingleThreadExecutor()))
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ state ->
-                    LoggerImpl.debug("state: $state")
-                    when (state) {
-                        State.Starting -> {
-                            view.render(UpdaterContract.View.State.Prepare)
-                        }
-                        is State.Update -> {
-                            view.render(UpdaterContract.View.State.Loading)
-                            tryUpdateInfo(state)
-                        }
-                        is State.ReadyToDownload -> {
-                            updateData = state.updateData
-                            view.render(UpdaterContract.View.State.Loaded(state.updateData))
-                        }
-                        State.StartDownloading -> {
-                            view.render(UpdaterContract.View.State.IndeterminateDownloading)
-                            tryDownloadFile(updateData)
-                        }
-                        is State.ReadyToInstall -> {
-                            view.render(UpdaterContract.View.State.DownloadComplete(state.file))
-                            installFile = state.file
-                            readyToInstall = true
-                        }
-                        State.StartInstalling -> {
-                            view.render(UpdaterContract.View.State.IndeterminateDownloading)
-                            if (view.canInstallApk()) {
-                                subject.onNext(State.Installing(installFile))
-                            } else {
-                                subject.onNext(State.Error("Permissions"))
-                            }
-                        }
-                        State.CheckPermissions -> {
-                            if (view.canInstallApk()) {
-                                subject.onNext(State.StartDownloading)
-                            } else {
-                                view.requestInstallPermission()
-                            }
-                        }
-                        is State.Installing -> {
-                            view.render(UpdaterContract.View.State.IndeterminateDownloading)
-                            view.installApk(state.file)
-                        }
-                        is State.Error -> {
-                            view.render(UpdaterContract.View.State.Error(state.msg))
-                        }
-                        is State.UpdateProgress -> {
-                            view.render(
-                                UpdaterContract.View.State.Downloading(
-                                    state.progress,
-                                    state.downloaded,
-                                    state.total
-                                )
-                            )
-                        }
-                        State.CopyApkUrl -> {
-                            view.saveTextToClipboard(updateData.url)
-                        }
-                    }
-                }, {
-                    subject.onNext(State.Error(it.localizedMessage ?: "Throwable"))
-                })
-    }
+    private var readyToInstall = false
 
     override fun onViewEvent(event: Event) {
         LoggerImpl.debug("event: $event")
@@ -125,12 +59,75 @@ class UpdaterPresenter(
     }
 
     override fun onCreate() {
-        observerStates()
+        observer = subject.subscribeOn(Schedulers.from(Executors.newSingleThreadExecutor()))
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ state ->
+                LoggerImpl.debug("state: $state")
+                when (state) {
+                    State.Starting -> {
+                        view.render(UpdaterContract.View.State.Prepare)
+                        view.clearTempCache()
+                    }
+                    is State.Initial -> {
+                        view.render(UpdaterContract.View.State.Loading)
+                        tryUpdateInfo(state)
+                    }
+                    is State.ReadyToDownload -> {
+                        updateData = state.updateData
+                        view.render(UpdaterContract.View.State.Loaded(updateData))
+                    }
+                    State.StartDownloading -> {
+                        tryDownloadFile(updateData)
+                        view.render(UpdaterContract.View.State.IndeterminateDownloading)
+                    }
+                    is State.ReadyToInstall -> {
+                        readyToInstall = true
+                        installFile = state.file
+                        view.render(UpdaterContract.View.State.DownloadComplete(installFile))
+                    }
+                    State.StartInstalling -> {
+                        view.render(UpdaterContract.View.State.IndeterminateDownloading)
+                        if (view.canInstallApk()) {
+                            subject.onNext(State.Installing(installFile))
+                        } else {
+                            subject.onNext(State.Error("Permissions"))
+                        }
+                    }
+                    State.CheckPermissions -> {
+                        if (view.canInstallApk()) {
+                            subject.onNext(State.StartDownloading)
+                        } else {
+                            view.requestInstallPermission()
+                        }
+                    }
+                    is State.Installing -> {
+                        view.render(UpdaterContract.View.State.IndeterminateDownloading)
+                        view.installApk(state.file)
+                    }
+                    is State.Error -> {
+                        view.render(UpdaterContract.View.State.Error(state.msg))
+                    }
+                    is State.UpdateProgress -> {
+                        view.render(
+                            UpdaterContract.View.State.Downloading(
+                                state.progress,
+                                state.downloaded,
+                                state.total
+                            )
+                        )
+                    }
+                    State.CopyApkUrl -> {
+                        view.saveTextToClipboard(updateData.url)
+                    }
+                }
+            }, {
+                subject.onNext(State.Error(it.localizedMessage ?: "Throwable"))
+            })
     }
 
     override fun onDestroy() {
         disposables.clear()
-        observerDisposable.dispose()
+        observer.dispose()
     }
 
     override fun onResume() {}
@@ -139,30 +136,18 @@ class UpdaterPresenter(
 
     override fun onStart() {
         subject.onNext(State.Starting)
-        subject.onNext(State.Update(updateData))
+        subject.onNext(State.Initial(updateData))
     }
 
     override fun onStop() {
         disposables.clear()
     }
 
-    override fun init(
-        codename: String?,
-        url: String,
-        logoUrl: String?,
-        build: Int,
-        changelog: String?
-    ) {
-        updateData = UpdateData(
-            build = build,
-            codename = codename ?: "Unknown",
-            url = url,
-            logoUrl = logoUrl,
-            changelog = changelog
-        )
+    override fun init(data: UpdateData) {
+        updateData = data
     }
 
-    private fun tryUpdateInfo(state: State.Update) {
+    private fun tryUpdateInfo(state: State.Initial) {
         disposables.add(
             Single.create { e ->
                 e.onSuccess(

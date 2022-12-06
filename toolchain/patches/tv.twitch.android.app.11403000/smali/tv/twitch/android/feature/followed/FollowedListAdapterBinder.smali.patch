@@ -1,8 +1,8 @@
 diff --git a/smali_classes5/tv/twitch/android/feature/followed/FollowedListAdapterBinder.smali b/smali_classes5/tv/twitch/android/feature/followed/FollowedListAdapterBinder.smali
 --- a/smali_classes5/tv/twitch/android/feature/followed/FollowedListAdapterBinder.smali
 +++ b/smali_classes5/tv/twitch/android/feature/followed/FollowedListAdapterBinder.smali
-@@ -1224,9 +1224,16 @@
-     .line 270
+@@ -1518,9 +1518,16 @@
+     .line 328
      iget-boolean v8, v0, Ltv/twitch/android/feature/followed/FollowedListAdapterBinder;->showingTabletUI:Z
  
 +    if-nez v8, :cond_z
@@ -13,7 +13,7 @@ diff --git a/smali_classes5/tv/twitch/android/feature/followed/FollowedListAdapt
 +
      if-eqz v8, :cond_d
  
-     .line 273
+     .line 331
 +    :cond_z
      instance-of v8, v5, Ltv/twitch/android/models/streams/StreamModelContainer$RecommendationStreamModel;
  

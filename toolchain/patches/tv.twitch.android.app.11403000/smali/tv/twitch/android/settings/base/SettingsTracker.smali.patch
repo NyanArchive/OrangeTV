@@ -15,16 +15,16 @@ diff --git a/smali_classes5/tv/twitch/android/settings/base/SettingsTracker.smal
 -
 -    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 -
--    .line 52
+-    .line 56
 -    iput-object p1, p0, Ltv/twitch/android/settings/base/SettingsTracker;->mScreenName:Ljava/lang/String;
 -
--    .line 53
+-    .line 57
 -    iput-object p2, p0, Ltv/twitch/android/settings/base/SettingsTracker;->mSubScreenName:Ljava/lang/String;
 +    .locals 0
  
      return-void
  .end method
-@@ -338,178 +324,13 @@
+@@ -347,178 +333,13 @@
  .end method
  
  .method public final trackMainSettingsTap(Ltv/twitch/android/models/settings/SettingsDestination;)V
@@ -36,7 +36,7 @@ diff --git a/smali_classes5/tv/twitch/android/settings/base/SettingsTracker.smal
 -
 -    invoke-static {v1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 -
--    .line 107
+-    .line 112
 -    sget-object v0, Ltv/twitch/android/settings/base/SettingsTracker$WhenMappings;->$EnumSwitchMapping$0:[I
 -
 -    invoke-virtual/range {p1 .. p1}, Ljava/lang/Enum;->ordinal()I
@@ -100,7 +100,7 @@ diff --git a/smali_classes5/tv/twitch/android/settings/base/SettingsTracker.smal
 -
 -    move-object/from16 v0, p0
 -
--    .line 120
+-    .line 125
 -    iget-object v1, v0, Ltv/twitch/android/settings/base/SettingsTracker;->mPageViewTracker:Ltv/twitch/android/shared/analytics/PageViewTracker;
 -
 -    const/4 v6, 0x0
@@ -162,13 +162,13 @@ diff --git a/smali_classes5/tv/twitch/android/settings/base/SettingsTracker.smal
 -
 -    move-object/from16 v0, p0
 -
--    .line 57
+-    .line 61
 -    iget-object v1, v0, Ltv/twitch/android/settings/base/SettingsTracker;->mPageViewTracker:Ltv/twitch/android/shared/analytics/PageViewTracker;
 -
--    .line 58
+-    .line 62
 -    iget-object v2, v0, Ltv/twitch/android/settings/base/SettingsTracker;->mScreenName:Ljava/lang/String;
 -
--    .line 59
+-    .line 63
 -    iget-object v3, v0, Ltv/twitch/android/settings/base/SettingsTracker;->mSubScreenName:Ljava/lang/String;
 -
 -    const/4 v4, 0x0
@@ -199,7 +199,7 @@ diff --git a/smali_classes5/tv/twitch/android/settings/base/SettingsTracker.smal
 -
 -    const/16 v17, 0x0
 -
--    .line 57
+-    .line 61
 -    invoke-static/range {v1 .. v17}, Ltv/twitch/android/shared/analytics/PageViewTracker;->pageView$default(Ltv/twitch/android/shared/analytics/PageViewTracker;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/Map;ILjava/lang/Object;)V
 +    .locals 0
  

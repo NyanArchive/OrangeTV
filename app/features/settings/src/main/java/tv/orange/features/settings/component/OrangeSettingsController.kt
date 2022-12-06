@@ -117,7 +117,7 @@ class OrangeSettingsController @Inject constructor(
             SettingsDestination.OrangeHighlighter -> highlighter.createHighlighterFragment()
             else -> null
         }?.let { fragment ->
-            fragmentRouter.addOrRecreateFragment(
+            fragmentRouter.addOrRecreateFragmentWithDefaultTransitions(
                 activity,
                 fragment,
                 settingsDestination.toString(),

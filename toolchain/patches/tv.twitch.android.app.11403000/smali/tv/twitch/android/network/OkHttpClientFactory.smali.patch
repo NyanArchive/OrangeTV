@@ -8,5 +8,5 @@ diff --git a/smali_classes5/tv/twitch/android/network/OkHttpClientFactory.smali 
 -    if-eqz v0, :cond_0
 +    if-eq v0, v0, :cond_0
  
-     .line 48
+     .line 47
      new-instance v0, Lcom/facebook/stetho/okhttp3/StethoInterceptor;

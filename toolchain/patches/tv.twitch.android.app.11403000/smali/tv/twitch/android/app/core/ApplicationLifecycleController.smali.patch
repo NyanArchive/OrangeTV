@@ -1,7 +1,7 @@
 diff --git a/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleController.smali b/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleController.smali
 --- a/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleController.smali
 +++ b/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleController.smali
-@@ -577,6 +577,12 @@
+@@ -586,6 +586,12 @@
  
      invoke-virtual {v0}, Ltv/twitch/android/shared/stream/preloader/StreamPreloader;->clearAll()V
  
@@ -14,9 +14,9 @@ diff --git a/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleContr
      :cond_0
      return-void
  .end method
-@@ -627,6 +633,12 @@
+@@ -641,6 +647,12 @@
  
-     invoke-interface {v0}, Ltv/twitch/android/shared/notifications/pub/IDebugNotificationManager;->onInactive()V
+     invoke-interface {v0}, Ltv/twitch/android/network/clientintegrity/ClientIntegrityTokenManager;->cleanResources()V
  
 +    invoke-static {}, Ltv/orange/core/Core;->get()Ltv/orange/core/Core;
 +
@@ -27,7 +27,7 @@ diff --git a/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleContr
      :cond_0
      return-void
  .end method
-@@ -761,6 +773,12 @@
+@@ -775,6 +787,12 @@
  
      invoke-virtual {p1}, Ltv/twitch/android/shared/badges/ChatBadgeProvider;->updateGlobalBadges()V
  
@@ -40,9 +40,9 @@ diff --git a/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleContr
      return-void
  .end method
  
-@@ -921,6 +939,12 @@
+@@ -949,6 +967,12 @@
  
-     invoke-virtual {v0}, Ltv/twitch/android/sdk/SDKServicesController;->logOut()Z
+     invoke-interface {v0, v1}, Ltv/twitch/android/network/clientintegrity/ClientIntegrityTokenManager;->fetchNewToken(Ltv/twitch/android/network/clientintegrity/Scope;)V
  
 +    invoke-static {}, Ltv/orange/core/Core;->get()Ltv/orange/core/Core;
 +
@@ -53,8 +53,8 @@ diff --git a/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleContr
      return-void
  .end method
  
-@@ -1070,6 +1094,12 @@
-     .line 223
+@@ -1098,6 +1122,12 @@
+     .line 228
      invoke-direct {p0}, Ltv/twitch/android/app/core/ApplicationLifecycleController;->initSdk()V
  
 +    invoke-static {}, Ltv/orange/core/Core;->get()Ltv/orange/core/Core;
@@ -66,9 +66,9 @@ diff --git a/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleContr
      :cond_1
      return-void
  .end method
-@@ -1388,6 +1418,12 @@
+@@ -1440,6 +1470,12 @@
  
-     invoke-virtual {p1}, Ltv/twitch/android/shared/analytics/memory/RamUsageCollector;->onAppInForeground()V
+     invoke-interface {v0, p1}, Ltv/twitch/android/network/clientintegrity/ClientIntegrityTokenManager;->fetchNewToken(Ltv/twitch/android/network/clientintegrity/Scope;)V
  
 +    invoke-static {}, Ltv/orange/core/Core;->get()Ltv/orange/core/Core;
 +
@@ -76,6 +76,6 @@ diff --git a/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleContr
 +
 +    invoke-virtual {v0}, Ltv/orange/core/Core;->onFirstActivityStarted()V
 +
-     :cond_2
+     :cond_3
      return-void
  .end method

@@ -1,0 +1,23 @@
+diff --git a/smali_classes5/tv/twitch/android/feature/theatre/common/PlayerCoordinatorPresenter.smali b/smali_classes5/tv/twitch/android/feature/theatre/common/PlayerCoordinatorPresenter.smali
+--- a/smali_classes5/tv/twitch/android/feature/theatre/common/PlayerCoordinatorPresenter.smali
++++ b/smali_classes5/tv/twitch/android/feature/theatre/common/PlayerCoordinatorPresenter.smali
+@@ -4963,3 +4963,19 @@
+ 
+     return-object v0
+ .end method
++
++.method public final refreshStream()V
++    .registers 2
++
++    .prologue
++    .line 11
++    iget-object v0, p0, Ltv/twitch/android/feature/theatre/common/PlayerCoordinatorPresenter;->playerPresenter:Ltv/twitch/android/shared/player/presenters/PlayerPresenter;
++
++    invoke-interface {v0}, Ltv/twitch/android/shared/player/presenters/PlayerPresenter;->stop()V
++
++    .line 12
++    invoke-direct {p0}, Ltv/twitch/android/feature/theatre/common/PlayerCoordinatorPresenter;->playWithCurrentModeAndQuality()V
++
++    .line 13
++    return-void
++.end method

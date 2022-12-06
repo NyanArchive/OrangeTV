@@ -1,0 +1,88 @@
+diff --git a/smali_classes5/tv/twitch/android/feature/background/audio/ads/AudioAdsBackgroundPresenter.smali b/smali_classes5/tv/twitch/android/feature/background/audio/ads/AudioAdsBackgroundPresenter.smali
+--- a/smali_classes5/tv/twitch/android/feature/background/audio/ads/AudioAdsBackgroundPresenter.smali
++++ b/smali_classes5/tv/twitch/android/feature/background/audio/ads/AudioAdsBackgroundPresenter.smali
+@@ -53,16 +53,7 @@
+ 
+ # virtual methods
+ .method public final continueAudioAds(Ltv/twitch/android/shared/ads/models/AudioAdsContext;)V
+-    .locals 1
+-
+-    const-string v0, "audioAdsContext"
+-
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 34
+-    iget-object v0, p0, Ltv/twitch/android/feature/background/audio/ads/AudioAdsBackgroundPresenter;->audioAdsPresenter:Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter;
+-
+-    invoke-virtual {v0, p1}, Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter;->continueAudioAds(Ltv/twitch/android/shared/ads/models/AudioAdsContext;)V
++    .locals 0
+ 
+     return-void
+ .end method
+@@ -77,22 +68,22 @@
+ 
+     move-result v0
+ 
+-    const v1, 0x23b7ff82
++    const v1, 0x6184dbe6
+ 
+     if-eq v0, v1, :cond_4
+ 
+-    const v1, 0x52dc94ef
++    const v1, 0x749c4453
+ 
+     if-eq v0, v1, :cond_2
+ 
+-    const v1, 0x54010054
++    const v1, 0x25d25db8
+ 
+     if-eq v0, v1, :cond_0
+ 
+     goto :goto_0
+ 
+     :cond_0
+-    const-string v0, "tv.twitch.android.media.action.audiobecomingnoisy"
++    const-string v0, "tv.orange.action.audiobecomingnoisy"
+ 
+     invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+ 
+@@ -111,7 +102,7 @@
+     goto :goto_0
+ 
+     :cond_2
+-    const-string v0, "tv.twitch.android.media.action.toggleplayback"
++    const-string v0, "tv.orange.action.toggleplayback"
+ 
+     .line 39
+     invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+@@ -131,7 +122,7 @@
+     goto :goto_0
+ 
+     :cond_4
+-    const-string v0, "tv.twitch.android.media.action.stop"
++    const-string v0, "tv.orange.action.stop"
+ 
+     .line 39
+     invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+@@ -158,20 +149,7 @@
+ .end method
+ 
+ .method public final startAudioAds(Ltv/twitch/android/shared/ads/models/AudioAdsPod;Ltv/twitch/android/models/ads/MultiAdFormatMetadata;)V
+-    .locals 1
+-
+-    const-string v0, "audioAdsPod"
+-
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    const-string v0, "multiAdFormatMetadata"
+-
+-    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 30
+-    iget-object v0, p0, Ltv/twitch/android/feature/background/audio/ads/AudioAdsBackgroundPresenter;->audioAdsPresenter:Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter;
+-
+-    invoke-virtual {v0, p1, p2}, Ltv/twitch/android/shared/audio/ads/AudioAdsPresenter;->startAudioAds(Ltv/twitch/android/shared/ads/models/AudioAdsPod;Ltv/twitch/android/models/ads/MultiAdFormatMetadata;)V
++    .locals 0
+ 
+     return-void
+ .end method

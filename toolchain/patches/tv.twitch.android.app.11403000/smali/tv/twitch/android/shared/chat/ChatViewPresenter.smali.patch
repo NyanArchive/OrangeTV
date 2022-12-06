@@ -1,0 +1,145 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/chat/ChatViewPresenter.smali b/smali_classes6/tv/twitch/android/shared/chat/ChatViewPresenter.smali
+--- a/smali_classes6/tv/twitch/android/shared/chat/ChatViewPresenter.smali
++++ b/smali_classes6/tv/twitch/android/shared/chat/ChatViewPresenter.smali
+@@ -2409,7 +2409,34 @@
+ 
+     move-result-object v0
+ 
++    instance-of v1, v0, Ltv/orange/features/logs/bridge/ChatLogsCommand;
++
++    if-eqz v1, :cond_y
++
++    const/4 v1, 0x1
++
++    return v1
++
++    :cond_y
++    instance-of v1, v0, Ltv/orange/features/spam/bridge/ChatSpamCommand;
++
++    if-eqz v1, :cond_z
++
++    const/4 v1, 0x1
++
++    return v1
++
++    :cond_z
++    instance-of v1, v0, Ltv/orange/features/spam/bridge/ChatSpamErrorCommand;
++
++    if-eqz v1, :cond_zz
++
++    const/4 v1, 0x1
++
++    return v1
++
+     .line 948
++    :cond_zz
+     instance-of v1, v0, Ltv/twitch/android/shared/chat/command/ChatCommandAction$WhisperUnverified;
+ 
+     const/4 v2, 0x1
+@@ -2792,6 +2819,17 @@
+ .method private final onChannelStateChanged(Ltv/twitch/android/shared/chat/events/ChatConnectionEvents;)V
+     .locals 9
+ 
++ 
++    invoke-static {}, Ltv/orange/features/chathistory/ChatHistory;->get()Ltv/orange/features/chathistory/ChatHistory;
++
++    move-result-object v0
++
++    iget-object v1, p0, Ltv/twitch/android/shared/chat/ChatViewPresenter;->liveChatSource:Ltv/twitch/android/shared/chat/LiveChatSource;
++
++    iget-object v2, p0, Ltv/twitch/android/shared/chat/ChatViewPresenter;->channel:Ltv/twitch/android/models/channel/ChannelInfo;
++
++    invoke-virtual {v0, p1, v1, v2}, Ltv/orange/features/chathistory/ChatHistory;->requestChatHistory(Ltv/twitch/android/shared/chat/events/ChatConnectionEvents;Ltv/orange/features/chathistory/bridge/ILiveChatSource;Ltv/twitch/android/models/channel/ChannelInfo;)V
++
+     .line 1006
+     instance-of v0, p1, Ltv/twitch/android/shared/chat/events/ChatConnectionEvents$ChatConnectingEvent;
+ 
+@@ -3329,7 +3367,22 @@
+ .method private final onUserBanStateUpdated(Z)V
+     .locals 1
+ 
++    if-eqz p1, :cond_z
++
++    invoke-static {}, Ltv/orange/features/chat/ChatHookProvider;->get()Ltv/orange/features/chat/ChatHookProvider;
++
++    invoke-static {}, Ltv/orange/features/chat/ChatHookProvider;->bypassChatBan()Z
++
++    move-result v0
++
++    if-eqz v0, :cond_z
++
++    const/4 p1, 0x0
++
++    invoke-direct {p0}, Ltv/twitch/android/shared/chat/ChatViewPresenter;->reconnectAsAnon()V
++
+     .line 1070
++    :cond_z
+     iput-boolean p1, p0, Ltv/twitch/android/shared/chat/ChatViewPresenter;->isBanned:Z
+ 
+     .line 1071
+@@ -4824,7 +4877,7 @@
+ .end method
+ 
+ .method public onConfigurationChanged()V
+-    .locals 1
++    .locals 2
+ 
+     .line 587
+     invoke-super {p0}, Ltv/twitch/android/core/mvp/presenter/BasePresenter;->onConfigurationChanged()V
+@@ -4836,6 +4889,12 @@
+ 
+     invoke-virtual {v0}, Ltv/twitch/android/core/mvp/viewdelegate/BaseViewDelegate;->onConfigurationChanged()V
+ 
++    invoke-static {}, Ltv/orange/features/ui/UI;->get()Ltv/orange/features/ui/UI;
++
++    move-result-object v1
++
++    invoke-virtual {v1, v0}, Ltv/orange/features/ui/UI;->onChatViewPresenterConfigurationChanged(Ltv/twitch/android/shared/chat/ChatViewDelegate;)V
++
+     :cond_0
+     return-void
+ .end method
+@@ -5873,3 +5932,43 @@
+     :cond_0
+     return-void
+ .end method
++
++.method private reconnectAsAnon()V
++    .registers 4
++
++    .line 40
++    iget-object v0, p0, Ltv/twitch/android/shared/chat/ChatViewPresenter;->channel:Ltv/twitch/android/models/channel/ChannelInfo;
++
++    .line 42
++    .local v0, "backupChannelInfo":Ltv/twitch/android/models/channel/ChannelInfo;
++    iget-object v1, p0, Ltv/twitch/android/shared/chat/ChatViewPresenter;->chatConnectionController:Ltv/twitch/android/shared/chat/observables/ChatConnectionController;
++
++    const/4 v2, 0x0
++
++    if-eqz v1, :cond_a
++
++    .line 43
++    invoke-virtual {v1, v2}, Ltv/twitch/android/shared/chat/observables/ChatConnectionController;->setViewerId(I)V
++
++    .line 46
++    :cond_a
++    const/4 v1, 0x0
++
++    iput-object v1, p0, Ltv/twitch/android/shared/chat/ChatViewPresenter;->channel:Ltv/twitch/android/models/channel/ChannelInfo;
++
++    .line 47
++    iput v2, p0, Ltv/twitch/android/shared/chat/ChatViewPresenter;->chatUserId:I
++
++    .line 48
++    iget-object v1, p0, Ltv/twitch/android/shared/chat/ChatViewPresenter;->playbackSessionID:Ljava/lang/String;
++
++    iget-object v2, p0, Ltv/twitch/android/shared/chat/ChatViewPresenter;->streamType:Ltv/twitch/android/models/streams/StreamType;
++
++    invoke-virtual {p0, v0, v1, v2}, Ltv/twitch/android/shared/chat/ChatViewPresenter;->setChannel(Ltv/twitch/android/models/channel/ChannelInfo;Ljava/lang/String;Ltv/twitch/android/models/streams/StreamType;)V
++
++    .line 49
++    iput-object v0, p0, Ltv/twitch/android/shared/chat/ChatViewPresenter;->channel:Ltv/twitch/android/models/channel/ChannelInfo;
++
++    .line 50
++    return-void
++.end method

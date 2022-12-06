@@ -1,0 +1,24 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/autoplay/RecommendationAutoPlayPresenter.smali b/smali_classes6/tv/twitch/android/shared/autoplay/RecommendationAutoPlayPresenter.smali
+--- a/smali_classes6/tv/twitch/android/shared/autoplay/RecommendationAutoPlayPresenter.smali
++++ b/smali_classes6/tv/twitch/android/shared/autoplay/RecommendationAutoPlayPresenter.smali
+@@ -606,6 +606,12 @@
+     .line 100
+     invoke-virtual {p0}, Ltv/twitch/android/shared/autoplay/RecommendationAutoPlayPresenter;->resetAutoplay()V
+ 
++    invoke-static {}, Ltv/orange/features/ui/UI;->isAutoplayDisabled()Z
++
++    move-result v0
++
++    if-nez v0, :cond_z
++
+     .line 101
+     iget-object v0, p0, Ltv/twitch/android/shared/autoplay/RecommendationAutoPlayPresenter;->recommendationFetcher:Ltv/twitch/android/shared/autoplay/fetcher/RecommendationFetcher;
+ 
+@@ -628,6 +634,7 @@
+ 
+     invoke-static/range {v1 .. v6}, Ltv/twitch/android/core/mvp/rxutil/ISubscriptionHelper$DefaultImpls;->asyncSubscribe$default(Ltv/twitch/android/core/mvp/rxutil/ISubscriptionHelper;Lio/reactivex/Maybe;Ltv/twitch/android/core/mvp/rxutil/DisposeOn;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+ 
++    :cond_z
+     return-void
+ .end method
+ 

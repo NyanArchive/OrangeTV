@@ -1,0 +1,18 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/pip/NativePictureInPicturePresenter.smali b/smali_classes6/tv/twitch/android/shared/pip/NativePictureInPicturePresenter.smali
+--- a/smali_classes6/tv/twitch/android/shared/pip/NativePictureInPicturePresenter.smali
++++ b/smali_classes6/tv/twitch/android/shared/pip/NativePictureInPicturePresenter.smali
+@@ -994,12 +994,12 @@
+ 
+     invoke-direct {v2}, Landroid/content/IntentFilter;-><init>()V
+ 
+-    const-string v3, "tv.twitch.android.media.action.pause_playback"
++    const-string v3, "tv.orange.action.pause_playback"
+ 
+     .line 148
+     invoke-virtual {v2, v3}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+ 
+-    const-string v3, "tv.twitch.android.media.action.resume_playback"
++    const-string v3, "tv.orange.action.resume_playback"
+ 
+     .line 149
+     invoke-virtual {v2, v3}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V

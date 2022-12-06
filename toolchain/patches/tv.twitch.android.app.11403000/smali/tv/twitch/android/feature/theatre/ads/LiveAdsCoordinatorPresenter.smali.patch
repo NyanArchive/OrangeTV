@@ -1,0 +1,104 @@
+diff --git a/smali_classes5/tv/twitch/android/feature/theatre/ads/LiveAdsCoordinatorPresenter.smali b/smali_classes5/tv/twitch/android/feature/theatre/ads/LiveAdsCoordinatorPresenter.smali
+--- a/smali_classes5/tv/twitch/android/feature/theatre/ads/LiveAdsCoordinatorPresenter.smali
++++ b/smali_classes5/tv/twitch/android/feature/theatre/ads/LiveAdsCoordinatorPresenter.smali
+@@ -444,61 +444,12 @@
+         }
+     .end annotation
+ 
+-    .line 302
+-    invoke-virtual {p1, p3}, Ltv/twitch/android/core/mvp/presenter/RxPresenter;->setViewDelegateContainer(Ltv/twitch/android/core/mvp/viewdelegate/ViewDelegateContainer;)V
+-
+-    .line 303
+-    invoke-virtual {p2}, Ltv/twitch/android/feature/foreground/audio/ads/AudioAdsDebugPresenter;->showDebugAudioAd()V
+-
+-    .line 304
+-    invoke-virtual {p4}, Ltv/twitch/android/feature/theatre/ads/AudioAdBackgroundContextProvider;->listenForContextUpdates()V
+-
+-    .line 305
+-    invoke-virtual {p1, p5}, Ltv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter;->bindPlayerPresenterState(Lio/reactivex/Flowable;)V
+-
+     return-void
+ .end method
+ 
+ .method private final bindStreamDisplayAds(Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter;Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsDebugPresenter;Landroid/view/View;Landroidx/constraintlayout/widget/ConstraintLayout;Landroid/view/ViewGroup;)V
+-    .locals 1
+-
+-    .line 277
+-    iget-object v0, p0, Ltv/twitch/android/feature/theatre/ads/LiveAdsCoordinatorPresenter;->displayAdsExperimentHelper:Ltv/twitch/android/provider/experiments/helpers/DisplayAdsExperimentHelper;
+-
+-    invoke-virtual {v0}, Ltv/twitch/android/provider/experiments/helpers/DisplayAdsExperimentHelper;->areDisplayAdsEnabled()Z
+-
+-    move-result v0
+-
+-    if-eqz v0, :cond_0
+-
+-    .line 279
+-    invoke-static {p5}, Ltv/twitch/android/core/mvp/viewdelegate/ViewDelegateContainerKt;->toContainer(Landroid/view/ViewGroup;)Ltv/twitch/android/core/mvp/viewdelegate/ViewDelegateContainer;
+-
+-    move-result-object p5
+-
+-    .line 280
+-    invoke-static {p4}, Ltv/twitch/android/core/mvp/viewdelegate/ViewDelegateContainerKt;->toContainer(Landroid/view/ViewGroup;)Ltv/twitch/android/core/mvp/viewdelegate/ViewDelegateContainer;
+-
+-    move-result-object v0
+-
+-    .line 278
+-    invoke-virtual {p1, p5, v0}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter;->setSubPresenterContainers(Ltv/twitch/android/core/mvp/viewdelegate/ViewDelegateContainer;Ltv/twitch/android/core/mvp/viewdelegate/ViewDelegateContainer;)V
+-
+-    .line 283
+-    new-instance p5, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsViewDelegate;
+-
+-    invoke-direct {p5, p3, p4}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsViewDelegate;-><init>(Landroid/view/View;Landroidx/constraintlayout/widget/ConstraintLayout;)V
+-
+-    .line 282
+-    invoke-virtual {p1, p5}, Ltv/twitch/android/core/mvp/presenter/RxPresenter;->attach(Ltv/twitch/android/core/mvp/viewdelegate/BaseViewDelegate;)V
+-
+-    .line 289
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter;->initialize()V
+-
+-    .line 291
+-    invoke-virtual {p2, p1}, Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsDebugPresenter;->bindPlayerEvents(Ltv/twitch/android/shared/display/ads/theatre/StreamDisplayAdsPresenter;)V
++    .locals 0
+ 
+-    :cond_0
+     return-void
+ .end method
+ 
+@@ -1049,35 +1000,13 @@
+ .end method
+ 
+ .method public final inflateAndBindPbyp(Ltv/twitch/android/feature/theatre/common/PlayerCoordinatorViewDelegate;Ltv/twitch/android/shared/player/presenters/StreamPlayerPresenter;)V
+-    .locals 2
+-
+-    const-string v0, "coordinatorViewDelegate"
+-
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    const-string v0, "streamPlayerPresenter"
+-
+-    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 255
+-    iget-object v0, p0, Ltv/twitch/android/feature/theatre/ads/LiveAdsCoordinatorPresenter;->pbypCoordinator:Ltv/twitch/android/feature/theatre/ads/coordinators/PbypCoordinator;
+-
+-    .line 258
+-    iget-object v1, p0, Ltv/twitch/android/feature/theatre/ads/LiveAdsCoordinatorPresenter;->liveAdsAllocationPresenter:Ltv/twitch/android/feature/theatre/ads/LiveAdsAllocationPresenter;
+-
+-    .line 255
+-    invoke-virtual {v0, p1, p2, v1}, Ltv/twitch/android/feature/theatre/ads/coordinators/PbypCoordinator;->inflateAndBindPbyp(Ltv/twitch/android/feature/theatre/common/PlayerCoordinatorViewDelegate;Ltv/twitch/android/shared/player/presenters/StreamPlayerPresenter;Ltv/twitch/android/feature/theatre/ads/LiveAdsAllocationPresenter;)V
++    .locals 0
+ 
+     return-void
+ .end method
+ 
+ .method public final sendAudioAdsContextFromForeground()V
+-    .locals 1
+-
+-    .line 263
+-    iget-object v0, p0, Ltv/twitch/android/feature/theatre/ads/LiveAdsCoordinatorPresenter;->audioAdsForegroundPresenter:Ltv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter;
+-
+-    invoke-virtual {v0}, Ltv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter;->sendAudioAdsContext()V
++    .locals 0
+ 
+     return-void
+ .end method

@@ -1,0 +1,56 @@
+diff --git a/smali_classes5/tv/twitch/android/feature/background/audio/ads/BackgroundAdsAllocationPresenter.smali b/smali_classes5/tv/twitch/android/feature/background/audio/ads/BackgroundAdsAllocationPresenter.smali
+--- a/smali_classes5/tv/twitch/android/feature/background/audio/ads/BackgroundAdsAllocationPresenter.smali
++++ b/smali_classes5/tv/twitch/android/feature/background/audio/ads/BackgroundAdsAllocationPresenter.smali
+@@ -84,12 +84,6 @@
+     .line 34
+     invoke-virtual {p0, p2}, Ltv/twitch/android/core/mvp/presenter/BasePresenter;->registerSubPresentersForLifecycleEvents([Ltv/twitch/android/core/mvp/presenter/BasePresenter;)V
+ 
+-    .line 39
+-    invoke-direct {p0}, Ltv/twitch/android/feature/background/audio/ads/BackgroundAdsAllocationPresenter;->showAdFormats()V
+-
+-    .line 40
+-    invoke-direct {p0}, Ltv/twitch/android/feature/background/audio/ads/BackgroundAdsAllocationPresenter;->sendLastCommercialIdToForeground()V
+-
+     return-void
+ .end method
+ 
+@@ -215,37 +209,13 @@
+ 
+ # virtual methods
+ .method public final bindMultiAdFormatAllocation()V
+-    .locals 3
+-
+-    .line 79
+-    iget-object v0, p0, Ltv/twitch/android/feature/background/audio/ads/BackgroundAdsAllocationPresenter;->adEdgeAllocationPresenter:Ltv/twitch/android/feature/theatre/ads/AdEdgeAllocationPresenter;
+-
+-    .line 80
+-    invoke-static {}, Lio/reactivex/Flowable;->empty()Lio/reactivex/Flowable;
+-
+-    move-result-object v1
+-
+-    const-string v2, "empty()"
+-
+-    invoke-static {v1, v2}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullExpressionValue(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 79
+-    invoke-virtual {v0, v1}, Ltv/twitch/android/feature/theatre/ads/AdEdgeAllocationPresenter;->bindMultiAdFormatAllocation(Lio/reactivex/Flowable;)V
++    .locals 0
+ 
+     return-void
+ .end method
+ 
+ .method public final continueAudioAds(Ltv/twitch/android/shared/ads/models/AudioAdsContext;)V
+-    .locals 1
+-
+-    const-string v0, "audioAdsContext"
+-
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 85
+-    iget-object v0, p0, Ltv/twitch/android/feature/background/audio/ads/BackgroundAdsAllocationPresenter;->audioAdsBackgroundPresenter:Ltv/twitch/android/feature/background/audio/ads/AudioAdsBackgroundPresenter;
+-
+-    invoke-virtual {v0, p1}, Ltv/twitch/android/feature/background/audio/ads/AudioAdsBackgroundPresenter;->continueAudioAds(Ltv/twitch/android/shared/ads/models/AudioAdsContext;)V
++    .locals 0
+ 
+     return-void
+ .end method

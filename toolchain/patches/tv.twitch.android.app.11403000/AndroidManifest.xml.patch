@@ -1,0 +1,97 @@
+diff --git a/AndroidManifest.xml b/AndroidManifest.xml
+--- a/AndroidManifest.xml
++++ b/AndroidManifest.xml
+@@ -1,4 +1,4 @@
+-<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="33" android:compileSdkVersionCodename="13" android:installLocation="auto" package="tv.twitch.android.app" platformBuildVersionCode="33" platformBuildVersionName="13">
++<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="33" android:compileSdkVersionCodename="13" android:installLocation="auto" package="tv.orange" platformBuildVersionCode="33" platformBuildVersionName="13">
+     <uses-feature android:name="android.hardware.type.pc" android:required="false"/>
+     <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
+     <queries>
+@@ -69,7 +69,10 @@
+     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+     <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE"/>
+-    <application android:allowBackup="false" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:enabled="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:largeHeap="true" android:name="tv.twitch.android.app.consumer.TwitchApplication" android:networkSecurityConfig="@xml/default_security_config" android:requestLegacyExternalStorage="false" android:supportsRtl="true" android:theme="@style/Theme.TwitchApp">
++    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
++    <uses-permission android:name="android.permission.VIBRATE" />
++    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
++    <application android:debuggable="false" android:allowBackup="false" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:enabled="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:largeHeap="true" android:name="tv.twitch.android.app.consumer.TwitchApplication" android:networkSecurityConfig="@xml/default_security_config" android:requestLegacyExternalStorage="false" android:supportsRtl="true" android:theme="@style/Theme.TwitchApp">
+         <profileable android:shell="true"/>
+         <meta-data android:name="WindowManagerPreference:FreeformWindowSize" android:value="phone"/>
+         <meta-data android:name="WindowManagerPreference:FreeformWindowOrientation" android:value="portrait"/>
+@@ -139,17 +142,17 @@
+         </service>
+         <receiver android:exported="false" android:name="tv.twitch.android.shared.notifications.impl.NotificationDismissTrackerReceiver">
+             <intent-filter>
+-                <action android:name="tv.twitch.android.push.channel"/>
+-                <action android:name="tv.twitch.android.push.creatormode"/>
+-                <action android:name="tv.twitch.android.push.dashboard"/>
+-                <action android:name="tv.twitch.android.push.whisper"/>
+-                <action android:name="tv.twitch.android.push.report"/>
+-                <action android:name="tv.twitch.android.push.notificationsettings"/>
+-                <action android:name="tv.twitch.android.push.discover"/>
+-                <action android:name="tv.twitch.android.push.dismiss"/>
+-                <action android:name="tv.twitch.android.push.category"/>
+-                <action android:name="tv.twitch.android.push.externallink"/>
+-                <action android:name="tv.twitch.android.push.gueststar"/>
++                <action android:name="tv.orange.push.channel"/>
++                <action android:name="tv.orange.push.creatormode"/>
++                <action android:name="tv.orange.push.dashboard"/>
++                <action android:name="tv.orange.push.whisper"/>
++                <action android:name="tv.orange.push.report"/>
++                <action android:name="tv.orange.push.notificationsettings"/>
++                <action android:name="tv.orange.push.discover"/>
++                <action android:name="tv.orange.push.dismiss"/>
++                <action android:name="tv.orange.push.category"/>
++                <action android:name="tv.orange.push.externallink"/>
++                <action android:name="tv.orange.push.gueststar"/>
+             </intent-filter>
+         </receiver>
+         <receiver android:exported="true" android:name="tv.twitch.android.shared.app.indexing.AppIndexingUpdateReceiver" android:permission="com.google.android.gms.permission.APPINDEXING">
+@@ -180,14 +183,14 @@
+             </intent-filter>
+         </service>
+         <service android:name="tv.twitch.android.shared.app.indexing.AppIndexingUpdateService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+-        <provider android:authorities="tv.twitch.android.app.provider" android:exported="false" android:grantUriPermissions="true" android:name="androidx.core.content.FileProvider">
++        <provider android:authorities="tv.orange.provider" android:exported="false" android:grantUriPermissions="true" android:name="androidx.core.content.FileProvider">
+             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"/>
+         </provider>
+-        <provider android:authorities="tv.twitch.android.app.androidx-startup" android:exported="false" android:name="androidx.startup.InitializationProvider">
++        <provider android:authorities="tv.orange.androidx-startup" android:exported="false" android:name="androidx.startup.InitializationProvider">
+             <meta-data android:name="androidx.emoji2.text.EmojiCompatInitializer" android:value="androidx.startup"/>
+             <meta-data android:name="androidx.lifecycle.ProcessLifecycleInitializer" android:value="androidx.startup"/>
+         </provider>
+-        <provider android:authorities="com.amazon.identity.auth.device.MapInfoProvider.tv.twitch.android.app" android:exported="true" android:name="tv.twitch.android.shared.map.sdk.MAPInfoProviderImpl" android:permission="com.amazon.identity.permission.CAN_CALL_MAP_INFORMATION_PROVIDER"/>
++        <provider android:authorities="com.amazon.identity.auth.device.MapInfoProvider.tv.orange" android:exported="true" android:name="tv.twitch.android.shared.map.sdk.MAPInfoProviderImpl" android:permission="com.amazon.identity.permission.CAN_CALL_MAP_INFORMATION_PROVIDER"/>
+         <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_jgBdao5vVtyZ3hdckxy8jlkkzqooQltZ"/>
+         <meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_test_ahupan1EKvF7XkpepyA3vpfivrdlOlMg"/>
+         <meta-data android:name="io.branch.sdk.TestMode" android:value="false"/>
+@@ -243,11 +246,11 @@
+             </intent-filter>
+         </receiver>
+         <activity android:exported="false" android:name="com.google.android.gms.common.api.GoogleApiActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+-        <provider android:authorities="tv.twitch.android.app.firebaseinitprovider" android:directBootAware="true" android:exported="false" android:initOrder="100" android:name="com.google.firebase.provider.FirebaseInitProvider"/>
++        <provider android:authorities="tv.orange.firebaseinitprovider" android:directBootAware="true" android:exported="false" android:initOrder="100" android:name="com.google.firebase.provider.FirebaseInitProvider"/>
+         <receiver android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementReceiver"/>
+         <service android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementService"/>
+         <service android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
+-        <provider android:authorities="tv.twitch.android.app.mobileadsinitprovider" android:exported="false" android:initOrder="100" android:name="com.google.android.gms.ads.MobileAdsInitProvider"/>
++        <provider android:authorities="tv.orange.mobileadsinitprovider" android:exported="false" android:initOrder="100" android:name="com.google.android.gms.ads.MobileAdsInitProvider"/>
+         <service android:enabled="true" android:exported="false" android:name="com.google.android.gms.ads.AdService"/>
+         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
+         <meta-data android:name="com.bumptech.glide.integration.okhttp3.OkHttpGlideModule" android:value="GlideModule"/>
+@@ -337,10 +340,12 @@
+                 <action android:name="com.amazon.dcp.sso.action.session.users.changed"/>
+             </intent-filter>
+         </receiver>
++        <service android:name="tv.orange.features.timer.data.service.OrangeSleepTimer"/>
++        <activity android:exported="true" android:label="DEBUG" android:launchMode="singleTop" android:name="tv.orange.features.updater.data.view.UpdaterActivity" android:theme="@style/Theme.Twitch" android:windowSoftInputMode="stateHidden" android:screenOrientation="portrait" />
+         <meta-data android:name="com.android.dynamic.apk.fused.modules" android:value="base"/>
+         <meta-data android:name="com.android.stamp.source" android:value="https://play.google.com/store"/>
+         <meta-data android:name="com.android.stamp.type" android:value="STAMP_TYPE_STANDALONE_APK"/>
+         <meta-data android:name="com.android.vending.splits" android:value="@xml/splits0"/>
+-        <meta-data android:name="com.android.vending.derived.apk.id" android:value="2"/>
++        <meta-data android:name="com.android.vending.derived.apk.id" android:value="1"/>
+     </application>
+ </manifest>
+\ No newline at end of file

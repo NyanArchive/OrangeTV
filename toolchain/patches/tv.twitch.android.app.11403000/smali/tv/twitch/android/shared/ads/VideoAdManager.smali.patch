@@ -1,0 +1,85 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/ads/VideoAdManager.smali b/smali_classes6/tv/twitch/android/shared/ads/VideoAdManager.smali
+--- a/smali_classes6/tv/twitch/android/shared/ads/VideoAdManager.smali
++++ b/smali_classes6/tv/twitch/android/shared/ads/VideoAdManager.smali
+@@ -276,38 +276,7 @@
+ .end method
+ 
+ .method private final checkAdEligibilityAndRequestAd(Ltv/twitch/android/shared/ads/models/AdRequestInfo;Landroid/view/ViewGroup;)V
+-    .locals 3
+-
+-    .line 77
+-    iget-object v0, p0, Ltv/twitch/android/shared/ads/VideoAdManager;->disposable:Lio/reactivex/disposables/CompositeDisposable;
+-
+-    .line 78
+-    iget-object v1, p0, Ltv/twitch/android/shared/ads/VideoAdManager;->adEligibilityFetcher:Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher;
+-
+-    invoke-virtual {v1, p1}, Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher;->shouldRequestAd(Ltv/twitch/android/shared/ads/models/AdRequestInfo;)Lio/reactivex/Single;
+-
+-    move-result-object v1
+-
+-    .line 79
+-    invoke-static {v1}, Ltv/twitch/android/util/RxHelperKt;->async(Lio/reactivex/Single;)Lio/reactivex/Single;
+-
+-    move-result-object v1
+-
+-    .line 80
+-    new-instance v2, Ltv/twitch/android/shared/ads/VideoAdManager$$ExternalSyntheticLambda1;
+-
+-    invoke-direct {v2, p0, p1, p2}, Ltv/twitch/android/shared/ads/VideoAdManager$$ExternalSyntheticLambda1;-><init>(Ltv/twitch/android/shared/ads/VideoAdManager;Ltv/twitch/android/shared/ads/models/AdRequestInfo;Landroid/view/ViewGroup;)V
+-
+-    new-instance p2, Ltv/twitch/android/shared/ads/VideoAdManager$$ExternalSyntheticLambda2;
+-
+-    invoke-direct {p2, p0, p1}, Ltv/twitch/android/shared/ads/VideoAdManager$$ExternalSyntheticLambda2;-><init>(Ltv/twitch/android/shared/ads/VideoAdManager;Ltv/twitch/android/shared/ads/models/AdRequestInfo;)V
+-
+-    invoke-virtual {v1, v2, p2}, Lio/reactivex/Single;->subscribe(Lio/reactivex/functions/Consumer;Lio/reactivex/functions/Consumer;)Lio/reactivex/disposables/Disposable;
+-
+-    move-result-object p1
+-
+-    .line 77
+-    invoke-virtual {v0, p1}, Lio/reactivex/disposables/CompositeDisposable;->add(Lio/reactivex/disposables/Disposable;)Z
++    .locals 0
+ 
+     return-void
+ .end method
+@@ -384,17 +353,7 @@
+ .end method
+ 
+ .method private final requestAd(Ltv/twitch/android/shared/ads/models/AdRequestInfo;Landroid/view/ViewGroup;)V
+-    .locals 1
+-
+-    .line 100
+-    iget-object v0, p0, Ltv/twitch/android/shared/ads/VideoAdManager;->clientSideAdPresenter:Ltv/twitch/android/shared/ads/vaes/IClientVideoAdPresenter;
+-
+-    invoke-interface {v0, p1, p2}, Ltv/twitch/android/shared/ads/vaes/IClientVideoAdPresenter;->requestAds(Ltv/twitch/android/shared/ads/models/AdRequestInfo;Landroid/view/ViewGroup;)V
+-
+-    .line 101
+-    iget-object p2, p0, Ltv/twitch/android/shared/ads/VideoAdManager;->adTracker:Ltv/twitch/android/shared/ads/tracking/IAdTracker;
+-
+-    invoke-interface {p2, p1}, Ltv/twitch/android/shared/ads/tracking/IAdTracker;->trackVideoAdRequest(Ltv/twitch/android/shared/ads/models/AdRequestInfo;)V
++    .locals 0
+ 
+     return-void
+ .end method
+@@ -433,21 +392,7 @@
+ .end method
+ 
+ .method public final requestAds(Ltv/twitch/android/shared/ads/models/AdRequestInfo;)V
+-    .locals 1
+-
+-    const-string v0, "adRequestInfo"
+-
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 72
+-    iget-object v0, p0, Ltv/twitch/android/shared/ads/VideoAdManager;->adTracker:Ltv/twitch/android/shared/ads/tracking/IAdTracker;
+-
+-    invoke-interface {v0, p1}, Ltv/twitch/android/shared/ads/tracking/IAdTracker;->trackVideoAdScheduled(Ltv/twitch/android/shared/ads/models/AdRequestInfo;)V
+-
+-    .line 73
+-    iget-object v0, p0, Ltv/twitch/android/shared/ads/VideoAdManager;->adRequestSubject:Lio/reactivex/subjects/PublishSubject;
+-
+-    invoke-virtual {v0, p1}, Lio/reactivex/subjects/PublishSubject;->onNext(Ljava/lang/Object;)V
++    .locals 0
+ 
+     return-void
+ .end method

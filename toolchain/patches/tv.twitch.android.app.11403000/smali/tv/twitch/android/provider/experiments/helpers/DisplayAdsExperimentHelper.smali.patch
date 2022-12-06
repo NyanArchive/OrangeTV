@@ -1,0 +1,19 @@
+diff --git a/smali_classes5/tv/twitch/android/provider/experiments/helpers/DisplayAdsExperimentHelper.smali b/smali_classes5/tv/twitch/android/provider/experiments/helpers/DisplayAdsExperimentHelper.smali
+--- a/smali_classes5/tv/twitch/android/provider/experiments/helpers/DisplayAdsExperimentHelper.smali
++++ b/smali_classes5/tv/twitch/android/provider/experiments/helpers/DisplayAdsExperimentHelper.smali
+@@ -30,14 +30,7 @@
+ .method public final areDisplayAdsEnabled()Z
+     .locals 2
+ 
+-    .line 19
+-    iget-object v0, p0, Ltv/twitch/android/provider/experiments/helpers/DisplayAdsExperimentHelper;->experimentHelper:Ltv/twitch/android/provider/experiments/ExperimentHelper;
+-
+-    sget-object v1, Ltv/twitch/android/provider/experiments/Experiment;->STREAM_DISPLAY_ADS:Ltv/twitch/android/provider/experiments/Experiment;
+-
+-    invoke-interface {v0, v1}, Ltv/twitch/android/provider/experiments/ExperimentHelper;->isInOnGroupForBinaryExperiment(Ltv/twitch/android/provider/experiments/Experiment;)Z
+-
+-    move-result v0
++    const/4 v0, 0x0
+ 
+     return v0
+ .end method

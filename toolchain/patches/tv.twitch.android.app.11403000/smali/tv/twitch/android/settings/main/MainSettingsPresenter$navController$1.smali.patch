@@ -1,0 +1,19 @@
+diff --git a/smali_classes5/tv/twitch/android/settings/main/MainSettingsPresenter$navController$1.smali b/smali_classes5/tv/twitch/android/settings/main/MainSettingsPresenter$navController$1.smali
+--- a/smali_classes5/tv/twitch/android/settings/main/MainSettingsPresenter$navController$1.smali
++++ b/smali_classes5/tv/twitch/android/settings/main/MainSettingsPresenter$navController$1.smali
+@@ -217,9 +217,13 @@
+ 
+     .line 106
+     :pswitch_3
+-    new-instance p2, Ltv/twitch/android/settings/system/SystemSettingsFragment;
++    invoke-static {}, Ltv/orange/features/settings/OrangeSettings;->get()Ltv/orange/features/settings/OrangeSettings;
+ 
+-    invoke-direct {p2}, Ltv/twitch/android/settings/system/SystemSettingsFragment;-><init>()V
++    move-result-object p2
++
++    invoke-virtual {p2}, Ltv/orange/features/settings/OrangeSettings;->createSettingsFragment()Landroidx/fragment/app/Fragment;
++
++    move-result-object p2
+ 
+     goto :goto_0
+ 

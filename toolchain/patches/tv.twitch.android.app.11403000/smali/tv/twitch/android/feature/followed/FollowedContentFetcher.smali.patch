@@ -1,7 +1,7 @@
 diff --git a/smali_classes5/tv/twitch/android/feature/followed/FollowedContentFetcher.smali b/smali_classes5/tv/twitch/android/feature/followed/FollowedContentFetcher.smali
 --- a/smali_classes5/tv/twitch/android/feature/followed/FollowedContentFetcher.smali
 +++ b/smali_classes5/tv/twitch/android/feature/followed/FollowedContentFetcher.smali
-@@ -406,7 +406,7 @@
+@@ -479,7 +479,7 @@
  .end method
  
  .method private static final observePrefetchContent$lambda-2(Ltv/twitch/android/shared/api/pub/FollowedFirstPageContent;)Ltv/twitch/android/feature/followed/model/FollowingContentResponse;
@@ -10,7 +10,7 @@ diff --git a/smali_classes5/tv/twitch/android/feature/followed/FollowedContentFe
  
      const-string v0, "it"
  
-@@ -426,6 +426,17 @@
+@@ -499,6 +499,17 @@
  
      move-result-object v3
  

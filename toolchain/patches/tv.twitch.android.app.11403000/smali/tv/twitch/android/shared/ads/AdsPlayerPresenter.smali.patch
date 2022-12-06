@@ -210,7 +210,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ads/AdsPlayerPresenter.smal
  
      return-void
  .end method
-@@ -2351,57 +2175,7 @@
+@@ -2392,57 +2216,7 @@
  .end method
  
  .method public final requestAdFromMultiAdFormatEvent(Ltv/twitch/android/models/ads/MultiAdFormatMetadata;Ltv/twitch/android/models/ads/PbypMidrollRequest;Ltv/twitch/android/shared/ads/models/sdk/VAST;)V

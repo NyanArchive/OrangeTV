@@ -1,7 +1,7 @@
 diff --git a/smali/io/reactivex/Completable.smali b/smali/io/reactivex/Completable.smali
 --- a/smali/io/reactivex/Completable.smali
 +++ b/smali/io/reactivex/Completable.smali
-@@ -1025,3 +1025,70 @@
+@@ -993,3 +993,70 @@
  
      return-object p1
  .end method

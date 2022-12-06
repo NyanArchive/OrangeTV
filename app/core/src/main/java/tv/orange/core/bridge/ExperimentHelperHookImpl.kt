@@ -43,7 +43,8 @@ class ExperimentHelperHookImpl(private val org: IExperimentHelper) : ExperimentH
             Experiment.HTTP3_WITH_CRONET_GLOBAL -> false
 
             Experiment.MULTI_OPTION_PREDICTIONS,
-            Experiment.CHAT_SETTINGS -> true
+            Experiment.CHAT_SETTINGS,
+            Experiment.IMPROVED_BACKGROUND_AUDIO-> true
 
             else -> {
                 val res = org.isInGroupForMultiVariantExperimentOrg(p0, p1)

@@ -1,7 +1,18 @@
 diff --git a/smali_classes4/tv/twitch/android/api/streammanifestfetcher/ManifestApi.smali b/smali_classes4/tv/twitch/android/api/streammanifestfetcher/ManifestApi.smali
 --- a/smali_classes4/tv/twitch/android/api/streammanifestfetcher/ManifestApi.smali
 +++ b/smali_classes4/tv/twitch/android/api/streammanifestfetcher/ManifestApi.smali
-@@ -636,11 +636,11 @@
+@@ -268,6 +268,10 @@
+ 
+     move-result-object p0
+ 
++    invoke-static {p2, p0}, Ltv/orange/features/proxy/Proxy;->hookPlaylistUrl(Ljava/lang/String;Ltv/twitch/android/models/manifest/extm3u;)Ljava/lang/String;
++
++    move-result-object p2
++
+     .line 201
+     invoke-direct {v2, p2, p0, p1, v0}, Ltv/twitch/android/models/manifest/ManifestModel;-><init>(Ljava/lang/String;Ltv/twitch/android/models/manifest/extm3u;Ltv/twitch/android/models/AccessTokenResponse;Ljava/lang/String;)V
+ 
+@@ -636,11 +640,11 @@
      move-result-object v22
  
      .line 189
@@ -16,7 +27,20 @@ diff --git a/smali_classes4/tv/twitch/android/api/streammanifestfetcher/Manifest
  
      const/4 v10, 0x1
  
-@@ -784,7 +784,12 @@
+@@ -663,6 +667,12 @@
+ 
+     move-object/from16 v2, p2
+ 
++    move-object/from16 v3, p1
++
++    invoke-static {v1, v3, v2}, Ltv/orange/features/proxy/Proxy;->tryHookStreamManifestResponse(Lio/reactivex/Single;Ljava/lang/String;Ltv/twitch/android/models/AccessTokenResponse;)Lio/reactivex/Single;
++
++    move-result-object v1
++
+     .line 190
+     invoke-direct {v0, v1, v2}, Ltv/twitch/android/api/streammanifestfetcher/ManifestApi;->toManifestResponse(Lio/reactivex/Single;Ltv/twitch/android/models/AccessTokenResponse;)Lio/reactivex/Single;
+ 
+@@ -784,7 +794,12 @@
  .end method
  
  .method public getVodManifest(Ljava/lang/String;Ltv/twitch/android/models/AccessTokenResponse;Ljava/lang/String;Ljava/lang/String;Ltv/twitch/android/models/player/ManifestProperties;)Lio/reactivex/Single;
@@ -30,7 +54,7 @@ diff --git a/smali_classes4/tv/twitch/android/api/streammanifestfetcher/Manifest
      .annotation system Ldalvik/annotation/Signature;
          value = {
              "(",
-@@ -800,81 +805,58 @@
+@@ -800,81 +815,58 @@
          }
      .end annotation
  
@@ -54,7 +78,8 @@ diff --git a/smali_classes4/tv/twitch/android/api/streammanifestfetcher/Manifest
 -    move-object/from16 v5, p3
 -
 -    invoke-static {v5, v2}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
--
++    invoke-static {}, Ltv/orange/features/vodhunter/Vodhunter;->get()Ltv/orange/features/vodhunter/Vodhunter;
+ 
 -    const-string v2, "sig"
 -
 -    move-object/from16 v6, p4
@@ -62,8 +87,7 @@ diff --git a/smali_classes4/tv/twitch/android/api/streammanifestfetcher/Manifest
 -    invoke-static {v6, v2}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 -
 -    const-string v2, "manifestProperties"
-+    invoke-static {}, Ltv/orange/features/vodhunter/Vodhunter;->get()Ltv/orange/features/vodhunter/Vodhunter;
- 
+-
 -    move-object/from16 v3, p5
 -
 -    invoke-static {v3, v2}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
@@ -107,19 +131,19 @@ diff --git a/smali_classes4/tv/twitch/android/api/streammanifestfetcher/Manifest
  
 -    move-result-object v13
 +    move-result-object v12
++
++    const/4 v10, 0x1
++
++    move-object v3, p1
  
 -    const/4 v11, 0x1
-+    const/4 v10, 0x1
++    move-object/from16 v4, p3
  
 -    move-object v3, v2
-+    move-object v3, p1
++    move-object/from16 v5, p4
  
 -    .line 147
 -    invoke-interface/range {v3 .. v13}, Ltv/twitch/android/api/streammanifestfetcher/ManifestApi$ManifestService;->getVodManifest(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZZLjava/lang/String;Ljava/lang/String;)Lio/reactivex/Single;
-+    move-object/from16 v4, p3
-+
-+    move-object/from16 v5, p4
-+
 +    invoke-interface/range {v2 .. v12}, Ltv/twitch/android/api/streammanifestfetcher/ManifestApi$ManifestService;->getVodManifest(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZZLjava/lang/String;Ljava/lang/String;)Lio/reactivex/Single;
  
      move-result-object v2

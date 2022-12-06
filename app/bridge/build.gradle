@@ -52,6 +52,7 @@ dependencies {
     api project(path: ':features:updater')
     api project(path: ':features:vodhunter')
     api project(path: ':features:swipper')
+    api project(path: ':features:proxy')
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

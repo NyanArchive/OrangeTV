@@ -63,7 +63,8 @@ enum class OrangeSubMenu(
             Flag.MINI_PLAYER_SIZE,
             Flag.VODHUNTER,
             Flag.DISABLE_THEATRE_AUTOPLAY,
-            Flag.SHOW_STATS_BUTTON
+            Flag.SHOW_STATS_BUTTON,
+            Flag.Proxy
         )
     ),
     Gestures(

@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import tv.orange.bridge.di.scope.BridgeScope
 import tv.orange.features.api.component.repository.NopRepository
+import tv.orange.features.api.component.repository.ProxyRepository
 import tv.orange.features.api.component.repository.StvRepository
 import tv.orange.features.api.di.component.ApiComponent
 import tv.orange.features.badges.component.BadgeProvider
@@ -66,5 +67,11 @@ class BridgeModule {
     @Provides
     fun provideHighlighter(highlighterComponent: HighlighterComponent): Highlighter {
         return highlighterComponent.highlighter
+    }
+
+    @BridgeScope
+    @Provides
+    fun provideProxyRepository(apiComponent: ApiComponent): ProxyRepository {
+        return apiComponent.proxyRepository
     }
 }

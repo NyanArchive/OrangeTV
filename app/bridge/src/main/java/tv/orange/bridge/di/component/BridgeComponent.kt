@@ -12,6 +12,7 @@ import tv.orange.features.chapters.VodChapters
 import tv.orange.features.chat.ChatHookProvider
 import tv.orange.features.chathistory.ChatHistory
 import tv.orange.features.logs.ChatLogs
+import tv.orange.features.proxy.Proxy
 import tv.orange.features.refreshstream.RefreshStream
 import tv.orange.features.settings.OrangeSettings
 import tv.orange.features.spam.Spam
@@ -47,6 +48,7 @@ interface BridgeComponent {
     val updaterProvider: Provider<Updater>
     val vodhunterProvider: Provider<Vodhunter>
     val swipperProvider: Provider<Swipper>
+    val proxyProvider: Provider<Proxy>
 
     val preferenceManager: Provider<PreferenceManager>
     val core: Provider<Core>

@@ -256,6 +256,11 @@ enum class Flag(
         "orange_settings_pinned_message",
         ListValue(PinnedMessageStrategy.Default),
     ),
+    Proxy(
+        "proxy",
+        "orange_settings_proxy",
+        ListValue(ProxyImpl.Disabled),
+    ),
     LANDSCAPE_CHAT_SIZE(
         "landscape_chat_size",
         "orange_settings_landscape_chat_size",

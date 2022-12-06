@@ -116,6 +116,8 @@
     <string name="orange_app_update_available_cta">È disponibile una nuova versione di PurpleTV! Tocca qui per installare l\'aggiornamento</string>
     <string name="orange_updater_not_found">Nessun aggiornamento trovato</string>
     <string name="orange_settings_check_update">Controlla aggiornamenti</string>
+    <string name="orange_settings_clear_update_cache">Cancella cache</string>
+    <string name="orange_updater_done">Fatto!</string>
     <string name="orange_itz_global_emotes">Emote Globali Homies</string>
     <string name="orange_itz_channel_emotes">Emote Homie del Canale</string>
     <string name="orange_settings_okhttp_logging">OkHttp Logging</string>
@@ -138,4 +140,9 @@
     <string name="orange_pinned_message_sec30">30 sec.</string>
     <string name="orange_settings_brightness_gesture">Controllo a scorrimento della luminosità</string>
     <string name="orange_settings_volume_gesture">Controllo a scorrimento del volume</string>
+    <string name="orange_settings_disable_theatre_autoplay">Disattiva riproduzione automatica</string>
+    <string name="orange_settings_disable_theatre_autoplay_desc">Disabilita la riproduzione automatica del video successivo</string>
+    <string name="orange_settings_show_timer_button">Mostra il pulsante del timer</string>
+    <string name="orange_settings_show_refresh_button">Mostra il pulsante ricarica</string>
+    <string name="orange_chat_kill_chat">Chiudi chat</string>
 </resources>

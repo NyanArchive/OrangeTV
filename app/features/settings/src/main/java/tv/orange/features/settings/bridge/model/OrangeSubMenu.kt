@@ -98,7 +98,8 @@ enum class OrangeSubMenu(
         title = "orange_settings_menu_dev",
         items = listOf(
             Flag.DEV_MODE,
-            Flag.OKHTTP_LOGGING
+            Flag.OKHTTP_LOGGING,
+            Flag.FORCE_OTA
         )
     ),
     Support(

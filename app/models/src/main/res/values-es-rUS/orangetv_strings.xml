@@ -141,7 +141,8 @@
     <string name="orange_settings_brightness_gesture">Control de brillo por gestos</string>
     <string name="orange_settings_volume_gesture">Control de volumen por gestos</string>
     <string name="orange_settings_disable_theatre_autoplay">Desactivar la reproducción automática</string>
-    <string name="orange_settings_disable_theatre_autoplay_desc">Desactivar la reproducción automática del siguiente vídeo</string>
+    <string name="orange_settings_disable_theatre_autoplay_desc">Desactiva la reproducción automática del siguiente vídeo</string>
     <string name="orange_settings_show_timer_button">Mostrar botón de temporizador</string>
     <string name="orange_settings_show_refresh_button">Mostrar botón de recargar</string>
+    <string name="orange_chat_kill_chat">Matar chat</string>
 </resources>

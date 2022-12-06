@@ -108,7 +108,16 @@
     <string name="orange_updater_beta">Beta</string>
     <string name="orange_updater_dev">Dev</string>
     <string name="orange_updater_disabled">Désactivé</string>
+    <string name="orange_updater_install_action">Installer</string>
+    <string name="orange_updater_update_action">Mettre à jour</string>
+    <string name="orange_updater_channel_disabled">Le canal de mise à jour actuel est désactivé</string>
+    <string name="orange_updater_latest_version">Vous utilisez la dernière version</string>
+    <string name="orange_app_update_available">Une nouvelle Mise à Jour est Disponible</string>
+    <string name="orange_app_update_available_cta">Une nouvelle version de PurpleTV est disponible ! Appuyez ici pour installer la mise à jour</string>
+    <string name="orange_updater_not_found">Mise à jour non trouvée</string>
     <string name="orange_settings_check_update">Vérifier les mises à jour</string>
+    <string name="orange_settings_clear_update_cache">Vider le cache</string>
+    <string name="orange_updater_done">Terminé !</string>
     <string name="orange_itz_global_emotes">Émoticônes Global Homies</string>
     <string name="orange_itz_channel_emotes">Émoticônes de chaîne Homies</string>
     <string name="orange_settings_okhttp_logging">Journalisation OkHttp</string>
@@ -131,4 +140,9 @@
     <string name="orange_pinned_message_sec30">30 sec.</string>
     <string name="orange_settings_brightness_gesture">Contrôle du geste de luminosité</string>
     <string name="orange_settings_volume_gesture">Contrôle du geste avec les touches volume</string>
+    <string name="orange_settings_disable_theatre_autoplay">Désactiver la lecture automatique</string>
+    <string name="orange_settings_disable_theatre_autoplay_desc">Désactiver la lecture automatique de la vidéo suivante</string>
+    <string name="orange_settings_show_timer_button">Afficher le bouton de minuteur</string>
+    <string name="orange_settings_show_refresh_button">Afficher le bouton d\'actualisation</string>
+    <string name="orange_chat_kill_chat">Tué le chat</string>
 </resources>

@@ -84,7 +84,7 @@
         app:layout_constraintEnd_toStartOf="@+id/orangetv_updater_g2"
         app:layout_constraintStart_toStartOf="@+id/orangetv_updater_g1"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_logo_glitch" />
+        app:srcCompat="@drawable/ic_orangetv_logo" />
 
     <TextView
         android:id="@+id/orangetv_updater_codename"

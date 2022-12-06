@@ -206,6 +206,11 @@ enum class Flag(
         "orange_settings_show_refresh_button",
         BooleanValue(true)
     ),
+    FORCE_OTA(
+        "force_ota",
+        "orange_settings_force_ota",
+        BooleanValue()
+    ),
     PLAYER_IMPL(
         "player_impl",
         "orange_settings_player_impl",

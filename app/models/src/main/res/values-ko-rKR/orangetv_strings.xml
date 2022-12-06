@@ -108,7 +108,16 @@
     <string name="orange_updater_beta">베타</string>
     <string name="orange_updater_dev">개발자</string>
     <string name="orange_updater_disabled">비활성화</string>
+    <string name="orange_updater_install_action">설치</string>
+    <string name="orange_updater_update_action">업데이트</string>
+    <string name="orange_updater_channel_disabled">현재 업데이트 채널은 비활성화되었습니다</string>
+    <string name="orange_updater_latest_version">최신 버전을 사용중입니다</string>
+    <string name="orange_app_update_available">새 업데이트 사용 가능</string>
+    <string name="orange_app_update_available_cta">PurpleTV 새 버전이 사용 가능합니다! 업데이트를 설치하려면 여기를 탭하세요</string>
+    <string name="orange_updater_not_found">업데이트를 찾을 수 없음</string>
     <string name="orange_settings_check_update">업데이트 확인</string>
+    <string name="orange_settings_clear_update_cache">캐시 지우기</string>
+    <string name="orange_updater_done">완료!</string>
     <string name="orange_itz_global_emotes">Homies 글로벌 이모티콘</string>
     <string name="orange_itz_channel_emotes">Homies 채널 이모티콘</string>
     <string name="orange_settings_okhttp_logging">OkHttp 로그 작성</string>
@@ -129,4 +138,11 @@
     <string name="orange_pinned_message_default">기본값</string>
     <string name="orange_pinned_message_disabled">비활성화</string>
     <string name="orange_pinned_message_sec30">30초</string>
+    <string name="orange_settings_brightness_gesture">밝기 제스쳐 제어</string>
+    <string name="orange_settings_volume_gesture">볼륨 제스쳐 제어</string>
+    <string name="orange_settings_disable_theatre_autoplay">자동 재생 끄기</string>
+    <string name="orange_settings_disable_theatre_autoplay_desc">다음 동영상 자동 재생 비활성화</string>
+    <string name="orange_settings_show_timer_button">타이머 버튼 표시</string>
+    <string name="orange_settings_show_refresh_button">새로 고침 버튼 표시</string>
+    <string name="orange_chat_kill_chat">채팅 내용 숨기기</string>
 </resources>

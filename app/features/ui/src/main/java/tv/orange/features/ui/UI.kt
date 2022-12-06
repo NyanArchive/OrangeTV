@@ -116,6 +116,10 @@ class UI @Inject constructor(
         }
 
         @JvmStatic
+        val shouldShowVideoDebugPanel: Boolean
+            get() = Flag.SHOW_STATS_BUTTON.asBoolean()
+
+        @JvmStatic
         val showClipfinity: Boolean
             get() = Flag.CLIPFINITY.asBoolean()
     }

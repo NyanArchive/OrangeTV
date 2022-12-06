@@ -2,6 +2,7 @@ package tv.orange.features.usersearch
 
 import androidx.appcompat.widget.SearchView
 import tv.orange.core.Core
+import tv.orange.core.compat.ClassCompat
 import tv.orange.core.compat.ClassCompat.cast
 import tv.orange.features.usersearch.bridge.IProxyEvent
 import tv.orange.features.usersearch.bridge.IViewerListViewDelegate
@@ -35,7 +36,9 @@ class UserSearch @Inject constructor(
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    (delegate.cast<IViewerListViewDelegate>()).onInputSearchTextChanged(newText)
+                    ClassCompat.invokeIf<IViewerListViewDelegate>(delegate) {
+                        it.onInputSearchTextChanged(newText)
+                    }
 
                     return false
                 }
@@ -47,7 +50,7 @@ class UserSearch @Inject constructor(
         searchText ?: return chatters
         chatters ?: return null
 
-        if (searchText.isNullOrBlank()) {
+        if (searchText.isBlank()) {
             return chatters
         }
 
@@ -73,12 +76,13 @@ class UserSearch @Inject constructor(
     }
 
     fun setupFilter(
-        delegate: ViewerListViewDelegate,
-        presenter: ViewerListPresenter
+        delegate: ViewerListViewDelegate, presenter: ViewerListPresenter
     ) {
         presenter.directSubscribe(delegate.eventObserver(), DisposeOn.DESTROY) { event ->
             if (event is ViewDelegateEvent) {
-                (presenter.cast<IProxyEvent>()).proxyEvent(event)
+                ClassCompat.invokeIf<IProxyEvent>(presenter) {
+                    it.proxyEvent(event)
+                }
             }
         }
     }

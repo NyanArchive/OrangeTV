@@ -202,4 +202,6 @@
     <string name="orange_chat_kill_chat">Kill chat</string>
     <string name="orange_settings_force_ota">Force OTA</string>
     <string name="orange_settings_force_ota_desc" />
+    <string name="orange_settings_show_stats_button">Show stats button</string>
+    <string name="orange_settings_show_stats_button_desc" />
 </resources>

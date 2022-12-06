@@ -211,6 +211,11 @@ enum class Flag(
         "orange_settings_force_ota",
         BooleanValue()
     ),
+    SHOW_STATS_BUTTON(
+        "show_stats_button",
+        "orange_settings_show_stats_button",
+        BooleanValue(true)
+    ),
     PLAYER_IMPL(
         "player_impl",
         "orange_settings_player_impl",

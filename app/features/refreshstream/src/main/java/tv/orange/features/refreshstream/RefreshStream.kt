@@ -2,7 +2,7 @@ package tv.orange.features.refreshstream
 
 import android.widget.ImageView
 import tv.orange.core.Core
-import tv.orange.core.compat.ClassCompat.cast
+import tv.orange.core.compat.ClassCompat
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.util.ViewUtil.changeVisibility
@@ -26,7 +26,9 @@ class RefreshStream @Inject constructor(val viewFactory: ViewFactory) : Feature 
     fun getRefreshStreamButton(delegate: BottomPlayerControlOverlayViewDelegate): ImageView {
         return viewFactory.createRefreshStreamButton(delegate = delegate).apply {
             setOnClickListener {
-                delegate.cast<IBottomPlayerControlOverlayViewDelegate>().onRefreshStreamClicked()
+                ClassCompat.invokeIf<IBottomPlayerControlOverlayViewDelegate>(delegate) {
+                    it.onRefreshStreamClicked()
+                }
             }
             if (!Flag.SHOW_REFRESH_BUTTON.asBoolean()) {
                 changeVisibility(false)

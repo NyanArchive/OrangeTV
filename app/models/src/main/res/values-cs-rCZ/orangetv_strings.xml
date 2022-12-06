@@ -145,4 +145,6 @@
     <string name="orange_settings_show_timer_button">Zobrazit tlačítko časovače</string>
     <string name="orange_settings_show_refresh_button">Zobrazit tlačítko obnovení</string>
     <string name="orange_chat_kill_chat">Ukončit chat</string>
+    <string name="orange_settings_force_ota">Vynutit OTA</string>
+    <string name="orange_settings_show_stats_button">Zobrazit tlačítko statistiky</string>
 </resources>

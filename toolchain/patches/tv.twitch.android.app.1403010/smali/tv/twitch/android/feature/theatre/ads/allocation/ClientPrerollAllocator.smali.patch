@@ -1,0 +1,15 @@
+diff --git a/smali_classes5/tv/twitch/android/feature/theatre/ads/allocation/ClientPrerollAllocator.smali b/smali_classes5/tv/twitch/android/feature/theatre/ads/allocation/ClientPrerollAllocator.smali
+--- a/smali_classes5/tv/twitch/android/feature/theatre/ads/allocation/ClientPrerollAllocator.smali
++++ b/smali_classes5/tv/twitch/android/feature/theatre/ads/allocation/ClientPrerollAllocator.smali
+@@ -110,8 +110,10 @@
+ 
+     const/4 p2, 0x2
+ 
++    const-string v1, "ClientPrerollAllocator"
++
+     .line 92
+-    invoke-static {p0, p1, v0, p2, v0}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->registerStateMachine$default(Ltv/twitch/android/core/mvp/presenter/RxPresenter;Ltv/twitch/android/core/mvp/presenter/StateMachine;Ljava/lang/String;ILjava/lang/Object;)V
++    invoke-static {p0, p1, v1, v0, v0}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->registerStateMachine$default(Ltv/twitch/android/core/mvp/presenter/RxPresenter;Ltv/twitch/android/core/mvp/presenter/StateMachine;Ljava/lang/String;ILjava/lang/Object;)V
+ 
+     return-void
+ .end method

@@ -1,0 +1,49 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/ads/TcfAdRequestParameterProvider.smali b/smali_classes6/tv/twitch/android/shared/ads/TcfAdRequestParameterProvider.smali
+--- a/smali_classes6/tv/twitch/android/shared/ads/TcfAdRequestParameterProvider.smali
++++ b/smali_classes6/tv/twitch/android/shared/ads/TcfAdRequestParameterProvider.smali
+@@ -55,44 +55,9 @@
+ 
+ # virtual methods
+ .method public final getGdprl()Ljava/lang/String;
+-    .locals 2
+-
+-    .line 25
+-    iget-object v0, p0, Ltv/twitch/android/shared/ads/TcfAdRequestParameterProvider;->tcfExperiment:Ltv/twitch/android/provider/experiments/helpers/TcfExperiment;
+-
+-    invoke-interface {v0}, Ltv/twitch/android/provider/experiments/helpers/TcfExperiment;->shouldUseTcfV2()Z
+-
+-    move-result v0
+-
+-    if-eqz v0, :cond_0
+-
+-    const-string v0, "status"
+-
+-    const-string v1, "cmp"
+-
+-    .line 26
+-    invoke-static {v0, v1}, Lkotlin/TuplesKt;->to(Ljava/lang/Object;Ljava/lang/Object;)Lkotlin/Pair;
+-
+-    move-result-object v0
+-
+-    invoke-static {v0}, Lkotlin/collections/MapsKt;->mapOf(Lkotlin/Pair;)Ljava/util/Map;
+-
+-    move-result-object v0
+-
+-    .line 27
+-    new-instance v1, Lorg/json/JSONObject;
+-
+-    invoke-direct {v1, v0}, Lorg/json/JSONObject;-><init>(Ljava/util/Map;)V
+-
+-    invoke-virtual {v1}, Lorg/json/JSONObject;->toString()Ljava/lang/String;
+-
+-    move-result-object v0
+-
+-    goto :goto_0
++    .locals 1
+ 
+-    :cond_0
+     const/4 v0, 0x0
+ 
+-    :goto_0
+     return-object v0
+ .end method

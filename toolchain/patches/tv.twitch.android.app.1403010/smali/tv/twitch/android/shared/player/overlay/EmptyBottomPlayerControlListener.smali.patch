@@ -1,0 +1,18 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/EmptyBottomPlayerControlListener.smali b/smali_classes6/tv/twitch/android/shared/player/overlay/EmptyBottomPlayerControlListener.smali
+--- a/smali_classes6/tv/twitch/android/shared/player/overlay/EmptyBottomPlayerControlListener.smali
++++ b/smali_classes6/tv/twitch/android/shared/player/overlay/EmptyBottomPlayerControlListener.smali
+@@ -30,6 +30,14 @@
+     return-void
+ .end method
+ 
++.method public onRefreshClicked()V
++    .registers 1
++
++    .prologue
++    .line 38
++    return-void
++.end method
++
+ .method public onShowChatButtonClicked()V
+     .locals 0
+ 

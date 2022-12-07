@@ -1,0 +1,46 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/preferences/VideoDebugConfig.smali b/smali_classes6/tv/twitch/android/shared/preferences/VideoDebugConfig.smali
+--- a/smali_classes6/tv/twitch/android/shared/preferences/VideoDebugConfig.smali
++++ b/smali_classes6/tv/twitch/android/shared/preferences/VideoDebugConfig.smali
+@@ -120,37 +120,13 @@
+ 
+ # virtual methods
+ .method public final shouldShowVideoDebugPanel()Z
+-    .locals 3
++    .registers 2
+ 
+-    .line 34
+-    iget-object v0, p0, Ltv/twitch/android/shared/preferences/VideoDebugConfig;->buildConfigUtil:Ltv/twitch/android/core/buildconfig/BuildConfigUtil;
+-
+-    iget-object v1, p0, Ltv/twitch/android/shared/preferences/VideoDebugConfig;->accountManager:Ltv/twitch/android/core/user/TwitchAccountManager;
+-
+-    invoke-virtual {v1}, Ltv/twitch/android/core/user/TwitchAccountManager;->isStaff()Z
+-
+-    move-result v1
+-
+-    invoke-virtual {v0, v1}, Ltv/twitch/android/core/buildconfig/BuildConfigUtil;->shouldShowDebugOptions(Z)Z
++    .prologue
++    .line 9
++    invoke-static {}, Ltv/orange/features/ui/UI;->getShouldShowVideoDebugPanel()Z
+ 
+     move-result v0
+ 
+-    const/4 v1, 0x0
+-
+-    if-eqz v0, :cond_0
+-
+-    iget-object v0, p0, Ltv/twitch/android/shared/preferences/VideoDebugConfig;->sharedPrefs:Landroid/content/SharedPreferences;
+-
+-    const-string v2, "showVideoDebugPanel"
+-
+-    invoke-interface {v0, v2, v1}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
+-
+-    move-result v0
+-
+-    if-eqz v0, :cond_0
+-
+-    const/4 v1, 0x1
+-
+-    :cond_0
+-    return v1
++    return v0
+ .end method

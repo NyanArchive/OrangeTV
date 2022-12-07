@@ -1,0 +1,81 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/ads/tracking/MultiFormatAdsTrackingExperiment.smali b/smali_classes6/tv/twitch/android/shared/ads/tracking/MultiFormatAdsTrackingExperiment.smali
+--- a/smali_classes6/tv/twitch/android/shared/ads/tracking/MultiFormatAdsTrackingExperiment.smali
++++ b/smali_classes6/tv/twitch/android/shared/ads/tracking/MultiFormatAdsTrackingExperiment.smali
+@@ -29,74 +29,17 @@
+ 
+ # virtual methods
+ .method public final shouldUseMultiAdFormatTracker()Z
+-    .locals 3
+-
+-    .line 25
+-    iget-object v0, p0, Ltv/twitch/android/shared/ads/tracking/MultiFormatAdsTrackingExperiment;->experimentHelper:Ltv/twitch/android/provider/experiments/ExperimentHelper;
+-
+-    sget-object v1, Ltv/twitch/android/provider/experiments/Experiment;->MAF_AD_TRACKING:Ltv/twitch/android/provider/experiments/Experiment;
+-
+-    invoke-interface {v0, v1}, Ltv/twitch/android/provider/experiments/ExperimentHelper;->getGroupForExperiment(Ltv/twitch/android/provider/experiments/Experiment;)Ljava/lang/String;
+-
+-    move-result-object v0
+-
+-    const-string v2, "only_maf_tracker_11.6"
+-
+-    invoke-static {v0, v2}, Lkotlin/jvm/internal/Intrinsics;->areEqual(Ljava/lang/Object;Ljava/lang/Object;)Z
+-
+-    move-result v0
+-
+-    if-nez v0, :cond_1
+-
+-    .line 26
+-    iget-object v0, p0, Ltv/twitch/android/shared/ads/tracking/MultiFormatAdsTrackingExperiment;->experimentHelper:Ltv/twitch/android/provider/experiments/ExperimentHelper;
+-
+-    invoke-interface {v0, v1}, Ltv/twitch/android/provider/experiments/ExperimentHelper;->getGroupForExperiment(Ltv/twitch/android/provider/experiments/Experiment;)Ljava/lang/String;
+-
+-    move-result-object v0
+-
+-    const-string v1, "both_ad_and_maf_tracker_11.6"
+-
+-    invoke-static {v0, v1}, Lkotlin/jvm/internal/Intrinsics;->areEqual(Ljava/lang/Object;Ljava/lang/Object;)Z
+-
+-    move-result v0
+-
+-    if-eqz v0, :cond_0
+-
+-    goto :goto_0
++    .locals 1
+ 
+-    :cond_0
+     const/4 v0, 0x0
+ 
+-    goto :goto_1
+-
+-    :cond_1
+-    :goto_0
+-    const/4 v0, 0x1
+-
+-    :goto_1
+     return v0
+ .end method
+ 
+ .method public final shouldUseVideoAdTracker()Z
+-    .locals 2
+-
+-    .line 21
+-    iget-object v0, p0, Ltv/twitch/android/shared/ads/tracking/MultiFormatAdsTrackingExperiment;->experimentHelper:Ltv/twitch/android/provider/experiments/ExperimentHelper;
+-
+-    sget-object v1, Ltv/twitch/android/provider/experiments/Experiment;->MAF_AD_TRACKING:Ltv/twitch/android/provider/experiments/Experiment;
+-
+-    invoke-interface {v0, v1}, Ltv/twitch/android/provider/experiments/ExperimentHelper;->getGroupForExperiment(Ltv/twitch/android/provider/experiments/Experiment;)Ljava/lang/String;
+-
+-    move-result-object v0
+-
+-    const-string v1, "only_maf_tracker_11.6"
+-
+-    invoke-static {v0, v1}, Lkotlin/jvm/internal/Intrinsics;->areEqual(Ljava/lang/Object;Ljava/lang/Object;)Z
+-
+-    move-result v0
++    .locals 1
+ 
+-    xor-int/lit8 v0, v0, 0x1
++    const/4 v0, 0x0
+ 
+     return v0
+ .end method

@@ -1,0 +1,25 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageTimeModel.smali b/smali_classes6/tv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageTimeModel.smali
+--- a/smali_classes6/tv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageTimeModel.smali
++++ b/smali_classes6/tv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageTimeModel.smali
+@@ -13,7 +13,7 @@
+ 
+ # direct methods
+ .method public constructor <init>(Ljava/lang/Long;JLjava/lang/Long;)V
+-    .locals 0
++    .locals 1
+ 
+     .line 11
+     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+@@ -25,7 +25,11 @@
+     iput-wide p2, p0, Ltv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageTimeModel;->timeMessagePinnedMS:J
+ 
+     .line 14
+-    iput-object p4, p0, Ltv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageTimeModel;->timeMessageUnpinnedMS:Ljava/lang/Long;
++    invoke-static {p4}, Ltv/orange/core/Core;->hookUnpinnedMS(Ljava/lang/Long;)Ljava/lang/Long;
++
++    move-result-object v0
++
++    iput-object v0, p0, Ltv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageTimeModel;->timeMessageUnpinnedMS:Ljava/lang/Long;
+ 
+     return-void
+ .end method

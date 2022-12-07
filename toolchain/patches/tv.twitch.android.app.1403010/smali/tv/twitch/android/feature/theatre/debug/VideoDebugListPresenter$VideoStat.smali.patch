@@ -1,0 +1,636 @@
+diff --git a/smali_classes5/tv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat.smali b/smali_classes5/tv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat.smali
+--- a/smali_classes5/tv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat.smali
++++ b/smali_classes5/tv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat.smali
+@@ -1,6 +1,7 @@
++###### Class tv.twitch.android.feature.theatre.debug.VideoDebugListPresenter$VideoStat (tv.twitch.android.feature.theatre.debug.VideoDebugListPresenter$VideoStat)
+ .class public final enum Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ .super Ljava/lang/Enum;
+-.source "VideoDebugListPresenter.kt"
++.source "VideoDebugListPresenter.java"
+ 
+ 
+ # annotations
+@@ -53,6 +54,8 @@
+ 
+ .field public static final enum PROTOCOL:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
++.field public static final enum PROXY_SERVER:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++
+ .field public static final enum RESOLUTION:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+ .field public static final enum SELECTED_QUALITY:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+@@ -67,372 +70,355 @@
+ 
+ 
+ # direct methods
+-.method private static final synthetic $values()[Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+-    .locals 3
+-
+-    const/16 v0, 0x12
++.method static constructor <clinit>()V
++    .registers 22
+ 
+-    new-array v0, v0, [Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    .line 7
++    new-instance v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    sget-object v1, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->USER_PATH:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const-string v1, "BITRATE_AVG"
+ 
+     const/4 v2, 0x0
+ 
+-    aput-object v1, v0, v2
++    const-string v3, "Avg Bitrate"
+ 
+-    sget-object v1, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->HLS_LATENCY:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    invoke-direct {v0, v1, v2, v3}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
+ 
+-    const/4 v2, 0x1
++    sput-object v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->BITRATE_AVG:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    aput-object v1, v0, v2
++    .line 8
++    new-instance v1, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    sget-object v1, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->BUFFER_SIZE:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const-string v3, "BITRATE_ESTIMATE"
+ 
+-    const/4 v2, 0x2
++    const/4 v4, 0x1
+ 
+-    aput-object v1, v0, v2
++    const-string v5, "Est. Bitrate"
+ 
+-    sget-object v1, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->BITRATE_ESTIMATE:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    invoke-direct {v1, v3, v4, v5}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
+ 
+-    const/4 v2, 0x3
++    sput-object v1, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->BITRATE_ESTIMATE:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    aput-object v1, v0, v2
++    .line 9
++    new-instance v3, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    sget-object v1, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->BITRATE_AVG:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const-string v5, "BUFFER_EMPTIES"
+ 
+-    const/4 v2, 0x4
++    const/4 v6, 0x2
+ 
+-    aput-object v1, v0, v2
++    const-string v7, "Buffer Empties"
+ 
+-    sget-object v1, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->RESOLUTION:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    invoke-direct {v3, v5, v6, v7}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
+ 
+-    const/4 v2, 0x5
++    sput-object v3, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->BUFFER_EMPTIES:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    aput-object v1, v0, v2
++    .line 10
++    new-instance v5, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    sget-object v1, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->PLAYER:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const-string v7, "BUFFER_SIZE"
+ 
+-    const/4 v2, 0x6
++    const/4 v8, 0x3
+ 
+-    aput-object v1, v0, v2
++    const-string v9, "Buffer Size"
+ 
+-    sget-object v1, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->MW_LOGGED:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    invoke-direct {v5, v7, v8, v9}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
+ 
+-    const/4 v2, 0x7
++    sput-object v5, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->BUFFER_SIZE:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    aput-object v1, v0, v2
++    .line 11
++    new-instance v7, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    sget-object v1, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->BUFFER_EMPTIES:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const-string v9, "CLUSTER"
+ 
+-    const/16 v2, 0x8
++    const/4 v10, 0x4
+ 
+-    aput-object v1, v0, v2
++    const-string v11, "Cluster"
+ 
+-    sget-object v1, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->DROPPED_FRAMES:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    invoke-direct {v7, v9, v10, v11}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
+ 
+-    const/16 v2, 0x9
++    sput-object v7, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->CLUSTER:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    aput-object v1, v0, v2
++    .line 12
++    new-instance v9, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    sget-object v1, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->LOW_LATENCY:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const-string v11, "CODECS"
+ 
+-    const/16 v2, 0xa
++    const/4 v12, 0x5
+ 
+-    aput-object v1, v0, v2
++    const-string v13, "Codecs"
+ 
+-    sget-object v1, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->NODE:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    invoke-direct {v9, v11, v12, v13}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
+ 
+-    const/16 v2, 0xb
++    sput-object v9, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->CODECS:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    aput-object v1, v0, v2
++    .line 13
++    new-instance v11, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    sget-object v1, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->CLUSTER:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const-string v13, "DROPPED_FRAMES"
+ 
+-    const/16 v2, 0xc
++    const/4 v14, 0x6
+ 
+-    aput-object v1, v0, v2
++    const-string v15, "Dropped Frames"
+ 
+-    sget-object v1, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->SERVING_ID:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    invoke-direct {v11, v13, v14, v15}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
+ 
+-    const/16 v2, 0xd
++    sput-object v11, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->DROPPED_FRAMES:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    aput-object v1, v0, v2
++    .line 14
++    new-instance v13, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    sget-object v1, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->HAS_SURESTREAM:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const-string v15, "HAS_SURESTREAM"
+ 
+-    const/16 v2, 0xe
++    const/4 v14, 0x7
+ 
+-    aput-object v1, v0, v2
++    const-string v12, "Surestream"
+ 
+-    sget-object v1, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->SELECTED_QUALITY:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    invoke-direct {v13, v15, v14, v12}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
+ 
+-    const/16 v2, 0xf
++    sput-object v13, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->HAS_SURESTREAM:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    aput-object v1, v0, v2
++    .line 15
++    new-instance v12, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    sget-object v1, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->CODECS:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const-string v15, "HLS_LATENCY"
+ 
+-    const/16 v2, 0x10
++    const/16 v14, 0x8
+ 
+-    aput-object v1, v0, v2
++    const-string v10, "HLS Latency"
+ 
+-    sget-object v1, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->PROTOCOL:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    invoke-direct {v12, v15, v14, v10}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
+ 
+-    const/16 v2, 0x11
++    sput-object v12, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->HLS_LATENCY:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    aput-object v1, v0, v2
++    .line 16
++    new-instance v10, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    return-object v0
+-.end method
++    const-string v15, "LOW_LATENCY"
+ 
+-.method static constructor <clinit>()V
+-    .locals 4
++    const/16 v14, 0x9
+ 
+-    .line 57
+-    new-instance v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const-string v8, "Low Latency"
+ 
+-    const-string v1, "USER_PATH"
++    invoke-direct {v10, v15, v14, v8}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
+ 
+-    const/4 v2, 0x0
++    sput-object v10, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->LOW_LATENCY:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    const-string v3, "User Path"
++    .line 17
++    new-instance v8, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    invoke-direct {v0, v1, v2, v3}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
++    const-string v15, "MW_LOGGED"
+ 
+-    sput-object v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->USER_PATH:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const/16 v14, 0xa
+ 
+-    .line 58
+-    new-instance v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const-string v6, "Minutes logged"
+ 
+-    const-string v1, "HLS_LATENCY"
++    invoke-direct {v8, v15, v14, v6}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
+ 
+-    const/4 v2, 0x1
++    sput-object v8, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->MW_LOGGED:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    const-string v3, "HLS Latency"
++    .line 18
++    new-instance v6, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    invoke-direct {v0, v1, v2, v3}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
++    const-string v15, "NODE"
+ 
+-    sput-object v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->HLS_LATENCY:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const/16 v14, 0xb
+ 
+-    .line 59
+-    new-instance v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+-
+-    const-string v1, "BUFFER_SIZE"
+-
+-    const/4 v2, 0x2
+-
+-    const-string v3, "Buffer Size"
++    const-string v4, "Node"
+ 
+-    invoke-direct {v0, v1, v2, v3}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
+-
+-    sput-object v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->BUFFER_SIZE:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    invoke-direct {v6, v15, v14, v4}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
+ 
+-    .line 60
+-    new-instance v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    sput-object v6, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->NODE:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    const-string v1, "BITRATE_ESTIMATE"
++    .line 19
++    new-instance v4, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    const/4 v2, 0x3
++    const-string v15, "PLAYER"
+ 
+-    const-string v3, "Est. Bitrate"
++    const/16 v14, 0xc
+ 
+-    invoke-direct {v0, v1, v2, v3}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
++    const-string v2, "Player"
+ 
+-    sput-object v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->BITRATE_ESTIMATE:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+-
+-    .line 61
+-    new-instance v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+-
+-    const-string v1, "BITRATE_AVG"
+-
+-    const/4 v2, 0x4
+-
+-    const-string v3, "Avg Bitrate"
++    invoke-direct {v4, v15, v14, v2}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
+ 
+-    invoke-direct {v0, v1, v2, v3}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
++    sput-object v4, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->PLAYER:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    sput-object v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->BITRATE_AVG:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    .line 20
++    new-instance v2, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    .line 62
+-    new-instance v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const-string v15, "PROTOCOL"
+ 
+-    const-string v1, "RESOLUTION"
++    const/16 v14, 0xd
+ 
+-    const/4 v2, 0x5
++    move-object/from16 v16, v4
+ 
+-    const-string v3, "Resolution"
++    const-string v4, "Protocol"
+ 
+-    invoke-direct {v0, v1, v2, v3}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
++    invoke-direct {v2, v15, v14, v4}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
+ 
+-    sput-object v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->RESOLUTION:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    sput-object v2, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->PROTOCOL:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    .line 63
+-    new-instance v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    .line 21
++    new-instance v4, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    const-string v1, "PLAYER"
++    const-string v15, "RESOLUTION"
+ 
+-    const/4 v2, 0x6
++    const/16 v14, 0xe
+ 
+-    const-string v3, "Player"
++    move-object/from16 v17, v2
+ 
+-    invoke-direct {v0, v1, v2, v3}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
++    const-string v2, "Resolution"
+ 
+-    sput-object v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->PLAYER:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    invoke-direct {v4, v15, v14, v2}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
+ 
+-    .line 64
+-    new-instance v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    sput-object v4, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->RESOLUTION:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    const-string v1, "MW_LOGGED"
++    .line 22
++    new-instance v2, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    const/4 v2, 0x7
++    const-string v15, "SELECTED_QUALITY"
+ 
+-    const-string v3, "Minutes logged"
++    const/16 v14, 0xf
+ 
+-    invoke-direct {v0, v1, v2, v3}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
++    move-object/from16 v18, v4
+ 
+-    sput-object v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->MW_LOGGED:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const-string v4, "Quality"
+ 
+-    .line 65
+-    new-instance v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    invoke-direct {v2, v15, v14, v4}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
+ 
+-    const-string v1, "BUFFER_EMPTIES"
++    sput-object v2, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->SELECTED_QUALITY:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    const/16 v2, 0x8
++    .line 23
++    new-instance v4, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    const-string v3, "Buffer Empties"
++    const-string v15, "SERVING_ID"
+ 
+-    invoke-direct {v0, v1, v2, v3}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
++    const/16 v14, 0x10
+ 
+-    sput-object v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->BUFFER_EMPTIES:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    move-object/from16 v19, v2
+ 
+-    .line 66
+-    new-instance v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const-string v2, "Serving ID"
+ 
+-    const-string v1, "DROPPED_FRAMES"
++    invoke-direct {v4, v15, v14, v2}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
+ 
+-    const/16 v2, 0x9
++    sput-object v4, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->SERVING_ID:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    const-string v3, "Dropped Frames"
++    .line 24
++    new-instance v2, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    invoke-direct {v0, v1, v2, v3}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
++    const-string v15, "USER_PATH"
+ 
+-    sput-object v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->DROPPED_FRAMES:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const/16 v14, 0x11
+ 
+-    .line 67
+-    new-instance v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    move-object/from16 v20, v4
+ 
+-    const-string v1, "LOW_LATENCY"
++    const-string v4, "User Path"
+ 
+-    const/16 v2, 0xa
++    invoke-direct {v2, v15, v14, v4}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
+ 
+-    const-string v3, "Low Latency"
++    sput-object v2, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->USER_PATH:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    invoke-direct {v0, v1, v2, v3}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
++    .line 25
++    new-instance v4, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    sput-object v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->LOW_LATENCY:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const-string v15, "PROXY_SERVER"
+ 
+-    .line 68
+-    new-instance v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const/16 v14, 0x12
+ 
+-    const-string v1, "NODE"
++    move-object/from16 v21, v2
+ 
+-    const/16 v2, 0xb
++    const-string v2, "Proxy Server"
+ 
+-    const-string v3, "Node"
++    invoke-direct {v4, v15, v14, v2}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
+ 
+-    invoke-direct {v0, v1, v2, v3}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
++    sput-object v4, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->PROXY_SERVER:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    sput-object v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->NODE:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    .line 6
++    const/16 v2, 0x13
+ 
+-    .line 69
+-    new-instance v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    new-array v2, v2, [Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    const-string v1, "CLUSTER"
++    const/4 v15, 0x0
+ 
+-    const/16 v2, 0xc
++    aput-object v0, v2, v15
+ 
+-    const-string v3, "Cluster"
++    const/4 v0, 0x1
+ 
+-    invoke-direct {v0, v1, v2, v3}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
++    aput-object v1, v2, v0
+ 
+-    sput-object v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->CLUSTER:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const/4 v0, 0x2
+ 
+-    .line 70
+-    new-instance v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    aput-object v3, v2, v0
+ 
+-    const-string v1, "SERVING_ID"
++    const/4 v0, 0x3
+ 
+-    const/16 v2, 0xd
++    aput-object v5, v2, v0
+ 
+-    const-string v3, "Serving ID"
++    const/4 v0, 0x4
+ 
+-    invoke-direct {v0, v1, v2, v3}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
++    aput-object v7, v2, v0
+ 
+-    sput-object v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->SERVING_ID:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const/4 v0, 0x5
+ 
+-    .line 71
+-    new-instance v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    aput-object v9, v2, v0
+ 
+-    const-string v1, "HAS_SURESTREAM"
++    const/4 v0, 0x6
+ 
+-    const/16 v2, 0xe
++    aput-object v11, v2, v0
+ 
+-    const-string v3, "Surestream"
++    const/4 v0, 0x7
+ 
+-    invoke-direct {v0, v1, v2, v3}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
++    aput-object v13, v2, v0
+ 
+-    sput-object v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->HAS_SURESTREAM:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const/16 v0, 0x8
+ 
+-    .line 72
+-    new-instance v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    aput-object v12, v2, v0
+ 
+-    const-string v1, "SELECTED_QUALITY"
++    const/16 v0, 0x9
+ 
+-    const/16 v2, 0xf
++    aput-object v10, v2, v0
+ 
+-    const-string v3, "Quality"
++    const/16 v0, 0xa
+ 
+-    invoke-direct {v0, v1, v2, v3}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
++    aput-object v8, v2, v0
+ 
+-    sput-object v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->SELECTED_QUALITY:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const/16 v0, 0xb
+ 
+-    .line 73
+-    new-instance v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    aput-object v6, v2, v0
+ 
+-    const-string v1, "CODECS"
++    const/16 v0, 0xc
+ 
+-    const/16 v2, 0x10
++    aput-object v16, v2, v0
+ 
+-    const-string v3, "Codecs"
++    const/16 v0, 0xd
+ 
+-    invoke-direct {v0, v1, v2, v3}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
++    aput-object v17, v2, v0
+ 
+-    sput-object v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->CODECS:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const/16 v0, 0xe
+ 
+-    .line 74
+-    new-instance v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    aput-object v18, v2, v0
+ 
+-    const-string v1, "PROTOCOL"
++    const/16 v0, 0xf
+ 
+-    const/16 v2, 0x11
++    aput-object v19, v2, v0
+ 
+-    const-string v3, "Protocol"
++    const/16 v0, 0x10
+ 
+-    invoke-direct {v0, v1, v2, v3}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;-><init>(Ljava/lang/String;ILjava/lang/String;)V
++    aput-object v20, v2, v0
+ 
+-    sput-object v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->PROTOCOL:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    const/16 v0, 0x11
+ 
+-    invoke-static {}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->$values()[Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    aput-object v21, v2, v0
+ 
+-    move-result-object v0
++    aput-object v4, v2, v14
+ 
+-    sput-object v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->$VALUES:[Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    sput-object v2, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->$VALUES:[Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+     return-void
+ .end method
+ 
+ .method private constructor <init>(Ljava/lang/String;ILjava/lang/String;)V
+-    .locals 0
++    .registers 4
++    .param p3, "str"    # Ljava/lang/String;
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+             "(",
+@@ -441,34 +427,39 @@
+         }
+     .end annotation
+ 
+-    .line 56
++    .line 29
+     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
+ 
++    .line 30
+     iput-object p3, p0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->label:Ljava/lang/String;
+ 
++    .line 31
+     return-void
+ .end method
+ 
+ .method public static valueOf(Ljava/lang/String;)Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+-    .locals 1
++    .registers 2
++    .param p0, "name"    # Ljava/lang/String;
+ 
++    .line 6
+     const-class v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+ 
+-    move-result-object p0
++    move-result-object v0
+ 
+-    check-cast p0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++    check-cast v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    return-object p0
++    return-object v0
+ .end method
+ 
+ .method public static values()[Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+-    .locals 1
++    .registers 1
+ 
++    .line 6
+     sget-object v0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->$VALUES:[Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
+ 
+-    invoke-virtual {v0}, [Ljava/lang/Object;->clone()Ljava/lang/Object;
++    invoke-virtual {v0}, [Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->clone()Ljava/lang/Object;
+ 
+     move-result-object v0
+ 
+@@ -480,9 +471,9 @@
+ 
+ # virtual methods
+ .method public final getLabel()Ljava/lang/String;
+-    .locals 1
++    .registers 2
+ 
+-    .line 56
++    .line 34
+     iget-object v0, p0, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->label:Ljava/lang/String;
+ 
+     return-object v0

@@ -1,0 +1,57 @@
+diff --git a/smali_classes4/tv/twitch/android/app/core/GooglePlayServicesHelper.smali b/smali_classes4/tv/twitch/android/app/core/GooglePlayServicesHelper.smali
+--- a/smali_classes4/tv/twitch/android/app/core/GooglePlayServicesHelper.smali
++++ b/smali_classes4/tv/twitch/android/app/core/GooglePlayServicesHelper.smali
+@@ -29,50 +29,9 @@
+ 
+ # virtual methods
+ .method public final arePlayServicesAvailable()Z
+-    .locals 3
+-
+-    .line 21
+-    sget-object v0, Ltv/twitch/android/core/buildconfig/BuildConfigUtil;->INSTANCE:Ltv/twitch/android/core/buildconfig/BuildConfigUtil;
+-
+-    invoke-virtual {v0}, Ltv/twitch/android/core/buildconfig/BuildConfigUtil;->isAmazonBuild()Z
+-
+-    move-result v0
+-
+-    const/4 v1, 0x0
+-
+-    if-eqz v0, :cond_0
+-
+-    return v1
+-
+-    .line 24
+-    :cond_0
+-    :try_start_0
+-    invoke-static {}, Lcom/google/android/gms/common/GoogleApiAvailability;->getInstance()Lcom/google/android/gms/common/GoogleApiAvailability;
+-
+-    move-result-object v0
+-
+-    iget-object v2, p0, Ltv/twitch/android/app/core/GooglePlayServicesHelper;->applicationContext:Ltv/twitch/android/app/core/ApplicationContext;
+-
+-    invoke-virtual {v2}, Ltv/twitch/android/app/core/ApplicationContext;->getContext()Landroid/content/Context;
+-
+-    move-result-object v2
+-
+-    invoke-virtual {v0, v2}, Lcom/google/android/gms/common/GoogleApiAvailability;->isGooglePlayServicesAvailable(Landroid/content/Context;)I
+-
+-    move-result v0
+-    :try_end_0
+-    .catch Ljava/lang/NoSuchMethodError; {:try_start_0 .. :try_end_0} :catch_0
+-
+-    goto :goto_0
+-
+-    :catch_0
+-    const/16 v0, 0x10
+-
+-    :goto_0
+-    if-nez v0, :cond_1
++    .locals 1
+ 
+-    const/4 v1, 0x1
++    const/4 v0, 0x0
+ 
+-    :cond_1
+-    return v1
++    return v0
+ .end method

@@ -1,0 +1,112 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher.smali b/smali_classes6/tv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher.smali
+--- a/smali_classes6/tv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher.smali
++++ b/smali_classes6/tv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher.smali
+@@ -60,14 +60,6 @@
+     return-object p0
+ .end method
+ 
+-.method public static synthetic $r8$lambda$pDgjedkPp5zaCmztcYT5nSZ5Yas(Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher;Ltv/twitch/android/shared/ads/models/AdRequestInfo;Lio/reactivex/SingleEmitter;)V
+-    .locals 0
+-
+-    invoke-static {p0, p1, p2}, Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher;->shouldRequestAd$lambda-0(Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher;Ltv/twitch/android/shared/ads/models/AdRequestInfo;Lio/reactivex/SingleEmitter;)V
+-
+-    return-void
+-.end method
+-
+ .method public static synthetic $r8$lambda$uIZpEe3SiS0Nnbx1v4GpAQ7uO18(Ltv/twitch/android/shared/ads/models/AdRequestInfo;Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher;Ltv/twitch/android/util/Optional;)Lio/reactivex/SingleSource;
+     .locals 0
+ 
+@@ -410,50 +402,6 @@
+     return-object p0
+ .end method
+ 
+-.method private static final shouldRequestAd$lambda-0(Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher;Ltv/twitch/android/shared/ads/models/AdRequestInfo;Lio/reactivex/SingleEmitter;)V
+-    .locals 1
+-
+-    const-string v0, "this$0"
+-
+-    invoke-static {p0, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    const-string v0, "$adRequestInfo"
+-
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    const-string v0, "emitter"
+-
+-    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 47
+-    invoke-direct {p0, p1}, Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher;->shouldShowAdsForDebug(Ltv/twitch/android/shared/ads/models/AdRequestInfo;)Ljava/lang/Boolean;
+-
+-    move-result-object p0
+-
+-    if-eqz p0, :cond_0
+-
+-    .line 49
+-    sget-object p1, Ltv/twitch/android/util/Optional;->Companion:Ltv/twitch/android/util/Optional$Companion;
+-
+-    invoke-virtual {p1, p0}, Ltv/twitch/android/util/Optional$Companion;->of(Ljava/lang/Object;)Ltv/twitch/android/util/Optional;
+-
+-    move-result-object p0
+-
+-    invoke-interface {p2, p0}, Lio/reactivex/SingleEmitter;->onSuccess(Ljava/lang/Object;)V
+-
+-    .line 52
+-    :cond_0
+-    sget-object p0, Ltv/twitch/android/util/Optional;->Companion:Ltv/twitch/android/util/Optional$Companion;
+-
+-    invoke-virtual {p0}, Ltv/twitch/android/util/Optional$Companion;->empty()Ltv/twitch/android/util/Optional;
+-
+-    move-result-object p0
+-
+-    invoke-interface {p2, p0}, Lio/reactivex/SingleEmitter;->onSuccess(Ljava/lang/Object;)V
+-
+-    return-void
+-.end method
+-
+ .method private static final shouldRequestAd$lambda-1(Ltv/twitch/android/shared/ads/models/AdRequestInfo;Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher;Ltv/twitch/android/util/Optional;)Lio/reactivex/SingleSource;
+     .locals 1
+ 
+@@ -945,7 +893,7 @@
+ 
+ # virtual methods
+ .method public final shouldRequestAd(Ltv/twitch/android/shared/ads/models/AdRequestInfo;)Lio/reactivex/Single;
+-    .locals 2
++    .locals 0
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+             "(",
+@@ -957,31 +905,11 @@
+         }
+     .end annotation
+ 
+-    const-string v0, "adRequestInfo"
+-
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 46
+-    new-instance v0, Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher$$ExternalSyntheticLambda0;
+-
+-    invoke-direct {v0, p0, p1}, Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher$$ExternalSyntheticLambda0;-><init>(Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher;Ltv/twitch/android/shared/ads/models/AdRequestInfo;)V
+-
+-    invoke-static {v0}, Lio/reactivex/Single;->create(Lio/reactivex/SingleOnSubscribe;)Lio/reactivex/Single;
+-
+-    move-result-object v0
+-
+-    .line 53
+-    new-instance v1, Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher$$ExternalSyntheticLambda1;
++    sget-object p1, Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;
+ 
+-    invoke-direct {v1, p1, p0}, Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher$$ExternalSyntheticLambda1;-><init>(Ltv/twitch/android/shared/ads/models/AdRequestInfo;Ltv/twitch/android/shared/ads/eligibility/AdEligibilityFetcher;)V
+-
+-    invoke-virtual {v0, v1}, Lio/reactivex/Single;->flatMap(Lio/reactivex/functions/Function;)Lio/reactivex/Single;
++    invoke-static {p1}, Lio/reactivex/Single;->just(Ljava/lang/Object;)Lio/reactivex/Single;
+ 
+     move-result-object p1
+ 
+-    const-string v0, "create<Optional<Boolean>\u2026}\n            }\n        }"
+-
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullExpressionValue(Ljava/lang/Object;Ljava/lang/String;)V
+-
+     return-object p1
+ .end method

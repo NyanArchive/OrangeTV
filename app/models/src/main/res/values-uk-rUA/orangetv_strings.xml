@@ -151,4 +151,5 @@
     <string name="orange_proxy_disabled">Вимкнено</string>
     <string name="orange_proxy_twitching">Twitching</string>
     <string name="orange_proxy_ttsftp">Twitch Tokyo Server Fix Tool</string>
+    <string name="orange_settings_improved_background_audio">Покращене фонове аудіо</string>
 </resources>

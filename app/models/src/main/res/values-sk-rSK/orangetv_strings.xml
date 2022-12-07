@@ -151,4 +151,5 @@
     <string name="orange_proxy_disabled">Deaktivované</string>
     <string name="orange_proxy_twitching">Twitching</string>
     <string name="orange_proxy_ttsftp">Nástroj na opravu servera Twitch Tokyo</string>
+    <string name="orange_settings_improved_background_audio">Vylepšený zvuk na pozadí</string>
 </resources>

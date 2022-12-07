@@ -2,6 +2,7 @@ package tv.orange.core
 
 import android.text.TextUtils
 import android.util.Log
+import com.android.billingclient.api.BillingFlowParams
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.models.util.Logger
@@ -205,5 +206,13 @@ object LoggerImpl : Logger {
                 devDebug(p0 + ":   action: " + iterator.next(), false)
             }
         }
+    }
+
+    fun devDebug(params: BillingFlowParams) {
+        devDebug("zze:${params.zze()}")
+        devDebug("zze:${params.zzb()}")
+        devDebug("zze:${params.zzc()}")
+        devDebug("zze:${params.zze()}")
+        devDebug("zze:${params.zzn()}")
     }
 }

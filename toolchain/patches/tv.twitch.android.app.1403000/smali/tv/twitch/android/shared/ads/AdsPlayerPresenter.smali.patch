@@ -210,7 +210,57 @@ diff --git a/smali_classes6/tv/twitch/android/shared/ads/AdsPlayerPresenter.smal
  
      return-void
  .end method
-@@ -2392,57 +2216,7 @@
+@@ -2341,7 +2165,7 @@
+ .end method
+ 
+ .method public final registerPbypMidrolls(Lio/reactivex/Flowable;)V
+-    .locals 6
++    .locals 0
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+             "(",
+@@ -2351,98 +2175,11 @@
+         }
+     .end annotation
+ 
+-    const-string v0, "midrollRequestFlowable"
+-
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 130
+-    new-instance v0, Ltv/twitch/android/shared/ads/AdsPlayerPresenter$$ExternalSyntheticLambda3;
+-
+-    invoke-direct {v0, p0}, Ltv/twitch/android/shared/ads/AdsPlayerPresenter$$ExternalSyntheticLambda3;-><init>(Ltv/twitch/android/shared/ads/AdsPlayerPresenter;)V
+-
+-    invoke-virtual {p1, v0}, Lio/reactivex/Flowable;->switchMap(Lio/reactivex/functions/Function;)Lio/reactivex/Flowable;
+-
+-    move-result-object p1
+-
+-    .line 136
+-    invoke-virtual {p1}, Lio/reactivex/Flowable;->distinctUntilChanged()Lio/reactivex/Flowable;
+-
+-    move-result-object v1
+-
+-    const-string p1, "midrollRequestFlowable.s\u2026  .distinctUntilChanged()"
+-
+-    invoke-static {v1, p1}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullExpressionValue(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 137
+-    new-instance v3, Ltv/twitch/android/shared/ads/AdsPlayerPresenter$registerPbypMidrolls$2;
+-
+-    invoke-direct {v3, p0}, Ltv/twitch/android/shared/ads/AdsPlayerPresenter$registerPbypMidrolls$2;-><init>(Ltv/twitch/android/shared/ads/AdsPlayerPresenter;)V
+-
+-    const/4 v2, 0x0
+-
+-    const/4 v4, 0x1
+-
+-    const/4 v5, 0x0
+-
+-    move-object v0, p0
+-
+-    invoke-static/range {v0 .. v5}, Ltv/twitch/android/core/mvp/rxutil/ISubscriptionHelper$DefaultImpls;->directSubscribe$default(Ltv/twitch/android/core/mvp/rxutil/ISubscriptionHelper;Lio/reactivex/Flowable;Ltv/twitch/android/core/mvp/rxutil/DisposeOn;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+-
+     return-void
  .end method
  
  .method public final requestAdFromMultiAdFormatEvent(Ltv/twitch/android/models/ads/MultiAdFormatMetadata;Ltv/twitch/android/models/ads/PbypMidrollRequest;Ltv/twitch/android/shared/ads/models/sdk/VAST;)V

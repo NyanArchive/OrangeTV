@@ -145,4 +145,10 @@
     <string name="orange_settings_show_timer_button">Mostra il pulsante del timer</string>
     <string name="orange_settings_show_refresh_button">Mostra il pulsante ricarica</string>
     <string name="orange_chat_kill_chat">Chiudi chat</string>
+    <string name="orange_settings_force_ota">Forza aggiornamenti OTA</string>
+    <string name="orange_settings_show_stats_button">Mostra il pulsante delle statistiche</string>
+    <string name="orange_settings_proxy">Server Proxy</string>
+    <string name="orange_proxy_disabled">Disabilitato</string>
+    <string name="orange_proxy_twitching">Twitching</string>
+    <string name="orange_proxy_ttsftp">Twitch Tokyo Server Fix Tool</string>
 </resources>

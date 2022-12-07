@@ -35,7 +35,7 @@ diff --git a/smali_classes5/tv/twitch/android/feature/foreground/audio/ads/foreg
      .annotation system Ldalvik/annotation/Signature;
          value = {
              "(",
-@@ -931,43 +927,6 @@
+@@ -931,68 +927,15 @@
          }
      .end annotation
  
@@ -79,16 +79,49 @@ diff --git a/smali_classes5/tv/twitch/android/feature/foreground/audio/ads/foreg
      return-void
  .end method
  
-@@ -986,7 +945,7 @@
-     .line 211
-     new-instance v2, Landroid/content/IntentFilter;
+ .method public onActive()V
+-    .locals 4
++    .locals 0
  
+     .line 206
+     invoke-super {p0}, Ltv/twitch/android/core/mvp/presenter/BasePresenter;->onActive()V
+ 
+-    .line 209
+-    iget-object v0, p0, Ltv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter;->localBroadcastManager:Landroidx/localbroadcastmanager/content/LocalBroadcastManager;
+-
+-    .line 210
+-    iget-object v1, p0, Ltv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter;->backgroundAudioAdsContextReceiver:Ltv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter$backgroundAudioAdsContextReceiver$1;
+-
+-    .line 211
+-    new-instance v2, Landroid/content/IntentFilter;
+-
 -    const-string v3, "tv.twitch.android.media.action.sendAudioAdsContext"
-+    const-string v3, "tv.orange.action.n.sendAudioAdsContext"
+-
+-    invoke-direct {v2, v3}, Landroid/content/IntentFilter;-><init>(Ljava/lang/String;)V
+-
+-    .line 209
+-    invoke-virtual {v0, v1, v2}, Landroidx/localbroadcastmanager/content/LocalBroadcastManager;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)V
+-
+     return-void
+ .end method
  
-     invoke-direct {v2, v3}, Landroid/content/IntentFilter;-><init>(Ljava/lang/String;)V
+@@ -1013,14 +956,7 @@
+ .end method
  
-@@ -1029,33 +988,13 @@
+ .method public onInactive()V
+-    .locals 2
+-
+-    .line 216
+-    iget-object v0, p0, Ltv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter;->localBroadcastManager:Landroidx/localbroadcastmanager/content/LocalBroadcastManager;
+-
+-    iget-object v1, p0, Ltv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter;->backgroundAudioAdsContextReceiver:Ltv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter$backgroundAudioAdsContextReceiver$1;
+-
+-    invoke-virtual {v0, v1}, Landroidx/localbroadcastmanager/content/LocalBroadcastManager;->unregisterReceiver(Landroid/content/BroadcastReceiver;)V
++    .locals 0
+ 
+     .line 217
+     invoke-super {p0}, Ltv/twitch/android/core/mvp/presenter/BasePresenter;->onInactive()V
+@@ -1029,33 +965,13 @@
  .end method
  
  .method public final sendAudioAdsContext()V

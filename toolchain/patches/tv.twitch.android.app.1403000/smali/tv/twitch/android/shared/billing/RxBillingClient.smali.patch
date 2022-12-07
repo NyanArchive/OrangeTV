@@ -42,3 +42,17 @@ diff --git a/smali_classes6/tv/twitch/android/shared/billing/RxBillingClient.sma
      return-void
  .end method
  
+@@ -2692,12 +2661,7 @@
+ .method public final isAvailable()Z
+     .locals 1
+ 
+-    .line 132
+-    iget-object v0, p0, Ltv/twitch/android/shared/billing/RxBillingClient;->googlePlayServicesHelper:Ltv/twitch/android/app/core/GooglePlayServicesHelper;
+-
+-    invoke-virtual {v0}, Ltv/twitch/android/app/core/GooglePlayServicesHelper;->arePlayServicesAvailable()Z
+-
+-    move-result v0
++    const/4 v0, 0x1
+ 
+     return v0
+ .end method

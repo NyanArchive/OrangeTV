@@ -116,6 +116,8 @@
     <string name="orange_app_update_available_cta">Μια νέα έκδοση του PurpleTV είναι διαθέσιμη! Πατήστε εδώ για να εγκαταστήσετε την ενημέρωση</string>
     <string name="orange_updater_not_found">Δεν βρέθηκε ενημέρωση</string>
     <string name="orange_settings_check_update">Έλεγχος ενημερώσεων</string>
+    <string name="orange_settings_clear_update_cache">Εκκαθάριση cache</string>
+    <string name="orange_updater_done">Έγινε!</string>
     <string name="orange_itz_global_emotes">Παγκόσμια Homies Emotes</string>
     <string name="orange_itz_channel_emotes">Homies Emotes Καναλιού</string>
     <string name="orange_settings_okhttp_logging">Καταγραφή OkHttp</string>
@@ -138,4 +140,15 @@
     <string name="orange_pinned_message_sec30">30 δευτ.</string>
     <string name="orange_settings_brightness_gesture">Έλεγχος χειρονομίας φωτεινότητας</string>
     <string name="orange_settings_volume_gesture">Έλεγχος χειρονομίας έντασης ήχου</string>
+    <string name="orange_settings_disable_theatre_autoplay">Απενεργοποίηση αυτόματης αναπαραγωγής</string>
+    <string name="orange_settings_disable_theatre_autoplay_desc">Απενεργοποίηση αυτόματης αναπαραγωγής του επόμενου βίντεο</string>
+    <string name="orange_settings_show_timer_button">Εμφάνιση κουμπιού χρονοδιακόπτη</string>
+    <string name="orange_settings_show_refresh_button">Εμφάνιση κουμπιού ανανέωσης</string>
+    <string name="orange_chat_kill_chat">Τερματισμός συνομιλίας</string>
+    <string name="orange_settings_force_ota">Επιβολή OTA</string>
+    <string name="orange_settings_show_stats_button">Εμφάνιση κουμπιού στατιστικών</string>
+    <string name="orange_settings_proxy">Μεσολαβής Server</string>
+    <string name="orange_proxy_disabled">Απενεργοποιημένο</string>
+    <string name="orange_proxy_twitching">Twitching</string>
+    <string name="orange_proxy_ttsftp">Twitch Tokyo Server Fix Tool</string>
 </resources>

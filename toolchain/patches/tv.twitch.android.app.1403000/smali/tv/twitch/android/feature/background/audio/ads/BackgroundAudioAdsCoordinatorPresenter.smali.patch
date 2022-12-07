@@ -10,7 +10,7 @@ diff --git a/smali_classes5/tv/twitch/android/feature/background/audio/ads/Backg
      .annotation system Ldalvik/annotation/Signature;
          value = {
              "(",
-@@ -82,45 +82,6 @@
+@@ -82,55 +82,11 @@
          }
      .end annotation
  
@@ -56,3 +56,14 @@ diff --git a/smali_classes5/tv/twitch/android/feature/background/audio/ads/Backg
      return-void
  .end method
  
+ .method public final handleNotificationAction(Ljava/lang/String;)V
+-    .locals 1
+-
+-    .line 47
+-    iget-object v0, p0, Ltv/twitch/android/feature/background/audio/ads/BackgroundAudioAdsCoordinatorPresenter;->backgroundAdsAllocationPresenter:Ltv/twitch/android/feature/background/audio/ads/BackgroundAdsAllocationPresenter;
+-
+-    invoke-virtual {v0, p1}, Ltv/twitch/android/feature/background/audio/ads/BackgroundAdsAllocationPresenter;->handleNotificationAction(Ljava/lang/String;)V
++    .locals 0
+ 
+     return-void
+ .end method

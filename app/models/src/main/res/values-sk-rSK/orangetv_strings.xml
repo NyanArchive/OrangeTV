@@ -145,4 +145,10 @@
     <string name="orange_settings_show_timer_button">Zobraziť tlačidlo časovača</string>
     <string name="orange_settings_show_refresh_button">Zobraziť tlačidlo obnovenia</string>
     <string name="orange_chat_kill_chat">Zničiť čet</string>
+    <string name="orange_settings_force_ota">Prinútiť OTA</string>
+    <string name="orange_settings_show_stats_button">Zobraziť tlačidlo štatistík</string>
+    <string name="orange_settings_proxy">Proxy server</string>
+    <string name="orange_proxy_disabled">Deaktivované</string>
+    <string name="orange_proxy_twitching">Twitching</string>
+    <string name="orange_proxy_ttsftp">Nástroj na opravu servera Twitch Tokyo</string>
 </resources>

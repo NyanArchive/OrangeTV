@@ -147,4 +147,9 @@
     <string name="orange_chat_kill_chat">Ukončit chat</string>
     <string name="orange_settings_force_ota">Vynutit OTA</string>
     <string name="orange_settings_show_stats_button">Zobrazit tlačítko statistiky</string>
+    <string name="orange_settings_proxy">Proxy server</string>
+    <string name="orange_proxy_disabled">Vypnuto</string>
+    <string name="orange_proxy_twitching">Twitching</string>
+    <string name="orange_proxy_ttsftp">Twitch Tokyo Server Fix Tool</string>
+    <string name="orange_settings_improved_background_audio">Vylepšený zvuk na pozadí</string>
 </resources>

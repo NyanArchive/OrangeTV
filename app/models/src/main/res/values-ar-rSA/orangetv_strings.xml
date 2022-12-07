@@ -145,4 +145,10 @@
     <string name="orange_settings_show_timer_button">إظهار زر المؤقت</string>
     <string name="orange_settings_show_refresh_button">إظهار زر التحديث</string>
     <string name="orange_chat_kill_chat">قتل الدردشة</string>
+    <string name="orange_settings_force_ota">إجبار المحدث</string>
+    <string name="orange_settings_show_stats_button">إظهار زر الإحصائيات</string>
+    <string name="orange_settings_proxy">خادم وكيل</string>
+    <string name="orange_proxy_disabled">معطل</string>
+    <string name="orange_proxy_twitching">Twitching(تويتشنج)</string>
+    <string name="orange_proxy_ttsftp">Twitch Tokyo Server Fix Tool</string>
 </resources>

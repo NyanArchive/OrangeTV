@@ -145,4 +145,10 @@
     <string name="orange_settings_show_timer_button">타이머 버튼 표시</string>
     <string name="orange_settings_show_refresh_button">새로 고침 버튼 표시</string>
     <string name="orange_chat_kill_chat">채팅 내용 숨기기</string>
+    <string name="orange_settings_force_ota">강제 OTA</string>
+    <string name="orange_settings_show_stats_button">정보 버튼 표시</string>
+    <string name="orange_settings_proxy">프록시 서버</string>
+    <string name="orange_proxy_disabled">비활성화</string>
+    <string name="orange_proxy_twitching">Twitching</string>
+    <string name="orange_proxy_ttsftp">Twitch 도쿄 서버 수정 도구</string>
 </resources>

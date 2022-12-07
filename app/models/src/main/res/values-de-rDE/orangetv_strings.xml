@@ -145,4 +145,6 @@
     <string name="orange_settings_show_timer_button">Timer Button im Player anzeigen</string>
     <string name="orange_settings_show_refresh_button">Stream neu laden Button im Player anzeigen</string>
     <string name="orange_chat_kill_chat">Chat komplett beenden</string>
+    <string name="orange_settings_force_ota">Erzwinge OTA</string>
+    <string name="orange_settings_show_stats_button">Video Stats Button im Player anzeigen</string>
 </resources>

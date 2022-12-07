@@ -145,4 +145,10 @@
     <string name="orange_settings_show_timer_button">Mostrar botão de temporizador</string>
     <string name="orange_settings_show_refresh_button">Mostrar botão de atualização</string>
     <string name="orange_chat_kill_chat">Matar chat</string>
+    <string name="orange_settings_force_ota">Forçar atualizações</string>
+    <string name="orange_settings_show_stats_button">Mostrar botão de estatísticas</string>
+    <string name="orange_settings_proxy">Servidor proxy</string>
+    <string name="orange_proxy_disabled">Desativado</string>
+    <string name="orange_proxy_twitching">Twitching</string>
+    <string name="orange_proxy_ttsftp">Twitch Tokyo Server Fix Tool</string>
 </resources>

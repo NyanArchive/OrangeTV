@@ -1,7 +1,42 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/chat/ChatViewPresenter.smali b/smali_classes6/tv/twitch/android/shared/chat/ChatViewPresenter.smali
 --- a/smali_classes6/tv/twitch/android/shared/chat/ChatViewPresenter.smali
 +++ b/smali_classes6/tv/twitch/android/shared/chat/ChatViewPresenter.smali
-@@ -2774,6 +2774,16 @@
+@@ -2391,7 +2391,34 @@
+ 
+     move-result-object v0
+ 
++    instance-of v1, v0, Ltv/orange/features/logs/bridge/ChatLogsCommand;
++
++    if-eqz v1, :cond_y
++
++    const/4 v1, 0x1
++
++    return v1
++
++    :cond_y
++    instance-of v1, v0, Ltv/orange/features/spam/bridge/ChatSpamCommand;
++
++    if-eqz v1, :cond_z
++
++    const/4 v1, 0x1
++
++    return v1
++
++    :cond_z
++    instance-of v1, v0, Ltv/orange/features/spam/bridge/ChatSpamErrorCommand;
++
++    if-eqz v1, :cond_zz
++
++    const/4 v1, 0x1
++
++    return v1
++
+     .line 934
++    :cond_zz
+     instance-of v1, v0, Ltv/twitch/android/shared/chat/command/ChatCommandAction$WhisperUnverified;
+ 
+     const/4 v2, 0x1
+@@ -2774,6 +2801,16 @@
  .method private final onChannelStateChanged(Ltv/twitch/android/shared/chat/events/ChatConnectionEvents;)V
      .locals 9
  
@@ -18,7 +53,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/ChatViewPresenter.smal
      .line 992
      instance-of v0, p1, Ltv/twitch/android/shared/chat/events/ChatConnectionEvents$ChatConnectingEvent;
  
-@@ -5821,3 +5831,44 @@
+@@ -5821,3 +5858,44 @@
  
      return-void
  .end method

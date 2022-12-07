@@ -63,7 +63,31 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
      .line 126
      new-instance v2, Ltv/twitch/android/app/consumer/TwitchApplication$$ExternalSyntheticLambda0;
  
-@@ -424,3 +438,75 @@
+@@ -322,23 +336,6 @@
+ 
+     invoke-interface {v1, p0}, Ltv/twitch/android/shared/notifications/pub/IPushNotificationTracker;->trackNotificationPermissionsIfChanged(Landroid/content/Context;)V
+ 
+-    .line 180
+-    new-instance v1, Lcom/github/anrwatchdog/ANRWatchDog;
+-
+-    invoke-direct {v1}, Lcom/github/anrwatchdog/ANRWatchDog;-><init>()V
+-
+-    invoke-static {v0}, Ljava/util/Objects;->requireNonNull(Ljava/lang/Object;)Ljava/lang/Object;
+-
+-    new-instance v2, Ltv/twitch/android/app/consumer/TwitchApplication$$ExternalSyntheticLambda1;
+-
+-    invoke-direct {v2, v0}, Ltv/twitch/android/app/consumer/TwitchApplication$$ExternalSyntheticLambda1;-><init>(Ltv/twitch/android/core/crashreporter/CrashReporter;)V
+-
+-    invoke-virtual {v1, v2}, Lcom/github/anrwatchdog/ANRWatchDog;->setANRListener(Lcom/github/anrwatchdog/ANRWatchDog$ANRListener;)Lcom/github/anrwatchdog/ANRWatchDog;
+-
+-    move-result-object v0
+-
+-    invoke-virtual {v0}, Ljava/lang/Thread;->start()V
+-
+     .line 184
+     new-instance v0, Landroidx/work/Configuration$Builder;
+ 
+@@ -424,3 +421,75 @@
  
      return-void
  .end method

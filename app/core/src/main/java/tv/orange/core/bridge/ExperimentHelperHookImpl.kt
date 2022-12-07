@@ -2,6 +2,8 @@ package tv.orange.core.bridge
 
 import io.reactivex.Observable
 import tv.orange.core.LoggerImpl
+import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.twitch.android.provider.experiments.*
 
 class ExperimentHelperHookImpl(private val org: IExperimentHelper) : ExperimentHelper {
@@ -43,8 +45,9 @@ class ExperimentHelperHookImpl(private val org: IExperimentHelper) : ExperimentH
             Experiment.HTTP3_WITH_CRONET_GLOBAL -> false
 
             Experiment.MULTI_OPTION_PREDICTIONS,
-            Experiment.CHAT_SETTINGS,
-            Experiment.IMPROVED_BACKGROUND_AUDIO-> true
+            Experiment.CHAT_SETTINGS -> true
+
+            Experiment.IMPROVED_BACKGROUND_AUDIO-> Flag.IMPROVED_BACKGROUND_AUDIO.asBoolean()
 
             else -> {
                 val res = org.isInGroupForMultiVariantExperimentOrg(p0, p1)

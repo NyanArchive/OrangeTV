@@ -216,6 +216,11 @@ enum class Flag(
         "orange_settings_show_stats_button",
         BooleanValue(true)
     ),
+    IMPROVED_BACKGROUND_AUDIO(
+        "improved_background_audio",
+        "orange_settings_improved_background_audio",
+        BooleanValue(true)
+    ),
     PLAYER_IMPL(
         "player_impl",
         "orange_settings_player_impl",

@@ -116,23 +116,18 @@ diff --git a/smali_classes5/tv/twitch/android/feature/update/UpdatePromptPresent
  .end method
  
  .method public final setListener(Ltv/twitch/android/feature/update/UpdatePromptPresenter$UpdatePromptPresenterListener;)V
-@@ -1295,75 +1209,50 @@
+@@ -1295,75 +1209,43 @@
  .end method
  
  .method public final startObserving(Ltv/twitch/android/feature/update/UpdatePromptPresenter$LifecycleEventRegistrar;)V
 -    .locals 3
+-
+-    const-string v0, "lifecycleEventRegistrar"
 +    .registers 4
 +    .param p1, "lifecycleEventRegistrar"    # Ltv/twitch/android/feature/update/UpdatePromptPresenter$LifecycleEventRegistrar;
  
--    const-string v0, "lifecycleEventRegistrar"
-+    .line 45
-+    sget-object v0, Ltv/orange/core/LoggerImpl;->INSTANCE:Ltv/orange/core/LoggerImpl;
- 
 -    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
-+    const-string v1, "called"
-+
-+    invoke-virtual {v0, v1}, Ltv/orange/core/LoggerImpl;->devDebug(Ljava/lang/String;)V
- 
+-
 -    .line 107
 +    .line 46
      invoke-direct {p0}, Ltv/twitch/android/feature/update/UpdatePromptPresenter;->canUseAppUpdateManager()Z
@@ -140,10 +135,10 @@ diff --git a/smali_classes5/tv/twitch/android/feature/update/UpdatePromptPresent
      move-result v0
  
 -    if-nez v0, :cond_0
--
--    return-void
 +    if-eqz v0, :cond_21
  
+-    return-void
+-
 -    .line 111
 -    :cond_0
 +    .line 47

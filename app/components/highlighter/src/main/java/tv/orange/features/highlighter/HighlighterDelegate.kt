@@ -2,7 +2,6 @@ package tv.orange.features.highlighter
 
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import tv.orange.core.LoggerImpl
 import tv.orange.features.highlighter.data.model.HighlightDesc
 import tv.orange.features.highlighter.data.model.KeywordData
 import tv.orange.features.highlighter.data.source.HighlighterSource
@@ -29,13 +28,15 @@ class HighlighterDelegate @Inject constructor(val source: HighlighterSource) {
                     keywords?.forEach {
                         when (it.type) {
                             KeywordData.Type.INSENSITIVE -> {
-                                insensitive[it.word.lowercase()] = HighlightDesc(it.color, it.vibration)
+                                insensitive[it.word.lowercase()] =
+                                    HighlightDesc(it.color, it.vibration)
                             }
                             KeywordData.Type.CASESENSITIVE -> {
                                 sensitive[it.word] = HighlightDesc(it.color, it.vibration)
                             }
                             KeywordData.Type.USERNAME -> {
-                                usernames[it.word.lowercase()] = HighlightDesc(it.color, it.vibration)
+                                usernames[it.word.lowercase()] =
+                                    HighlightDesc(it.color, it.vibration)
                             }
                         }
                     }
@@ -46,7 +47,6 @@ class HighlighterDelegate @Inject constructor(val source: HighlighterSource) {
 
                     isEnabled =
                         usernames.isNotEmpty() || sensitive.isNotEmpty() || insensitive.isNotEmpty()
-                    LoggerImpl.debug("Update!")
                 }, {
                     it.printStackTrace()
                 })

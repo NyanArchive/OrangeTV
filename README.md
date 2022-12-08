@@ -8,5 +8,5 @@ An open source modification of the Twitch Android Application
 # Discord server
 [PurpleTV ](https://discord.gg/wrU7Ea6wvr)
 
-# telegram Hub
+# Telegram Hub
 [NHUB](https://t.me/pubTwChat)

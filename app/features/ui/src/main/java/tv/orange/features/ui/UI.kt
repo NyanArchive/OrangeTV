@@ -3,8 +3,10 @@ package tv.orange.features.ui
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Color
+import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import tv.orange.core.Core
 import tv.orange.core.PreferenceManager
@@ -21,6 +23,7 @@ import tv.orange.models.abc.Feature
 import tv.twitch.android.shared.chat.ChatViewDelegate
 import tv.twitch.android.shared.ui.elements.navigation.BottomNavigationDestination
 import tv.twitch.android.shared.ui.elements.navigation.BottomNavigationItem
+import tv.twitch.android.shared.ui.menus.LogoutSectionRecyclerItem
 import javax.inject.Inject
 
 class UI @Inject constructor(
@@ -196,5 +199,13 @@ class UI @Inject constructor(
                 )
             )
         }
+    }
+
+    fun getOrangeTvBuildTV(vh: View): TextView {
+        return vh.getView("settings_logout_footer__orangetv_build")
+    }
+
+    fun getOrangeTvBuildDateTV(vh: View): TextView {
+        return vh.getView("settings_logout_footer__orangetv_build_date")
     }
 }

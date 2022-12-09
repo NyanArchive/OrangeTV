@@ -5,8 +5,11 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.*
 import android.widget.Toast
+import io.reactivex.Single
+import io.reactivex.SingleSource
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.variants.PinnedMessageStrategy
@@ -20,6 +23,8 @@ import tv.orange.models.abc.TwitchComponentProvider
 import tv.twitch.android.app.core.ApplicationContext
 import tv.twitch.android.shared.chat.network.creatorpinnedchatmessage.model.CreatorPinnedChatMessageChannelModel
 import tv.twitch.android.shared.chat.network.creatorpinnedchatmessage.model.CreatorPinnedChatMessageMessageModel
+import tv.twitch.android.shared.subscriptions.db.SubscriptionPurchaseEntity
+import tv.twitch.android.shared.subscriptions.purchasers.SubscriptionPurchaseResponse
 import tv.twitch.android.util.CoreDateUtil
 import javax.inject.Inject
 import kotlin.system.exitProcess
@@ -147,7 +152,31 @@ class Core @Inject constructor(
                 }
             }
         }
+
+        @JvmStatic
+        fun injectBilling(
+            activity: Activity,
+            res: Single<SubscriptionPurchaseResponse>,
+            purchaseEntity: SubscriptionPurchaseEntity
+        ): Single<SubscriptionPurchaseResponse> {
+            return res.doOnSuccess {
+                if (it is SubscriptionPurchaseResponse.Success) {
+                    openUrl(activity, "https://www.twitch.tv/subs/${purchaseEntity.channelDisplayName}")
+                }
+            }
+        }
+
+        private fun openUrl(context: Context, url: String) {
+            if (url.isBlank()) {
+                return
+            }
+
+            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            })
+        }
     }
+
 
     override fun registerLifecycleListeners(vararg listeners: LifecycleAware) {
         listeners.forEach { listener ->

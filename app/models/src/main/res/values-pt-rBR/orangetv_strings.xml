@@ -116,6 +116,8 @@
     <string name="orange_app_update_available_cta">Há disponível uma versão nova de PurpleTV! Toque aqui para instalá-la</string>
     <string name="orange_updater_not_found">Atualização não encontrada</string>
     <string name="orange_settings_check_update">Buscar atualizações</string>
+    <string name="orange_settings_clear_update_cache">Limpar cache</string>
+    <string name="orange_updater_done">Feito!</string>
     <string name="orange_itz_global_emotes">Emotes Globais da Homies</string>
     <string name="orange_itz_channel_emotes">Emotes de Canal da Homies</string>
     <string name="orange_settings_okhttp_logging">Acesso por OkHttp</string>
@@ -138,4 +140,16 @@
     <string name="orange_pinned_message_sec30">30 seg.</string>
     <string name="orange_settings_brightness_gesture">Controlar brilho por gesto</string>
     <string name="orange_settings_volume_gesture">Controlar volume por gesto</string>
+    <string name="orange_settings_disable_theatre_autoplay">Desativar Autorreprodução</string>
+    <string name="orange_settings_disable_theatre_autoplay_desc">Desativar autorreprodução do próximo vídeo</string>
+    <string name="orange_settings_show_timer_button">Mostrar botão de temporizador</string>
+    <string name="orange_settings_show_refresh_button">Mostrar botão de atualização</string>
+    <string name="orange_chat_kill_chat">Matar chat</string>
+    <string name="orange_settings_force_ota">Forçar atualizações</string>
+    <string name="orange_settings_show_stats_button">Mostrar botão de estatísticas</string>
+    <string name="orange_settings_proxy">Servidor proxy</string>
+    <string name="orange_proxy_disabled">Desativado</string>
+    <string name="orange_proxy_twitching">Twitching</string>
+    <string name="orange_proxy_ttsftp">Twitch Tokyo Server Fix Tool</string>
+    <string name="orange_settings_improved_background_audio">Áudio de fundo melhorado</string>
 </resources>

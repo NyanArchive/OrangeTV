@@ -1,5 +1,7 @@
 package tv.orange.core.compat
 
+import tv.orange.core.LoggerImpl
+
 object ClassCompat {
     inline fun <reified T> Any.cast(): T {
         return this as T
@@ -10,5 +12,13 @@ object ClassCompat {
         return this::class.java.getDeclaredField(fieldName).apply {
             isAccessible = true
         }.get(this) as T
+    }
+
+    inline fun <reified T> invokeIf(obj: Any, function: (obj: T) -> Unit) {
+        if (obj is T) {
+            function.invoke(obj)
+        } else {
+            LoggerImpl.warning("Obj: $obj")
+        }
     }
 }

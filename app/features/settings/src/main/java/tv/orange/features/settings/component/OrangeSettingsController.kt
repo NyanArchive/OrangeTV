@@ -15,7 +15,6 @@ import tv.orange.features.highlighter.Highlighter
 import tv.orange.features.settings.bridge.model.OrangeSubMenu
 import tv.orange.features.settings.bridge.settings.*
 import tv.orange.features.settings.bridge.slider.SliderModel
-import tv.orange.features.updater.Updater
 import tv.twitch.android.models.settings.SettingsDestination
 import tv.twitch.android.routing.routers.IFragmentRouter
 import tv.twitch.android.settings.base.SettingsNavigationController
@@ -29,8 +28,7 @@ class OrangeSettingsController @Inject constructor(
     val activity: FragmentActivity,
     val fragmentRouter: IFragmentRouter,
     val highlighter: Highlighter
-) : SettingsPreferencesController,
-    SliderModel.SliderListener, SettingsNavigationController {
+) : SettingsPreferencesController, SliderModel.SliderListener, SettingsNavigationController {
     override fun updatePreferenceBooleanState(toggleMenuModel: ToggleMenuModel, state: Boolean) {
         val eventName = toggleMenuModel.eventName
         if (eventName.isNullOrBlank()) {
@@ -92,7 +90,9 @@ class OrangeSettingsController @Inject constructor(
     }
 
     companion object {
-        private val RESTART_FLAGS = setOf(Flag.BOTTOM_NAVBAR_POSITION, Flag.DEV_MODE)
+        private val RESTART_FLAGS = setOf(
+            Flag.BOTTOM_NAVBAR_POSITION, Flag.DEV_MODE, Flag.Proxy
+        )
     }
 
     override fun onSliderValueChanged(flag: Flag, value: Int) {
@@ -117,11 +117,8 @@ class OrangeSettingsController @Inject constructor(
             SettingsDestination.OrangeHighlighter -> highlighter.createHighlighterFragment()
             else -> null
         }?.let { fragment ->
-            fragmentRouter.addOrRecreateFragment(
-                activity,
-                fragment,
-                settingsDestination.toString(),
-                Bundle()
+            fragmentRouter.addOrRecreateFragmentWithDefaultTransitions(
+                activity, fragment, settingsDestination.toString(), Bundle()
             )
         }
     }

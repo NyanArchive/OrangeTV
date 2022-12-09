@@ -1,0 +1,49 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/billing/debug/DebugBillingClient.smali b/smali_classes6/tv/twitch/android/shared/billing/debug/DebugBillingClient.smali
+--- a/smali_classes6/tv/twitch/android/shared/billing/debug/DebugBillingClient.smali
++++ b/smali_classes6/tv/twitch/android/shared/billing/debug/DebugBillingClient.smali
+@@ -600,35 +600,20 @@
+ .end method
+ 
+ .method public launchBillingFlow(Landroid/app/Activity;Lcom/android/billingclient/api/BillingFlowParams;)Lcom/android/billingclient/api/BillingResult;
+-    .locals 1
+-
+-    const-string v0, "activity"
+-
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    const-string v0, "params"
+-
+-    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 61
+-    new-instance p2, Landroid/os/Handler;
++    .registers 4
++    .param p1, "activity"    # Landroid/app/Activity;
++    .param p2, "params"    # Lcom/android/billingclient/api/BillingFlowParams;
+ 
+-    invoke-virtual {p1}, Landroid/content/Context;->getMainLooper()Landroid/os/Looper;
++    .prologue
++    .line 16
++    sget-object v0, Ltv/orange/core/LoggerImpl;->INSTANCE:Ltv/orange/core/LoggerImpl;
+ 
+-    move-result-object v0
+-
+-    invoke-direct {p2, v0}, Landroid/os/Handler;-><init>(Landroid/os/Looper;)V
+-
+-    new-instance v0, Ltv/twitch/android/shared/billing/debug/DebugBillingClient$$ExternalSyntheticLambda0;
+-
+-    invoke-direct {v0, p0, p1}, Ltv/twitch/android/shared/billing/debug/DebugBillingClient$$ExternalSyntheticLambda0;-><init>(Ltv/twitch/android/shared/billing/debug/DebugBillingClient;Landroid/app/Activity;)V
+-
+-    invoke-virtual {p2, v0}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
++    invoke-virtual {v0, p2}, Ltv/orange/core/LoggerImpl;->devDebug(Lcom/android/billingclient/api/BillingFlowParams;)V
+ 
+-    .line 68
+-    iget-object p1, p0, Ltv/twitch/android/shared/billing/debug/DebugBillingClient;->billingResultOk:Lcom/android/billingclient/api/BillingResult;
++    .line 18
++    iget-object v0, p0, Ltv/twitch/android/shared/billing/debug/DebugBillingClient;->billingResultOk:Lcom/android/billingclient/api/BillingResult;
+ 
+-    return-object p1
++    return-object v0
+ .end method
+ 
+ .method public queryPurchasesAsync(Lcom/android/billingclient/api/QueryPurchasesParams;Lcom/android/billingclient/api/PurchasesResponseListener;)V

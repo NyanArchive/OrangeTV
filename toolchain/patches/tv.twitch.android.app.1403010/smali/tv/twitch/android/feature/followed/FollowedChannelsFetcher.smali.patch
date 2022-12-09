@@ -1,0 +1,28 @@
+diff --git a/smali_classes5/tv/twitch/android/feature/followed/FollowedChannelsFetcher.smali b/smali_classes5/tv/twitch/android/feature/followed/FollowedChannelsFetcher.smali
+--- a/smali_classes5/tv/twitch/android/feature/followed/FollowedChannelsFetcher.smali
++++ b/smali_classes5/tv/twitch/android/feature/followed/FollowedChannelsFetcher.smali
+@@ -250,7 +250,24 @@
+         }
+     .end annotation
+ 
++    invoke-static {}, Ltv/orange/features/ui/UI;->getHideOfflineChannels()Z
++
++    move-result v0
++
++    if-eqz v0, :cond_z
++
++    invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
++
++    move-result-object v0
++
++    invoke-static {v0}, Lio/reactivex/Maybe;->just(Ljava/lang/Object;)Lio/reactivex/Maybe;
++
++    move-result-object v0
++
++    return-object v0
++
+     .line 65
++    :cond_z
+     sget-object v0, Ltv/twitch/android/feature/followed/FollowType;->CHANNELS:Ltv/twitch/android/feature/followed/FollowType;
+ 
+     const/4 v1, 0x1

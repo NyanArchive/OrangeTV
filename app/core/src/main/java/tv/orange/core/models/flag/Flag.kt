@@ -206,6 +206,21 @@ enum class Flag(
         "orange_settings_show_refresh_button",
         BooleanValue(true)
     ),
+    FORCE_OTA(
+        "force_ota",
+        "orange_settings_force_ota",
+        BooleanValue()
+    ),
+    SHOW_STATS_BUTTON(
+        "show_stats_button",
+        "orange_settings_show_stats_button",
+        BooleanValue(true)
+    ),
+    IMPROVED_BACKGROUND_AUDIO(
+        "improved_background_audio",
+        "orange_settings_improved_background_audio",
+        BooleanValue(true)
+    ),
     PLAYER_IMPL(
         "player_impl",
         "orange_settings_player_impl",
@@ -245,6 +260,11 @@ enum class Flag(
         "pinned_message",
         "orange_settings_pinned_message",
         ListValue(PinnedMessageStrategy.Default),
+    ),
+    Proxy(
+        "proxy",
+        "orange_settings_proxy",
+        ListValue(ProxyImpl.Disabled),
     ),
     LANDSCAPE_CHAT_SIZE(
         "landscape_chat_size",

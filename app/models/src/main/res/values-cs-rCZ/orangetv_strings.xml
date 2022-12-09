@@ -140,4 +140,16 @@
     <string name="orange_pinned_message_sec30">30 sek.</string>
     <string name="orange_settings_brightness_gesture">Ovládání jasu gestem</string>
     <string name="orange_settings_volume_gesture">Ovládání hlasitosti gestem</string>
+    <string name="orange_settings_disable_theatre_autoplay">Vypnout automatické přehrávání</string>
+    <string name="orange_settings_disable_theatre_autoplay_desc">Zakázat automatické přehrávání dalšího videa</string>
+    <string name="orange_settings_show_timer_button">Zobrazit tlačítko časovače</string>
+    <string name="orange_settings_show_refresh_button">Zobrazit tlačítko obnovení</string>
+    <string name="orange_chat_kill_chat">Ukončit chat</string>
+    <string name="orange_settings_force_ota">Vynutit OTA</string>
+    <string name="orange_settings_show_stats_button">Zobrazit tlačítko statistiky</string>
+    <string name="orange_settings_proxy">Proxy server</string>
+    <string name="orange_proxy_disabled">Vypnuto</string>
+    <string name="orange_proxy_twitching">Twitching</string>
+    <string name="orange_proxy_ttsftp">Twitch Tokyo Server Fix Tool</string>
+    <string name="orange_settings_improved_background_audio">Vylepšený zvuk na pozadí</string>
 </resources>

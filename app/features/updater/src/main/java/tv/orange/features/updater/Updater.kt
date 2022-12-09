@@ -184,7 +184,7 @@ class Updater @Inject constructor(
             return false
         }
 
-        return !(!Flag.DEV_MODE.asBoolean() && (first.get().build <= BuildConfigUtil.buildConfig.number))
+        return !(!Flag.FORCE_OTA.asBoolean() && (first.get().build <= BuildConfigUtil.buildConfig.number))
     }
 
     fun calcCacheSize(context: Context): Long {

@@ -2,9 +2,12 @@ package tv.orange.core
 
 import android.text.TextUtils
 import android.util.Log
+import com.android.billingclient.api.BillingFlowParams
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.models.util.Logger
+import tv.twitch.android.core.mvp.presenter.PresenterState
+import tv.twitch.android.core.mvp.presenter.StateUpdateEvent
 
 object LoggerImpl : Logger {
     private const val LOGGER_TAG = "PurpleTV"
@@ -181,5 +184,35 @@ object LoggerImpl : Logger {
             }
             append("}")
         }.toString()
+    }
+
+    fun debugStateUpdate(
+        p0: String,
+        p1: StateUpdateEvent,
+        p2: PresenterState,
+        p3: PresenterState,
+        p4: MutableList<Any?>?
+    ) {
+        if (!Flag.DEV_MODE.asBoolean()) {
+            return
+        }
+        devDebug("$p0:new transition", false)
+        devDebug("$p0:   event: $p1", false)
+        devDebug("$p0:   previous state: $p2", false)
+        devDebug("$p0:   new State: $p3", false)
+        p4?.let {
+            val iterator: Iterator<*> = it.iterator()
+            while (iterator.hasNext()) {
+                devDebug(p0 + ":   action: " + iterator.next(), false)
+            }
+        }
+    }
+
+    fun devDebug(params: BillingFlowParams) {
+        devDebug("zze:${params.zze()}")
+        devDebug("zze:${params.zzb()}")
+        devDebug("zze:${params.zzc()}")
+        devDebug("zze:${params.zze()}")
+        devDebug("zze:${params.zzn()}")
     }
 }

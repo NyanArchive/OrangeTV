@@ -84,7 +84,7 @@
     <string name="orange_settings_menu_dev">Desarrollador</string>
     <string name="orange_settings_menu_support">Soporte</string>
     <string name="orange_settings_menu_wiki">Wiki</string>
-    <string name="orange_settings_menu_ota">Actualizaciónes de PurpleTV</string>
+    <string name="orange_settings_menu_ota">Actualizaciones de PurpleTV</string>
     <string name="orange_settings_menu_info">Información</string>
     <string name="orange_emote_picker_fav_emotes">Emotes favoritos</string>
     <string name="orange_chat_user_dialog_fragment_view_local_logs">Ver registros locales</string>
@@ -128,7 +128,7 @@
     <string name="orange_settings_vodhunter">CazaVODs</string>
     <string name="orange_settings_vodhunter_desc">Ver VODs para subs</string>
     <string name="orange_settings_bypass_chat_ban">Sobrepasar baneo del chat</string>
-    <string name="orange_settings_bypass_chat_ban_desc">Unirse al chat anónimamente cuando estás baneado. No puedes enviar mensajes, recibir/gastar puntos del canal.</string>
+    <string name="orange_settings_bypass_chat_ban_desc">Unirse al chat anónimamente cuando estás baneado. No puedes enviar mensajes, recibir/gastar puntos del canal. B17.</string>
     <string name="orange_settings_hide_chat_header">Ocultar cabecera del chat</string>
     <string name="orange_settings_hide_recommendation_section">Ocultar «Canales Recomendados»</string>
     <string name="orange_settings_hide_resume_watching_section">Ocultar «Continuar Viendo»</string>
@@ -141,7 +141,15 @@
     <string name="orange_settings_brightness_gesture">Control de brillo por gestos</string>
     <string name="orange_settings_volume_gesture">Control de volumen por gestos</string>
     <string name="orange_settings_disable_theatre_autoplay">Desactivar la reproducción automática</string>
-    <string name="orange_settings_disable_theatre_autoplay_desc">Desactivar la reproducción automática del siguiente vídeo</string>
+    <string name="orange_settings_disable_theatre_autoplay_desc">Desactiva la reproducción automática del siguiente vídeo</string>
     <string name="orange_settings_show_timer_button">Mostrar botón de temporizador</string>
     <string name="orange_settings_show_refresh_button">Mostrar botón de actualizar</string>
+    <string name="orange_chat_kill_chat">Matar chat</string>
+    <string name="orange_settings_force_ota">Forzar actualizaciones</string>
+    <string name="orange_settings_show_stats_button">Mostrar botón de estadísticas</string>
+    <string name="orange_settings_proxy">Servidor proxy</string>
+    <string name="orange_proxy_disabled">Desactivado</string>
+    <string name="orange_proxy_twitching">Twitcheando</string>
+    <string name="orange_proxy_ttsftp">Twitch Tokyo Herramienta de Reparación de Servidor</string>
+    <string name="orange_settings_improved_background_audio">Audio de fondo mejorado</string>
 </resources>

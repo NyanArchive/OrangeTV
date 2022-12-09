@@ -39,7 +39,7 @@
     <string name="orange_emotecard_itz_channel">Емоція каналу Homies</string>
     <string name="orange_emotecard_itz_global">Глобальна емоція Homies</string>
     <string name="orange_chat_settings_preferences_subtitle">PurpleTV</string>
-    <string name="orange_chat_settings_refresh">Оновити</string>
+    <string name="orange_chat_settings_refresh">Оновити панель емоцій</string>
     <string name="orange_timer_title">Таймер PurpleTV</string>
     <string name="orange_timer_cancel">Скасувати</string>
     <string name="orange_mod_logs">Історія глядача</string>
@@ -116,6 +116,8 @@
     <string name="orange_app_update_available_cta">Доступна нова версія PurpleTV! Натисніть тут, щоб встановити оновлення</string>
     <string name="orange_updater_not_found">Оновлень не знайдено</string>
     <string name="orange_settings_check_update">Перевірити наявність оновлень</string>
+    <string name="orange_settings_clear_update_cache">Очистити кеш</string>
+    <string name="orange_updater_done">Готово!</string>
     <string name="orange_itz_global_emotes">Глобальні емоції Homies</string>
     <string name="orange_itz_channel_emotes">Емоції каналу Homies</string>
     <string name="orange_settings_okhttp_logging">Журнал OkHttp</string>
@@ -138,4 +140,16 @@
     <string name="orange_pinned_message_sec30">30 сек.</string>
     <string name="orange_settings_brightness_gesture">Регулювання яскравості жестом</string>
     <string name="orange_settings_volume_gesture">Регулювання гучності жестом</string>
+    <string name="orange_settings_disable_theatre_autoplay">Вимкнути автопрогравання</string>
+    <string name="orange_settings_disable_theatre_autoplay_desc">Вимикає автопрогравання наступного відео</string>
+    <string name="orange_settings_show_timer_button">Додати кнопку «Таймер сну»</string>
+    <string name="orange_settings_show_refresh_button">Додати кнопку «Оновити»</string>
+    <string name="orange_chat_kill_chat">Вимкнути чат</string>
+    <string name="orange_settings_force_ota">Примусове оновлення</string>
+    <string name="orange_settings_show_stats_button">Додати кнопку «Статистика»</string>
+    <string name="orange_settings_proxy">Проксі-сервер</string>
+    <string name="orange_proxy_disabled">Вимкнено</string>
+    <string name="orange_proxy_twitching">Twitching</string>
+    <string name="orange_proxy_ttsftp">Twitch Tokyo Server Fix Tool</string>
+    <string name="orange_settings_improved_background_audio">Покращене фонове аудіо</string>
 </resources>

@@ -62,7 +62,10 @@ enum class OrangeSubMenu(
             Flag.REWIND_SEEK,
             Flag.MINI_PLAYER_SIZE,
             Flag.VODHUNTER,
-            Flag.DISABLE_THEATRE_AUTOPLAY
+            Flag.DISABLE_THEATRE_AUTOPLAY,
+            Flag.SHOW_STATS_BUTTON,
+            Flag.Proxy,
+            Flag.IMPROVED_BACKGROUND_AUDIO
         )
     ),
     Gestures(
@@ -98,7 +101,8 @@ enum class OrangeSubMenu(
         title = "orange_settings_menu_dev",
         items = listOf(
             Flag.DEV_MODE,
-            Flag.OKHTTP_LOGGING
+            Flag.OKHTTP_LOGGING,
+            Flag.FORCE_OTA
         )
     ),
     Support(

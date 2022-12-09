@@ -108,7 +108,16 @@
     <string name="orange_updater_beta">Beta</string>
     <string name="orange_updater_dev">Vývojár</string>
     <string name="orange_updater_disabled">Vypnuté</string>
+    <string name="orange_updater_install_action">Inštalovať</string>
+    <string name="orange_updater_update_action">Aktualizovať</string>
+    <string name="orange_updater_channel_disabled">Aktuálny aktualizačný kanál je vypnutý</string>
+    <string name="orange_updater_latest_version">Používate najnovšiu verziu</string>
+    <string name="orange_app_update_available">K dispozícii je nová aktualizácia</string>
+    <string name="orange_app_update_available_cta">K dispozícii je nová verzia PurpleTV! Klepnutím sem nainštalujte aktualizáciu</string>
+    <string name="orange_updater_not_found">Aktualizácia nenájdená</string>
     <string name="orange_settings_check_update">Skontrolovať aktualizácie</string>
+    <string name="orange_settings_clear_update_cache">Vyprázdniť vyrovnávaciu pamäť</string>
+    <string name="orange_updater_done">Hotovo!</string>
     <string name="orange_itz_global_emotes">Homies Globálne Emóty</string>
     <string name="orange_itz_channel_emotes">Homies Emóty Kanálu</string>
     <string name="orange_settings_okhttp_logging">OkHttp protokolovanie</string>
@@ -131,4 +140,16 @@
     <string name="orange_pinned_message_sec30">30 sekúnd</string>
     <string name="orange_settings_brightness_gesture">Ovládanie jasu gestami</string>
     <string name="orange_settings_volume_gesture">Ovládanie hlasitosti gestami</string>
+    <string name="orange_settings_disable_theatre_autoplay">Vypnúť automatické prehrávanie</string>
+    <string name="orange_settings_disable_theatre_autoplay_desc">Zakázať automatické prehrávanie ďalšieho videa</string>
+    <string name="orange_settings_show_timer_button">Zobraziť tlačidlo časovača</string>
+    <string name="orange_settings_show_refresh_button">Zobraziť tlačidlo obnovenia</string>
+    <string name="orange_chat_kill_chat">Zničiť čet</string>
+    <string name="orange_settings_force_ota">Prinútiť OTA</string>
+    <string name="orange_settings_show_stats_button">Zobraziť tlačidlo štatistík</string>
+    <string name="orange_settings_proxy">Proxy server</string>
+    <string name="orange_proxy_disabled">Deaktivované</string>
+    <string name="orange_proxy_twitching">Twitching</string>
+    <string name="orange_proxy_ttsftp">Nástroj na opravu servera Twitch Tokyo</string>
+    <string name="orange_settings_improved_background_audio">Vylepšený zvuk na pozadí</string>
 </resources>

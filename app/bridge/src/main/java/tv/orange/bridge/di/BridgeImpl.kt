@@ -12,6 +12,7 @@ import tv.orange.features.chapters.VodChapters
 import tv.orange.features.chat.ChatHookProvider
 import tv.orange.features.chathistory.ChatHistory
 import tv.orange.features.logs.ChatLogs
+import tv.orange.features.proxy.Proxy
 import tv.orange.features.refreshstream.RefreshStream
 import tv.orange.features.settings.OrangeSettings
 import tv.orange.features.spam.Spam
@@ -94,7 +95,8 @@ class BridgeImpl private constructor() : Bridge {
         featureFactoryMap[Tracking::class.java] = { component.trackingProvider }
         featureFactoryMap[Updater::class.java] = { component.updaterProvider }
         featureFactoryMap[Vodhunter::class.java] = { component.vodhunterProvider }
-        featureFactoryMap[Swipper::class.java] = { component.vodhunterProvider }
+        featureFactoryMap[Swipper::class.java] = { component.swipperProvider }
+        featureFactoryMap[Proxy::class.java] = { component.proxyProvider }
     }
 
     fun initialize(context: Context) {

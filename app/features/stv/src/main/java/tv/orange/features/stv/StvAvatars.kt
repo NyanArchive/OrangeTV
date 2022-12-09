@@ -81,7 +81,6 @@ class StvAvatars @Inject constructor(
     }
 
     override fun onCreateFeature() {
-        LoggerImpl.debug("called")
         Core.get().registerLifecycleListeners(this)
         PreferenceManager.get().registerFlagListeners(this)
     }

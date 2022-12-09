@@ -42,7 +42,6 @@ public class UpdatePromptPresenter extends BasePresenter {
     /* ... */
 
     public final void startObserving(LifecycleEventRegistrar lifecycleEventRegistrar) { // TODO: __REPLACE_METHOD
-        LoggerImpl.INSTANCE.devDebug("called");
         if (canUseAppUpdateManager()) {
             lifecycleEventRegistrar.registerForLifecycleEvents(this);
             if (this.madeOneAppUpdateInfoRequest) {

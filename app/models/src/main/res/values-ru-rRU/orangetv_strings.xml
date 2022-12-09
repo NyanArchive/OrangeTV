@@ -69,7 +69,7 @@
     <string name="orange_settings_pronouns">Интегрировать Pronouns в чат</string>
     <string name="orange_settings_auto_hide_message_input">Скрыть строку ввода в горизонтальной ориентации</string>
     <string name="orange_settings_landscape_chat_opacity">Прозрачность чата в горизонтальной ориентации</string>
-    <string name="orange_chapters_unknown">Временные метки в чате</string>
+    <string name="orange_chapters_unknown">Главы</string>
     <string name="orange_settings_emote_quality">Качество смайликов</string>
     <string name="orange_emote_quality_low">Низкое</string>
     <string name="orange_emote_quality_medium">Среднее</string>
@@ -96,27 +96,28 @@
     <string name="cpv_custom">Настроить</string>
     <string name="cpv_select">Готово</string>
     <string name="cpv_transparency">Прозрачность</string>
-    <string name="orange_settings_clipfinity">Clipfinity</string>
+    <string name="orange_settings_clipfinity">Клипы</string>
     <string name="orange_updater_ds">Размер файла: %s</string>
     <string name="orange_updater_ds2">%1$s/%2$s</string>
     <string name="orange_updater_ds3">%s\%%</string>
     <string name="orange_updater_error_msg">Ошибка: %s</string>
-    <string name="orange_updater_msg1">Доступно обновление PurpleTV</string>
+    <string name="orange_updater_msg1">Доступно обновление</string>
     <string name="orange_app_name">PurpleTV</string>
     <string name="orange_settings_updater_channel">Канал обновлений</string>
     <string name="orange_updater_release">Релиз</string>
     <string name="orange_updater_beta">Бета</string>
     <string name="orange_updater_dev">Альфа</string>
     <string name="orange_updater_disabled">Отключить поиск обновлений</string>
-    <string name="orange_updater_install_action">Установка</string>
-    <string name="orange_updater_update_action">Обновление</string>
+    <string name="orange_updater_install_action">Установить</string>
+    <string name="orange_updater_update_action">Скачать</string>
     <string name="orange_updater_channel_disabled">Данный канал обновлений отключён</string>
-    <string name="orange_updater_latest_version">Вы используете последнюю версию!</string>
-    <string name="orange_app_update_available">Доступно обновление</string>
-    <string name="orange_app_update_available_cta">Доступна новая версия PurpleTV!
-Нажмите здесь, чтобы установить обновление</string>
+    <string name="orange_updater_latest_version">Установлена последняя версия</string>
+    <string name="orange_app_update_available">Доступно обновление!</string>
+    <string name="orange_app_update_available_cta">Нажмите здесь, чтобы обновить приложение</string>
     <string name="orange_updater_not_found">Обновлений не найдено</string>
     <string name="orange_settings_check_update">Проверить наличие обновлений</string>
+    <string name="orange_settings_clear_update_cache">Очистить кеш обновлений</string>
+    <string name="orange_updater_done">Готово!</string>
     <string name="orange_itz_global_emotes">Глобальные смайлики Homies</string>
     <string name="orange_itz_channel_emotes">Смайлики канала Homies</string>
     <string name="orange_settings_okhttp_logging">Логирование OkHttp</string>
@@ -124,8 +125,8 @@
     <string name="orange_settings_info_tg">Обсудить приложение в Telegram</string>
     <string name="orange_settings_info_discord">Обсудить приложение в Discord</string>
     <string name="orange_settings_info_itsfadixx">Подельник</string>
-    <string name="orange_settings_vodhunter">Доступ к записям «только для подписчиков»</string>
-    <string name="orange_settings_vodhunter_desc">Я не вижу записи «только для подписчиков»</string>
+    <string name="orange_settings_vodhunter">VODHunter</string>
+    <string name="orange_settings_vodhunter_desc">Доступ к записям «только для подписчиков»</string>
     <string name="orange_settings_bypass_chat_ban">Обойти блокировку в чате</string>
     <string name="orange_settings_bypass_chat_ban_desc">Анонимный вход в чат.
 Нельзя писать сообщения.
@@ -138,7 +139,12 @@
     <string name="orange_settings_pinned_message">Закреплённые сообщения</string>
     <string name="orange_pinned_message_default">По умолчанию</string>
     <string name="orange_pinned_message_disabled">Отключить</string>
-    <string name="orange_pinned_message_sec30">Скрыть по истечению 30 секунд</string>
-    <string name="orange_settings_brightness_gesture">Регулировать яркость жестами</string>
-    <string name="orange_settings_volume_gesture">Регулировать громкость жестами</string>
+    <string name="orange_pinned_message_sec30">Скрыть по истечению 30 сек.</string>
+    <string name="orange_settings_brightness_gesture">Регулировка яркости жестами</string>
+    <string name="orange_settings_volume_gesture">Регулировка громкости жестами</string>
+    <string name="orange_settings_disable_theatre_autoplay">Отключить автовоспроизведение рекомендаций</string>
+    <string name="orange_settings_disable_theatre_autoplay_desc">Отключить автовоспроизведение следующего видео</string>
+    <string name="orange_settings_show_timer_button">Отображать кнопку «Таймер сна»</string>
+    <string name="orange_settings_show_refresh_button">Отображать кнопку «Обновить»</string>
+    <string name="orange_chat_kill_chat">Отключить чат</string>
 </resources>

@@ -108,7 +108,16 @@
     <string name="orange_updater_beta">إصدار تجريبي</string>
     <string name="orange_updater_dev">إصدار المطور</string>
     <string name="orange_updater_disabled">معطل</string>
+    <string name="orange_updater_install_action">تثبيت</string>
+    <string name="orange_updater_update_action">تحديث</string>
+    <string name="orange_updater_channel_disabled">قناة التحديث الحالية معطلة</string>
+    <string name="orange_updater_latest_version">تقوم الان بإستخدام اخر إصدار</string>
+    <string name="orange_app_update_available">تحديث جديد متوفر</string>
+    <string name="orange_app_update_available_cta">يتوفر إصدار جديد من PurpleTV! انقر هنا لتثبيت التحديث</string>
+    <string name="orange_updater_not_found">لم يتم العثور على التحديث</string>
     <string name="orange_settings_check_update">التحقق من التحديثات</string>
+    <string name="orange_settings_clear_update_cache">مسح ذاكرة التخزين المؤقتة</string>
+    <string name="orange_updater_done">تم!</string>
     <string name="orange_itz_global_emotes">ايموتات Homies الاساسية</string>
     <string name="orange_itz_channel_emotes">ايموتات Homies الخاصة في القناة</string>
     <string name="orange_settings_okhttp_logging">مسجل OkHttp</string>
@@ -131,4 +140,16 @@
     <string name="orange_pinned_message_sec30">لمدة ٣٠ ثانية.</string>
     <string name="orange_settings_brightness_gesture">التحكم في إيماءة السطوع</string>
     <string name="orange_settings_volume_gesture">التحكم في إيماءات الصوت</string>
+    <string name="orange_settings_disable_theatre_autoplay">إيقاف التشغيل التلقائي في الفيديوهات</string>
+    <string name="orange_settings_disable_theatre_autoplay_desc">تعطيل التشغيل التلقائي للفيديو التالي</string>
+    <string name="orange_settings_show_timer_button">إظهار زر المؤقت</string>
+    <string name="orange_settings_show_refresh_button">إظهار زر التحديث</string>
+    <string name="orange_chat_kill_chat">قتل الدردشة</string>
+    <string name="orange_settings_force_ota">إجبار المحدث</string>
+    <string name="orange_settings_show_stats_button">إظهار زر الإحصائيات</string>
+    <string name="orange_settings_proxy">خادم وكيل</string>
+    <string name="orange_proxy_disabled">معطل</string>
+    <string name="orange_proxy_twitching">Twitching(تويتشنج)</string>
+    <string name="orange_proxy_ttsftp">Twitch Tokyo Server Fix Tool</string>
+    <string name="orange_settings_improved_background_audio">تحسين صوت الخلفية</string>
 </resources>

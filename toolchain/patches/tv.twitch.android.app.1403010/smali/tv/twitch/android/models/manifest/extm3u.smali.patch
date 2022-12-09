@@ -1,0 +1,14 @@
+diff --git a/smali_classes8/tv/twitch/android/models/manifest/extm3u.smali b/smali_classes8/tv/twitch/android/models/manifest/extm3u.smali
+--- a/smali_classes8/tv/twitch/android/models/manifest/extm3u.smali
++++ b/smali_classes8/tv/twitch/android/models/manifest/extm3u.smali
+@@ -28,6 +28,10 @@
+ 
+ .field public Origin:Ljava/lang/String;
+ 
++.field public ProxyServer:Ljava/lang/String;
++
++.field public ProxyUrl:Ljava/lang/String;
++
+ .field public Region:Ljava/lang/String;
+ 
+ .field public ServerTimeMillis:J

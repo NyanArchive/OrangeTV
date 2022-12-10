@@ -17,6 +17,21 @@ class SpamCommandInterceptor(
 ) : ChatCommandInterceptor {
     private val disposable = CompositeDisposable()
 
+    private fun pyramidSpammer(width: Int, emote: String, delay: Long): Flowable<Long> {
+        val spamCount = width * 2 - 1
+        val maxW = kotlin.math.ceil(spamCount.toDouble().div(2)).toInt()
+        return Flowable.intervalRange(1,  spamCount.toLong() + 1, 0, delay, TimeUnit.MILLISECONDS)
+            .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            .doOnNext { i ->
+                val repeat = if (i <= maxW) {
+                    i.toInt()
+                } else {
+                    spamCount - i.toInt() + 1
+                }
+                chatSource.sendMessage("$emote ".repeat(repeat), ChatSendAction.CLICK)
+            }
+    }
+
     private fun simpleMessageSpammer(count: Int, delay: Long, text: String): Flowable<Long> {
         return Flowable.intervalRange(0, count.toLong(), 0, delay, TimeUnit.MILLISECONDS)
             .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
@@ -32,7 +47,16 @@ class SpamCommandInterceptor(
 
     override fun executeChatCommand(action: ChatCommandAction?) {
         when (action) {
-            is ChatSpamCommand -> {
+            is ChatSpamPyramidCommand -> {
+                disposable.add(
+                    pyramidSpammer(
+                        width = action.width,
+                        emote = action.emote,
+                        delay = action.delay
+                    ).subscribe()
+                )
+            }
+            is ChatSpamCommandImpl -> {
                 disposable.add(
                     simpleMessageSpammer(
                         count = action.count,
@@ -57,6 +81,10 @@ class SpamCommandInterceptor(
         p2: Long?
     ): ChatCommandAction {
         strArr ?: return ChatCommandAction.NoOp.INSTANCE
+
+        if (isPyramidSpam(strArr)) {
+            return parsePyramidChatCommand(strArr, p1, p2)
+        }
 
         if (showSpamTutor(strArr)) {
             return ChatSpamErrorCommand(text = "Usage: /spam {count} {delay} {text} [*{num}]")
@@ -99,11 +127,51 @@ class SpamCommandInterceptor(
             text = text.substring(0, 498)
         }
 
-        return ChatSpamCommand(
+        return ChatSpamCommandImpl(
             count = count,
             delay = delay,
             messageText = text
         )
+    }
+
+    private fun parsePyramidChatCommand(
+        strArr: Array<out String>,
+        p1: ChannelInfo?,
+        p2: Long?
+    ): ChatCommandAction {
+        if (strArr.size != 5) {
+            return ChatSpamErrorCommand(text = "/spam pyramid {width} {emote} {delay}")
+        }
+
+        var command = strArr[2]
+        val count = parseSpamCount(text = command)
+            ?: return ChatSpamErrorCommand(text = "Wrong {width} param: '$command'")
+        val emote = strArr[3]
+        command = strArr[4]
+        val delay = parseSpamDelay(text = command)
+            ?: return ChatSpamErrorCommand(text = "Wrong {delay} param: '$command'")
+
+        return ChatSpamPyramidCommand(
+            emote = emote,
+            delay = delay,
+            width = count
+        )
+    }
+
+    private fun isPyramidSpam(strArr: Array<out String>): Boolean {
+        if (strArr.size < 2) {
+            return false
+        }
+
+        if (strArr[0].trim().lowercase() != "/spam") {
+            return false
+        }
+
+        if (strArr[1].trim().lowercase() != "pyramid") {
+            return false
+        }
+
+        return true
     }
 
     companion object {
@@ -171,7 +239,7 @@ class SpamCommandInterceptor(
             val value = text.toIntOrNull() ?: return null
 
             if (value <= 0) {
-                return 250L
+                return 150L
             }
 
             if (value > 100) {

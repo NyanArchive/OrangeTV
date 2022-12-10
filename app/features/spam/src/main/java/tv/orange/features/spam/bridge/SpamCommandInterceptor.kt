@@ -20,7 +20,7 @@ class SpamCommandInterceptor(
     private fun pyramidSpammer(width: Int, emote: String, delay: Long): Flowable<Long> {
         val spamCount = width * 2 - 1
         val maxW = kotlin.math.ceil(spamCount.toDouble().div(2)).toInt()
-        return Flowable.intervalRange(1,  spamCount.toLong() + 1, 0, delay, TimeUnit.MILLISECONDS)
+        return Flowable.intervalRange(1, spamCount.toLong() + 1, 0, delay, TimeUnit.MILLISECONDS)
             .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
             .doOnNext { i ->
                 val repeat = if (i <= maxW) {
@@ -236,7 +236,7 @@ class SpamCommandInterceptor(
         }
 
         private fun parseSpamDelay(text: String): Long? {
-            val value = text.toIntOrNull() ?: return null
+            val value = text.toDoubleOrNull() ?: return null
 
             if (value <= 0) {
                 return 150L
@@ -246,7 +246,7 @@ class SpamCommandInterceptor(
                 return 100 * 1000L
             }
 
-            return value * 1000L
+            return (value * 1000).toLong()
         }
     }
 }

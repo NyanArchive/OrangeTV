@@ -14,7 +14,7 @@ data class ChatSpamCommandImpl(
     val messageText: String,
     val delay: Long = 1000,
     val count: Int = 1
-) : ChatCommandAction(null)
+) : ChatSpamCommand()
 
 data class ChatSpamErrorCommand(
     val text: String

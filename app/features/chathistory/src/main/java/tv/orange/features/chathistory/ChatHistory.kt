@@ -2,6 +2,7 @@ package tv.orange.features.chathistory
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import tv.orange.core.Core
+import tv.orange.core.ResourceManager
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.features.chathistory.bridge.ILiveChatSource
@@ -12,7 +13,8 @@ import tv.twitch.android.shared.chat.events.ChatConnectionEvents
 import javax.inject.Inject
 
 class ChatHistory @Inject constructor(
-    val repository: ChatHistoryRepository
+    val repository: ChatHistoryRepository,
+    val rm: ResourceManager
 ) : Feature {
     companion object {
         @JvmStatic
@@ -54,7 +56,9 @@ class ChatHistory @Inject constructor(
         }
 
         source.addChatHistoryMessage(
-            repository.getSystemMessage(text = "[Twitch] Fetching messages..."),
+            repository.getSystemMessage(
+                text = "[Twitch] ${rm.getString("orange_chat_history_fetching")}"
+            ),
             channelId
         )
 
@@ -71,7 +75,13 @@ class ChatHistory @Inject constructor(
                 }) {
                     it.printStackTrace()
                     source.addChatHistoryMessage(
-                        repository.getSystemMessage(text = "[Twitch] Error: ${it.localizedMessage}"),
+                        repository.getSystemMessage(
+                            text = rm.getString(
+                                "orange_generic_error_d",
+                                "Twitch",
+                                it.localizedMessage ?: "<empty>"
+                            )
+                        ),
                         channelId
                     )
                 }

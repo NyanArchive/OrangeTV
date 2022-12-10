@@ -6,6 +6,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.Response
 import tv.orange.core.Core
+import tv.orange.core.ResourceManager
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.variants.ProxyImpl
@@ -16,7 +17,8 @@ import tv.twitch.android.models.manifest.extm3u
 import javax.inject.Inject
 
 class Proxy @Inject constructor(
-    val repository: ProxyRepository
+    val repository: ProxyRepository,
+    val rm: ResourceManager
 ) : Feature {
     companion object {
         @JvmStatic
@@ -32,8 +34,12 @@ class Proxy @Inject constructor(
             orgStreamManifest: Single<Response<String>>,
             streamName: String,
             accessTokenResponse: AccessTokenResponse
-        ): Single<Response<String>>  {
-            return get().maybeHookStreamManifestResponse(orgStreamManifest, streamName, accessTokenResponse)
+        ): Single<Response<String>> {
+            return get().maybeHookStreamManifestResponse(
+                orgStreamManifest,
+                streamName,
+                accessTokenResponse
+            )
         }
 
         private fun createPlaylistResponse(
@@ -63,12 +69,24 @@ class Proxy @Inject constructor(
                 proxyResponse.toSingle()
             ) { twitchPlaylist: Response<String>, proxyPlaylist: Response<String> ->
                 if (!proxyPlaylist.isSuccessful) {
-                    Core.toast("[proxy] Error: unsuccessful response")
+                    Core.toast(
+                        ResourceManager.get().getString(
+                            "orange_generic_error_d",
+                            "Proxy",
+                            ResourceManager.get().getString("orange_proxy_error_ur")
+                        )
+                    )
                     return@zipWith twitchPlaylist
                 }
                 val time = getRequestTime(proxyPlaylist.raw())
                 var body = proxyPlaylist.body() ?: run {
-                    Core.toast("[proxy] Error: cannot parse response")
+                    Core.toast(
+                        ResourceManager.get().getString(
+                            "orange_generic_error_d",
+                            "Proxy",
+                            ResourceManager.get().getString("orange_proxy_error_cpr")
+                        )
+                    )
                     return@zipWith twitchPlaylist
                 }
                 val proxyUrl = proxyPlaylist.raw().request.url
@@ -79,7 +97,13 @@ class Proxy @Inject constructor(
 
                 createPlaylistResponse(body, twitchPlaylist)
             }.onErrorResumeNext { th: Throwable ->
-                Core.toast("[proxy] Error: ${th.localizedMessage}")
+                Core.toast(
+                    ResourceManager.get().getString(
+                        "orange_generic_error_d",
+                        "Proxy",
+                        th.localizedMessage ?: "<empty>"
+                    )
+                )
                 if (th !is NullPointerException) {
                     th.printStackTrace()
                 }

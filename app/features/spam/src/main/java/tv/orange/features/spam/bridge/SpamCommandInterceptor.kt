@@ -5,6 +5,7 @@ import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import tv.orange.core.ResourceManager
 import tv.twitch.android.models.channel.ChannelInfo
 import tv.twitch.android.shared.chat.LiveChatSource
 import tv.twitch.android.shared.chat.command.ChatCommandAction
@@ -13,7 +14,8 @@ import tv.twitch.android.shared.chat.model.ChatSendAction
 import java.util.concurrent.TimeUnit
 
 class SpamCommandInterceptor(
-    private val chatSource: LiveChatSource
+    private val chatSource: LiveChatSource,
+    private val rm: ResourceManager
 ) : ChatCommandInterceptor {
     private val disposable = CompositeDisposable()
 
@@ -66,7 +68,11 @@ class SpamCommandInterceptor(
                 )
             }
             is ChatSpamErrorCommand -> {
-                chatSource.addSystemMessage("Error: ${action.text}", false, null)
+                chatSource.addSystemMessage(
+                    rm.getString("orange_generic_error", action.text),
+                    false,
+                    null
+                )
             }
         }
     }
@@ -87,7 +93,7 @@ class SpamCommandInterceptor(
         }
 
         if (showSpamTutor(strArr)) {
-            return ChatSpamErrorCommand(text = "Usage: /spam {count} {delay} {text} [*{num}]")
+            return ChatSpamErrorCommand(text = rm.getString("orange_generic_spam_usage", "/spam {count} {delay} {text} [*{num}]"))
         }
 
         if (strArr.size < 4) {
@@ -105,10 +111,10 @@ class SpamCommandInterceptor(
 
         command = strArr[1]
         val count = parseSpamCount(text = command)
-            ?: return ChatSpamErrorCommand(text = "Wrong {count} param: '$command'")
+            ?: return ChatSpamErrorCommand(text = rm.getString("orange_spam_error_wc", command))
         command = strArr[2]
         val delay = parseSpamDelay(text = command)
-            ?: return ChatSpamErrorCommand(text = "Wrong {delay} param: '$command'")
+            ?: return ChatSpamErrorCommand(text = rm.getString("orange_spam_error_wd", command))
 
         var text = getMultiplier(strArr)?.let { num ->
             val tmp = TextUtils.join(" ", strArr.copyOfRange(3, strArr.size - 1))
@@ -120,7 +126,7 @@ class SpamCommandInterceptor(
         } ?: TextUtils.join(" ", strArr.copyOfRange(3, strArr.size))
 
         if (text.isBlank()) {
-            return ChatSpamErrorCommand(text = "Nothing to spam")
+            return ChatSpamErrorCommand(text = rm.getString("orange_spam_error_empty"))
         }
 
         if (text.length > 498) {
@@ -140,16 +146,16 @@ class SpamCommandInterceptor(
         p2: Long?
     ): ChatCommandAction {
         if (strArr.size != 5) {
-            return ChatSpamErrorCommand(text = "/spam pyramid {width} {emote} {delay}")
+            return ChatSpamErrorCommand(text = rm.getString("orange_generic_spam_usage", "/spam pyramid {width} {emote} {delay}"))
         }
 
         var command = strArr[2]
         val count = parseSpamCount(text = command)
-            ?: return ChatSpamErrorCommand(text = "Wrong {width} param: '$command'")
+            ?: return ChatSpamErrorCommand(text = rm.getString("orange_spam_error_ww", command))
         val emote = strArr[3]
         command = strArr[4]
         val delay = parseSpamDelay(text = command)
-            ?: return ChatSpamErrorCommand(text = "Wrong {delay} param: '$command'")
+            ?: return ChatSpamErrorCommand(text = rm.getString("orange_spam_error_wd", command))
 
         return ChatSpamPyramidCommand(
             emote = emote,

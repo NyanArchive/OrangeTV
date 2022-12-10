@@ -348,6 +348,10 @@ class ChatHookProvider @Inject constructor(
 
     fun hookAutoCompleteMapProvider(emotesFlow: Flowable<List<EmoteSet>>): Flowable<List<EmoteSet>> {
         return emotesFlow.flatMap { orgList ->
+            if (orgList.isEmpty()) {
+                return@flatMap Flowable.empty()
+            }
+
             currentChannelSubject.flatMap {
                 Observable.just(it).delay(DELAY_BEFORE_INJECT, TimeUnit.SECONDS)
             }.toFlowable(BackpressureStrategy.LATEST).flatMap { channelId ->

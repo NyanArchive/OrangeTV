@@ -152,4 +152,15 @@
     <string name="orange_proxy_twitching">Twitching</string>
     <string name="orange_proxy_ttsftp">Twitch Tokyo Server Fix Tool</string>
     <string name="orange_settings_improved_background_audio">Vylepšený zvuk na pozadí</string>
+    <string name="orange_generic_error">Chyba: %1$s</string>
+    <string name="orange_generic_error_d">[%1$s] Chyba: %2$s</string>
+    <string name="orange_generic_spam_usage">Využití: %1$s</string>
+    <string name="orange_chat_history_fetching">Načítání zpráv…</string>
+    <string name="orange_proxy_error_ur">Neúspěšná odpověď</string>
+    <string name="orange_proxy_error_cpr">Nelze zpracovat odpověď</string>
+    <string name="orange_spam_error_wc">Chybný {count} parametr: \'%1$s\'</string>
+    <string name="orange_spam_error_wd">Chybný {delay} parametr: \'%1$s\'</string>
+    <string name="orange_spam_error_ww">Chybný {width} parametr: \'%1$s\'</string>
+    <string name="orange_spam_error_empty">Nic ke spamu</string>
+    <string name="orange_vodhunter_hunting">Lovec…</string>
 </resources>

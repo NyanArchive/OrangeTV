@@ -1,0 +1,79 @@
+diff --git a/smali_classes7/tv/twitch/android/shared/ui/menus/LogoutSectionRecyclerItem$SectionFooterRecyclerItemViewHolder.smali b/smali_classes7/tv/twitch/android/shared/ui/menus/LogoutSectionRecyclerItem$SectionFooterRecyclerItemViewHolder.smali
+--- a/smali_classes7/tv/twitch/android/shared/ui/menus/LogoutSectionRecyclerItem$SectionFooterRecyclerItemViewHolder.smali
++++ b/smali_classes7/tv/twitch/android/shared/ui/menus/LogoutSectionRecyclerItem$SectionFooterRecyclerItemViewHolder.smali
+@@ -2,6 +2,9 @@
+ .super Ltv/twitch/android/core/adapters/AbstractTwitchRecyclerViewHolder;
+ .source "LogoutSectionRecyclerItem.kt"
+ 
++# interfaces
++.implements Ltv/orange/features/ui/bridge/ISectionFooterRecyclerItemViewHolder;
++
+ 
+ # annotations
+ .annotation system Ldalvik/annotation/EnclosingClass;
+@@ -21,6 +24,10 @@
+ 
+ .field private final versionTextView:Landroid/widget/TextView;
+ 
++.field private final orangetvBuildDateTextView:Landroid/widget/TextView;
++
++.field private final orangetvVersionTextView:Landroid/widget/TextView;
++
+ 
+ # direct methods
+ .method public constructor <init>(Landroid/view/View;)V
+@@ -63,6 +70,28 @@
+ 
+     iput-object v0, p0, Ltv/twitch/android/shared/ui/menus/LogoutSectionRecyclerItem$SectionFooterRecyclerItemViewHolder;->buildDateTextView:Landroid/widget/TextView;
+ 
++    .line 41
++    invoke-static {}, Ltv/orange/features/ui/UI;->get()Ltv/orange/features/ui/UI;
++
++    move-result-object v0
++
++    invoke-virtual {v0, p1}, Ltv/orange/features/ui/UI;->getOrangeTvBuildTV(Landroid/view/View;)Landroid/widget/TextView;
++
++    move-result-object v0
++
++    iput-object v0, p0, Ltv/twitch/android/shared/ui/menus/LogoutSectionRecyclerItem$SectionFooterRecyclerItemViewHolder;->orangetvVersionTextView:Landroid/widget/TextView;
++
++    .line 42
++    invoke-static {}, Ltv/orange/features/ui/UI;->get()Ltv/orange/features/ui/UI;
++
++    move-result-object v0
++
++    invoke-virtual {v0, p1}, Ltv/orange/features/ui/UI;->getOrangeTvBuildDateTV(Landroid/view/View;)Landroid/widget/TextView;
++
++    move-result-object v0
++
++    iput-object v0, p0, Ltv/twitch/android/shared/ui/menus/LogoutSectionRecyclerItem$SectionFooterRecyclerItemViewHolder;->orangetvBuildDateTextView:Landroid/widget/TextView;
++
+     .line 47
+     sget v0, Ltv/twitch/android/shared/ui/menus/R$id;->app_settings_logout_button:I
+ 
+@@ -109,3 +138,25 @@
+ 
+     return-object v0
+ .end method
++
++.method public getOrangeTVDateSection()Landroid/widget/TextView;
++    .registers 2
++    .annotation build Landroidx/annotation/NonNull;
++    .end annotation
++
++    .line 56
++    iget-object v0, p0, Ltv/twitch/android/shared/ui/menus/LogoutSectionRecyclerItem$SectionFooterRecyclerItemViewHolder;->orangetvBuildDateTextView:Landroid/widget/TextView;
++
++    return-object v0
++.end method
++
++.method public getOrangeTVSection()Landroid/widget/TextView;
++    .registers 2
++    .annotation build Landroidx/annotation/NonNull;
++    .end annotation
++
++    .line 50
++    iget-object v0, p0, Ltv/twitch/android/shared/ui/menus/LogoutSectionRecyclerItem$SectionFooterRecyclerItemViewHolder;->orangetvVersionTextView:Landroid/widget/TextView;
++
++    return-object v0
++.end method

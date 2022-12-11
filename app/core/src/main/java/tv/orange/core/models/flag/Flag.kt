@@ -217,9 +217,9 @@ enum class Flag(
         BooleanValue(true)
     ),
     IMPROVED_BACKGROUND_AUDIO(
-        "improved_background_audio",
+        "improved_background_audio_v2",
         "orange_settings_improved_background_audio",
-        BooleanValue(true)
+        BooleanValue(false)
     ),
     PLAYER_IMPL(
         "player_impl",

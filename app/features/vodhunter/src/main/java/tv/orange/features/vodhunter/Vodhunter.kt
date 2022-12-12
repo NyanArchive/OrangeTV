@@ -22,6 +22,10 @@ class Vodhunter @Inject constructor(
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(Vodhunter::class.java)
+
+        @JvmStatic
+        val isEnabled: Boolean
+            get() = Flag.VODHUNTER.asBoolean()
     }
 
     fun maybeHookVodManifestResponse(

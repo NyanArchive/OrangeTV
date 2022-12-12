@@ -9,4 +9,7 @@ An open source modification of the Twitch Android Application
 [PurpleTV ](https://discord.gg/wrU7Ea6wvr)
 
 # Telegram Hub
-[NHUB](https://t.me/pubTwChat)
+[nHub](https://t.me/pubTwChat)
+
+# PurpleTV Wiki 
+[PurpleTV Wiki](https://nopbreak.ru/purpletv/wiki)

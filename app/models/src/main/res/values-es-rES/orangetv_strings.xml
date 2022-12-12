@@ -152,4 +152,12 @@
     <string name="orange_proxy_twitching">Twitcheando</string>
     <string name="orange_proxy_ttsftp">Twitch Tokyo Herramienta de Reparación de Servidor</string>
     <string name="orange_settings_improved_background_audio">Audio de fondo mejorado</string>
+    <string name="orange_generic_error">Error: %1$s</string>
+    <string name="orange_generic_error_d">[%1$s] Error: %2$s</string>
+    <string name="orange_generic_spam_usage">Uso: %1$s</string>
+    <string name="orange_chat_history_fetching">Obteniendo mensajes…</string>
+    <string name="orange_proxy_error_ur">Respuesta fallida</string>
+    <string name="orange_proxy_error_cpr">No se puede analizar la respuesta</string>
+    <string name="orange_spam_error_empty">Nada que spamear</string>
+    <string name="orange_vodhunter_hunting">Buscando…</string>
 </resources>

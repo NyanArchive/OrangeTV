@@ -211,4 +211,16 @@
     <string name="orange_proxy_ttsftp">Twitch Tokyo Server Fix Tool</string>
     <string name="orange_settings_improved_background_audio">Improved background audio</string>
     <string name="orange_settings_improved_background_audio_desc" />
+    <string name="orange_generic_error">Error: %1$s</string>
+    <string name="orange_generic_error_d">[%1$s] Error: %2$s</string>
+    <string name="orange_generic_spam_usage">Usage: %1$s</string>
+
+    <string name="orange_chat_history_fetching">Fetching messages…</string>
+    <string name="orange_proxy_error_ur">Unsuccessful response</string>
+    <string name="orange_proxy_error_cpr">Cannot parse response</string>
+    <string name="orange_spam_error_wc">Wrong {count} param: \'%1$s\'</string>
+    <string name="orange_spam_error_wd">Wrong {delay} param: \'%1$s\'</string>
+    <string name="orange_spam_error_ww">Wrong {width} param: \'%1$s\'</string>
+    <string name="orange_spam_error_empty">Nothing to spam</string>
+    <string name="orange_vodhunter_hunting">Hunting…</string>
 </resources>

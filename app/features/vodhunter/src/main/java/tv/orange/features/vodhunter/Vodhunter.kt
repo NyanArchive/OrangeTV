@@ -5,6 +5,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Response
 import tv.orange.core.Core
+import tv.orange.core.ResourceManager
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.features.api.component.repository.NopRepository
@@ -12,7 +13,8 @@ import tv.orange.models.abc.Feature
 import javax.inject.Inject
 
 class Vodhunter @Inject constructor(
-    val nopRepository: NopRepository
+    val nopRepository: NopRepository,
+    val rm: ResourceManager
 ) : Feature {
     override fun onDestroyFeature() {}
     override fun onCreateFeature() {}
@@ -52,15 +54,20 @@ class Vodhunter @Inject constructor(
             nopRepository.getVodhunterPlaylist(vodId = id).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSuccess {
-                    Core.toast("Hunting...")
+                    Core.toast("[VODHunter] ${rm.getString("orange_vodhunter_hunting")}")
                 }
                 .onErrorResumeNext { th: Throwable ->
-                    Core.toast("[VODHunter] Error :: ${th.localizedMessage}")
+                    Core.toast(
+                        rm.getString(
+                            "orange_generic_error_d",
+                            "VODHunter",
+                            th.localizedMessage ?: "<empty>"
+                        )
+                    )
                     th.printStackTrace()
                     orgResponse
                 }
         } ?: run {
-            Core.toast("[VODHunter] VOD == $vodId")
             orgResponse
         }
     }

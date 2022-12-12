@@ -4,5 +4,12 @@ build/
 lib/
 orangetv_*
 ic_orangetv_*
+ic_launcher.png
+ic_launcher_foreground.png
+ic_launcher_round.png
+ic_launcher_backround.xml
+ic_launcher_foreground.xml
+ic_launcher_foreground_monochrome.xml
+ic_launcher_foreground_xarth.xml
 assets/build.json
 apktool.yml

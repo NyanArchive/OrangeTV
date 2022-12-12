@@ -16,7 +16,6 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
 import tv.orange.core.Core
-import tv.orange.core.LoggerImpl
 import tv.orange.core.PreferenceManager
 import tv.orange.core.PreferenceManager.Companion.isDarkThemeEnabled
 import tv.orange.core.ResourceManager
@@ -349,6 +348,10 @@ class ChatHookProvider @Inject constructor(
 
     fun hookAutoCompleteMapProvider(emotesFlow: Flowable<List<EmoteSet>>): Flowable<List<EmoteSet>> {
         return emotesFlow.flatMap { orgList ->
+            if (orgList.isEmpty()) {
+                return@flatMap Flowable.empty()
+            }
+
             currentChannelSubject.flatMap {
                 Observable.just(it).delay(DELAY_BEFORE_INJECT, TimeUnit.SECONDS)
             }.toFlowable(BackpressureStrategy.LATEST).flatMap { channelId ->
@@ -559,6 +562,7 @@ class ChatHookProvider @Inject constructor(
         Core.get().registerLifecycleListeners(this)
         PreferenceManager.get().registerFlagListeners(this)
         updateFontSize()
+        emoteSize = Flag.EMOTE_QUALITY.asVariant<EmoteQuality>().toSize()
         highlighter.pull()
     }
 

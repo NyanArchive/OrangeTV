@@ -50,7 +50,7 @@
     <string name="orange_settings_disable_fast_bread">Désactiver la latence basse</string>
     <string name="orange_settings_bottom_navbar_position">Position de la barre de navigation</string>
     <string name="orange_bottom_navbar_position_default">Par défaut</string>
-    <string name="orange_bottom_navbar_position_top">En haut</string>
+    <string name="orange_bottom_navbar_position_top">Top</string>
     <string name="orange_bottom_navbar_position_hidden">Masquée</string>
     <string name="orange_settings_followed_full_cards">Afficher les cartes de stream complets dans la section « Suivis »</string>
     <string name="orange_settings_disable_hype_train">Désactiver le Train d\'Hype</string>
@@ -75,13 +75,13 @@
     <string name="orange_emote_quality_medium">Moyen</string>
     <string name="orange_emote_quality_large">Grand</string>
     <string name="orange_settings_compact_player_follow_view">Utiliser la vue de suivi compacte</string>
-    <string name="orange_settings_menu_third_party">Tierce partie</string>
+    <string name="orange_settings_menu_third_party">Paramètres d\'émoticônes </string>
     <string name="orange_settings_menu_chat">Chat</string>
     <string name="orange_settings_menu_player">Lecteur</string>
     <string name="orange_settings_menu_gestures">Gestes</string>
     <string name="orange_settings_menu_view">Vue</string>
     <string name="orange_settings_menu_patches">Correctifs</string>
-    <string name="orange_settings_menu_dev">Dev</string>
+    <string name="orange_settings_menu_dev">Paramètres développeur</string>
     <string name="orange_settings_menu_support">Assistance</string>
     <string name="orange_settings_menu_wiki">Wiki</string>
     <string name="orange_settings_menu_ota">OTA</string>
@@ -96,7 +96,7 @@
     <string name="cpv_custom">Personnalisé</string>
     <string name="cpv_select">Sélectionner</string>
     <string name="cpv_transparency">Transparence</string>
-    <string name="orange_settings_clipfinity">Clipfinity</string>
+    <string name="orange_settings_clipfinity">Finité du Clip</string>
     <string name="orange_updater_ds">Taille du téléchargement : %s</string>
     <string name="orange_updater_ds2">%1$s/%2$s</string>
     <string name="orange_updater_ds3">%s\%%</string>
@@ -106,7 +106,7 @@
     <string name="orange_settings_updater_channel">Mettre à jour la chaine</string>
     <string name="orange_updater_release">Publication</string>
     <string name="orange_updater_beta">Beta</string>
-    <string name="orange_updater_dev">Dev</string>
+    <string name="orange_updater_dev">Développeur</string>
     <string name="orange_updater_disabled">Désactivé</string>
     <string name="orange_updater_install_action">Installer</string>
     <string name="orange_updater_update_action">Mettre à jour</string>
@@ -121,7 +121,7 @@
     <string name="orange_itz_global_emotes">Émoticônes Global Homies</string>
     <string name="orange_itz_channel_emotes">Émoticônes de chaîne Homies</string>
     <string name="orange_settings_okhttp_logging">Journalisation OkHttp</string>
-    <string name="orange_settings_info_dev">Dév principal</string>
+    <string name="orange_settings_info_dev">Développeur principal</string>
     <string name="orange_settings_info_tg">Chat Telegram</string>
     <string name="orange_settings_info_discord">Serveur Discord</string>
     <string name="orange_settings_info_itsfadixx">Assistant de développement</string>
@@ -144,7 +144,7 @@
     <string name="orange_settings_disable_theatre_autoplay_desc">Désactiver la lecture automatique de la vidéo suivante</string>
     <string name="orange_settings_show_timer_button">Afficher le bouton de minuteur</string>
     <string name="orange_settings_show_refresh_button">Afficher le bouton d\'actualisation</string>
-    <string name="orange_chat_kill_chat">Tué le chat</string>
+    <string name="orange_chat_kill_chat">Désactiver le clavardage</string>
     <string name="orange_settings_force_ota">Forcer l’OTA</string>
     <string name="orange_settings_show_stats_button">Afficher le bouton de statistique</string>
     <string name="orange_settings_proxy">Serveur Proxy</string>
@@ -152,4 +152,15 @@
     <string name="orange_proxy_twitching">Twitching</string>
     <string name="orange_proxy_ttsftp">Outil de réparation du serveur Twitch Tokyo</string>
     <string name="orange_settings_improved_background_audio">Amélioration du son d\'arrière-plan</string>
+    <string name="orange_generic_error">Erreur : %1$s</string>
+    <string name="orange_generic_error_d">[%1$s] Erreur : %2$s</string>
+    <string name="orange_generic_spam_usage">Syntaxe : %1$s</string>
+    <string name="orange_chat_history_fetching">Récupération des messages…</string>
+    <string name="orange_proxy_error_ur">Réponse non réussie</string>
+    <string name="orange_proxy_error_cpr">Impossible d\'analyser la réponse</string>
+    <string name="orange_spam_error_wc">Erreur {count} paramètres: \'%1$s\'</string>
+    <string name="orange_spam_error_wd">Erreur {delay} paramètres: \'%1$s\'</string>
+    <string name="orange_spam_error_ww">Erreur {width} paramètres: \'%1$s\'</string>
+    <string name="orange_spam_error_empty">Rien à spammer</string>
+    <string name="orange_vodhunter_hunting">Chasse…</string>
 </resources>

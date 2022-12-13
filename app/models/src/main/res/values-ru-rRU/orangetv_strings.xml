@@ -147,4 +147,19 @@
     <string name="orange_settings_show_timer_button">Отображать кнопку «Таймер сна»</string>
     <string name="orange_settings_show_refresh_button">Отображать кнопку «Обновить»</string>
     <string name="orange_chat_kill_chat">Отключить чат</string>
+    <string name="orange_settings_force_ota">Принудительное обновление</string>
+    <string name="orange_settings_show_stats_button">Отображать кнопку «Статистика»</string>
+    <string name="orange_settings_proxy">Прокси-сервер</string>
+    <string name="orange_proxy_disabled">Отключен</string>
+    <string name="orange_proxy_twitching">Twitching</string>
+    <string name="orange_proxy_ttsftp">Twitch Tokyo Server Fix Tool</string>
+    <string name="orange_settings_improved_background_audio">Улучшить проигрывание аудио в фоне</string>
+    <string name="orange_generic_error">Ошибка: %1$s</string>
+    <string name="orange_generic_error_d">[%1$s] Ошибка: %2$s</string>
+    <string name="orange_generic_spam_usage">Используется: %1$s</string>
+    <string name="orange_chat_history_fetching">Загрузка истории чата…</string>
+    <string name="orange_proxy_error_cpr">Не удалось обработать ответ</string>
+    <string name="orange_spam_error_wc">Неправильный {count} параметр: \'%1$s\'</string>
+    <string name="orange_spam_error_wd">Неправильный {delay} параметр: \'%1$s\'</string>
+    <string name="orange_spam_error_ww">Неправильный {width} параметр: \'%1$s\'</string>
 </resources>

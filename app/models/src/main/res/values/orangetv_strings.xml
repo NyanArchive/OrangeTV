@@ -223,4 +223,6 @@
     <string name="orange_spam_error_ww">Wrong {width} param: \'%1$s\'</string>
     <string name="orange_spam_error_empty">Nothing to spam</string>
     <string name="orange_vodhunter_hunting">Hunting…</string>
+    <string name="orange_settings_hide_unfollow_button">Hide Unfollow button</string>
+    <string name="orange_settings_hide_unfollow_button_desc" />
 </resources>

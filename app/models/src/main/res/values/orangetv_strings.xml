@@ -214,7 +214,6 @@
     <string name="orange_generic_error">Error: %1$s</string>
     <string name="orange_generic_error_d">[%1$s] Error: %2$s</string>
     <string name="orange_generic_spam_usage">Usage: %1$s</string>
-
     <string name="orange_chat_history_fetching">Fetching messages…</string>
     <string name="orange_proxy_error_ur">Unsuccessful response</string>
     <string name="orange_proxy_error_cpr">Cannot parse response</string>
@@ -225,4 +224,6 @@
     <string name="orange_vodhunter_hunting">Hunting…</string>
     <string name="orange_settings_hide_unfollow_button">Hide Unfollow button</string>
     <string name="orange_settings_hide_unfollow_button_desc" />
+    <string name="orange_settings_info_lanzzz">PurpleTV logo creator</string>
+    <string name="orange_settings_info_lanzzz_desc" translatable="false">lanzzopoulos</string>
 </resources>

@@ -40,6 +40,11 @@ class OrangeInfoSettingsPresenter constructor(
                     "https://t.me/itsfadixx"
                 ),
                 createInfoMenu(
+                    "orange_settings_info_lanzzz",
+                    "orange_settings_info_lanzzz_desc",
+                    "https://www.twitch.tv/lanzzopoulos"
+                ),
+                createInfoMenu(
                     "orange_settings_info_tg",
                     "orange_settings_info_tg_desc",
                     "https://t.me/pubTwChat"

@@ -221,6 +221,11 @@ enum class Flag(
         "orange_settings_improved_background_audio",
         BooleanValue(false)
     ),
+    HIDE_UNFOLLOW_BUTTON(
+        "hide_unfollow_button",
+        "orange_settings_hide_unfollow_button",
+        BooleanValue(false)
+    ),
     PLAYER_IMPL(
         "player_impl",
         "orange_settings_player_impl",

@@ -125,6 +125,11 @@ class UI @Inject constructor(
         @JvmStatic
         val showClipfinity: Boolean
             get() = Flag.CLIPFINITY.asBoolean()
+
+        @JvmStatic
+        val showFollowButtonExtended: Boolean
+            get() = !Flag.HIDE_UNFOLLOW_BUTTON.asBoolean()
+
     }
 
     val skipTwitchBrowserDialog: Boolean

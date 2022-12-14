@@ -23,8 +23,31 @@ public class FollowedChannelsFetcher extends BaseFetcher {
             return Maybe.just(Collections.emptyList());
         }
 
+        /* ... */
+
         throw new VirtualImpl();
     }
+
+    public final boolean hasMoreChannels() {
+        if (UI.getHideOfflineChannels()) { // TODO: __INJECT_CODE
+            return false;
+        }
+
+        /* ... */
+
+        throw new VirtualImpl();
+    }
+
+    public final Maybe<Boolean> getUserHasFollows() {
+        if (UI.getHideOfflineChannels()) { // TODO: __INJECT_CODE
+            return Maybe.just(Boolean.FALSE);
+        }
+
+        /* ... */
+
+        throw new VirtualImpl();
+    }
+
 
     /* ... */
 }

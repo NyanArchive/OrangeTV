@@ -2,7 +2,7 @@ package tv.orange.models.data.emotes
 
 import tv.orange.models.abc.EmotePackageSet
 
-data class EmoteImpl(
+data class EmoteBaseImpl(
     private val emoteCode: String,
     private val smallUrl: String,
     private val mediumUrl: String?,
@@ -12,15 +12,9 @@ data class EmoteImpl(
     private val isZeroWidth: Boolean = false
 ) : Emote {
     override fun getCode() = emoteCode
-
     override fun isAnimated(): Boolean = animated
-    override fun getPackageSet(): EmotePackageSet {
-        return packageSet
-    }
-
-    override fun isZeroWidth(): Boolean {
-        return isZeroWidth
-    }
+    override fun getPackageSet(): EmotePackageSet = packageSet
+    override fun isZeroWidth(): Boolean = isZeroWidth
 
     override fun getUrl(size: Emote.Size): String {
         return when (size) {

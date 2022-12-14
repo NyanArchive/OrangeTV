@@ -162,4 +162,5 @@
     <string name="orange_spam_error_ww">Λάθος {width} μεταβλητή: \'%1$s\'</string>
     <string name="orange_spam_error_empty">Τίποτα για spam</string>
     <string name="orange_vodhunter_hunting">Κυνήγι…</string>
+    <string name="orange_settings_hide_unfollow_button">Απόκρυψη κουμπιού Unfollow</string>
 </resources>

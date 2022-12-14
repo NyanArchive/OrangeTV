@@ -163,4 +163,5 @@
     <string name="orange_spam_error_ww">Невірний {width} параметр: \'%1$s\'</string>
     <string name="orange_spam_error_empty">Нічого спамити</string>
     <string name="orange_vodhunter_hunting">Пошук…</string>
+    <string name="orange_settings_hide_unfollow_button">Сховати кнопку «Відстежувати»</string>
 </resources>

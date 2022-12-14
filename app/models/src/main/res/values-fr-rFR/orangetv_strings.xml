@@ -13,13 +13,13 @@
     <string name="orange_settings_chat_history">Historique du tchat</string>
     <string name="orange_settings_chat_history_desc">Charger l\'historique des messages du chat lors de la connexion</string>
     <string name="orange_unknown_emotes">Émoticônes inconnus</string>
-    <string name="orange_bttv_global_emotes">Émoticones globales BTTV</string>
+    <string name="orange_bttv_global_emotes">Émoticônes globales BTTV</string>
     <string name="orange_bttv_channel_emotes">Émoticônes BTTV de chaîne</string>
     <string name="orange_ffz_global_emotes">Émoticônes globales FFZ</string>
     <string name="orange_ffz_channel_emotes">Émoticônes FFZ de chaîne</string>
     <string name="orange_stv_global_emotes">Émoticônes globales 7TV</string>
     <string name="orange_stv_channel_emotes">Émoticônes 7TV de chaîne</string>
-    <string name="orange_settings_hide_bits_button">Masquer le bouton « bits »</string>
+    <string name="orange_settings_hide_bits_button">Masquer le bouton «bits»</string>
     <string name="orange_settings_disable_sticky_headers_ep">Désactiver les en-têtes</string>
     <string name="orange_settings_player_impl">Implémentation du lecteur</string>
     <string name="orange_player_impl_default">Par défaut</string>
@@ -75,13 +75,13 @@
     <string name="orange_emote_quality_medium">Moyen</string>
     <string name="orange_emote_quality_large">Grand</string>
     <string name="orange_settings_compact_player_follow_view">Utiliser la vue de suivi compacte</string>
-    <string name="orange_settings_menu_third_party">Paramètres d\'émoticônes </string>
+    <string name="orange_settings_menu_third_party">Émoticônes </string>
     <string name="orange_settings_menu_chat">Chat</string>
     <string name="orange_settings_menu_player">Lecteur</string>
     <string name="orange_settings_menu_gestures">Gestes</string>
     <string name="orange_settings_menu_view">Vue</string>
     <string name="orange_settings_menu_patches">Correctifs</string>
-    <string name="orange_settings_menu_dev">Paramètres développeur</string>
+    <string name="orange_settings_menu_dev">Option développeur</string>
     <string name="orange_settings_menu_support">Assistance</string>
     <string name="orange_settings_menu_wiki">Wiki</string>
     <string name="orange_settings_menu_ota">OTA</string>
@@ -163,4 +163,5 @@
     <string name="orange_spam_error_ww">Erreur {width} paramètres: \'%1$s\'</string>
     <string name="orange_spam_error_empty">Rien à spammer</string>
     <string name="orange_vodhunter_hunting">Chasse…</string>
+    <string name="orange_settings_hide_unfollow_button">Masquer le bouton de désabonnement</string>
 </resources>

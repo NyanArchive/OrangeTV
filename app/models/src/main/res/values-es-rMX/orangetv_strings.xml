@@ -163,4 +163,5 @@
     <string name="orange_spam_error_ww">Parámetro {width} incorrecto: \'%1$s\'</string>
     <string name="orange_spam_error_empty">Nada que spamear</string>
     <string name="orange_vodhunter_hunting">Cazando…</string>
+    <string name="orange_settings_hide_unfollow_button">Ocultar botón para dejar de seguir</string>
 </resources>

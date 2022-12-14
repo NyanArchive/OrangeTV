@@ -160,4 +160,5 @@
     <string name="orange_proxy_error_cpr">No se puede analizar la respuesta</string>
     <string name="orange_spam_error_empty">Nada que spamear</string>
     <string name="orange_vodhunter_hunting">Buscando…</string>
+    <string name="orange_settings_hide_unfollow_button">Ocultar botón dejar de seguir</string>
 </resources>

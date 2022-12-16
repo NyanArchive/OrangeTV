@@ -163,4 +163,6 @@
     <string name="orange_spam_error_ww">Chybný {width} parameter: \'%1$s\'</string>
     <string name="orange_spam_error_empty">Nič na spamovanie</string>
     <string name="orange_vodhunter_hunting">Lovenie…</string>
+    <string name="orange_settings_hide_unfollow_button">Skryť tlačidlo zrušiť follow</string>
+    <string name="orange_settings_info_lanzzz">Tvorca PurpleTV loga</string>
 </resources>

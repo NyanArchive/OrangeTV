@@ -163,4 +163,6 @@
     <string name="orange_spam_error_ww">Parametro {width} errato: \'%1$s\'</string>
     <string name="orange_spam_error_empty">Niente da spammare</string>
     <string name="orange_vodhunter_hunting">Elaborando…</string>
+    <string name="orange_settings_hide_unfollow_button">Nascondi il pulsante Unfollow</string>
+    <string name="orange_settings_info_lanzzz">Creatore del logo di PurpleTV</string>
 </resources>

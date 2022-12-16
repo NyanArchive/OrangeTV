@@ -19,11 +19,6 @@ class ChatHistory @Inject constructor(
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(ChatHistory::class.java)
-
-        @JvmStatic
-        fun destroy() {
-            Core.destroyFeature(ChatHistory::class.java)
-        }
     }
 
     fun requestChatHistory(
@@ -88,6 +83,5 @@ class ChatHistory @Inject constructor(
         )
     }
 
-    override fun onDestroyFeature() {}
     override fun onCreateFeature() {}
 }

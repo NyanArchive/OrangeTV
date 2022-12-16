@@ -25,11 +25,6 @@ class Proxy @Inject constructor(
         fun get() = Core.getFeature(Proxy::class.java)
 
         @JvmStatic
-        fun destroy() {
-            Core.destroyFeature(Proxy::class.java)
-        }
-
-        @JvmStatic
         fun tryHookStreamManifestResponse(
             orgStreamManifest: Single<Response<String>>,
             streamName: String,
@@ -69,7 +64,7 @@ class Proxy @Inject constructor(
                 proxyResponse.toSingle()
             ) { twitchPlaylist: Response<String>, proxyPlaylist: Response<String> ->
                 if (!proxyPlaylist.isSuccessful) {
-                    Core.toast(
+                    Core.showToast(
                         ResourceManager.get().getString(
                             "orange_generic_error_d",
                             "Proxy",
@@ -80,7 +75,7 @@ class Proxy @Inject constructor(
                 }
                 val time = getRequestTime(proxyPlaylist.raw())
                 var body = proxyPlaylist.body() ?: run {
-                    Core.toast(
+                    Core.showToast(
                         ResourceManager.get().getString(
                             "orange_generic_error_d",
                             "Proxy",
@@ -97,7 +92,7 @@ class Proxy @Inject constructor(
 
                 createPlaylistResponse(body, twitchPlaylist)
             }.onErrorResumeNext { th: Throwable ->
-                Core.toast(
+                Core.showToast(
                     ResourceManager.get().getString(
                         "orange_generic_error_d",
                         "Proxy",
@@ -169,6 +164,5 @@ class Proxy @Inject constructor(
         }
     }
 
-    override fun onDestroyFeature() {}
     override fun onCreateFeature() {}
 }

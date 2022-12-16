@@ -21,11 +21,6 @@ class Tracking @Inject constructor(
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(Tracking::class.java)
-
-        @JvmStatic
-        fun destroy() {
-            Core.destroyFeature(Tracking::class.java)
-        }
     }
 
     private fun ping() {
@@ -47,6 +42,5 @@ class Tracking @Inject constructor(
         return nopRepository.pingInfo(BuildConfigUtil.buildConfig.number)
     }
 
-    override fun onDestroyFeature() {}
     override fun onCreateFeature() {}
 }

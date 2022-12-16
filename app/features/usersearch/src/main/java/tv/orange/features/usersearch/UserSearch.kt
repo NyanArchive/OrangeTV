@@ -21,11 +21,6 @@ class UserSearch @Inject constructor(
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(UserSearch::class.java)
-
-        @JvmStatic
-        fun destroy() {
-            Core.destroyFeature(UserSearch::class.java)
-        }
     }
 
     fun getSearchBar(delegate: ViewerListViewDelegate): SearchView {
@@ -87,6 +82,5 @@ class UserSearch @Inject constructor(
         }
     }
 
-    override fun onDestroyFeature() {}
     override fun onCreateFeature() {}
 }

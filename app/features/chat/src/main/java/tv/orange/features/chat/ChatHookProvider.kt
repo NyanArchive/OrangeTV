@@ -428,11 +428,6 @@ class ChatHookProvider @Inject constructor(
         fun get() = Core.getFeature(ChatHookProvider::class.java)
 
         @JvmStatic
-        fun destroy() {
-            Core.destroyFeature(ChatHookProvider::class.java)
-        }
-
-        @JvmStatic
         fun bypassChatBan(): Boolean {
             return Flag.BYPASS_CHAT_BAN.asBoolean()
         }
@@ -553,23 +548,6 @@ class ChatHookProvider @Inject constructor(
         @JvmStatic
         val isChatKilled
             get() = killChat
-    }
-
-    override fun onDestroyFeature() {
-        PreferenceManager.get().unregisterFlagListeners(this)
-        Core.get().unregisterLifecycleListener(this)
-        onAllComponentDestroyed()
-        highlighter.dispose()
-    }
-
-    override fun onCreateFeature() {
-        Core.get().registerLifecycleListeners(this)
-        PreferenceManager.get().registerFlagListeners(this)
-        updateFontSize()
-        emoteSize = Flag.EMOTE_QUALITY.asVariant<EmoteQuality>().toSize()
-        pronouns = Flag.PRONOUNS.asBoolean()
-        chatTimestamps = Flag.CHAT_TIMESTAMPS.asBoolean()
-        highlighter.pull()
     }
 
     private fun updateFontSize() {
@@ -776,5 +754,15 @@ class ChatHookProvider @Inject constructor(
 
     fun switchKillChat() {
         killChat = !killChat
+    }
+
+    override fun onCreateFeature() {
+        Core.get().registerLifecycleListeners(this)
+        PreferenceManager.get().registerFlagListeners(this)
+        updateFontSize()
+        emoteSize = Flag.EMOTE_QUALITY.asVariant<EmoteQuality>().toSize()
+        pronouns = Flag.PRONOUNS.asBoolean()
+        chatTimestamps = Flag.CHAT_TIMESTAMPS.asBoolean()
+        highlighter.pull()
     }
 }

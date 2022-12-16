@@ -14,11 +14,6 @@ class Spam @Inject constructor(
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(Spam::class.java)
-
-        @JvmStatic
-        fun destroy() {
-            Core.destroyFeature(Spam::class.java)
-        }
     }
 
     fun createSpamCommandInterceptor(interceptor: VoteCommandInterceptor): ChatCommandInterceptor {
@@ -27,6 +22,5 @@ class Spam @Inject constructor(
         )
     }
 
-    override fun onDestroyFeature() {}
     override fun onCreateFeature() {}
 }

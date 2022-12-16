@@ -30,17 +30,9 @@ class UI @Inject constructor(
     val context: Context,
     val supportBridge: SupportBridge
 ) : Feature {
-    override fun onDestroyFeature() {}
-    override fun onCreateFeature() {}
-
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(UI::class.java)
-
-        @JvmStatic
-        fun destroy() {
-            Core.destroyFeature(UI::class.java)
-        }
 
         @JvmStatic
         val hideResumeWatching: Boolean
@@ -213,4 +205,6 @@ class UI @Inject constructor(
     fun getOrangeTvBuildDateTV(vh: View): TextView {
         return vh.getView("settings_logout_footer__orangetv_build_date")
     }
+
+    override fun onCreateFeature() {}
 }

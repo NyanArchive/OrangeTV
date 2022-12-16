@@ -17,7 +17,7 @@ abstract class SimpleFetcher<Data>(
     }
 
     private var data: Data? = null
-    private var lastUpdate: Date = Date(0)
+    private var lastUpdate: Date? = null
     private var fetching = false
 
     private val disposables = CompositeDisposable()
@@ -29,22 +29,24 @@ abstract class SimpleFetcher<Data>(
     fun clear() {
         disposables.clear()
         data = null
-        lastUpdate = Date()
+        lastUpdate = null
         fetching = false
     }
 
     fun refresh(force: Boolean = false) {
-        logger.debug("Starting...")
+        logger.devDebug("Starting...")
         if (fetching) {
-            logger.debug("Skip: fetching")
+            logger.devDebug("Skip: fetching")
             return
         }
 
         if (data != null && !force) {
-            val diff = DateUtil.toSeconds(DateUtil.getDiff(lastUpdate, Date()))
-            if (diff < refreshTimeout) {
-                logger.debug("Skip: diff is $diff")
-                return
+            lastUpdate?.let { ld ->
+                val diff = DateUtil.toSeconds(DateUtil.getDiff(ld, Date()))
+                if (diff < refreshTimeout) {
+                    logger.devDebug("Skip: diff is $diff")
+                    return
+                }
             }
         }
 
@@ -52,13 +54,13 @@ abstract class SimpleFetcher<Data>(
         clear()
         disposables.add(dataSourceFactory.create().retryWhen { errors ->
             return@retryWhen errors.take(maxRetry.toLong()).doOnNext {
-                logger.debug("Retry...")
+                logger.warning("Retry...")
             }
         }.subscribe({ res ->
             this.data = res
             this.lastUpdate = Date()
             this.fetching = false
-            logger.debug("Fetched: $res")
+            logger.devDebug { "Fetched: $res" }
         }, {
             this.fetching = false
             logger.error("Cannot fetch: ${it.localizedMessage}")

@@ -12,6 +12,8 @@ import tv.twitch.android.core.mvp.presenter.StateUpdateEvent
 object LoggerImpl : Logger {
     private const val LOGGER_TAG = "PurpleTV"
 
+    var devMode: Boolean = Flag.DEV_MODE.asBoolean()
+
     override fun warning(messageText: String?, includeStacktrace: Boolean) {
         Log.w(
             LOGGER_TAG,
@@ -110,7 +112,7 @@ object LoggerImpl : Logger {
     }
 
     override fun devDebug(messageText: String?, includeStacktrace: Boolean) {
-        if (!Flag.DEV_MODE.asBoolean()) {
+        if (!devMode) {
             return
         }
 
@@ -124,7 +126,7 @@ object LoggerImpl : Logger {
     }
 
     override fun devDebug(messageText: String?) {
-        if (!Flag.DEV_MODE.asBoolean()) {
+        if (!devMode) {
             return
         }
 
@@ -138,7 +140,7 @@ object LoggerImpl : Logger {
     }
 
     override fun devDebug(invoke: () -> String) {
-        if (!Flag.DEV_MODE.asBoolean()) {
+        if (!devMode) {
             return
         }
 
@@ -152,7 +154,7 @@ object LoggerImpl : Logger {
     }
 
     override fun devDebug(invoke: () -> String, includeStacktrace: Boolean) {
-        if (!Flag.DEV_MODE.asBoolean()) {
+        if (!devMode) {
             return
         }
 
@@ -170,7 +172,7 @@ object LoggerImpl : Logger {
         thread: Thread = Thread.currentThread(),
         includeStacktrace: Boolean = true,
         dropStackElements: Int = 5,
-        takeStackElements: Int = 3
+        takeStackElements: Int = 5
     ): String {
         return StringBuilder().apply {
             append("{\"message\": \"${messageText ?: "null"}\"")
@@ -193,7 +195,7 @@ object LoggerImpl : Logger {
         p3: PresenterState,
         p4: MutableList<Any?>?
     ) {
-        if (!Flag.DEV_MODE.asBoolean()) {
+        if (!devMode) {
             return
         }
         devDebug("$p0:new transition", false)

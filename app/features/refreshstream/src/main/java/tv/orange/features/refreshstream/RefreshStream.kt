@@ -16,11 +16,6 @@ class RefreshStream @Inject constructor(val viewFactory: ViewFactory) : Feature 
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(RefreshStream::class.java)
-
-        @JvmStatic
-        fun destroy() {
-            Core.destroyFeature(RefreshStream::class.java)
-        }
     }
 
     fun getRefreshStreamButton(delegate: BottomPlayerControlOverlayViewDelegate): ImageView {
@@ -36,6 +31,5 @@ class RefreshStream @Inject constructor(val viewFactory: ViewFactory) : Feature 
         }
     }
 
-    override fun onDestroyFeature() {}
     override fun onCreateFeature() {}
 }

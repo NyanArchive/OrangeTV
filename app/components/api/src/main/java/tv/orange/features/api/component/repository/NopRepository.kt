@@ -8,6 +8,7 @@ import tv.orange.features.api.di.scope.ApiScope
 import tv.orange.models.data.badges.BadgeSet
 import tv.orange.models.data.badges.impl.BadgeItzSet
 import tv.orange.models.retrofit.nop.OrangeUpdateData
+import tv.orange.models.retrofit.nop.PinnyInfo
 import javax.inject.Inject
 
 @ApiScope
@@ -28,6 +29,10 @@ class NopRepository @Inject constructor(
 
     fun ping(buildNumber: Int, deviceId: String): Completable {
         return nopApiDataSource.ping(build = buildNumber, deviceId = deviceId)
+    }
+
+    fun pingInfo(buildNumber: Int): Single<PinnyInfo> {
+        return nopApiDataSource.pingInfo(build = buildNumber)
     }
 
     fun getVodhunterPlaylist(vodId: Int): Single<Response<String>> {

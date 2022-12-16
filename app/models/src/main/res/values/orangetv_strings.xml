@@ -226,4 +226,6 @@
     <string name="orange_settings_hide_unfollow_button_desc" />
     <string name="orange_settings_info_lanzzz">PurpleTV logo creator</string>
     <string name="orange_settings_info_lanzzz_desc" translatable="false">lanzzopoulos</string>
+    <string name="orange_pinny_active_users">Active users: %1$d</string>
+    <string name="orange_pinny_total_users">Total users: %1$d</string>
 </resources>

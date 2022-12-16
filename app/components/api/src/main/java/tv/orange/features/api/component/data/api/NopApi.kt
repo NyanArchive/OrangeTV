@@ -7,6 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import tv.orange.models.retrofit.nop.DonationsData
 import tv.orange.models.retrofit.nop.OrangeUpdateData
+import tv.orange.models.retrofit.nop.PinnyInfo
 
 interface NopApi {
     @GET("/orange/twitchmod/donations")
@@ -26,4 +27,7 @@ interface NopApi {
         @Query("build") build: Int,
         @Query("device_id") deviceId: String
     ): Completable
+
+    @GET("/orange/ping/info")
+    fun pingInfo(@Query("build") build: Int): Single<PinnyInfo>
 }

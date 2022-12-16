@@ -3,10 +3,15 @@ package tv.orange.features.settings.bridge.settings
 import android.content.Intent
 import android.net.Uri
 import androidx.fragment.app.FragmentActivity
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import tv.orange.core.Core
+import tv.orange.core.LoggerImpl
 import tv.orange.core.ResourceManager
 import tv.orange.features.settings.bridge.model.OrangeSubMenu
 import tv.orange.features.settings.component.OrangeSettingsController
+import tv.orange.features.tracking.Tracking
 import tv.twitch.android.settings.base.SettingsTracker
 import tv.twitch.android.shared.ui.menus.core.MenuAdapterBinder
 import tv.twitch.android.shared.ui.menus.core.MenuModel
@@ -24,6 +29,7 @@ class OrangeInfoSettingsPresenter constructor(
     controller,
     OrangeSubMenu.Info
 ) {
+    val disposables = CompositeDisposable()
 
     override fun updateSettingModels() {
         super.updateSettingModels()
@@ -53,8 +59,24 @@ class OrangeInfoSettingsPresenter constructor(
                     "orange_settings_info_discord",
                     "orange_settings_info_discord_desc",
                     "https://discord.gg/DkjMM4ThhG"
-                ),
+                )
             )
+        )
+        val rm = ResourceManager.get()
+        disposables.add(
+            Tracking.get().getPinnyInfo()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    settingModels.add(
+                        InfoMenuModel(
+                            rm.getString("orange_pinny_active_users", it.build),
+                            rm.getString("orange_pinny_total_users", it.total),
+                            null, null, null, null, null
+                        ) as MenuModel
+                    )
+                    this.bindSettings()
+                }, Throwable::printStackTrace)
         )
     }
 

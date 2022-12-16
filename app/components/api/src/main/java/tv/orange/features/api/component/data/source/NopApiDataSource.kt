@@ -9,6 +9,7 @@ import tv.orange.features.api.component.data.mapper.NopApiMapper
 import tv.orange.models.data.badges.BadgeSet
 import tv.orange.models.data.badges.impl.BadgeItzSet
 import tv.orange.models.retrofit.nop.OrangeUpdateData
+import tv.orange.models.retrofit.nop.PinnyInfo
 import javax.inject.Inject
 
 class NopApiDataSource @Inject constructor(
@@ -25,6 +26,10 @@ class NopApiDataSource @Inject constructor(
 
     fun ping(build: Int, deviceId: String): Completable {
         return nopApi.ping(build, deviceId)
+    }
+
+    fun pingInfo(build: Int): Single<PinnyInfo> {
+        return nopApi.pingInfo(build)
     }
 
     fun getOrangeUpdate(): Single<OrangeUpdateData> {

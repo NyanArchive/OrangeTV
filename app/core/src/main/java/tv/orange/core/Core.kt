@@ -24,6 +24,7 @@ import tv.twitch.android.util.CoreDateUtil
 import javax.inject.Inject
 import kotlin.system.exitProcess
 
+
 @AutoInitialize
 class Core @Inject constructor(
     val context: Context
@@ -65,7 +66,13 @@ class Core @Inject constructor(
 
         @JvmStatic
         fun showToast(msg: String) {
-            Toast.makeText(get().context, msg, Toast.LENGTH_SHORT).show()
+            Handler(Looper.getMainLooper()).post {
+                Toast.makeText(
+                    get().context,
+                    msg,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
 
         @JvmStatic

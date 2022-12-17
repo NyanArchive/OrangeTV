@@ -23,7 +23,6 @@ import tv.orange.models.abc.Feature
 import tv.twitch.android.shared.chat.ChatViewDelegate
 import tv.twitch.android.shared.ui.elements.navigation.BottomNavigationDestination
 import tv.twitch.android.shared.ui.elements.navigation.BottomNavigationItem
-import tv.twitch.android.shared.ui.menus.LogoutSectionRecyclerItem
 import javax.inject.Inject
 
 class UI @Inject constructor(
@@ -121,7 +120,6 @@ class UI @Inject constructor(
         @JvmStatic
         val showFollowButtonExtended: Boolean
             get() = !Flag.HIDE_UNFOLLOW_BUTTON.asBoolean()
-
     }
 
     val skipTwitchBrowserDialog: Boolean
@@ -204,6 +202,14 @@ class UI @Inject constructor(
 
     fun getOrangeTvBuildDateTV(vh: View): TextView {
         return vh.getView("settings_logout_footer__orangetv_build_date")
+    }
+
+    fun isCreatorButtonVisible(state: Boolean): Boolean {
+        if (Flag.HIDE_CREATE_BUTTON.asBoolean()) {
+            return false
+        }
+
+        return state
     }
 
     override fun onCreateFeature() {}

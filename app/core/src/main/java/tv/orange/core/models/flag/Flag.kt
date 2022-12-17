@@ -226,6 +226,16 @@ enum class Flag(
         "orange_settings_hide_unfollow_button",
         BooleanValue(false)
     ),
+    CHAT_SETTINGS(
+        "chat_settings",
+        "orange_settings_chat_settings",
+        BooleanValue(true)
+    ),
+    HIDE_CREATE_BUTTON(
+        "hide_create_button",
+        "orange_settings_hide_create_button",
+        BooleanValue(false)
+    ),
     PLAYER_IMPL(
         "player_impl",
         "orange_settings_player_impl",

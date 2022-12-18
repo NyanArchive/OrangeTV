@@ -209,6 +209,7 @@
     <string name="orange_proxy_disabled">Disabled</string>
     <string name="orange_proxy_twitching">Twitching</string>
     <string name="orange_proxy_ttsftp">Twitch Tokyo Server Fix Tool</string>
+    <string name="orange_proxy_ttv_lol">TTV LOL</string>
     <string name="orange_settings_improved_background_audio">Improved background audio</string>
     <string name="orange_settings_improved_background_audio_desc" />
     <string name="orange_generic_error">Error: %1$s</string>

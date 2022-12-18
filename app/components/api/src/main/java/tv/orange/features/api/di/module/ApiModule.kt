@@ -67,6 +67,13 @@ class ApiModule {
 
     @ApiScope
     @Provides
+    @Named("lol")
+    fun provideLolRetrofitClient(builder: Retrofit.Builder): Retrofit {
+        return builder.baseUrl("https://api.ttv.lol/").build()
+    }
+
+    @ApiScope
+    @Provides
     fun provideBttvApi(@Named("bttv") retrofit: Retrofit): BttvApi {
         return retrofit.create(BttvApi::class.java)
     }
@@ -111,5 +118,11 @@ class ApiModule {
     @Provides
     fun provideTwitchingApi(@Named("twitching") retrofit: Retrofit): TwitchingApi {
         return retrofit.create(TwitchingApi::class.java)
+    }
+
+    @ApiScope
+    @Provides
+    fun provideLolApi(@Named("lol") retrofit: Retrofit): LolApi {
+        return retrofit.create(LolApi::class.java)
     }
 }

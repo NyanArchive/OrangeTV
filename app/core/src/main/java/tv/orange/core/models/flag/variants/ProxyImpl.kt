@@ -5,7 +5,8 @@ import tv.orange.core.models.flag.Internal
 enum class ProxyImpl(val value: String) : Internal.Variant {
     Disabled("disabled"),
     Twitching("twitching"),
-    TTSFTP("ttsftp");
+    TTSFTP("ttsftp"),
+    TTV_LOL("ttv_lol");
 
     override fun getVariants(): List<Internal.Variant> {
         return values().toList()

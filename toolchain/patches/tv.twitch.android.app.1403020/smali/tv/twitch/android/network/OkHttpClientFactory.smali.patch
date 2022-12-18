@@ -10,3 +10,12 @@ diff --git a/smali_classes5/tv/twitch/android/network/OkHttpClientFactory.smali 
  
      .line 47
      new-instance v0, Lcom/facebook/stetho/okhttp3/StethoInterceptor;
+@@ -404,6 +404,8 @@
+ 
+     .line 213
+     :cond_c
++    invoke-static {v0}, Ltv/orange/features/proxy/Proxy;->maybeAddInterceptor(Lokhttp3/OkHttpClient$Builder;)V
++
+     invoke-virtual {v0}, Lokhttp3/OkHttpClient$Builder;->build()Lokhttp3/OkHttpClient;
+ 
+     move-result-object p1

@@ -10,3 +10,14 @@ diff --git a/smali_classes2/com/google/android/exoplayer2/upstream/DefaultHttpDa
  
      const-string p5, "User-Agent"
  
+@@ -1479,6 +1479,10 @@
+         }
+     .end annotation
+ 
++    invoke-static {p1}, Ltv/orange/features/proxy/Proxy;->patchExoPlayerDataSpec(Lcom/google/android/exoplayer2/upstream/DataSpec;)Lcom/google/android/exoplayer2/upstream/DataSpec;
++
++    move-result-object p1
++
+     const-string v0, "Unable to connect to "
+ 
+     .line 275

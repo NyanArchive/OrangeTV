@@ -149,8 +149,6 @@
     <string name="orange_settings_show_stats_button">Додати кнопку «Статистика»</string>
     <string name="orange_settings_proxy">Проксі-сервер</string>
     <string name="orange_proxy_disabled">Вимкнено</string>
-    <string name="orange_proxy_twitching">Twitching</string>
-    <string name="orange_proxy_ttsftp">Twitch Tokyo Server Fix Tool</string>
     <string name="orange_settings_improved_background_audio">Покращене фонове аудіо</string>
     <string name="orange_generic_error">Помилка: %1$s</string>
     <string name="orange_generic_error_d">Помилка [%1$s]: %2$s</string>
@@ -165,4 +163,6 @@
     <string name="orange_vodhunter_hunting">Пошук…</string>
     <string name="orange_settings_hide_unfollow_button">Сховати кнопку «Відстежувати»</string>
     <string name="orange_settings_info_lanzzz">Автор логотипу</string>
+    <string name="orange_pinny_active_users">Активних користувачів: %1$d</string>
+    <string name="orange_pinny_total_users">Загальна кількість користувачів: %1$d</string>
 </resources>

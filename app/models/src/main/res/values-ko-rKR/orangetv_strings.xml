@@ -149,8 +149,6 @@
     <string name="orange_settings_show_stats_button">정보 버튼 표시</string>
     <string name="orange_settings_proxy">프록시 서버</string>
     <string name="orange_proxy_disabled">비활성화</string>
-    <string name="orange_proxy_twitching">Twitching</string>
-    <string name="orange_proxy_ttsftp">Twitch Tokyo Server Fix Tool</string>
     <string name="orange_settings_improved_background_audio">향상된 백그라운드 오디오</string>
     <string name="orange_generic_error">오류: %1$s</string>
     <string name="orange_generic_error_d">[%1$s] 오류: %2$s</string>
@@ -163,4 +161,8 @@
     <string name="orange_spam_error_ww">잘못된 {width} 파라미터: \'%1$s\'</string>
     <string name="orange_spam_error_empty">반복 메세지 없음</string>
     <string name="orange_vodhunter_hunting">사냥중...</string>
+    <string name="orange_settings_hide_unfollow_button">언팔로우 버튼 숨기기</string>
+    <string name="orange_settings_info_lanzzz">PurpleTV 로고 제작자</string>
+    <string name="orange_pinny_active_users">활동 사용자: %1$d</string>
+    <string name="orange_pinny_total_users">전체 사용자: %1$d</string>
 </resources>

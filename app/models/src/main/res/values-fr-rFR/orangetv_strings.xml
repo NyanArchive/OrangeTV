@@ -48,7 +48,7 @@
     <string name="orange_settings_hide_leaderboards">Masquer le classements</string>
     <string name="orange_settings_disable_link_disclaimer">Désactiver l\'avertissement du lien du navigateur</string>
     <string name="orange_settings_disable_fast_bread">Désactiver la latence basse</string>
-    <string name="orange_settings_bottom_navbar_position">Position des boutons Suivis,Parcourir ect...</string>
+    <string name="orange_settings_bottom_navbar_position">Position des boutons en bas de la page d\'accueil </string>
     <string name="orange_bottom_navbar_position_default">Par défaut</string>
     <string name="orange_bottom_navbar_position_top">En haut </string>
     <string name="orange_bottom_navbar_position_hidden">Masquée</string>
@@ -65,7 +65,7 @@
     <string name="orange_settings_mini_player_size">Taille du mini lecteur</string>
     <string name="orange_settings_vibrate_on_mention">Vibrer quand vous êtes mentionné</string>
     <string name="orange_settings_vibration_duration">Durée de vibration</string>
-    <string name="orange_settings_hide_top_chat_panel_vods">Masquer le haut panneau de discussion dans les vidéos</string>
+    <string name="orange_settings_hide_top_chat_panel_vods">Masquer le panneau de discussion le plus haut dans les rediffusions de live</string>
     <string name="orange_settings_pronouns">Pronoms</string>
     <string name="orange_settings_auto_hide_message_input">Masquer la saisie de message en mode paysage</string>
     <string name="orange_settings_landscape_chat_opacity">Opacité du chat en mode paysage</string>
@@ -111,8 +111,8 @@
     <string name="orange_updater_install_action">Installer</string>
     <string name="orange_updater_update_action">Mettre à jour</string>
     <string name="orange_updater_channel_disabled">Le canal de mise à jour actuel est désactivé</string>
-    <string name="orange_updater_latest_version">Vous utilisez la dernière version</string>
-    <string name="orange_app_update_available">Une nouvelle Mise à Jour est Disponible</string>
+    <string name="orange_updater_latest_version">Vous utilisez la dernière version !</string>
+    <string name="orange_app_update_available">Une nouvelle Mise à Jour est disponible !</string>
     <string name="orange_app_update_available_cta">Une nouvelle version de PurpleTV est disponible ! Appuyez ici pour installer la mise à jour</string>
     <string name="orange_updater_not_found">Mise à jour non trouvée</string>
     <string name="orange_settings_check_update">Vérifier les mises à jour</string>
@@ -149,8 +149,6 @@
     <string name="orange_settings_show_stats_button">Afficher le bouton de statistique</string>
     <string name="orange_settings_proxy">Serveur Proxy</string>
     <string name="orange_proxy_disabled">Désactivé</string>
-    <string name="orange_proxy_twitching">Twitching</string>
-    <string name="orange_proxy_ttsftp">Outil de réparation du serveur Twitch Tokyo</string>
     <string name="orange_settings_improved_background_audio">Amélioration du son d\'arrière-plan</string>
     <string name="orange_generic_error">Erreur : %1$s</string>
     <string name="orange_generic_error_d">[%1$s] Erreur : %2$s</string>
@@ -162,7 +160,9 @@
     <string name="orange_spam_error_wd">Erreur {delay} paramètres: \'%1$s\'</string>
     <string name="orange_spam_error_ww">Erreur {width} paramètres: \'%1$s\'</string>
     <string name="orange_spam_error_empty">Rien à spammer</string>
-    <string name="orange_vodhunter_hunting">Chasse…</string>
+    <string name="orange_vodhunter_hunting">Chargement...</string>
     <string name="orange_settings_hide_unfollow_button">Masquer le bouton de désabonnement</string>
     <string name="orange_settings_info_lanzzz">Créateur du logo PurpleTV</string>
+    <string name="orange_pinny_active_users">Utilisateurs actifs: %1$d</string>
+    <string name="orange_pinny_total_users">Nombre total d\'utilisateurs : %1$d</string>
 </resources>

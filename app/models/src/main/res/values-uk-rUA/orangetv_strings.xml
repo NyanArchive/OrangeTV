@@ -165,4 +165,6 @@
     <string name="orange_settings_info_lanzzz">Автор логотипу</string>
     <string name="orange_pinny_active_users">Активних користувачів: %1$d</string>
     <string name="orange_pinny_total_users">Загальна кількість користувачів: %1$d</string>
+    <string name="orange_settings_chat_settings">Додати кнопку «Налаштування чату»</string>
+    <string name="orange_settings_hide_create_button">Сховати кнопку «Create»</string>
 </resources>

@@ -161,4 +161,10 @@
     <string name="orange_spam_error_ww">غلط {width} معامل \'%1$s\'</string>
     <string name="orange_spam_error_empty">لم يكتب شيء للمكرر</string>
     <string name="orange_vodhunter_hunting">صيد…</string>
+    <string name="orange_settings_hide_unfollow_button">إخفاء زر إلغاء المتابعة</string>
+    <string name="orange_settings_info_lanzzz">منشئ صورة تطبيق PurpleTV </string>
+    <string name="orange_pinny_active_users">المستخدمين النشطين: %1$d</string>
+    <string name="orange_pinny_total_users">العدد الإجمالي للمستخدمين: %1$d</string>
+    <string name="orange_settings_chat_settings">إعدادات الدردشة</string>
+    <string name="orange_settings_hide_create_button">إخفاء زر \"Create\"</string>
 </resources>

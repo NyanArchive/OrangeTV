@@ -165,4 +165,6 @@
     <string name="orange_settings_info_lanzzz">PurpleTV logo yaratıcı </string>
     <string name="orange_pinny_active_users">Aktif Kullanıcılar: %1$d</string>
     <string name="orange_pinny_total_users">Toplam Kullanıcılar: %1$d</string>
+    <string name="orange_settings_chat_settings">Sohbet ayarları</string>
+    <string name="orange_settings_hide_create_button">&lt;&lt;Oluştur&gt;&gt; butonunu gizle</string>
 </resources>

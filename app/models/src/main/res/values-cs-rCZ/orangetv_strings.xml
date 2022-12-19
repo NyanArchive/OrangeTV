@@ -165,4 +165,6 @@
     <string name="orange_settings_info_lanzzz">PurpleTV autor loga</string>
     <string name="orange_pinny_active_users">Aktivní uživatelé: %1$d</string>
     <string name="orange_pinny_total_users">Celkem uživatelů: %1$d</string>
+    <string name="orange_settings_chat_settings">Nastavení chatu</string>
+    <string name="orange_settings_hide_create_button">Skrýt tlačítko «Vytvořit»</string>
 </resources>

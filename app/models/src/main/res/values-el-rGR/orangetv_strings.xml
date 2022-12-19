@@ -165,4 +165,6 @@
     <string name="orange_settings_info_lanzzz">Δημιουργός λογότυπου PurpleTV</string>
     <string name="orange_pinny_active_users">Ενεργοί χρήστες: %1$d</string>
     <string name="orange_pinny_total_users">Σύνολο χρηστών: %1$d</string>
+    <string name="orange_settings_chat_settings">Ρυθμίσεις συνομιλίας</string>
+    <string name="orange_settings_hide_create_button">Απόκρυψη κουμπιού «Δημιουργία»</string>
 </resources>

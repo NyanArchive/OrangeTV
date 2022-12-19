@@ -165,4 +165,6 @@
     <string name="orange_settings_info_lanzzz">Créateur du logo PurpleTV</string>
     <string name="orange_pinny_active_users">Utilisateurs actifs: %1$d</string>
     <string name="orange_pinny_total_users">Nombre total d\'utilisateurs : %1$d</string>
+    <string name="orange_settings_chat_settings">Paramètres du chat</string>
+    <string name="orange_settings_hide_create_button">Masquer le bouton « Créer »</string>
 </resources>

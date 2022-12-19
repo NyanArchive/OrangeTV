@@ -165,4 +165,6 @@
     <string name="orange_settings_info_lanzzz">Tvorca PurpleTV loga</string>
     <string name="orange_pinny_active_users">Aktívnych používateľov: %1$d</string>
     <string name="orange_pinny_total_users">Celkový počet používateľov:%1$d</string>
+    <string name="orange_settings_chat_settings">Nastavenia četu</string>
+    <string name="orange_settings_hide_create_button">Skryť «Vytvoriť» tlačidlo</string>
 </resources>

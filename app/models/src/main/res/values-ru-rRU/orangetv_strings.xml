@@ -161,9 +161,12 @@
     <string name="orange_spam_error_wc">Неправильный {count} параметр: \'%1$s\'</string>
     <string name="orange_spam_error_wd">Неправильный {delay} параметр: \'%1$s\'</string>
     <string name="orange_spam_error_ww">Неправильный {width} параметр: \'%1$s\'</string>
+    <string name="orange_spam_error_empty">Введите текст сообщения</string>
     <string name="orange_vodhunter_hunting">Догоняем...</string>
     <string name="orange_settings_hide_unfollow_button">Скрыть кнопку «Отписаться»</string>
     <string name="orange_settings_info_lanzzz">Художник, подаривший PurpleTV логотип</string>
     <string name="orange_pinny_active_users">Количество активных пользователей: %1$d</string>
     <string name="orange_pinny_total_users">Общее количество пользователей: %1$d</string>
+    <string name="orange_settings_chat_settings">Настройки чата</string>
+    <string name="orange_settings_hide_create_button">Скрыть кнопку «Создать»</string>
 </resources>

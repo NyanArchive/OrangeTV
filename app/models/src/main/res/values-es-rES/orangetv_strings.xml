@@ -163,4 +163,8 @@
     <string name="orange_vodhunter_hunting">Buscando…</string>
     <string name="orange_settings_hide_unfollow_button">Ocultar botón dejar de seguir</string>
     <string name="orange_settings_info_lanzzz">Creador del logo de PurpleTV</string>
+    <string name="orange_pinny_active_users">Usuarios activos: %1$d</string>
+    <string name="orange_pinny_total_users">Usuarios totales: %1$d</string>
+    <string name="orange_settings_chat_settings">Ajustes del chat</string>
+    <string name="orange_settings_hide_create_button">Ocultar botón «Crear»</string>
 </resources>

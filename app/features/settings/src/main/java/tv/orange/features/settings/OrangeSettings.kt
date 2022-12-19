@@ -21,11 +21,6 @@ class OrangeSettings @Inject constructor(
         fun get() = Core.getFeature(OrangeSettings::class.java)
 
         @JvmStatic
-        fun destroy() {
-            Core.destroyFeature(OrangeSettings::class.java)
-        }
-
-        @JvmStatic
         fun getOrangeSettingsString(): String {
             return ResourceManager.get().getString(resName = "orange_settings")
         }
@@ -47,6 +42,5 @@ class OrangeSettings @Inject constructor(
         return OrangeSettingsFragment()
     }
 
-    override fun onDestroyFeature() {}
     override fun onCreateFeature() {}
 }

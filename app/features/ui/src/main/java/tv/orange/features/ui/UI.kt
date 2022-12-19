@@ -21,26 +21,18 @@ import tv.orange.core.util.ViewUtil.getView
 import tv.orange.features.ui.bridge.SupportBridge
 import tv.orange.models.abc.Feature
 import tv.twitch.android.shared.chat.ChatViewDelegate
+import tv.twitch.android.shared.chat.emotecard.FollowButtonUiModel
 import tv.twitch.android.shared.ui.elements.navigation.BottomNavigationDestination
 import tv.twitch.android.shared.ui.elements.navigation.BottomNavigationItem
-import tv.twitch.android.shared.ui.menus.LogoutSectionRecyclerItem
 import javax.inject.Inject
 
 class UI @Inject constructor(
     val context: Context,
     val supportBridge: SupportBridge
 ) : Feature {
-    override fun onDestroyFeature() {}
-    override fun onCreateFeature() {}
-
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(UI::class.java)
-
-        @JvmStatic
-        fun destroy() {
-            Core.destroyFeature(UI::class.java)
-        }
 
         @JvmStatic
         val hideResumeWatching: Boolean
@@ -119,12 +111,32 @@ class UI @Inject constructor(
         }
 
         @JvmStatic
+        fun maybeHideFollowButton(
+            view: View?,
+            model: FollowButtonUiModel?
+        ) {
+            view ?: return
+
+            if (Flag.HIDE_UNFOLLOW_BUTTON.asBoolean()) {
+                model?.let {
+                    if (it.isFollowing) {
+                        view.changeVisibility(false)
+                    }
+                }
+            }
+        }
+
+        @JvmStatic
         val shouldShowVideoDebugPanel: Boolean
             get() = Flag.SHOW_STATS_BUTTON.asBoolean()
 
         @JvmStatic
         val showClipfinity: Boolean
             get() = Flag.CLIPFINITY.asBoolean()
+
+        @JvmStatic
+        val showFollowButtonExtended: Boolean
+            get() = !Flag.HIDE_UNFOLLOW_BUTTON.asBoolean()
     }
 
     val skipTwitchBrowserDialog: Boolean
@@ -208,4 +220,14 @@ class UI @Inject constructor(
     fun getOrangeTvBuildDateTV(vh: View): TextView {
         return vh.getView("settings_logout_footer__orangetv_build_date")
     }
+
+    fun isCreatorButtonVisible(state: Boolean): Boolean {
+        if (Flag.HIDE_CREATE_BUTTON.asBoolean()) {
+            return false
+        }
+
+        return state
+    }
+
+    override fun onCreateFeature() {}
 }

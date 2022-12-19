@@ -14,13 +14,13 @@ class SupportBridge @Inject constructor(val context: Context) {
     fun updateLogoutSectionRecyclerItem(viewHolder: RecyclerView.ViewHolder) {
         ClassCompat.invokeIf<ISectionFooterRecyclerItemViewHolder>(viewHolder) {
             BuildConfigUtil.buildConfig.let { config ->
-                it.getOrangeTVSection().text =  if (config.number > 0) {
-                    "PurpleTV/${config.number}"
+                it.getOrangeTVSection().text = if (config.number > 0) {
+                    "PurpleTV/${config.getVersion()}"
                 } else {
                     "PurpleTV/Stub"
                 }
 
-                it.getOrangeTVDateSection().text =  DateUtil.Companion!!.localizedDate(
+                it.getOrangeTVDateSection().text = DateUtil.Companion!!.localizedDate(
                     context, if (config.timestamp > 0) {
                         config.timestampToDate()
                     } else {

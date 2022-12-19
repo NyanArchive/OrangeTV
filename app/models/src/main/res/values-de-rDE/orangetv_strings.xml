@@ -149,8 +149,6 @@
     <string name="orange_settings_show_stats_button">Video Stats Button im Player anzeigen</string>
     <string name="orange_settings_proxy">Proxy Server</string>
     <string name="orange_proxy_disabled">Deaktiviert</string>
-    <string name="orange_proxy_twitching">Twitching</string>
-    <string name="orange_proxy_ttsftp">Twitch Tokyo Server Fix Tool</string>
     <string name="orange_settings_improved_background_audio">Verbesserte Hintergrund Audio</string>
     <string name="orange_generic_error">Fehler: %1$s</string>
     <string name="orange_generic_error_d">[%1$s] Fehler: %2$s</string>

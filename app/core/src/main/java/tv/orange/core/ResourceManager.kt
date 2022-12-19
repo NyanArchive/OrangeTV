@@ -8,14 +8,13 @@ import tv.orange.models.abc.Feature
 import tv.twitch.android.core.strings.StringResource
 
 @AutoInitialize
-class ResourceManager(private val context: Context) : Feature {
+class ResourceManager(
+    private val context: Context
+) : Feature {
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(ResourceManager::class.java)
     }
-
-    override fun onDestroyFeature() {}
-    override fun onCreateFeature() {}
 
     private enum class Id(type: String, size: Int) {
         ID("id", 100),
@@ -74,7 +73,7 @@ class ResourceManager(private val context: Context) : Feature {
         return Id.ATTR.get(resName)
     }
 
-    fun getString(resName: String, vararg formatArgs : Any): String {
+    fun getString(resName: String, vararg formatArgs: Any): String {
         val id = Id.STRING.get(resName)
 
         return if (id == 0 || id == -1) {
@@ -97,4 +96,6 @@ class ResourceManager(private val context: Context) : Feature {
     fun getString(resId: Int): String {
         return context.getString(resId)
     }
+
+    override fun onCreateFeature() {}
 }

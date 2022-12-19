@@ -3,6 +3,7 @@ package tv.orange.core
 import android.content.Context
 import android.content.SharedPreferences
 import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.models.flag.FlagListener
 import tv.orange.core.models.flag.Internal.*
 import tv.orange.models.AutoInitialize
@@ -39,16 +40,15 @@ class PreferenceManager @Inject constructor(
             Flag.findByKey(prefKey = value)?.let { flag ->
                 readFromPreferences(flag = flag)
                 listeners.forEach { it.onFlagValueChanged(flag = flag) }
+                pCases(flag)
             }
         }
     }
 
-    override fun onDestroyFeature() {
-        throw IllegalStateException("PreferenceManager cannot be destroyed")
-    }
-
-    override fun onCreateFeature() {
-        initialize()
+    private fun pCases(flag: Flag) {
+        if (flag == Flag.DEV_MODE) {
+            LoggerImpl.devMode = flag.asBoolean()
+        }
     }
 
     fun getChommentSeekerValue(videoId: String): Int {
@@ -123,7 +123,6 @@ class PreferenceManager @Inject constructor(
 
         private const val ORANGE_TIMER_HOURS_KEY = "orange_timer_hours"
         private const val ORANGE_TIMER_MINUTES_KEY = "orange_timer_minutes"
-        private const val ORANGE_LAST_BUILD_NUM_KEY = "orange_last_build_num"
 
         var isDarkThemeEnabled = false
 
@@ -159,13 +158,7 @@ class PreferenceManager @Inject constructor(
         orange.edit().putInt(ORANGE_TIMER_MINUTES_KEY, data.second).apply()
     }
 
-    fun getLastBuildNum(): Int {
-        return orange.getInt(ORANGE_LAST_BUILD_NUM_KEY, -1)
-    }
-
-    fun saveLastBuildNum(build: Int) {
-        if (build > 0) {
-            orange.edit().putInt(ORANGE_LAST_BUILD_NUM_KEY, build).apply()
-        }
+    override fun onCreateFeature() {
+        initialize()
     }
 }

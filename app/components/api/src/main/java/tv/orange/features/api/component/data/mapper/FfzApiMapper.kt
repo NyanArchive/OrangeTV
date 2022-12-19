@@ -1,16 +1,25 @@
 package tv.orange.features.api.component.data.mapper
 
-import tv.orange.models.data.badges.BadgeFfzImpl
 import tv.orange.models.data.badges.BadgeSet
+import tv.orange.models.data.badges.impl.BadgeFfzImpl
 import tv.orange.models.retrofit.ffz.FfzBadgesData
 import javax.inject.Inject
 
 class FfzApiMapper @Inject constructor() {
     fun mapBadges(response: FfzBadgesData): BadgeSet {
         val builder = BadgeSet.Builder()
-        val badges = response.badges.associateBy { it.id }
-        val supporter = BadgeFfzImpl.Type.SUPPORTER
-        val unknown = BadgeFfzImpl.Type.UNKNOWN
+        val badges = response.badges.associateBy({ it.id }, { badge ->
+            BadgeFfzImpl(
+                badgeId = badge.id,
+                type = if (badge.name == BadgeFfzImpl.Type.SUPPORTER.value) {
+                    BadgeFfzImpl.Type.SUPPORTER
+                } else {
+                    BadgeFfzImpl.Type.UNKNOWN
+                },
+                backgroundColor = badge.parseColor(),
+                replaces = badge.replaces
+            )
+        })
 
         response.users.forEach { entry ->
             val emoteId = entry.key
@@ -18,14 +27,10 @@ class FfzApiMapper @Inject constructor() {
 
             emoteId.toIntOrNull()?.let { id ->
                 userIds.forEach { userId ->
-                    badges[id]?.let { ffzBadge ->
+                    badges[id]?.let { badge ->
                         builder.addBadge(
-                            BadgeFfzImpl(
-                                type = if (ffzBadge.name == supporter.value) supporter else unknown,
-                                url = getFfzBadgeUrl(badgeId = ffzBadge.id),
-                                backgroundColor = ffzBadge.parseColor(),
-                                replaces = ffzBadge.replaces
-                            ), userId
+                            badge = badge,
+                            userId = userId
                         )
                     }
                 }
@@ -33,13 +38,5 @@ class FfzApiMapper @Inject constructor() {
         }
 
         return builder.build()
-    }
-
-    companion object {
-        private const val FFZ_CDN = "https://cdn.frankerfacez.com/badge/"
-
-        private fun getFfzBadgeUrl(badgeId: Int): String {
-            return "$FFZ_CDN$badgeId/2"
-        }
     }
 }

@@ -74,7 +74,7 @@ class ExperimentHelperHookImpl(private val org: IExperimentHelper) : ExperimentH
             Experiment.LIVE_THEATRE_REFACTOR_GLOBAL,
             Experiment.AMAZON_IDENTITY_INTEGRATION -> false
 
-            Experiment.CHAT_SETTINGS -> true
+            Experiment.CHAT_SETTINGS -> Flag.CHAT_SETTINGS.asBoolean()
 
             else -> {
                 val res = org.isInOnGroupForBinaryExperimentOrg(p0)

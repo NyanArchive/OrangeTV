@@ -66,7 +66,7 @@
     <string name="orange_settings_vibrate_on_mention">Вибрация при упоминании</string>
     <string name="orange_settings_vibration_duration">Продолжительность вибрации</string>
     <string name="orange_settings_hide_top_chat_panel_vods">Скрыть верхнюю панель чата в записях</string>
-    <string name="orange_settings_pronouns">Интегрировать Pronouns в чат</string>
+    <string name="orange_settings_pronouns">Включить местоимения (требуется авторизация)</string>
     <string name="orange_settings_auto_hide_message_input">Скрыть строку ввода в горизонтальной ориентации</string>
     <string name="orange_settings_landscape_chat_opacity">Прозрачность чата в горизонтальной ориентации</string>
     <string name="orange_chapters_unknown">Главы</string>
@@ -126,10 +126,10 @@
     <string name="orange_settings_info_discord">Обсудить приложение в Discord</string>
     <string name="orange_settings_info_itsfadixx">Подельник</string>
     <string name="orange_settings_vodhunter">VODHunter</string>
-    <string name="orange_settings_vodhunter_desc">Доступ к записям «только для подписчиков»</string>
+    <string name="orange_settings_vodhunter_desc">Доступ к записям «Только для подписчиков»</string>
     <string name="orange_settings_bypass_chat_ban">Обойти блокировку в чате</string>
     <string name="orange_settings_bypass_chat_ban_desc">Анонимный вход в чат.
-Нельзя писать сообщения.
+Нельзя отправлять сообщения.
 Нельзя получать/тратить баллы канала.</string>
     <string name="orange_settings_hide_chat_header">Скрыть содержимое заголовка чата</string>
     <string name="orange_settings_hide_recommendation_section">Скрыть блок «Рекомендуемые каналы»</string>
@@ -142,8 +142,8 @@
     <string name="orange_pinned_message_sec30">Скрыть по истечению 30 сек.</string>
     <string name="orange_settings_brightness_gesture">Регулировка яркости жестами</string>
     <string name="orange_settings_volume_gesture">Регулировка громкости жестами</string>
-    <string name="orange_settings_disable_theatre_autoplay">Отключить автовоспроизведение рекомендаций</string>
-    <string name="orange_settings_disable_theatre_autoplay_desc">Отключить автовоспроизведение следующего видео</string>
+    <string name="orange_settings_disable_theatre_autoplay">Отключить автовоспроизведение</string>
+    <string name="orange_settings_disable_theatre_autoplay_desc">Отключить автовоспроизведение рекомендаций по завершению стрима</string>
     <string name="orange_settings_show_timer_button">Отображать кнопку «Таймер сна»</string>
     <string name="orange_settings_show_refresh_button">Отображать кнопку «Обновить»</string>
     <string name="orange_chat_kill_chat">Отключить чат</string>
@@ -151,15 +151,22 @@
     <string name="orange_settings_show_stats_button">Отображать кнопку «Статистика»</string>
     <string name="orange_settings_proxy">Прокси-сервер</string>
     <string name="orange_proxy_disabled">Отключен</string>
-    <string name="orange_proxy_twitching">Twitching</string>
-    <string name="orange_proxy_ttsftp">Twitch Tokyo Server Fix Tool</string>
     <string name="orange_settings_improved_background_audio">Улучшить проигрывание аудио в фоне</string>
     <string name="orange_generic_error">Ошибка: %1$s</string>
     <string name="orange_generic_error_d">[%1$s] Ошибка: %2$s</string>
-    <string name="orange_generic_spam_usage">Используется: %1$s</string>
+    <string name="orange_generic_spam_usage">Использовано: %1$s</string>
     <string name="orange_chat_history_fetching">Загрузка истории чата…</string>
+    <string name="orange_proxy_error_ur">Безуспешный ответ</string>
     <string name="orange_proxy_error_cpr">Не удалось обработать ответ</string>
     <string name="orange_spam_error_wc">Неправильный {count} параметр: \'%1$s\'</string>
     <string name="orange_spam_error_wd">Неправильный {delay} параметр: \'%1$s\'</string>
     <string name="orange_spam_error_ww">Неправильный {width} параметр: \'%1$s\'</string>
+    <string name="orange_spam_error_empty">Введите текст сообщения</string>
+    <string name="orange_vodhunter_hunting">Догоняем...</string>
+    <string name="orange_settings_hide_unfollow_button">Скрыть кнопку «Отписаться»</string>
+    <string name="orange_settings_info_lanzzz">Художник, подаривший PurpleTV логотип</string>
+    <string name="orange_pinny_active_users">Количество активных пользователей: %1$d</string>
+    <string name="orange_pinny_total_users">Общее количество пользователей: %1$d</string>
+    <string name="orange_settings_chat_settings">Настройки чата</string>
+    <string name="orange_settings_hide_create_button">Скрыть кнопку «Создать»</string>
 </resources>

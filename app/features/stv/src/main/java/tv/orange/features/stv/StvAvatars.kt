@@ -30,11 +30,6 @@ class StvAvatars @Inject constructor(
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(StvAvatars::class.java)
-
-        @JvmStatic
-        fun destroy() {
-            Core.destroyFeature(StvAvatars::class.java)
-        }
     }
 
     fun hookProfileImageUrl(profileImageUrl: String, channelName: String): String {
@@ -74,11 +69,6 @@ class StvAvatars @Inject constructor(
     override fun onFirstActivityStarted() {}
     override fun onConnectedToChannel(channelId: Int) {}
     override fun onConnectingToChannel(channelId: Int) {}
-
-    override fun onDestroyFeature() {
-        PreferenceManager.get().unregisterFlagListeners(this)
-        Core.get().unregisterLifecycleListener(this)
-    }
 
     override fun onCreateFeature() {
         Core.get().registerLifecycleListeners(this)

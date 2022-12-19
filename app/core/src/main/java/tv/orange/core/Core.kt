@@ -10,7 +10,6 @@ import android.net.Uri
 import android.os.*
 import android.widget.Toast
 import io.reactivex.Single
-import io.reactivex.SingleSource
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.variants.PinnedMessageStrategy
@@ -19,22 +18,18 @@ import tv.orange.core.models.lifecycle.LifecycleController
 import tv.orange.models.AutoInitialize
 import tv.orange.models.abc.Bridge
 import tv.orange.models.abc.Feature
-import tv.orange.models.abc.TCPProvider
-import tv.orange.models.abc.TwitchComponentProvider
-import tv.twitch.android.app.core.ApplicationContext
-import tv.twitch.android.shared.chat.network.creatorpinnedchatmessage.model.CreatorPinnedChatMessageChannelModel
-import tv.twitch.android.shared.chat.network.creatorpinnedchatmessage.model.CreatorPinnedChatMessageMessageModel
 import tv.twitch.android.shared.subscriptions.db.SubscriptionPurchaseEntity
 import tv.twitch.android.shared.subscriptions.purchasers.SubscriptionPurchaseResponse
 import tv.twitch.android.util.CoreDateUtil
 import javax.inject.Inject
 import kotlin.system.exitProcess
 
+
 @AutoInitialize
 class Core @Inject constructor(
     val context: Context
 ) : LifecycleController, LifecycleAware, Feature {
-    private val modules = mutableSetOf<LifecycleAware>()
+    private val lifecycleModules = mutableSetOf<LifecycleAware>()
 
     companion object {
         private val MOD_SIGNATURE = arrayOf(
@@ -61,17 +56,7 @@ class Core @Inject constructor(
 
         @JvmStatic
         fun <T : Feature> getFeature(clazz: Class<T>): T {
-            return getBridge().getFeature(clazz = clazz)
-        }
-
-        @JvmStatic
-        private fun getBridge(): Bridge {
-            return bridge
-        }
-
-        @JvmStatic
-        fun provideTCP(): TwitchComponentProvider {
-            return (ApplicationContext.getInstance().getContext() as TCPProvider).provideTCP()
+            return bridge.getFeature(clazz = clazz)
         }
 
         @JvmStatic
@@ -80,12 +65,28 @@ class Core @Inject constructor(
         }
 
         @JvmStatic
-        fun toast(msg: String) {
-            Toast.makeText(get().context, msg, Toast.LENGTH_SHORT).show()
+        fun showToast(msg: String) {
+            Handler(Looper.getMainLooper()).post {
+                Toast.makeText(
+                    get().context,
+                    msg,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
 
         @JvmStatic
         fun restart(activity: Activity) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                newRestartMethod(activity)
+            } else {
+                oldRestartMethod(activity)
+            }
+
+            killApp()
+        }
+
+        private fun oldRestartMethod(activity: Activity) {
             val intent: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
             } else {
@@ -104,7 +105,15 @@ class Core @Inject constructor(
                     intent
                 )
             )
-            killApp()
+        }
+
+        private fun newRestartMethod(activity: Activity) {
+            val pm = activity.baseContext.packageManager
+            val pn = activity.baseContext.packageName
+            pm.getLaunchIntentForPackage(pn)?.let { intent: Intent ->
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                activity.startActivity(intent)
+            }
         }
 
         fun vibrate(context: Context, delay: Int, duration: Int) {
@@ -139,11 +148,6 @@ class Core @Inject constructor(
         }
 
         @JvmStatic
-        fun <T : Feature> destroyFeature(clazz: Class<T>) {
-            getBridge().destroyFeature(clazz)
-        }
-
-        @JvmStatic
         fun isPinnedChatMessageEnabled(): Boolean {
             return Flag.PINNED_MESSAGE.asVariant<PinnedMessageStrategy>() != PinnedMessageStrategy.Disabled
         }
@@ -174,7 +178,10 @@ class Core @Inject constructor(
         ): Single<SubscriptionPurchaseResponse> {
             return res.doOnSuccess {
                 if (it is SubscriptionPurchaseResponse.Success) {
-                    openUrl(activity, "https://www.twitch.tv/subs/${purchaseEntity.channelDisplayName}")
+                    openUrl(
+                        context = activity,
+                        url = "https://www.twitch.tv/subs/${purchaseEntity.channelDisplayName}"
+                    )
                 }
             }
         }
@@ -232,66 +239,65 @@ class Core @Inject constructor(
 
     override fun registerLifecycleListeners(vararg listeners: LifecycleAware) {
         listeners.forEach { listener ->
-            modules.add(listener)
+            lifecycleModules.add(listener)
         }
     }
 
     override fun unregisterLifecycleListener(vararg listeners: LifecycleAware) {
         listeners.forEach { listener ->
-            modules.remove(listener)
+            lifecycleModules.remove(listener)
         }
     }
 
     override fun onAllComponentDestroyed() {
-        modules.forEach {
+        lifecycleModules.forEach {
             it.onAllComponentDestroyed()
         }
     }
 
     override fun onAllComponentStopped() {
-        modules.forEach {
+        lifecycleModules.forEach {
             it.onAllComponentStopped()
         }
     }
 
     override fun onSdkResume() {
-        modules.forEach {
+        lifecycleModules.forEach {
             it.onSdkResume()
         }
     }
 
     override fun onAccountLogout() {
-        modules.forEach {
+        lifecycleModules.forEach {
             it.onAccountLogout()
         }
     }
 
     override fun onFirstActivityCreated() {
-        modules.forEach {
+        lifecycleModules.forEach {
             it.onFirstActivityCreated()
         }
     }
 
     override fun onFirstActivityStarted() {
-        modules.forEach {
+        lifecycleModules.forEach {
             it.onFirstActivityStarted()
         }
     }
 
     override fun onConnectedToChannel(channelId: Int) {
-        modules.forEach {
+        lifecycleModules.forEach {
             it.onConnectedToChannel(channelId)
         }
     }
 
     override fun onConnectingToChannel(channelId: Int) {
-        modules.forEach {
+        lifecycleModules.forEach {
             it.onConnectingToChannel(channelId)
         }
     }
 
-    override fun onDestroyFeature() {}
     override fun onCreateFeature() {
-        LoggerImpl.debug("OrangeTV:${BuildConfigUtil.buildConfig.number}")
+        LoggerImpl.debug("PurpleTV:${BuildConfigUtil.buildConfig.number}")
     }
 }

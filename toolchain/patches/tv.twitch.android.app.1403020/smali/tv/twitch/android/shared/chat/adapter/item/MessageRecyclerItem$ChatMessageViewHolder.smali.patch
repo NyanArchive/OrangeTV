@@ -39,38 +39,37 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/adapter/item/MessageRe
      return-void
  .end method
  
-@@ -284,3 +301,34 @@
+@@ -284,3 +301,33 @@
  
      return-void
  .end method
 +
++# virtual methods
 +.method public onBindDataItem(Ltv/twitch/android/core/adapters/RecyclerAdapterItem;)V
 +    .registers 3
 +    .param p1, "item"    # Ltv/twitch/android/core/adapters/RecyclerAdapterItem;
 +
-+    .line 109
++    .line 114
 +    invoke-super {p0, p1}, Ltv/twitch/android/core/adapters/AbstractTwitchRecyclerViewHolder;->onBindDataItem(Ltv/twitch/android/core/adapters/RecyclerAdapterItem;)V
 +
-+    .line 111
++    .line 116
 +    iget-object v0, p0, Ltv/twitch/android/shared/chat/adapter/item/MessageRecyclerItem$ChatMessageViewHolder;->pronounSetter:Ltv/orange/features/pronouns/PronounSetter;
 +
 +    if-eqz v0, :cond_a
 +
-+    .line 112
++    .line 117
 +    invoke-virtual {v0}, Ltv/orange/features/pronouns/PronounSetter;->destroy()V
 +
-+    .line 114
++    .line 119
 +    :cond_a
-+    invoke-static {}, Ltv/orange/features/chat/ChatHookProvider;->get()Ltv/orange/features/chat/ChatHookProvider;
++    sget-object v0, Ltv/orange/features/chat/bridge/VHBinder;->INSTANCE:Ltv/orange/features/chat/bridge/VHBinder;
 +
-+    move-result-object v0
-+
-+    invoke-virtual {v0, p0, p1}, Ltv/orange/features/chat/ChatHookProvider;->bindPronoun(Ltv/twitch/android/shared/chat/adapter/item/MessageRecyclerItem$ChatMessageViewHolder;Ltv/twitch/android/core/adapters/RecyclerAdapterItem;)Ltv/orange/features/pronouns/PronounSetter;
++    invoke-virtual {v0, p0, p1}, Ltv/orange/features/chat/bridge/VHBinder;->bindPronoun(Ltv/twitch/android/shared/chat/adapter/item/MessageRecyclerItem$ChatMessageViewHolder;Ltv/twitch/android/core/adapters/RecyclerAdapterItem;)Ltv/orange/features/pronouns/PronounSetter;
 +
 +    move-result-object v0
 +
 +    iput-object v0, p0, Ltv/twitch/android/shared/chat/adapter/item/MessageRecyclerItem$ChatMessageViewHolder;->pronounSetter:Ltv/orange/features/pronouns/PronounSetter;
 +
-+    .line 115
++    .line 120
 +    return-void
 +.end method

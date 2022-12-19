@@ -40,11 +40,6 @@ class Updater @Inject constructor(
         @JvmStatic
         fun get() = Core.getFeature(Updater::class.java)
 
-        @JvmStatic
-        fun destroy() {
-            Core.destroyFeature(Updater::class.java)
-        }
-
         fun getTempDir(context: Context): File {
             val tmp = File(context.cacheDir, TEMP_OTA_DIR)
             if (tmp.exists()) {
@@ -80,7 +75,7 @@ class Updater @Inject constructor(
         clearTempCache(context = context)
         clearOtaDir(context = context)
 
-        Core.toast(resourceManager.getString("orange_updater_done"))
+        Core.showToast(resourceManager.getString("orange_updater_done"))
     }
 
     fun onCheckUpdateClicked(context: Context) {
@@ -88,7 +83,7 @@ class Updater @Inject constructor(
         when (Flag.UPDATER.asVariant<UpdateChannel>()) {
             UpdateChannel.Disabled -> {
                 LoggerImpl.debug("DISABLED")
-                Core.toast(resourceManager.getString("orange_updater_channel_disabled"))
+                Core.showToast(resourceManager.getString("orange_updater_channel_disabled"))
                 return
             }
             else -> {
@@ -119,13 +114,13 @@ class Updater @Inject constructor(
         optional: Optional<UpdateData>
     ) {
         if (!optional.isPresent) {
-            Core.toast(resourceManager.getString("orange_updater_not_found"))
+            Core.showToast(resourceManager.getString("orange_updater_not_found"))
             return
         }
 
         optional.ifPresent { data ->
             if (!shouldShowPrompt(optional)) {
-                Core.toast(resourceManager.getString("orange_updater_latest_version"))
+                Core.showToast(resourceManager.getString("orange_updater_latest_version"))
                 return@ifPresent
             }
 
@@ -140,9 +135,6 @@ class Updater @Inject constructor(
     fun clearOtaDir(context: Context) {
         getOtaDir(context = context).deleteDir()
     }
-
-    override fun onDestroyFeature() {}
-    override fun onCreateFeature() {}
 
     fun injectToUpdatePromptPresenter(
         updatePromptPresenter: UpdatePromptPresenter,
@@ -190,4 +182,6 @@ class Updater @Inject constructor(
     fun calcCacheSize(context: Context): Long {
         return getOtaDir(context).dirSize() + getTempDir(context).dirSize()
     }
+
+    override fun onCreateFeature() {}
 }

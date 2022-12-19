@@ -92,6 +92,9 @@ class ChatHookProvider @Inject constructor(
 ) : LifecycleAware, FlagListener, Feature, SupportBridge.Callback {
     private val currentChannelSubject = BehaviorSubject.create<Int>()
 
+    var emoteSize: Emote.Size = Emote.Size.MEDIUM
+    var pronouns: Boolean = false
+
     override fun onAllComponentStopped() {}
     override fun onAccountLogout() {}
     override fun onFirstActivityStarted() {}
@@ -416,17 +419,13 @@ class ChatHookProvider @Inject constructor(
         var fontSizeSp: Int = 0
         var fontSizePx: Float = 0F
         var fontSizeScaleFactory: Float = 0F
-        var emoteSize: Emote.Size = Emote.Size.MEDIUM
+
+        var chatTimestamps: Boolean = false
 
         private var killChat = false
 
         @JvmStatic
         fun get() = Core.getFeature(ChatHookProvider::class.java)
-
-        @JvmStatic
-        fun destroy() {
-            Core.destroyFeature(ChatHookProvider::class.java)
-        }
 
         @JvmStatic
         fun bypassChatBan(): Boolean {
@@ -522,7 +521,7 @@ class ChatHookProvider @Inject constructor(
             userId: Int,
             messageTimestamp: Int
         ): Spanned {
-            if (!Flag.CHAT_TIMESTAMPS.asBoolean()) {
+            if (!chatTimestamps) {
                 return message
             }
 
@@ -549,21 +548,6 @@ class ChatHookProvider @Inject constructor(
         @JvmStatic
         val isChatKilled
             get() = killChat
-    }
-
-    override fun onDestroyFeature() {
-        PreferenceManager.get().unregisterFlagListeners(this)
-        Core.get().unregisterLifecycleListener(this)
-        onAllComponentDestroyed()
-        highlighter.dispose()
-    }
-
-    override fun onCreateFeature() {
-        Core.get().registerLifecycleListeners(this)
-        PreferenceManager.get().registerFlagListeners(this)
-        updateFontSize()
-        emoteSize = Flag.EMOTE_QUALITY.asVariant<EmoteQuality>().toSize()
-        highlighter.pull()
     }
 
     private fun updateFontSize() {
@@ -602,7 +586,13 @@ class ChatHookProvider @Inject constructor(
                 updateFontSize()
             }
             Flag.EMOTE_QUALITY -> {
-                emoteSize = Flag.EMOTE_QUALITY.asVariant<EmoteQuality>().toSize()
+                emoteSize = flag.asVariant<EmoteQuality>().toSize()
+            }
+            Flag.CHAT_TIMESTAMPS -> {
+                chatTimestamps = flag.asBoolean()
+            }
+            Flag.PRONOUNS -> {
+                pronouns = flag.asBoolean()
             }
             else -> {}
         }
@@ -639,7 +629,7 @@ class ChatHookProvider @Inject constructor(
     }
 
     override fun maybeChangeMessageFontSize(textView: TextView) {
-        if (Flag.CHAT_FONT_SIZE.asVariant<FontSize>().isDefault()) {
+        if (fontSizeScaleFactory == 0f) {
             return
         }
 
@@ -676,7 +666,7 @@ class ChatHookProvider @Inject constructor(
         holder: MessageRecyclerItem.ChatMessageViewHolder,
         item: RecyclerAdapterItem
     ): PronounSetter? {
-        if (!Flag.PRONOUNS.asBoolean()) {
+        if (!pronouns) {
             return null
         }
 
@@ -764,5 +754,15 @@ class ChatHookProvider @Inject constructor(
 
     fun switchKillChat() {
         killChat = !killChat
+    }
+
+    override fun onCreateFeature() {
+        Core.get().registerLifecycleListeners(this)
+        PreferenceManager.get().registerFlagListeners(this)
+        updateFontSize()
+        emoteSize = Flag.EMOTE_QUALITY.asVariant<EmoteQuality>().toSize()
+        pronouns = Flag.PRONOUNS.asBoolean()
+        chatTimestamps = Flag.CHAT_TIMESTAMPS.asBoolean()
+        highlighter.pull()
     }
 }

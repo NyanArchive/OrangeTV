@@ -14,19 +14,19 @@ class BttvRemoteDataSource @Inject constructor(
 ) {
     fun getGlobalEmotes(): Single<List<Emote>> {
         return bttvApi.globalBttvEmotes().subscribeOn(Schedulers.io()).map { emotes ->
-            bttvMapper.mapEmotes(emotes = emotes, isChannelEmotes = false)
+            bttvMapper.mapEmotes(emotes = emotes, isGlobalEmotes = true)
         }
     }
 
     fun getGlobalFfzEmotes(): Single<List<Emote>> {
         return bttvApi.globalFfzEmotes().subscribeOn(Schedulers.io()).map { emotes ->
-            bttvMapper.mapFfzEmotes(emotes = emotes, isChannelEmotes = false)
+            bttvMapper.mapFfzEmotes(emotes = emotes, isGlobalEmotes = true)
         }
     }
 
     fun getChannelFfzEmotes(channelId: Int): Single<List<Emote>> {
         return bttvApi.ffzEmotes(channelId).subscribeOn(Schedulers.io()).map { emotes ->
-            bttvMapper.mapFfzEmotes(emotes = emotes, isChannelEmotes = true)
+            bttvMapper.mapFfzEmotes(emotes = emotes, isGlobalEmotes = false)
         }.onErrorResumeNext {
             LoggerImpl.warning("Cannot fetch emotes for channel: $channelId")
             Single.just(emptyList())

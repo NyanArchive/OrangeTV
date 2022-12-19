@@ -2,7 +2,7 @@ package tv.orange.features.api.component.data.mapper
 
 import tv.orange.models.abc.EmotePackageSet
 import tv.orange.models.data.emotes.Emote
-import tv.orange.models.data.emotes.EmoteImpl
+import tv.orange.models.data.emotes.impl.EmoteItzImpl
 import tv.orange.models.retrofit.itz.ItzEmote
 import tv.orange.models.retrofit.itz.ItzResponseData
 import javax.inject.Inject
@@ -16,31 +16,26 @@ class ItzApiMapper @Inject constructor() {
                 if (!channelEmotes.containsKey(channelId)) {
                     channelEmotes[channelId] = mutableListOf()
                 }
-                channelEmotes[channelId]?.addAll(entry.value.emotes.map(Companion::map))
+                channelEmotes[channelId]?.addAll(entry.value.emotes.map { map(it, false) })
             }
         }
 
-        val globalEmotes = response.data.global_emotes.map(Companion::map)
+        val globalEmotes = response.data.global_emotes.map { map(it, true) }
 
         return globalEmotes to channelEmotes
     }
 
     companion object {
-        private fun map(emote: ItzEmote): Emote {
-            return EmoteImpl(
+        private fun map(emote: ItzEmote, isGlobal: Boolean): Emote {
+            return EmoteItzImpl(
+                emoteId = emote.id,
                 emoteCode = emote.name,
-                animated = false,
-                smallUrl = getEmoteUrl(emote.id, "1x"),
-                mediumUrl = getEmoteUrl(emote.id, "2x"),
-                largeUrl = getEmoteUrl(emote.id, "3x"),
-                packageSet = EmotePackageSet.ItzChannel,
-                isZeroWidth = false
+                packageSet = if (isGlobal) {
+                    EmotePackageSet.ItzGlobal
+                } else {
+                    EmotePackageSet.ItzChannel
+                }
             )
-        }
-
-        private fun getEmoteUrl(id: String, scale: String): String {
-            return "https://itzalex.github.io/emote/{id}/{scale}".replace("{id}", id)
-                .replace("{scale}", scale)
         }
     }
 }

@@ -68,7 +68,18 @@ diff --git a/smali_classes4/tv/twitch/android/core/buildconfig/BuildConfigUtil.s
  
      move-result v0
  
-@@ -309,22 +278,9 @@
+@@ -293,7 +262,9 @@
+ .method public final isDebugConfigEnabled()Z
+     .locals 1
+ 
+-    const/4 v0, 0x0
++    invoke-static {}, Ltv/orange/core/CoreHook;->inDevMode()Z
++
++    move-result v0
+ 
+     return v0
+ .end method
+@@ -309,22 +280,9 @@
  .method public final shouldShowDebugOptions(Z)Z
      .locals 1
  

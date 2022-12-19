@@ -7,13 +7,14 @@ import java.util.*
 
 object BuildConfigUtil {
     const val BUILD_JSON_FILENAME = "build.json"
-    const val USER_AGENT_TEMPLATE = "PurpleTV/0.1 Build/%d"
+    const val USER_AGENT_TEMPLATE = "PurpleTV/%s Build/%d"
 
     val userAgent by lazy {
         String.format(
             Locale.ENGLISH,
             USER_AGENT_TEMPLATE,
-            BuildConfigUtil.buildConfig.number
+            buildConfig.getVersion(),
+            buildConfig.number
         )
     }
 
@@ -22,6 +23,7 @@ object BuildConfigUtil {
             with(JSONObject(getRawBuildString())) {
                 OrangeBuildConfig(
                     number = getInt("number"),
+                    version = getInt("version"),
                     timestamp = getInt("timestamp"),
                     sentryDNS = getString("sentryDNS"),
                     codename = getString("codename")

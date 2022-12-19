@@ -149,8 +149,6 @@
     <string name="orange_settings_show_stats_button">Mostrar botón de estadísticas</string>
     <string name="orange_settings_proxy">Servidor proxy</string>
     <string name="orange_proxy_disabled">Desactivado</string>
-    <string name="orange_proxy_twitching">Twitcheando</string>
-    <string name="orange_proxy_ttsftp">Twitch Tokyo Herramienta de Reparación de Servidor</string>
     <string name="orange_settings_improved_background_audio">Audio de fondo mejorado</string>
     <string name="orange_generic_error">Error: %1$s</string>
     <string name="orange_generic_error_d">[%1$s] Error: %2$s</string>
@@ -163,4 +161,10 @@
     <string name="orange_spam_error_ww">Parámetro {width} incorrecto: \'%1$s\'</string>
     <string name="orange_spam_error_empty">Nada que spamear</string>
     <string name="orange_vodhunter_hunting">Cazando…</string>
+    <string name="orange_settings_hide_unfollow_button">Ocultar botón para dejar de seguir</string>
+    <string name="orange_settings_info_lanzzz">Creador del logo de PurpleTV</string>
+    <string name="orange_pinny_active_users">Usuarios activos: %1$d</string>
+    <string name="orange_pinny_total_users">Total de usuarios: %1$d</string>
+    <string name="orange_settings_chat_settings">Ajustes del chat</string>
+    <string name="orange_settings_hide_create_button">Ocultar botón «Crear»</string>
 </resources>

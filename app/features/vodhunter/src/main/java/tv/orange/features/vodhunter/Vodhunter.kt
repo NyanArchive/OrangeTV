@@ -16,9 +16,6 @@ class Vodhunter @Inject constructor(
     val nopRepository: NopRepository,
     val rm: ResourceManager
 ) : Feature {
-    override fun onDestroyFeature() {}
-    override fun onCreateFeature() {}
-
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(Vodhunter::class.java)
@@ -58,10 +55,10 @@ class Vodhunter @Inject constructor(
             nopRepository.getVodhunterPlaylist(vodId = id).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSuccess {
-                    Core.toast("[VODHunter] ${rm.getString("orange_vodhunter_hunting")}")
+                    Core.showToast("[VODHunter] ${rm.getString("orange_vodhunter_hunting")}")
                 }
                 .onErrorResumeNext { th: Throwable ->
-                    Core.toast(
+                    Core.showToast(
                         rm.getString(
                             "orange_generic_error_d",
                             "VODHunter",
@@ -75,4 +72,6 @@ class Vodhunter @Inject constructor(
             orgResponse
         }
     }
+
+    override fun onCreateFeature() {}
 }

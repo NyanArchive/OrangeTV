@@ -149,8 +149,6 @@
     <string name="orange_settings_show_stats_button">Zobraziť tlačidlo štatistík</string>
     <string name="orange_settings_proxy">Proxy server</string>
     <string name="orange_proxy_disabled">Deaktivované</string>
-    <string name="orange_proxy_twitching">Twitching</string>
-    <string name="orange_proxy_ttsftp">Nástroj na opravu servera Twitch Tokyo</string>
     <string name="orange_settings_improved_background_audio">Vylepšený zvuk na pozadí</string>
     <string name="orange_generic_error">Chyba: %1$s</string>
     <string name="orange_generic_error_d">[%1$s] Chyba: %2$s</string>
@@ -163,4 +161,10 @@
     <string name="orange_spam_error_ww">Chybný {width} parameter: \'%1$s\'</string>
     <string name="orange_spam_error_empty">Nič na spamovanie</string>
     <string name="orange_vodhunter_hunting">Lovenie…</string>
+    <string name="orange_settings_hide_unfollow_button">Skryť tlačidlo zrušiť follow</string>
+    <string name="orange_settings_info_lanzzz">Tvorca PurpleTV loga</string>
+    <string name="orange_pinny_active_users">Aktívnych používateľov: %1$d</string>
+    <string name="orange_pinny_total_users">Celkový počet používateľov:%1$d</string>
+    <string name="orange_settings_chat_settings">Nastavenia četu</string>
+    <string name="orange_settings_hide_create_button">Skryť «Vytvoriť» tlačidlo</string>
 </resources>

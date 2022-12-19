@@ -3,10 +3,7 @@ package tv.orange.bridge.di
 import android.content.Context
 import tv.orange.bridge.di.component.BridgeComponent
 import tv.orange.bridge.di.component.DaggerBridgeComponent
-import tv.orange.core.Core
-import tv.orange.core.CoreHook
-import tv.orange.core.PreferenceManager
-import tv.orange.core.ResourceManager
+import tv.orange.core.*
 import tv.orange.core.di.component.DaggerCoreComponent
 import tv.orange.features.chapters.VodChapters
 import tv.orange.features.chat.ChatHookProvider
@@ -36,11 +33,12 @@ class BridgeImpl private constructor() : Bridge {
 
     private val lock = Any()
 
-    private val featureFactoryMap = LinkedHashMap<Class<*>, () -> Provider<out Feature>>()
+    private val featureFactoryMap = LinkedHashMap<Class<*>, Lazy<Provider<out Feature>>>()
     private val clazzProviderMap = LinkedHashMap<Class<*>, Provider<out Feature>>()
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : Feature> getFeature(clazz: Class<T>): T {
+        LoggerImpl.debug("getFeature: $clazz")
         synchronized(lock) {
             clazzProviderMap[clazz]?.let { provider ->
                 return provider.get() as T
@@ -54,54 +52,48 @@ class BridgeImpl private constructor() : Bridge {
     @Suppress("UNCHECKED_CAST")
     private fun <T : Feature> createFeature(clazz: Class<T>): T {
         synchronized(lock) {
-            featureFactoryMap[clazz]?.let { providerFunc ->
-                providerFunc().let { provider ->
-                    val feature = provider.get()
-                    feature.onCreateFeature()
-                    clazzProviderMap[clazz] = Provider { feature }
-                    return feature as T
-                }
+            featureFactoryMap[clazz]?.value?.let { provider ->
+                val feature = provider.get()
+                feature.onCreateFeature()
+                clazzProviderMap[clazz] = Provider { feature }
+                return feature as T
             }
         }
 
         throw IllegalStateException("[$clazz] Cannot create feature: factory not found")
     }
 
-    override fun <T : Feature> destroyFeature(clazz: Class<T>) {
-        synchronized(lock) {
-            val feature = clazzProviderMap[clazz]?.get()
-            clazzProviderMap.remove(clazz)
-            feature?.onDestroyFeature()
-        }
-    }
-
     private fun buildFactoryMap() {
-        featureFactoryMap[PreferenceManager::class.java] = { component.preferenceManager }
-        featureFactoryMap[Core::class.java] = { component.core }
-        featureFactoryMap[ResourceManager::class.java] = { component.resourceManagerProvider }
-        featureFactoryMap[StvAvatars::class.java] = { component.stvAvatarsProvider }
-        featureFactoryMap[ChatHookProvider::class.java] = { component.chatHookProvider }
-        featureFactoryMap[RefreshStream::class.java] = { component.refreshStreamProvider }
-        featureFactoryMap[VodChapters::class.java] = { component.vodChaptersProvider }
-        featureFactoryMap[ChatHistory::class.java] = { component.chatHistoryProvider }
-        featureFactoryMap[ChatLogs::class.java] = { component.chatLogsProvider }
-        featureFactoryMap[OrangeSettings::class.java] = { component.orangeSettingsProvider }
-        featureFactoryMap[SleepTimer::class.java] = { component.sleepTimerProvider }
-        featureFactoryMap[UserSearch::class.java] = { component.userSearchProvider }
-        featureFactoryMap[VodSync::class.java] = { component.vodSyncProvider }
-        featureFactoryMap[CoreHook::class.java] = { component.coreHookProvider }
-        featureFactoryMap[UI::class.java] = { component.uiProvider }
-        featureFactoryMap[Spam::class.java] = { component.spamProvider }
-        featureFactoryMap[Tracking::class.java] = { component.trackingProvider }
-        featureFactoryMap[Updater::class.java] = { component.updaterProvider }
-        featureFactoryMap[Vodhunter::class.java] = { component.vodhunterProvider }
-        featureFactoryMap[Swipper::class.java] = { component.swipperProvider }
-        featureFactoryMap[Proxy::class.java] = { component.proxyProvider }
+        // core
+        featureFactoryMap[Core::class.java] = lazy { component.core }
+        featureFactoryMap[ResourceManager::class.java] = lazy { component.resourceManagerProvider }
+        featureFactoryMap[PreferenceManager::class.java] = lazy { component.preferenceManager }
+        // features
+        featureFactoryMap[StvAvatars::class.java] = lazy { component.stvAvatarsProvider }
+        featureFactoryMap[ChatHookProvider::class.java] = lazy { component.chatHookProvider }
+        featureFactoryMap[RefreshStream::class.java] = lazy { component.refreshStreamProvider }
+        featureFactoryMap[VodChapters::class.java] = lazy { component.vodChaptersProvider }
+        featureFactoryMap[ChatHistory::class.java] = lazy { component.chatHistoryProvider }
+        featureFactoryMap[ChatLogs::class.java] = lazy { component.chatLogsProvider }
+        featureFactoryMap[OrangeSettings::class.java] = lazy { component.orangeSettingsProvider }
+        featureFactoryMap[SleepTimer::class.java] = lazy { component.sleepTimerProvider }
+        featureFactoryMap[UserSearch::class.java] = lazy { component.userSearchProvider }
+        featureFactoryMap[VodSync::class.java] = lazy { component.vodSyncProvider }
+        featureFactoryMap[CoreHook::class.java] = lazy { component.coreHookProvider }
+        featureFactoryMap[UI::class.java] = lazy { component.uiProvider }
+        featureFactoryMap[Spam::class.java] = lazy { component.spamProvider }
+        featureFactoryMap[Tracking::class.java] = lazy { component.trackingProvider }
+        featureFactoryMap[Updater::class.java] = lazy { component.updaterProvider }
+        featureFactoryMap[Vodhunter::class.java] = lazy { component.vodhunterProvider }
+        featureFactoryMap[Swipper::class.java] = lazy { component.swipperProvider }
+        featureFactoryMap[Proxy::class.java] = lazy { component.proxyProvider }
     }
 
     fun initialize(context: Context) {
-        component = DaggerBridgeComponent.builder()
-            .coreComponent(DaggerCoreComponent.factory().create(context)).build()
+        component = DaggerBridgeComponent.builder().coreComponent(
+            DaggerCoreComponent.factory()
+                .create(context)
+        ).build()
         buildFactoryMap()
     }
 

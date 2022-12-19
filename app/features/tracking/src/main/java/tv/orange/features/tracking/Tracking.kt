@@ -1,12 +1,14 @@
 package tv.orange.features.tracking
 
 import android.content.Context
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import tv.orange.core.BuildConfigUtil
 import tv.orange.core.Core
 import tv.orange.core.LoggerImpl
 import tv.orange.features.api.component.repository.NopRepository
 import tv.orange.models.abc.Feature
+import tv.orange.models.retrofit.nop.PinnyInfo
 import tv.twitch.android.util.UniqueDeviceIdentifier
 import javax.inject.Inject
 
@@ -19,11 +21,6 @@ class Tracking @Inject constructor(
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(Tracking::class.java)
-
-        @JvmStatic
-        fun destroy() {
-            Core.destroyFeature(Tracking::class.java)
-        }
     }
 
     private fun ping() {
@@ -41,6 +38,9 @@ class Tracking @Inject constructor(
         ping()
     }
 
-    override fun onDestroyFeature() {}
+    fun getPinnyInfo(): Single<PinnyInfo> {
+        return nopRepository.pingInfo(BuildConfigUtil.buildConfig.number)
+    }
+
     override fun onCreateFeature() {}
 }

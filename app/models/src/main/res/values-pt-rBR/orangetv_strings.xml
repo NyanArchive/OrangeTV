@@ -19,7 +19,7 @@
     <string name="orange_ffz_channel_emotes">Emotes de Canal da FFZ</string>
     <string name="orange_stv_global_emotes">Emotes Globais da 7TV</string>
     <string name="orange_stv_channel_emotes">Emotes de Canal da 7TV</string>
-    <string name="orange_settings_hide_bits_button">Ocultar botão de bits</string>
+    <string name="orange_settings_hide_bits_button">Ocultar botão Bits</string>
     <string name="orange_settings_disable_sticky_headers_ep">Desativar cabeçalhos fixos</string>
     <string name="orange_settings_player_impl">Implementação do reprodutor</string>
     <string name="orange_player_impl_default">Padrão</string>
@@ -52,7 +52,7 @@
     <string name="orange_bottom_navbar_position_default">Padrão</string>
     <string name="orange_bottom_navbar_position_top">Acima</string>
     <string name="orange_bottom_navbar_position_hidden">Oculto</string>
-    <string name="orange_settings_followed_full_cards">Mostrar thumbnails grandes em Seguindo</string>
+    <string name="orange_settings_followed_full_cards">Prévias de transmissão grandes em Seguindo</string>
     <string name="orange_settings_disable_hype_train">Desativar Hype Train </string>
     <string name="orange_settings_hide_discover_tab">Ocultar a aba Descubra</string>
     <string name="orange_restart_app">Reiniciar</string>
@@ -142,15 +142,13 @@
     <string name="orange_settings_volume_gesture">Controlar volume por gesto</string>
     <string name="orange_settings_disable_theatre_autoplay">Desativar Autorreprodução</string>
     <string name="orange_settings_disable_theatre_autoplay_desc">Desativar autorreprodução do próximo vídeo</string>
-    <string name="orange_settings_show_timer_button">Mostrar botão de temporizador</string>
-    <string name="orange_settings_show_refresh_button">Mostrar botão de atualização</string>
+    <string name="orange_settings_show_timer_button">Mostrar botão Temporizador</string>
+    <string name="orange_settings_show_refresh_button">Mostrar botão Recarregar</string>
     <string name="orange_chat_kill_chat">Matar chat</string>
     <string name="orange_settings_force_ota">Forçar atualizações</string>
-    <string name="orange_settings_show_stats_button">Mostrar botão de estatísticas</string>
+    <string name="orange_settings_show_stats_button">Mostrar botão Estatísticas</string>
     <string name="orange_settings_proxy">Servidor proxy</string>
     <string name="orange_proxy_disabled">Desativado</string>
-    <string name="orange_proxy_twitching">Twitching</string>
-    <string name="orange_proxy_ttsftp">Twitch Tokyo Server Fix Tool</string>
     <string name="orange_settings_improved_background_audio">Áudio de fundo melhorado</string>
     <string name="orange_generic_error">Erro: %1$s</string>
     <string name="orange_generic_error_d">Erro [%1$s]: %2$s</string>
@@ -163,4 +161,8 @@
     <string name="orange_spam_error_ww">Parâm. {width} errado: \'%1$s\'</string>
     <string name="orange_spam_error_empty">Nada para spamar</string>
     <string name="orange_vodhunter_hunting">Caçando…</string>
+    <string name="orange_settings_hide_unfollow_button">Ocultar botão Deixar de Seguir</string>
+    <string name="orange_settings_info_lanzzz">Criador do logo de PurpleTV</string>
+    <string name="orange_pinny_active_users">Usuários ativos: %1$d</string>
+    <string name="orange_pinny_total_users">Usuários totais: %1$d</string>
 </resources>

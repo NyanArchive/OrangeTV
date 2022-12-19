@@ -12,6 +12,7 @@ import java.util.List;
 import io.reactivex.subjects.PublishSubject;
 import tv.orange.features.chat.ChatHookProvider;
 import tv.orange.features.chat.bridge.IMessageRecyclerItem;
+import tv.orange.features.chat.bridge.VHBinder;
 import tv.orange.features.pronouns.PronounSetter;
 import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.core.adapters.AbstractTwitchRecyclerViewHolder;
@@ -115,7 +116,7 @@ public class MessageRecyclerItem implements IMessageRecyclerItem { // TODO: __IM
             if (pronounSetter != null) {
                 pronounSetter.destroy();
             }
-            pronounSetter = ChatHookProvider.get().bindPronoun(this, item);
+            pronounSetter = VHBinder.INSTANCE.bindPronoun(this, item);
         }
 
         @Override

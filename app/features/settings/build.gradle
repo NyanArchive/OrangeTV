@@ -31,6 +31,7 @@ dependencies {
     implementation project(path: ':components:highlighter')
 
     implementation project(path: ':features:updater')
+    implementation project(path: ':features:tracking')
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

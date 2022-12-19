@@ -48,7 +48,8 @@ enum class OrangeSubMenu(
             Flag.LOCAL_LOGS,
             Flag.BYPASS_CHAT_BAN,
             Flag.HIDE_CHAT_HEADER,
-            Flag.PINNED_MESSAGE
+            Flag.PINNED_MESSAGE,
+            Flag.CHAT_SETTINGS
         )
     ),
     Player(
@@ -65,7 +66,8 @@ enum class OrangeSubMenu(
             Flag.DISABLE_THEATRE_AUTOPLAY,
             Flag.SHOW_STATS_BUTTON,
             Flag.Proxy,
-            Flag.IMPROVED_BACKGROUND_AUDIO
+            Flag.IMPROVED_BACKGROUND_AUDIO,
+            Flag.HIDE_UNFOLLOW_BUTTON
         )
     ),
     Gestures(
@@ -89,7 +91,8 @@ enum class OrangeSubMenu(
             Flag.HIDE_RESUME_WATCHING_SECTION,
             Flag.HIDE_OFFLINE_CHANNEL_SECTION,
             Flag.SHOW_TIMER_BUTTON,
-            Flag.SHOW_REFRESH_BUTTON
+            Flag.SHOW_REFRESH_BUTTON,
+            Flag.HIDE_CREATE_BUTTON
         )
     ),
     Patches(

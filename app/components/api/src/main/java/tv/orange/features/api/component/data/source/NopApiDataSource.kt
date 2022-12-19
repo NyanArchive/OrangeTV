@@ -7,7 +7,9 @@ import retrofit2.Response
 import tv.orange.features.api.component.data.api.NopApi
 import tv.orange.features.api.component.data.mapper.NopApiMapper
 import tv.orange.models.data.badges.BadgeSet
+import tv.orange.models.data.badges.impl.BadgeItzSet
 import tv.orange.models.retrofit.nop.OrangeUpdateData
+import tv.orange.models.retrofit.nop.PinnyInfo
 import javax.inject.Inject
 
 class NopApiDataSource @Inject constructor(
@@ -18,12 +20,16 @@ class NopApiDataSource @Inject constructor(
         return nopApi.globalBadges().subscribeOn(Schedulers.io()).map(nopApiMapper::map)
     }
 
-    fun getHomiesBadges(): Single<BadgeSet> {
+    fun getHomiesBadges(): Single<BadgeItzSet> {
         return nopApi.homiesBadges().subscribeOn(Schedulers.io()).map(nopApiMapper::map)
     }
 
     fun ping(build: Int, deviceId: String): Completable {
         return nopApi.ping(build, deviceId)
+    }
+
+    fun pingInfo(build: Int): Single<PinnyInfo> {
+        return nopApi.pingInfo(build)
     }
 
     fun getOrangeUpdate(): Single<OrangeUpdateData> {

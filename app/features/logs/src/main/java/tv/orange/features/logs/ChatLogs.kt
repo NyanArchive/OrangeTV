@@ -38,11 +38,6 @@ class ChatLogs @Inject constructor(
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(ChatLogs::class.java)
-
-        @JvmStatic
-        fun destroy() {
-            Core.destroyFeature(ChatLogs::class.java)
-        }
     }
 
     fun setupLocalLogsClickHandler(
@@ -105,9 +100,6 @@ class ChatLogs @Inject constructor(
         }
     }
 
-    override fun onDestroyFeature() {}
-    override fun onCreateFeature() {}
-
     private fun maybeAddMessagesToLocalStore(
         channelId: Int,
         chatLiveMessageArr: List<ChatLiveMessage>
@@ -156,4 +148,6 @@ class ChatLogs @Inject constructor(
             chatSource = vci.getPrivateField("liveChatSource")
         )
     }
+
+    override fun onCreateFeature() {}
 }

@@ -24,11 +24,6 @@ class VodSync @Inject constructor(
         @JvmStatic
         fun get() = Core.getFeature(VodSync::class.java)
 
-        @JvmStatic
-        fun destroy() {
-            Core.destroyFeature(VodSync::class.java)
-        }
-
         private fun drawValue(view: TextView, value: Int) {
             view.text = if (value > 0) {
                 "+$value"
@@ -113,6 +108,5 @@ class VodSync @Inject constructor(
         return viewFactory.getChommentSeekerHeader(delegate = delegate)
     }
 
-    override fun onDestroyFeature() {}
     override fun onCreateFeature() {}
 }

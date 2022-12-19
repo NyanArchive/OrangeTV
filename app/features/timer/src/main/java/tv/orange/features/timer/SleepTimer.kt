@@ -19,11 +19,6 @@ class SleepTimer @Inject constructor(
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(SleepTimer::class.java)
-
-        @JvmStatic
-        fun destroy() {
-            Core.destroyFeature(SleepTimer::class.java)
-        }
     }
 
     fun getTimerButton(delegate: PlayerOverlayViewDelegate): ImageView {
@@ -41,6 +36,5 @@ class SleepTimer @Inject constructor(
 
     }
 
-    override fun onDestroyFeature() {}
     override fun onCreateFeature() {}
 }

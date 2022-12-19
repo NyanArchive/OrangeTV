@@ -32,6 +32,5 @@ class CoreHook @Inject constructor() : Feature {
         }
     }
 
-    override fun onDestroyFeature() {}
     override fun onCreateFeature() {}
 }

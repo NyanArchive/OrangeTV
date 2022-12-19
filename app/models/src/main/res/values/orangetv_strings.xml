@@ -207,14 +207,14 @@
     <string name="orange_settings_proxy">Proxy server</string>
     <string name="orange_settings_proxy_desc" />
     <string name="orange_proxy_disabled">Disabled</string>
-    <string name="orange_proxy_twitching">Twitching</string>
-    <string name="orange_proxy_ttsftp">Twitch Tokyo Server Fix Tool</string>
+    <string name="orange_proxy_twitching" translatable="false">Twitching</string>
+    <string name="orange_proxy_ttsftp" translatable="false">Twitch Tokyo Server Fix Tool</string>
+    <string name="orange_proxy_ttv_lol" translatable="false">TTV LOL</string>
     <string name="orange_settings_improved_background_audio">Improved background audio</string>
     <string name="orange_settings_improved_background_audio_desc" />
     <string name="orange_generic_error">Error: %1$s</string>
     <string name="orange_generic_error_d">[%1$s] Error: %2$s</string>
     <string name="orange_generic_spam_usage">Usage: %1$s</string>
-
     <string name="orange_chat_history_fetching">Fetching messages…</string>
     <string name="orange_proxy_error_ur">Unsuccessful response</string>
     <string name="orange_proxy_error_cpr">Cannot parse response</string>
@@ -225,4 +225,12 @@
     <string name="orange_vodhunter_hunting">Hunting…</string>
     <string name="orange_settings_hide_unfollow_button">Hide Unfollow button</string>
     <string name="orange_settings_hide_unfollow_button_desc" />
+    <string name="orange_settings_info_lanzzz">PurpleTV logo creator</string>
+    <string name="orange_settings_info_lanzzz_desc" translatable="false">lanzzopoulos</string>
+    <string name="orange_pinny_active_users">Active users: %1$d</string>
+    <string name="orange_pinny_total_users">Total users: %1$d</string>
+    <string name="orange_settings_chat_settings">Chat settings</string>
+    <string name="orange_settings_chat_settings_desc" />
+    <string name="orange_settings_hide_create_button" >Hide «Create» button</string>
+    <string name="orange_settings_hide_create_button_desc" />
 </resources>

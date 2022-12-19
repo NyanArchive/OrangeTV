@@ -1,33 +1,31 @@
 package tv.orange.features.proxy
 
-import io.reactivex.Maybe
+import com.google.android.exoplayer2.upstream.DataSpec
 import io.reactivex.Single
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
 import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.Response
 import tv.orange.core.Core
+import tv.orange.core.LoggerImpl
 import tv.orange.core.ResourceManager
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.variants.ProxyImpl
 import tv.orange.features.api.component.repository.ProxyRepository
+import tv.orange.features.proxy.bridge.LolTvApiInterceptor
 import tv.orange.models.abc.Feature
 import tv.twitch.android.models.AccessTokenResponse
 import tv.twitch.android.models.manifest.extm3u
+import java.util.*
 import javax.inject.Inject
 
 class Proxy @Inject constructor(
-    val repository: ProxyRepository,
-    val rm: ResourceManager
+    val repository: ProxyRepository
 ) : Feature {
     companion object {
         @JvmStatic
         fun get() = Core.getFeature(Proxy::class.java)
-
-        @JvmStatic
-        fun destroy() {
-            Core.destroyFeature(Proxy::class.java)
-        }
 
         @JvmStatic
         fun tryHookStreamManifestResponse(
@@ -62,32 +60,34 @@ class Proxy @Inject constructor(
 
         private fun trySwapPlaylist(
             twitchResponse: Single<Response<String>>,
-            proxyResponse: Maybe<Response<String>>,
+            proxyResponse: Single<Response<String>>,
             proxyName: String
         ): Single<Response<String>> {
-            return twitchResponse.zipWith(
-                proxyResponse.toSingle()
-            ) { twitchPlaylist: Response<String>, proxyPlaylist: Response<String> ->
+            LoggerImpl.debug("Start $proxyName")
+
+            val rm = ResourceManager.get()
+            return proxyResponse.flatMap { proxyPlaylist ->
+                LoggerImpl.debug("response: $proxyPlaylist")
                 if (!proxyPlaylist.isSuccessful) {
-                    Core.toast(
+                    Core.showToast(
                         ResourceManager.get().getString(
                             "orange_generic_error_d",
                             "Proxy",
-                            ResourceManager.get().getString("orange_proxy_error_ur")
+                            rm.getString("orange_proxy_error_ur")
                         )
                     )
-                    return@zipWith twitchPlaylist
+                    return@flatMap Single.error(Exception("proxy_unsuccessfull"))
                 }
                 val time = getRequestTime(proxyPlaylist.raw())
                 var body = proxyPlaylist.body() ?: run {
-                    Core.toast(
-                        ResourceManager.get().getString(
+                    Core.showToast(
+                        rm.getString(
                             "orange_generic_error_d",
                             "Proxy",
-                            ResourceManager.get().getString("orange_proxy_error_cpr")
+                            rm.getString("orange_proxy_error_cpr")
                         )
                     )
-                    return@zipWith twitchPlaylist
+                    return@flatMap Single.error(Exception("proxy_error"))
                 }
                 val proxyUrl = proxyPlaylist.raw().request.url
                 body = body.replace(
@@ -95,18 +95,16 @@ class Proxy @Inject constructor(
                     "#EXT-X-TWITCH-INFO:PROXY-SERVER=\"$proxyName ($time ms)\",PROXY-URL=\"$proxyUrl\","
                 )
 
-                createPlaylistResponse(body, twitchPlaylist)
+                Single.just(createPlaylistResponse(body, proxyPlaylist))
             }.onErrorResumeNext { th: Throwable ->
-                Core.toast(
-                    ResourceManager.get().getString(
+                Core.showToast(
+                    rm.getString(
                         "orange_generic_error_d",
                         "Proxy",
                         th.localizedMessage ?: "<empty>"
                     )
                 )
-                if (th !is NullPointerException) {
-                    th.printStackTrace()
-                }
+                th.printStackTrace()
                 twitchResponse
             }
         }
@@ -119,33 +117,82 @@ class Proxy @Inject constructor(
 
             return model.ProxyUrl
         }
+
+        @JvmStatic
+        fun patchExoPlayerDataSpec(dataSpec: DataSpec?): DataSpec? {
+            dataSpec ?: run {
+                return null
+            }
+
+            val url = dataSpec.uri.toString()
+            val headers = when {
+                url.contains("https://api.ttv.lol/") -> Collections.unmodifiableMap(
+                    dataSpec.httpRequestHeaders.toMutableMap().apply {
+                        put("x-donate-to", "https://ttv.lol/donate")
+                    })
+                url.contains(".ttvnw.net/v1/playlist/") -> mapOf("Accept" to "application/x-mpegURL, application/vnd.apple.mpegurl, application/json, text/plain")
+                else -> null
+            } ?: return dataSpec
+
+            return DataSpec(
+                dataSpec.uri,
+                dataSpec.httpMethod,
+                dataSpec.httpBody,
+                dataSpec.absoluteStreamPosition,
+                dataSpec.position,
+                dataSpec.length,
+                dataSpec.key,
+                dataSpec.flags,
+                headers
+            )
+        }
+
+        @JvmStatic
+        fun maybeAddInterceptor(builder: OkHttpClient.Builder) {
+            builder.addNetworkInterceptor(LolTvApiInterceptor())
+        }
     }
 
-    fun createTTSFTProxySingleResponse(
+    private fun createLolProxySingleResponse(
         twitchResponse: Single<Response<String>>,
-        channelName: String,
-        accessTokenResponse: AccessTokenResponse
+        channelName: String
     ): Single<Response<String>> {
         return trySwapPlaylist(
-            twitchResponse = twitchResponse, proxyResponse = repository.getTTSFTPlaylist(
-                channelName = channelName,
-                sig = accessTokenResponse.sig,
-                token = accessTokenResponse.token
-            ), proxyName = "Twitch Tokyo Server Fix Tool"
+            twitchResponse = twitchResponse,
+            proxyResponse = repository.getLolPlaylist(channelName = channelName),
+            proxyName = "TTV LOL"
         )
     }
 
-    fun createTwitchingProxySingleResponse(
+    private fun createTTSFTProxySingleResponse(
         twitchResponse: Single<Response<String>>,
         channelName: String,
         accessTokenResponse: AccessTokenResponse
     ): Single<Response<String>> {
         return trySwapPlaylist(
-            twitchResponse = twitchResponse, proxyResponse = repository.getTwitchingPlaylist(
+            twitchResponse = twitchResponse,
+            proxyResponse = repository.getTTSFTPlaylist(
                 channelName = channelName,
                 sig = accessTokenResponse.sig,
                 token = accessTokenResponse.token
-            ), proxyName = "Twitching"
+            ),
+            proxyName = "Twitch Tokyo Server Fix Tool"
+        )
+    }
+
+    private fun createTwitchingProxySingleResponse(
+        twitchResponse: Single<Response<String>>,
+        channelName: String,
+        accessTokenResponse: AccessTokenResponse
+    ): Single<Response<String>> {
+        return trySwapPlaylist(
+            twitchResponse = twitchResponse,
+            proxyResponse = repository.getTwitchingPlaylist(
+                channelName = channelName,
+                sig = accessTokenResponse.sig,
+                token = accessTokenResponse.token
+            ),
+            proxyName = "Twitching"
         )
     }
 
@@ -160,15 +207,22 @@ class Proxy @Inject constructor(
 
         return when (Flag.Proxy.asVariant<ProxyImpl>()) {
             ProxyImpl.Twitching -> createTwitchingProxySingleResponse(
-                manifest, channelName, accessTokenResponse
+                twitchResponse = manifest,
+                channelName = channelName,
+                accessTokenResponse = accessTokenResponse
             )
             ProxyImpl.TTSFTP -> createTTSFTProxySingleResponse(
-                manifest, channelName, accessTokenResponse
+                twitchResponse = manifest,
+                channelName = channelName,
+                accessTokenResponse = accessTokenResponse
+            )
+            ProxyImpl.TTV_LOL -> createLolProxySingleResponse(
+                twitchResponse = manifest,
+                channelName = channelName
             )
             else -> manifest
         }
     }
 
-    override fun onDestroyFeature() {}
     override fun onCreateFeature() {}
 }

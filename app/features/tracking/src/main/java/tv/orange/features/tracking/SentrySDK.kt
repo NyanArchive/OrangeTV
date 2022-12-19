@@ -20,9 +20,10 @@ object SentrySDK {
             return
         }
 
+        val buildConfig = BuildConfigUtil.buildConfig
         SentryAndroid.init(application) { options: SentryAndroidOptions ->
             options.dsn = sentryDns
-            options.release = "$0.1+${BuildConfigUtil.buildConfig.number}"
+            options.release = "${buildConfig.getVersion()}+${buildConfig.number}"
             options.enableAllAutoBreadcrumbs(false)
             options.sampleRate = 1.0
         }

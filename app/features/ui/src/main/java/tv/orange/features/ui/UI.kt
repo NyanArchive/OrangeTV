@@ -21,6 +21,7 @@ import tv.orange.core.util.ViewUtil.getView
 import tv.orange.features.ui.bridge.SupportBridge
 import tv.orange.models.abc.Feature
 import tv.twitch.android.shared.chat.ChatViewDelegate
+import tv.twitch.android.shared.chat.emotecard.FollowButtonUiModel
 import tv.twitch.android.shared.ui.elements.navigation.BottomNavigationDestination
 import tv.twitch.android.shared.ui.elements.navigation.BottomNavigationItem
 import javax.inject.Inject
@@ -107,6 +108,22 @@ class UI @Inject constructor(
             }
 
             return ResourceManager.get().getLayoutId("orangetv_player_metadata_view_extended")
+        }
+
+        @JvmStatic
+        fun maybeHideFollowButton(
+            view: View?,
+            model: FollowButtonUiModel?
+        ) {
+            view ?: return
+
+            if (Flag.HIDE_UNFOLLOW_BUTTON.asBoolean()) {
+                model?.let {
+                    if (it.isFollowing) {
+                        view.changeVisibility(false)
+                    }
+                }
+            }
         }
 
         @JvmStatic

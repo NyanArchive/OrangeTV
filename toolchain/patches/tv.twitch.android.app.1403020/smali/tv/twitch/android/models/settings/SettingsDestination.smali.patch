@@ -1,10 +1,12 @@
 diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestination.smali b/smali_classes8/tv/twitch/android/models/settings/SettingsDestination.smali
 --- a/smali_classes8/tv/twitch/android/models/settings/SettingsDestination.smali
 +++ b/smali_classes8/tv/twitch/android/models/settings/SettingsDestination.smali
-@@ -56,6 +56,32 @@
+@@ -56,6 +56,36 @@
  
  .field public static final enum Notifications:Ltv/twitch/android/models/settings/SettingsDestination;
  
++.field public static final enum OrangeBlacklist:Ltv/twitch/android/models/settings/SettingsDestination;
++
 +.field public static final enum OrangeChat:Ltv/twitch/android/models/settings/SettingsDestination;
 +
 +.field public static final enum OrangeDev:Ltv/twitch/android/models/settings/SettingsDestination;
@@ -21,6 +23,8 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
 +
 +.field public static final enum OrangePlayer:Ltv/twitch/android/models/settings/SettingsDestination;
 +
++.field public static final enum OrangeStub:Ltv/twitch/android/models/settings/SettingsDestination;
++
 +.field public static final enum OrangeSupport:Ltv/twitch/android/models/settings/SettingsDestination;
 +
 +.field public static final enum OrangeThirdParty:Ltv/twitch/android/models/settings/SettingsDestination;
@@ -34,19 +38,19 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
  .field public static final enum PasswordConfirmation:Ltv/twitch/android/models/settings/SettingsDestination;
  
  .field public static final enum PersonalizedAds:Ltv/twitch/android/models/settings/SettingsDestination;
-@@ -99,9 +125,9 @@
+@@ -99,9 +129,9 @@
  
  # direct methods
  .method static constructor <clinit>()V
 -    .locals 42
-+    .registers 55
++    .registers 57
  
 -    .line 9
 +    .line 4
      new-instance v0, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v1, "Account"
-@@ -112,7 +138,7 @@
+@@ -112,7 +142,7 @@
  
      sput-object v0, Ltv/twitch/android/models/settings/SettingsDestination;->Account:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -55,7 +59,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v1, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v3, "AddEmail"
-@@ -123,7 +149,7 @@
+@@ -123,7 +153,7 @@
  
      sput-object v1, Ltv/twitch/android/models/settings/SettingsDestination;->AddEmail:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -64,7 +68,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v3, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v5, "ChangePassword"
-@@ -134,7 +160,7 @@
+@@ -134,7 +164,7 @@
  
      sput-object v3, Ltv/twitch/android/models/settings/SettingsDestination;->ChangePassword:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -73,7 +77,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v5, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v7, "ChannelNotifications"
-@@ -145,7 +171,7 @@
+@@ -145,7 +175,7 @@
  
      sput-object v5, Ltv/twitch/android/models/settings/SettingsDestination;->ChannelNotifications:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -82,7 +86,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v7, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v9, "ClearAmazonLogin"
-@@ -156,7 +182,7 @@
+@@ -156,7 +186,7 @@
  
      sput-object v7, Ltv/twitch/android/models/settings/SettingsDestination;->ClearAmazonLogin:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -91,7 +95,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v9, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v11, "CommunityGuidelines"
-@@ -167,7 +193,7 @@
+@@ -167,7 +197,7 @@
  
      sput-object v9, Ltv/twitch/android/models/settings/SettingsDestination;->CommunityGuidelines:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -100,7 +104,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v11, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v13, "Connections"
-@@ -178,7 +204,7 @@
+@@ -178,7 +208,7 @@
  
      sput-object v11, Ltv/twitch/android/models/settings/SettingsDestination;->Connections:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -109,7 +113,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v13, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v15, "CreateRoom"
-@@ -189,7 +215,7 @@
+@@ -189,7 +219,7 @@
  
      sput-object v13, Ltv/twitch/android/models/settings/SettingsDestination;->CreateRoom:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -118,7 +122,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v15, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v14, "Credits"
-@@ -200,7 +226,7 @@
+@@ -200,7 +230,7 @@
  
      sput-object v15, Ltv/twitch/android/models/settings/SettingsDestination;->Credits:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -127,7 +131,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v14, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v12, "StreamManager"
-@@ -211,7 +237,7 @@
+@@ -211,7 +241,7 @@
  
      sput-object v14, Ltv/twitch/android/models/settings/SettingsDestination;->StreamManager:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -136,7 +140,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v12, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v10, "DeleteAccount"
-@@ -222,7 +248,7 @@
+@@ -222,7 +252,7 @@
  
      sput-object v12, Ltv/twitch/android/models/settings/SettingsDestination;->DeleteAccount:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -145,7 +149,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v10, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v8, "EditProfile"
-@@ -233,7 +259,7 @@
+@@ -233,7 +263,7 @@
  
      sput-object v10, Ltv/twitch/android/models/settings/SettingsDestination;->EditProfile:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -154,7 +158,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v8, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v6, "EditRoom"
-@@ -244,7 +270,7 @@
+@@ -244,7 +274,7 @@
  
      sput-object v8, Ltv/twitch/android/models/settings/SettingsDestination;->EditRoom:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -163,7 +167,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v6, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v4, "EmailNotifications"
-@@ -255,7 +281,7 @@
+@@ -255,7 +285,7 @@
  
      sput-object v6, Ltv/twitch/android/models/settings/SettingsDestination;->EmailNotifications:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -172,7 +176,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v4, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v2, "EmailSettingsVerified"
-@@ -268,7 +294,7 @@
+@@ -268,7 +298,7 @@
  
      sput-object v4, Ltv/twitch/android/models/settings/SettingsDestination;->EmailSettingsVerified:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -181,7 +185,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v2, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v6, "EmailSettingsUnverified"
-@@ -281,7 +307,7 @@
+@@ -281,7 +311,7 @@
  
      sput-object v2, Ltv/twitch/android/models/settings/SettingsDestination;->EmailSettingsUnverified:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -190,7 +194,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v6, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v4, "EntityInformation"
-@@ -294,7 +320,7 @@
+@@ -294,7 +324,7 @@
  
      sput-object v6, Ltv/twitch/android/models/settings/SettingsDestination;->EntityInformation:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -199,7 +203,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v4, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v2, "InAppNotifications"
-@@ -307,7 +333,7 @@
+@@ -307,7 +337,7 @@
  
      sput-object v4, Ltv/twitch/android/models/settings/SettingsDestination;->InAppNotifications:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -208,7 +212,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v2, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v6, "Legal"
-@@ -320,7 +346,7 @@
+@@ -320,7 +350,7 @@
  
      sput-object v2, Ltv/twitch/android/models/settings/SettingsDestination;->Legal:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -217,7 +221,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v6, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v4, "Licenses"
-@@ -333,7 +359,7 @@
+@@ -333,7 +363,7 @@
  
      sput-object v6, Ltv/twitch/android/models/settings/SettingsDestination;->Licenses:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -226,7 +230,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v4, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v2, "Notifications"
-@@ -346,7 +372,7 @@
+@@ -346,7 +376,7 @@
  
      sput-object v4, Ltv/twitch/android/models/settings/SettingsDestination;->Notifications:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -235,7 +239,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v2, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v6, "PasswordConfirmation"
-@@ -359,7 +385,7 @@
+@@ -359,7 +389,7 @@
  
      sput-object v2, Ltv/twitch/android/models/settings/SettingsDestination;->PasswordConfirmation:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -244,7 +248,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v6, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v4, "PersonalizedAds"
-@@ -372,7 +398,7 @@
+@@ -372,7 +402,7 @@
  
      sput-object v6, Ltv/twitch/android/models/settings/SettingsDestination;->PersonalizedAds:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -253,7 +257,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v2, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v4, "PhoneNumberSettings"
-@@ -385,7 +411,7 @@
+@@ -385,7 +415,7 @@
  
      sput-object v2, Ltv/twitch/android/models/settings/SettingsDestination;->PhoneNumberSettings:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -262,7 +266,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v4, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v6, "Preferences"
-@@ -398,7 +424,7 @@
+@@ -398,7 +428,7 @@
  
      sput-object v4, Ltv/twitch/android/models/settings/SettingsDestination;->Preferences:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -271,7 +275,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v2, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v6, "PrivacyNotice"
-@@ -411,7 +437,7 @@
+@@ -411,7 +441,7 @@
  
      sput-object v2, Ltv/twitch/android/models/settings/SettingsDestination;->PrivacyNotice:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -280,7 +284,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v4, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v6, "PushNotifications"
-@@ -424,7 +450,7 @@
+@@ -424,7 +454,7 @@
  
      sput-object v4, Ltv/twitch/android/models/settings/SettingsDestination;->PushNotifications:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -289,7 +293,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v2, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v6, "RecommendationsFeedback"
-@@ -437,7 +463,7 @@
+@@ -437,7 +467,7 @@
  
      sput-object v2, Ltv/twitch/android/models/settings/SettingsDestination;->RecommendationsFeedback:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -298,7 +302,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v4, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v6, "RecommendationsFeedbackPerCategory"
-@@ -450,7 +476,7 @@
+@@ -450,7 +480,7 @@
  
      sput-object v4, Ltv/twitch/android/models/settings/SettingsDestination;->RecommendationsFeedbackPerCategory:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -307,7 +311,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v2, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v6, "RecommendationsFeedbackPerChannel"
-@@ -463,7 +489,7 @@
+@@ -463,7 +493,7 @@
  
      sput-object v2, Ltv/twitch/android/models/settings/SettingsDestination;->RecommendationsFeedbackPerChannel:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -316,7 +320,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v4, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v6, "RecommendationsFeedbackPerVideos"
-@@ -476,7 +502,7 @@
+@@ -476,7 +506,7 @@
  
      sput-object v4, Ltv/twitch/android/models/settings/SettingsDestination;->RecommendationsFeedbackPerVideos:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -325,7 +329,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v2, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v6, "Rooms"
-@@ -489,7 +515,7 @@
+@@ -489,7 +519,7 @@
  
      sput-object v2, Ltv/twitch/android/models/settings/SettingsDestination;->Rooms:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -334,7 +338,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v4, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v6, "SecurityPrivacy"
-@@ -502,7 +528,7 @@
+@@ -502,7 +532,7 @@
  
      sput-object v4, Ltv/twitch/android/models/settings/SettingsDestination;->SecurityPrivacy:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -343,7 +347,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v2, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v6, "Settings"
-@@ -515,7 +541,7 @@
+@@ -515,7 +545,7 @@
  
      sput-object v2, Ltv/twitch/android/models/settings/SettingsDestination;->Settings:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -352,7 +356,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v4, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v6, "Subscriptions"
-@@ -528,7 +554,7 @@
+@@ -528,7 +558,7 @@
  
      sput-object v4, Ltv/twitch/android/models/settings/SettingsDestination;->Subscriptions:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -361,7 +365,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v2, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v6, "SubmitBugReport"
-@@ -541,7 +567,7 @@
+@@ -541,7 +571,7 @@
  
      sput-object v2, Ltv/twitch/android/models/settings/SettingsDestination;->SubmitBugReport:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -370,7 +374,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v4, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v6, "System"
-@@ -554,7 +580,7 @@
+@@ -554,7 +584,7 @@
  
      sput-object v4, Ltv/twitch/android/models/settings/SettingsDestination;->System:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -379,7 +383,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v2, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v6, "TwoFactorAuthenticationEnable"
-@@ -567,7 +593,7 @@
+@@ -567,7 +597,7 @@
  
      sput-object v2, Ltv/twitch/android/models/settings/SettingsDestination;->TwoFactorAuthenticationEnable:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -388,7 +392,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v4, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v6, "TwoFactorAuthenticationDisable"
-@@ -580,7 +606,7 @@
+@@ -580,7 +610,7 @@
  
      sput-object v4, Ltv/twitch/android/models/settings/SettingsDestination;->TwoFactorAuthenticationDisable:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -397,7 +401,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      new-instance v2, Ltv/twitch/android/models/settings/SettingsDestination;
  
      const-string v6, "ViewerChatFilters"
-@@ -593,209 +619,431 @@
+@@ -593,209 +623,465 @@
  
      sput-object v2, Ltv/twitch/android/models/settings/SettingsDestination;->ViewerChatFilters:Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -406,7 +410,8 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
 +    new-instance v4, Ltv/twitch/android/models/settings/SettingsDestination;
 +
 +    const-string v6, "OrangeThirdParty"
-+
+ 
+-    new-array v4, v4, [Ltv/twitch/android/models/settings/SettingsDestination;
 +    move-object/from16 v42, v2
 +
 +    const/16 v2, 0x28
@@ -440,8 +445,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
 +    invoke-direct {v4, v6, v2}, Ltv/twitch/android/models/settings/SettingsDestination;-><init>(Ljava/lang/String;I)V
 +
 +    sput-object v4, Ltv/twitch/android/models/settings/SettingsDestination;->OrangePlayer:Ltv/twitch/android/models/settings/SettingsDestination;
- 
--    new-array v4, v4, [Ltv/twitch/android/models/settings/SettingsDestination;
++
 +    .line 47
 +    new-instance v2, Ltv/twitch/android/models/settings/SettingsDestination;
 +
@@ -572,8 +576,34 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
 +
 +    sput-object v4, Ltv/twitch/android/models/settings/SettingsDestination;->OrangeUpdater:Ltv/twitch/android/models/settings/SettingsDestination;
 +
++    .line 57
++    new-instance v2, Ltv/twitch/android/models/settings/SettingsDestination;
++
++    const-string v6, "OrangeBlacklist"
++
++    move-object/from16 v55, v4
++
++    const/16 v4, 0x35
++
++    invoke-direct {v2, v6, v4}, Ltv/twitch/android/models/settings/SettingsDestination;-><init>(Ljava/lang/String;I)V
++
++    sput-object v2, Ltv/twitch/android/models/settings/SettingsDestination;->OrangeBlacklist:Ltv/twitch/android/models/settings/SettingsDestination;
++
++    .line 58
++    new-instance v4, Ltv/twitch/android/models/settings/SettingsDestination;
++
++    const-string v6, "OrangeStub"
++
++    move-object/from16 v56, v2
++
++    const/16 v2, 0x36
++
++    invoke-direct {v4, v6, v2}, Ltv/twitch/android/models/settings/SettingsDestination;-><init>(Ljava/lang/String;I)V
++
++    sput-object v4, Ltv/twitch/android/models/settings/SettingsDestination;->OrangeStub:Ltv/twitch/android/models/settings/SettingsDestination;
++
 +    .line 3
-+    const/16 v2, 0x35
++    const/16 v2, 0x37
 +
 +    new-array v2, v2, [Ltv/twitch/android/models/settings/SettingsDestination;
  
@@ -829,6 +859,14 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
 +
 +    const/16 v0, 0x34
 +
++    aput-object v55, v2, v0
++
++    const/16 v0, 0x35
++
++    aput-object v56, v2, v0
++
++    const/16 v0, 0x36
++
 +    aput-object v4, v2, v0
 +
 +    sput-object v2, Ltv/twitch/android/models/settings/SettingsDestination;->$VALUES:[Ltv/twitch/android/models/settings/SettingsDestination;
@@ -882,3 +920,8 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      sget-object v0, Ltv/twitch/android/models/settings/SettingsDestination;->$VALUES:[Ltv/twitch/android/models/settings/SettingsDestination;
  
      invoke-virtual {v0}, [Ltv/twitch/android/models/settings/SettingsDestination;->clone()Ljava/lang/Object;
+@@ -806,3 +1092,4 @@
+ 
+     return-object v0
+ .end method
++

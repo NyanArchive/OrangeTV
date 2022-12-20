@@ -28,6 +28,7 @@ include ':components:badges'
 include ':components:api'
 include ':components:pronouns'
 include ':components:highlighter'
+include ':components:blacklist'
 
 include ':features:usersearch'
 include ':features:refreshstream'

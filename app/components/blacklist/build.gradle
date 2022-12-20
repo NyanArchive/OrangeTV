@@ -27,15 +27,10 @@ android {
 }
 
 dependencies {
-    kapt "androidx.room:room-compiler:$room_version"
-    implementation "androidx.room:room-rxjava2:$room_version"
-
     implementation project(path: ':core')
-    implementation project(path: ':components:emotes')
-    implementation project(path: ':components:badges')
-    implementation project(path: ':components:pronouns')
-    implementation project(path: ':components:highlighter')
-    implementation project(path: ':components:blacklist')
+    implementation project(path: ':components:api')
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
 }

@@ -11,6 +11,7 @@ import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asInt
 import tv.orange.core.models.flag.Flag.Companion.asString
 import tv.orange.core.models.flag.Internal
+import tv.orange.features.blacklist.Blacklist
 import tv.orange.features.highlighter.Highlighter
 import tv.orange.features.settings.bridge.model.OrangeSubMenu
 import tv.orange.features.settings.bridge.settings.*
@@ -27,7 +28,8 @@ import javax.inject.Inject
 class OrangeSettingsController @Inject constructor(
     val activity: FragmentActivity,
     val fragmentRouter: IFragmentRouter,
-    val highlighter: Highlighter
+    val highlighter: Highlighter,
+    val blacklist: Blacklist
 ) : SettingsPreferencesController, SliderModel.SliderListener, SettingsNavigationController {
     override fun updatePreferenceBooleanState(toggleMenuModel: ToggleMenuModel, state: Boolean) {
         val eventName = toggleMenuModel.eventName
@@ -115,6 +117,7 @@ class OrangeSettingsController @Inject constructor(
             SettingsDestination.OrangeInfo -> OrangeInfoSettingsFragment()
             SettingsDestination.OrangeGestures -> OrangeGestureSettingsFragment()
             SettingsDestination.OrangeHighlighter -> highlighter.createHighlighterFragment()
+            SettingsDestination.OrangeBlacklist -> blacklist.createBlacklistFragment()
             else -> null
         }?.let { fragment ->
             fragmentRouter.addOrRecreateFragmentWithDefaultTransitions(

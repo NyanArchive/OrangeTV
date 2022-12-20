@@ -29,6 +29,7 @@ android {
 dependencies {
     implementation project(path: ':core')
     implementation project(path: ':components:highlighter')
+    implementation project(path: ':components:blacklist')
 
     implementation project(path: ':features:updater')
     implementation project(path: ':features:tracking')

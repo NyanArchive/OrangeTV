@@ -35,6 +35,7 @@ dependencies {
     api project(path: ':components:emotes')
     api project(path: ':components:pronouns')
     api project(path: ':components:highlighter')
+    api project(path: ':components:blacklist')
 
     api project(path: ':features:usersearch')
     api project(path: ':features:refreshstream')

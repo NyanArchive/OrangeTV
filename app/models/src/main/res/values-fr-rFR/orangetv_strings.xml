@@ -10,7 +10,7 @@
     <string name="orange_settings_che_badges">Badges Homies</string>
     <string name="orange_settings_cha_badges">Badges Chatterino</string>
     <string name="orange_settings_stv_avatars">Avatars 7TV</string>
-    <string name="orange_settings_chat_history">Historique du tchat</string>
+    <string name="orange_settings_chat_history">Historique du chat</string>
     <string name="orange_settings_chat_history_desc">Charger l\'historique des messages du chat lors de la connexion</string>
     <string name="orange_unknown_emotes">Émoticônes inconnus</string>
     <string name="orange_bttv_global_emotes">Émoticônes globales BTTV</string>
@@ -48,7 +48,7 @@
     <string name="orange_settings_hide_leaderboards">Masquer le classements</string>
     <string name="orange_settings_disable_link_disclaimer">Désactiver l\'avertissement du lien du navigateur</string>
     <string name="orange_settings_disable_fast_bread">Désactiver la latence basse</string>
-    <string name="orange_settings_bottom_navbar_position">Position des boutons en bas de la page d\'accueil </string>
+    <string name="orange_settings_bottom_navbar_position">Affichage des boutons en bas de la page </string>
     <string name="orange_bottom_navbar_position_default">Par défaut</string>
     <string name="orange_bottom_navbar_position_top">En haut </string>
     <string name="orange_bottom_navbar_position_hidden">Masquée</string>
@@ -58,7 +58,7 @@
     <string name="orange_restart_app">Redémarrer</string>
     <string name="orange_restart_app_title">Mettre à jour et redémarrer l\'application ?</string>
     <string name="orange_settings_title">Paramètres de PurpleTV</string>
-    <string name="orange_settings_chat_font_size">Taille de police du tchat</string>
+    <string name="orange_settings_chat_font_size">Taille de police du chat</string>
     <string name="orange_settings_landscape_chat_size">Largeur du tchat en mode plein écran</string>
     <string name="orange_settings_forward_seek">Avancer</string>
     <string name="orange_settings_rewind_seek">Reculer</string>

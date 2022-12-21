@@ -165,4 +165,6 @@
     <string name="orange_settings_info_lanzzz">PurpleTV 로고 제작자</string>
     <string name="orange_pinny_active_users">활동 사용자: %1$d</string>
     <string name="orange_pinny_total_users">전체 사용자: %1$d</string>
+    <string name="orange_settings_chat_settings">채팅 설정</string>
+    <string name="orange_settings_hide_create_button">«생성» 버튼 숨기기</string>
 </resources>

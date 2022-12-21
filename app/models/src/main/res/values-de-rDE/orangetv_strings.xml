@@ -161,4 +161,10 @@
     <string name="orange_spam_error_ww">Falscher {width} Parameter: \'%1$s\'</string>
     <string name="orange_spam_error_empty">Nichts zum Spammen da</string>
     <string name="orange_vodhunter_hunting">Jage...</string>
+    <string name="orange_settings_hide_unfollow_button">Entfolgen Button ausblenden</string>
+    <string name="orange_settings_info_lanzzz">PurpleTV Logo Schöpfer</string>
+    <string name="orange_pinny_active_users">Aktive Nutzer: %1$d</string>
+    <string name="orange_pinny_total_users">Gesamte Nutzer: %1$d</string>
+    <string name="orange_settings_chat_settings">Chateinstellungen</string>
+    <string name="orange_settings_hide_create_button">Erstellen Button ausblenden</string>
 </resources>

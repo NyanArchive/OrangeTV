@@ -110,7 +110,7 @@
     <string name="orange_updater_disabled">Вимкнено</string>
     <string name="orange_updater_install_action">Встановити</string>
     <string name="orange_updater_update_action">Оновити</string>
-    <string name="orange_updater_channel_disabled">Поточний канал оновлень вимкнено</string>
+    <string name="orange_updater_channel_disabled">Оберіть канал оновлень</string>
     <string name="orange_updater_latest_version">Ви використовуєте актуальну версію</string>
     <string name="orange_app_update_available">Доступне нове оновлення</string>
     <string name="orange_app_update_available_cta">Доступна нова версія PurpleTV! Натисніть тут, щоб встановити оновлення</string>
@@ -159,7 +159,7 @@
     <string name="orange_spam_error_wc">Невірний {count} параметр: \'%1$s\'</string>
     <string name="orange_spam_error_wd">Невірний {delay} параметр: \'%1$s\'</string>
     <string name="orange_spam_error_ww">Невірний {width} параметр: \'%1$s\'</string>
-    <string name="orange_spam_error_empty">Нічого спамити</string>
+    <string name="orange_spam_error_empty">Вкажіть текст повідомлення</string>
     <string name="orange_vodhunter_hunting">Пошук…</string>
     <string name="orange_settings_hide_unfollow_button">Сховати кнопку «Відстежувати»</string>
     <string name="orange_settings_info_lanzzz">Автор логотипу</string>

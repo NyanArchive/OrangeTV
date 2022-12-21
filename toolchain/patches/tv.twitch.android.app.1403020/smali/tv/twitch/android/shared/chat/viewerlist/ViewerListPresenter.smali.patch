@@ -1,15 +1,7 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListPresenter.smali b/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListPresenter.smali
 --- a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListPresenter.smali
 +++ b/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListPresenter.smali
-@@ -4,6 +4,7 @@
- 
- # interfaces
- .implements Ltv/twitch/android/app/core/BackPressListener;
-+.implements Ltv/orange/features/usersearch/bridge/IProxyEvent;
- 
- 
- # annotations
-@@ -924,6 +925,12 @@
+@@ -924,6 +924,12 @@
      .line 269
      invoke-super {p0, p1}, Ltv/twitch/android/core/mvp/presenter/RxPresenter;->attach(Ltv/twitch/android/core/mvp/viewdelegate/BaseViewDelegate;)V
  
@@ -22,37 +14,99 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListP
      .line 271
      invoke-virtual {p1}, Ltv/twitch/android/core/mvp/viewdelegate/RxViewDelegate;->eventObserver()Lio/reactivex/Flowable;
  
-@@ -1012,3 +1019,33 @@
+@@ -1012,3 +1018,95 @@
  
      return-void
  .end method
 +
-+.method public proxyEvent(Ltv/twitch/android/core/mvp/viewdelegate/ViewDelegateEvent;)V
-+    .registers 4
-+    .param p1, "event"    # Ltv/twitch/android/core/mvp/viewdelegate/ViewDelegateEvent;
-+        .annotation build Landroidx/annotation/NonNull;
-+        .end annotation
-+    .end param
++.method public getStateSearchText(Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$State;Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$UpdateEvent$SearchTextUpdateEvent;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
++    .registers 10
++    .param p1, "state"    # Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$State;
++    .param p2, "updateEvent"    # Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$UpdateEvent$SearchTextUpdateEvent;
++    .annotation system Ldalvik/annotation/Signature;
++        value = {
++            "(",
++            "Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$State;",
++            "Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$UpdateEvent$SearchTextUpdateEvent;",
++            ")",
++            "Ltv/twitch/android/core/mvp/presenter/StateAndAction<",
++            "Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$State;",
++            "Ltv/twitch/android/core/mvp/presenter/PresenterAction;",
++            ">;"
++        }
++    .end annotation
 +
-+    .line 38
-+    instance-of v0, p1, Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event$Search;
++    .line 42
++    instance-of v0, p1, Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$State$Open;
 +
-+    if-eqz v0, :cond_10
++    if-eqz v0, :cond_29
 +
-+    .line 39
-+    iget-object v0, p0, Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter;->adapterBinder:Ltv/twitch/android/shared/chat/viewerlist/ViewerListAdapterBinder;
++    .line 43
++    move-object v0, p1
 +
-+    move-object v1, p1
++    check-cast v0, Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$State$Open;
 +
-+    check-cast v1, Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event$Search;
++    .line 44
++    .local v0, "open":Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$State$Open;
++    invoke-virtual {v0}, Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$State$Open;->getChannelName()Ljava/lang/String;
 +
-+    invoke-virtual {v1}, Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event$Search;->getText()Ljava/lang/String;
++    move-result-object v2
++
++    invoke-static {}, Ltv/orange/features/usersearch/UserSearch;->get()Ltv/orange/features/usersearch/UserSearch;
 +
 +    move-result-object v1
 +
-+    invoke-virtual {v0, v1}, Ltv/twitch/android/shared/chat/viewerlist/ViewerListAdapterBinder;->setSearchUserText(Ljava/lang/String;)V
++    invoke-virtual {v0}, Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$State$Open;->getChatters()Ltv/twitch/android/models/chat/Chatters;
 +
-+    .line 41
-+    :cond_10
++    move-result-object v3
++
++    invoke-virtual {p2}, Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$UpdateEvent$SearchTextUpdateEvent;->getText()Ljava/lang/String;
++
++    move-result-object v4
++
++    invoke-virtual {v1, v3, v4}, Ltv/orange/features/usersearch/UserSearch;->filterChatters(Ltv/twitch/android/models/chat/Chatters;Ljava/lang/String;)Ltv/twitch/android/models/chat/Chatters;
++
++    move-result-object v3
++
++    invoke-virtual {v0}, Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$State$Open;->getBadges()Ljava/util/Map;
++
++    move-result-object v4
++
++    invoke-virtual {v0}, Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$State$Open;->getSectionExpandedStates()Ljava/util/Map;
++
++    move-result-object v5
++
++    const/4 v6, 0x0
++
++    move-object v1, v0
++
++    invoke-virtual/range {v1 .. v6}, Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$State$Open;->copy(Ljava/lang/String;Ltv/twitch/android/models/chat/Chatters;Ljava/util/Map;Ljava/util/Map;Z)Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$State$Open;
++
++    move-result-object p1
++
++    .line 46
++    .end local v0    # "open":Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$State$Open;
++    :cond_29
++    invoke-static {p1}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->noAction(Ltv/twitch/android/core/mvp/presenter/PresenterState;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
++
++    move-result-object v0
++
++    return-object v0
++.end method
++
++.method public pushSearchEvent(Ljava/lang/String;)V
++    .registers 4
++    .param p1, "text"    # Ljava/lang/String;
++
++    .line 126
++    iget-object v0, p0, Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter;->stateMachine:Ltv/twitch/android/core/mvp/presenter/StateMachine;
++
++    new-instance v1, Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$UpdateEvent$SearchTextUpdateEvent;
++
++    invoke-direct {v1, p1}, Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$UpdateEvent$SearchTextUpdateEvent;-><init>(Ljava/lang/String;)V
++
++    invoke-virtual {v0, v1}, Ltv/twitch/android/core/mvp/presenter/StateMachine;->pushEvent(Ltv/twitch/android/core/mvp/presenter/StateUpdateEvent;)V
++
++    .line 127
 +    return-void
 +.end method

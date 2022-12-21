@@ -1,0 +1,29 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$stateMachine$2.smali b/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$stateMachine$2.smali
+--- a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$stateMachine$2.smali
++++ b/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$stateMachine$2.smali
+@@ -87,7 +87,25 @@
+ 
+     invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+ 
++    instance-of v0, p2, Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$UpdateEvent$SearchTextUpdateEvent;
++
++    if-eqz v0, :cond_z
++
++    .line 14
++    iget-object v0, p0, Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$stateMachine$2;->this$0:Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter;
++
++    move-object v1, p2
++
++    check-cast v1, Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$UpdateEvent$SearchTextUpdateEvent;
++
++    invoke-virtual {v0, p1, v1}, Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter;->getStateSearchText(Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$State;Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$UpdateEvent$SearchTextUpdateEvent;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
++
++    move-result-object v0
++
++    return-object v0
++
+     .line 97
++    :cond_z
+     instance-of v0, p2, Ltv/twitch/android/shared/chat/viewerlist/ViewerListPresenter$UpdateEvent$SetBadgesLoaded;
+ 
+     if-eqz v0, :cond_0

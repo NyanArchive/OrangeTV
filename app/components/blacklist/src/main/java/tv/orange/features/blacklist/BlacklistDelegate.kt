@@ -72,7 +72,7 @@ class BlacklistDelegate @Inject constructor(val source: BlacklistSource) {
                                 if (sensitive.contains(word)) {
                                     return true
                                 }
-                                if (insensitive.contains(word)) {
+                                if (insensitive.contains(word.lowercase())) {
                                     return true
                                 }
                             }
@@ -84,7 +84,7 @@ class BlacklistDelegate @Inject constructor(val source: BlacklistSource) {
                         if (sensitive.contains(word)) {
                             return true
                         }
-                        if (insensitive.contains(word)) {
+                        if (insensitive.contains(word.lowercase())) {
                             return true
                         }
                     }
@@ -95,7 +95,7 @@ class BlacklistDelegate @Inject constructor(val source: BlacklistSource) {
                         if (sensitive.contains(word)) {
                             return true
                         }
-                        if (insensitive.contains(word)) {
+                        if (insensitive.contains(word.lowercase())) {
                             return true
                         }
                     }

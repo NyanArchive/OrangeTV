@@ -67,7 +67,7 @@ class BlacklistDelegate @Inject constructor(val source: BlacklistSource) {
         cmi.tokens.forEach { token ->
             when (token) {
                 is ChatTextToken -> {
-                    if (token.text.split("[\\s,.!?-]".toRegex())
+                    if (token.text.split(SPLIT_PATTERN)
                             .map { it.trim(' ') }
                             .any { isBlacklisted(it) }
                     ) {
@@ -107,5 +107,9 @@ class BlacklistDelegate @Inject constructor(val source: BlacklistSource) {
 
     fun dispose() {
         disposables.clear()
+    }
+
+    companion object {
+        private val SPLIT_PATTERN = "[\\s,.!?-]".toRegex()
     }
 }

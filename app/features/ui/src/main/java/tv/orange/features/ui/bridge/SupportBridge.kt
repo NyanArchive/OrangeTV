@@ -15,7 +15,7 @@ class SupportBridge @Inject constructor(val context: Context) {
         ClassCompat.invokeIf<ISectionFooterRecyclerItemViewHolder>(viewHolder) {
             BuildConfigUtil.buildConfig.let { config ->
                 it.getOrangeTVSection().text = if (config.number > 0) {
-                    "PurpleTV/${config.getVersion()}"
+                    "PurpleTV/${config.getVersion()} (${config.number})"
                 } else {
                     "PurpleTV/Stub"
                 }

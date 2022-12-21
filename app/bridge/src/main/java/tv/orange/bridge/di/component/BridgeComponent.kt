@@ -8,6 +8,7 @@ import tv.orange.core.CoreHook
 import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
 import tv.orange.core.di.component.CoreComponent
+import tv.orange.features.blacklist.Blacklist
 import tv.orange.features.chapters.VodChapters
 import tv.orange.features.chat.ChatHookProvider
 import tv.orange.features.chathistory.ChatHistory

@@ -1,7 +1,11 @@
 package tv.twitch.android.shared.chat.observables;
 
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
 import io.reactivex.subjects.PublishSubject;
 import tv.orange.core.Core;
+import tv.orange.features.chat.ChatHookProvider;
 import tv.orange.features.logs.ChatLogs;
 import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.ErrorCode;
@@ -13,6 +17,7 @@ import tv.twitch.android.sdk.ChannelState;
 public class ChatConnectionController extends BasePresenter {
     private PublishSubject<MessagesReceivedEvent> messagesSubject;
     private int viewerId;
+    private final ChatHookProvider chp = ChatHookProvider.get(); // TODO: __INJECT_FIELD
 
     /* ... */
 
@@ -49,6 +54,16 @@ public class ChatConnectionController extends BasePresenter {
 
     public final void disconnect(ChannelInfo channelInfo) {
         throw new VirtualImpl();
+    }
+
+    public Flowable<MessagesReceivedEvent> observeMessagesReceived() {
+        Observable<MessagesReceivedEvent> flowable = null;
+
+        /* ... */
+
+        flowable = chp.filterMessages(flowable); // TODO: __INJECT_CODE
+
+        return flowable.toFlowable(BackpressureStrategy.BUFFER);
     }
 
     /* ... */

@@ -9,6 +9,8 @@ import tv.orange.features.api.component.repository.StvRepository
 import tv.orange.features.api.di.component.ApiComponent
 import tv.orange.features.badges.component.BadgeProvider
 import tv.orange.features.badges.di.component.BadgesComponent
+import tv.orange.features.blacklist.Blacklist
+import tv.orange.features.blacklist.di.component.BlacklistComponent
 import tv.orange.features.emotes.component.EmoteProvider
 import tv.orange.features.emotes.di.component.EmotesComponent
 import tv.orange.features.highlighter.Highlighter
@@ -67,6 +69,12 @@ class BridgeModule {
     @Provides
     fun provideHighlighter(highlighterComponent: HighlighterComponent): Highlighter {
         return highlighterComponent.highlighter
+    }
+
+    @BridgeScope
+    @Provides
+    fun provideBlacklist(blacklistComponent: BlacklistComponent): Blacklist {
+        return blacklistComponent.blacklist
     }
 
     @BridgeScope

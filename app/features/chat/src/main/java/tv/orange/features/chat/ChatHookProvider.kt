@@ -32,6 +32,7 @@ import tv.orange.core.models.flag.variants.FontSize
 import tv.orange.core.models.lifecycle.LifecycleAware
 import tv.orange.features.badges.bridge.OrangeMessageBadge
 import tv.orange.features.badges.component.BadgeProvider
+import tv.orange.features.blacklist.Blacklist
 import tv.orange.features.chat.bridge.*
 import tv.orange.features.chat.data.model.FavEmote
 import tv.orange.features.chat.data.model.OrangeFavEmote
@@ -62,6 +63,7 @@ import tv.twitch.android.models.emotes.EmoteCardModelResponse
 import tv.twitch.android.models.emotes.EmoteModelAssetType
 import tv.twitch.android.models.emotes.EmoteSet
 import tv.twitch.android.provider.chat.ChatMessageInterface
+import tv.twitch.android.provider.chat.events.MessagesReceivedEvent
 import tv.twitch.android.shared.chat.adapter.item.ChatMessageClickedEvents
 import tv.twitch.android.shared.chat.adapter.item.MessageRecyclerItem
 import tv.twitch.android.shared.chat.network.creatorpinnedchatmessage.model.CreatorPinnedChatMessageChannelModel
@@ -88,7 +90,8 @@ class ChatHookProvider @Inject constructor(
     val supportBridge: SupportBridge,
     val favEmotesRepository: FavEmotesRepository,
     val chatFactory: ChatFactory,
-    val highlighter: Highlighter
+    val highlighter: Highlighter,
+    val blacklist: Blacklist
 ) : LifecycleAware, FlagListener, Feature, SupportBridge.Callback {
     private val currentChannelSubject = BehaviorSubject.create<Int>()
 
@@ -764,5 +767,19 @@ class ChatHookProvider @Inject constructor(
         pronouns = Flag.PRONOUNS.asBoolean()
         chatTimestamps = Flag.CHAT_TIMESTAMPS.asBoolean()
         highlighter.pull()
+        blacklist.pull()
+    }
+
+
+    fun filterMessages(flowable: Observable<MessagesReceivedEvent>): Observable<MessagesReceivedEvent> {
+        return flowable.map { mre ->
+            if (!blacklist.isEnabled()) {
+                return@map mre
+            }
+
+            MessagesReceivedEvent(
+                mre.channelId,
+                mre.messages.filter { message -> !blacklist.isBlacklisted(message) })
+        }.filter { it.messages.isNotEmpty() }
     }
 }

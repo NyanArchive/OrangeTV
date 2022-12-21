@@ -231,6 +231,7 @@
     <string name="orange_pinny_total_users">Total users: %1$d</string>
     <string name="orange_settings_chat_settings">Chat settings</string>
     <string name="orange_settings_chat_settings_desc" />
-    <string name="orange_settings_hide_create_button" >Hide «Create» button</string>
+    <string name="orange_settings_hide_create_button">Hide «Create» button</string>
     <string name="orange_settings_hide_create_button_desc" />
+    <string name="orange_settings_menu_blacklist">Blacklist</string>
 </resources>

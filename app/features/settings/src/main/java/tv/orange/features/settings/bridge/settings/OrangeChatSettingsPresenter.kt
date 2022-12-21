@@ -37,5 +37,14 @@ class OrangeChatSettingsPresenter constructor(
                 true
             ) as MenuModel
         )
+        settingModels.add(
+            SubMenuModel(
+                ResourceManager.get().getString("orange_settings_menu_blacklist"),
+                null,
+                null,
+                SettingsDestination.OrangeBlacklist,
+                true
+            ) as MenuModel
+        )
     }
 }

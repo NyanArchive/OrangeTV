@@ -8,6 +8,8 @@ import tv.orange.features.api.di.component.ApiComponent
 import tv.orange.features.api.di.component.DaggerApiComponent
 import tv.orange.features.badges.di.component.BadgesComponent
 import tv.orange.features.badges.di.component.DaggerBadgesComponent
+import tv.orange.features.blacklist.di.component.BlacklistComponent
+import tv.orange.features.blacklist.di.component.DaggerBlacklistComponent
 import tv.orange.features.emotes.di.component.DaggerEmotesComponent
 import tv.orange.features.emotes.di.component.EmotesComponent
 import tv.orange.features.highlighter.di.component.DaggerHighlighterComponent
@@ -58,6 +60,13 @@ class BridgeComponentModule {
     @Provides
     fun provideHighlighter(coreComponent: CoreComponent): HighlighterComponent {
         return DaggerHighlighterComponent.builder()
+            .coreComponent(coreComponent).build()
+    }
+
+    @BridgeScope
+    @Provides
+    fun provideBlacklist(coreComponent: CoreComponent): BlacklistComponent {
+        return DaggerBlacklistComponent.builder()
             .coreComponent(coreComponent).build()
     }
 }

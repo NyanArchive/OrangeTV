@@ -44,8 +44,9 @@ class BlacklistDelegate @Inject constructor(val source: BlacklistSource) {
                     this@BlacklistDelegate.insensitive = insensitive
                     this@BlacklistDelegate.sensitive = sensitive
 
-                    isEnabled =
-                        usernames.isNotEmpty() || sensitive.isNotEmpty() || insensitive.isNotEmpty()
+                    isEnabled = usernames.isNotEmpty() ||
+                            sensitive.isNotEmpty() ||
+                            insensitive.isNotEmpty()
                 }, {
                     it.printStackTrace()
                 })
@@ -66,40 +67,38 @@ class BlacklistDelegate @Inject constructor(val source: BlacklistSource) {
         cmi.tokens.forEach { token ->
             when (token) {
                 is ChatTextToken -> {
-                    token.text.split("\\s+".toRegex()).map { it.trim(' ') }
-                        .forEach { word ->
-                            if (word.isNotBlank()) {
-                                if (sensitive.contains(word)) {
-                                    return true
-                                }
-                                if (insensitive.contains(word.lowercase())) {
-                                    return true
-                                }
-                            }
-                        }
+                    if (token.text.split("[\\s,.!?-]".toRegex())
+                            .map { it.trim(' ') }
+                            .any { isBlacklisted(it) }
+                    ) {
+                        return true
+                    }
                 }
                 is ChatEmoticonToken -> {
-                    val word = token.emoticonText
-                    if (word.isNotBlank()) {
-                        if (sensitive.contains(word)) {
-                            return true
-                        }
-                        if (insensitive.contains(word.lowercase())) {
-                            return true
-                        }
+                    if (isBlacklisted(token.emoticonText)) {
+                        return true
                     }
                 }
                 is ChatUrlToken -> {
-                    val word = token.url
-                    if (word.isNotBlank()) {
-                        if (sensitive.contains(word)) {
-                            return true
-                        }
-                        if (insensitive.contains(word.lowercase())) {
-                            return true
-                        }
+                    if (isBlacklisted(token.url)) {
+                        return true
                     }
                 }
+            }
+        }
+
+        return false
+    }
+
+    private fun isBlacklisted(word: String?): Boolean {
+        word ?: return false
+
+        if (word.isNotBlank()) {
+            if (sensitive.contains(word)) {
+                return true
+            }
+            if (insensitive.contains(word.lowercase())) {
+                return true
             }
         }
 

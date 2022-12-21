@@ -1,0 +1,54 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event$Search.smali b/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event$Search.smali
+new file mode 100644
+index 000000000..c724cffde
+--- /dev/null
++++ b/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event$Search.smali
+@@ -0,0 +1,48 @@
++.class public final Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event$Search;
++.super Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event;
++.source "ViewerListViewDelegate.java"
++
++
++# annotations
++.annotation system Ldalvik/annotation/EnclosingClass;
++    value = Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event;
++.end annotation
++
++.annotation system Ldalvik/annotation/InnerClass;
++    accessFlags = 0x19
++    name = "Search"
++.end annotation
++
++
++# instance fields
++.field private final text:Ljava/lang/String;
++
++
++# direct methods
++.method public constructor <init>(Ljava/lang/String;)V
++    .registers 3
++    .param p1, "text"    # Ljava/lang/String;
++
++    .line 67
++    const/4 v0, 0x0
++
++    invoke-direct {p0, v0}, Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event;-><init>(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
++
++    .line 68
++    iput-object p1, p0, Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event$Search;->text:Ljava/lang/String;
++
++    .line 69
++    return-void
++.end method
++
++
++# virtual methods
++.method public getText()Ljava/lang/String;
++    .registers 2
++
++    .line 72
++    iget-object v0, p0, Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event$Search;->text:Ljava/lang/String;
++
++    return-object v0
++.end method
++

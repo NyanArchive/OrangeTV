@@ -7,6 +7,6 @@ import javax.inject.Inject
 
 class ViewFactoryImpl @Inject constructor() : ViewFactory {
     override fun createSearchBar(delegate: ViewerListViewDelegate): SearchView {
-        return delegate.contentView.getView(resName = "viewer_list_dialog__search")
+        return delegate.contentView.getView(resName = "viewer_list_v2__search")
     }
 }

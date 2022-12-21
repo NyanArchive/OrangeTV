@@ -1,0 +1,13 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event.smali b/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event.smali
+--- a/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event.smali
++++ b/smali_classes6/tv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event.smali
+@@ -23,7 +23,8 @@
+         Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event$DismissClicked;,
+         Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event$ReloadClicked;,
+         Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event$ShowViewerListRequested;,
+-        Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event$HideViewerListRequested;
++        Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event$HideViewerListRequested;,
++        Ltv/twitch/android/shared/chat/viewerlist/ViewerListViewDelegate$Event$Search;
+     }
+ .end annotation
+ 

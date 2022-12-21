@@ -7,7 +7,6 @@ import tv.orange.features.usersearch.bridge.IProxyEvent;
 import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.core.mvp.presenter.RxPresenter;
 import tv.twitch.android.core.mvp.viewdelegate.ViewDelegateEvent;
-import tv.twitch.android.shared.ui.elements.bottomsheet.BottomSheetBehaviorViewDelegate;
 
 public class ViewerListPresenter extends RxPresenter implements IProxyEvent { // TODO: @features:usersearch
     private ViewerListAdapterBinder adapterBinder;
@@ -21,7 +20,7 @@ public class ViewerListPresenter extends RxPresenter implements IProxyEvent { //
         throw new VirtualImpl();
     }
 
-    public final void attachViewDelegate(ViewerListViewDelegate viewDelegate, BottomSheetBehaviorViewDelegate bottomSheetBehaviorViewDelegate) {
+    public void attach(ViewerListViewDelegate viewDelegate) {
         /* ... */
 
         UserSearch.get().setupFilter(viewDelegate, this); // TODO: __INJECT_CODE

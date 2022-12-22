@@ -1,58 +1,41 @@
 package tv.twitch.android.shared.chat.viewerlist;
 
 import android.text.TextUtils;
-import android.util.ArrayMap;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
+import tv.orange.features.usersearch.UserSearch;
 import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.models.chat.Chatters;
 
 public final class ViewerListAdapterBinder {
-    private Map<ViewerListUserGroupDisplayModel, ? extends List<String>> orgGroups; // TODO: __INJECT_FIELD
+    private Chatters orgChatters; // TODO: __INJECT_FIELD
     private String searchUserText; // TODO: __INJECT_FIELD
 
     /* ... */
 
-    public final void bindViewerGroups(Map<ViewerListUserGroupDisplayModel, ? extends List<String>> groups) {
-        if (orgGroups == null) {
+    public final void setViewers(Chatters chatters) { // TODO: __REPLACE_METHOD
+        orgChatters = chatters;
+        filterChatters();
+    }
+
+    private void filterChatters() { // TODO: __INJECT_METHOD
+        if (orgChatters == null) {
             return;
         }
-        orgGroups = groups;
-        groups = filterChatters(groups);
 
-        /* ... */
-
-        throw new VirtualImpl();
-    }
-
-    private Map<ViewerListUserGroupDisplayModel, ? extends List<String>> filterChatters(Map<ViewerListUserGroupDisplayModel, ? extends List<String>> groups) { // TODO: __INJECT_METHOD
-        if (TextUtils.isEmpty(searchUserText)) {
-            return groups;
+        Chatters chatters = orgChatters;
+        if (!TextUtils.isEmpty(searchUserText)) {
+            chatters = UserSearch.get().filterChatters(orgChatters, searchUserText);
         }
 
-        Map<ViewerListUserGroupDisplayModel, List<String>> filteredMap = new ArrayMap<>();
-        for (ViewerListUserGroupDisplayModel groupDisplayModel : filteredMap.keySet()) {
-            List<String> users = filteredMap.get(groupDisplayModel);
-            if (users != null) {
-                List<String> filtered = new ArrayList<>();
-                for (String user : users) {
-                    if (!user.toLowerCase().contains(searchUserText)) {
-                        filtered.add(user);
-                    }
-                }
-                filteredMap.put(groupDisplayModel, filtered);
-            }
-        }
-
-        return filteredMap;
+        clear();
+        addMoreViewers(chatters);
     }
 
-    public void setSearchUserText(String text) { // TODO: __INJECT_METHOD
+    public final void setSearchUserText(String text) { // TODO: __INJECT_METHOD
         searchUserText = text;
-        bindViewerGroups(orgGroups);
+        filterChatters();
     }
 
     /* ... */

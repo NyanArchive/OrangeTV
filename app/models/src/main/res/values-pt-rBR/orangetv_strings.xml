@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="orange_settings_dev_mode">Modo desenvolvedor</string>
+    <string name="orange_settings_dev_mode">Modo de desenvolvedor</string>
     <string name="orange_settings_bttv_emotes">Emotes da BTTV</string>
     <string name="orange_settings_ffz_emotes">Emotes da FFZ</string>
     <string name="orange_settings_stv_emotes">Emotes da 7TV</string>

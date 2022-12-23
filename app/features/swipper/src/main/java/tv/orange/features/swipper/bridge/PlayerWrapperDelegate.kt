@@ -262,7 +262,7 @@ class PlayerWrapperDelegate(
         }
 
         private fun getBrightnessFromProc(proc: Int): Float {
-            return min(1.0f, max(0.1f, proc.toFloat().div(100)))
+             return min(1.0f, max(0.01f, proc.toFloat().div(100)))
         }
     }
 }

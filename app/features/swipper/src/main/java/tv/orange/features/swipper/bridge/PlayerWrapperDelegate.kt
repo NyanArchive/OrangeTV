@@ -253,16 +253,27 @@ class PlayerWrapperDelegate(
         private const val GESTURE_SCALE_FACTORY = 0.7f
         private const val VIDEO_DEBUG_LIST_ID = "video_debug_list"
 
+        private const val MIN_BRIGHTNESS = 0.001f
+        private const val MIN_BRIGHTNESS_PROC = 0
+        private const val MAX_BRIGHTNESS = 1.0f
+        private const val MAX_BRIGHTNESS_PROC = 100
+
         private fun calcPaddingDeviceIgnore(context: Context): Int {
             return (PADDING_DEFAULT_IGNORE * context.resources.displayMetrics.density).roundToInt()
         }
 
         private fun getProcFromBrightness(brightness: Float): Int {
-            return max(0, min(100, (brightness * 100).toInt()))
+            return max(
+                MIN_BRIGHTNESS_PROC,
+                min(MAX_BRIGHTNESS_PROC, (brightness * MAX_BRIGHTNESS_PROC).toInt())
+            )
         }
 
         private fun getBrightnessFromProc(proc: Int): Float {
-             return min(1.0f, max(0.01f, proc.toFloat().div(100)))
+            return min(
+                MAX_BRIGHTNESS,
+                max(MIN_BRIGHTNESS, proc.toFloat().div(MAX_BRIGHTNESS_PROC))
+            )
         }
     }
 }

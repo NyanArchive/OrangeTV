@@ -9,8 +9,12 @@ import android.content.pm.Signature
 import android.net.Uri
 import android.os.*
 import android.widget.Toast
+import com.google.android.exoplayer2.PlaybackParameters
 import io.reactivex.Single
+import tv.orange.core.compat.ClassCompat
 import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.Flag.Companion.asBoolean
+import tv.orange.core.models.flag.Flag.Companion.asIntRange
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.variants.PinnedMessageStrategy
 import tv.orange.core.models.lifecycle.LifecycleAware
@@ -18,6 +22,7 @@ import tv.orange.core.models.lifecycle.LifecycleController
 import tv.orange.models.AutoInitialize
 import tv.orange.models.abc.Bridge
 import tv.orange.models.abc.Feature
+import tv.twitch.android.shared.player.TwitchPlayerProvider
 import tv.twitch.android.shared.subscriptions.db.SubscriptionPurchaseEntity
 import tv.twitch.android.shared.subscriptions.purchasers.SubscriptionPurchaseResponse
 import tv.twitch.android.util.CoreDateUtil
@@ -234,8 +239,27 @@ class Core @Inject constructor(
             }
             return signArr
         }
-    }
 
+        @JvmStatic
+        fun maybeForceExoPlayerForVods(var3: TwitchPlayerProvider) {
+            if (Flag.FORCE_EXOPLAYER_FOR_VODS.asBoolean()) {
+                var3.useFallbackPlayer()
+            }
+        }
+
+        @JvmStatic
+        fun hookVodPlayerMediaClock(params: PlaybackParameters): PlaybackParameters {
+            return if (ClassCompat.isOnStackTrace("tv.twitch.android.shared.player.presenters.VodPlayerPresenter") ||
+                ClassCompat.isOnStackTrace("tv.twitch.android.shared.ads.AdsVodPlayerPresenter")
+            ) {
+                params.apply {
+                    speed = Flag.EXOPLAYER_VOD_SPEED.asIntRange().getCurrentValue() / 100f
+                }
+            } else {
+                params
+            }
+        }
+    }
 
     override fun registerLifecycleListeners(vararg listeners: LifecycleAware) {
         listeners.forEach { listener ->

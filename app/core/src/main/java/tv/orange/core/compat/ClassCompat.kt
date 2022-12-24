@@ -21,4 +21,25 @@ object ClassCompat {
             LoggerImpl.warning("Obj: $obj")
         }
     }
+
+    fun isOnStackTrace(clazz: String): Boolean {
+        if (clazz.isBlank()) {
+            return false
+        }
+
+        for (stackTraceElement in Thread.currentThread().stackTrace) {
+            stackTraceElement ?: continue
+            if (stackTraceElement.className.isBlank()) {
+                continue
+            }
+
+            if (!stackTraceElement.className.equals(clazz)) {
+                continue
+            }
+
+            return true
+        }
+
+        return false
+    }
 }

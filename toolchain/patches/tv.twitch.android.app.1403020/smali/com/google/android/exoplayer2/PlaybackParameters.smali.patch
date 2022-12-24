@@ -1,0 +1,12 @@
+diff --git a/smali_classes2/com/google/android/exoplayer2/PlaybackParameters.smali b/smali_classes2/com/google/android/exoplayer2/PlaybackParameters.smali
+--- a/smali_classes2/com/google/android/exoplayer2/PlaybackParameters.smali
++++ b/smali_classes2/com/google/android/exoplayer2/PlaybackParameters.smali
+@@ -14,7 +14,7 @@
+ 
+ .field public final skipSilence:Z
+ 
+-.field public final speed:F
++.field public speed:F
+ 
+ 
+ # direct methods

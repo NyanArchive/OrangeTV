@@ -310,6 +310,16 @@ enum class Flag(
         "landscape_chat_opacity",
         "orange_settings_landscape_chat_opacity",
         IntegerRangeValue(0, 100, 30),
+    ),
+    EXOPLAYER_VOD_SPEED(
+        "exoplayer_vod_speed",
+        "orange_settings_exoplayer_vod_speed",
+        IntegerRangeValue(25, 200, 100, step = 5),
+    ),
+    FORCE_EXOPLAYER_FOR_VODS(
+        "force_exoplayer_for_vods",
+        "orange_settings_force_exoplayer_for_vods",
+        BooleanValue(false)
     );
 
     constructor(prefKey: String, value: ValueHolder) : this(

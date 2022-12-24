@@ -1,0 +1,12 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/player/presenters/VodPlayerPresenter.smali b/smali_classes6/tv/twitch/android/shared/player/presenters/VodPlayerPresenter.smali
+--- a/smali_classes6/tv/twitch/android/shared/player/presenters/VodPlayerPresenter.smali
++++ b/smali_classes6/tv/twitch/android/shared/player/presenters/VodPlayerPresenter.smali
+@@ -243,6 +243,8 @@
+ 
+     invoke-static {v0, v1}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullExpressionValue(Ljava/lang/Object;Ljava/lang/String;)V
+ 
++    invoke-static {v10}, Ltv/orange/core/Core;->maybeForceExoPlayerForVods(Ltv/twitch/android/shared/player/TwitchPlayerProvider;)V
++
+     invoke-virtual {v10, v8, v0}, Ltv/twitch/android/shared/player/TwitchPlayerProvider;->getTwitchPlayer(Ltv/twitch/android/shared/player/core/TwitchPlayerListener;Ljava/lang/String;)Ltv/twitch/android/shared/player/core/TwitchPlayer;
+ 
+     move-result-object v0

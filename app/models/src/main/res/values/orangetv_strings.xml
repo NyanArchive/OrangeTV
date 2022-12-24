@@ -234,4 +234,8 @@
     <string name="orange_settings_hide_create_button">Hide «Create» button</string>
     <string name="orange_settings_hide_create_button_desc" />
     <string name="orange_settings_menu_blacklist">Blacklist</string>
+    <string name="orange_settings_force_exoplayer_for_vods">Force ExoPlayer for VODs</string>
+    <string name="orange_settings_force_exoplayer_for_vods_desc" />
+    <string name="orange_settings_exoplayer_vod_speed">ExoPlayer VOD speed</string>
+    <string name="orange_settings_exoplayer_vod_speed_desc" />
 </resources>

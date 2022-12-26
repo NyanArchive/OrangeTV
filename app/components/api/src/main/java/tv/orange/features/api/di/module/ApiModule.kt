@@ -88,6 +88,13 @@ class ApiModule {
 
     @ApiScope
     @Provides
+    @Named("ffzap")
+    fun provideFfzapRetrofitClient(builder: Retrofit.Builder): Retrofit {
+        return builder.baseUrl("https://api.ffzap.com/").build()
+    }
+
+    @ApiScope
+    @Provides
     fun provideBttvApi(@Named("bttv") retrofit: Retrofit): BttvApi {
         return retrofit.create(BttvApi::class.java)
     }
@@ -152,5 +159,11 @@ class ApiModule {
     @Named("PAS2")
     fun providePas2Api(@Named("pas2") retrofit: Retrofit): PurpleAdblockApi {
         return retrofit.create(PurpleAdblockApi::class.java)
+    }
+
+    @ApiScope
+    @Provides
+    fun provideFfzapApi(@Named("ffzap") retrofit: Retrofit): FFZAPApi {
+        return retrofit.create(FFZAPApi::class.java)
     }
 }

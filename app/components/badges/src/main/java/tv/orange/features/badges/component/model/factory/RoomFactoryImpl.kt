@@ -28,6 +28,12 @@ class RoomFactoryImpl @Inject constructor(
                         token = BadgePackageSet.Ffz
                     )
                 )
+                add(
+                    BadgePackageImpl(
+                        source = BadgeFetcherFactoryImpl { ffz.getFfzAPBadges() },
+                        token = BadgePackageSet.FfzAP
+                    )
+                )
             }
             if (Flag.STV_BADGES.asBoolean()) {
                 add(

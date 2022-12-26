@@ -74,6 +74,20 @@ class ApiModule {
 
     @ApiScope
     @Provides
+    @Named("pas1")
+    fun providePas1RetrofitClient(builder: Retrofit.Builder): Retrofit {
+        return builder.baseUrl("https://eu1.jupter.ga/").build()
+    }
+
+    @ApiScope
+    @Provides
+    @Named("pas2")
+    fun providePas2RetrofitClient(builder: Retrofit.Builder): Retrofit {
+        return builder.baseUrl("https://eu2.jupter.ga/").build()
+    }
+
+    @ApiScope
+    @Provides
     fun provideBttvApi(@Named("bttv") retrofit: Retrofit): BttvApi {
         return retrofit.create(BttvApi::class.java)
     }
@@ -124,5 +138,19 @@ class ApiModule {
     @Provides
     fun provideLolApi(@Named("lol") retrofit: Retrofit): LolApi {
         return retrofit.create(LolApi::class.java)
+    }
+
+    @ApiScope
+    @Provides
+    @Named("PAS1")
+    fun providePas1Api(@Named("pas1") retrofit: Retrofit): PurpleAdblockApi {
+        return retrofit.create(PurpleAdblockApi::class.java)
+    }
+
+    @ApiScope
+    @Provides
+    @Named("PAS2")
+    fun providePas2Api(@Named("pas2") retrofit: Retrofit): PurpleAdblockApi {
+        return retrofit.create(PurpleAdblockApi::class.java)
     }
 }

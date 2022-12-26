@@ -196,6 +196,17 @@ class Proxy @Inject constructor(
         )
     }
 
+    private fun createPurpleProxySingleResponse(
+        twitchResponse: Single<Response<String>>,
+        channelName: String
+    ): Single<Response<String>> {
+        return trySwapPlaylist(
+            twitchResponse = twitchResponse,
+            proxyResponse = repository.getPurplePlaylist(channelName = channelName),
+            proxyName = "Purple Adblock"
+        )
+    }
+
     fun maybeHookStreamManifestResponse(
         manifest: Single<Response<String>>,
         channelName: String,
@@ -217,6 +228,10 @@ class Proxy @Inject constructor(
                 accessTokenResponse = accessTokenResponse
             )
             ProxyImpl.TTV_LOL -> createLolProxySingleResponse(
+                twitchResponse = manifest,
+                channelName = channelName
+            )
+            ProxyImpl.PURPLE -> createPurpleProxySingleResponse(
                 twitchResponse = manifest,
                 channelName = channelName
             )

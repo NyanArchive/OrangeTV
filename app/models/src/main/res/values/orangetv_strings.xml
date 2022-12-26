@@ -210,6 +210,7 @@
     <string name="orange_proxy_twitching" translatable="false">Twitching</string>
     <string name="orange_proxy_ttsftp" translatable="false">Twitch Tokyo Server Fix Tool</string>
     <string name="orange_proxy_ttv_lol" translatable="false">TTV LOL</string>
+    <string name="orange_proxy_purple" translatable="false">Purple Adblock</string>
     <string name="orange_settings_improved_background_audio">Improved background audio</string>
     <string name="orange_settings_improved_background_audio_desc" />
     <string name="orange_generic_error">Error: %1$s</string>
@@ -234,4 +235,8 @@
     <string name="orange_settings_hide_create_button">Hide «Create» button</string>
     <string name="orange_settings_hide_create_button_desc" />
     <string name="orange_settings_menu_blacklist">Blacklist</string>
+    <string name="orange_settings_force_exoplayer_for_vods">Force ExoPlayer for VODs</string>
+    <string name="orange_settings_force_exoplayer_for_vods_desc" />
+    <string name="orange_settings_exoplayer_vod_speed">ExoPlayer VOD speed</string>
+    <string name="orange_settings_exoplayer_vod_speed_desc" />
 </resources>

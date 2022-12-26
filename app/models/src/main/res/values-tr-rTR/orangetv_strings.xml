@@ -167,4 +167,7 @@
     <string name="orange_pinny_total_users">Toplam Kullanıcılar: %1$d</string>
     <string name="orange_settings_chat_settings">Sohbet ayarları</string>
     <string name="orange_settings_hide_create_button">&lt;&lt;Oluştur&gt;&gt; butonunu gizle</string>
+    <string name="orange_settings_menu_blacklist">Kara liste</string>
+    <string name="orange_settings_force_exoplayer_for_vods">Geçmiş yayınlar için ExoPlayer\'i kullanmaya zorla</string>
+    <string name="orange_settings_exoplayer_vod_speed">ExoPlayer geçmiş yayın hızı</string>
 </resources>

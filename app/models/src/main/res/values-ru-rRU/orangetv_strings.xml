@@ -169,4 +169,7 @@
     <string name="orange_pinny_total_users">Общее количество пользователей: %1$d</string>
     <string name="orange_settings_chat_settings">Настройки чата</string>
     <string name="orange_settings_hide_create_button">Скрыть кнопку «Создать»</string>
+    <string name="orange_settings_menu_blacklist">Черный список</string>
+    <string name="orange_settings_force_exoplayer_for_vods">Использовать ExoPlayer для записей стримов</string>
+    <string name="orange_settings_exoplayer_vod_speed">Скорость воспроизведения (ExoPlayer)</string>
 </resources>

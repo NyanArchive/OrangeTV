@@ -141,6 +141,7 @@ class PreferenceManager @Inject constructor(
         twitch.registerOnSharedPreferenceChangeListener(this)
 
         isDarkThemeEnabled = ThemeManager.Companion!!.isNightModeEnabled(context)
+        LoggerImpl.devMode = Flag.DEV_MODE.asBoolean()
     }
 
     fun getLastTimer(): Pair<Int, Int> {

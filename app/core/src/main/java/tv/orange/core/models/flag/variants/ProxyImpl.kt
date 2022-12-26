@@ -6,7 +6,8 @@ enum class ProxyImpl(val value: String) : Internal.Variant {
     Disabled("disabled"),
     Twitching("twitching"),
     TTSFTP("ttsftp"),
-    TTV_LOL("ttv_lol");
+    TTV_LOL("ttv_lol"),
+    PURPLE("purple");
 
     override fun getVariants(): List<Internal.Variant> {
         return values().toList()

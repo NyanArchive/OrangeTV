@@ -165,4 +165,9 @@
     <string name="orange_settings_info_lanzzz">PurpleTV 로고 제작자</string>
     <string name="orange_pinny_active_users">활동 사용자: %1$d</string>
     <string name="orange_pinny_total_users">전체 사용자: %1$d</string>
+    <string name="orange_settings_chat_settings">채팅 설정</string>
+    <string name="orange_settings_hide_create_button">«생성» 버튼 숨기기</string>
+    <string name="orange_settings_menu_blacklist">차단 목록</string>
+    <string name="orange_settings_force_exoplayer_for_vods">VOD에서 강제로 ExoPlayer 사용</string>
+    <string name="orange_settings_exoplayer_vod_speed">ExoPlayer VOD 속도</string>
 </resources>

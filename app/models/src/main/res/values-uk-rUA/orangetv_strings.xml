@@ -90,7 +90,7 @@
     <string name="orange_chat_user_dialog_fragment_view_local_logs">Недавні повідомлення</string>
     <string name="orange_settings_local_logs">Кількість недавніх повідомлень</string>
     <string name="orange_local_logs_0">Не зберігати</string>
-    <string name="orange_settings_menu_highlighter">Виділенні повідомлення</string>
+    <string name="orange_settings_menu_highlighter">Позначати ключові слова</string>
     <string name="cpv_default_title">Оберіть колір</string>
     <string name="cpv_presets">Шаблони</string>
     <string name="cpv_custom">Власний</string>
@@ -110,7 +110,7 @@
     <string name="orange_updater_disabled">Вимкнено</string>
     <string name="orange_updater_install_action">Встановити</string>
     <string name="orange_updater_update_action">Оновити</string>
-    <string name="orange_updater_channel_disabled">Поточний канал оновлень вимкнено</string>
+    <string name="orange_updater_channel_disabled">Оберіть канал оновлень</string>
     <string name="orange_updater_latest_version">Ви використовуєте актуальну версію</string>
     <string name="orange_app_update_available">Доступне нове оновлення</string>
     <string name="orange_app_update_available_cta">Доступна нова версія PurpleTV! Натисніть тут, щоб встановити оновлення</string>
@@ -141,7 +141,7 @@
     <string name="orange_settings_brightness_gesture">Регулювання яскравості жестом</string>
     <string name="orange_settings_volume_gesture">Регулювання гучності жестом</string>
     <string name="orange_settings_disable_theatre_autoplay">Вимкнути автопрогравання</string>
-    <string name="orange_settings_disable_theatre_autoplay_desc">Вимикає автопрогравання наступного відео</string>
+    <string name="orange_settings_disable_theatre_autoplay_desc">Вимикає автопрогравання наступного відеозапису</string>
     <string name="orange_settings_show_timer_button">Додати кнопку «Таймер сну»</string>
     <string name="orange_settings_show_refresh_button">Додати кнопку «Оновити»</string>
     <string name="orange_chat_kill_chat">Вимкнути чат</string>
@@ -159,7 +159,7 @@
     <string name="orange_spam_error_wc">Невірний {count} параметр: \'%1$s\'</string>
     <string name="orange_spam_error_wd">Невірний {delay} параметр: \'%1$s\'</string>
     <string name="orange_spam_error_ww">Невірний {width} параметр: \'%1$s\'</string>
-    <string name="orange_spam_error_empty">Нічого спамити</string>
+    <string name="orange_spam_error_empty">Вкажіть текст повідомлення</string>
     <string name="orange_vodhunter_hunting">Пошук…</string>
     <string name="orange_settings_hide_unfollow_button">Сховати кнопку «Відстежувати»</string>
     <string name="orange_settings_info_lanzzz">Автор логотипу</string>
@@ -167,4 +167,7 @@
     <string name="orange_pinny_total_users">Загальна кількість користувачів: %1$d</string>
     <string name="orange_settings_chat_settings">Додати кнопку «Налаштування чату»</string>
     <string name="orange_settings_hide_create_button">Сховати кнопку «Create»</string>
+    <string name="orange_settings_menu_blacklist">Фільтр за ключовими словами</string>
+    <string name="orange_settings_force_exoplayer_for_vods">Примусово використовувати ExoPlayer для відеозаписів</string>
+    <string name="orange_settings_exoplayer_vod_speed">Швидкість відтворення ExoPlayer у відеозаписах</string>
 </resources>

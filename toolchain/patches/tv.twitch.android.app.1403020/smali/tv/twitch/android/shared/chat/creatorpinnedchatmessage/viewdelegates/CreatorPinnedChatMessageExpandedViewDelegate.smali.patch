@@ -1,0 +1,12 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/chat/creatorpinnedchatmessage/viewdelegates/CreatorPinnedChatMessageExpandedViewDelegate.smali b/smali_classes6/tv/twitch/android/shared/chat/creatorpinnedchatmessage/viewdelegates/CreatorPinnedChatMessageExpandedViewDelegate.smali
+--- a/smali_classes6/tv/twitch/android/shared/chat/creatorpinnedchatmessage/viewdelegates/CreatorPinnedChatMessageExpandedViewDelegate.smali
++++ b/smali_classes6/tv/twitch/android/shared/chat/creatorpinnedchatmessage/viewdelegates/CreatorPinnedChatMessageExpandedViewDelegate.smali
+@@ -407,6 +407,8 @@
+ 
+     move-result p2
+ 
++    if-lez p2, :cond_1
++
+     int-to-long v0, p2
+ 
+     invoke-virtual {p1, v0, v1}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;

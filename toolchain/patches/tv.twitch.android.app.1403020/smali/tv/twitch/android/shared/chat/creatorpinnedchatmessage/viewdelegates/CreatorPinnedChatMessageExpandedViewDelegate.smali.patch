@@ -10,3 +10,12 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/creatorpinnedchatmessa
      int-to-long v0, p2
  
      invoke-virtual {p1, v0, v1}, Landroid/animation/ObjectAnimator;->setDuration(J)Landroid/animation/ObjectAnimator;
+@@ -483,6 +485,8 @@
+     move-result v0
+ 
+     :goto_1
++    if-eq v2, v0, :cond_1
++
+     if-ge v2, v0, :cond_1
+ 
+     .line 135

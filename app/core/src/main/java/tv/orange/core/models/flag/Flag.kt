@@ -267,9 +267,9 @@ enum class Flag(
         ListValue(LocalLogs.L0),
     ),
     UPDATER(
-        "updater",
+        "updater_pre",
         "orange_settings_updater_channel",
-        ListValue(UpdateChannel.Dev),
+        ListValue(UpdateChannel.Beta),
     ),
     PINNED_MESSAGE(
         "pinned_message",

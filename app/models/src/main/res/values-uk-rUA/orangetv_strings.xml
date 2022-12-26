@@ -90,7 +90,7 @@
     <string name="orange_chat_user_dialog_fragment_view_local_logs">Недавні повідомлення</string>
     <string name="orange_settings_local_logs">Кількість недавніх повідомлень</string>
     <string name="orange_local_logs_0">Не зберігати</string>
-    <string name="orange_settings_menu_highlighter">Виділенні повідомлення</string>
+    <string name="orange_settings_menu_highlighter">Позначати ключові слова</string>
     <string name="cpv_default_title">Оберіть колір</string>
     <string name="cpv_presets">Шаблони</string>
     <string name="cpv_custom">Власний</string>
@@ -141,7 +141,7 @@
     <string name="orange_settings_brightness_gesture">Регулювання яскравості жестом</string>
     <string name="orange_settings_volume_gesture">Регулювання гучності жестом</string>
     <string name="orange_settings_disable_theatre_autoplay">Вимкнути автопрогравання</string>
-    <string name="orange_settings_disable_theatre_autoplay_desc">Вимикає автопрогравання наступного відео</string>
+    <string name="orange_settings_disable_theatre_autoplay_desc">Вимикає автопрогравання наступного відеозапису</string>
     <string name="orange_settings_show_timer_button">Додати кнопку «Таймер сну»</string>
     <string name="orange_settings_show_refresh_button">Додати кнопку «Оновити»</string>
     <string name="orange_chat_kill_chat">Вимкнути чат</string>
@@ -167,4 +167,7 @@
     <string name="orange_pinny_total_users">Загальна кількість користувачів: %1$d</string>
     <string name="orange_settings_chat_settings">Додати кнопку «Налаштування чату»</string>
     <string name="orange_settings_hide_create_button">Сховати кнопку «Create»</string>
+    <string name="orange_settings_menu_blacklist">Фільтр за ключовими словами</string>
+    <string name="orange_settings_force_exoplayer_for_vods">Примусово використовувати ExoPlayer для відеозаписів</string>
+    <string name="orange_settings_exoplayer_vod_speed">Швидкість відтворення ExoPlayer у відеозаписах</string>
 </resources>

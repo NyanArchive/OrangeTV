@@ -167,4 +167,7 @@
     <string name="orange_pinny_total_users">Σύνολο χρηστών: %1$d</string>
     <string name="orange_settings_chat_settings">Ρυθμίσεις συνομιλίας</string>
     <string name="orange_settings_hide_create_button">Απόκρυψη κουμπιού «Δημιουργία»</string>
+    <string name="orange_settings_menu_blacklist">Μαύρη λίστα</string>
+    <string name="orange_settings_force_exoplayer_for_vods">Επιβολή ExoPlayer για VODs</string>
+    <string name="orange_settings_exoplayer_vod_speed">Ταχύτητα VOD ExoPlayer</string>
 </resources>

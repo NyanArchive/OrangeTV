@@ -1,8 +1,11 @@
 package tv.orange.features.api.component.data.mapper
 
+import android.graphics.Color
 import tv.orange.models.data.badges.BadgeSet
+import tv.orange.models.data.badges.impl.BadgeFfzAPImpl
 import tv.orange.models.data.badges.impl.BadgeFfzImpl
 import tv.orange.models.retrofit.ffz.FfzBadgesData
+import tv.orange.models.retrofit.ffzap.FfzAPBadge
 import javax.inject.Inject
 
 class FfzApiMapper @Inject constructor() {
@@ -38,5 +41,31 @@ class FfzApiMapper @Inject constructor() {
         }
 
         return builder.build()
+    }
+
+    fun mapBadges(response: List<FfzAPBadge>): BadgeSet {
+        val builder = BadgeSet.Builder()
+        response.filter { !FFZAP_SKIP_BADGE_IDS.contains(it.id) }.forEach { badge ->
+            badge.id?.toIntOrNull()?.let { badgeId ->
+                badge.tier?.let { tier ->
+                    builder.addBadge(
+                        BadgeFfzAPImpl(
+                            badgeId = badgeId,
+                            backgroundColor = if (tier >= 3 && badge.badge_is_colored != 0) {
+                                badge.parseColor()
+                            } else {
+                                Color.TRANSPARENT
+                            }
+                        ), badgeId
+                    )
+                }
+            }
+        }
+
+        return builder.build()
+    }
+
+    companion object {
+        private val FFZAP_SKIP_BADGE_IDS = listOf("26964566")
     }
 }

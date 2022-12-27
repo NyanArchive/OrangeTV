@@ -167,4 +167,7 @@
     <string name="orange_pinny_total_users">Celkový počet používateľov:%1$d</string>
     <string name="orange_settings_chat_settings">Nastavenia četu</string>
     <string name="orange_settings_hide_create_button">Skryť «Vytvoriť» tlačidlo</string>
+    <string name="orange_settings_menu_blacklist">Čierna listina</string>
+    <string name="orange_settings_force_exoplayer_for_vods">Vynútiť ExoPlayer pre VODs</string>
+    <string name="orange_settings_exoplayer_vod_speed">Rýchlosť prehrávania VOD cez ExoPlayer</string>
 </resources>

@@ -167,4 +167,7 @@
     <string name="orange_pinny_total_users">Usuários totais: %1$d</string>
     <string name="orange_settings_chat_settings">Configurações do chat</string>
     <string name="orange_settings_hide_create_button">Ocultar botão «Criar»</string>
+    <string name="orange_settings_menu_blacklist">Lista negra</string>
+    <string name="orange_settings_force_exoplayer_for_vods">Forçar ExoPlayer em VODs</string>
+    <string name="orange_settings_exoplayer_vod_speed">Velocidade de VODs em ExoPlayer</string>
 </resources>

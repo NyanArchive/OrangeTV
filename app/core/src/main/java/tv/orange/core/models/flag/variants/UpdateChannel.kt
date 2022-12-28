@@ -13,7 +13,7 @@ enum class UpdateChannel(val value: String) : Internal.Variant {
     }
 
     override fun getDefault(): Internal.Variant {
-        return Dev
+        return Release
     }
 
     override fun fromString(str: String): Internal.Variant? {

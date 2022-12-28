@@ -269,7 +269,7 @@ enum class Flag(
     UPDATER(
         "updater",
         "orange_settings_updater_channel",
-        ListValue(UpdateChannel.Beta),
+        ListValue(UpdateChannel.Release),
     ),
     PINNED_MESSAGE(
         "pinned_message",

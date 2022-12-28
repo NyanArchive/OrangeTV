@@ -267,7 +267,7 @@ enum class Flag(
         ListValue(LocalLogs.L0),
     ),
     UPDATER(
-        "updater",
+        "updater_final",
         "orange_settings_updater_channel",
         ListValue(UpdateChannel.Release),
     ),

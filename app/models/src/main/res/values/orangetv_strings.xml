@@ -144,10 +144,10 @@
     <string name="orange_app_name">PurpleTV</string>
     <string name="orange_settings_updater_channel">Update channel</string>
     <string name="orange_settings_updater_channel_desc" />
-    <string name="orange_updater_release">Release</string>
-    <string name="orange_updater_beta">Beta</string>
-    <string name="orange_updater_dev">Dev</string>
-    <string name="orange_updater_disabled">Disabled</string>
+    <string name="orange_updater_final_release">Release</string>
+    <string name="orange_updater_final_beta">Beta</string>
+    <string name="orange_updater_final_dev">Dev</string>
+    <string name="orange_updater_final_disabled">Disabled</string>
     <string name="orange_updater_install_action">Install</string>
     <string name="orange_updater_update_action">Update</string>
     <string name="orange_updater_channel_disabled">Current update channel is disabled</string>

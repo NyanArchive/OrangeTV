@@ -165,7 +165,7 @@
     <string name="orange_settings_info_dev">Main dev</string>
     <string name="orange_settings_info_dev_desc" translatable="false">t.me/nopbreak</string>
     <string name="orange_settings_info_tg">Telegram chat</string>
-    <string name="orange_settings_info_tg_desc" translatable="false">t.me/pubChat</string>
+    <string name="orange_settings_info_tg_desc" translatable="false">t.me/pubTwChat</string>
     <string name="orange_settings_info_discord">Discord server</string>
     <string name="orange_settings_info_discord_desc" translatable="false">https://discord.gg/DkjMM4ThhG</string>
     <string name="orange_settings_info_itsfadixx">Development Assistant</string>

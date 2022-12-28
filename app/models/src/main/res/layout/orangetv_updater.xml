@@ -51,7 +51,7 @@
         style="@style/ButtonStyle.Primary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/default_margin_quintuple"
+        android:layout_marginBottom="@dimen/default_margin_triple"
         android:text="Update"
         app:layout_constraintBottom_toTopOf="@+id/orangetv_updater__title"
         app:layout_constraintEnd_toStartOf="@+id/orangetv_updater_g2"
@@ -127,9 +127,9 @@
         style="@style/SubtitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/default_margin_quintuple"
+        android:layout_marginBottom="@dimen/default_margin_double"
         android:textColor="@color/hinted_grey_10"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/orangetv_updater__discord"
         app:layout_constraintEnd_toStartOf="@+id/orangetv_updater_g2"
         app:layout_constraintStart_toStartOf="@+id/orangetv_updater_g1" />
 
@@ -196,4 +196,25 @@
         app:layout_constraintStart_toStartOf="@+id/orangetv_updater_g1"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/orangetv_updater__discord"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="@dimen/default_margin_double"
+        android:layout_marginBottom="@dimen/default_margin_triple"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/orangetv_updater__tg"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/orangetv_updater_g1"
+        app:srcCompat="@drawable/ic_orangetv_discord" />
+
+    <ImageView
+        android:id="@+id/orangetv_updater__tg"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="@dimen/default_margin_triple"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/orangetv_updater_g2"
+        app:layout_constraintStart_toEndOf="@id/orangetv_updater__discord"
+        app:srcCompat="@drawable/ic_orangetv_tg" />
 </androidx.constraintlayout.widget.ConstraintLayout>

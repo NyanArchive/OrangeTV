@@ -191,7 +191,8 @@ class Core @Inject constructor(
             }
         }
 
-        private fun openUrl(context: Context, url: String) {
+        @JvmStatic
+        fun openUrl(context: Context, url: String) {
             if (url.isBlank()) {
                 return
             }

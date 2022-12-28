@@ -16,6 +16,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import tv.orange.core.Core
 import tv.orange.core.ResourceManager
 import tv.orange.core.util.PackageHelper
 import tv.orange.core.util.ViewUtil
@@ -39,6 +40,9 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
     private lateinit var downloadProgressDataTv: TextView
     private lateinit var downloadProgressProcTv: TextView
     private lateinit var errorMsgTv: TextView
+
+    private lateinit var discordTv: ImageView
+    private lateinit var tgTv: ImageView
 
     private lateinit var logoImg: ImageView
     private lateinit var cancelDownloadingImg: ImageView
@@ -78,6 +82,16 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
         downloadProgressProcTv = getView("orangetv_updater__download_progress_label2")
         needUpdateTv = getView("orangetv_updater__t1")
         errorMsgTv = getView("orangetv_updater__error_msg")
+        discordTv = getView<ImageView>("orangetv_updater__discord").apply {
+            setOnClickListener {
+                presenter.onViewEvent(UpdaterContract.Presenter.Event.OnDiscordClicked)
+            }
+        }
+        tgTv = getView<ImageView>("orangetv_updater__tg").apply {
+            setOnClickListener {
+                presenter.onViewEvent(UpdaterContract.Presenter.Event.OnTgClicked)
+            }
+        }
 
         loadingPb = getView("orangetv_updater__pogress")
         downloadingPb = getView("orangetv_updater__downloading_progress")
@@ -272,6 +286,14 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
 
     override fun clearTempCache() {
         Updater.get().clearTempCache(this)
+    }
+
+    override fun openDiscord() {
+        Core.openUrl(this.applicationContext, "https://discord.gg/DkjMM4ThhG")
+    }
+
+    override fun openTg() {
+        Core.openUrl(this.applicationContext, "https://t.me/pubTwChat")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

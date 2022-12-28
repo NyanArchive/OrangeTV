@@ -15,6 +15,8 @@ interface UpdaterContract {
         fun canInstallApk(): Boolean
         fun saveTextToClipboard(text: String)
         fun clearTempCache()
+        fun openDiscord()
+        fun openTg()
 
         sealed class State {
             object Prepare : State()
@@ -46,6 +48,8 @@ interface UpdaterContract {
             object OnLongActionClicked : Event()
             object OnPermissionGiven : Event()
             object OnPermissionDenied : Event()
+            object OnDiscordClicked : Event()
+            object OnTgClicked : Event()
         }
 
         sealed class State {

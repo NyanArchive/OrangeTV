@@ -6,6 +6,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
+import tv.orange.core.Core
 import tv.orange.core.LoggerImpl
 import tv.orange.core.util.FileUtil.copyTo
 import tv.orange.core.util.NetUtil
@@ -37,6 +38,12 @@ class UpdaterPresenter(
             }
             Event.OnCloseClicked -> {
                 view.close()
+            }
+            Event.OnDiscordClicked -> {
+                view.openDiscord()
+            }
+            Event.OnTgClicked -> {
+                view.openTg()
             }
             Event.OnActionClicked -> {
                 view.render(UpdaterContract.View.State.IndeterminateDownloading)

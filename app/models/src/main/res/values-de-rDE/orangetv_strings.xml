@@ -96,7 +96,6 @@
     <string name="cpv_custom">Benutzerdefiniert</string>
     <string name="cpv_select">Auswählen</string>
     <string name="cpv_transparency">Transparenz</string>
-    <string name="orange_settings_clipfinity">Clipfinity</string>
     <string name="orange_updater_ds">Downloadgröße: %s</string>
     <string name="orange_updater_ds2">%1$s/%2$s</string>
     <string name="orange_updater_ds3">%s\%%</string>
@@ -104,10 +103,6 @@
     <string name="orange_updater_msg1">PurpleTV benötigt ein Update</string>
     <string name="orange_app_name">PurpleTV</string>
     <string name="orange_settings_updater_channel">Update Channel</string>
-    <string name="orange_updater_release">Release Version</string>
-    <string name="orange_updater_beta">Beta Version</string>
-    <string name="orange_updater_dev">Entwickler Version</string>
-    <string name="orange_updater_disabled">Deaktiviert</string>
     <string name="orange_updater_install_action">Installieren</string>
     <string name="orange_updater_update_action">Update</string>
     <string name="orange_updater_channel_disabled">Aktueller Update Channel ist deaktiviert</string>

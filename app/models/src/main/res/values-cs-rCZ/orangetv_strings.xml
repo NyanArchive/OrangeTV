@@ -96,7 +96,6 @@
     <string name="cpv_custom">Vlastní</string>
     <string name="cpv_select">Vybrat</string>
     <string name="cpv_transparency">Průhlednost</string>
-    <string name="orange_settings_clipfinity">Clipfinity</string>
     <string name="orange_updater_ds">Velikost: %s</string>
     <string name="orange_updater_ds2">%1$s/%2$s</string>
     <string name="orange_updater_ds3">%s\%%</string>
@@ -104,10 +103,6 @@
     <string name="orange_updater_msg1">PurpleTV potřebuje aktualizaci</string>
     <string name="orange_app_name">PurpleTV</string>
     <string name="orange_settings_updater_channel">Kanál pro aktualizace</string>
-    <string name="orange_updater_release">Vydání</string>
-    <string name="orange_updater_beta">Beta</string>
-    <string name="orange_updater_dev">Dev</string>
-    <string name="orange_updater_disabled">Vypnuto</string>
     <string name="orange_updater_install_action">Instalovat</string>
     <string name="orange_updater_update_action">Aktualizovat</string>
     <string name="orange_updater_channel_disabled">Aktuální kanál aktualizací je zakázán</string>

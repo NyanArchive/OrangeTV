@@ -96,7 +96,6 @@
     <string name="cpv_custom">Personalizado</string>
     <string name="cpv_select">Seleccionar</string>
     <string name="cpv_transparency">Transparencia</string>
-    <string name="orange_settings_clipfinity">Clipfinity</string>
     <string name="orange_updater_ds">Tamaño de la descarga: %s</string>
     <string name="orange_updater_ds2">%1$s/%2$s</string>
     <string name="orange_updater_ds3">%s\%%</string>
@@ -104,10 +103,6 @@
     <string name="orange_updater_msg1">PurpleTV necesita actualizarse</string>
     <string name="orange_app_name">PurpleTV</string>
     <string name="orange_settings_updater_channel">Canal de actualización</string>
-    <string name="orange_updater_release">Estable</string>
-    <string name="orange_updater_beta">Beta</string>
-    <string name="orange_updater_dev">Desarrollador</string>
-    <string name="orange_updater_disabled">Desactivado</string>
     <string name="orange_updater_install_action">Instalar</string>
     <string name="orange_updater_update_action">Actualizar</string>
     <string name="orange_updater_channel_disabled">El canal de actualización actual está desactivado</string>
@@ -170,4 +165,5 @@
     <string name="orange_settings_menu_blacklist">Lista negra</string>
     <string name="orange_settings_force_exoplayer_for_vods">Forzar ExoPlayer para VODs</string>
     <string name="orange_settings_exoplayer_vod_speed">Velocidad de los VODs con ExoPlayer</string>
+    <string name="orange_add">Añadir</string>
 </resources>

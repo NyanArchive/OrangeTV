@@ -96,7 +96,6 @@
     <string name="cpv_custom">Власний</string>
     <string name="cpv_select">Обрати</string>
     <string name="cpv_transparency">Прозорість</string>
-    <string name="orange_settings_clipfinity">Clipfinity</string>
     <string name="orange_updater_ds">Розмір завантаження: %s</string>
     <string name="orange_updater_ds2">%1$s/%2$s</string>
     <string name="orange_updater_ds3">%s\%%</string>
@@ -104,10 +103,6 @@
     <string name="orange_updater_msg1">Потрібне оновлення PurpleTV</string>
     <string name="orange_app_name">PurpleTV</string>
     <string name="orange_settings_updater_channel">Канал оновлень</string>
-    <string name="orange_updater_release">Реліз</string>
-    <string name="orange_updater_beta">Бета</string>
-    <string name="orange_updater_dev">Дев</string>
-    <string name="orange_updater_disabled">Вимкнено</string>
     <string name="orange_updater_install_action">Встановити</string>
     <string name="orange_updater_update_action">Оновити</string>
     <string name="orange_updater_channel_disabled">Оберіть канал оновлень</string>

@@ -96,7 +96,6 @@
     <string name="cpv_custom">自定义</string>
     <string name="cpv_select">选择</string>
     <string name="cpv_transparency">透明度</string>
-    <string name="orange_settings_clipfinity">剪切大小</string>
     <string name="orange_updater_ds">正在下载 %s</string>
     <string name="orange_updater_ds2">%1$s/%2$s</string>
     <string name="orange_updater_ds3">%s\%%</string>
@@ -104,10 +103,6 @@
     <string name="orange_updater_msg1">PurpleTV 需要更新</string>
     <string name="orange_app_name">PurpleTV</string>
     <string name="orange_settings_updater_channel">更新通道</string>
-    <string name="orange_updater_release">释放</string>
-    <string name="orange_updater_beta">测试版</string>
-    <string name="orange_updater_dev">开发版</string>
-    <string name="orange_updater_disabled">禁用</string>
     <string name="orange_updater_install_action">安装</string>
     <string name="orange_updater_update_action">更新</string>
     <string name="orange_updater_channel_disabled">当前更新通道已禁用</string>

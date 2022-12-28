@@ -103,6 +103,10 @@
     <string name="orange_updater_msg1">PurpleTV necesita actualizarse</string>
     <string name="orange_app_name">PurpleTV</string>
     <string name="orange_settings_updater_channel">Actualizar canal</string>
+    <string name="orange_updater_final_release">Lanzamiento</string>
+    <string name="orange_updater_final_beta">Beta</string>
+    <string name="orange_updater_final_dev">Desarrollador</string>
+    <string name="orange_updater_final_disabled">Deshabilitado</string>
     <string name="orange_updater_install_action">Instalar</string>
     <string name="orange_updater_update_action">Actualizar</string>
     <string name="orange_updater_channel_disabled">El canal de actualización actual está desactivado</string>
@@ -165,4 +169,5 @@
     <string name="orange_settings_menu_blacklist">Lista negra</string>
     <string name="orange_settings_force_exoplayer_for_vods">Forzar ExoPlayer para VODs</string>
     <string name="orange_settings_exoplayer_vod_speed">Velocidad de los VODs con ExoPlayer</string>
+    <string name="orange_add">Añadir</string>
 </resources>

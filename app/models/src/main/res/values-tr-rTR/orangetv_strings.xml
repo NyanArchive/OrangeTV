@@ -103,6 +103,10 @@
     <string name="orange_updater_msg1">PurpleTV güncellenmesi gerekiyor</string>
     <string name="orange_app_name">PurpleTV</string>
     <string name="orange_settings_updater_channel">Güncelleme kanalı</string>
+    <string name="orange_updater_final_release">Sürüm</string>
+    <string name="orange_updater_final_beta">Beta</string>
+    <string name="orange_updater_final_dev">Geliştirici</string>
+    <string name="orange_updater_final_disabled">Devre dışı</string>
     <string name="orange_updater_install_action">Kur</string>
     <string name="orange_updater_update_action">Güncelle</string>
     <string name="orange_updater_channel_disabled">Geçerli güncelleme kanalı devre dışı</string>
@@ -165,4 +169,5 @@
     <string name="orange_settings_menu_blacklist">Kara liste</string>
     <string name="orange_settings_force_exoplayer_for_vods">Geçmiş yayınlar için ExoPlayer\'i kullanmaya zorla</string>
     <string name="orange_settings_exoplayer_vod_speed">ExoPlayer geçmiş yayın hızı</string>
+    <string name="orange_add">Ekle</string>
 </resources>

@@ -103,6 +103,10 @@
     <string name="orange_updater_msg1">Доступно обновление</string>
     <string name="orange_app_name">PurpleTV</string>
     <string name="orange_settings_updater_channel">Канал обновлений</string>
+    <string name="orange_updater_final_release">Релиз</string>
+    <string name="orange_updater_final_beta">Бета</string>
+    <string name="orange_updater_final_dev">Альфа</string>
+    <string name="orange_updater_final_disabled">Отключен</string>
     <string name="orange_updater_install_action">Установить</string>
     <string name="orange_updater_update_action">Скачать</string>
     <string name="orange_updater_channel_disabled">Данный канал обновлений отключён</string>
@@ -167,4 +171,5 @@
     <string name="orange_settings_menu_blacklist">Черный список</string>
     <string name="orange_settings_force_exoplayer_for_vods">Использовать ExoPlayer для записей стримов</string>
     <string name="orange_settings_exoplayer_vod_speed">Скорость воспроизведения (ExoPlayer)</string>
+    <string name="orange_add">Добавить</string>
 </resources>

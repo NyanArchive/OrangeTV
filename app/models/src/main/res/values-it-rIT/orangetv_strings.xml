@@ -103,6 +103,10 @@
     <string name="orange_updater_msg1">PurpleTV necessita di un aggiornamento</string>
     <string name="orange_app_name">PurpleTV</string>
     <string name="orange_settings_updater_channel">Canale di aggiornamento</string>
+    <string name="orange_updater_final_release">Rilascio</string>
+    <string name="orange_updater_final_beta">Beta</string>
+    <string name="orange_updater_final_dev">Sviluppatore</string>
+    <string name="orange_updater_final_disabled">Disabilitato</string>
     <string name="orange_updater_install_action">Installa</string>
     <string name="orange_updater_update_action">Aggiorna</string>
     <string name="orange_updater_channel_disabled">L\'attuale canale di aggiornamento è disabilitato</string>

@@ -15,7 +15,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/network/creatorpinnedc
  
      .line 14
 -    iput-object p4, p0, Ltv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageTimeModel;->timeMessageUnpinnedMS:Ljava/lang/Long;
-+    invoke-static {p4}, Ltv/orange/core/Core;->hookUnpinnedMS(Ljava/lang/Long;)Ljava/lang/Long;
++    invoke-static {p4}, Ltv/orange/core/CoreHook;->hookUnpinnedMS(Ljava/lang/Long;)Ljava/lang/Long;
 +
 +    move-result-object v0
 +

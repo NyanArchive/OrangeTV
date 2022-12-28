@@ -33,18 +33,14 @@ class BlacklistPresenter(view: BlacklistContract.View) : BlacklistContract.Prese
     override fun onItemRemoved(keyword: KeywordData) {
         disposables.add(
             repository.delete(keyword = keyword).observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    LoggerImpl.debug("Removed: $keyword")
-                }, { it.printStackTrace() })
+                .subscribe({}, { it.printStackTrace() })
         )
     }
 
     override fun addNewItems(rawText: String) {
         disposables.add(
             repository.addNewItems(rawText)
-                .subscribe({
-                    LoggerImpl.debug("text: $rawText")
-                }, { it.printStackTrace() })
+                .subscribe({}, { it.printStackTrace() })
         )
     }
 
@@ -57,9 +53,7 @@ class BlacklistPresenter(view: BlacklistContract.View) : BlacklistContract.Prese
                     KeywordData.Type.INSENSITIVE -> KeywordData.Type.USERNAME
                     KeywordData.Type.USERNAME -> KeywordData.Type.CASESENSITIVE
                 }
-            ).observeOn(AndroidSchedulers.mainThread()).subscribe({
-                LoggerImpl.debug("Changed: $keyword")
-            }, { it.printStackTrace() })
+            ).observeOn(AndroidSchedulers.mainThread()).subscribe({}, { it.printStackTrace() })
         )
     }
 

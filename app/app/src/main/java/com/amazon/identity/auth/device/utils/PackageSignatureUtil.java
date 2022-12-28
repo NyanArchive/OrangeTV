@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.Signature;
 
-import tv.orange.core.Core;
+import tv.orange.core.CoreHook;
 
 public class PackageSignatureUtil {
     /* ... */
@@ -14,7 +14,7 @@ public class PackageSignatureUtil {
 
         /* ... */
 
-        return Core.hookPackageSignature(packageInfo.signatures); // TODO: __INJECT_CODE
+        return CoreHook.hookPackageSignature(packageInfo.signatures); // TODO: __INJECT_CODE
     }
 
     /* ... */

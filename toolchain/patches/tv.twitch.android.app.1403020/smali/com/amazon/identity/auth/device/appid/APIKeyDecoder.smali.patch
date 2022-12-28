@@ -5,7 +5,7 @@ diff --git a/smali_classes2/com/amazon/identity/auth/device/appid/APIKeyDecoder.
          }
      .end annotation
  
-+    invoke-static {p0}, Ltv/orange/core/Core;->hookPackageName(Ljava/lang/String;)Ljava/lang/String;
++    invoke-static {p0}, Ltv/orange/core/CoreHook;->hookPackageName(Ljava/lang/String;)Ljava/lang/String;
 +
 +    move-result-object p0
 +
@@ -16,7 +16,7 @@ diff --git a/smali_classes2/com/amazon/identity/auth/device/appid/APIKeyDecoder.
  .method private static verifySignature(Ljava/lang/String;Ljava/lang/String;Lcom/amazon/identity/auth/device/utils/HashAlgorithm;Landroid/content/Context;)V
      .locals 3
  
-+    invoke-static {p1}, Ltv/orange/core/Core;->hookRealPackageName(Ljava/lang/String;)Ljava/lang/String;
++    invoke-static {p1}, Ltv/orange/core/CoreHook;->hookRealPackageName(Ljava/lang/String;)Ljava/lang/String;
 +
 +    move-result-object p1
 +

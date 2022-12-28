@@ -13,19 +13,20 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 
 import tv.orange.core.Core;
+import tv.orange.core.CoreHook;
 import tv.orange.models.exception.VirtualImpl;
 
 public class APIKeyDecoder {
     /* ... */
 
     private static void verifyPayload(String str, JSONObject jSONObject, Context context) throws SecurityException, JSONException, PackageManager.NameNotFoundException, CertificateException, NoSuchAlgorithmException, IOException {
-        str = Core.hookPackageName(str); // TODO: __INJECT_CODE
+        str = CoreHook.hookPackageName(str); // TODO: __INJECT_CODE
 
         throw new VirtualImpl();
     }
 
     private static void verifySignature(String str, String str2, HashAlgorithm hashAlgorithm, Context context) {
-        str = Core.hookRealPackageName(str); // TODO: __INJECT_CODE
+        str = CoreHook.hookRealPackageName(str); // TODO: __INJECT_CODE
 
         throw new VirtualImpl();
     }

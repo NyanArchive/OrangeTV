@@ -9,7 +9,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/creatorpinnedchatmessa
 +    .registers 2
 +
 +    .line 11
-+    invoke-static {}, Ltv/orange/core/Core;->isPinnedChatMessageEnabled()Z
++    invoke-static {}, Ltv/orange/core/CoreHook;->isPinnedChatMessageEnabled()Z
 +
 +    move-result v0
 +

@@ -10,31 +10,22 @@ class ExperimentHelperHookImpl(private val org: IExperimentHelper) : ExperimentH
     override fun getGroupForExperiment(p0: Experiment): String {
         return when (p0) {
             Experiment.ANIMATED_EMOTES -> "active_11.5"
-
-            else -> {
-                val res = org.getGroupForExperimentOrg(p0)
-
+            else -> org.getGroupForExperimentOrg(p0).also { res ->
                 LoggerImpl.devDebug { "${p0.experimentName} --> $p0, res --> $res" }
-
-                return res
             }
         }
     }
 
     override fun getTreatmentForExperimentId(p0: String): String {
-        val res = org.getTreatmentForExperimentIdOrg(p0)
-
-        LoggerImpl.devDebug { "p0 --> $p0, res --> $res" }
-
-        return res
+        return org.getTreatmentForExperimentIdOrg(p0).also { res ->
+            LoggerImpl.devDebug { "p0 --> $p0, res --> $res" }
+        }
     }
 
     override fun isFeatureFlagEnabled(p0: RemoteConfigurable): Boolean {
-        val res = org.isFeatureFlagEnabledOrg(p0)
-
-        LoggerImpl.devDebug { "${p0.displayName} --> $p0, res --> $res" }
-
-        return res
+        return org.isFeatureFlagEnabledOrg(p0).also { res ->
+            LoggerImpl.devDebug { "${p0.displayName} --> $p0, res --> $res" }
+        }
     }
 
     override fun isInGroupForMultiVariantExperiment(p0: Experiment, p1: String): Boolean {
@@ -49,10 +40,8 @@ class ExperimentHelperHookImpl(private val org: IExperimentHelper) : ExperimentH
 
             Experiment.IMPROVED_BACKGROUND_AUDIO -> Flag.IMPROVED_BACKGROUND_AUDIO.asBoolean()
 
-            else -> {
-                val res = org.isInGroupForMultiVariantExperimentOrg(p0, p1)
+            else -> org.isInGroupForMultiVariantExperimentOrg(p0, p1).also { res ->
                 LoggerImpl.devDebug { "${p0.experimentName} --> $p0, p1 --> $p1, res --> $res" }
-                res
             }
         }
     }
@@ -61,11 +50,9 @@ class ExperimentHelperHookImpl(private val org: IExperimentHelper) : ExperimentH
         p0: ChannelExperiment,
         p1: String
     ): Boolean {
-        val res = org.isInOnGroupForBinaryChannelExperimentOrg(p0, p1)
-
-        LoggerImpl.devDebug { "${p0.experimentName} --> $p0, p1 --> $p1, res --> $res" }
-
-        return res
+        return org.isInOnGroupForBinaryChannelExperimentOrg(p0, p1).also { res ->
+            LoggerImpl.devDebug { "${p0.experimentName} --> $p0, p1 --> $p1, res --> $res" }
+        }
     }
 
     override fun isInOnGroupForBinaryExperiment(p0: Experiment): Boolean {
@@ -76,20 +63,16 @@ class ExperimentHelperHookImpl(private val org: IExperimentHelper) : ExperimentH
 
             Experiment.CHAT_SETTINGS -> Flag.CHAT_SETTINGS.asBoolean()
 
-            else -> {
-                val res = org.isInOnGroupForBinaryExperimentOrg(p0)
+            else -> org.isInOnGroupForBinaryExperimentOrg(p0).also { res ->
                 LoggerImpl.devDebug { "${p0.experimentName} --> $p0, res --> $res" }
-                res
             }
         }
     }
 
     override fun isInRestrictedLocaleForExperiment(p0: Experiment): Boolean {
-        val res = org.isInRestrictedLocaleForExperimentOrg(p0)
-
-        LoggerImpl.devDebug { "${p0.experimentName} --> $p0, res --> $res" }
-
-        return res
+        return org.isInRestrictedLocaleForExperimentOrg(p0).also { res ->
+            LoggerImpl.devDebug { "${p0.experimentName} --> $p0, res --> $res" }
+        }
     }
 
     override fun getModelForExperimentId(p0: String): MiniExperimentModel {

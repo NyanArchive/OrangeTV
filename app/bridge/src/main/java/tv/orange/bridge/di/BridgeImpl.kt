@@ -38,7 +38,6 @@ class BridgeImpl private constructor() : Bridge {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : Feature> getFeature(clazz: Class<T>): T {
-        LoggerImpl.debug("getFeature: $clazz")
         synchronized(lock) {
             clazzProviderMap[clazz]?.let { provider ->
                 return provider.get() as T

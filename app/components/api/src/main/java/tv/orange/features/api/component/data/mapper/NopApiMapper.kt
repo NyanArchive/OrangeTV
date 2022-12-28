@@ -61,8 +61,6 @@ class NopApiMapper @Inject constructor() {
             }
         }
 
-        LoggerImpl.devDebug("new: $new, old: $old")
-
         return set
     }
 

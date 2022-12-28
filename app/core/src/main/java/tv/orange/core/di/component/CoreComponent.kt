@@ -6,10 +6,10 @@ import dagger.Component
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import tv.orange.core.CoreHook
-import tv.orange.core.ResourceManager
 import tv.orange.core.di.module.CoreModule
 import tv.orange.core.di.module.NetworkModule
 import tv.orange.core.di.scope.AppScope
+import tv.twitch.android.app.core.ThemeManager
 import tv.twitch.android.core.user.TwitchAccountManager
 
 @AppScope
@@ -26,6 +26,7 @@ interface CoreComponent {
     val defaultOkHttpClient: OkHttpClient
 
     val twitchAccountManager: TwitchAccountManager
+    val themeManager: ThemeManager.Companion
 
     val coreHook: CoreHook
 }

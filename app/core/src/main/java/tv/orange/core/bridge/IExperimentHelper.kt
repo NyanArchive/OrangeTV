@@ -17,10 +17,7 @@ interface IExperimentHelper {
 
     fun isInGroupForMultiVariantExperimentOrg(experiment: Experiment, str: String): Boolean
 
-    fun isInOnGroupForBinaryChannelExperimentOrg(
-        channelExperiment: ChannelExperiment,
-        str: String
-    ): Boolean
+    fun isInOnGroupForBinaryChannelExperimentOrg(exp: ChannelExperiment, str: String): Boolean
 
     fun isInOnGroupForBinaryExperimentOrg(experiment: Experiment): Boolean
 

@@ -33,9 +33,7 @@ class HighlighterPresenter(view: HighlighterContract.View) : HighlighterContract
     override fun onItemRemoved(keyword: KeywordData) {
         disposables.add(
             repository.delete(keyword = keyword).observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    LoggerImpl.debug("Removed: $keyword")
-                }, { it.printStackTrace() })
+                .subscribe({}, { it.printStackTrace() })
         )
     }
 
@@ -43,18 +41,13 @@ class HighlighterPresenter(view: HighlighterContract.View) : HighlighterContract
         disposables.add(
             repository.update(
                 item = keyword.copy(color = newColor)
-            ).observeOn(AndroidSchedulers.mainThread()).subscribe({
-                LoggerImpl.debug("Keyword: $keyword, newColor: $newColor")
-            }, { it.printStackTrace() })
+            ).observeOn(AndroidSchedulers.mainThread()).subscribe({}, { it.printStackTrace() })
         )
     }
 
     override fun addNewItems(rawText: String) {
         disposables.add(
-            repository.addNewItems(rawText)
-                .subscribe({
-                    LoggerImpl.debug("text: $rawText")
-                }, { it.printStackTrace() })
+            repository.addNewItems(rawText).subscribe({}, { it.printStackTrace() })
         )
     }
 
@@ -62,9 +55,7 @@ class HighlighterPresenter(view: HighlighterContract.View) : HighlighterContract
         disposables.add(
             repository.update(
                 item = keyword.copy(vibration = !keyword.vibration),
-            ).observeOn(AndroidSchedulers.mainThread()).subscribe({
-                LoggerImpl.debug("Changed: $keyword")
-            }, { it.printStackTrace() })
+            ).observeOn(AndroidSchedulers.mainThread()).subscribe({}, { it.printStackTrace() })
         )
     }
 
@@ -81,9 +72,7 @@ class HighlighterPresenter(view: HighlighterContract.View) : HighlighterContract
                     KeywordData.Type.INSENSITIVE -> KeywordData.Type.USERNAME
                     KeywordData.Type.USERNAME -> KeywordData.Type.CASESENSITIVE
                 }
-            ).observeOn(AndroidSchedulers.mainThread()).subscribe({
-                LoggerImpl.debug("Changed: $keyword")
-            }, { it.printStackTrace() })
+            ).observeOn(AndroidSchedulers.mainThread()).subscribe({}, { it.printStackTrace() })
         )
     }
 

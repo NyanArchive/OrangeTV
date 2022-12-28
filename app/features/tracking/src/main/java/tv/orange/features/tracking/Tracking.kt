@@ -29,7 +29,7 @@ class Tracking @Inject constructor(
                 buildNumber = BuildConfigUtil.buildConfig.number,
                 deviceId = UniqueDeviceIdentifier.getInstance().getUniqueID(context)
             ).subscribe({
-                LoggerImpl.debug("OK")
+                LoggerImpl.info("OK")
             }, Throwable::printStackTrace)
         )
     }

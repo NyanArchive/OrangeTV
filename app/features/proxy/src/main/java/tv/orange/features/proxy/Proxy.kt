@@ -63,11 +63,8 @@ class Proxy @Inject constructor(
             proxyResponse: Single<Response<String>>,
             proxyName: String
         ): Single<Response<String>> {
-            LoggerImpl.debug("Start $proxyName")
-
             val rm = ResourceManager.get()
             return proxyResponse.flatMap { proxyPlaylist ->
-                LoggerImpl.debug("response: $proxyPlaylist")
                 if (!proxyPlaylist.isSuccessful) {
                     Core.showToast(
                         ResourceManager.get().getString(

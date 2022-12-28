@@ -28,12 +28,11 @@ object SentrySDK {
             options.sampleRate = 1.0
         }
         isInitialized = true
-        LoggerImpl.debug("OK")
+        LoggerImpl.info("OK")
     }
 
     fun logException(th: Throwable?, context: String) {
         if (!isInitialized) {
-            LoggerImpl.debug("called")
             return
         }
 
@@ -49,7 +48,6 @@ object SentrySDK {
 
     fun setTag(key: String?, value: String?) {
         if (!isInitialized) {
-            LoggerImpl.debug("called")
             return
         }
         key ?: return
@@ -60,7 +58,6 @@ object SentrySDK {
 
     private fun addBreadcrumb(message: String, category: String) {
         if (!isInitialized) {
-            LoggerImpl.debug("called")
             return
         }
 
@@ -69,7 +66,6 @@ object SentrySDK {
 
     fun setBool(key: String?, z: Boolean) {
         if (!isInitialized) {
-            LoggerImpl.debug("called")
             return
         }
         key ?: return
@@ -90,7 +86,6 @@ object SentrySDK {
 
     fun setInteger(key: String?, i: Int) {
         if (!isInitialized) {
-            LoggerImpl.debug("called")
             return
         }
         key ?: return
@@ -100,7 +95,6 @@ object SentrySDK {
 
     fun setLong(key: String?, j: Long) {
         if (!isInitialized) {
-            LoggerImpl.debug("called")
             return
         }
         key ?: return
@@ -110,7 +104,6 @@ object SentrySDK {
 
     fun logEvent(level: String, msg: String) {
         if (!isInitialized) {
-            LoggerImpl.debug("called")
             return
         }
 

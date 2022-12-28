@@ -6,8 +6,8 @@ import tv.twitch.android.app.core.ApplicationContext
 import java.util.*
 
 object BuildConfigUtil {
-    const val BUILD_JSON_FILENAME = "build.json"
-    const val USER_AGENT_TEMPLATE = "PurpleTV/%s Build/%d"
+    private const val BUILD_JSON_FILENAME = "build.json"
+    private const val USER_AGENT_TEMPLATE = "PurpleTV/%s Build/%d"
 
     val userAgent by lazy {
         String.format(

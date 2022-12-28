@@ -14,6 +14,7 @@ import tv.orange.features.spam.di.module.SpamModule
 import tv.orange.features.timer.di.module.TimerModule
 import tv.orange.features.usersearch.di.module.UserSearchModule
 import tv.orange.features.vodsync.di.module.VodSyncModule
+import tv.twitch.android.app.core.ThemeManager
 
 @Module(
     includes = [ChaptersModule::class, ChatModule::class, LogsModule::class,
@@ -23,8 +24,8 @@ import tv.orange.features.vodsync.di.module.VodSyncModule
 class BridgeFeatureModule {
     @BridgeScope
     @Provides
-    fun providePreferenceManager(context: Context): PreferenceManager {
-        return PreferenceManager(context)
+    fun providePreferenceManager(context: Context, tm: ThemeManager.Companion): PreferenceManager {
+        return PreferenceManager(context, tm)
     }
 
     @BridgeScope

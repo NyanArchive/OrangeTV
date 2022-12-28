@@ -4,7 +4,7 @@ import android.app.Activity;
 
 import io.reactivex.Single;
 import io.reactivex.SingleSource;
-import tv.orange.core.Core;
+import tv.orange.core.CoreHook;
 import tv.twitch.android.shared.subscriptions.db.SubscriptionPurchaseEntity;
 
 public class GooglePlaySubscriptionPurchaser {
@@ -15,7 +15,7 @@ public class GooglePlaySubscriptionPurchaser {
 
         /* ... */
 
-        return Core.injectBilling(activity, res, purchaseEntity); // TODO: __INJECT_BILLING
+        return CoreHook.injectBilling(activity, res, purchaseEntity); // TODO: __INJECT_BILLING
     }
 
     /* ... */

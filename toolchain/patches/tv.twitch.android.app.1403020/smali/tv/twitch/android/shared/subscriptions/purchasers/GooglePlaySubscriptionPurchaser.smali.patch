@@ -22,7 +22,7 @@ diff --git a/smali_classes7/tv/twitch/android/shared/subscriptions/purchasers/Go
 +    move-result-object p0
  
 -    invoke-direct {p0, p1, v0, p2}, Ltv/twitch/android/shared/subscriptions/purchasers/GooglePlaySubscriptionPurchaser;->purchase(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)Lio/reactivex/Single;
-+    invoke-static {p1, p0, p2}, Ltv/orange/core/Core;->injectBilling(Landroid/app/Activity;Lio/reactivex/Single;Ltv/twitch/android/shared/subscriptions/db/SubscriptionPurchaseEntity;)Lio/reactivex/Single;
++    invoke-static {p1, p0, p2}, Ltv/orange/core/CoreHook;->injectBilling(Landroid/app/Activity;Lio/reactivex/Single;Ltv/twitch/android/shared/subscriptions/db/SubscriptionPurchaseEntity;)Lio/reactivex/Single;
  
      move-result-object p0
  

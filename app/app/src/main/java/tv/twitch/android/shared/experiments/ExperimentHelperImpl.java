@@ -53,7 +53,7 @@ public class ExperimentHelperImpl implements ExperimentHelper, IExperimentHelper
     }
 
     @Override
-    public boolean isInOnGroupForBinaryChannelExperimentOrg(@NonNull ChannelExperiment channelExperiment, @NonNull String str) { // TODO: __RENAME_METHOD
+    public boolean isInOnGroupForBinaryChannelExperimentOrg(@NonNull ChannelExperiment exp, @NonNull String str) { // TODO: __RENAME_METHOD
         throw new VirtualImpl();
     }
 

@@ -88,10 +88,6 @@ object ViewUtil {
         return this.visibility == View.VISIBLE
     }
 
-    fun ViewGroup.getFirstChild(): View? {
-        return this.getChildAt(0)
-    }
-
     fun Context.dipToPix(dip: Int): Int {
         return TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,

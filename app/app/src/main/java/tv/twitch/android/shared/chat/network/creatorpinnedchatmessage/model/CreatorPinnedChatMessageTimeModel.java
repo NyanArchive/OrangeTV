@@ -1,6 +1,6 @@
 package tv.twitch.android.shared.chat.network.creatorpinnedchatmessage.model;
 
-import tv.orange.core.Core;
+import tv.orange.core.CoreHook;
 
 public class CreatorPinnedChatMessageTimeModel {
     private Long timeMessagePinnedMS;
@@ -17,7 +17,7 @@ public class CreatorPinnedChatMessageTimeModel {
     public CreatorPinnedChatMessageTimeModel(Long l, long j, Long l2) {
         this.timeMessageSentMS = l;
         this.timeMessagePinnedMS = j;
-        this.timeMessageUnpinnedMS = Core.hookUnpinnedMS(l2); // TODO: __REPLACE_CODE
+        this.timeMessageUnpinnedMS = CoreHook.hookUnpinnedMS(l2); // TODO: __REPLACE_CODE
     }
 
     public final Long getTimeMessageSentMS() {

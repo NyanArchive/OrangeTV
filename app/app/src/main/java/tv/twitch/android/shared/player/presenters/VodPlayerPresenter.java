@@ -3,6 +3,7 @@ package tv.twitch.android.shared.player.presenters;
 import android.content.Context;
 
 import tv.orange.core.Core;
+import tv.orange.core.CoreHook;
 import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.provider.experiments.ExperimentHelper;
 import tv.twitch.android.shared.api.pub.IResumeWatchingFetcher;
@@ -21,7 +22,7 @@ public class VodPlayerPresenter {
     public VodPlayerPresenter(Context var1, PlayerPresenterTracker var2, TwitchPlayerProvider var3, VodManifestProvider var4, VodFetcher var5, IResumeWatchingFetcher var6, ExperimentHelper var7, PlayerAvailabilityTracker var8, ManifestPropertiesFactory var9, AudioFocusPresenter var10, ReferrerPropertiesProvider var11) {
         /* ... */
 
-        Core.maybeForceExoPlayerForVods(var3);
+        CoreHook.maybeForceExoPlayerForVods(var3);
 
         // this.twitchPlayer = var3.getTwitchPlayer(this, var12);
 

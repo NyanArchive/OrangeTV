@@ -27,8 +27,8 @@ class NetworkModule {
     @Provides
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient().newBuilder()
-            .readTimeout(15000, TimeUnit.MILLISECONDS)
-            .writeTimeout(15000, TimeUnit.MILLISECONDS).apply {
+            .readTimeout(DEFAULT_OKHTTP_TIMEOUT, TimeUnit.MILLISECONDS)
+            .writeTimeout(DEFAULT_OKHTTP_TIMEOUT, TimeUnit.MILLISECONDS).apply {
                 addNetworkInterceptor { chain ->
                     chain.proceed(
                         chain.request().newBuilder().header(
@@ -51,5 +51,9 @@ class NetworkModule {
             .addConverterFactory(GsonConverterFactory.create(Gson()))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
             .client(client)
+    }
+
+    companion object {
+        const val DEFAULT_OKHTTP_TIMEOUT = 5000L
     }
 }

@@ -82,7 +82,6 @@ class Updater @Inject constructor(
         clearTempCache(context = context)
         when (Flag.UPDATER.asVariant<UpdateChannel>()) {
             UpdateChannel.Disabled -> {
-                LoggerImpl.debug("DISABLED")
                 Core.showToast(resourceManager.getString("orange_updater_channel_disabled"))
                 return
             }
@@ -162,7 +161,6 @@ class Updater @Inject constructor(
                     }
                 }, {
                     it.printStackTrace()
-                    LoggerImpl.debug("ex: $it")
                 }),
             null,
             1,

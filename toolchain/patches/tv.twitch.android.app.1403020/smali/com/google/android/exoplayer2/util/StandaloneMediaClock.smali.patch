@@ -5,7 +5,7 @@ diff --git a/smali_classes2/com/google/android/exoplayer2/util/StandaloneMediaCl
      .line 41
      sget-object p1, Lcom/google/android/exoplayer2/PlaybackParameters;->DEFAULT:Lcom/google/android/exoplayer2/PlaybackParameters;
  
-+    invoke-static {p1}, Ltv/orange/core/Core;->hookVodPlayerMediaClock(Lcom/google/android/exoplayer2/PlaybackParameters;)Lcom/google/android/exoplayer2/PlaybackParameters;
++    invoke-static {p1}, Ltv/orange/core/CoreHook;->hookVodPlayerMediaClock(Lcom/google/android/exoplayer2/PlaybackParameters;)Lcom/google/android/exoplayer2/PlaybackParameters;
 +
 +    move-result-object p1
 +

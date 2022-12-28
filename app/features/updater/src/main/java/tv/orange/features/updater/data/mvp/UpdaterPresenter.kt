@@ -31,7 +31,6 @@ class UpdaterPresenter(
     private var readyToInstall = false
 
     override fun onViewEvent(event: Event) {
-        LoggerImpl.debug("event: $event")
         when (event) {
             Event.OnCancelClicked -> {
                 view.close()
@@ -69,7 +68,6 @@ class UpdaterPresenter(
         observer = subject.subscribeOn(Schedulers.from(Executors.newSingleThreadExecutor()))
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ state ->
-                LoggerImpl.debug("state: $state")
                 when (state) {
                     State.Starting -> {
                         view.render(UpdaterContract.View.State.Prepare)

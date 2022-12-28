@@ -11,28 +11,34 @@ import tv.orange.models.abc.Feature
 import tv.twitch.android.app.core.ThemeManager
 import javax.inject.Inject
 
+@Suppress("DEPRECATION")
 @AutoInitialize
 class PreferenceManager @Inject constructor(
-    val context: Context
+    val context: Context,
+    val themeManager: ThemeManager.Companion
 ) : SharedPreferences.OnSharedPreferenceChangeListener, Feature {
-    private val twitch = android.preference.PreferenceManager.getDefaultSharedPreferences(context)
-    private val orange =
-        context.getSharedPreferences(ORANGE_SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
+    private val twitch = android.preference.PreferenceManager.getDefaultSharedPreferences(
+        context
+    )
+    private val orange = context.getSharedPreferences(
+        ORANGE_SHARED_PREFERENCES_NAME,
+        Context.MODE_PRIVATE
+    )
 
     private val listeners = mutableSetOf<FlagListener>()
 
     override fun onSharedPreferenceChanged(preferences: SharedPreferences?, key: String?) {
         when (preferences) {
-            twitch -> onTwitchSharedPreferenceChanged(preferences = preferences, key = key)
+            twitch -> onTwitchSharedPreferenceChanged(key = key)
             orange -> onOrangeSharedPreferenceChanged(key = key)
+            else -> {
+                LoggerImpl.warning("Unknown pref: $preferences")
+            }
         }
     }
 
-    private fun onTwitchSharedPreferenceChanged(
-        preferences: SharedPreferences?,
-        key: String?
-    ) {
-        isDarkThemeEnabled = ThemeManager.Companion!!.isNightModeEnabled(context)
+    private fun onTwitchSharedPreferenceChanged(key: String?) {
+        isDarkThemeEnabled = themeManager.isNightModeEnabled(context)
     }
 
     private fun onOrangeSharedPreferenceChanged(key: String?) {
@@ -62,12 +68,6 @@ class PreferenceManager @Inject constructor(
     fun registerFlagListeners(vararg l: FlagListener) {
         l.forEach { listener ->
             listeners.add(listener)
-        }
-    }
-
-    fun unregisterFlagListeners(vararg l: FlagListener) {
-        l.forEach { listener ->
-            listeners.remove(listener)
         }
     }
 

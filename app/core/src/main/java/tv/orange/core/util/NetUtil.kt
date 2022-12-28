@@ -1,5 +1,6 @@
 package tv.orange.core.util
 
+import tv.orange.core.di.module.NetworkModule
 import java.io.File
 import java.io.FileOutputStream
 import java.net.URL
@@ -7,6 +8,8 @@ import javax.net.ssl.HttpsURLConnection
 
 object NetUtil {
     private const val NET_BUFFER_SIZE = 4 * 1024
+
+    private const val PROGRESS_UPDATE_TIMEOUT_MS = 500
 
     interface DownloadCallback {
         fun onProgressUpdate(progress: Int, downloadedBytes: Int, totalBytes: Int)
@@ -26,12 +29,12 @@ object NetUtil {
                     var progress: Int
                     var currentUpdate: Long
                     var lastUpdate = System.currentTimeMillis()
+                    val contentLength = connection.contentLength
                     while (inputStream.read(buf).also { count = it } != -1) {
                         current += count
-                        progress =
-                            ((current.toFloat().div(connection.contentLength)) * 100).toInt()
+                        progress = ((current.toFloat().div(contentLength)) * 100).toInt()
                         currentUpdate = System.currentTimeMillis()
-                        if (currentUpdate - lastUpdate > 500) {
+                        if (currentUpdate - lastUpdate > PROGRESS_UPDATE_TIMEOUT_MS) {
                             callback.onProgressUpdate(
                                 progress,
                                 current,
@@ -56,14 +59,13 @@ object NetUtil {
         }
     }
 
-    fun getFileSize(u: String): Long {
+    fun getFileSize(url: String): Long {
         var connection: HttpsURLConnection? = null
         return try {
-            val url = URL(u)
-            connection = (url.openConnection() as HttpsURLConnection).apply {
+            connection = (URL(url).openConnection() as HttpsURLConnection).apply {
                 requestMethod = "HEAD"
-                connectTimeout = 5000
-                readTimeout = 5000
+                connectTimeout = NetworkModule.DEFAULT_OKHTTP_TIMEOUT.toInt()
+                readTimeout = NetworkModule.DEFAULT_OKHTTP_TIMEOUT.toInt()
             }
 
             connection.contentLength.toLong()

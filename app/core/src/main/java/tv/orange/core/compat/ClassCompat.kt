@@ -27,19 +27,6 @@ object ClassCompat {
             return false
         }
 
-        for (stackTraceElement in Thread.currentThread().stackTrace) {
-            stackTraceElement ?: continue
-            if (stackTraceElement.className.isBlank()) {
-                continue
-            }
-
-            if (!stackTraceElement.className.equals(clazz)) {
-                continue
-            }
-
-            return true
-        }
-
-        return false
+        return Thread.currentThread().stackTrace.any { it.className.equals(clazz) }
     }
 }

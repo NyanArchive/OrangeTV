@@ -5,7 +5,7 @@ diff --git a/smali_classes2/com/amazon/identity/auth/device/utils/PackageSignatu
      :cond_1
      iget-object p0, p0, Landroid/content/pm/PackageInfo;->signatures:[Landroid/content/pm/Signature;
  
-+    invoke-static {p0}, Ltv/orange/core/Core;->hookPackageSignature([Landroid/content/pm/Signature;)[Landroid/content/pm/Signature;
++    invoke-static {p0}, Ltv/orange/core/CoreHook;->hookPackageSignature([Landroid/content/pm/Signature;)[Landroid/content/pm/Signature;
 +
 +    move-result-object p0
 +

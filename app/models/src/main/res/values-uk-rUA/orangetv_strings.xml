@@ -51,7 +51,7 @@
     <string name="orange_settings_bottom_navbar_position">Позиція панелі навігації</string>
     <string name="orange_bottom_navbar_position_default">За замовчуванням</string>
     <string name="orange_bottom_navbar_position_top">Вгорі</string>
-    <string name="orange_bottom_navbar_position_hidden">Сховати</string>
+    <string name="orange_bottom_navbar_position_hidden">Схована</string>
     <string name="orange_settings_followed_full_cards">Збільшені прев\'ю етерів</string>
     <string name="orange_settings_disable_hype_train">Сховати «Хайпотяг»</string>
     <string name="orange_settings_hide_discover_tab">Сховати вкладку «Discover»</string>
@@ -103,6 +103,10 @@
     <string name="orange_updater_msg1">Потрібне оновлення PurpleTV</string>
     <string name="orange_app_name">PurpleTV</string>
     <string name="orange_settings_updater_channel">Канал оновлень</string>
+    <string name="orange_updater_final_release">Реліз</string>
+    <string name="orange_updater_final_beta">Бета</string>
+    <string name="orange_updater_final_dev">Альфа</string>
+    <string name="orange_updater_final_disabled">Вимкнено</string>
     <string name="orange_updater_install_action">Встановити</string>
     <string name="orange_updater_update_action">Оновити</string>
     <string name="orange_updater_channel_disabled">Оберіть канал оновлень</string>
@@ -136,7 +140,7 @@
     <string name="orange_settings_brightness_gesture">Регулювання яскравості жестом</string>
     <string name="orange_settings_volume_gesture">Регулювання гучності жестом</string>
     <string name="orange_settings_disable_theatre_autoplay">Вимкнути автопрогравання</string>
-    <string name="orange_settings_disable_theatre_autoplay_desc">Вимикає автопрогравання наступного відеозапису</string>
+    <string name="orange_settings_disable_theatre_autoplay_desc">Вимкнути автопрогравання рекомендацій</string>
     <string name="orange_settings_show_timer_button">Додати кнопку «Таймер сну»</string>
     <string name="orange_settings_show_refresh_button">Додати кнопку «Оновити»</string>
     <string name="orange_chat_kill_chat">Вимкнути чат</string>
@@ -164,5 +168,6 @@
     <string name="orange_settings_hide_create_button">Сховати кнопку «Create»</string>
     <string name="orange_settings_menu_blacklist">Фільтр за ключовими словами</string>
     <string name="orange_settings_force_exoplayer_for_vods">Примусово використовувати ExoPlayer для відеозаписів</string>
-    <string name="orange_settings_exoplayer_vod_speed">Швидкість відтворення ExoPlayer у відеозаписах</string>
+    <string name="orange_settings_exoplayer_vod_speed">Швидкість програвання ExoPlayer у відеозаписах</string>
+    <string name="orange_add">Додати</string>
 </resources>

@@ -135,7 +135,7 @@
     <string name="cpv_select">Select</string>
     <string name="cpv_transparency">Transparency</string>
     <string name="orange_settings_clipfinity" translatable="false">Clipfinity</string>
-    <string name="orange_settings_clipfinity_desc" />
+    <string name="orange_settings_clipfinity_desc">Tiktok-like clips design</string>
     <string name="orange_updater_ds">Download size: %s</string>
     <string name="orange_updater_ds2">%1$s/%2$s</string>
     <string name="orange_updater_ds3">%s\%%</string>

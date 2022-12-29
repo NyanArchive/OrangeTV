@@ -96,6 +96,7 @@
     <string name="cpv_custom">Personalizado</string>
     <string name="cpv_select">Seleccionar</string>
     <string name="cpv_transparency">Transparencia</string>
+    <string name="orange_settings_clipfinity_desc">Diseño de clips tipo Tiktok</string>
     <string name="orange_updater_ds">Tamaño de la descarga: %s</string>
     <string name="orange_updater_ds2">%1$s/%2$s</string>
     <string name="orange_updater_ds3">%s\%%</string>

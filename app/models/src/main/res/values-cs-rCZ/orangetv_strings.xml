@@ -96,6 +96,7 @@
     <string name="cpv_custom">Vlastní</string>
     <string name="cpv_select">Vybrat</string>
     <string name="cpv_transparency">Průhlednost</string>
+    <string name="orange_settings_clipfinity_desc">Design klipů jako tiktok</string>
     <string name="orange_updater_ds">Velikost: %s</string>
     <string name="orange_updater_ds2">%1$s/%2$s</string>
     <string name="orange_updater_ds3">%s\%%</string>

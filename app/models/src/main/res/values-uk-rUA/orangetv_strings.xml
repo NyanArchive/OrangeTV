@@ -171,4 +171,5 @@
     <string name="orange_settings_force_exoplayer_for_vods">Примусово використовувати ExoPlayer для відеозаписів</string>
     <string name="orange_settings_exoplayer_vod_speed">Швидкість програвання ExoPlayer у відеозаписах</string>
     <string name="orange_add">Додати</string>
+    <string name="orange_settings_hide_fsb">Сховати кнопки «Відстежувати/Підписатись»</string>
 </resources>

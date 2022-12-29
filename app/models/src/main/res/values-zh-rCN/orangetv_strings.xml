@@ -171,4 +171,5 @@
     <string name="orange_settings_force_exoplayer_for_vods">强制在视频点播里使用ExoPlayer</string>
     <string name="orange_settings_exoplayer_vod_speed">视频点播ExoPlayer速度</string>
     <string name="orange_add">添加</string>
+    <string name="orange_settings_hide_fsb">隐藏关注/订阅按钮</string>
 </resources>

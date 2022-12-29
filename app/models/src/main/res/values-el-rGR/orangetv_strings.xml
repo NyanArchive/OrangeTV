@@ -171,4 +171,6 @@
     <string name="orange_settings_force_exoplayer_for_vods">Επιβολή ExoPlayer για VODs</string>
     <string name="orange_settings_exoplayer_vod_speed">Ταχύτητα VOD ExoPlayer</string>
     <string name="orange_add">Προσθήκη</string>
+    <string name="orange_settings_hide_fsb">Απόκρυψη κουμπιού ακολούθησης/συνδρομής</string>
+    <string name="orange_settings_user_mention_color">Αλλαγή του χρώματος @mention</string>
 </resources>

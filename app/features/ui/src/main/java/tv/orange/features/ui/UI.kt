@@ -3,12 +3,17 @@ package tv.orange.features.ui
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Color
+import android.text.format.DateUtils
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import io.reactivex.Completable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 import tv.orange.core.Core
+import tv.orange.core.LoggerImpl
 import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
 import tv.orange.core.models.flag.Flag
@@ -18,17 +23,21 @@ import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.variants.BottomNavbarPosition
 import tv.orange.core.util.ViewUtil.changeVisibility
 import tv.orange.core.util.ViewUtil.getView
+import tv.orange.features.api.component.repository.TwitchRepository
 import tv.orange.features.ui.bridge.SupportBridge
 import tv.orange.models.abc.Feature
+import tv.orange.models.util.DateUtil
 import tv.twitch.android.shared.chat.ChatViewDelegate
 import tv.twitch.android.shared.chat.emotecard.FollowButtonUiModel
 import tv.twitch.android.shared.ui.elements.navigation.BottomNavigationDestination
 import tv.twitch.android.shared.ui.elements.navigation.BottomNavigationItem
+import java.util.*
 import javax.inject.Inject
 
 class UI @Inject constructor(
     val context: Context,
-    val supportBridge: SupportBridge
+    val supportBridge: SupportBridge,
+    val twitchRepository: TwitchRepository
 ) : Feature {
     companion object {
         @JvmStatic
@@ -124,6 +133,11 @@ class UI @Inject constructor(
                     }
                 }
             }
+        }
+
+        @JvmStatic
+        fun getUptimeButton(vh: RecyclerView.ViewHolder): TextView {
+            return vh.itemView.getView<TextView>("compact_stream_item__uptime")
         }
 
         @JvmStatic
@@ -231,6 +245,29 @@ class UI @Inject constructor(
         }
 
         return state
+    }
+
+    fun tryBindUptime(uptime: TextView?, channelId: Int?): Disposable {
+        uptime?.changeVisibility(false)
+        channelId ?: run {
+            LoggerImpl.error("channelId is null")
+            return Completable.complete().subscribe()
+        }
+
+        uptime ?: run {
+            LoggerImpl.error("uptime is null")
+            return Completable.complete().subscribe()
+        }
+
+        return twitchRepository.getStreamUptime(channelId).observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                it.createdAt?.let { date ->
+                    uptime.text = " (${DateUtils.formatElapsedTime(DateUtil.getDiff(date, Date()).div(1000))})"
+                    uptime.changeVisibility(true)
+                } ?: run {
+                    uptime.changeVisibility(false)
+                }
+            }, { it.printStackTrace() })
     }
 
     override fun onCreateFeature() {}

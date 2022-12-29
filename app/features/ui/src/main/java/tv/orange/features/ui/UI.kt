@@ -137,6 +137,10 @@ class UI @Inject constructor(
         @JvmStatic
         val showFollowButtonExtended: Boolean
             get() = !Flag.HIDE_UNFOLLOW_BUTTON.asBoolean()
+
+        @JvmStatic
+        val hideFSB: Boolean
+            get() = Flag.HIDE_FSB.asBoolean()
     }
 
     val skipTwitchBrowserDialog: Boolean

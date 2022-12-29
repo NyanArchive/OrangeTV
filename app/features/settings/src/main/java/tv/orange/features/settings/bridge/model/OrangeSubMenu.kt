@@ -69,7 +69,8 @@ enum class OrangeSubMenu(
             Flag.IMPROVED_BACKGROUND_AUDIO,
             Flag.HIDE_UNFOLLOW_BUTTON,
             Flag.EXOPLAYER_VOD_SPEED,
-            Flag.FORCE_EXOPLAYER_FOR_VODS
+            Flag.FORCE_EXOPLAYER_FOR_VODS,
+            Flag.HIDE_FSB
         )
     ),
     Gestures(

@@ -236,6 +236,11 @@ enum class Flag(
         "orange_settings_hide_create_button",
         BooleanValue(false)
     ),
+    HIDE_FSB(
+        "hide_fsb",
+        "orange_settings_hide_fsb",
+        BooleanValue(false)
+    ),
     PLAYER_IMPL(
         "player_impl",
         "orange_settings_player_impl",

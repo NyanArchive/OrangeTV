@@ -46,5 +46,14 @@ class OrangeChatSettingsPresenter constructor(
                 true
             ) as MenuModel
         )
+        settingModels.add(
+            SubMenuModel(
+                ResourceManager.get().getString("orange_settings_user_mention_color"),
+                null,
+                null,
+                SettingsDestination.OrangeHighlightColor,
+                true
+            ) as MenuModel
+        )
     }
 }

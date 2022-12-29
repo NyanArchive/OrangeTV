@@ -54,5 +54,6 @@ public enum SettingsDestination {
     OrangeInfo,
     OrangeHighlighter,
     OrangeUpdater,
-    OrangeBlacklist
+    OrangeBlacklist,
+    OrangeHighlightColor
 }

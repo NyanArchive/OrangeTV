@@ -118,6 +118,10 @@ class OrangeSettingsController @Inject constructor(
             SettingsDestination.OrangeGestures -> OrangeGestureSettingsFragment()
             SettingsDestination.OrangeHighlighter -> highlighter.createHighlighterFragment()
             SettingsDestination.OrangeBlacklist -> blacklist.createBlacklistFragment()
+            SettingsDestination.OrangeHighlightColor -> let {
+                highlighter.showChangeMentionHighlightColorDialog(activity = activity)
+                null
+            }
             else -> null
         }?.let { fragment ->
             fragmentRouter.addOrRecreateFragmentWithDefaultTransitions(

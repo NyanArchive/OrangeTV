@@ -259,15 +259,17 @@ class UI @Inject constructor(
             return Completable.complete().subscribe()
         }
 
-        return twitchRepository.getStreamUptime(channelId).observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                it.createdAt?.let { date ->
-                    uptime.text = " (${DateUtils.formatElapsedTime(DateUtil.getDiff(date, Date()).div(1000))})"
-                    uptime.changeVisibility(true)
-                } ?: run {
-                    uptime.changeVisibility(false)
-                }
-            }, { it.printStackTrace() })
+        return Completable.complete().subscribe()
+
+//        return twitchRepository.getStreamUptime(channelId).observeOn(AndroidSchedulers.mainThread())
+//            .subscribe({
+//                it.createdAt?.let { date ->
+//                    uptime.text = " (${DateUtils.formatElapsedTime(DateUtil.getDiff(date, Date()).div(1000))})"
+//                    uptime.changeVisibility(true)
+//                } ?: run {
+//                    uptime.changeVisibility(false)
+//                }
+//            }, { it.printStackTrace() })
     }
 
     override fun onCreateFeature() {}

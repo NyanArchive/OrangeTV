@@ -172,4 +172,5 @@
     <string name="orange_settings_exoplayer_vod_speed">视频点播ExoPlayer速度</string>
     <string name="orange_add">添加</string>
     <string name="orange_settings_hide_fsb">隐藏关注/订阅按钮</string>
+    <string name="orange_settings_user_mention_color">更改 @mount 颜色</string>
 </resources>

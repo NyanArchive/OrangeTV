@@ -96,6 +96,7 @@
     <string name="cpv_custom">Personalizado</string>
     <string name="cpv_select">Escolher</string>
     <string name="cpv_transparency">Transparência</string>
+    <string name="orange_settings_clipfinity_desc">Exibição de clipes tipo TikTok</string>
     <string name="orange_updater_ds">Tamanho baixado: %s</string>
     <string name="orange_updater_ds2">%1$s/%2$s</string>
     <string name="orange_updater_ds3">%s\%%</string>
@@ -170,4 +171,6 @@
     <string name="orange_settings_force_exoplayer_for_vods">Forçar ExoPlayer em VODs</string>
     <string name="orange_settings_exoplayer_vod_speed">Velocidade de VODs em ExoPlayer</string>
     <string name="orange_add">Adicionar</string>
+    <string name="orange_settings_hide_fsb">Ocultar botão «Seguir/Inscrever-se»</string>
+    <string name="orange_settings_user_mention_color">Mudar cor de @menção</string>
 </resources>

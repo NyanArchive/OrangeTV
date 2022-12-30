@@ -1,0 +1,29 @@
+diff --git a/smali_classes7/tv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem.smali b/smali_classes7/tv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem.smali
+--- a/smali_classes7/tv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem.smali
++++ b/smali_classes7/tv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem.smali
+@@ -304,6 +304,12 @@
+ 
+     check-cast v2, Ltv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem$CompactLiveStreamItemViewHolder;
+ 
++    invoke-virtual {p0}, Ltv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem;->getChannelId()I
++
++    move-result v3
++
++    invoke-virtual {v2, v3}, Ltv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem$CompactLiveStreamItemViewHolder;->tryBindUptime(I)V
++
+     invoke-virtual {v2}, Ltv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem$CompactLiveStreamItemViewHolder;->getChannelTitle()Landroid/widget/TextView;
+ 
+     move-result-object v3
+@@ -335,6 +341,12 @@
+ 
+     check-cast v1, Ltv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem$CompactLiveStreamItemViewHolder;
+ 
++    invoke-virtual {p0}, Ltv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem;->getChannelId()I
++
++    move-result v2
++
++    invoke-virtual {v1, v2}, Ltv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem$CompactLiveStreamItemViewHolder;->tryBindUptime(I)V
++
+     invoke-virtual {v1}, Ltv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem$CompactLiveStreamItemViewHolder;->getChannelTitle()Landroid/widget/TextView;
+ 
+     move-result-object v2

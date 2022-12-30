@@ -96,6 +96,7 @@
     <string name="cpv_custom">Özel</string>
     <string name="cpv_select">Seç</string>
     <string name="cpv_transparency">Şeffaflık</string>
+    <string name="orange_settings_clipfinity_desc">Tiktok-benzeri klip dizaynı</string>
     <string name="orange_updater_ds">İndirme boyutu: %s</string>
     <string name="orange_updater_ds2">%1$s/%2$s</string>
     <string name="orange_updater_ds3">%s\%%</string>
@@ -170,4 +171,5 @@
     <string name="orange_settings_force_exoplayer_for_vods">Geçmiş yayınlar için ExoPlayer\'i kullanmaya zorla</string>
     <string name="orange_settings_exoplayer_vod_speed">ExoPlayer geçmiş yayın hızı</string>
     <string name="orange_add">Ekle</string>
+    <string name="orange_settings_hide_fsb">Takip et/abone ol butonunu gizle</string>
 </resources>

@@ -1,7 +1,6 @@
 package tv.orange.features.chat
 
 import android.content.Context
-import android.graphics.Color
 import android.text.Spanned
 import android.util.TypedValue
 import android.widget.ImageView
@@ -616,7 +615,7 @@ class ChatHookProvider @Inject constructor(
         }
 
         if (isUserMentioned(cmi = cmi, username = twitchAccountManager.username)) {
-            message.setHighlightColor(Color.argb(100, 255, 0, 0))
+            message.setHighlightColor(Flag.USER_MENTION_COLOR.asInt())
             if (Flag.VIBRATE_ON_MENTION.asBoolean()) {
                 vibrate()
             }

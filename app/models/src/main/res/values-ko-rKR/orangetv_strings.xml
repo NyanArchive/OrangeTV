@@ -96,6 +96,7 @@
     <string name="cpv_custom">사용자 정의</string>
     <string name="cpv_select">선택</string>
     <string name="cpv_transparency">투명도</string>
+    <string name="orange_settings_clipfinity_desc">틱톡풍 클립 디자인</string>
     <string name="orange_updater_ds">다운로드 크기: %s</string>
     <string name="orange_updater_ds2">%1$s/%2$s</string>
     <string name="orange_updater_ds3">%s\%%</string>
@@ -103,6 +104,10 @@
     <string name="orange_updater_msg1">PurpleTV 업데이트가 필요합니다</string>
     <string name="orange_app_name">PurpleTV</string>
     <string name="orange_settings_updater_channel">업데이트 채널</string>
+    <string name="orange_updater_final_release">릴리즈</string>
+    <string name="orange_updater_final_beta">베타</string>
+    <string name="orange_updater_final_dev">개발자 버전</string>
+    <string name="orange_updater_final_disabled">비활성화</string>
     <string name="orange_updater_install_action">설치</string>
     <string name="orange_updater_update_action">업데이트</string>
     <string name="orange_updater_channel_disabled">현재 업데이트 채널은 비활성화되었습니다</string>
@@ -165,4 +170,7 @@
     <string name="orange_settings_menu_blacklist">차단 목록</string>
     <string name="orange_settings_force_exoplayer_for_vods">VOD에서 강제로 ExoPlayer 사용</string>
     <string name="orange_settings_exoplayer_vod_speed">ExoPlayer VOD 속도</string>
+    <string name="orange_add">추가</string>
+    <string name="orange_settings_hide_fsb">«팔로우/구독» 버튼 숨기기</string>
+    <string name="orange_settings_user_mention_color">\@mention 색상 변경</string>
 </resources>

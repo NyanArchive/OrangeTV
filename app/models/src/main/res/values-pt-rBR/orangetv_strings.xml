@@ -96,6 +96,7 @@
     <string name="cpv_custom">Personalizado</string>
     <string name="cpv_select">Escolher</string>
     <string name="cpv_transparency">Transparência</string>
+    <string name="orange_settings_clipfinity_desc">Exibição de clipes tipo TikTok</string>
     <string name="orange_updater_ds">Tamanho baixado: %s</string>
     <string name="orange_updater_ds2">%1$s/%2$s</string>
     <string name="orange_updater_ds3">%s\%%</string>
@@ -103,6 +104,10 @@
     <string name="orange_updater_msg1">PurpleTV precisa de se atualizar</string>
     <string name="orange_app_name">PurpleTV</string>
     <string name="orange_settings_updater_channel">Canal de atualização</string>
+    <string name="orange_updater_final_release">Estável</string>
+    <string name="orange_updater_final_beta">Beta</string>
+    <string name="orange_updater_final_dev">Desenvolvedor</string>
+    <string name="orange_updater_final_disabled">Desativado</string>
     <string name="orange_updater_install_action">Instalar</string>
     <string name="orange_updater_update_action">Atualizar</string>
     <string name="orange_updater_channel_disabled">Canal de atualização atual está desativado</string>
@@ -165,4 +170,7 @@
     <string name="orange_settings_menu_blacklist">Lista negra</string>
     <string name="orange_settings_force_exoplayer_for_vods">Forçar ExoPlayer em VODs</string>
     <string name="orange_settings_exoplayer_vod_speed">Velocidade de VODs em ExoPlayer</string>
+    <string name="orange_add">Adicionar</string>
+    <string name="orange_settings_hide_fsb">Ocultar botão «Seguir/Inscrever-se»</string>
+    <string name="orange_settings_user_mention_color">Mudar cor de @menção</string>
 </resources>

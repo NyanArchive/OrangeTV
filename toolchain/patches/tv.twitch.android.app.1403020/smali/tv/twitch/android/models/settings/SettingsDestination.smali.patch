@@ -13,6 +13,8 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
 +
 +.field public static final enum OrangeGestures:Ltv/twitch/android/models/settings/SettingsDestination;
 +
++.field public static final enum OrangeHighlightColor:Ltv/twitch/android/models/settings/SettingsDestination;
++
 +.field public static final enum OrangeHighlighter:Ltv/twitch/android/models/settings/SettingsDestination;
 +
 +.field public static final enum OrangeInfo:Ltv/twitch/android/models/settings/SettingsDestination;
@@ -22,8 +24,6 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
 +.field public static final enum OrangePatches:Ltv/twitch/android/models/settings/SettingsDestination;
 +
 +.field public static final enum OrangePlayer:Ltv/twitch/android/models/settings/SettingsDestination;
-+
-+.field public static final enum OrangeStub:Ltv/twitch/android/models/settings/SettingsDestination;
 +
 +.field public static final enum OrangeSupport:Ltv/twitch/android/models/settings/SettingsDestination;
 +
@@ -410,8 +410,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
 +    new-instance v4, Ltv/twitch/android/models/settings/SettingsDestination;
 +
 +    const-string v6, "OrangeThirdParty"
- 
--    new-array v4, v4, [Ltv/twitch/android/models/settings/SettingsDestination;
++
 +    move-object/from16 v42, v2
 +
 +    const/16 v2, 0x28
@@ -458,7 +457,8 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
 +    invoke-direct {v2, v6, v4}, Ltv/twitch/android/models/settings/SettingsDestination;-><init>(Ljava/lang/String;I)V
 +
 +    sput-object v2, Ltv/twitch/android/models/settings/SettingsDestination;->OrangeGestures:Ltv/twitch/android/models/settings/SettingsDestination;
-+
+ 
+-    new-array v4, v4, [Ltv/twitch/android/models/settings/SettingsDestination;
 +    .line 48
 +    new-instance v4, Ltv/twitch/android/models/settings/SettingsDestination;
 +
@@ -592,7 +592,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
 +    .line 58
 +    new-instance v4, Ltv/twitch/android/models/settings/SettingsDestination;
 +
-+    const-string v6, "OrangeStub"
++    const-string v6, "OrangeHighlightColor"
 +
 +    move-object/from16 v56, v2
 +
@@ -600,7 +600,7 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
 +
 +    invoke-direct {v4, v6, v2}, Ltv/twitch/android/models/settings/SettingsDestination;-><init>(Ljava/lang/String;I)V
 +
-+    sput-object v4, Ltv/twitch/android/models/settings/SettingsDestination;->OrangeStub:Ltv/twitch/android/models/settings/SettingsDestination;
++    sput-object v4, Ltv/twitch/android/models/settings/SettingsDestination;->OrangeHighlightColor:Ltv/twitch/android/models/settings/SettingsDestination;
 +
 +    .line 3
 +    const/16 v2, 0x37
@@ -920,8 +920,3 @@ diff --git a/smali_classes8/tv/twitch/android/models/settings/SettingsDestinatio
      sget-object v0, Ltv/twitch/android/models/settings/SettingsDestination;->$VALUES:[Ltv/twitch/android/models/settings/SettingsDestination;
  
      invoke-virtual {v0}, [Ltv/twitch/android/models/settings/SettingsDestination;->clone()Ljava/lang/Object;
-@@ -806,3 +1092,4 @@
- 
-     return-object v0
- .end method
-+

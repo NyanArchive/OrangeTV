@@ -240,4 +240,8 @@
     <string name="orange_settings_exoplayer_vod_speed">ExoPlayer VOD speed</string>
     <string name="orange_settings_exoplayer_vod_speed_desc" />
     <string name="orange_add">Add</string>
+    <string name="orange_settings_hide_fsb">Hide «Follow/Subscribe» button</string>
+    <string name="orange_settings_hide_fsb_desc" />
+    <string name="orange_settings_user_mention_color">Change @mention color</string>
+    <string name="orange_settings_user_mention_color_desc" />
 </resources>

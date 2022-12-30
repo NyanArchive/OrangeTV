@@ -1,0 +1,7 @@
+query StreamUptime($userId: ID, $userLogin: String) {
+    user(id: $userId, login: $userLogin) {
+        stream {
+          createdAt
+        }
+    }
+}

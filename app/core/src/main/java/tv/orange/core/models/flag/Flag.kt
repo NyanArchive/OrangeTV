@@ -1,5 +1,6 @@
 package tv.orange.core.models.flag
 
+import android.graphics.Color
 import tv.orange.core.models.flag.Internal.*
 import tv.orange.core.models.flag.variants.*
 import java.util.*
@@ -236,6 +237,11 @@ enum class Flag(
         "orange_settings_hide_create_button",
         BooleanValue(false)
     ),
+    HIDE_FSB(
+        "hide_fsb",
+        "orange_settings_hide_fsb",
+        BooleanValue(false)
+    ),
     PLAYER_IMPL(
         "player_impl",
         "orange_settings_player_impl",
@@ -320,6 +326,11 @@ enum class Flag(
         "force_exoplayer_for_vods",
         "orange_settings_force_exoplayer_for_vods",
         BooleanValue(false)
+    ),
+    USER_MENTION_COLOR(
+        "user_mention_color",
+        "orange_settings_user_mention_color",
+        IntegerValue(Color.argb(100, 255, 0, 0))
     );
 
     constructor(prefKey: String, value: ValueHolder) : this(

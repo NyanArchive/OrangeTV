@@ -1,0 +1,90 @@
+diff --git a/smali_classes7/tv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem$CompactLiveStreamItemViewHolder.smali b/smali_classes7/tv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem$CompactLiveStreamItemViewHolder.smali
+--- a/smali_classes7/tv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem$CompactLiveStreamItemViewHolder.smali
++++ b/smali_classes7/tv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem$CompactLiveStreamItemViewHolder.smali
+@@ -37,6 +37,10 @@
+ 
+ .field private final viewerCount:Landroid/widget/TextView;
+ 
++.field private final uptime:Landroid/widget/TextView;
++
++.field private final disposables:Lio/reactivex/disposables/CompositeDisposable;
++
+ 
+ # direct methods
+ .method public constructor <init>(Landroid/view/View;)V
+@@ -224,6 +228,18 @@
+ 
+     iput-object p1, p0, Ltv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem$CompactLiveStreamItemViewHolder;->moreOptionsButton:Landroid/widget/ImageView;
+ 
++    invoke-static {p0}, Ltv/orange/features/ui/UI;->getUptimeButton(Landroidx/recyclerview/widget/RecyclerView$ViewHolder;)Landroid/widget/TextView;
++
++    move-result-object v0
++
++    iput-object v0, p0, Ltv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem$CompactLiveStreamItemViewHolder;->uptime:Landroid/widget/TextView;
++
++    new-instance v0, Lio/reactivex/disposables/CompositeDisposable;
++
++    invoke-direct {v0}, Lio/reactivex/disposables/CompositeDisposable;-><init>()V
++
++    iput-object v0, p0, Ltv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem$CompactLiveStreamItemViewHolder;->disposables:Lio/reactivex/disposables/CompositeDisposable;
++
+     return-void
+ .end method
+ 
+@@ -318,3 +334,56 @@
+ 
+     return-object v0
+ .end method
++
++.method public getUptime()Landroid/widget/TextView;
++    .registers 2
++
++    .line 31
++    iget-object v0, p0, Ltv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem$CompactLiveStreamItemViewHolder;->uptime:Landroid/widget/TextView;
++
++    return-object v0
++.end method
++
++.method public onRecycled()V
++    .registers 2
++
++    .line 46
++    invoke-super {p0}, Ltv/twitch/android/core/adapters/AbstractTwitchRecyclerViewHolder;->onRecycled()V
++
++    .line 47
++    iget-object v0, p0, Ltv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem$CompactLiveStreamItemViewHolder;->disposables:Lio/reactivex/disposables/CompositeDisposable;
++
++    invoke-virtual {v0}, Lio/reactivex/disposables/CompositeDisposable;->clear()V
++
++    .line 48
++    return-void
++.end method
++
++.method public tryBindUptime(I)V
++    .registers 6
++    .param p1, "channelId"    # I
++
++    .line 41
++    iget-object v0, p0, Ltv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem$CompactLiveStreamItemViewHolder;->disposables:Lio/reactivex/disposables/CompositeDisposable;
++
++    invoke-static {}, Ltv/orange/features/ui/UI;->get()Ltv/orange/features/ui/UI;
++
++    move-result-object v1
++
++    invoke-virtual {p0}, Ltv/twitch/android/shared/ui/cards/live/CompactLiveStreamRecyclerItem$CompactLiveStreamItemViewHolder;->getUptime()Landroid/widget/TextView;
++
++    move-result-object v2
++
++    invoke-static {p1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
++
++    move-result-object v3
++
++    invoke-virtual {v1, v2, v3}, Ltv/orange/features/ui/UI;->tryBindUptime(Landroid/widget/TextView;Ljava/lang/Integer;)Lio/reactivex/disposables/Disposable;
++
++    move-result-object v1
++
++    invoke-virtual {v0, v1}, Lio/reactivex/disposables/CompositeDisposable;->add(Lio/reactivex/disposables/Disposable;)Z
++
++    .line 42
++    return-void
++.end method

@@ -17,7 +17,7 @@ tasks.register('copyAppDex', Copy) {
 tasks.whenTaskAdded { task ->
     if (task.name == 'mergeLibDexDebug') {
         task.doFirst {
-            //delete fileTree("$rootProject.projectDir/Twitch/build/.transforms") { include '**/*.dex' }
+            delete fileTree("$rootProject.projectDir/Twitch/build/.transforms") { include '**/*.dex' }
             delete fileTree("$rootProject.projectDir/TwitchRes/build/.transforms") { include '**/*.dex' }
         }
     }

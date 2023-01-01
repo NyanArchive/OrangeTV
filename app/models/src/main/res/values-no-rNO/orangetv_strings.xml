@@ -96,6 +96,7 @@
     <string name="cpv_custom">Tilpasset</string>
     <string name="cpv_select">Velg</string>
     <string name="cpv_transparency">Gjennomsiktighet</string>
+    <string name="orange_settings_clipfinity_desc">Tiktok-lignende klipp design</string>
     <string name="orange_updater_ds">Nedlastingsstørrelse: %s</string>
     <string name="orange_updater_ds2">%1$s/%2$s</string>
     <string name="orange_updater_ds3">%s\%%</string>
@@ -103,6 +104,10 @@
     <string name="orange_updater_msg1">PurpleTV trenger en oppdatering</string>
     <string name="orange_app_name">PurpleTV</string>
     <string name="orange_settings_updater_channel">Oppdateringskanal</string>
+    <string name="orange_updater_final_release">Standard</string>
+    <string name="orange_updater_final_beta">Beta</string>
+    <string name="orange_updater_final_dev">Utvikling</string>
+    <string name="orange_updater_final_disabled">Deaktivert</string>
     <string name="orange_updater_install_action">Installer</string>
     <string name="orange_updater_update_action">Oppdater</string>
     <string name="orange_updater_channel_disabled">Gjeldende oppdateringskanalen er deaktivert</string>
@@ -156,4 +161,16 @@
     <string name="orange_spam_error_ww">Wrong {width} param: \'%1$s\'</string>
     <string name="orange_spam_error_empty">Ingenting å spamme</string>
     <string name="orange_vodhunter_hunting">Jakter…</string>
+    <string name="orange_settings_hide_unfollow_button">Skjul Avfølg-knapp</string>
+    <string name="orange_settings_info_lanzzz">PurpleTV-logo skaper</string>
+    <string name="orange_pinny_active_users">Aktive brukere: %1$d</string>
+    <string name="orange_pinny_total_users">Totalt antall brukere: %1$d</string>
+    <string name="orange_settings_chat_settings">Chat-innstillinger</string>
+    <string name="orange_settings_hide_create_button">Skjul «Opprett»-knapp</string>
+    <string name="orange_settings_menu_blacklist">Sperretliste</string>
+    <string name="orange_settings_force_exoplayer_for_vods">Tving ExoPlayer for VODs</string>
+    <string name="orange_settings_exoplayer_vod_speed">ExoPlayer VOD hastighet</string>
+    <string name="orange_add">Legg til</string>
+    <string name="orange_settings_hide_fsb">Skjul følge-/ abonner-knapp</string>
+    <string name="orange_settings_user_mention_color">Endre @mention farge</string>
 </resources>

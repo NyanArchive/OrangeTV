@@ -96,6 +96,7 @@
     <string name="cpv_custom">مخصص</string>
     <string name="cpv_select">تحديد</string>
     <string name="cpv_transparency">الشفافية</string>
+    <string name="orange_settings_clipfinity_desc">تصميم مقاطع شبيهة بتصميم تيكوك</string>
     <string name="orange_updater_ds">حجم التنزيل</string>
     <string name="orange_updater_ds2">‏%1$s، ‏%2$s‏</string>
     <string name="orange_updater_ds3">%s\%%</string>
@@ -103,6 +104,10 @@
     <string name="orange_updater_msg1">PurpleTV يحتاج إلى تحديث</string>
     <string name="orange_app_name">PurpleTV</string>
     <string name="orange_settings_updater_channel">قنوات التحديثات</string>
+    <string name="orange_updater_final_release">تم إصداره</string>
+    <string name="orange_updater_final_beta">إصدار تجريبي</string>
+    <string name="orange_updater_final_dev">إصدار المطور</string>
+    <string name="orange_updater_final_disabled">معطل</string>
     <string name="orange_updater_install_action">تثبيت</string>
     <string name="orange_updater_update_action">تحديث</string>
     <string name="orange_updater_channel_disabled">قناة التحديث الحالية معطلة</string>
@@ -162,4 +167,10 @@
     <string name="orange_pinny_total_users">العدد الإجمالي للمستخدمين: %1$d</string>
     <string name="orange_settings_chat_settings">إعدادات الدردشة</string>
     <string name="orange_settings_hide_create_button">إخفاء زر \"Create\"</string>
+    <string name="orange_settings_menu_blacklist">قائمة الحظر</string>
+    <string name="orange_settings_force_exoplayer_for_vods">فرض ExoPlayer على VODS</string>
+    <string name="orange_settings_exoplayer_vod_speed">سرعة تشغيل فيديو ExoPlayer</string>
+    <string name="orange_add">إضافة</string>
+    <string name="orange_settings_hide_fsb">إخفاء زر المتابعة/الاشتراك</string>
+    <string name="orange_settings_user_mention_color">تغيير لون @منشن</string>
 </resources>

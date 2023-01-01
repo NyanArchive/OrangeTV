@@ -7,7 +7,6 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import tv.orange.core.BuildConfigUtil
 import tv.orange.core.Core
-import tv.orange.core.LoggerImpl
 import tv.orange.core.ResourceManager
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
@@ -19,6 +18,7 @@ import tv.orange.features.updater.component.data.model.UpdateData
 import tv.orange.features.updater.component.data.repository.UpdaterRepository
 import tv.orange.features.updater.data.view.UpdaterActivity
 import tv.orange.models.abc.Feature
+import tv.twitch.android.app.core.ApplicationContext
 import tv.twitch.android.core.mvp.rxutil.ISubscriptionHelper
 import tv.twitch.android.feature.update.UpdatePromptPresenter
 import tv.twitch.android.util.Optional
@@ -181,5 +181,8 @@ class Updater @Inject constructor(
         return getOtaDir(context).dirSize() + getTempDir(context).dirSize()
     }
 
-    override fun onCreateFeature() {}
+    override fun onCreateFeature() {
+        clearOtaDir(ApplicationContext.getInstance().getContext())
+        clearTempCache(ApplicationContext.getInstance().getContext())
+    }
 }

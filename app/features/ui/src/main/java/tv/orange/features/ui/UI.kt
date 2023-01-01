@@ -155,6 +155,10 @@ class UI @Inject constructor(
         @JvmStatic
         val hideFSB: Boolean
             get() = Flag.HIDE_FSB.asBoolean()
+
+        @JvmStatic
+        val forceToolbarSearch: Boolean
+            get() = Flag.FORCE_TOOLBAR_SEARCH_BUTTON.asBoolean()
     }
 
     val skipTwitchBrowserDialog: Boolean

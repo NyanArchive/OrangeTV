@@ -96,7 +96,8 @@ enum class OrangeSubMenu(
             Flag.HIDE_OFFLINE_CHANNEL_SECTION,
             Flag.SHOW_TIMER_BUTTON,
             Flag.SHOW_REFRESH_BUTTON,
-            Flag.HIDE_CREATE_BUTTON
+            Flag.HIDE_CREATE_BUTTON,
+            Flag.FORCE_TOOLBAR_SEARCH_BUTTON
         )
     ),
     Patches(

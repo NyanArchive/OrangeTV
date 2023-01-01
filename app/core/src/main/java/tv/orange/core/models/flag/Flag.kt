@@ -336,6 +336,11 @@ enum class Flag(
         "prevent_mod_clear",
         "orange_settings_prevent_mod_clear",
         BooleanValue(false)
+    ),
+    FORCE_TOOLBAR_SEARCH_BUTTON(
+        "force_toolbar_search_button",
+        "orange_settings_force_toolbar_search_button",
+        BooleanValue(false)
     );
 
     constructor(prefKey: String, value: ValueHolder) : this(

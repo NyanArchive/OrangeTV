@@ -49,7 +49,8 @@ enum class OrangeSubMenu(
             Flag.BYPASS_CHAT_BAN,
             Flag.HIDE_CHAT_HEADER,
             Flag.PINNED_MESSAGE,
-            Flag.CHAT_SETTINGS
+            Flag.CHAT_SETTINGS,
+            Flag.PREVENT_MOD_CLEAR
         )
     ),
     Player(

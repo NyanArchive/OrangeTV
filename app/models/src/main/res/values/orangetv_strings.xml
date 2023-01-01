@@ -244,4 +244,6 @@
     <string name="orange_settings_hide_fsb_desc" />
     <string name="orange_settings_user_mention_color">Change @mention color</string>
     <string name="orange_settings_user_mention_color_desc" />
+    <string name="orange_settings_prevent_mod_clear">Do not clear chat when commanded to</string>
+    <string name="orange_settings_prevent_mod_clear_desc" />
 </resources>

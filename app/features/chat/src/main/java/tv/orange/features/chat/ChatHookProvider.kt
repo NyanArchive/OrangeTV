@@ -550,6 +550,10 @@ class ChatHookProvider @Inject constructor(
         @JvmStatic
         val isChatKilled
             get() = killChat
+
+        @JvmStatic
+        val preventModClear
+            get() = Flag.PREVENT_MOD_CLEAR.asBoolean()
     }
 
     private fun updateFontSize() {

@@ -331,6 +331,11 @@ enum class Flag(
         "user_mention_color",
         "orange_settings_user_mention_color",
         IntegerValue(Color.argb(100, 255, 0, 0))
+    ),
+    PREVENT_MOD_CLEAR(
+        "prevent_mod_clear",
+        "orange_settings_prevent_mod_clear",
+        BooleanValue(false)
     );
 
     constructor(prefKey: String, value: ValueHolder) : this(

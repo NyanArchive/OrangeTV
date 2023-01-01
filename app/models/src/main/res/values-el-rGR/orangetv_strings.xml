@@ -173,4 +173,6 @@
     <string name="orange_add">Προσθήκη</string>
     <string name="orange_settings_hide_fsb">Απόκρυψη κουμπιού ακολούθησης/συνδρομής</string>
     <string name="orange_settings_user_mention_color">Αλλαγή του χρώματος @mention</string>
+    <string name="orange_settings_prevent_mod_clear">Να μην γίνεται εκκαθάριση συνομιλίας όταν υπάρχει εντολή</string>
+    <string name="orange_settings_force_toolbar_search_button">Επιβολή πλήκτρου αναζήτησης γραμμής εργαλείων</string>
 </resources>

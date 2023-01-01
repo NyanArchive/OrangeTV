@@ -53,7 +53,7 @@
     <string name="orange_bottom_navbar_position_top">Сверху</string>
     <string name="orange_bottom_navbar_position_hidden">Скрыть полностью</string>
     <string name="orange_settings_followed_full_cards">Крупные превью трансляций</string>
-    <string name="orange_settings_disable_hype_train">Отключить Хайповоз</string>
+    <string name="orange_settings_disable_hype_train">Отключить «Хайповоз»</string>
     <string name="orange_settings_hide_discover_tab">Скрыть вкладку «Поиск»</string>
     <string name="orange_restart_app">Перезапустить</string>
     <string name="orange_restart_app_title">Обновить и перезапустить приложение?</string>
@@ -96,6 +96,7 @@
     <string name="cpv_custom">Настроить</string>
     <string name="cpv_select">Готово</string>
     <string name="cpv_transparency">Прозрачность</string>
+    <string name="orange_settings_clipfinity_desc">Дизайн клипов в стиле «TikTok»</string>
     <string name="orange_updater_ds">Размер файла: %s</string>
     <string name="orange_updater_ds2">%1$s/%2$s</string>
     <string name="orange_updater_ds3">%s\%%</string>
@@ -161,17 +162,19 @@
     <string name="orange_spam_error_wd">Неправильный {delay} параметр: \'%1$s\'</string>
     <string name="orange_spam_error_ww">Неправильный {width} параметр: \'%1$s\'</string>
     <string name="orange_spam_error_empty">Введите текст сообщения</string>
-    <string name="orange_vodhunter_hunting">Догоняем...</string>
+    <string name="orange_vodhunter_hunting">Загрузка...</string>
     <string name="orange_settings_hide_unfollow_button">Скрыть кнопку «Отписаться»</string>
     <string name="orange_settings_info_lanzzz">Художник, подаривший PurpleTV логотип</string>
     <string name="orange_pinny_active_users">Количество активных пользователей: %1$d</string>
     <string name="orange_pinny_total_users">Общее количество пользователей: %1$d</string>
     <string name="orange_settings_chat_settings">Настройки чата</string>
     <string name="orange_settings_hide_create_button">Скрыть кнопку «Создать»</string>
-    <string name="orange_settings_menu_blacklist">Черный список</string>
+    <string name="orange_settings_menu_blacklist">Черный список слов</string>
     <string name="orange_settings_force_exoplayer_for_vods">Использовать ExoPlayer для записей стримов</string>
     <string name="orange_settings_exoplayer_vod_speed">Скорость воспроизведения (ExoPlayer)</string>
     <string name="orange_add">Добавить</string>
     <string name="orange_settings_hide_fsb">Скрыть кнопки «Отслеживать/Подписаться»</string>
     <string name="orange_settings_user_mention_color">Изменить цвет упоминания</string>
+    <string name="orange_settings_prevent_mod_clear">Предотвратить очистку чата модератором</string>
+    <string name="orange_settings_force_toolbar_search_button">Отображать кнопку «Поиск» на панели инструментов</string>
 </resources>

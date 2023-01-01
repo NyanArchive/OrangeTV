@@ -173,4 +173,6 @@
     <string name="orange_add">Añadir</string>
     <string name="orange_settings_hide_fsb">Ocultar botón «Seguir/Suscribirse»</string>
     <string name="orange_settings_user_mention_color">Cambiar color de @mención</string>
+    <string name="orange_settings_prevent_mod_clear">No borrar el chat cuando se usa el comando</string>
+    <string name="orange_settings_force_toolbar_search_button">Forzar botón de búsqueda en la barra de herramientas</string>
 </resources>

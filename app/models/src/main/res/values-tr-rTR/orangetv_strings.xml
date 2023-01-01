@@ -56,7 +56,7 @@
     <string name="orange_settings_disable_hype_train">Hype Train\'i devre dışı bırak</string>
     <string name="orange_settings_hide_discover_tab">Keşfet sekmesini gizle</string>
     <string name="orange_restart_app">Yeniden başlat</string>
-    <string name="orange_restart_app_title">Uygulama güncellenip yeniden başlatılsın mı?</string>
+    <string name="orange_restart_app_title">Yenileme ve yeniden başlatma</string>
     <string name="orange_settings_title">PurpleTV Ayarları</string>
     <string name="orange_settings_chat_font_size">Sohbet yazı tipi boyutu</string>
     <string name="orange_settings_landscape_chat_size">Yatay sohbet genişliği</string>
@@ -172,4 +172,7 @@
     <string name="orange_settings_exoplayer_vod_speed">ExoPlayer geçmiş yayın hızı</string>
     <string name="orange_add">Ekle</string>
     <string name="orange_settings_hide_fsb">Takip et/abone ol butonunu gizle</string>
+    <string name="orange_settings_user_mention_color">\@etiket rengini değiştir</string>
+    <string name="orange_settings_prevent_mod_clear">Sohbet temizleme komutu yazıldığında sohbeti temizleme</string>
+    <string name="orange_settings_force_toolbar_search_button">Arama çubuğunu ikonların yanında kullanmaya zorla</string>
 </resources>

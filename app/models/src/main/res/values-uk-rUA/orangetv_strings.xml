@@ -173,4 +173,6 @@
     <string name="orange_add">Додати</string>
     <string name="orange_settings_hide_fsb">Сховати кнопки «Відстежувати/Підписатись»</string>
     <string name="orange_settings_user_mention_color">Змінити колір @відмітки</string>
+    <string name="orange_settings_prevent_mod_clear">Ігнорувати очищення чату модераторами</string>
+    <string name="orange_settings_force_toolbar_search_button">Додати кнопку пошуку на панель інструментів</string>
 </resources>

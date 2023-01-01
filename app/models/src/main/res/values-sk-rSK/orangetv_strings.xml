@@ -96,6 +96,7 @@
     <string name="cpv_custom">Vlastné</string>
     <string name="cpv_select">Vybrať</string>
     <string name="cpv_transparency">Priehľadnosť</string>
+    <string name="orange_settings_clipfinity_desc">Dizajn klipov podobný TikToku</string>
     <string name="orange_updater_ds">Veľkosť sťahovania: %s</string>
     <string name="orange_updater_ds2">%1$s/%2$s</string>
     <string name="orange_updater_ds3">%s\%%</string>
@@ -103,6 +104,10 @@
     <string name="orange_updater_msg1">PurpleTV vyžaduje aktualizáciu</string>
     <string name="orange_app_name">PurpleTV</string>
     <string name="orange_settings_updater_channel">Kanál aktualizácií</string>
+    <string name="orange_updater_final_release">Vydanie</string>
+    <string name="orange_updater_final_beta">Beta</string>
+    <string name="orange_updater_final_dev">Vývojársky</string>
+    <string name="orange_updater_final_disabled">Vypnuté</string>
     <string name="orange_updater_install_action">Inštalovať</string>
     <string name="orange_updater_update_action">Aktualizovať</string>
     <string name="orange_updater_channel_disabled">Aktuálny aktualizačný kanál je vypnutý</string>
@@ -165,4 +170,9 @@
     <string name="orange_settings_menu_blacklist">Čierna listina</string>
     <string name="orange_settings_force_exoplayer_for_vods">Vynútiť ExoPlayer pre VODs</string>
     <string name="orange_settings_exoplayer_vod_speed">Rýchlosť prehrávania VOD cez ExoPlayer</string>
+    <string name="orange_add">Pridať</string>
+    <string name="orange_settings_hide_fsb">Skryť tlačidlo «Sledovania/Predplatenia»</string>
+    <string name="orange_settings_user_mention_color">Zmeniť farbu @zmienky</string>
+    <string name="orange_settings_prevent_mod_clear">Nevymazávať čet, keď k tomu dostane príkaz</string>
+    <string name="orange_settings_force_toolbar_search_button">Vynútiť tlačidlo vyhľadávania na paneli s nástrojmi</string>
 </resources>

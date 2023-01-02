@@ -1,0 +1,39 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/share/panel/SharePanelDefaultPresenter$attach$2.smali b/smali_classes6/tv/twitch/android/shared/share/panel/SharePanelDefaultPresenter$attach$2.smali
+--- a/smali_classes6/tv/twitch/android/shared/share/panel/SharePanelDefaultPresenter$attach$2.smali
++++ b/smali_classes6/tv/twitch/android/shared/share/panel/SharePanelDefaultPresenter$attach$2.smali
+@@ -65,7 +65,7 @@
+ .end method
+ 
+ .method public final invoke(Lkotlin/Pair;)V
+-    .locals 2
++    .locals 3
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+             "(",
+@@ -108,7 +108,26 @@
+ 
+     invoke-virtual {v1}, Ltv/twitch/android/core/mvp/viewfactory/ViewDelegateFactory;->detach()V
+ 
++    instance-of v1, p1, Ltv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate$Event$DownloadClicked;
++
++    if-eqz v1, :cond_z
++
++    .line 16
++    invoke-static {}, Ltv/orange/features/vodhunter/Vodhunter;->get()Ltv/orange/features/vodhunter/Vodhunter;
++
++    move-result-object v1
++
++    iget-object v2, p0, Ltv/twitch/android/shared/share/panel/SharePanelDefaultPresenter$attach$2;->this$0:Ltv/twitch/android/shared/share/panel/SharePanelDefaultPresenter;
++
++    check-cast v0, Ltv/twitch/android/shared/share/panel/SharePanelDefaultPresenter$State$Initialized;
++
++    .end local v1    # "state":Ltv/twitch/android/shared/share/panel/SharePanelDefaultPresenter$State;
++    invoke-virtual {v1, v2, v0}, Ltv/orange/features/vodhunter/Vodhunter;->tryDownloadClip(Ltv/twitch/android/shared/share/panel/SharePanelDefaultPresenter;Ltv/twitch/android/shared/share/panel/SharePanelDefaultPresenter$State$Initialized;)V
++
++    return-void
++
+     .line 90
++    :cond_z
+     instance-of v1, p1, Ltv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate$Event$ShareClicked;
+ 
+     if-eqz v1, :cond_1

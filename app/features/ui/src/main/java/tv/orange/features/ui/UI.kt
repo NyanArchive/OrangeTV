@@ -172,6 +172,7 @@ class UI @Inject constructor(
         return items.filter {
             when (it.destination) {
                 BottomNavigationDestination.DISCOVER -> !hideDiscoverTab
+                BottomNavigationDestination.SEARCH -> !forceToolbarSearch
                 else -> true
             }
         }.toMutableList()

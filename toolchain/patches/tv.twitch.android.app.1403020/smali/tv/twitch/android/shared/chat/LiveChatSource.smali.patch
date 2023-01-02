@@ -11,7 +11,43 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/LiveChatSource.smali b
  
  # annotations
  .annotation system Ldalvik/annotation/MemberClasses;
-@@ -3998,3 +4001,37 @@
+@@ -1014,10 +1017,17 @@
+ 
+     if-nez p1, :cond_4
+ 
++    invoke-static {}, Ltv/orange/features/chat/ChatHookProvider;->getPreventModClear()Z
++
++    move-result v0
++
++    if-nez v0, :cond_z
++
+     .line 362
+     invoke-virtual {p0}, Ltv/twitch/android/shared/chat/LiveChatSource;->clearMessages()V
+ 
+     .line 363
++    :cond_z
+     iget-object p1, p0, Ltv/twitch/android/shared/chat/LiveChatSource;->context:Landroid/content/Context;
+ 
+     sget v0, Ltv/twitch/android/core/strings/R$string;->channel_notice_chat_cleared:I
+@@ -2666,10 +2676,17 @@
+ 
+     if-eqz v1, :cond_10
+ 
++    invoke-static {}, Ltv/orange/features/chat/ChatHookProvider;->getPreventModClear()Z
++
++    move-result v1
++
++    if-nez v1, :cond_z
++
+     .line 496
+     invoke-virtual/range {p0 .. p0}, Ltv/twitch/android/shared/chat/LiveChatSource;->clearMessages()V
+ 
+     .line 497
++    :cond_z
+     iget-object v1, v6, Ltv/twitch/android/shared/chat/LiveChatSource;->context:Landroid/content/Context;
+ 
+     sget v4, Ltv/twitch/android/core/strings/R$string;->mod_notice_chat_cleared:I
+@@ -3998,3 +4015,37 @@
  
      return-void
  .end method

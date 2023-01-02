@@ -171,4 +171,8 @@
     <string name="orange_settings_force_exoplayer_for_vods">Vynutit ExoPlayer pro VODy</string>
     <string name="orange_settings_exoplayer_vod_speed">Rychlost přehrávání VOD přes ExoPlayer</string>
     <string name="orange_add">Přidat</string>
+    <string name="orange_settings_hide_fsb">Skrýt tlačítko «Sledovat/Předplatit»</string>
+    <string name="orange_settings_user_mention_color">Změnit barvu @zmínka</string>
+    <string name="orange_settings_prevent_mod_clear">Nevyčistit chat při příkazu</string>
+    <string name="orange_settings_force_toolbar_search_button">Vynutit tlačítko hledání na panelu nástrojů</string>
 </resources>

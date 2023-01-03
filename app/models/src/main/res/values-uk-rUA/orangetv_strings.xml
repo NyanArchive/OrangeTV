@@ -175,4 +175,5 @@
     <string name="orange_settings_user_mention_color">Змінити колір @відмітки</string>
     <string name="orange_settings_prevent_mod_clear">Ігнорувати очищення чату модераторами</string>
     <string name="orange_settings_force_toolbar_search_button">Додати кнопку пошуку на панель інструментів</string>
+    <string name="orange_settings_download_clip">Завантажити кліп</string>
 </resources>

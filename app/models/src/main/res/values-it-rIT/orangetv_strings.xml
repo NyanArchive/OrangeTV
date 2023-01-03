@@ -175,4 +175,5 @@
     <string name="orange_settings_user_mention_color">Cambia il colore della @menzione</string>
     <string name="orange_settings_prevent_mod_clear">Non cancellare la chat quando viene richiesto</string>
     <string name="orange_settings_force_toolbar_search_button">Mostra il pulsante di ricerca nella barra strumenti</string>
+    <string name="orange_settings_download_clip">Scarica clip</string>
 </resources>

@@ -175,4 +175,5 @@
     <string name="orange_settings_user_mention_color">\@etiket rengini değiştir</string>
     <string name="orange_settings_prevent_mod_clear">Sohbet temizleme komutu yazıldığında sohbeti temizleme</string>
     <string name="orange_settings_force_toolbar_search_button">Arama çubuğunu ikonların yanında kullanmaya zorla</string>
+    <string name="orange_settings_download_clip">Klibi indir</string>
 </resources>

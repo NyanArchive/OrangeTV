@@ -175,4 +175,5 @@
     <string name="orange_settings_user_mention_color">Změnit barvu @zmínka</string>
     <string name="orange_settings_prevent_mod_clear">Nevyčistit chat při příkazu</string>
     <string name="orange_settings_force_toolbar_search_button">Vynutit tlačítko hledání na panelu nástrojů</string>
+    <string name="orange_settings_download_clip">Stáhnout klip</string>
 </resources>

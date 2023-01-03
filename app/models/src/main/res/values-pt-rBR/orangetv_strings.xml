@@ -53,12 +53,12 @@
     <string name="orange_bottom_navbar_position_top">Acima</string>
     <string name="orange_bottom_navbar_position_hidden">Oculto</string>
     <string name="orange_settings_followed_full_cards">Prévias de transmissão grandes em Seguindo</string>
-    <string name="orange_settings_disable_hype_train">Desativar Hype Train </string>
+    <string name="orange_settings_disable_hype_train">Desativar Hype Train</string>
     <string name="orange_settings_hide_discover_tab">Ocultar a aba Descubra</string>
     <string name="orange_restart_app">Reiniciar</string>
     <string name="orange_restart_app_title">Atualizar e reiniciar o app?</string>
     <string name="orange_settings_title">Configurações de PurpleTV</string>
-    <string name="orange_settings_chat_font_size">Tamanho da fonte do chat</string>
+    <string name="orange_settings_chat_font_size">Tamanho do texto no chat</string>
     <string name="orange_settings_landscape_chat_size">Largura do chat no modo paisagem</string>
     <string name="orange_settings_forward_seek">Avançar no reprodutor</string>
     <string name="orange_settings_rewind_seek">Retroceder no reprodutor</string>
@@ -82,7 +82,7 @@
     <string name="orange_settings_menu_view">Vista</string>
     <string name="orange_settings_menu_patches">Remendos</string>
     <string name="orange_settings_menu_dev">Desenvolvedor</string>
-    <string name="orange_settings_menu_support">Ajuda</string>
+    <string name="orange_settings_menu_support">Suporte</string>
     <string name="orange_settings_menu_wiki">Guia</string>
     <string name="orange_settings_menu_ota">Atualização de software</string>
     <string name="orange_settings_menu_info">Informação</string>
@@ -101,7 +101,7 @@
     <string name="orange_updater_ds2">%1$s/%2$s</string>
     <string name="orange_updater_ds3">%s\%%</string>
     <string name="orange_updater_error_msg">Erro: %s</string>
-    <string name="orange_updater_msg1">PurpleTV precisa de se atualizar</string>
+    <string name="orange_updater_msg1">PurpleTV precisa de uma atualização</string>
     <string name="orange_app_name">PurpleTV</string>
     <string name="orange_settings_updater_channel">Canal de atualização</string>
     <string name="orange_updater_final_release">Estável</string>
@@ -175,4 +175,5 @@
     <string name="orange_settings_user_mention_color">Mudar cor de @menção</string>
     <string name="orange_settings_prevent_mod_clear">Não limpar o chat ao usar o comando</string>
     <string name="orange_settings_force_toolbar_search_button">Forçar botão de busca</string>
+    <string name="orange_settings_download_clip">Baixar clipe</string>
 </resources>

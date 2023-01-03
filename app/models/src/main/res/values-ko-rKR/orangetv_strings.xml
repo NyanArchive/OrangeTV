@@ -173,4 +173,7 @@
     <string name="orange_add">추가</string>
     <string name="orange_settings_hide_fsb">«팔로우/구독» 버튼 숨기기</string>
     <string name="orange_settings_user_mention_color">\@mention 색상 변경</string>
+    <string name="orange_settings_prevent_mod_clear">채팅 초기화 명령이 내려져도 메시지가 사라지지 않습니다</string>
+    <string name="orange_settings_force_toolbar_search_button">툴바 검색 버튼 고정</string>
+    <string name="orange_settings_download_clip">클립 다운로드</string>
 </resources>

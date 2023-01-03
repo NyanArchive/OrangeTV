@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         minSdk 21
-        targetSdk 32
+        targetSdk 33
     }
 
     buildTypes {
@@ -22,6 +22,6 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.4.2'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
 }

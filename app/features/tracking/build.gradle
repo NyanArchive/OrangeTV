@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         minSdk 21
-        targetSdk 32
+        targetSdk 33
     }
 
     buildTypes {
@@ -30,7 +30,7 @@ dependencies {
     implementation project(path: ':core')
     implementation project(path: ':components:api')
 
-    implementation 'io.sentry:sentry-android:6.5.0'
+    implementation "io.sentry:sentry-android:$sentry_version"
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

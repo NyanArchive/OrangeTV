@@ -23,8 +23,6 @@ import tv.orange.core.util.ViewUtil
 import tv.orange.core.util.ViewUtil.getView
 import tv.orange.core.util.ViewUtil.setContentView
 import tv.orange.features.updater.Updater
-import tv.orange.features.updater.Updater.Companion.getOtaDir
-import tv.orange.features.updater.Updater.Companion.getTempDir
 import tv.orange.features.updater.component.data.model.UpdateData
 import tv.orange.features.updater.data.mvp.UpdaterContract
 import tv.orange.features.updater.data.mvp.UpdaterPresenter
@@ -125,20 +123,6 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
         presenter.onStop()
     }
 
-    companion object {
-        const val EXTRA_UPDATE_DATA = "EXTRA_UPDATE_DATA"
-
-        private const val REQUEST_INSTALL_ACTIVITY_CODE = 1
-
-        fun startActivity(context: Context, data: UpdateData) {
-            val intent = Intent(context, UpdaterActivity::class.java).apply {
-                putExtra(EXTRA_UPDATE_DATA, data)
-            }
-
-            context.startActivity(intent)
-        }
-    }
-
     override fun close() {
         finishAndRemoveTask()
     }
@@ -163,26 +147,11 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
     override fun render(state: UpdaterContract.View.State) {
         hideAllViews()
         when (state) {
-            UpdaterContract.View.State.Prepare -> {}
-            UpdaterContract.View.State.Loading -> {
+            UpdaterContract.View.State.Prepare -> {
                 ViewUtil.show(loadingPb)
             }
             is UpdaterContract.View.State.Loaded -> {
-                state.updateData.let { data ->
-                    changelogTv.text = data.changelog
-                    buildTv.text = data.build.toString()
-                    downloadSizeTv.text = ResourceManager.get().getString(
-                        "orange_updater_ds", if (data.size > 0) {
-                            Formatter.formatFileSize(this, data.size)
-                        } else {
-                            "Unknown"
-                        }
-                    )
-                }
-
-                state.updateData.logoUrl?.let { url ->
-                    Glide.with(logoImg).load(url)
-                }
+                bindData(state.updateData)
 
                 actionButtonBtn.text = ResourceManager.get().getString(
                     "orange_updater_update_action"
@@ -208,6 +177,8 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
                 )
             }
             is UpdaterContract.View.State.DownloadComplete -> {
+                bindData(state.data)
+
                 actionButtonBtn.text = ResourceManager.get().getString(
                     "orange_updater_install_action"
                 )
@@ -254,14 +225,31 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
         }
     }
 
+    private fun bindData(data: UpdateData) {
+        changelogTv.text = data.changelog
+        buildTv.text = data.build.toString()
+        downloadSizeTv.text = ResourceManager.get().getString(
+            "orange_updater_ds", if (data.size > 0) {
+                Formatter.formatFileSize(this, data.size)
+            } else {
+                "Unknown"
+            }
+        )
+
+        data.logoUrl?.let { url ->
+            Glide.with(logoImg).load(url)
+        }
+    }
+
     override fun createTempFile(): File {
-        return File(getTempDir(this), "${System.currentTimeMillis()}.tmp")
+        return Updater.get().createTempFile()
     }
 
     override fun getOtaFile(build: Int): File {
-        return File(getOtaDir(this), "$build.apk")
+        return Updater.get().getOtaFile(build)
     }
 
+    @Suppress("DEPRECATION")
     override fun requestInstallPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val intent = Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES).apply {
@@ -272,39 +260,59 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
     }
 
     override fun installApk(file: File) {
-        PackageHelper.installApk(this, file)
+        PackageHelper.installApk(applicationContext, file)
     }
 
     override fun canInstallApk(): Boolean {
-        return PackageHelper.canInstallApk(this)
+        return PackageHelper.canInstallApk(applicationContext)
     }
 
     override fun saveTextToClipboard(text: String) {
+        val service = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
         val clip = ClipData.newPlainText("URL", text)
-        (getSystemService(CLIPBOARD_SERVICE) as ClipboardManager).setPrimaryClip(clip)
+        service.setPrimaryClip(clip)
     }
 
     override fun clearTempCache() {
-        Updater.get().clearTempCache(this)
+        Updater.get().clearTempCache(applicationContext)
     }
 
     override fun openDiscord() {
-        Core.openUrl(this.applicationContext, "https://discord.gg/DkjMM4ThhG")
+        Core.openUrl(applicationContext, DISCORD_URL)
     }
 
     override fun openTg() {
-        Core.openUrl(this.applicationContext, "https://t.me/pubTwChat")
+        Core.openUrl(applicationContext, TG_URL)
     }
 
+    @Suppress("OVERRIDE_DEPRECATION")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_INSTALL_ACTIVITY_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
-                presenter.onViewEvent(UpdaterContract.Presenter.Event.OnPermissionGiven)
-            } else {
-                presenter.onViewEvent(UpdaterContract.Presenter.Event.OnPermissionDenied)
-            }
-        } else {
+        if (resultCode != REQUEST_INSTALL_ACTIVITY_CODE) {
             super.onActivityResult(requestCode, resultCode, data)
+            return
+        }
+
+        if (resultCode == Activity.RESULT_OK) {
+            presenter.onViewEvent(UpdaterContract.Presenter.Event.OnPermissionGiven)
+        } else {
+            presenter.onViewEvent(UpdaterContract.Presenter.Event.OnPermissionDenied)
+        }
+    }
+
+    companion object {
+        const val EXTRA_UPDATE_DATA = "EXTRA_UPDATE_DATA"
+
+        private const val TG_URL = "https://t.me/pubTwChat"
+        private const val DISCORD_URL = "https://discord.gg/DkjMM4ThhG"
+
+        private const val REQUEST_INSTALL_ACTIVITY_CODE = 1
+
+        fun startActivity(context: Context, data: UpdateData) {
+            val intent = Intent(context, UpdaterActivity::class.java).apply {
+                putExtra(EXTRA_UPDATE_DATA, data)
+            }
+
+            context.startActivity(intent)
         }
     }
 }

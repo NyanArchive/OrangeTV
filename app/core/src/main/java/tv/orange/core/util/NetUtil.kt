@@ -17,7 +17,7 @@ object NetUtil {
 
     interface DownloadCallback {
         fun onProgressUpdate(progress: Int, downloadedBytes: Int, totalBytes: Int)
-        fun isCanceled(): Boolean
+        fun isDownloadCanceled(): Boolean
     }
 
     fun download(url: URL, file: File, callback: DownloadCallback) {
@@ -48,7 +48,7 @@ object NetUtil {
                         }
 
                         outputStream.write(buf, 0, count)
-                        if (callback.isCanceled()) {
+                        if (callback.isDownloadCanceled()) {
                             break
                         }
                     }
@@ -57,7 +57,7 @@ object NetUtil {
             }
 
         } catch (th: Throwable) {
-            if (!callback.isCanceled()) {
+            if (!callback.isDownloadCanceled()) {
                 throw th
             }
         }

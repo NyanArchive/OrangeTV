@@ -23,4 +23,3 @@ diff --git a/smali/androidx/room/RoomDatabase.smali b/smali/androidx/room/RoomDa
 +
 +    return-object v0
 +.end method
-\ No newline at end of file

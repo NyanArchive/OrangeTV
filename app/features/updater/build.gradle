@@ -31,5 +31,8 @@ dependencies {
     implementation project(path: ':core')
     implementation project(path: ':components:api')
 
+    implementation "androidx.work:work-runtime:$work_version"
+    implementation "androidx.work:work-rxjava2:$work_version"
+
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

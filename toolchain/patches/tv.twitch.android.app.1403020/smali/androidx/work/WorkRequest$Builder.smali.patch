@@ -1,0 +1,41 @@
+diff --git a/smali/androidx/work/WorkRequest$Builder.smali b/smali/androidx/work/WorkRequest$Builder.smali
+--- a/smali/androidx/work/WorkRequest$Builder.smali
++++ b/smali/androidx/work/WorkRequest$Builder.smali
+@@ -349,3 +349,37 @@
+ 
+     return-object p1
+ .end method
++
++.method public final setInputData(Landroidx/work/Data;)Landroidx/work/WorkRequest$Builder;
++    .registers 3
++    .param p1, "inputData"    # Landroidx/work/Data;
++    .annotation system Ldalvik/annotation/MethodParameters;
++        accessFlags = {
++            0x0
++        }
++        names = {
++            "inputData"
++        }
++    .end annotation
++
++    .annotation system Ldalvik/annotation/Signature;
++        value = {
++            "(",
++            "Landroidx/work/Data;",
++            ")TB;"
++        }
++    .end annotation
++
++    .line 198
++    .local p0, "this":Landroidx/work/WorkRequest$Builder;, "Landroidx/work/WorkRequest$Builder<TB;TW;>;"
++    iget-object v0, p0, Landroidx/work/WorkRequest$Builder;->mWorkSpec:Landroidx/work/impl/model/WorkSpec;
++
++    iput-object p1, v0, Landroidx/work/impl/model/WorkSpec;->input:Landroidx/work/Data;
++
++    .line 199
++    invoke-virtual {p0}, Landroidx/work/WorkRequest$Builder;->getThis()Landroidx/work/WorkRequest$Builder;
++
++    move-result-object v0
++
++    return-object v0
++.end method

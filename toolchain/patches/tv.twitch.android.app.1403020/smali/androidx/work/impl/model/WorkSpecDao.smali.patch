@@ -1,0 +1,30 @@
+diff --git a/smali/androidx/work/impl/model/WorkSpecDao.smali b/smali/androidx/work/impl/model/WorkSpecDao.smali
+--- a/smali/androidx/work/impl/model/WorkSpecDao.smali
++++ b/smali/androidx/work/impl/model/WorkSpecDao.smali
+@@ -283,3 +283,26 @@
+         }
+     .end annotation
+ .end method
++
++.method public abstract getWorkStatusPojoForName(Ljava/lang/String;)Ljava/util/List;
++    .annotation system Ldalvik/annotation/MethodParameters;
++        accessFlags = {
++            0x0
++        }
++        names = {
++            "name"
++        }
++    .end annotation
++
++    .annotation system Ldalvik/annotation/Signature;
++        value = {
++            "(",
++            "Ljava/lang/String;",
++            ")",
++            "Ljava/util/List<",
++            "Landroidx/work/impl/model/WorkSpec$WorkInfoPojo;",
++            ">;"
++        }
++    .end annotation
++.end method
++

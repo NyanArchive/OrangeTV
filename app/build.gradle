@@ -24,4 +24,5 @@ ext {
     sentry_version = "6.11.0"
     recycler_version = "1.2.1"
     constraintlayout_version = "2.1.4"
+    work_version = "2.7.1"
 }

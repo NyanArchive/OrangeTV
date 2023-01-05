@@ -57,4 +57,7 @@ android {
 
 dependencies {
     api project(path: ':bridge')
+
+    implementation "androidx.work:work-runtime:$work_version"
+    implementation "androidx.work:work-rxjava2:$work_version"
 }

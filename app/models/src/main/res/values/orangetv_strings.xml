@@ -249,4 +249,7 @@
     <string name="orange_settings_force_toolbar_search_button">Force toolbar search button</string>
     <string name="orange_settings_force_toolbar_search_button_desc" />
     <string name="orange_settings_download_clip">Download clip</string>
+    <string name="orangetv_downloading">Downloading…</string>
+    <string name="orangetv_notification_channel_name">PurpleTV</string>
+    <string name="orangetv_notification_channel_desc" />
 </resources>

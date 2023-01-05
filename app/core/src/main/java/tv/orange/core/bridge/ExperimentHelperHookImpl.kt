@@ -33,7 +33,8 @@ class ExperimentHelperHookImpl(private val org: IExperimentHelper) : ExperimentH
             Experiment.BILLING_UNAVAILABLE_DIALOG,
             Experiment.LATAM_CRONET,
             Experiment.LOAD_AD_PROPERTIES_ON_HOME_TAB,
-            Experiment.HTTP3_WITH_CRONET_GLOBAL -> false
+            Experiment.HTTP3_WITH_CRONET_GLOBAL,
+            Experiment.ANNUAL_RECAP_2022-> false
 
             Experiment.FREEFORM_TAGS,
             Experiment.MULTI_OPTION_PREDICTIONS -> true

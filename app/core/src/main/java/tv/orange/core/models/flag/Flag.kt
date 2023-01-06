@@ -341,6 +341,11 @@ enum class Flag(
         "force_toolbar_search_button",
         "orange_settings_force_toolbar_search_button",
         BooleanValue(false)
+    ),
+    HIDE_PLAYER_CREATE_CLIP_BUTTON(
+        "hide_player_create_clip_button",
+        "orange_settings_hide_player_create_clip_button",
+        BooleanValue(false)
     );
 
     constructor(prefKey: String, value: ValueHolder) : this(

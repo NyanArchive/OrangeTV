@@ -71,7 +71,8 @@ enum class OrangeSubMenu(
             Flag.HIDE_UNFOLLOW_BUTTON,
             Flag.EXOPLAYER_VOD_SPEED,
             Flag.FORCE_EXOPLAYER_FOR_VODS,
-            Flag.HIDE_FSB
+            Flag.HIDE_FSB,
+            Flag.HIDE_PLAYER_CREATE_CLIP_BUTTON
         )
     ),
     Gestures(

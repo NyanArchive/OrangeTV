@@ -7,6 +7,7 @@ import android.text.format.DateUtils
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.Completable
@@ -278,4 +279,10 @@ class UI @Inject constructor(
     }
 
     override fun onCreateFeature() {}
+
+    fun maybeHideCreateClipButton(createClipButton: ImageView) {
+        if (Flag.HIDE_PLAYER_CREATE_CLIP_BUTTON.asBoolean()) {
+            createClipButton.changeVisibility(false)
+        }
+    }
 }

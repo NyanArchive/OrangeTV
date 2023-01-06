@@ -252,4 +252,6 @@
     <string name="orangetv_downloading">Downloading…</string>
     <string name="orangetv_notification_channel_name">PurpleTV</string>
     <string name="orangetv_notification_channel_desc" />
+    <string name="orange_settings_hide_player_create_clip_button">Hide «Create clip button»</string>
+    <string name="orange_settings_hide_player_create_clip_button_desc" />
 </resources>

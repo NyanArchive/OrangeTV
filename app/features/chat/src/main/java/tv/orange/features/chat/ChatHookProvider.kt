@@ -74,6 +74,8 @@ import tv.twitch.android.shared.emotes.emotepicker.models.EmoteHeaderUiModel
 import tv.twitch.android.shared.emotes.emotepicker.models.EmotePickerSection
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiModel
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiSet
+import tv.twitch.android.shared.ui.elements.span.UrlDrawable
+import tv.twitch.android.shared.ui.elements.span.`MediaSpan$Type`
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -784,5 +786,9 @@ class ChatHookProvider @Inject constructor(
                 mre.channelId,
                 mre.messages.filter { message -> !blacklist.isBlacklisted(message) })
         }.filter { it.messages.isNotEmpty() }
+    }
+
+    fun urlDrawableFactory(url: String, animatedEmotesEnabled: Boolean): UrlDrawable {
+        return UrlDrawable(url, `MediaSpan$Type`.Emote, true, animatedEmotesEnabled)
     }
 }

@@ -3,7 +3,6 @@ package tv.orange.features.ui
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Color
-import android.text.format.DateUtils
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
@@ -11,7 +10,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.Completable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import tv.orange.core.Core
 import tv.orange.core.LoggerImpl
@@ -27,12 +25,12 @@ import tv.orange.core.util.ViewUtil.getView
 import tv.orange.features.api.component.repository.TwitchRepository
 import tv.orange.features.ui.bridge.SupportBridge
 import tv.orange.models.abc.Feature
-import tv.orange.models.util.DateUtil
 import tv.twitch.android.shared.chat.ChatViewDelegate
 import tv.twitch.android.shared.chat.emotecard.FollowButtonUiModel
+import tv.twitch.android.shared.player.overlay.PlayerOverlayViewDelegate
+import tv.twitch.android.shared.player.overlay.stream.StreamOverlayConfiguration
 import tv.twitch.android.shared.ui.elements.navigation.BottomNavigationDestination
 import tv.twitch.android.shared.ui.elements.navigation.BottomNavigationItem
-import java.util.*
 import javax.inject.Inject
 
 class UI @Inject constructor(
@@ -287,6 +285,20 @@ class UI @Inject constructor(
     fun maybeHideCreateClipButton(createClipButton: ImageView) {
         if (Flag.HIDE_PLAYER_CREATE_CLIP_BUTTON.asBoolean()) {
             createClipButton.changeVisibility(false)
+        }
+    }
+
+    fun maybeHideLiveShareButton(
+        streamOverlayConfiguration: StreamOverlayConfiguration?,
+        viewDelegate: PlayerOverlayViewDelegate?
+    ) {
+        streamOverlayConfiguration ?: return
+        viewDelegate ?: return
+
+        if (streamOverlayConfiguration == StreamOverlayConfiguration.SingleStream.INSTANCE) {
+            if (Flag.HIDE_PLAYER_LIVE_SHARE_BUTTON.asBoolean()) {
+                viewDelegate.shareButton.changeVisibility(false)
+            }
         }
     }
 }

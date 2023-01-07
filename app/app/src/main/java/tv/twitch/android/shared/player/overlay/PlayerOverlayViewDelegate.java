@@ -148,4 +148,8 @@ public class PlayerOverlayViewDelegate extends BaseViewDelegate implements IPlay
 
         throw new VirtualImpl();
     }
+
+    public final ImageView getShareButton() {
+        throw new VirtualImpl();
+    }
 }

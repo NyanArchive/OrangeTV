@@ -356,6 +356,11 @@ enum class Flag(
         "disable_sentry",
         "orange_settings_disable_sentry",
         BooleanValue(false)
+    ),
+    HIDE_PLAYER_LIVE_SHARE_BUTTON(
+        "hide_player_live_share_button",
+        "orange_settings_hide_player_live_share_button",
+        BooleanValue(false)
     );
 
     constructor(prefKey: String, value: ValueHolder) : this(

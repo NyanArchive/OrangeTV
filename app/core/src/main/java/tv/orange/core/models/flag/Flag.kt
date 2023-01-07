@@ -292,6 +292,11 @@ enum class Flag(
         "orange_settings_landscape_chat_size",
         IntegerRangeValue(10, 50, 30),
     ),
+    LANDSCAPE_SPLIT_CHAT_SIZE(
+        "landscape_split_chat_size",
+        "orange_settings_landscape_split_chat_size",
+        IntegerRangeValue(10, 70, 50),
+    ),
     FORWARD_SEEK(
         "forward_seek",
         "orange_settings_forward_seek",

@@ -81,6 +81,10 @@ class UI @Inject constructor(
             get() = Flag.LANDSCAPE_CHAT_SIZE.asInt()
 
         @JvmStatic
+        val landscapeSplitContainerScale: Int
+            get() = Flag.LANDSCAPE_SPLIT_CHAT_SIZE.asInt()
+
+        @JvmStatic
         val forwardSeek: Int
             get() = Flag.FORWARD_SEEK.asInt()
 

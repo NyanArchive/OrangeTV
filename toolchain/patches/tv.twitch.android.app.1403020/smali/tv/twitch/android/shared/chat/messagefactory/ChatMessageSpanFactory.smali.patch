@@ -162,7 +162,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMes
      instance-of v1, v0, Ltv/twitch/android/models/chat/MessageToken$EmoticonToken;
  
      if-eqz v1, :cond_8
-@@ -2823,3 +2851,385 @@
+@@ -2823,3 +2851,396 @@
      :goto_0
      return-object p1
  .end method
@@ -208,7 +208,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +.end method
 +
 +.method private emoteSpannable(Ltv/orange/features/emotes/bridge/EmoteToken;Ltv/twitch/android/provider/chat/ChatMessageInterface;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)Ljava/lang/CharSequence;
-+    .registers 12
++    .registers 11
 +    .param p1, "token"    # Ltv/orange/features/emotes/bridge/EmoteToken;
 +    .param p2, "cmi"    # Ltv/twitch/android/provider/chat/ChatMessageInterface;
 +    .annotation system Ldalvik/annotation/Signature;
@@ -216,30 +216,36 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +            "(",
 +            "Ltv/orange/features/emotes/bridge/EmoteToken;",
 +            "Ltv/twitch/android/provider/chat/ChatMessageInterface;",
-+            "Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher<",
++            "Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher",
++            "<",
 +            "Ltv/twitch/android/shared/chat/util/ChatItemClickEvent;",
 +            ">;)",
 +            "Ljava/lang/CharSequence;"
 +        }
 +    .end annotation
 +
-+    .line 83
++    .prologue
++    .line 125
 +    .local p3, "eventDispatcher":Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;, "Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher<Ltv/twitch/android/shared/chat/util/ChatItemClickEvent;>;"
-+    new-instance v1, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    iget-object v0, p0, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;->chatHookProvider:Ltv/orange/features/chat/ChatHookProvider;
 +
 +    invoke-virtual {p1}, Ltv/orange/features/emotes/bridge/EmoteToken;->getEmoteUrl()Ljava/lang/String;
 +
-+    move-result-object v0
++    move-result-object v2
 +
-+    sget-object v2, Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;->Emote:Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;
++    iget-object v3, p0, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;->animatedEmotesUrlUtil:Ltv/twitch/android/shared/emotes/utils/AnimatedEmotesUrlUtil;
 +
-+    const/4 v6, 0x1
++    invoke-virtual {v3}, Ltv/twitch/android/shared/emotes/utils/AnimatedEmotesUrlUtil;->isAnimatedEmotesEnabled()Z
 +
-+    invoke-direct {v1, v0, v2, v6}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;-><init>(Ljava/lang/String;Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;Z)V
++    move-result v3
 +
-+    .line 84
++    invoke-virtual {v0, v2, v3}, Ltv/orange/features/chat/ChatHookProvider;->urlDrawableFactory(Ljava/lang/String;Z)Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++
++    move-result-object v1
++
++    .line 126
 +    .local v1, "drawable":Landroid/graphics/drawable/Drawable;
-+    new-instance v7, Landroid/text/SpannableString;
++    new-instance v6, Landroid/text/SpannableString;
 +
 +    invoke-virtual {p1}, Ltv/orange/features/emotes/bridge/EmoteToken;->getEmoteCode()Ljava/lang/String;
 +
@@ -257,58 +263,56 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
 +    move-result-object v0
 +
-+    invoke-direct {v7, v0}, Landroid/text/SpannableString;-><init>(Ljava/lang/CharSequence;)V
++    invoke-direct {v6, v0}, Landroid/text/SpannableString;-><init>(Ljava/lang/CharSequence;)V
 +
-+    move-object v0, v7
++    .line 127
++    .local v6, "spannable":Landroid/text/SpannableString;
++    if-eqz p3, :cond_4a
 +
-+    .line 85
-+    .local v0, "spannable":Landroid/text/SpannableString;
-+    if-eqz p3, :cond_46
++    .line 128
++    new-instance v0, Ltv/twitch/android/shared/chat/util/ClickableEmoteSpan;
 +
-+    .line 86
-+    new-instance v2, Ltv/twitch/android/shared/chat/util/ClickableEmoteSpan;
-+
-+    new-instance v3, Ltv/orange/models/abc/EmoteCardModelWrapper;
++    new-instance v2, Ltv/orange/models/abc/EmoteCardModelWrapper;
 +
 +    invoke-virtual {p1}, Ltv/orange/features/emotes/bridge/EmoteToken;->getEmoteCode()Ljava/lang/String;
 +
-+    move-result-object v4
++    move-result-object v3
 +
 +    invoke-virtual {p1}, Ltv/orange/features/emotes/bridge/EmoteToken;->getEmoteCardUrl()Ljava/lang/String;
 +
-+    move-result-object v5
++    move-result-object v4
 +
 +    invoke-virtual {p1}, Ltv/orange/features/emotes/bridge/EmoteToken;->getPackageSet()Ltv/orange/models/abc/EmotePackageSet;
 +
-+    move-result-object v7
++    move-result-object v5
 +
-+    invoke-direct {v3, v4, v5, v7}, Ltv/orange/models/abc/EmoteCardModelWrapper;-><init>(Ljava/lang/String;Ljava/lang/String;Ltv/orange/models/abc/EmotePackageSet;)V
++    invoke-direct {v2, v3, v4, v5}, Ltv/orange/models/abc/EmoteCardModelWrapper;-><init>(Ljava/lang/String;Ljava/lang/String;Ltv/orange/models/abc/EmotePackageSet;)V
 +
-+    invoke-virtual {v3}, Ltv/orange/models/abc/EmoteCardModelWrapper;->toJsonString()Ljava/lang/String;
++    invoke-virtual {v2}, Ltv/orange/models/abc/EmoteCardModelWrapper;->toJsonString()Ljava/lang/String;
 +
-+    move-result-object v3
++    move-result-object v2
 +
-+    invoke-direct {v2, v3, p2, p3}, Ltv/twitch/android/shared/chat/util/ClickableEmoteSpan;-><init>(Ljava/lang/String;Ltv/twitch/android/provider/chat/ChatMessageInterface;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)V
++    invoke-direct {v0, v2, p2, p3}, Ltv/twitch/android/shared/chat/util/ClickableEmoteSpan;-><init>(Ljava/lang/String;Ltv/twitch/android/provider/chat/ChatMessageInterface;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)V
 +
-+    const/4 v3, 0x0
++    const/4 v2, 0x0
 +
-+    invoke-virtual {v0}, Landroid/text/SpannableString;->length()I
++    invoke-virtual {v6}, Landroid/text/SpannableString;->length()I
 +
-+    move-result v4
++    move-result v3
 +
-+    sub-int/2addr v4, v6
++    add-int/lit8 v3, v3, -0x1
 +
-+    const/16 v5, 0x21
++    const/16 v4, 0x21
 +
-+    invoke-virtual {v0, v2, v3, v4, v5}, Landroid/text/SpannableString;->setSpan(Ljava/lang/Object;III)V
++    invoke-virtual {v6, v0, v2, v3, v4}, Landroid/text/SpannableString;->setSpan(Ljava/lang/Object;III)V
 +
-+    .line 89
-+    :cond_46
-+    return-object v0
++    .line 131
++    :cond_4a
++    return-object v6
 +.end method
 +
 +.method private stackEmoteSpannable(Ltv/orange/features/chat/bridge/StackEmoteToken;Ltv/twitch/android/provider/chat/ChatMessageInterface;Ljava/lang/Integer;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)Ljava/lang/CharSequence;
-+    .registers 21
++    .registers 20
 +    .param p1, "stackEmoteToken"    # Ltv/orange/features/chat/bridge/StackEmoteToken;
 +    .param p2, "chatMessageInterface"    # Ltv/twitch/android/provider/chat/ChatMessageInterface;
 +    .param p3, "num"    # Ljava/lang/Integer;
@@ -318,25 +322,23 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +            "Ltv/orange/features/chat/bridge/StackEmoteToken;",
 +            "Ltv/twitch/android/provider/chat/ChatMessageInterface;",
 +            "Ljava/lang/Integer;",
-+            "Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher<",
++            "Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher",
++            "<",
 +            "Ltv/twitch/android/shared/chat/util/ChatItemClickEvent;",
 +            ">;)",
 +            "Ljava/lang/CharSequence;"
 +        }
 +    .end annotation
 +
-+    .line 90
++    .prologue
++    .line 92
 +    .local p4, "eventDispatcher":Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;, "Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher<Ltv/twitch/android/shared/chat/util/ChatItemClickEvent;>;"
-+    move-object/from16 v0, p2
++    new-instance v12, Ljava/util/ArrayList;
 +
-+    move-object/from16 v1, p4
++    invoke-direct {v12}, Ljava/util/ArrayList;-><init>()V
 +
-+    new-instance v2, Ljava/util/ArrayList;
-+
-+    invoke-direct {v2}, Ljava/util/ArrayList;-><init>()V
-+
-+    .line 91
-+    .local v2, "stack":Ljava/util/List;, "Ljava/util/List<Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;>;"
++    .line 93
++    .local v12, "stack":Ljava/util/List;, "Ljava/util/List<Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;>;"
 +    invoke-virtual/range {p1 .. p1}, Ltv/orange/features/chat/bridge/StackEmoteToken;->getStack()Ljava/util/List;
 +
 +    move-result-object v3
@@ -345,40 +347,43 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
 +    move-result-object v3
 +
-+    :goto_11
++    :goto_d
 +    invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
 +
-+    move-result v4
++    move-result v5
 +
-+    const/4 v5, 0x1
-+
-+    if-eqz v4, :cond_2d
++    if-eqz v5, :cond_2d
 +
 +    invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 +
-+    move-result-object v4
++    move-result-object v13
 +
-+    check-cast v4, Ltv/orange/features/emotes/bridge/EmoteToken;
++    check-cast v13, Ltv/orange/features/emotes/bridge/EmoteToken;
 +
-+    .line 92
-+    .local v4, "t":Ltv/orange/features/emotes/bridge/EmoteToken;
-+    new-instance v6, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    .line 94
++    .local v13, "t":Ltv/orange/features/emotes/bridge/EmoteToken;
++    iget-object v5, p0, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;->chatHookProvider:Ltv/orange/features/chat/ChatHookProvider;
 +
-+    invoke-virtual {v4}, Ltv/orange/features/emotes/bridge/EmoteToken;->getEmoteUrl()Ljava/lang/String;
++    invoke-virtual {v13}, Ltv/orange/features/emotes/bridge/EmoteToken;->getEmoteUrl()Ljava/lang/String;
 +
-+    move-result-object v7
++    move-result-object v6
 +
-+    sget-object v8, Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;->Emote:Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;
++    iget-object v7, p0, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;->animatedEmotesUrlUtil:Ltv/twitch/android/shared/emotes/utils/AnimatedEmotesUrlUtil;
 +
-+    invoke-direct {v6, v7, v8, v5}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;-><init>(Ljava/lang/String;Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;Z)V
++    invoke-virtual {v7}, Ltv/twitch/android/shared/emotes/utils/AnimatedEmotesUrlUtil;->isAnimatedEmotesEnabled()Z
 +
-+    invoke-interface {v2, v6}, Ljava/util/List;->add(Ljava/lang/Object;)Z
++    move-result v7
 +
-+    .line 93
-+    .end local v4    # "t":Ltv/orange/features/emotes/bridge/EmoteToken;
-+    goto :goto_11
++    invoke-virtual {v5, v6, v7}, Ltv/orange/features/chat/ChatHookProvider;->urlDrawableFactory(Ljava/lang/String;Z)Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
 +
-+    .line 95
++    move-result-object v5
++
++    invoke-interface {v12, v5}, Ljava/util/List;->add(Ljava/lang/Object;)Z
++
++    goto :goto_d
++
++    .line 97
++    .end local v13    # "t":Ltv/orange/features/emotes/bridge/EmoteToken;
 +    :cond_2d
 +    invoke-virtual/range {p1 .. p1}, Ltv/orange/features/chat/bridge/StackEmoteToken;->getCore()Ltv/orange/features/chat/bridge/StackEmoteToken$TokenHolder;
 +
@@ -388,11 +393,9 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
 +    move-result v3
 +
-+    const/4 v4, 0x0
++    if-eqz v3, :cond_65
 +
-+    if-eqz v3, :cond_62
-+
-+    .line 96
++    .line 98
 +    invoke-virtual/range {p1 .. p1}, Ltv/orange/features/chat/bridge/StackEmoteToken;->getCore()Ltv/orange/features/chat/bridge/StackEmoteToken$TokenHolder;
 +
 +    move-result-object v3
@@ -401,150 +404,158 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
 +    move-result-object v3
 +
-+    move-object/from16 v12, p0
++    move-object/from16 v0, p2
 +
-+    move-object/from16 v13, p3
++    move-object/from16 v1, p3
 +
-+    invoke-direct {v12, v3, v0, v13, v1}, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;->emoteSpannable(Ltv/twitch/android/models/chat/MessageToken$EmoticonToken;Ltv/twitch/android/provider/chat/ChatMessageInterface;Ljava/lang/Integer;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)Ljava/lang/CharSequence;
++    move-object/from16 v2, p4
 +
-+    move-result-object v3
++    invoke-direct {p0, v3, v0, v1, v2}, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;->emoteSpannable(Ltv/twitch/android/models/chat/MessageToken$EmoticonToken;Ltv/twitch/android/provider/chat/ChatMessageInterface;Ljava/lang/Integer;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)Ljava/lang/CharSequence;
 +
-+    check-cast v3, Landroid/text/SpannableString;
++    move-result-object v10
 +
-+    .line 97
-+    .local v3, "spannable":Landroid/text/SpannableString;
-+    invoke-virtual {v3}, Landroid/text/SpannableString;->length()I
++    check-cast v10, Landroid/text/SpannableString;
++
++    .line 99
++    .local v10, "spannable":Landroid/text/SpannableString;
++    const/4 v3, 0x0
++
++    invoke-virtual {v10}, Landroid/text/SpannableString;->length()I
 +
 +    move-result v5
 +
 +    const-class v6, Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;
 +
-+    invoke-virtual {v3, v4, v5, v6}, Landroid/text/SpannableString;->getSpans(IILjava/lang/Class;)[Ljava/lang/Object;
++    invoke-virtual {v10, v3, v5, v6}, Landroid/text/SpannableString;->getSpans(IILjava/lang/Class;)[Ljava/lang/Object;
 +
-+    move-result-object v5
++    move-result-object v11
 +
-+    check-cast v5, [Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;
-+
-+    .line 98
-+    .local v5, "spans":[Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;
-+    aget-object v4, v5, v4
-+
-+    .line 99
-+    .local v4, "span":Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;
-+    invoke-virtual {v4}, Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;->getImageDrawable()Landroid/graphics/drawable/Drawable;
-+
-+    move-result-object v6
-+
-+    check-cast v6, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    check-cast v11, [Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;
 +
 +    .line 100
-+    .local v6, "drawable":Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
-+    invoke-virtual {v6, v2}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->addToStack(Ljava/util/List;)V
++    .local v11, "spans":[Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;
++    const/4 v3, 0x0
++
++    aget-object v9, v11, v3
++
++    .line 101
++    .local v9, "span":Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;
++    invoke-virtual {v9}, Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;->getImageDrawable()Landroid/graphics/drawable/Drawable;
++
++    move-result-object v4
++
++    check-cast v4, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
 +
 +    .line 102
-+    return-object v3
++    .local v4, "drawable":Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    invoke-virtual {v4, v12}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->addToStack(Ljava/util/List;)V
 +
-+    .line 104
-+    .end local v3    # "spannable":Landroid/text/SpannableString;
-+    .end local v4    # "span":Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;
-+    .end local v5    # "spans":[Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;
-+    .end local v6    # "drawable":Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
-+    :cond_62
-+    move-object/from16 v12, p0
++    .line 115
++    .end local v9    # "span":Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;
++    .end local v11    # "spans":[Ltv/twitch/android/shared/ui/elements/span/CenteredImageSpan;
++    :cond_64
++    :goto_64
++    return-object v10
 +
-+    move-object/from16 v13, p3
-+
++    .line 106
++    .end local v4    # "drawable":Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    .end local v10    # "spannable":Landroid/text/SpannableString;
++    :cond_65
 +    invoke-virtual/range {p1 .. p1}, Ltv/orange/features/chat/bridge/StackEmoteToken;->getCore()Ltv/orange/features/chat/bridge/StackEmoteToken$TokenHolder;
 +
 +    move-result-object v3
 +
 +    invoke-virtual {v3}, Ltv/orange/features/chat/bridge/StackEmoteToken$TokenHolder;->getOrangeToken()Ltv/orange/features/emotes/bridge/EmoteToken;
 +
-+    move-result-object v3
++    move-result-object v14
 +
-+    .line 105
-+    .local v3, "token":Ltv/orange/features/emotes/bridge/EmoteToken;
-+    new-instance v6, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    .line 107
++    .local v14, "token":Ltv/orange/features/emotes/bridge/EmoteToken;
++    iget-object v3, p0, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;->chatHookProvider:Ltv/orange/features/chat/ChatHookProvider;
 +
-+    invoke-virtual {v3}, Ltv/orange/features/emotes/bridge/EmoteToken;->getEmoteUrl()Ljava/lang/String;
++    invoke-virtual {v14}, Ltv/orange/features/emotes/bridge/EmoteToken;->getEmoteUrl()Ljava/lang/String;
 +
-+    move-result-object v7
++    move-result-object v5
 +
-+    sget-object v8, Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;->Emote:Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;
++    iget-object v6, p0, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;->animatedEmotesUrlUtil:Ltv/twitch/android/shared/emotes/utils/AnimatedEmotesUrlUtil;
 +
-+    invoke-direct {v6, v7, v8, v5}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;-><init>(Ljava/lang/String;Ltv/twitch/android/shared/ui/elements/span/MediaSpan$Type;Z)V
++    invoke-virtual {v6}, Ltv/twitch/android/shared/emotes/utils/AnimatedEmotesUrlUtil;->isAnimatedEmotesEnabled()Z
 +
-+    move-object v14, v6
++    move-result v6
 +
-+    .line 106
-+    .local v14, "drawable":Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
-+    invoke-virtual {v14, v2}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->addToStack(Ljava/util/List;)V
++    invoke-virtual {v3, v5, v6}, Ltv/orange/features/chat/ChatHookProvider;->urlDrawableFactory(Ljava/lang/String;Z)Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++
++    move-result-object v4
 +
 +    .line 108
-+    new-instance v15, Landroid/text/SpannableString;
++    .restart local v4    # "drawable":Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;
++    invoke-virtual {v4, v12}, Ltv/twitch/android/shared/ui/elements/span/UrlDrawable;->addToStack(Ljava/util/List;)V
 +
-+    invoke-virtual {v3}, Ltv/orange/features/emotes/bridge/EmoteToken;->getEmoteCode()Ljava/lang/String;
++    .line 110
++    new-instance v10, Landroid/text/SpannableString;
 +
-+    move-result-object v8
++    invoke-virtual {v14}, Ltv/orange/features/emotes/bridge/EmoteToken;->getEmoteCode()Ljava/lang/String;
 +
-+    const/4 v10, 0x0
++    move-result-object v5
 +
-+    const/4 v11, 0x1
++    const-string v6, ""
 +
-+    const-string v9, ""
++    const/4 v7, 0x0
 +
-+    move-object/from16 v6, p0
++    const/4 v8, 0x1
 +
-+    move-object v7, v14
++    move-object v3, p0
 +
-+    invoke-direct/range {v6 .. v11}, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;->imageSpannable(Landroid/graphics/drawable/Drawable;Ljava/lang/String;Ljava/lang/String;Ltv/twitch/android/shared/chat/UrlImageClickableProvider;Z)Ljava/lang/CharSequence;
++    invoke-direct/range {v3 .. v8}, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;->imageSpannable(Landroid/graphics/drawable/Drawable;Ljava/lang/String;Ljava/lang/String;Ltv/twitch/android/shared/chat/UrlImageClickableProvider;Z)Ljava/lang/CharSequence;
++
++    move-result-object v3
++
++    invoke-direct {v10, v3}, Landroid/text/SpannableString;-><init>(Ljava/lang/CharSequence;)V
++
++    .line 111
++    .restart local v10    # "spannable":Landroid/text/SpannableString;
++    if-eqz p4, :cond_64
++
++    .line 112
++    new-instance v3, Ltv/twitch/android/shared/chat/util/ClickableEmoteSpan;
++
++    new-instance v5, Ltv/orange/models/abc/EmoteCardModelWrapper;
++
++    invoke-virtual {v14}, Ltv/orange/features/emotes/bridge/EmoteToken;->getEmoteCode()Ljava/lang/String;
 +
 +    move-result-object v6
 +
-+    invoke-direct {v15, v6}, Landroid/text/SpannableString;-><init>(Ljava/lang/CharSequence;)V
++    invoke-virtual {v14}, Ltv/orange/features/emotes/bridge/EmoteToken;->getEmoteCardUrl()Ljava/lang/String;
 +
-+    move-object v6, v15
++    move-result-object v7
 +
-+    .line 109
-+    .local v6, "spannable":Landroid/text/SpannableString;
-+    if-eqz v1, :cond_b8
-+
-+    .line 110
-+    new-instance v7, Ltv/twitch/android/shared/chat/util/ClickableEmoteSpan;
-+
-+    new-instance v8, Ltv/orange/models/abc/EmoteCardModelWrapper;
-+
-+    invoke-virtual {v3}, Ltv/orange/features/emotes/bridge/EmoteToken;->getEmoteCode()Ljava/lang/String;
-+
-+    move-result-object v9
-+
-+    invoke-virtual {v3}, Ltv/orange/features/emotes/bridge/EmoteToken;->getEmoteCardUrl()Ljava/lang/String;
-+
-+    move-result-object v10
-+
-+    invoke-virtual {v3}, Ltv/orange/features/emotes/bridge/EmoteToken;->getPackageSet()Ltv/orange/models/abc/EmotePackageSet;
-+
-+    move-result-object v11
-+
-+    invoke-direct {v8, v9, v10, v11}, Ltv/orange/models/abc/EmoteCardModelWrapper;-><init>(Ljava/lang/String;Ljava/lang/String;Ltv/orange/models/abc/EmotePackageSet;)V
-+
-+    invoke-virtual {v8}, Ltv/orange/models/abc/EmoteCardModelWrapper;->toJsonString()Ljava/lang/String;
++    invoke-virtual {v14}, Ltv/orange/features/emotes/bridge/EmoteToken;->getPackageSet()Ltv/orange/models/abc/EmotePackageSet;
 +
 +    move-result-object v8
 +
-+    invoke-direct {v7, v8, v0, v1}, Ltv/twitch/android/shared/chat/util/ClickableEmoteSpan;-><init>(Ljava/lang/String;Ltv/twitch/android/provider/chat/ChatMessageInterface;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)V
++    invoke-direct {v5, v6, v7, v8}, Ltv/orange/models/abc/EmoteCardModelWrapper;-><init>(Ljava/lang/String;Ljava/lang/String;Ltv/orange/models/abc/EmotePackageSet;)V
 +
-+    invoke-virtual {v6}, Landroid/text/SpannableString;->length()I
++    invoke-virtual {v5}, Ltv/orange/models/abc/EmoteCardModelWrapper;->toJsonString()Ljava/lang/String;
 +
-+    move-result v8
++    move-result-object v5
 +
-+    sub-int/2addr v8, v5
++    move-object/from16 v0, p2
 +
-+    const/16 v5, 0x21
++    move-object/from16 v1, p4
 +
-+    invoke-virtual {v6, v7, v4, v8, v5}, Landroid/text/SpannableString;->setSpan(Ljava/lang/Object;III)V
++    invoke-direct {v3, v5, v0, v1}, Ltv/twitch/android/shared/chat/util/ClickableEmoteSpan;-><init>(Ljava/lang/String;Ltv/twitch/android/provider/chat/ChatMessageInterface;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)V
 +
-+    .line 113
-+    :cond_b8
-+    return-object v6
++    const/4 v5, 0x0
++
++    invoke-virtual {v10}, Landroid/text/SpannableString;->length()I
++
++    move-result v6
++
++    add-int/lit8 v6, v6, -0x1
++
++    const/16 v7, 0x21
++
++    invoke-virtual {v10, v3, v5, v6, v7}, Landroid/text/SpannableString;->setSpan(Ljava/lang/Object;III)V
++
++    goto :goto_64
 +.end method

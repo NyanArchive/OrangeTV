@@ -19,7 +19,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
  
  # direct methods
  .method public static synthetic $r8$lambda$OHalcw30Kr4-HVrzEe4UL00NqNs(Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;Landroid/view/View;)V
-@@ -535,6 +539,30 @@
+@@ -535,6 +539,38 @@
  
      invoke-virtual {v1, v2}, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->setBottomPlayerControlListener(Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate$BottomPlayerControlListener;)V
  
@@ -47,10 +47,42 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
 +
 +    iput-object v1, v0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->chaptersButton:Landroid/widget/ImageView;
 +
++    invoke-static {}, Ltv/orange/features/ui/UI;->get()Ltv/orange/features/ui/UI;
++
++    move-result-object v1
++
++    iget-object v2, v0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->createClipButton:Landroid/widget/ImageView;
++
++    invoke-virtual {v1, v2}, Ltv/orange/features/ui/UI;->maybeHideCreateClipButton(Landroid/widget/ImageView;)V
++
      return-void
  .end method
  
-@@ -1852,3 +1880,43 @@
+@@ -1356,7 +1392,7 @@
+ .end method
+ 
+ .method public final setClipButtonState(Z)V
+-    .locals 1
++    .locals 2
+ 
+     .line 333
+     iget-object v0, p0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->createClipButton:Landroid/widget/ImageView;
+@@ -1368,6 +1404,14 @@
+ 
+     invoke-static {v0, p1}, Ltv/twitch/android/app/core/ViewExtensionsKt;->visibilityForBoolean(Landroid/view/View;Z)V
+ 
++    invoke-static {}, Ltv/orange/features/ui/UI;->get()Ltv/orange/features/ui/UI;
++
++    move-result-object v0
++
++    iget-object v1, p0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->createClipButton:Landroid/widget/ImageView;
++
++    invoke-virtual {v0, v1}, Ltv/orange/features/ui/UI;->maybeHideCreateClipButton(Landroid/widget/ImageView;)V
++
+     return-void
+ .end method
+ 
+@@ -1852,3 +1896,43 @@
  
      return-void
  .end method

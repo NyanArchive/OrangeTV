@@ -254,4 +254,6 @@
     <string name="orangetv_notification_channel_desc" />
     <string name="orange_settings_hide_player_create_clip_button">Hide «Create clip button»</string>
     <string name="orange_settings_hide_player_create_clip_button_desc" />
+    <string name="orange_settings_disable_sentry">Disable SentrySDK</string>
+    <string name="orange_settings_disable_sentry_desc" />
 </resources>

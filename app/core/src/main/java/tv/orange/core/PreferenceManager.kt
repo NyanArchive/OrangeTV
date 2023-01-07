@@ -17,13 +17,8 @@ class PreferenceManager @Inject constructor(
     val context: Context,
     val themeManager: ThemeManager.Companion
 ) : SharedPreferences.OnSharedPreferenceChangeListener, Feature {
-    private val twitch = android.preference.PreferenceManager.getDefaultSharedPreferences(
-        context
-    )
-    private val orange = context.getSharedPreferences(
-        ORANGE_SHARED_PREFERENCES_NAME,
-        Context.MODE_PRIVATE
-    )
+    private val twitch = getTwitchSharedPreferences(context)
+    private val orange = getOrangeSharedPreferences(context)
 
     private val listeners = mutableSetOf<FlagListener>()
 
@@ -130,6 +125,19 @@ class PreferenceManager @Inject constructor(
         fun get() = Core.getFeature(PreferenceManager::class.java)
 
         private val chommentSeekerCache = mutableMapOf<String, Int>()
+
+        @JvmStatic
+        fun getOrangeSharedPreferences(context: Context): SharedPreferences {
+            return context.getSharedPreferences(
+                ORANGE_SHARED_PREFERENCES_NAME,
+                Context.MODE_PRIVATE
+            )
+        }
+
+        @JvmStatic
+        fun getTwitchSharedPreferences(context: Context): SharedPreferences {
+            return android.preference.PreferenceManager.getDefaultSharedPreferences(context)
+        }
     }
 
     fun initialize() {

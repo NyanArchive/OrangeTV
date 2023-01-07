@@ -111,7 +111,8 @@ enum class OrangeSubMenu(
         items = listOf(
             Flag.DEV_MODE,
             Flag.OKHTTP_LOGGING,
-            Flag.FORCE_OTA
+            Flag.FORCE_OTA,
+            Flag.FORCE_DISABLE_SENTRY
         )
     ),
     Support(

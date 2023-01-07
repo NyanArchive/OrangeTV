@@ -93,7 +93,10 @@ class OrangeSettingsController @Inject constructor(
 
     companion object {
         private val RESTART_FLAGS = setOf(
-            Flag.BOTTOM_NAVBAR_POSITION, Flag.DEV_MODE, Flag.Proxy
+            Flag.BOTTOM_NAVBAR_POSITION,
+            Flag.DEV_MODE,
+            Flag.Proxy,
+            Flag.FORCE_DISABLE_SENTRY
         )
     }
 

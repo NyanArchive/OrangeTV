@@ -346,6 +346,11 @@ enum class Flag(
         "hide_player_create_clip_button",
         "orange_settings_hide_player_create_clip_button",
         BooleanValue(false)
+    ),
+    FORCE_DISABLE_SENTRY(
+        "disable_sentry",
+        "orange_settings_disable_sentry",
+        BooleanValue(false)
     );
 
     constructor(prefKey: String, value: ValueHolder) : this(

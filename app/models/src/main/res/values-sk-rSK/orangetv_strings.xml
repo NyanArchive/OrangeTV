@@ -60,6 +60,7 @@
     <string name="orange_settings_title">Nastavenia PurpleTV</string>
     <string name="orange_settings_chat_font_size">Veľkosť písma chatu</string>
     <string name="orange_settings_landscape_chat_size">Šírka chatu v režime na šírku</string>
+    <string name="orange_settings_landscape_split_chat_size">Šírka četu v režimu na šírku</string>
     <string name="orange_settings_forward_seek">Náhľad prehrávača dopredu</string>
     <string name="orange_settings_rewind_seek">Náhľad prehrávača späť</string>
     <string name="orange_settings_mini_player_size">Veľkosť MiniPrehrávača</string>
@@ -164,7 +165,7 @@
     <string name="orange_settings_hide_unfollow_button">Skryť tlačidlo zrušiť follow</string>
     <string name="orange_settings_info_lanzzz">Tvorca PurpleTV loga</string>
     <string name="orange_pinny_active_users">Aktívnych používateľov: %1$d</string>
-    <string name="orange_pinny_total_users">Celkový počet používateľov:%1$d</string>
+    <string name="orange_pinny_total_users">Celkový počet používateľov: %1$d</string>
     <string name="orange_settings_chat_settings">Nastavenia četu</string>
     <string name="orange_settings_hide_create_button">Skryť «Vytvoriť» tlačidlo</string>
     <string name="orange_settings_menu_blacklist">Čierna listina</string>
@@ -178,4 +179,7 @@
     <string name="orange_settings_download_clip">Stiahnuť klip</string>
     <string name="orangetv_downloading">Sťahuje sa…</string>
     <string name="orangetv_notification_channel_name">PurpleTV</string>
+    <string name="orange_settings_hide_player_create_clip_button">Skryť tlačidlo «Vytvoriť klip»</string>
+    <string name="orange_settings_disable_sentry">Zakázať SentrySDK</string>
+    <string name="orange_settings_hide_player_live_share_button">Skryť tlačidlo «Zdieľať» pre živé streamy</string>
 </resources>

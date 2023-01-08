@@ -66,7 +66,6 @@ class BridgeImpl private constructor() : Bridge {
         // core
         featureFactoryMap[Core::class.java] = lazy { component.core }
         featureFactoryMap[ResourceManager::class.java] = lazy { component.resourceManagerProvider }
-        featureFactoryMap[PreferenceManager::class.java] = lazy { component.preferenceManager }
         // features
         featureFactoryMap[StvAvatars::class.java] = lazy { component.stvAvatarsProvider }
         featureFactoryMap[ChatHookProvider::class.java] = lazy { component.chatHookProvider }

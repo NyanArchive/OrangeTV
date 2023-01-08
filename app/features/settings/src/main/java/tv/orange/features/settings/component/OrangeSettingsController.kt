@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import tv.orange.core.Core
 import tv.orange.core.LoggerImpl
-import tv.orange.core.PreferenceManager
+import tv.orange.core.PreferenceManagerCore
 import tv.orange.core.ResourceManager
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asInt
@@ -29,7 +29,8 @@ class OrangeSettingsController @Inject constructor(
     val activity: FragmentActivity,
     val fragmentRouter: IFragmentRouter,
     val highlighter: Highlighter,
-    val blacklist: Blacklist
+    val blacklist: Blacklist,
+    val prefManager: PreferenceManagerCore
 ) : SettingsPreferencesController, SliderModel.SliderListener, SettingsNavigationController {
     override fun updatePreferenceBooleanState(toggleMenuModel: ToggleMenuModel, state: Boolean) {
         val eventName = toggleMenuModel.eventName
@@ -42,7 +43,7 @@ class OrangeSettingsController @Inject constructor(
             return
         }
 
-        PreferenceManager.get().writeBoolean(flag = flag, value = state)
+        prefManager.writeBoolean(flag = flag, value = state)
         checkIfNeedRestart(flag = flag)
     }
 
@@ -73,6 +74,7 @@ class OrangeSettingsController @Inject constructor(
         alertDialog.show()
     }
 
+    @Suppress("CAST_NEVER_SUCCEEDS")
     fun getMainSettingModels(): Collection<MenuModel> {
         return OrangeSubMenu.values().filter { it.items.isNotEmpty() || it == OrangeSubMenu.Info }
             .map {
@@ -87,7 +89,7 @@ class OrangeSettingsController @Inject constructor(
             return
         }
 
-        PreferenceManager.get().writeString(flag = flag, value = variant.toString())
+        prefManager.writeString(flag = flag, value = variant.toString())
         checkIfNeedRestart(flag)
     }
 
@@ -105,7 +107,7 @@ class OrangeSettingsController @Inject constructor(
             return
         }
 
-        PreferenceManager.get().writeInt(flag = flag, value = value)
+        prefManager.writeInt(flag = flag, value = value)
         checkIfNeedRestart(flag = flag)
     }
 

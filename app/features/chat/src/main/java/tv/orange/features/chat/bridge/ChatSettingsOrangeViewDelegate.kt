@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import io.reactivex.Flowable
-import tv.orange.core.PreferenceManager
+import tv.orange.core.PreferenceManagerCore
 import tv.orange.core.ResourceManager
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
@@ -19,7 +19,7 @@ import tv.twitch.android.shared.ui.menus.togglemenu.SimpleToggleRowViewDelegate
 
 class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
     private val resourceManager = ResourceManager.get()
-    private val preferenceManager = PreferenceManager.get()
+    private val prefManager = PreferenceManagerCore
 
     private val modStuffContainer: ViewGroup = view.getView(
         resName = "orange_preferences_container"
@@ -108,7 +108,7 @@ class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
                 ChatSettingsOrangeEvents.Toggle()
             })
             add(toggleBttvEmotes.eventObserver().doOnNext {
-                preferenceManager.writeBoolean(
+                prefManager.writeBoolean(
                     flag = Flag.BTTV_EMOTES,
                     value = it.isToggled
                 )
@@ -122,7 +122,7 @@ class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
                 ChatSettingsOrangeEvents.Toggle()
             })
             add(toggleFfzEmotes.eventObserver().doOnNext {
-                preferenceManager.writeBoolean(
+                prefManager.writeBoolean(
                     flag = Flag.FFZ_EMOTES,
                     value = it.isToggled
                 )
@@ -136,7 +136,7 @@ class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
                 ChatSettingsOrangeEvents.Toggle()
             })
             add(toggleStvEmotes.eventObserver().doOnNext {
-                preferenceManager.writeBoolean(
+                prefManager.writeBoolean(
                     flag = Flag.STV_EMOTES,
                     value = it.isToggled
                 )
@@ -150,7 +150,7 @@ class ChatSettingsOrangeViewDelegate(context: Context, view: View) {
                 ChatSettingsOrangeEvents.Toggle()
             })
             add(toggleItzEmotes.eventObserver().doOnNext {
-                preferenceManager.writeBoolean(
+                prefManager.writeBoolean(
                     flag = Flag.ITZ_EMOTES,
                     value = it.isToggled
                 )

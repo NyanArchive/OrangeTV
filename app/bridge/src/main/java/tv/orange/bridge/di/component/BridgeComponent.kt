@@ -5,10 +5,8 @@ import tv.orange.bridge.di.module.BridgeModule
 import tv.orange.bridge.di.scope.BridgeScope
 import tv.orange.core.Core
 import tv.orange.core.CoreHook
-import tv.orange.core.PreferenceManager
 import tv.orange.core.ResourceManager
 import tv.orange.core.di.component.CoreComponent
-import tv.orange.features.blacklist.Blacklist
 import tv.orange.features.chapters.VodChapters
 import tv.orange.features.chat.ChatHookProvider
 import tv.orange.features.chathistory.ChatHistory
@@ -51,6 +49,5 @@ interface BridgeComponent {
     val swipperProvider: Provider<Swipper>
     val proxyProvider: Provider<Proxy>
 
-    val preferenceManager: Provider<PreferenceManager>
     val core: Provider<Core>
 }

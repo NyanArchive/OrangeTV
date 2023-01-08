@@ -13,7 +13,7 @@ import io.reactivex.Completable
 import io.reactivex.disposables.Disposable
 import tv.orange.core.Core
 import tv.orange.core.LoggerImpl
-import tv.orange.core.PreferenceManager
+import tv.orange.core.PreferenceManagerCore
 import tv.orange.core.ResourceManager
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
@@ -22,7 +22,6 @@ import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.variants.BottomNavbarPosition
 import tv.orange.core.util.ViewUtil.changeVisibility
 import tv.orange.core.util.ViewUtil.getView
-import tv.orange.features.api.component.repository.TwitchRepository
 import tv.orange.features.ui.bridge.SupportBridge
 import tv.orange.models.abc.Feature
 import tv.twitch.android.shared.chat.ChatViewDelegate
@@ -36,7 +35,7 @@ import javax.inject.Inject
 class UI @Inject constructor(
     val context: Context,
     val supportBridge: SupportBridge,
-    val twitchRepository: TwitchRepository
+    val prefManager: PreferenceManagerCore
 ) : Feature {
     companion object {
         @JvmStatic
@@ -227,7 +226,7 @@ class UI @Inject constructor(
     }
 
     fun changeLandscapeChatContainerOpacity(viewGroup: ViewGroup?) {
-        if (PreferenceManager.isDarkThemeEnabled) {
+        if (prefManager.isDarkThemeEnabled) {
             viewGroup?.setBackgroundColor(
                 Color.argb(
                     (255 * (Flag.LANDSCAPE_CHAT_OPACITY.asInt() / 100F)).toInt(),
@@ -268,16 +267,6 @@ class UI @Inject constructor(
         }
 
         return Completable.complete().subscribe()
-
-//        return twitchRepository.getStreamUptime(channelId).observeOn(AndroidSchedulers.mainThread())
-//            .subscribe({
-//                it.createdAt?.let { date ->
-//                    uptime.text = " (${DateUtils.formatElapsedTime(DateUtil.getDiff(date, Date()).div(1000))})"
-//                    uptime.changeVisibility(true)
-//                } ?: run {
-//                    uptime.changeVisibility(false)
-//                }
-//            }, { it.printStackTrace() })
     }
 
     override fun onCreateFeature() {}

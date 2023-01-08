@@ -15,8 +15,7 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
 import tv.orange.core.Core
-import tv.orange.core.PreferenceManager
-import tv.orange.core.PreferenceManager.Companion.isDarkThemeEnabled
+import tv.orange.core.PreferenceManagerCore
 import tv.orange.core.ResourceManager
 import tv.orange.core.compat.ClassCompat.getPrivateField
 import tv.orange.core.models.flag.Flag
@@ -92,7 +91,8 @@ class ChatHookProvider @Inject constructor(
     val favEmotesRepository: FavEmotesRepository,
     val chatFactory: ChatFactory,
     val highlighter: Highlighter,
-    val blacklist: Blacklist
+    val blacklist: Blacklist,
+    val prefManager: PreferenceManagerCore
 ) : LifecycleAware, FlagListener, Feature, SupportBridge.Callback {
     private val currentChannelSubject = BehaviorSubject.create<Int>()
 
@@ -515,7 +515,7 @@ class ChatHookProvider @Inject constructor(
         fun fixUsernameSpanColor(usernameColor: Int): Int {
             return ChatUtil.fixUsernameColor(
                 color = usernameColor,
-                isDarkThemeEnabled = isDarkThemeEnabled
+                isDarkThemeEnabled = PreferenceManagerCore.isDarkThemeEnabled
             )
         }
 
@@ -766,7 +766,7 @@ class ChatHookProvider @Inject constructor(
 
     override fun onCreateFeature() {
         Core.get().registerLifecycleListeners(this)
-        PreferenceManager.get().registerFlagListeners(this)
+        prefManager.registerFlagListeners(this)
         updateFontSize()
         emoteSize = Flag.EMOTE_QUALITY.asVariant<EmoteQuality>().toSize()
         pronouns = Flag.PRONOUNS.asBoolean()

@@ -8,15 +8,15 @@ import io.sentry.android.core.SentryAndroidOptions
 import io.sentry.protocol.User
 import tv.orange.core.BuildConfigUtil
 import tv.orange.core.LoggerImpl
-import tv.orange.core.PreferenceManager
 import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import java.lang.Integer.min
 
 object SentrySDK {
     private var isInitialized: Boolean = false
 
     fun setupSentrySDK(application: Application) {
-        if (isDisabled(application)) {
+        if (Flag.FORCE_DISABLE_SENTRY.asBoolean()) {
             LoggerImpl.warning("SentrySDK: Disabled")
             return
         }
@@ -121,11 +121,6 @@ object SentrySDK {
         // }
 
         // Sentry.captureMessage(msg, level.toLevel())
-    }
-
-    private fun isDisabled(application: Application): Boolean {
-        return PreferenceManager.getOrangeSharedPreferences(application)
-            .getBoolean(Flag.FORCE_DISABLE_SENTRY.preferenceKey, false)
     }
 }
 

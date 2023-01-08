@@ -6,34 +6,40 @@ import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.models.flag.FlagListener
 import tv.orange.core.models.flag.Internal.*
-import tv.orange.models.AutoInitialize
-import tv.orange.models.abc.Feature
+import tv.twitch.android.app.core.ApplicationContext
 import tv.twitch.android.app.core.ThemeManager
-import javax.inject.Inject
 
 @Suppress("DEPRECATION")
-@AutoInitialize
-class PreferenceManager @Inject constructor(
-    val context: Context,
-    val themeManager: ThemeManager.Companion
-) : SharedPreferences.OnSharedPreferenceChangeListener, Feature {
+object PreferenceManagerCore : SharedPreferences.OnSharedPreferenceChangeListener {
+    private const val ORANGE_SHARED_PREFERENCES_NAME = "orange"
+
+    private const val ORANGE_TIMER_HOURS_KEY = "orange_timer_hours"
+    private const val ORANGE_TIMER_MINUTES_KEY = "orange_timer_minutes"
+
     private val twitch = getTwitchSharedPreferences(context)
     private val orange = getOrangeSharedPreferences(context)
 
     private val listeners = mutableSetOf<FlagListener>()
 
-    override fun onSharedPreferenceChanged(preferences: SharedPreferences?, key: String?) {
-        when (preferences) {
+    var isDarkThemeEnabled = false
+
+    private val chommentSeekerCache = mutableMapOf<String, Int>()
+
+    private val context: Context
+        get() = ApplicationContext.getInstance().getContext()
+
+    override fun onSharedPreferenceChanged(pref: SharedPreferences?, key: String?) {
+        when (pref) {
             twitch -> onTwitchSharedPreferenceChanged(key = key)
             orange -> onOrangeSharedPreferenceChanged(key = key)
             else -> {
-                LoggerImpl.warning("Unknown pref: $preferences")
+                LoggerImpl.warning("Unknown pref: $pref")
             }
         }
     }
 
     private fun onTwitchSharedPreferenceChanged(key: String?) {
-        isDarkThemeEnabled = themeManager.isNightModeEnabled(context)
+        isDarkThemeEnabled = ThemeManager.Companion!!.isNightModeEnabled(context)
     }
 
     private fun onOrangeSharedPreferenceChanged(key: String?) {
@@ -43,12 +49,6 @@ class PreferenceManager @Inject constructor(
                 listeners.forEach { it.onFlagValueChanged(flag = flag) }
                 pCases(flag)
             }
-        }
-    }
-
-    private fun pCases(flag: Flag) {
-        if (flag == Flag.DEV_MODE) {
-            LoggerImpl.devMode = flag.asBoolean()
         }
     }
 
@@ -113,43 +113,15 @@ class PreferenceManager @Inject constructor(
         }
     }
 
-    companion object {
-        private const val ORANGE_SHARED_PREFERENCES_NAME = "orange"
-
-        private const val ORANGE_TIMER_HOURS_KEY = "orange_timer_hours"
-        private const val ORANGE_TIMER_MINUTES_KEY = "orange_timer_minutes"
-
-        var isDarkThemeEnabled = false
-
-        @JvmStatic
-        fun get() = Core.getFeature(PreferenceManager::class.java)
-
-        private val chommentSeekerCache = mutableMapOf<String, Int>()
-
-        @JvmStatic
-        fun getOrangeSharedPreferences(context: Context): SharedPreferences {
-            return context.getSharedPreferences(
-                ORANGE_SHARED_PREFERENCES_NAME,
-                Context.MODE_PRIVATE
-            )
-        }
-
-        @JvmStatic
-        fun getTwitchSharedPreferences(context: Context): SharedPreferences {
-            return android.preference.PreferenceManager.getDefaultSharedPreferences(context)
-        }
+    private fun getOrangeSharedPreferences(context: Context): SharedPreferences {
+        return context.getSharedPreferences(
+            ORANGE_SHARED_PREFERENCES_NAME,
+            Context.MODE_PRIVATE
+        )
     }
 
-    fun initialize() {
-        Flag.values().forEach { setting ->
-            readFromPreferences(setting)
-        }
-
-        orange.registerOnSharedPreferenceChangeListener(this)
-        twitch.registerOnSharedPreferenceChangeListener(this)
-
-        isDarkThemeEnabled = ThemeManager.Companion!!.isNightModeEnabled(context)
-        LoggerImpl.devMode = Flag.DEV_MODE.asBoolean()
+    private fun getTwitchSharedPreferences(context: Context): SharedPreferences {
+        return android.preference.PreferenceManager.getDefaultSharedPreferences(context)
     }
 
     fun getLastTimer(): Pair<Int, Int> {
@@ -167,7 +139,25 @@ class PreferenceManager @Inject constructor(
         orange.edit().putInt(ORANGE_TIMER_MINUTES_KEY, data.second).apply()
     }
 
-    override fun onCreateFeature() {
-        initialize()
+    fun setUserMentionColor(newColor: Int) {
+        writeInt(Flag.USER_MENTION_COLOR, newColor)
+    }
+
+    private fun pCases(flag: Flag) {
+        if (flag == Flag.DEV_MODE) {
+            LoggerImpl.devMode = flag.asBoolean()
+        }
+    }
+
+    fun initialize() {
+        Flag.values().forEach { setting ->
+            readFromPreferences(setting)
+        }
+
+        orange.registerOnSharedPreferenceChangeListener(this)
+        twitch.registerOnSharedPreferenceChangeListener(this)
+
+        isDarkThemeEnabled = ThemeManager.Companion!!.isNightModeEnabled(context)
+        pCases(Flag.DEV_MODE)
     }
 }

@@ -60,6 +60,7 @@
     <string name="orange_settings_title">Ajustes de PurpleTV</string>
     <string name="orange_settings_chat_font_size">Tamaño de fuente del chat</string>
     <string name="orange_settings_landscape_chat_size">Ancho del chat en modo horizontal</string>
+    <string name="orange_settings_landscape_split_chat_size">Ancho del chat dividido en modo horizontal</string>
     <string name="orange_settings_forward_seek">Saltos hacia adelante en el reproductor</string>
     <string name="orange_settings_rewind_seek">Saltos hacia atrás en el reproductor</string>
     <string name="orange_settings_mini_player_size">Tamaño del Mini Reproductor</string>
@@ -176,4 +177,9 @@
     <string name="orange_settings_prevent_mod_clear">No borrar el chat cuando se usa el comando</string>
     <string name="orange_settings_force_toolbar_search_button">Forzar botón de búsqueda en la barra de herramientas</string>
     <string name="orange_settings_download_clip">Descargar clip</string>
+    <string name="orangetv_downloading">Descargando…</string>
+    <string name="orangetv_notification_channel_name">PurpleTV</string>
+    <string name="orange_settings_hide_player_create_clip_button">Ocultar botón «Crear clip»</string>
+    <string name="orange_settings_disable_sentry">Desactivar SentrySDK</string>
+    <string name="orange_settings_hide_player_live_share_button">Ocultar botón «Compartir» para directos</string>
 </resources>

@@ -60,6 +60,7 @@
     <string name="orange_settings_title">Параметри PurpleTV</string>
     <string name="orange_settings_chat_font_size">Розмір шрифту у чаті</string>
     <string name="orange_settings_landscape_chat_size">Ширина чату в повноекранному режимі</string>
+    <string name="orange_settings_landscape_split_chat_size">Ширина чату в роздільному режимі</string>
     <string name="orange_settings_forward_seek">Перемотка вперед на</string>
     <string name="orange_settings_rewind_seek">Перемотка назад на</string>
     <string name="orange_settings_mini_player_size">Розмір мініпрогравача</string>
@@ -176,4 +177,9 @@
     <string name="orange_settings_prevent_mod_clear">Ігнорувати очищення чату модераторами</string>
     <string name="orange_settings_force_toolbar_search_button">Додати кнопку пошуку на панель інструментів</string>
     <string name="orange_settings_download_clip">Завантажити кліп</string>
+    <string name="orangetv_downloading">Завантаження…</string>
+    <string name="orangetv_notification_channel_name">PurpleTV</string>
+    <string name="orange_settings_hide_player_create_clip_button">Сховати кнопку «Створити кліп»</string>
+    <string name="orange_settings_disable_sentry">Вимкнути SentrySDK</string>
+    <string name="orange_settings_hide_player_live_share_button">Сховати кнопку «Поділитися» для етерів</string>
 </resources>

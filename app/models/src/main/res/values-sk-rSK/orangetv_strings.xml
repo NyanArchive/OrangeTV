@@ -175,4 +175,7 @@
     <string name="orange_settings_user_mention_color">Zmeniť farbu @zmienky</string>
     <string name="orange_settings_prevent_mod_clear">Nevymazávať čet, keď k tomu dostane príkaz</string>
     <string name="orange_settings_force_toolbar_search_button">Vynútiť tlačidlo vyhľadávania na paneli s nástrojmi</string>
+    <string name="orange_settings_download_clip">Stiahnuť klip</string>
+    <string name="orangetv_downloading">Sťahuje sa…</string>
+    <string name="orangetv_notification_channel_name">PurpleTV</string>
 </resources>

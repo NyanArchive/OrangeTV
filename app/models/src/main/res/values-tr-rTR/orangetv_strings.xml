@@ -60,6 +60,7 @@
     <string name="orange_settings_title">PurpleTV Ayarları</string>
     <string name="orange_settings_chat_font_size">Sohbet yazı tipi boyutu</string>
     <string name="orange_settings_landscape_chat_size">Yatay sohbet genişliği</string>
+    <string name="orange_settings_landscape_split_chat_size">Yatay sohbet genişliği</string>
     <string name="orange_settings_forward_seek">Oynatıcı ileri sarma</string>
     <string name="orange_settings_rewind_seek">Oynatıcı geri sarma</string>
     <string name="orange_settings_mini_player_size">Mini oynatıcı büyüklüğü</string>
@@ -176,4 +177,9 @@
     <string name="orange_settings_prevent_mod_clear">Sohbet temizleme komutu yazıldığında sohbeti temizleme</string>
     <string name="orange_settings_force_toolbar_search_button">Arama çubuğunu ikonların yanında kullanmaya zorla</string>
     <string name="orange_settings_download_clip">Klibi indir</string>
+    <string name="orangetv_downloading">İndiriliyor…</string>
+    <string name="orangetv_notification_channel_name">PurpleTV</string>
+    <string name="orange_settings_hide_player_create_clip_button">&lt;&lt;Klip oluştur butonunu&gt;&gt; gizle</string>
+    <string name="orange_settings_disable_sentry">NöbetçiSDK\'yı devre dışı bırak</string>
+    <string name="orange_settings_hide_player_live_share_button">Yayınlar için &lt;&lt;Paylaş butonunu&gt;&gt; gizle</string>
 </resources>

@@ -177,4 +177,10 @@
     <string name="orange_settings_user_mention_color">Изменить цвет упоминания</string>
     <string name="orange_settings_prevent_mod_clear">Предотвратить очистку чата модератором</string>
     <string name="orange_settings_force_toolbar_search_button">Отображать кнопку «Поиск» на панели инструментов</string>
+    <string name="orange_settings_download_clip">Скачать клип</string>
+    <string name="orangetv_downloading">Загрузка…</string>
+    <string name="orangetv_notification_channel_name">PurpleTV</string>
+    <string name="orange_settings_hide_player_create_clip_button">Скрыть кнопку «Создать клип»</string>
+    <string name="orange_settings_disable_sentry">Отключить SentrySDK</string>
+    <string name="orange_settings_hide_player_live_share_button">Скрыть кнопку «Поделиться» для трансляций</string>
 </resources>

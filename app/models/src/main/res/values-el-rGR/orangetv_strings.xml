@@ -60,6 +60,7 @@
     <string name="orange_settings_title">PurpleTV Ρυθμίσεις</string>
     <string name="orange_settings_chat_font_size">Μέγεθος γραμματοσειράς συνομιλιών</string>
     <string name="orange_settings_landscape_chat_size">Πλάτος οριζόντιας συνομιλίας</string>
+    <string name="orange_settings_landscape_split_chat_size">Πλάτος διαχωρισμού οριζόντιας συνομιλίας</string>
     <string name="orange_settings_forward_seek">Αναπαραγωγέα επιδίωξη μπροστά</string>
     <string name="orange_settings_rewind_seek">Αναπαραγωγέα επιδίωξη πίσω</string>
     <string name="orange_settings_mini_player_size">Μέγεθος μίνι αναπαραγωγέα</string>
@@ -176,4 +177,9 @@
     <string name="orange_settings_prevent_mod_clear">Να μην γίνεται εκκαθάριση συνομιλίας όταν υπάρχει εντολή</string>
     <string name="orange_settings_force_toolbar_search_button">Επιβολή πλήκτρου αναζήτησης γραμμής εργαλείων</string>
     <string name="orange_settings_download_clip">Κατεβάστε το κλιπ</string>
+    <string name="orangetv_downloading">Λήψη…</string>
+    <string name="orangetv_notification_channel_name">PurpleTV</string>
+    <string name="orange_settings_hide_player_create_clip_button">Απόκρυψη κουμπιού «Δημιουργία κλιπ»</string>
+    <string name="orange_settings_disable_sentry">Απενεργοποίηση SentrySDK</string>
+    <string name="orange_settings_hide_player_live_share_button">Απόκρυψη κουμπιού «Μοιραστείτε» για Live streams</string>
 </resources>

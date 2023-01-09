@@ -1,7 +1,7 @@
 package tv.orange.features.settings.bridge.slider
 
 import android.content.Context
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.models.flag.Flag
 import tv.twitch.android.core.adapters.RecyclerAdapterItem
 import tv.twitch.android.core.mvp.lifecycle.VisibilityProvider
@@ -12,9 +12,9 @@ class SliderModel(
     val flag: Flag,
     val listener: SliderListener
 ) : MenuModel.SingleItemModel(
-    ResourceManager.get().getString(flag.titleResName!!),
+    ResourcesManagerCore.get().getString(flag.titleResName!!),
     flag.summaryResName?.let { id ->
-        ResourceManager.get().getString(resName = id)
+        ResourcesManagerCore.get().getString(resName = id)
     },
     null,
     null,

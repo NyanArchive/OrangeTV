@@ -7,7 +7,7 @@ import io.reactivex.Single
 import tv.orange.core.compat.ClassCompat
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
-import tv.orange.core.models.flag.Flag.Companion.asIntRange
+import tv.orange.core.models.flag.Flag.Companion.asInt
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.variants.PinnedMessageStrategy
 import tv.orange.core.models.flag.variants.PlayerImpl
@@ -60,7 +60,7 @@ class CoreHook @Inject constructor() : Feature {
                 ClassCompat.isOnStackTrace("tv.twitch.android.shared.ads.AdsVodPlayerPresenter")
             ) {
                 params.apply {
-                    speed = Flag.EXOPLAYER_VOD_SPEED.asIntRange().getCurrentValue() / 100f
+                    speed = Flag.EXOPLAYER_VOD_SPEED.asInt() / 100f
                 }
             } else {
                 params
@@ -68,9 +68,9 @@ class CoreHook @Inject constructor() : Feature {
         }
 
         @JvmStatic
-        fun maybeForceExoPlayerForVods(var3: TwitchPlayerProvider) {
+        fun maybeForceExoPlayerForVods(provider: TwitchPlayerProvider) {
             if (Flag.FORCE_EXOPLAYER_FOR_VODS.asBoolean()) {
-                var3.useFallbackPlayer()
+                provider.useFallbackPlayer()
             }
         }
 

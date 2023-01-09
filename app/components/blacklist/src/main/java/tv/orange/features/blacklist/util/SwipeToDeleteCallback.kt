@@ -6,7 +6,7 @@ import android.graphics.drawable.ColorDrawable
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import kotlin.math.absoluteValue
 
 abstract class SwipeToDeleteCallback(context: Context) :
@@ -14,7 +14,7 @@ abstract class SwipeToDeleteCallback(context: Context) :
 
     private val deleteIcon = ContextCompat.getDrawable(
         context,
-        ResourceManager.get().getDrawableId("ic_orangetv_delete_white_24")
+        ResourcesManagerCore.get().getDrawableId("ic_orangetv_delete_white_24")
     )!!
     private val intrinsicWidth = deleteIcon.intrinsicWidth
     private val intrinsicHeight = deleteIcon.intrinsicHeight

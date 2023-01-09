@@ -3,7 +3,6 @@ package tv.orange.features.settings.bridge.factory
 import androidx.fragment.app.FragmentActivity
 import dagger.android.AndroidInjector
 import dagger.internal.MapBuilder
-import tv.orange.core.PreferenceManagerCore
 import tv.orange.core.compat.ClassCompat.getPrivateField
 import tv.orange.features.blacklist.Blacklist
 import tv.orange.features.highlighter.Highlighter
@@ -22,8 +21,7 @@ import javax.inject.Provider
 
 class OrangeSettingsDaggerFactory @Inject constructor(
     val highlighter: Highlighter,
-    val blacklist: Blacklist,
-    val prefManager: PreferenceManagerCore
+    val blacklist: Blacklist
 ) {
     fun injectSubcomponentSettingsProvider(
         mapBuilder: MapBuilder<Class<*>, Provider<AndroidInjector.Factory<*>>>,
@@ -58,8 +56,7 @@ class OrangeSettingsDaggerFactory @Inject constructor(
                     "provideFragmentRouterProvider"
                 ).get(),
                 highlighter = highlighter,
-                blacklist = blacklist,
-                prefManager = prefManager
+                blacklist = blacklist
             )
         }
     }

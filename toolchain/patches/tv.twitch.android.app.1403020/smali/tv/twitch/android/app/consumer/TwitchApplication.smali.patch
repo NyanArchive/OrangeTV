@@ -32,10 +32,14 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
      return-void
  .end method
  
-@@ -184,6 +194,10 @@
+@@ -184,6 +194,14 @@
  
      invoke-virtual {v0, p0}, Ltv/twitch/android/app/core/ApplicationContext;->setContext(Landroid/content/Context;)V
  
++    sget-object v0, Ltv/orange/core/PreferencesManagerCore;->INSTANCE:Ltv/orange/core/PreferencesManagerCore;
++
++    invoke-virtual {v0}, Ltv/orange/core/PreferencesManagerCore;->initialize()V
++
 +    sget-object v0, Ltv/orange/features/tracking/SentrySDK;->INSTANCE:Ltv/orange/features/tracking/SentrySDK;
 +
 +    invoke-virtual {v0, p0}, Ltv/orange/features/tracking/SentrySDK;->setupSentrySDK(Landroid/app/Application;)V
@@ -43,7 +47,7 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
      .line 93
      invoke-static {p0}, Ltv/twitch/android/app/core/ThemeManager;->setTheme(Landroid/content/Context;)V
  
-@@ -223,9 +237,7 @@
+@@ -223,9 +241,7 @@
      move-result-object v1
  
      .line 115
@@ -54,7 +58,7 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
  
      const-string v3, "14.3.2"
  
-@@ -246,6 +258,8 @@
+@@ -246,6 +262,8 @@
  
      invoke-interface {v2, p0}, Ltv/twitch/android/app/consumer/dagger/AppComponent;->inject(Ltv/twitch/android/app/consumer/TwitchApplication;)V
  
@@ -63,7 +67,7 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
      .line 126
      new-instance v2, Ltv/twitch/android/app/consumer/TwitchApplication$$ExternalSyntheticLambda0;
  
-@@ -322,23 +336,6 @@
+@@ -322,23 +340,6 @@
  
      invoke-interface {v1, p0}, Ltv/twitch/android/shared/notifications/pub/IPushNotificationTracker;->trackNotificationPermissionsIfChanged(Landroid/content/Context;)V
  
@@ -87,7 +91,7 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
      .line 184
      new-instance v0, Landroidx/work/Configuration$Builder;
  
-@@ -424,3 +421,86 @@
+@@ -424,3 +425,86 @@
  
      return-void
  .end method
@@ -145,7 +149,7 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
 +    invoke-virtual {v0}, Ltv/orange/features/tracking/Tracking;->initialize()V
 +
 +    .line 49
-+    invoke-static {p0}, Ltv/orange/core/util/NotificationUtil;->createNotificationChannel(Landroid/content/Context;)V
++    invoke-static {p0}, Ltv/orange/core/util/NotificationsUtil;->createNotificationChannel(Landroid/content/Context;)V
 +
 +    .line 50
 +    return-void

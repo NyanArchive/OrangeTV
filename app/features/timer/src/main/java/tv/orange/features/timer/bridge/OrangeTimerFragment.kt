@@ -5,14 +5,14 @@ import android.app.TimePickerDialog
 import android.os.Bundle
 import android.widget.TimePicker
 import androidx.fragment.app.DialogFragment
-import tv.orange.core.PreferenceManagerCore
+import tv.orange.core.PreferencesManagerCore
 import tv.orange.features.timer.data.service.OrangeSleepTimer
 
 class OrangeTimerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener {
-    private val prefManager = PreferenceManagerCore
+    private val prefManager = PreferencesManagerCore
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val data = prefManager.getLastTimer()
+        val data = prefManager.getLastTimerData()
         return TimePickerDialog(activity, this, data.first, data.second, true)
     }
 
@@ -22,7 +22,7 @@ class OrangeTimerFragment : DialogFragment(), TimePickerDialog.OnTimeSetListener
         }
 
         OrangeSleepTimer.startService(context = requireContext(), seconds = toSeconds(hour, minute))
-        prefManager.saveLastTimer(hour to minute)
+        prefManager.saveLastTimerData(hour to minute)
     }
 
     companion object {

@@ -8,12 +8,12 @@ import tv.orange.models.abc.Feature
 import tv.twitch.android.core.strings.StringResource
 
 @AutoInitialize
-class ResourceManager(
+class ResourcesManagerCore(
     private val context: Context
 ) : Feature {
     companion object {
         @JvmStatic
-        fun get() = Core.getFeature(ResourceManager::class.java)
+        fun get() = Core.getFeature(ResourcesManagerCore::class.java)
     }
 
     private enum class Id(type: String, size: Int) {

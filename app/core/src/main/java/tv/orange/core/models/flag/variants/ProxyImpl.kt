@@ -1,23 +1,23 @@
 package tv.orange.core.models.flag.variants
 
-import tv.orange.core.models.flag.Internal
+import tv.orange.core.models.flag.core.Variant
 
-enum class ProxyImpl(val value: String) : Internal.Variant {
+enum class ProxyImpl(val value: String) : Variant {
     Disabled("disabled"),
     Twitching("twitching"),
     TTSFTP("ttsftp"),
     TTV_LOL("ttv_lol"),
     PURPLE("purple");
 
-    override fun getVariants(): List<Internal.Variant> {
+    override fun getVariants(): List<Variant> {
         return values().toList()
     }
 
-    override fun getDefault(): Internal.Variant {
+    override fun getDefault(): Variant {
         return Disabled
     }
 
-    override fun fromString(str: String): Internal.Variant? {
+    override fun fromString(str: String): Variant? {
         return values().firstOrNull { it.value == str }
     }
 

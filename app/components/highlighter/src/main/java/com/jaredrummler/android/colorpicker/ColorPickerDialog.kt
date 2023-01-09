@@ -38,7 +38,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.graphics.ColorUtils
 import androidx.fragment.app.DialogFragment
 import com.jaredrummler.android.colorpicker.ColorPaletteAdapter.OnColorSelectedListener
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.util.ViewUtil.getView
 import tv.orange.core.util.ViewUtil.inflate
 import java.util.*
@@ -96,11 +96,11 @@ class ColorPickerDialog : DialogFragment(), OnColorChangedListener, TextWatcher 
 
         var selectedButtonStringRes = requireArguments().getInt(ARG_SELECTED_BUTTON_TEXT)
         if (selectedButtonStringRes == 0) {
-            selectedButtonStringRes = ResourceManager.get().getStringId("cpv_select")
+            selectedButtonStringRes = ResourcesManagerCore.get().getStringId("cpv_select")
         }
         val builder = AlertDialog.Builder(requireActivity())
             .setView(rootView)
-            .setPositiveButton(ResourceManager.get().getString(selectedButtonStringRes)) { _, _ ->
+            .setPositiveButton(ResourcesManagerCore.get().getString(selectedButtonStringRes)) { _, _ ->
                 onColorSelected(color)
             }
 
@@ -116,18 +116,18 @@ class ColorPickerDialog : DialogFragment(), OnColorChangedListener, TextWatcher 
             TYPE_CUSTOM -> if (presetsButtonStringRes != 0) {
                 presetsButtonStringRes
             } else {
-                ResourceManager.get().getStringId("cpv_presets")
+                ResourcesManagerCore.get().getStringId("cpv_presets")
             }
             TYPE_PRESETS -> if (customButtonStringRes != 0) {
                 customButtonStringRes
             } else {
-                ResourceManager.get().getStringId("cpv_custom")
+                ResourcesManagerCore.get().getStringId("cpv_custom")
             }
             else -> 0
         }
 
         if (neutralButtonStringRes != 0) {
-            builder.setNeutralButton(ResourceManager.get().getString(neutralButtonStringRes), null)
+            builder.setNeutralButton(ResourcesManagerCore.get().getString(neutralButtonStringRes), null)
         }
 
         return builder.create()
@@ -150,7 +150,7 @@ class ColorPickerDialog : DialogFragment(), OnColorChangedListener, TextWatcher 
                         if (customButtonStringRes != 0) {
                             customButtonStringRes
                         } else {
-                            ResourceManager.get().getStringId("cpv_custom")
+                            ResourcesManagerCore.get().getStringId("cpv_custom")
                         }
                     )
                     rootView.addView(createPresetsView())
@@ -161,7 +161,7 @@ class ColorPickerDialog : DialogFragment(), OnColorChangedListener, TextWatcher 
                         if (presetsButtonStringRes != 0) {
                             presetsButtonStringRes
                         } else {
-                            ResourceManager.get().getStringId("cpv_presets")
+                            ResourcesManagerCore.get().getStringId("cpv_presets")
                         }
                     )
                     rootView.addView(createPickerView())
@@ -390,7 +390,7 @@ class ColorPickerDialog : DialogFragment(), OnColorChangedListener, TextWatcher 
         }
 
         val horizontalPadding = resources.getDimensionPixelSize(
-            ResourceManager.get().getDimenId("cpv_item_horizontal_padding")
+            ResourcesManagerCore.get().getDimenId("cpv_item_horizontal_padding")
         )
 
         for (colorShade in colorShades) {
@@ -422,7 +422,7 @@ class ColorPickerDialog : DialogFragment(), OnColorChangedListener, TextWatcher 
 
                     iv.setImageResource(
                         if (cpv === v) {
-                            ResourceManager.get().getDrawableId(
+                            ResourcesManagerCore.get().getDrawableId(
                                 resName = "orangetv_cpv_preset_checked"
                             )
                         } else {
@@ -563,16 +563,16 @@ class ColorPickerDialog : DialogFragment(), OnColorChangedListener, TextWatcher 
 
     class Builder internal constructor() {
         @StringRes
-        var dialogTitle = ResourceManager.get().getStringId("cpv_default_title")
+        var dialogTitle = ResourcesManagerCore.get().getStringId("cpv_default_title")
 
         @StringRes
-        var presetsButtonText = ResourceManager.get().getStringId("cpv_presets")
+        var presetsButtonText = ResourcesManagerCore.get().getStringId("cpv_presets")
 
         @StringRes
-        var customButtonText = ResourceManager.get().getStringId("cpv_custom")
+        var customButtonText = ResourcesManagerCore.get().getStringId("cpv_custom")
 
         @StringRes
-        var selectedButtonText = ResourceManager.get().getStringId("cpv_select")
+        var selectedButtonText = ResourcesManagerCore.get().getStringId("cpv_select")
 
         @ColorInt
         private var color = Color.BLACK

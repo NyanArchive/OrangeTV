@@ -13,8 +13,8 @@ import io.reactivex.Completable
 import io.reactivex.disposables.Disposable
 import tv.orange.core.Core
 import tv.orange.core.LoggerImpl
-import tv.orange.core.PreferenceManagerCore
-import tv.orange.core.ResourceManager
+import tv.orange.core.PreferencesManagerCore
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.models.flag.Flag.Companion.asInt
@@ -35,7 +35,7 @@ import javax.inject.Inject
 class UI @Inject constructor(
     val context: Context,
     val supportBridge: SupportBridge,
-    val prefManager: PreferenceManagerCore
+    val prefManager: PreferencesManagerCore
 ) : Feature {
     companion object {
         @JvmStatic
@@ -118,7 +118,7 @@ class UI @Inject constructor(
                 return org
             }
 
-            return ResourceManager.get().getLayoutId("orangetv_player_metadata_view_extended")
+            return ResourcesManagerCore.get().getLayoutId("orangetv_player_metadata_view_extended")
         }
 
         @JvmStatic
@@ -139,7 +139,7 @@ class UI @Inject constructor(
 
         @JvmStatic
         fun getUptimeButton(vh: RecyclerView.ViewHolder): TextView {
-            return vh.itemView.getView<TextView>("compact_stream_item__uptime")
+            return vh.itemView.getView("compact_stream_item__uptime")
         }
 
         @JvmStatic

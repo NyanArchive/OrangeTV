@@ -7,8 +7,7 @@ import okhttp3.OkHttpClient
 import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.Response
 import tv.orange.core.Core
-import tv.orange.core.LoggerImpl
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.variants.ProxyImpl
@@ -63,11 +62,11 @@ class Proxy @Inject constructor(
             proxyResponse: Single<Response<String>>,
             proxyName: String
         ): Single<Response<String>> {
-            val rm = ResourceManager.get()
+            val rm = ResourcesManagerCore.get()
             return proxyResponse.flatMap { proxyPlaylist ->
                 if (!proxyPlaylist.isSuccessful) {
                     Core.showToast(
-                        ResourceManager.get().getString(
+                        ResourcesManagerCore.get().getString(
                             "orange_generic_error_d",
                             "Proxy",
                             rm.getString("orange_proxy_error_ur")

@@ -2,7 +2,7 @@ package tv.orange.features.chathistory
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import tv.orange.core.Core
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.features.chathistory.bridge.ILiveChatSource
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class ChatHistory @Inject constructor(
     val repository: ChatHistoryRepository,
-    val rm: ResourceManager
+    val rm: ResourcesManagerCore
 ) : Feature {
     companion object {
         @JvmStatic

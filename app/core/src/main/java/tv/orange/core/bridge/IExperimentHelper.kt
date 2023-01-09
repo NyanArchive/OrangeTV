@@ -3,7 +3,6 @@ package tv.orange.core.bridge
 import io.reactivex.Observable
 import tv.twitch.android.provider.experiments.*
 
-
 interface IExperimentHelper {
     fun getGroupForExperimentOrg(experiment: Experiment?): String
 

@@ -6,7 +6,7 @@ import dagger.Component
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import tv.orange.core.CoreHook
-import tv.orange.core.PreferenceManagerCore
+import tv.orange.core.PreferencesManagerCore
 import tv.orange.core.di.module.CoreModule
 import tv.orange.core.di.module.NetworkModule
 import tv.orange.core.di.scope.AppScope
@@ -29,7 +29,7 @@ interface CoreComponent {
     val twitchAccountManager: TwitchAccountManager
     val themeManager: ThemeManager.Companion
 
-    val preferenceManagerCore: PreferenceManagerCore
+    val preferenceManagerCore: PreferencesManagerCore
 
     val coreHook: CoreHook
 }

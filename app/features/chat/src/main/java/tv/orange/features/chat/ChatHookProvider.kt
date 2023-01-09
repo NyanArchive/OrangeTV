@@ -15,8 +15,8 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
 import tv.orange.core.Core
-import tv.orange.core.PreferenceManagerCore
-import tv.orange.core.ResourceManager
+import tv.orange.core.PreferencesManagerCore
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.compat.ClassCompat.getPrivateField
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
@@ -92,7 +92,7 @@ class ChatHookProvider @Inject constructor(
     val chatFactory: ChatFactory,
     val highlighter: Highlighter,
     val blacklist: Blacklist,
-    val prefManager: PreferenceManagerCore
+    val prefManager: PreferencesManagerCore
 ) : LifecycleAware, FlagListener, Feature, SupportBridge.Callback {
     private val currentChannelSubject = BehaviorSubject.create<Int>()
 
@@ -464,7 +464,7 @@ class ChatHookProvider @Inject constructor(
                 else -> "orange_unknown_emotes"
             }
 
-            return ResourceManager.get().getStringId(resName)
+            return ResourcesManagerCore.get().getStringId(resName)
         }
 
         @JvmStatic
@@ -515,7 +515,7 @@ class ChatHookProvider @Inject constructor(
         fun fixUsernameSpanColor(usernameColor: Int): Int {
             return ChatUtil.fixUsernameColor(
                 color = usernameColor,
-                isDarkThemeEnabled = PreferenceManagerCore.isDarkThemeEnabled
+                isDarkThemeEnabled = PreferencesManagerCore.isDarkThemeEnabled
             )
         }
 

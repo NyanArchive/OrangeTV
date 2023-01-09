@@ -1,6 +1,7 @@
 package tv.orange.features.logs.component.data.provider
 
 import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.Flag.Companion.asString
 import tv.orange.features.logs.component.data.model.MessageInfo
 import java.util.concurrent.ConcurrentLinkedQueue
 
@@ -19,7 +20,7 @@ object LocalLogsProvider {
     class LimitedQueue<E> : ConcurrentLinkedQueue<E>() {
         override fun offer(e: E): Boolean {
             val offer = super.offer(e)
-            while (offer && size > Flag.LOCAL_LOGS.valueHolder.value.toString().toInt()) {
+            while (offer && size > Flag.LOCAL_LOGS.asString().toInt()) {
                 super.poll()
             }
             return offer

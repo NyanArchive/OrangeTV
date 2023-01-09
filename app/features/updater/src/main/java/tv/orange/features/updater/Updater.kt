@@ -8,7 +8,7 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import tv.orange.core.BuildConfigUtil
 import tv.orange.core.Core
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.models.flag.Flag.Companion.asVariant
@@ -28,7 +28,7 @@ import java.io.File
 import javax.inject.Inject
 
 class Updater @Inject constructor(
-    val resourceManager: ResourceManager,
+    val resourceManager: ResourcesManagerCore,
     val updaterRepository: UpdaterRepository,
     val context: Context
 ) : Feature {
@@ -65,12 +65,12 @@ class Updater @Inject constructor(
         }
 
         @JvmStatic
-        val orangeAppUpdateAvailable: Int = ResourceManager.get().getStringId(
+        val orangeAppUpdateAvailable: Int = ResourcesManagerCore.get().getStringId(
             "orange_app_update_available"
         )
 
         @JvmStatic
-        val orangeAppUpdateAvailableCta: Int = ResourceManager.get().getStringId(
+        val orangeAppUpdateAvailableCta: Int = ResourcesManagerCore.get().getStringId(
             "orange_app_update_available_cta"
         )
 

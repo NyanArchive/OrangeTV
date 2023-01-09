@@ -7,8 +7,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import tv.orange.core.Core
-import tv.orange.core.LoggerImpl
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.features.settings.bridge.model.OrangeSubMenu
 import tv.orange.features.settings.component.OrangeSettingsController
 import tv.orange.features.tracking.Tracking
@@ -62,7 +61,7 @@ class OrangeInfoSettingsPresenter constructor(
                 )
             )
         )
-        val rm = ResourceManager.get()
+        val rm = ResourcesManagerCore.get()
         disposables.add(
             Tracking.get().getPinnyInfo()
                 .subscribeOn(Schedulers.io())
@@ -83,8 +82,8 @@ class OrangeInfoSettingsPresenter constructor(
     companion object {
         fun createInfoMenu(main: String, desc: String?, url: String): MenuModel {
             return InfoMenuModel(
-                ResourceManager.get().getString(main),
-                desc?.let { str -> ResourceManager.get().getString(str) },
+                ResourcesManagerCore.get().getString(main),
+                desc?.let { str -> ResourcesManagerCore.get().getString(str) },
                 null, null, null, null
             ) {
                 openUrl(url)

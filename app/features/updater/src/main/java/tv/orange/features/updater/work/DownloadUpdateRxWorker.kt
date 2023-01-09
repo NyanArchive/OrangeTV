@@ -9,11 +9,11 @@ import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.util.FileUtil.copyTo
 import tv.orange.core.util.FileUtil.deleteDir
 import tv.orange.core.util.NetUtil
-import tv.orange.core.util.NotificationUtil
+import tv.orange.core.util.NotificationsUtil
 import tv.orange.features.updater.Updater
 import tv.twitch.android.core.work.AssistedWorkerFactory
 import java.io.File
@@ -31,28 +31,28 @@ class DownloadUpdateRxWorker @AssistedInject constructor(
     interface Factory : AssistedWorkerFactory<DownloadUpdateRxWorker>
 
     private val builder: NotificationCompat.Builder by lazy {
-        val cancel = ResourceManager.get().getString(android.R.string.cancel)
+        val cancel = ResourcesManagerCore.get().getString(android.R.string.cancel)
         val intent = WorkManager.getInstance(context).createCancelPendingIntent(id)
 
-        NotificationCompat.Builder(context, NotificationUtil.CHANNEL_ID).apply {
+        NotificationCompat.Builder(context, NotificationsUtil.CHANNEL_ID).apply {
             setSmallIcon(android.R.drawable.ic_delete)
             setAutoCancel(false)
             setOngoing(true)
             setOnlyAlertOnce(true)
-            setContentTitle(ResourceManager.get().getString("orangetv_downloading"))
+            setContentTitle(ResourcesManagerCore.get().getString("orangetv_downloading"))
             addAction(android.R.drawable.ic_delete, cancel, intent)
             setProgress(100, 0, true)
         }
     }
 
     private fun createForegroundInfo(): ForegroundInfo {
-        return ForegroundInfo(NotificationUtil.UPDATER_ID, builder.apply {
+        return ForegroundInfo(NotificationsUtil.UPDATER_ID, builder.apply {
             setProgress(100, 0, true)
         }.build())
     }
 
     private fun createForegroundInfo(state: Int, downloaded: Long, total: Long): ForegroundInfo {
-        return ForegroundInfo(NotificationUtil.UPDATER_ID, builder.apply {
+        return ForegroundInfo(NotificationsUtil.UPDATER_ID, builder.apply {
             setProgress(100, state, false)
             setContentText(
                 String.format(

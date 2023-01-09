@@ -16,7 +16,7 @@ import javax.inject.Inject
 @AutoInitialize
 class StvAvatars @Inject constructor(
     val stvRepository: StvRepository,
-    val prefManager: PreferenceManagerCore
+    val prefManager: PreferencesManagerCore
 ) : SimpleFetcher<AvatarSet>(
     dataSourceFactory = object : SourceFactory<AvatarSet> {
         override fun create(): Single<AvatarSet> {

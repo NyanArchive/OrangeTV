@@ -17,7 +17,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import tv.orange.core.Core
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.util.PackageHelper
 import tv.orange.core.util.ViewUtil
 import tv.orange.core.util.ViewUtil.getView
@@ -153,7 +153,7 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
             is UpdaterContract.View.State.Loaded -> {
                 bindData(state.updateData)
 
-                actionButtonBtn.text = ResourceManager.get().getString(
+                actionButtonBtn.text = ResourcesManagerCore.get().getString(
                     "orange_updater_update_action"
                 )
 
@@ -179,7 +179,7 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
             is UpdaterContract.View.State.DownloadComplete -> {
                 bindData(state.data)
 
-                actionButtonBtn.text = ResourceManager.get().getString(
+                actionButtonBtn.text = ResourcesManagerCore.get().getString(
                     "orange_updater_install_action"
                 )
 
@@ -192,7 +192,7 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
                 )
             }
             is UpdaterContract.View.State.Error -> {
-                errorMsgTv.text = ResourceManager.get().getString(
+                errorMsgTv.text = ResourcesManagerCore.get().getString(
                     "orange_updater_error_msg",
                     state.msg
                 )
@@ -202,12 +202,12 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
             is UpdaterContract.View.State.Downloading -> {
                 downloadingPb.isIndeterminate = false
                 downloadingPb.progress = state.progress
-                downloadProgressDataTv.text = ResourceManager.get().getString(
+                downloadProgressDataTv.text = ResourcesManagerCore.get().getString(
                     "orange_updater_ds2",
                     Formatter.formatFileSize(this, state.downloaded.toLong()),
                     Formatter.formatFileSize(this, state.total.toLong())
                 )
-                downloadProgressProcTv.text = ResourceManager.get().getString(
+                downloadProgressProcTv.text = ResourcesManagerCore.get().getString(
                     "orange_updater_ds3",
                     state.progress
                 )
@@ -228,7 +228,7 @@ class UpdaterActivity : AppCompatActivity(), UpdaterContract.View {
     private fun bindData(data: UpdateData) {
         changelogTv.text = data.changelog
         buildTv.text = data.build.toString()
-        downloadSizeTv.text = ResourceManager.get().getString(
+        downloadSizeTv.text = ResourcesManagerCore.get().getString(
             "orange_updater_ds", if (data.size > 0) {
                 Formatter.formatFileSize(this, data.size)
             } else {

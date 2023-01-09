@@ -7,7 +7,7 @@ import io.reactivex.schedulers.Schedulers
 import retrofit2.Response
 import tv.orange.core.Core
 import tv.orange.core.LoggerImpl
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.compat.ClassCompat
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
@@ -17,14 +17,13 @@ import tv.orange.features.api.component.repository.NopRepository
 import tv.orange.features.vodhunter.bridge.ISharePanelWidgetViewDelegate
 import tv.orange.models.abc.Feature
 import tv.twitch.android.core.mvp.viewdelegate.RxViewDelegate
-import tv.twitch.android.models.clips.ClipQualityOption
 import tv.twitch.android.shared.share.panel.SharePanelDefaultPresenter
 import tv.twitch.android.shared.ui.elements.bottomsheet.InteractiveRowView
 import javax.inject.Inject
 
 class Vodhunter @Inject constructor(
     val nopRepository: NopRepository,
-    val rm: ResourceManager,
+    val rm: ResourcesManagerCore,
     val context: Context
 ) : Feature {
     companion object {

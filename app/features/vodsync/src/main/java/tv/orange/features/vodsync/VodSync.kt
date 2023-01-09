@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import android.widget.SeekBar
 import android.widget.TextView
 import tv.orange.core.Core
-import tv.orange.core.PreferenceManagerCore
-import tv.orange.core.ResourceManager
+import tv.orange.core.PreferencesManagerCore
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.util.ViewUtil.changeVisibility
 import tv.orange.core.util.ViewUtil.getView
 import tv.orange.features.vodsync.view.ViewFactory
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 class VodSync @Inject constructor(
     val viewFactory: ViewFactory,
-    val prefManager: PreferenceManagerCore
+    val prefManager: PreferencesManagerCore
 ) : Feature {
     companion object {
         @JvmStatic
@@ -73,7 +73,7 @@ class VodSync @Inject constructor(
 
         val savedSyncValue = prefManager.getChommentSeekerValue(videoId = vodId.id)
         if (header is TextView) {
-            header.text = ResourceManager.get().getString(
+            header.text = ResourcesManagerCore.get().getString(
                 resName = "orange_seeker_header_text"
             )
         }

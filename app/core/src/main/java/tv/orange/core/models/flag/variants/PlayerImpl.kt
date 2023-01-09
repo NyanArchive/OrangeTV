@@ -1,21 +1,21 @@
 package tv.orange.core.models.flag.variants
 
-import tv.orange.core.models.flag.Internal
+import tv.orange.core.models.flag.core.Variant
 
-enum class PlayerImpl(val value: String) : Internal.Variant {
+enum class PlayerImpl(val value: String) : Variant {
     Default("default"),
     Core("core"),
     Exo("exo");
 
-    override fun getVariants(): List<Internal.Variant> {
+    override fun getVariants(): List<Variant> {
         return values().toList()
     }
 
-    override fun getDefault(): Internal.Variant {
+    override fun getDefault(): Variant {
         return Default
     }
 
-    override fun fromString(str: String): Internal.Variant? {
+    override fun fromString(str: String): Variant? {
         return values().firstOrNull { it.value == str }
     }
 

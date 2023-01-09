@@ -2,7 +2,7 @@ package tv.orange.features.settings.bridge.settings
 
 import android.text.format.Formatter
 import androidx.fragment.app.FragmentActivity
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.features.settings.bridge.model.OrangeSubMenu
 import tv.orange.features.settings.component.OrangeSettingsController
 import tv.orange.features.updater.Updater
@@ -28,7 +28,7 @@ class OrangeUpdaterSettingsPresenter constructor(
         super.updateSettingModels()
         settingModels.add(
             InfoMenuModel(
-                ResourceManager.get().getString("orange_settings_check_update"),
+                ResourcesManagerCore.get().getString("orange_settings_check_update"),
                 null,
                 null, null, null, null
             ) {
@@ -37,7 +37,7 @@ class OrangeUpdaterSettingsPresenter constructor(
         )
         settingModels.add(
             InfoMenuModel(
-                ResourceManager.get().getString("orange_settings_clear_update_cache"),
+                ResourcesManagerCore.get().getString("orange_settings_clear_update_cache"),
                 Formatter.formatFileSize(activity, Updater.get().calcCacheSize(activity)),
                 null, null, null, null
             ) {

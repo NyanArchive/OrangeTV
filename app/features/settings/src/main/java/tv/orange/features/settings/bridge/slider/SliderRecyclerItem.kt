@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.slider.Slider
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.models.flag.Flag.Companion.asInt
 import tv.orange.core.models.flag.Flag.Companion.asIntRange
 import tv.orange.core.util.ViewUtil.getView
@@ -31,7 +31,7 @@ class SliderRecyclerItem(
     }
 
     override fun getViewHolderResId(): Int {
-        return ResourceManager.get().getLayoutId("orangetv_settings_slider")
+        return ResourcesManagerCore.get().getLayoutId("orangetv_settings_slider")
     }
 
     override fun newViewHolderGenerator(): ViewHolderGenerator {

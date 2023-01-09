@@ -5,7 +5,7 @@ import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.twitch.android.models.channel.ChannelInfo
 import tv.twitch.android.shared.chat.LiveChatSource
 import tv.twitch.android.shared.chat.command.ChatCommandAction
@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 
 class SpamCommandInterceptor(
     private val chatSource: LiveChatSource,
-    private val rm: ResourceManager
+    private val rm: ResourcesManagerCore
 ) : ChatCommandInterceptor {
     private val disposable = CompositeDisposable()
 

@@ -24,7 +24,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import com.jaredrummler.android.colorpicker.DrawingUtils.dpToPx
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import kotlin.math.roundToInt
 
 class ColorPickerView @JvmOverloads constructor(
@@ -91,7 +91,7 @@ class ColorPickerView @JvmOverloads constructor(
     private var borderColor = DEFAULT_BORDER_COLOR
 
     private var mRequiredPadding =
-        resources.getDimensionPixelSize(ResourceManager.get().getDimenId("cpv_required_padding"))
+        resources.getDimensionPixelSize(ResourcesManagerCore.get().getDimenId("cpv_required_padding"))
 
     private var drawingRect: Rect = Rect()
     private var satValRect: Rect = Rect()

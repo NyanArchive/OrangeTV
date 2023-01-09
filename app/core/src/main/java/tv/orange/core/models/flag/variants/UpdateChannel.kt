@@ -1,22 +1,22 @@
 package tv.orange.core.models.flag.variants
 
-import tv.orange.core.models.flag.Internal
+import tv.orange.core.models.flag.core.Variant
 
-enum class UpdateChannel(val value: String) : Internal.Variant {
+enum class UpdateChannel(val value: String) : Variant {
     Disabled("disabled"),
     Release("release"),
     Beta("beta"),
     Dev("dev");
 
-    override fun getVariants(): List<Internal.Variant> {
+    override fun getVariants(): List<Variant> {
         return values().toList()
     }
 
-    override fun getDefault(): Internal.Variant {
+    override fun getDefault(): Variant {
         return Release
     }
 
-    override fun fromString(str: String): Internal.Variant? {
+    override fun fromString(str: String): Variant? {
         return values().firstOrNull { it.value == str }
     }
 

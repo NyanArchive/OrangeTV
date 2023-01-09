@@ -28,7 +28,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import com.jaredrummler.android.colorpicker.DrawingUtils.dpToPx
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 
 class ColorPanelView @JvmOverloads constructor(
     context: Context,
@@ -160,7 +160,7 @@ class ColorPanelView @JvmOverloads constructor(
             isAntiAlias = true
             val bitmap = (ContextCompat.getDrawable(
                 context,
-                ResourceManager.get().getDrawableId("orangetv_cpv_alpha")
+                ResourcesManagerCore.get().getDrawableId("orangetv_cpv_alpha")
             ) as BitmapDrawable).bitmap
             shader = BitmapShader(bitmap, Shader.TileMode.REPEAT, Shader.TileMode.REPEAT)
         }

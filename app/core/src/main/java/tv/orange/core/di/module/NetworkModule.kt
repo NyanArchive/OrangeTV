@@ -32,7 +32,7 @@ class NetworkModule {
                 addNetworkInterceptor { chain ->
                     chain.proceed(
                         chain.request().newBuilder().header(
-                            "User-Agent",
+                            USER_AGENT,
                             BuildConfigUtil.userAgent
                         ).build()
                     )
@@ -54,6 +54,7 @@ class NetworkModule {
     }
 
     companion object {
+        private const val USER_AGENT = "User-Agent"
         const val DEFAULT_OKHTTP_TIMEOUT = 5000L
     }
 }

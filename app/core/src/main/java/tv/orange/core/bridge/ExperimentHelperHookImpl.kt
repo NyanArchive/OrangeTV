@@ -9,7 +9,7 @@ import tv.twitch.android.provider.experiments.*
 class ExperimentHelperHookImpl(private val org: IExperimentHelper) : ExperimentHelper {
     override fun getGroupForExperiment(p0: Experiment): String {
         return when (p0) {
-            Experiment.ANIMATED_EMOTES -> "active_11.5"
+            Experiment.ANIMATED_EMOTES -> ANIMATED_EMOTES_ACTIVE
             else -> org.getGroupForExperimentOrg(p0).also { res ->
                 LoggerImpl.devDebug { "${p0.experimentName} --> $p0, res --> $res" }
             }
@@ -34,7 +34,7 @@ class ExperimentHelperHookImpl(private val org: IExperimentHelper) : ExperimentH
             Experiment.LATAM_CRONET,
             Experiment.LOAD_AD_PROPERTIES_ON_HOME_TAB,
             Experiment.HTTP3_WITH_CRONET_GLOBAL,
-            Experiment.ANNUAL_RECAP_2022-> false
+            Experiment.ANNUAL_RECAP_2022 -> false
 
             Experiment.FREEFORM_TAGS,
             Experiment.MULTI_OPTION_PREDICTIONS -> true
@@ -94,5 +94,9 @@ class ExperimentHelperHookImpl(private val org: IExperimentHelper) : ExperimentH
 
     override fun updateEnabledGroupsForActiveExperiments(): MutableSet<RemoteConfigurable> {
         return org.updateEnabledGroupsForActiveExperimentsOrg()
+    }
+
+    companion object {
+        private const val ANIMATED_EMOTES_ACTIVE = "active_11.5"
     }
 }

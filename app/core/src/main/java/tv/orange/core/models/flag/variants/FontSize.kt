@@ -15,23 +15,11 @@ enum class FontSize(val value: String) : Variant {
     SP17("17sp"),
     SP18("18sp");
 
-    override fun getVariants(): List<Variant> {
-        return values().toList()
-    }
-
     override fun getDefault(): Variant {
         return SP13
     }
 
-    override fun fromString(str: String): Variant? {
-        return values().firstOrNull { it.value == str }
-    }
-
     override fun toString(): String {
         return value
-    }
-
-    override fun isDefault(): Boolean {
-        return this == getDefault()
     }
 }

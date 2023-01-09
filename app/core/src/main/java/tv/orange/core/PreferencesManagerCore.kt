@@ -23,13 +23,15 @@ object PreferencesManagerCore : SharedPreferences.OnSharedPreferenceChangeListen
 
     private val listeners = mutableSetOf<FlagListener>()
 
-    var isDarkThemeEnabled = false
-    var isInitialized = false
+    private var isInitialized = false
 
     private val chommentSeekerCache = mutableMapOf<String, Int>()
 
     private val context: Context
         get() = ApplicationContext.getInstance().getContext()
+
+
+    var isDarkThemeEnabled = false
 
     override fun onSharedPreferenceChanged(pref: SharedPreferences?, key: String?) {
         when (pref) {

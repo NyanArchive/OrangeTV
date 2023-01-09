@@ -4,6 +4,7 @@ import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.core.Variant
+import tv.orange.core.models.flag.core.Variant.Companion.getVariants
 import tv.orange.features.settings.component.OrangeSettingsController
 import tv.twitch.android.core.adapters.TwitchArrayAdapter
 import tv.twitch.android.core.adapters.TwitchArrayAdapterModel

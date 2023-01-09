@@ -33,6 +33,8 @@ class CoreHook @Inject constructor() : Feature {
         )
         private const val ORIGINAL_PACKAGE_NAME = "tv.twitch.android.app"
 
+        private const val MAX_PINNED_MESSAGE_MS = 30 * 1000
+
         @JvmStatic
         fun get() = Core.getFeature(CoreHook::class.java)
 
@@ -135,9 +137,9 @@ class CoreHook @Inject constructor() : Feature {
                 PinnedMessageStrategy.Disabled,
                 PinnedMessageStrategy.Default -> timeMessageUnpinnedMS
                 PinnedMessageStrategy.SEC30 -> {
-                    val calc = CoreDateUtil().currentTimeInMillis + 30 * 1000
+                    val calc = CoreDateUtil().currentTimeInMillis + MAX_PINNED_MESSAGE_MS
                     timeMessageUnpinnedMS?.let { ms ->
-                        if (ms - calc <= 0) {
+                        if (ms - calc - 1000 <= 0) {
                             ms
                         } else {
                             calc

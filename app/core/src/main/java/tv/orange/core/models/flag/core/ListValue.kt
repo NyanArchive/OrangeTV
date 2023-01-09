@@ -1,5 +1,6 @@
 package tv.orange.core.models.flag.core
 
+import tv.orange.core.models.flag.core.Variant.Companion.fromString
 import kotlin.reflect.KClass
 
 @Suppress("UNCHECKED_CAST")

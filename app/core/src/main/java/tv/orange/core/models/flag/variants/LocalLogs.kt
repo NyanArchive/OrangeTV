@@ -9,23 +9,11 @@ enum class LocalLogs(val value: String) : Variant {
     L5000("5000"),
     L10000("10000");
 
-    override fun getVariants(): List<Variant> {
-        return values().toList()
-    }
-
     override fun getDefault(): Variant {
         return L0
     }
 
-    override fun fromString(str: String): Variant? {
-        return values().firstOrNull { it.value == str }
-    }
-
     override fun toString(): String {
         return value
-    }
-
-    override fun isDefault(): Boolean {
-        return this == getDefault()
     }
 }

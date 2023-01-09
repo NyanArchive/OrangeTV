@@ -18,7 +18,7 @@ object ClassCompat {
         if (obj is T) {
             function.invoke(obj)
         } else {
-            LoggerImpl.warning("Obj: $obj")
+            LoggerImpl.warning("Check cast: $obj")
         }
     }
 

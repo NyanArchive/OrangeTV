@@ -23,7 +23,7 @@ class CoreModule {
 
     @AppScope
     @Provides
-    fun providePreferenceManagerCore(): PreferencesManagerCore {
+    fun providePreferencesManagerCore(): PreferencesManagerCore {
         return PreferencesManagerCore
     }
 }

@@ -29,7 +29,7 @@ interface CoreComponent {
     val twitchAccountManager: TwitchAccountManager
     val themeManager: ThemeManager.Companion
 
-    val preferenceManagerCore: PreferencesManagerCore
+    val preferencesManagerCore: PreferencesManagerCore
 
     val coreHook: CoreHook
 }

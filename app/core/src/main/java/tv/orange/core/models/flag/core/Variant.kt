@@ -1,7 +1,5 @@
 package tv.orange.core.models.flag.core
 
-import tv.orange.core.models.flag.variants.ProxyImpl
-
 interface Variant {
     fun getDefault(): Variant
     override fun toString(): String
@@ -12,11 +10,11 @@ interface Variant {
         }
 
         fun Variant.fromString(str: String): Variant? {
-            return ProxyImpl.values().firstOrNull { it.value == str }
-        }
+            if (this.javaClass.isEnum) {
+                return this.getVariants().firstOrNull { it.toString() == str }
+            }
 
-        fun Variant.isDefault(): Boolean {
-            return this == getDefault()
+            return null
         }
     }
 }

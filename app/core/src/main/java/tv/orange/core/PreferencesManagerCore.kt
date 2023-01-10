@@ -52,7 +52,9 @@ object PreferencesManagerCore : SharedPreferences.OnSharedPreferenceChangeListen
             Flag.findByKey(prefKey = value)?.let { flag ->
                 setFromPreferences(flag = flag)
                 listeners.forEach { it.onFlagValueChanged(flag = flag) }
-                LoggerImpl.devMode = flag.asBoolean()
+                if (flag == Flag.DEV_MODE) {
+                    LoggerImpl.devMode = flag.asBoolean()
+                }
             }
         }
     }
@@ -161,8 +163,8 @@ object PreferencesManagerCore : SharedPreferences.OnSharedPreferenceChangeListen
             return
         }
 
-        Flag.values().forEach { setting ->
-            setFromPreferences(setting)
+        Flag.values().forEach { flag ->
+            setFromPreferences(flag)
         }
 
         orange.registerOnSharedPreferenceChangeListener(this)

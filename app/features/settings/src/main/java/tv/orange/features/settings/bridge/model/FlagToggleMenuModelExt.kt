@@ -7,7 +7,9 @@ import tv.orange.core.models.flag.Flag.Companion.asBoolean
 class FlagToggleMenuModelExt(
     private val flag: Flag
 ) : ToggleMenuModelExt(
-    primaryText = ResourcesManagerCore.get().getString(resName = flag.titleResName!!),
+    primaryText = flag.titleResName?.let { resName ->
+        ResourcesManagerCore.get().getString(resName = resName)
+    } ?: "<NULL>",
     secondaryText = flag.summaryResName?.let { id ->
         ResourcesManagerCore.get().getString(id)
     },

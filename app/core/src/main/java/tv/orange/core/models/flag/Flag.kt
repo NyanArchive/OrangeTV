@@ -39,7 +39,7 @@ enum class Flag(
     VIBRATE_ON_MENTION("vibrate_on_mention", "orange_settings_vibrate_on_mention", BooleanValue()),
     HIDE_TOP_CHAT_PANEL_VODS("hide_top_chat_panel_vods", "orange_settings_hide_top_chat_panel_vods", BooleanValue()),
     PRONOUNS("pronouns", "orange_settings_pronouns", BooleanValue()),
-    AUTO_HIDE_MESSAGE_INPUT("auto_hide_message_input", BooleanValue()),
+    AUTO_HIDE_MESSAGE_INPUT("auto_hide_message_input", "orange_settings_auto_hide_message_input", BooleanValue()),
     COMPACT_PLAYER_FOLLOW_VIEW("compact_player_follow_view", "orange_settings_compact_player_follow_view", BooleanValue()),
     BRIGHTNESS_GESTURE("brightness_gesture", "orange_settings_brightness_gesture", BooleanValue()),
     VOLUME_GESTURE("volume_gesture", "orange_settings_volume_gesture", BooleanValue()),

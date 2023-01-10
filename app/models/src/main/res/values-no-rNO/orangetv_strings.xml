@@ -60,6 +60,7 @@
     <string name="orange_settings_title">PurpleTV innstillinger</string>
     <string name="orange_settings_chat_font_size">Chat-skriftstørrelse</string>
     <string name="orange_settings_landscape_chat_size">Landskap chat-bredde</string>
+    <string name="orange_settings_landscape_split_chat_size">Landskap splittet chat-bredde</string>
     <string name="orange_settings_forward_seek">Spiller-fremoversøking</string>
     <string name="orange_settings_rewind_seek">Spiller-bakoversøking</string>
     <string name="orange_settings_mini_player_size">Minispiller-størrelse</string>
@@ -173,4 +174,12 @@
     <string name="orange_add">Legg til</string>
     <string name="orange_settings_hide_fsb">Skjul følge-/ abonner-knapp</string>
     <string name="orange_settings_user_mention_color">Endre @mention farge</string>
+    <string name="orange_settings_prevent_mod_clear">Ikke tøm chat når bedt om det</string>
+    <string name="orange_settings_force_toolbar_search_button">Tving søkeknapp på verktøylinje</string>
+    <string name="orange_settings_download_clip">Last ned klipp</string>
+    <string name="orangetv_downloading">Laster ned…</string>
+    <string name="orangetv_notification_channel_name">PurpleTV</string>
+    <string name="orange_settings_hide_player_create_clip_button">Skjul «Opprett klipp-knapp»</string>
+    <string name="orange_settings_disable_sentry">Deaktiver «SentrySDK»</string>
+    <string name="orange_settings_hide_player_live_share_button">Skjul \"Del knapp\" for direktesendinger</string>
 </resources>

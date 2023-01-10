@@ -60,6 +60,7 @@
     <string name="orange_settings_title">PurpleTV Einstellungen</string>
     <string name="orange_settings_chat_font_size">Chat Schriftgröße</string>
     <string name="orange_settings_landscape_chat_size">Chatbreite im Querformat</string>
+    <string name="orange_settings_landscape_split_chat_size">Chatbreite im Querformat</string>
     <string name="orange_settings_forward_seek">Videos vorspulen Dauer</string>
     <string name="orange_settings_rewind_seek">Videos zurückspulen Dauer</string>
     <string name="orange_settings_mini_player_size">Größe des Miniplayers</string>
@@ -96,6 +97,7 @@
     <string name="cpv_custom">Benutzerdefiniert</string>
     <string name="cpv_select">Auswählen</string>
     <string name="cpv_transparency">Transparenz</string>
+    <string name="orange_settings_clipfinity_desc">TikTok ähnliches Clips Design</string>
     <string name="orange_updater_ds">Downloadgröße: %s</string>
     <string name="orange_updater_ds2">%1$s/%2$s</string>
     <string name="orange_updater_ds3">%s\%%</string>
@@ -103,6 +105,10 @@
     <string name="orange_updater_msg1">PurpleTV benötigt ein Update</string>
     <string name="orange_app_name">PurpleTV</string>
     <string name="orange_settings_updater_channel">Update Channel</string>
+    <string name="orange_updater_final_release">Release Version</string>
+    <string name="orange_updater_final_beta">Beta Version</string>
+    <string name="orange_updater_final_dev">Entwickler Version</string>
+    <string name="orange_updater_final_disabled">Deaktiviert</string>
     <string name="orange_updater_install_action">Installieren</string>
     <string name="orange_updater_update_action">Update</string>
     <string name="orange_updater_channel_disabled">Aktueller Update Channel ist deaktiviert</string>
@@ -165,4 +171,15 @@
     <string name="orange_settings_menu_blacklist">Blockierliste</string>
     <string name="orange_settings_force_exoplayer_for_vods">Erzwinge ExoPlayer für VODS</string>
     <string name="orange_settings_exoplayer_vod_speed">ExoPlayer VOD Geschwindigkeit</string>
+    <string name="orange_add">Hinzufügen</string>
+    <string name="orange_settings_hide_fsb">«Folgen/Abonnieren» Button ausblenden</string>
+    <string name="orange_settings_user_mention_color">\@Erwähnung Farbe ändern</string>
+    <string name="orange_settings_prevent_mod_clear">Chat für mich nicht löschen bei Leeren Befehl</string>
+    <string name="orange_settings_force_toolbar_search_button">Erzwinge Toolbar Such Button</string>
+    <string name="orange_settings_download_clip">Clip herunterladen</string>
+    <string name="orangetv_downloading">Lädt herunter…</string>
+    <string name="orangetv_notification_channel_name">PurpleTV</string>
+    <string name="orange_settings_hide_player_create_clip_button">«Clip erstellen Button» ausblenden</string>
+    <string name="orange_settings_disable_sentry">SentrySDK deaktivieren</string>
+    <string name="orange_settings_hide_player_live_share_button">«Teilen Button» für Live Streams ausblenden</string>
 </resources>

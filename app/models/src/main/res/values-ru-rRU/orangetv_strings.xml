@@ -60,6 +60,7 @@
     <string name="orange_settings_title">Настройки PurpleTV</string>
     <string name="orange_settings_chat_font_size">Размер шрифта в чате</string>
     <string name="orange_settings_landscape_chat_size">Ширина чата в горизонтальной ориентации</string>
+    <string name="orange_settings_landscape_split_chat_size">Ширина раздельного чата в горизонтальной ориентации</string>
     <string name="orange_settings_forward_seek">Шаг перемотки вперёд</string>
     <string name="orange_settings_rewind_seek">Шаг перемотки назад</string>
     <string name="orange_settings_mini_player_size">Размер мини-плеера</string>

@@ -181,5 +181,5 @@
     <string name="orangetv_notification_channel_name">PurpleTV</string>
     <string name="orange_settings_hide_player_create_clip_button">Ocultar botão «Criar clipe»</string>
     <string name="orange_settings_disable_sentry">Desativar SentrySDK</string>
-    <string name="orange_settings_hide_player_live_share_button">Ocultar botão «Compartilhar» para streams ao vivo</string>
+    <string name="orange_settings_hide_player_live_share_button">Ocultar botão «Compartilhar» em transmissões</string>
 </resources>

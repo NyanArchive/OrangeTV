@@ -1,7 +1,7 @@
 diff --git a/smali_classes5/tv/twitch/android/feature/followed/FollowedChannelsFetcher.smali b/smali_classes5/tv/twitch/android/feature/followed/FollowedChannelsFetcher.smali
 --- a/smali_classes5/tv/twitch/android/feature/followed/FollowedChannelsFetcher.smali
 +++ b/smali_classes5/tv/twitch/android/feature/followed/FollowedChannelsFetcher.smali
-@@ -250,7 +250,24 @@
+@@ -250,7 +250,28 @@
          }
      .end annotation
  
@@ -10,6 +10,10 @@ diff --git a/smali_classes5/tv/twitch/android/feature/followed/FollowedChannelsF
 +    move-result v0
 +
 +    if-eqz v0, :cond_z
++
++    const/4 v0, 0x1
++
++    iput-boolean v0, p0, Ltv/twitch/android/feature/followed/FollowedChannelsFetcher;->hasFetchedAll:Z
 +
 +    invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
 +
@@ -26,7 +30,7 @@ diff --git a/smali_classes5/tv/twitch/android/feature/followed/FollowedChannelsF
      sget-object v0, Ltv/twitch/android/feature/followed/FollowType;->CHANNELS:Ltv/twitch/android/feature/followed/FollowType;
  
      const/4 v1, 0x1
-@@ -467,7 +484,23 @@
+@@ -467,7 +488,27 @@
          }
      .end annotation
  
@@ -35,6 +39,10 @@ diff --git a/smali_classes5/tv/twitch/android/feature/followed/FollowedChannelsF
 +    move-result v0
 +
 +    if-eqz v0, :cond_z
++
++    const/4 v0, 0x1
++
++    iput-boolean v0, p0, Ltv/twitch/android/feature/followed/FollowedChannelsFetcher;->hasFetchedAll:Z
 +
 +    .line 43
 +    sget-object v0, Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;
@@ -50,7 +58,7 @@ diff --git a/smali_classes5/tv/twitch/android/feature/followed/FollowedChannelsF
      invoke-virtual {p0}, Ltv/twitch/android/feature/followed/FollowedChannelsFetcher;->getCachedContent()Ljava/util/List;
  
      move-result-object v0
-@@ -537,7 +570,19 @@
+@@ -537,7 +578,23 @@
  .method public final hasMoreChannels()Z
      .locals 1
  
@@ -59,6 +67,10 @@ diff --git a/smali_classes5/tv/twitch/android/feature/followed/FollowedChannelsF
 +    move-result v0
 +
 +    if-eqz v0, :cond_z
++
++    const/4 v0, 0x1
++
++    iput-boolean v0, p0, Ltv/twitch/android/feature/followed/FollowedChannelsFetcher;->hasFetchedAll:Z
 +
 +    .line 33
 +    const/4 v0, 0x0

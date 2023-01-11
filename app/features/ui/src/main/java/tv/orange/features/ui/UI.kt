@@ -109,7 +109,7 @@ class UI @Inject constructor(
 
         @JvmStatic
         fun shouldHideMessageInput(context: Context): Boolean {
-            return Flag.AUTO_HIDE_MESSAGE_INPUT.asBoolean() && isLandscapeOrientation(context = context)
+            return Flag.AUTO_HIDE_MESSAGE_INPUT.asBoolean() && isLandscapeOrientation(context = context) || Flag.HIDE_MESSAGE_INPUT.asBoolean()
         }
 
         @JvmStatic
@@ -212,12 +212,12 @@ class UI @Inject constructor(
     }
 
     fun onChatViewPresenterConfigurationChanged(delegate: ChatViewDelegate) {
-        if (!Flag.AUTO_HIDE_MESSAGE_INPUT.asBoolean()) {
+        if (!Flag.AUTO_HIDE_MESSAGE_INPUT.asBoolean() && !Flag.HIDE_MESSAGE_INPUT.asBoolean()) {
             return
         }
 
         delegate.messageInputViewDelegate.apply {
-            if (isLandscapeOrientation(context = context)) {
+            if (isLandscapeOrientation(context = context) || Flag.HIDE_MESSAGE_INPUT.asBoolean()) {
                 hide()
             } else {
                 show()

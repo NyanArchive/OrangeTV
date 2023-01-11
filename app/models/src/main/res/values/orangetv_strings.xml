@@ -99,6 +99,8 @@
     <string name="orange_settings_pronouns_desc" translatable="false">https://pronouns.alejo.io/</string>
     <string name="orange_settings_auto_hide_message_input">Hide message input on landscape</string>
     <string name="orange_settings_auto_hide_message_input_desc" />
+    <string name="orange_settings_hide_message_input">Hide message input</string>
+    <string name="orange_settings_hide_message_input_desc" />
     <string name="orange_settings_landscape_chat_opacity">Landscape chat opacity</string>
     <string name="orange_settings_landscape_chat_opacity_desc" />
     <string name="orange_chapters_unknown">Unknown</string>

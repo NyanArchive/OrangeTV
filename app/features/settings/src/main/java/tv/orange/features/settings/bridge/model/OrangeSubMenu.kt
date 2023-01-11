@@ -35,6 +35,7 @@ enum class OrangeSubMenu(
             Flag.HIDE_LEADERBOARDS,
             Flag.DISABLE_HYPE_TRAIN,
             Flag.HIDE_TOP_CHAT_PANEL_VODS,
+            Flag.HIDE_MESSAGE_INPUT,
             Flag.AUTO_HIDE_MESSAGE_INPUT,
             Flag.CHAT_HISTORY,
             Flag.DISABLE_STICKY_HEADERS_EP,

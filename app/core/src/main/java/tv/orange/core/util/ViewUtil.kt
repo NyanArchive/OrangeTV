@@ -99,4 +99,8 @@ object ViewUtil {
     fun View.dipToPix(dip: Int): Int {
         return this.context.dipToPix(dip)
     }
+
+    fun isValidId(res: Int): Boolean {
+        return res != 0
+    }
 }

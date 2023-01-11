@@ -1,5 +1,6 @@
 package tv.twitch.android.feature.followed;
 
+import java.util.Calendar;
 import java.util.Collections;
 
 import io.reactivex.Single;
@@ -9,6 +10,8 @@ import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.core.fetchers.NoParamDynamicContentFetcher;
 import tv.twitch.android.core.fetchers.RefreshPolicy;
 import tv.twitch.android.models.resumewatching.ResumeWatchingResponse;
+import tv.twitch.android.models.resumewatching.ResumeWatchingVodHistory;
+import tv.twitch.android.models.videos.VodModel;
 
 public class ResumeWatchingVideosFetcher extends NoParamDynamicContentFetcher {
     /* ... */
@@ -39,6 +42,16 @@ public class ResumeWatchingVideosFetcher extends NoParamDynamicContentFetcher {
 
     @Override
     public Function1 getTransformToCache() {
+        throw new VirtualImpl();
+    }
+
+    public final boolean shouldShowResumeWatching(VodModel vodModel, ResumeWatchingVodHistory resumeWatchingVodHistory, Calendar calendar) {
+        if (UI.getHideResumeWatching()) { // TODO: __INJECT_CODE
+            return false;
+        }
+
+        /* ... */
+
         throw new VirtualImpl();
     }
 

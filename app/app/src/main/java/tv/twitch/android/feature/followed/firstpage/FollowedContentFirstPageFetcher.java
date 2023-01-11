@@ -58,4 +58,14 @@ public class FollowedContentFirstPageFetcher {
 
         throw new VirtualImpl();
     }
+
+    public final boolean hasMoreGames() {
+        if (UI.getHideGames()) { // TODO: __INJECT_CODE
+            return false;
+        }
+
+        /* ... */
+
+        throw new VirtualImpl();
+    }
 }

@@ -58,6 +58,7 @@ class ExperimentHelperHookImpl(private val org: IExperimentHelper) : ExperimentH
 
     override fun isInOnGroupForBinaryExperiment(p0: Experiment): Boolean {
         return when (p0) {
+            Experiment.DISABLE_AUDIO_ONLY,
             Experiment.ADS_SPONSORED_STREAMS,
             Experiment.LIVE_THEATRE_REFACTOR_GLOBAL,
             Experiment.AMAZON_IDENTITY_INTEGRATION -> false

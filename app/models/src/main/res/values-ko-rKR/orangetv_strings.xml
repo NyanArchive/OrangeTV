@@ -69,6 +69,7 @@
     <string name="orange_settings_hide_top_chat_panel_vods">VOD에서 상단 채팅 패널 숨기기</string>
     <string name="orange_settings_pronouns">대명사</string>
     <string name="orange_settings_auto_hide_message_input">가로 모드에서 메시지 입력 숨기기</string>
+    <string name="orange_settings_hide_message_input">메시지 입력 숨기기</string>
     <string name="orange_settings_landscape_chat_opacity">가로 모드에서 채팅 투명도</string>
     <string name="orange_chapters_unknown">알 수 없음</string>
     <string name="orange_settings_emote_quality">이모티콘 품질</string>

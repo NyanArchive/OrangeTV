@@ -69,6 +69,7 @@
     <string name="orange_settings_hide_top_chat_panel_vods">Сховати верхню панель чату у відеозаписах</string>
     <string name="orange_settings_pronouns">Займенники</string>
     <string name="orange_settings_auto_hide_message_input">Сховати поле вводу в повноекранному режимі</string>
+    <string name="orange_settings_hide_message_input">Сховати поле для вводу повідомлення</string>
     <string name="orange_settings_landscape_chat_opacity">Непрозорість чату в повноекранному режимі</string>
     <string name="orange_chapters_unknown">Невідомо</string>
     <string name="orange_settings_emote_quality">Якість емоцій</string>

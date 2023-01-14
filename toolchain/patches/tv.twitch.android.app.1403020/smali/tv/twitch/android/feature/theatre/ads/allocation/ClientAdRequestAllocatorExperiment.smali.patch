@@ -1,0 +1,32 @@
+diff --git a/smali_classes5/tv/twitch/android/feature/theatre/ads/allocation/ClientAdRequestAllocatorExperiment.smali b/smali_classes5/tv/twitch/android/feature/theatre/ads/allocation/ClientAdRequestAllocatorExperiment.smali
+--- a/smali_classes5/tv/twitch/android/feature/theatre/ads/allocation/ClientAdRequestAllocatorExperiment.smali
++++ b/smali_classes5/tv/twitch/android/feature/theatre/ads/allocation/ClientAdRequestAllocatorExperiment.smali
+@@ -31,25 +31,15 @@
+ .method public final shouldDisableVideoAdManager()Z
+     .locals 1
+ 
+-    .line 21
+-    invoke-virtual {p0}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientAdRequestAllocatorExperiment;->shouldUseClientAdAllocators()Z
+-
+-    move-result v0
++    const/4 v0, 0x1
+ 
+     return v0
+ .end method
+ 
+ .method public final shouldUseClientAdAllocators()Z
+-    .locals 2
+-
+-    .line 17
+-    iget-object v0, p0, Ltv/twitch/android/feature/theatre/ads/allocation/ClientAdRequestAllocatorExperiment;->experimentHelper:Ltv/twitch/android/provider/experiments/ExperimentHelper;
+-
+-    sget-object v1, Ltv/twitch/android/provider/experiments/Experiment;->ADS_CLIENT_AD_ALLOCATOR:Ltv/twitch/android/provider/experiments/Experiment;
+-
+-    invoke-interface {v0, v1}, Ltv/twitch/android/provider/experiments/ExperimentHelper;->isInOnGroupForBinaryExperiment(Ltv/twitch/android/provider/experiments/Experiment;)Z
++    .locals 1
+ 
+-    move-result v0
++    const/4 v0, 0x1
+ 
+     return v0
+ .end method

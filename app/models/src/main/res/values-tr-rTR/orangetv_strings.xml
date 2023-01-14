@@ -69,6 +69,7 @@
     <string name="orange_settings_hide_top_chat_panel_vods">VOD\'larda sohbet üst panelini gizle</string>
     <string name="orange_settings_pronouns">Zamirler</string>
     <string name="orange_settings_auto_hide_message_input">Yatayda mesaj kutusunu gizle</string>
+    <string name="orange_settings_hide_message_input">Mesaj girişini gizle</string>
     <string name="orange_settings_landscape_chat_opacity">Yatay sohbet opaklığı</string>
     <string name="orange_chapters_unknown">Bilinmiyor</string>
     <string name="orange_settings_emote_quality">İfade Kalitesi</string>

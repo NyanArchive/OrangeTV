@@ -1,0 +1,80 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogPresenter.smali b/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogPresenter.smali
+--- a/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogPresenter.smali
++++ b/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogPresenter.smali
+@@ -652,7 +652,25 @@
+ .end method
+ 
+ .method private final setupClickHandlers(Ltv/twitch/android/models/social/ChatUser;)V
+-    .locals 2
++    .locals 6
++
++    iget-object v1, p0, Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogPresenter;->activity:Landroidx/fragment/app/FragmentActivity;
++
++    iget-object v0, p0, Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogPresenter;->viewDelegate:Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate;
++
++    invoke-virtual {v0}, Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate;->getLocalLogs()Landroid/widget/TextView;
++
++    move-result-object v2
++
++    iget-object v3, p0, Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogPresenter;->info:Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogInfo;
++
++    iget-object v4, p0, Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogPresenter;->onDismissListener:Lkotlin/jvm/functions/Function0;
++
++    move-object v0, p0
++
++    move-object v5, p1
++
++    invoke-direct/range {v0 .. v5}, Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogPresenter;->setupLocalLogsClickHandler(Landroidx/fragment/app/FragmentActivity;Landroid/widget/TextView;Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogInfo;Lkotlin/jvm/functions/Function0;Ltv/twitch/android/models/social/ChatUser;)V
+ 
+     .line 108
+     iget-object v0, p0, Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogPresenter;->viewDelegate:Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate;
+@@ -1714,3 +1732,49 @@
+ 
+     return-void
+ .end method
++
++.method private final setupLocalLogsClickHandler(Landroidx/fragment/app/FragmentActivity;Landroid/widget/TextView;Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogInfo;Lkotlin/jvm/functions/Function0;Ltv/twitch/android/models/social/ChatUser;)V
++    .registers 12
++    .param p1, "activity"    # Landroidx/fragment/app/FragmentActivity;
++    .param p2, "localLogs"    # Landroid/widget/TextView;
++    .param p3, "info"    # Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogInfo;
++    .param p5, "chatUser"    # Ltv/twitch/android/models/social/ChatUser;
++    .annotation system Ldalvik/annotation/Signature;
++        value = {
++            "(",
++            "Landroidx/fragment/app/FragmentActivity;",
++            "Landroid/widget/TextView;",
++            "Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogInfo;",
++            "Lkotlin/jvm/functions/Function0<",
++            "Lkotlin/Unit;",
++            ">;",
++            "Ltv/twitch/android/models/social/ChatUser;",
++            ")V"
++        }
++    .end annotation
++
++    .line 33
++    .local p4, "onDismissListener":Lkotlin/jvm/functions/Function0;, "Lkotlin/jvm/functions/Function0<Lkotlin/Unit;>;"
++    invoke-static {}, Ltv/orange/features/logs/ChatLogs;->get()Ltv/orange/features/logs/ChatLogs;
++
++    move-result-object v0
++
++    iget-object v1, p0, Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogPresenter;->viewDelegate:Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate;
++
++    invoke-virtual {v1}, Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate;->getLocalLogs()Landroid/widget/TextView;
++
++    move-result-object v2
++
++    move-object v1, p1
++
++    move-object v3, p3
++
++    move-object v4, p4
++
++    move-object v5, p5
++
++    invoke-virtual/range {v0 .. v5}, Ltv/orange/features/logs/ChatLogs;->setupLocalLogsClickHandler(Landroidx/fragment/app/FragmentActivity;Landroid/widget/TextView;Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogInfo;Lkotlin/jvm/functions/Function0;Ltv/twitch/android/models/social/ChatUser;)V
++
++    .line 34
++    return-void
++.end method

@@ -1,0 +1,23 @@
+diff --git a/smali_classes2/com/google/android/exoplayer2/upstream/DefaultHttpDataSource.smali b/smali_classes2/com/google/android/exoplayer2/upstream/DefaultHttpDataSource.smali
+--- a/smali_classes2/com/google/android/exoplayer2/upstream/DefaultHttpDataSource.smali
++++ b/smali_classes2/com/google/android/exoplayer2/upstream/DefaultHttpDataSource.smali
+@@ -855,7 +855,7 @@
+ 
+     .line 537
+     :cond_4
+-    iget-object p4, p0, Lcom/google/android/exoplayer2/upstream/DefaultHttpDataSource;->userAgent:Ljava/lang/String;
++    const-string p4, "okhttp/4.9.1"
+ 
+     const-string p5, "User-Agent"
+ 
+@@ -1479,6 +1479,10 @@
+         }
+     .end annotation
+ 
++    invoke-static {p1}, Ltv/orange/features/proxy/Proxy;->patchExoPlayerDataSpec(Lcom/google/android/exoplayer2/upstream/DataSpec;)Lcom/google/android/exoplayer2/upstream/DataSpec;
++
++    move-result-object p1
++
+     const-string v0, "Unable to connect to "
+ 
+     .line 275

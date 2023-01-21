@@ -1,0 +1,51 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate$Event$DownloadClicked.smali b/smali_classes6/tv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate$Event$DownloadClicked.smali
+new file mode 100644
+index 000000000..4443648f1
+--- /dev/null
++++ b/smali_classes6/tv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate$Event$DownloadClicked.smali
+@@ -0,0 +1,45 @@
++.class public final Ltv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate$Event$DownloadClicked;
++.super Ltv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate$Event;
++.source "SharePanelWidgetViewDelegate.java"
++
++
++# annotations
++.annotation system Ldalvik/annotation/EnclosingClass;
++    value = Ltv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate$Event;
++.end annotation
++
++.annotation system Ldalvik/annotation/InnerClass;
++    accessFlags = 0x19
++    name = "DownloadClicked"
++.end annotation
++
++
++# static fields
++.field public static final INSTANCE:Ltv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate$Event$DownloadClicked;
++
++
++# direct methods
++.method static constructor <clinit>()V
++    .registers 1
++
++    .line 58
++    new-instance v0, Ltv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate$Event$DownloadClicked;
++
++    invoke-direct {v0}, Ltv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate$Event$DownloadClicked;-><init>()V
++
++    sput-object v0, Ltv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate$Event$DownloadClicked;->INSTANCE:Ltv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate$Event$DownloadClicked;
++
++    return-void
++.end method
++
++.method private constructor <init>()V
++    .registers 2
++
++    .line 61
++    const/4 v0, 0x0
++
++    invoke-direct {p0, v0}, Ltv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate$Event;-><init>(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
++
++    .line 62
++    return-void
++.end method

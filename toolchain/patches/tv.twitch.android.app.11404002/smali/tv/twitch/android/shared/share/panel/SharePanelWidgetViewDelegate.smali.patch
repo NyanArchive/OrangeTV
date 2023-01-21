@@ -1,0 +1,100 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate.smali b/smali_classes6/tv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate.smali
+--- a/smali_classes6/tv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate.smali
++++ b/smali_classes6/tv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate.smali
+@@ -3,6 +3,10 @@
+ .source "SharePanelWidgetViewDelegate.kt"
+ 
+ 
++# interfaces
++.implements Ltv/orange/features/vodhunter/bridge/ISharePanelWidgetViewDelegate;
++
++
+ # annotations
+ .annotation system Ldalvik/annotation/MemberClasses;
+     value = {
+@@ -37,6 +41,8 @@
+ 
+ .field private final shareWithWhisperButton:Ltv/twitch/android/shared/ui/elements/bottomsheet/InteractiveRowView;
+ 
++.field private final downloadClipButton:Ltv/twitch/android/shared/ui/elements/bottomsheet/InteractiveRowView;
++
+ 
+ # direct methods
+ .method public static synthetic $r8$lambda$7TKz118CVlOHWKZ5IOGefoLR4T4(Ltv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate;Landroid/view/View;)V
+@@ -218,6 +224,16 @@
+ 
+     invoke-virtual {p2, p1}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+ 
++    invoke-static {}, Ltv/orange/features/vodhunter/Vodhunter;->get()Ltv/orange/features/vodhunter/Vodhunter;
++
++    move-result-object v0
++
++    invoke-virtual {v0, p0}, Ltv/orange/features/vodhunter/Vodhunter;->getDownloadClipButton(Ltv/twitch/android/core/mvp/viewdelegate/RxViewDelegate;)Ltv/twitch/android/shared/ui/elements/bottomsheet/InteractiveRowView;
++
++    move-result-object v0
++
++    iput-object v0, p0, Ltv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate;->downloadClipButton:Ltv/twitch/android/shared/ui/elements/bottomsheet/InteractiveRowView;
++
+     return-void
+ .end method
+ 
+@@ -340,6 +356,8 @@
+ 
+     invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+ 
++    invoke-direct {p0, p1}, Ltv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate;->renderDownloadButton(Ltv/twitch/android/core/mvp/viewdelegate/ViewDelegateState;)V
++
+     .line 110
+     instance-of v0, p1, Ltv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate$State$InitializeForLiveChannel;
+ 
+@@ -501,3 +519,50 @@
+     :goto_2
+     return-void
+ .end method
++
++.method private renderDownloadButton(Ltv/twitch/android/core/mvp/viewdelegate/ViewDelegateState;)V
++    .registers 4
++    .param p1, "state"    # Ltv/twitch/android/core/mvp/viewdelegate/ViewDelegateState;
++
++    .prologue
++    .line 41
++    iget-object v0, p0, Ltv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate;->downloadClipButton:Ltv/twitch/android/shared/ui/elements/bottomsheet/InteractiveRowView;
++
++    if-eqz v0, :cond_e
++
++    .line 42
++    iget-object v1, p0, Ltv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate;->downloadClipButton:Ltv/twitch/android/shared/ui/elements/bottomsheet/InteractiveRowView;
++
++    instance-of v0, p1, Ltv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate$State$InitializeForClipOrChomment;
++
++    if-eqz v0, :cond_f
++
++    const/4 v0, 0x0
++
++    :goto_b
++    invoke-virtual {v1, v0}, Ltv/twitch/android/shared/ui/elements/bottomsheet/InteractiveRowView;->setVisibility(I)V
++
++    .line 44
++    :cond_e
++    return-void
++
++    .line 42
++    :cond_f
++    const/16 v0, 0x8
++
++    goto :goto_b
++.end method
++
++.method public pushDownloadClipEvent()V
++    .registers 2
++
++    .prologue
++    .line 28
++    sget-object v0, Ltv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate$Event$DownloadClicked;->INSTANCE:Ltv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate$Event$DownloadClicked;
++
++    invoke-virtual {p0, v0}, Ltv/twitch/android/shared/share/panel/SharePanelWidgetViewDelegate;->pushEvent(Ltv/twitch/android/core/mvp/viewdelegate/ViewDelegateEvent;)V
++
++    .line 29
++    return-void
++.end method
++

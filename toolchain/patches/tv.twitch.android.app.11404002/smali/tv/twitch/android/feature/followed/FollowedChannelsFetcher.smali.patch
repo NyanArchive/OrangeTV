@@ -1,0 +1,84 @@
+diff --git a/smali_classes4/tv/twitch/android/feature/followed/FollowedChannelsFetcher.smali b/smali_classes4/tv/twitch/android/feature/followed/FollowedChannelsFetcher.smali
+--- a/smali_classes4/tv/twitch/android/feature/followed/FollowedChannelsFetcher.smali
++++ b/smali_classes4/tv/twitch/android/feature/followed/FollowedChannelsFetcher.smali
+@@ -250,7 +250,28 @@
+         }
+     .end annotation
+ 
++    invoke-static {}, Ltv/orange/features/ui/UI;->getHideOfflineChannels()Z
++
++    move-result v0
++
++    if-eqz v0, :cond_z
++
++    const/4 v0, 0x1
++
++    iput-boolean v0, p0, Ltv/twitch/android/feature/followed/FollowedChannelsFetcher;->hasFetchedAll:Z
++
++    invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
++
++    move-result-object v0
++
++    invoke-static {v0}, Lio/reactivex/Maybe;->just(Ljava/lang/Object;)Lio/reactivex/Maybe;
++
++    move-result-object v0
++
++    return-object v0
++
+     .line 65
++    :cond_z
+     sget-object v0, Ltv/twitch/android/feature/followed/FollowType;->CHANNELS:Ltv/twitch/android/feature/followed/FollowType;
+ 
+     const/4 v1, 0x1
+@@ -467,7 +488,27 @@
+         }
+     .end annotation
+ 
++    invoke-static {}, Ltv/orange/features/ui/UI;->getHideOfflineChannels()Z
++
++    move-result v0
++
++    if-eqz v0, :cond_z
++
++    const/4 v0, 0x1
++
++    iput-boolean v0, p0, Ltv/twitch/android/feature/followed/FollowedChannelsFetcher;->hasFetchedAll:Z
++
++    .line 43
++    sget-object v0, Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;
++
++    invoke-static {v0}, Lio/reactivex/Maybe;->just(Ljava/lang/Object;)Lio/reactivex/Maybe;
++
++    move-result-object v0
++
++    return-object v0
++
+     .line 57
++    :cond_z
+     invoke-virtual {p0}, Ltv/twitch/android/feature/followed/FollowedChannelsFetcher;->getCachedContent()Ljava/util/List;
+ 
+     move-result-object v0
+@@ -537,7 +578,23 @@
+ .method public final hasMoreChannels()Z
+     .locals 1
+ 
++    invoke-static {}, Ltv/orange/features/ui/UI;->getHideOfflineChannels()Z
++
++    move-result v0
++
++    if-eqz v0, :cond_z
++
++    const/4 v0, 0x1
++
++    iput-boolean v0, p0, Ltv/twitch/android/feature/followed/FollowedChannelsFetcher;->hasFetchedAll:Z
++
++    .line 33
++    const/4 v0, 0x0
++
++    return v0
++
+     .line 41
++    :cond_z
+     iget-boolean v0, p0, Ltv/twitch/android/feature/followed/FollowedChannelsFetcher;->hasFetchedAll:Z
+ 
+     xor-int/lit8 v0, v0, 0x1

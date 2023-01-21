@@ -1,0 +1,52 @@
+diff --git a/smali_classes5/tv/twitch/android/feature/theatre/debug/VideoDebugListPresenter.smali b/smali_classes5/tv/twitch/android/feature/theatre/debug/VideoDebugListPresenter.smali
+--- a/smali_classes5/tv/twitch/android/feature/theatre/debug/VideoDebugListPresenter.smali
++++ b/smali_classes5/tv/twitch/android/feature/theatre/debug/VideoDebugListPresenter.smali
+@@ -421,6 +421,8 @@
+         }
+     .end annotation
+ 
++    invoke-direct {p0, p1, p2}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter;->updateProxyServerInfo(Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$State;Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$Event$ManifestUpdated;)V
++
+     .line 171
+     invoke-virtual {p1}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$State;->getData()Ljava/util/Map;
+ 
+@@ -1444,3 +1446,39 @@
+ 
+     return-void
+ .end method
++
++.method private updateProxyServerInfo(Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$State;Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$Event$ManifestUpdated;)V
++    .registers 6
++    .param p1, "state"    # Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$State;
++    .param p2, "manifestUpdated"    # Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$Event$ManifestUpdated;
++
++    .line 51
++    invoke-virtual {p2}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$Event$ManifestUpdated;->getManifest()Ltv/twitch/android/models/manifest/ManifestModel;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Ltv/twitch/android/models/manifest/ManifestModel;->getProxyServer()Ljava/lang/String;
++
++    move-result-object v0
++
++    .line 52
++    .local v0, "proxyServer":Ljava/lang/String;
++    invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
++
++    move-result v1
++
++    if-nez v1, :cond_17
++
++    .line 53
++    invoke-virtual {p1}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$State;->getData()Ljava/util/Map;
++
++    move-result-object v1
++
++    sget-object v2, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;->PROXY_SERVER:Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;
++
++    invoke-interface {v1, v2, v0}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
++
++    .line 55
++    :cond_17
++    return-void
++.end method

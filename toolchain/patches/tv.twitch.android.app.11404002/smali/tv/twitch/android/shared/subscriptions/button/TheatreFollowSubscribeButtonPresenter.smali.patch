@@ -1,0 +1,21 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/subscriptions/button/TheatreFollowSubscribeButtonPresenter.smali b/smali_classes6/tv/twitch/android/shared/subscriptions/button/TheatreFollowSubscribeButtonPresenter.smali
+--- a/smali_classes6/tv/twitch/android/shared/subscriptions/button/TheatreFollowSubscribeButtonPresenter.smali
++++ b/smali_classes6/tv/twitch/android/shared/subscriptions/button/TheatreFollowSubscribeButtonPresenter.smali
+@@ -1521,10 +1521,17 @@
+ .method public final show()V
+     .locals 1
+ 
++    invoke-static {}, Ltv/orange/features/ui/UI;->getHideFSB()Z
++
++    move-result v0
++
++    if-nez v0, :cond_z
++
+     .line 208
+     iget-object v0, p0, Ltv/twitch/android/shared/subscriptions/button/TheatreFollowSubscribeButtonPresenter;->viewDelegateFactory:Ltv/twitch/android/shared/subscriptions/button/TheatreFollowSubscribeButtonViewDelegateFactory;
+ 
+     invoke-virtual {v0}, Ltv/twitch/android/core/mvp/viewfactory/ViewDelegateFactory;->inflate()V
+ 
++    :cond_z
+     return-void
+ .end method

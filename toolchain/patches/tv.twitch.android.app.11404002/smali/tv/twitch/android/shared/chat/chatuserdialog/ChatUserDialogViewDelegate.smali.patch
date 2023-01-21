@@ -1,7 +1,7 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate.smali b/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate.smali
 --- a/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate.smali
 +++ b/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate.smali
-@@ -44,10 +44,12 @@
+@@ -46,10 +46,12 @@
  
  .field private final whisperText:Landroid/widget/TextView;
  
@@ -15,7 +15,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUse
  
      const-string v0, "context"
  
-@@ -302,6 +304,18 @@
+@@ -319,6 +321,18 @@
  
      iput-object p1, p0, Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate;->dialogContent:Landroid/view/ViewGroup;
  
@@ -34,7 +34,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUse
      return-void
  .end method
  
-@@ -863,3 +877,12 @@
+@@ -940,3 +954,12 @@
  
      return-void
  .end method

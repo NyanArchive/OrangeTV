@@ -69,6 +69,7 @@
     <string name="orange_settings_hide_top_chat_panel_vods">Skryť horný panel chatu vo VODs</string>
     <string name="orange_settings_pronouns">Rody</string>
     <string name="orange_settings_auto_hide_message_input">Skryť pole pre zadávanie správ v režime na šírku</string>
+    <string name="orange_settings_hide_message_input">Skryť pole pre zadávanie správy</string>
     <string name="orange_settings_landscape_chat_opacity">Priehľadnosť chatu v režimu na šírku</string>
     <string name="orange_chapters_unknown">Neznáme</string>
     <string name="orange_settings_emote_quality">Kvalita Emótov</string>

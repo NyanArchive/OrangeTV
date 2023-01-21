@@ -92,6 +92,10 @@ class FixClasses(BaseTask):
                      md.joinpath("tv/twitch/android"))
         move_classes(Path(self._apk.decompile_dir).joinpath("smali/berlin/volders/badger"),
                      md.joinpath("berlin/volder"))
+        move_classes(Path(self._apk.decompile_dir).joinpath("smali/io/mobileshield/sdk"),
+                     md.joinpath("io/mobileshield"))
+        move_classes(Path(self._apk.decompile_dir).joinpath("smali_classes6/tv/twitch/chat"),
+                     md.joinpath("tv/twitch"))        
         move_classes(Path(self._apk.decompile_dir).joinpath("smali_classes3/io/mobileshield"),
                      md.joinpath("io"))        
 

@@ -62,7 +62,14 @@ class ExperimentHelperHookImpl(private val org: IExperimentHelper) : ExperimentH
             Experiment.DISABLE_AUDIO_ONLY,
             Experiment.ADS_SPONSORED_STREAMS,
             Experiment.LIVE_THEATRE_REFACTOR_GLOBAL,
-            Experiment.AMAZON_IDENTITY_INTEGRATION -> false
+            Experiment.AMAZON_IDENTITY_INTEGRATION,
+            Experiment.FOLLOW_SUB_DURING_ADS_EXPERIMENT,
+            Experiment.STREAM_DISPLAY_ADS,
+            Experiment.AUDIO_ADS_BACKGROUND,
+            Experiment.ADS_VIDEO_ASYNC_LOADING,
+            Experiment.EXPANDABLE_ADS -> false
+
+            Experiment.ADS_CLIENT_AD_ALLOCATOR -> true
 
             Experiment.CHAT_SETTINGS -> Flag.CHAT_SETTINGS.asBoolean()
 

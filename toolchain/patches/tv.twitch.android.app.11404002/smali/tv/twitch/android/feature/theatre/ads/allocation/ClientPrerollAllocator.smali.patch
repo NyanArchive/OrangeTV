@@ -1,0 +1,12 @@
+diff --git a/smali_classes5/tv/twitch/android/feature/theatre/ads/allocation/ClientPrerollAllocator.smali b/smali_classes5/tv/twitch/android/feature/theatre/ads/allocation/ClientPrerollAllocator.smali
+--- a/smali_classes5/tv/twitch/android/feature/theatre/ads/allocation/ClientPrerollAllocator.smali
++++ b/smali_classes5/tv/twitch/android/feature/theatre/ads/allocation/ClientPrerollAllocator.smali
+@@ -62,6 +62,8 @@
+ 
+     const/4 v1, 0x1
+ 
++    const/4 p2, 0x0
++
+     .line 35
+     invoke-direct {p0, v0, v1, v0}, Ltv/twitch/android/core/mvp/presenter/RxPresenter;-><init>(Ltv/twitch/android/core/mvp/presenter/IStateObserver;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+ 

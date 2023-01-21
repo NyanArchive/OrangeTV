@@ -90,7 +90,6 @@ enum class OrangeSubMenu(
         destination = SettingsDestination.OrangeView,
         title = "orange_settings_menu_view",
         items = listOf(
-            Flag.CLIPFINITY,
             Flag.FOLLOWED_FULL_CARDS,
             Flag.HIDE_DISCOVER_TAB,
             Flag.BOTTOM_NAVBAR_POSITION,

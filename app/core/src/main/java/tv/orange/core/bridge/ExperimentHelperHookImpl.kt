@@ -67,6 +67,7 @@ class ExperimentHelperHookImpl(private val org: IExperimentHelper) : ExperimentH
             Experiment.STREAM_DISPLAY_ADS,
             Experiment.AUDIO_ADS_BACKGROUND,
             Experiment.ADS_VIDEO_ASYNC_LOADING,
+            Experiment.PIP_SMOOTH_ENTER,
             Experiment.EXPANDABLE_ADS -> false
 
             Experiment.ADS_CLIENT_AD_ALLOCATOR -> true

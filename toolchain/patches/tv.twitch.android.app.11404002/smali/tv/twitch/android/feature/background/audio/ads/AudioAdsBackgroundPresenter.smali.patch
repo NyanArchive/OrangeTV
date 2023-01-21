@@ -23,8 +23,8 @@ diff --git a/smali_classes4/tv/twitch/android/feature/background/audio/ads/Audio
      goto :goto_0
  
      :cond_0
--    const-string v0, "tv.twitch.android.media.action.audiobecomingnoisy"
-+    const-string v0, "tv.orange.media.action.audiobecomingnoisy"
+-    const-string/jumbo v0, "tv.twitch.android.media.action.audiobecomingnoisy"
++    const-string/jumbo v0, "tv.orange.media.action.audiobecomingnoisy"
  
      invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
  
@@ -32,8 +32,8 @@ diff --git a/smali_classes4/tv/twitch/android/feature/background/audio/ads/Audio
      goto :goto_0
  
      :cond_2
--    const-string v0, "tv.twitch.android.media.action.toggleplayback"
-+    const-string v0, "tv.orange.media.action.toggleplayback"
+-    const-string/jumbo v0, "tv.twitch.android.media.action.toggleplayback"
++    const-string/jumbo v0, "tv.orange.media.action.toggleplayback"
  
      .line 39
      invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -41,8 +41,8 @@ diff --git a/smali_classes4/tv/twitch/android/feature/background/audio/ads/Audio
      goto :goto_0
  
      :cond_4
--    const-string v0, "tv.twitch.android.media.action.stop"
-+    const-string v0, "tv.orange.media.action.stop"
+-    const-string/jumbo v0, "tv.twitch.android.media.action.stop"
++    const-string/jumbo v0, "tv.orange.media.action.stop"
  
      .line 39
      invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z

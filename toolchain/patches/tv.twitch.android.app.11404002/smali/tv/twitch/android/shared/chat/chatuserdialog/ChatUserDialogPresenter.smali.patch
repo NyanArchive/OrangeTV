@@ -1,10 +1,10 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogPresenter.smali b/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogPresenter.smali
 --- a/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogPresenter.smali
 +++ b/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogPresenter.smali
-@@ -652,7 +652,25 @@
+@@ -772,7 +772,25 @@
  .end method
  
- .method private final setupClickHandlers(Ltv/twitch/android/models/social/ChatUser;)V
+ .method private final setupClickHandlers(Ltv/twitch/android/models/social/ChatUser;Z)V
 -    .locals 2
 +    .locals 6
 +
@@ -26,9 +26,9 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUse
 +
 +    invoke-direct/range {v0 .. v5}, Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogPresenter;->setupLocalLogsClickHandler(Landroidx/fragment/app/FragmentActivity;Landroid/widget/TextView;Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogInfo;Lkotlin/jvm/functions/Function0;Ltv/twitch/android/models/social/ChatUser;)V
  
-     .line 108
+     .line 114
      iget-object v0, p0, Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogPresenter;->viewDelegate:Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate;
-@@ -1714,3 +1732,49 @@
+@@ -1920,3 +1938,49 @@
  
      return-void
  .end method

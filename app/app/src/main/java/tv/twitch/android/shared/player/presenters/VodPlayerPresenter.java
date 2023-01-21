@@ -6,7 +6,6 @@ import tv.orange.core.Core;
 import tv.orange.core.CoreHook;
 import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.provider.experiments.ExperimentHelper;
-import tv.twitch.android.shared.api.pub.IResumeWatchingFetcher;
 import tv.twitch.android.shared.manifest.fetcher.VodManifestProvider;
 import tv.twitch.android.shared.manifest.fetcher.model.ManifestPropertiesFactory;
 import tv.twitch.android.shared.player.TwitchPlayerProvider;
@@ -15,6 +14,7 @@ import tv.twitch.android.shared.player.availability.PlayerAvailabilityTracker;
 import tv.twitch.android.shared.player.fetchers.VodFetcher;
 import tv.twitch.android.shared.player.trackers.PlayerPresenterTracker;
 import tv.twitch.android.shared.referrer.ReferrerPropertiesProvider;
+import tv.twitch.android.shared.viewer.pub.IResumeWatchingFetcher;
 
 public class VodPlayerPresenter {
     /* ... */

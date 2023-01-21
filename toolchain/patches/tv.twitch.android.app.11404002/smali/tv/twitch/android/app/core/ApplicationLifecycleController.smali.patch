@@ -1,7 +1,7 @@
 diff --git a/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleController.smali b/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleController.smali
 --- a/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleController.smali
 +++ b/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleController.smali
-@@ -586,6 +586,12 @@
+@@ -595,6 +595,12 @@
  
      invoke-virtual {v0}, Ltv/twitch/android/shared/stream/preloader/StreamPreloader;->clearAll()V
  
@@ -14,7 +14,7 @@ diff --git a/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleContr
      :cond_0
      return-void
  .end method
-@@ -641,6 +647,12 @@
+@@ -650,6 +656,12 @@
  
      invoke-interface {v0}, Ltv/twitch/android/network/clientintegrity/ClientIntegrityTokenManager;->cleanResources()V
  
@@ -27,7 +27,7 @@ diff --git a/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleContr
      :cond_0
      return-void
  .end method
-@@ -775,6 +787,12 @@
+@@ -784,6 +796,12 @@
  
      invoke-virtual {p1}, Ltv/twitch/android/shared/badges/ChatBadgeProvider;->updateGlobalBadges()V
  
@@ -40,7 +40,7 @@ diff --git a/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleContr
      return-void
  .end method
  
-@@ -949,6 +967,12 @@
+@@ -913,6 +931,12 @@
  
      invoke-interface {v0, v1}, Ltv/twitch/android/network/clientintegrity/ClientIntegrityTokenManager;->fetchNewToken(Ltv/twitch/android/network/clientintegrity/Scope;)V
  
@@ -53,8 +53,8 @@ diff --git a/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleContr
      return-void
  .end method
  
-@@ -1098,6 +1122,12 @@
-     .line 228
+@@ -1120,6 +1144,12 @@
+     .line 232
      invoke-direct {p0}, Ltv/twitch/android/app/core/ApplicationLifecycleController;->initSdk()V
  
 +    invoke-static {}, Ltv/orange/core/Core;->get()Ltv/orange/core/Core;
@@ -66,7 +66,7 @@ diff --git a/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleContr
      :cond_1
      return-void
  .end method
-@@ -1440,6 +1470,12 @@
+@@ -1462,6 +1492,12 @@
  
      invoke-interface {v0, p1}, Ltv/twitch/android/network/clientintegrity/ClientIntegrityTokenManager;->fetchNewToken(Ltv/twitch/android/network/clientintegrity/Scope;)V
  

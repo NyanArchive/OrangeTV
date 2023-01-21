@@ -1,31 +1,27 @@
 diff --git a/smali_classes5/tv/twitch/android/feature/viewer/main/MainActivity$2.smali b/smali_classes5/tv/twitch/android/feature/viewer/main/MainActivity$2.smali
 --- a/smali_classes5/tv/twitch/android/feature/viewer/main/MainActivity$2.smali
 +++ b/smali_classes5/tv/twitch/android/feature/viewer/main/MainActivity$2.smali
-@@ -49,18 +49,22 @@
+@@ -49,15 +49,18 @@
  .end method
  
  .method public installUpdate()V
 -    .locals 1
-+    .registers 3
++    .locals 2
  
--    .line 278
+-    .line 276
 -    iget-object v0, p0, Ltv/twitch/android/feature/viewer/main/MainActivity$2;->this$0:Ltv/twitch/android/feature/viewer/main/MainActivity;
 +    .line 28
 +    invoke-static {}, Ltv/orange/features/updater/Updater;->get()Ltv/orange/features/updater/Updater;
  
 -    iget-object v0, v0, Ltv/twitch/android/feature/viewer/main/MainActivity;->mUpdatePromptPresenter:Ltv/twitch/android/feature/update/UpdatePromptPresenter;
 +    move-result-object v0
- 
--    invoke-virtual {v0}, Ltv/twitch/android/feature/update/UpdatePromptPresenter;->installUpdate()Z
++
 +    iget-object v1, p0, Ltv/twitch/android/feature/viewer/main/MainActivity$2;->this$0:Ltv/twitch/android/feature/viewer/main/MainActivity;
  
+-    invoke-virtual {v0}, Ltv/twitch/android/feature/update/UpdatePromptPresenter;->installUpdate()Z
 +    invoke-virtual {v0, v1}, Ltv/orange/features/updater/Updater;->onBannerInstallUpdateClicked(Landroid/content/Context;)V
-+
+ 
 +    .line 29
      return-void
  .end method
- 
-+
- .method public updateDismissed()V
-     .locals 1
  

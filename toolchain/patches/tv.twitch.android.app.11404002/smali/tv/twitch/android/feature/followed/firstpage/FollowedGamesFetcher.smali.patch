@@ -53,6 +53,6 @@ diff --git a/smali_classes4/tv/twitch/android/feature/followed/firstpage/Followe
 +
      .line 34
 +    :cond_z
-     iget-object p1, p0, Ltv/twitch/android/feature/followed/firstpage/FollowedGamesFetcher;->followApi:Ltv/twitch/android/shared/api/pub/follow/IFollowApi;
+     iget-object p1, p0, Ltv/twitch/android/feature/followed/firstpage/FollowedGamesFetcher;->followApi:Ltv/twitch/android/shared/follow/pub/IFollowApi;
  
      const/16 v0, 0x64

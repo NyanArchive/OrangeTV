@@ -4,7 +4,7 @@ diff --git a/smali_classes4/tv/twitch/android/feature/followed/FollowedContentFe
 @@ -479,7 +479,7 @@
  .end method
  
- .method private static final observePrefetchContent$lambda-2(Ltv/twitch/android/shared/api/pub/FollowedFirstPageContent;)Ltv/twitch/android/feature/followed/model/FollowingContentResponse;
+ .method private static final observePrefetchContent$lambda-2(Ltv/twitch/android/shared/follow/pub/FollowedFirstPageContent;)Ltv/twitch/android/feature/followed/model/FollowingContentResponse;
 -    .locals 4
 +    .locals 5
  

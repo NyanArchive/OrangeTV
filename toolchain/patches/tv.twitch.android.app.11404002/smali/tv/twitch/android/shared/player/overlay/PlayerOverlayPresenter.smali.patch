@@ -1,7 +1,7 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayPresenter.smali b/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayPresenter.smali
 --- a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayPresenter.smali
 +++ b/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayPresenter.smali
-@@ -930,6 +930,14 @@
+@@ -902,6 +902,14 @@
  
      move-result-object v0
  
@@ -13,10 +13,10 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
 +
 +    invoke-virtual {v1, v0, v2}, Ltv/orange/features/ui/UI;->maybeHideLiveShareButton(Ltv/twitch/android/shared/player/overlay/stream/StreamOverlayConfiguration;Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;)V
 +
-     .line 257
+     .line 249
      sget-object v1, Ltv/twitch/android/shared/player/overlay/stream/StreamOverlayConfiguration$SingleStream;->INSTANCE:Ltv/twitch/android/shared/player/overlay/stream/StreamOverlayConfiguration$SingleStream;
  
-@@ -1426,3 +1434,29 @@
+@@ -1398,3 +1406,29 @@
      :cond_0
      return-void
  .end method

@@ -1,4 +1,4 @@
-package tv.twitch.android.api.streammanifestfetcher;
+package tv.twitch.android.shared.player.network.manifest;
 
 import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.models.manifest.extm3u;

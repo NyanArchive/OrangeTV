@@ -11,7 +11,7 @@ import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.core.fetchers.NoParamDynamicContentFetcher;
 import tv.twitch.android.core.fetchers.RefreshPolicy;
 import tv.twitch.android.models.GameModel;
-import tv.twitch.android.shared.api.pub.FollowedFirstPageContent;
+import tv.twitch.android.shared.follow.pub.FollowedFirstPageContent;
 
 public class FollowedGamesFetcher extends NoParamDynamicContentFetcher {
     /* ... */

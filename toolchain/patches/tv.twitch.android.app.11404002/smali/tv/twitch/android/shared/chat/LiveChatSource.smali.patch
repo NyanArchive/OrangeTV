@@ -21,10 +21,10 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/LiveChatSource.smali b
 +
 +    if-nez v0, :cond_z
 +
-     .line 362
+     .line 382
      invoke-virtual {p0}, Ltv/twitch/android/shared/chat/LiveChatSource;->clearMessages()V
  
-     .line 363
+     .line 383
 +    :cond_z
      iget-object p1, p0, Ltv/twitch/android/shared/chat/LiveChatSource;->context:Landroid/content/Context;
  
@@ -39,15 +39,15 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/LiveChatSource.smali b
 +
 +    if-nez v1, :cond_z
 +
-     .line 496
+     .line 516
      invoke-virtual/range {p0 .. p0}, Ltv/twitch/android/shared/chat/LiveChatSource;->clearMessages()V
  
-     .line 497
+     .line 517
 +    :cond_z
      iget-object v1, v6, Ltv/twitch/android/shared/chat/LiveChatSource;->context:Landroid/content/Context;
  
      sget v4, Ltv/twitch/android/core/strings/R$string;->mod_notice_chat_cleared:I
-@@ -3998,3 +4015,37 @@
+@@ -4082,3 +4099,37 @@
  
      return-void
  .end method

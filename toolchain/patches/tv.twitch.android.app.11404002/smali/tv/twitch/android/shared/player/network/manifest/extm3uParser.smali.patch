@@ -1,6 +1,6 @@
-diff --git a/smali_classes6/tv/twitch/android/api/streammanifestfetcher/extm3uParser.smali b/smali_classes6/tv/twitch/android/api/streammanifestfetcher/extm3uParser.smali
---- a/smali_classes6/tv/twitch/android/api/streammanifestfetcher/extm3uParser.smali
-+++ b/smali_classes6/tv/twitch/android/api/streammanifestfetcher/extm3uParser.smali
+diff --git a/smali_classes6/tv/twitch/android/shared/player/network/manifest/extm3uParser.smali b/smali_classes6/tv/twitch/android/shared/player/network/manifest/extm3uParser.smali
+--- a/smali_classes6/tv/twitch/android/shared/player/network/manifest/extm3uParser.smali
++++ b/smali_classes6/tv/twitch/android/shared/player/network/manifest/extm3uParser.smali
 @@ -511,7 +511,7 @@
  
  # virtual methods

@@ -1,7 +1,7 @@
 diff --git a/smali_classes5/tv/twitch/android/feature/viewer/main/MainActivity.smali b/smali_classes5/tv/twitch/android/feature/viewer/main/MainActivity.smali
 --- a/smali_classes5/tv/twitch/android/feature/viewer/main/MainActivity.smali
 +++ b/smali_classes5/tv/twitch/android/feature/viewer/main/MainActivity.smali
-@@ -1259,6 +1259,12 @@
+@@ -1238,6 +1238,12 @@
  
      iput-object p1, p0, Ltv/twitch/android/feature/viewer/main/MainActivity;->mWrapper:Landroid/view/ViewGroup;
  
@@ -11,6 +11,6 @@ diff --git a/smali_classes5/tv/twitch/android/feature/viewer/main/MainActivity.s
 +
 +    invoke-virtual {v2, p1}, Ltv/orange/features/ui/UI;->attachToMainActivityWrapper(Landroid/view/ViewGroup;)V
 +
-     .line 304
+     .line 302
      sget p1, Ltv/twitch/android/feature/viewer/main/R$id;->main_content_coordinator_layout:I
  

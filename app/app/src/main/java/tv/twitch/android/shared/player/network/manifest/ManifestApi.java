@@ -1,4 +1,4 @@
-package tv.twitch.android.api.streammanifestfetcher;
+package tv.twitch.android.shared.player.network.manifest;
 
 import io.reactivex.Single;
 import retrofit2.Response;

@@ -1,7 +1,7 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/chat/ChatViewPresenter.smali b/smali_classes6/tv/twitch/android/shared/chat/ChatViewPresenter.smali
 --- a/smali_classes6/tv/twitch/android/shared/chat/ChatViewPresenter.smali
 +++ b/smali_classes6/tv/twitch/android/shared/chat/ChatViewPresenter.smali
-@@ -2391,7 +2391,34 @@
+@@ -2416,7 +2416,34 @@
  
      move-result-object v0
  
@@ -31,16 +31,16 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/ChatViewPresenter.smal
 +
 +    return v1
 +
-     .line 934
+     .line 937
 +    :cond_zz
      instance-of v1, v0, Ltv/twitch/android/shared/chat/command/ChatCommandAction$WhisperUnverified;
  
      const/4 v2, 0x1
-@@ -2774,6 +2801,16 @@
+@@ -2799,6 +2826,16 @@
  .method private final onChannelStateChanged(Ltv/twitch/android/shared/chat/events/ChatConnectionEvents;)V
      .locals 9
  
-+     invoke-static {}, Ltv/orange/features/chathistory/ChatHistory;->get()Ltv/orange/features/chathistory/ChatHistory;
++    invoke-static {}, Ltv/orange/features/chathistory/ChatHistory;->get()Ltv/orange/features/chathistory/ChatHistory;
 +
 +    move-result-object v0
 +
@@ -50,10 +50,10 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/ChatViewPresenter.smal
 +
 +    invoke-virtual {v0, p1, v1, v2}, Ltv/orange/features/chathistory/ChatHistory;->requestChatHistory(Ltv/twitch/android/shared/chat/events/ChatConnectionEvents;Ltv/orange/features/chathistory/bridge/ILiveChatSource;Ltv/twitch/android/models/channel/ChannelInfo;)V
 +
-     .line 992
+     .line 995
      instance-of v0, p1, Ltv/twitch/android/shared/chat/events/ChatConnectionEvents$ChatConnectingEvent;
  
-@@ -3311,7 +3348,22 @@
+@@ -3336,7 +3373,22 @@
  .method private final onUserBanStateUpdated(Z)V
      .locals 1
  
@@ -71,12 +71,12 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/ChatViewPresenter.smal
 +
 +    invoke-direct {p0}, Ltv/twitch/android/shared/chat/ChatViewPresenter;->reconnectAsAnon()V
 +
-     .line 1056
+     .line 1059
 +    :cond_z
      iput-boolean p1, p0, Ltv/twitch/android/shared/chat/ChatViewPresenter;->isBanned:Z
  
-     .line 1057
-@@ -4786,6 +4838,12 @@
+     .line 1060
+@@ -4802,6 +4854,12 @@
  
      invoke-virtual {v0}, Ltv/twitch/android/core/mvp/viewdelegate/BaseViewDelegate;->onConfigurationChanged()V
  
@@ -89,7 +89,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/ChatViewPresenter.smal
      :cond_0
      return-void
  .end method
-@@ -5821,3 +5879,44 @@
+@@ -5799,3 +5857,43 @@
  
      return-void
  .end method
@@ -133,4 +133,3 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/ChatViewPresenter.smal
 +    .line 50
 +    return-void
 +.end method
-+

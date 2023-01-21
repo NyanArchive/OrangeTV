@@ -31,7 +31,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/experiments/ExperimentHelpe
      return-void
  .end method
  
-@@ -697,7 +706,7 @@
+@@ -689,7 +698,7 @@
      return v0
  .end method
  
@@ -40,7 +40,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/experiments/ExperimentHelpe
      .locals 7
  
      const-string v0, "experiment"
-@@ -791,7 +800,7 @@
+@@ -783,7 +792,7 @@
      return-object v0
  .end method
  
@@ -49,7 +49,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/experiments/ExperimentHelpe
      .locals 1
  
      const-string v0, "id"
-@@ -957,7 +966,7 @@
+@@ -962,7 +971,7 @@
      return-object v0
  .end method
  
@@ -58,7 +58,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/experiments/ExperimentHelpe
      .locals 1
  
      const-string v0, "id"
-@@ -1024,7 +1033,7 @@
+@@ -1029,7 +1038,7 @@
      return v0
  .end method
  
@@ -67,7 +67,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/experiments/ExperimentHelpe
      .locals 1
      .annotation system Ldalvik/annotation/Signature;
          value = {
-@@ -1042,7 +1051,7 @@
+@@ -1047,7 +1056,7 @@
      return-object v0
  .end method
  
@@ -76,7 +76,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/experiments/ExperimentHelpe
      .locals 1
  
      const-string v0, "flag"
-@@ -1072,7 +1081,7 @@
+@@ -1077,7 +1086,7 @@
      return p1
  .end method
  
@@ -85,7 +85,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/experiments/ExperimentHelpe
      .locals 1
  
      const-string v0, "experiment"
-@@ -1108,7 +1117,7 @@
+@@ -1113,7 +1122,7 @@
      return p1
  .end method
  
@@ -94,7 +94,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/experiments/ExperimentHelpe
      .locals 2
  
      const-string v0, "experiment"
-@@ -1135,7 +1144,7 @@
+@@ -1140,7 +1149,7 @@
      return p1
  .end method
  
@@ -103,7 +103,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/experiments/ExperimentHelpe
      .locals 1
  
      const-string v0, "experiment"
-@@ -1154,7 +1163,7 @@
+@@ -1159,7 +1168,7 @@
      return p1
  .end method
  
@@ -112,7 +112,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/experiments/ExperimentHelpe
      .locals 1
  
      const-string v0, "experiment"
-@@ -1205,7 +1214,7 @@
+@@ -1210,7 +1219,7 @@
      return-void
  .end method
  
@@ -120,8 +120,8 @@ diff --git a/smali_classes6/tv/twitch/android/shared/experiments/ExperimentHelpe
 +.method public refreshExperimentsOrg(I)V
      .locals 2
  
-     .line 289
-@@ -1250,7 +1259,7 @@
+     .line 292
+@@ -1255,7 +1264,7 @@
      return-void
  .end method
  
@@ -129,8 +129,8 @@ diff --git a/smali_classes6/tv/twitch/android/shared/experiments/ExperimentHelpe
 +.method public refreshIfNeededOrg(I)V
      .locals 2
  
-     .line 255
-@@ -1309,7 +1318,7 @@
+     .line 258
+@@ -1314,7 +1323,7 @@
      return-void
  .end method
  
@@ -139,7 +139,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/experiments/ExperimentHelpe
      .locals 1
      .annotation system Ldalvik/annotation/Signature;
          value = {
-@@ -1329,3 +1338,197 @@
+@@ -1334,3 +1343,197 @@
  
      return-object v0
  .end method

@@ -160,22 +160,6 @@ class Proxy @Inject constructor(
         )
     }
 
-    private fun createTTSFTProxySingleResponse(
-        twitchResponse: Single<Response<String>>,
-        channelName: String,
-        accessTokenResponse: AccessTokenResponse
-    ): Single<Response<String>> {
-        return trySwapPlaylist(
-            twitchResponse = twitchResponse,
-            proxyResponse = repository.getTTSFTPlaylist(
-                channelName = channelName,
-                sig = accessTokenResponse.sig,
-                token = accessTokenResponse.token
-            ),
-            proxyName = "Twitch Tokyo Server Fix Tool"
-        )
-    }
-
     private fun createTwitchingProxySingleResponse(
         twitchResponse: Single<Response<String>>,
         channelName: String,
@@ -214,11 +198,6 @@ class Proxy @Inject constructor(
 
         return when (Flag.Proxy.asVariant<ProxyImpl>()) {
             ProxyImpl.Twitching -> createTwitchingProxySingleResponse(
-                twitchResponse = manifest,
-                channelName = channelName,
-                accessTokenResponse = accessTokenResponse
-            )
-            ProxyImpl.TTSFTP -> createTTSFTProxySingleResponse(
                 twitchResponse = manifest,
                 channelName = channelName,
                 accessTokenResponse = accessTokenResponse

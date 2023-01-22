@@ -5,7 +5,6 @@ import tv.orange.core.models.flag.core.Variant
 enum class ProxyImpl(val value: String) : Variant {
     Disabled("disabled"),
     Twitching("twitching"),
-    TTSFTP("ttsftp"),
     TTV_LOL("ttv_lol"),
     PURPLE("purple");
 

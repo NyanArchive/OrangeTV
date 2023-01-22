@@ -53,13 +53,6 @@ class ApiModule {
 
     @ApiScope
     @Provides
-    @Named(TTSFT)
-    fun provideTTSFTRetrofitClient(builder: Retrofit.Builder): Retrofit {
-        return builder.baseUrl("https://api.twitch.tyo.kwabang.net/").build()
-    }
-
-    @ApiScope
-    @Provides
     @Named(TWITCHING)
     fun provideTwitchingRetrofitClient(builder: Retrofit.Builder): Retrofit {
         return builder.baseUrl("https://workers.twitch-relay.wesub.io/").build()
@@ -127,12 +120,6 @@ class ApiModule {
     @Provides
     fun provideNopApi(@Named(NOP) retrofit: Retrofit): NopApi {
         return retrofit.create(NopApi::class.java)
-    }
-
-    @ApiScope
-    @Provides
-    fun provideTTSFTApi(@Named(TTSFT) retrofit: Retrofit): TTSFTApi {
-        return retrofit.create(TTSFTApi::class.java)
     }
 
     @ApiScope

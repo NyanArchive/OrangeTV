@@ -14,6 +14,7 @@ enum class OrangeSubMenu(
         title = "orange_settings_menu_third_party",
         items = listOf(
             Flag.BTTV_EMOTES,
+            Flag.BTTV_WEBP,
             Flag.FFZ_EMOTES,
             Flag.STV_EMOTES,
             Flag.ITZ_EMOTES,

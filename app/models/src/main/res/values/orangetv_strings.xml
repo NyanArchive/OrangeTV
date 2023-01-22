@@ -261,4 +261,6 @@
     <string name="orange_settings_disable_sentry_desc" />
     <string name="orange_settings_hide_player_live_share_button">Hide «Share button» for Live streams</string>
     <string name="orange_settings_hide_player_live_share_button_desc" />
+    <string name="orange_settings_bttv_webp">Support for WEBP emotes</string>
+    <string name="orange_settings_bttv_webp_desc" />
 </resources>

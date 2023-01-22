@@ -1,5 +1,7 @@
 package tv.orange.features.api.component.data.mapper
 
+import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.models.abc.EmotePackageSet
 import tv.orange.models.data.emotes.Emote
 import tv.orange.models.data.emotes.EmoteBaseImpl
@@ -36,7 +38,8 @@ class BttvApiMapper @Inject constructor() {
                     BTTV_GLOBAL_ZW_CODES.contains(emote.code)
                 } else {
                     false
-                }
+                },
+                useWebp = Flag.BTTV_WEBP.asBoolean()
             )
         }
     }

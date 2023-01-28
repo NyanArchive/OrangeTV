@@ -183,4 +183,5 @@
     <string name="orange_settings_hide_player_create_clip_button">Ocultar botón «Crear clip»</string>
     <string name="orange_settings_disable_sentry">Desactivar SentrySDK</string>
     <string name="orange_settings_hide_player_live_share_button">Ocultar botón «Compartir» para directos</string>
+    <string name="orange_settings_bttv_webp">Soporte para emotes WEBP</string>
 </resources>

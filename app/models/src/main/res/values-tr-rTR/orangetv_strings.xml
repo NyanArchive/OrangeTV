@@ -183,4 +183,5 @@
     <string name="orange_settings_hide_player_create_clip_button">&lt;&lt;Klip oluştur butonunu&gt;&gt; gizle</string>
     <string name="orange_settings_disable_sentry">NöbetçiSDK\'yı devre dışı bırak</string>
     <string name="orange_settings_hide_player_live_share_button">Yayınlar için &lt;&lt;Paylaş butonunu&gt;&gt; gizle</string>
+    <string name="orange_settings_bttv_webp">WEBP emojileri desteği</string>
 </resources>

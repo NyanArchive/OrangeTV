@@ -69,6 +69,7 @@
     <string name="orange_settings_hide_top_chat_panel_vods">Скрыть верхнюю панель чата в записях</string>
     <string name="orange_settings_pronouns">Местоимения (требуется авторизация)</string>
     <string name="orange_settings_auto_hide_message_input">Скрыть строку ввода в горизонтальной ориентации</string>
+    <string name="orange_settings_hide_message_input">Скрыть строку ввода в чате</string>
     <string name="orange_settings_landscape_chat_opacity">Прозрачность чата в горизонтальной ориентации</string>
     <string name="orange_chapters_unknown">Главы</string>
     <string name="orange_settings_emote_quality">Качество смайликов</string>
@@ -184,4 +185,5 @@
     <string name="orange_settings_hide_player_create_clip_button">Скрыть кнопку «Создать клип»</string>
     <string name="orange_settings_disable_sentry">Отключить SentrySDK</string>
     <string name="orange_settings_hide_player_live_share_button">Скрыть кнопку «Поделиться» для трансляций</string>
+    <string name="orange_settings_bttv_webp">Поддержка WEBP смайликов</string>
 </resources>

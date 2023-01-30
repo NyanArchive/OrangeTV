@@ -70,6 +70,7 @@ enum class OrangeSubMenu(
             Flag.DISABLE_THEATRE_AUTOPLAY,
             Flag.SHOW_STATS_BUTTON,
             Flag.Proxy,
+            Flag.FIX_KOREA_1080P,
             Flag.IMPROVED_BACKGROUND_AUDIO,
             Flag.HIDE_UNFOLLOW_BUTTON,
             Flag.EXOPLAYER_VOD_SPEED,

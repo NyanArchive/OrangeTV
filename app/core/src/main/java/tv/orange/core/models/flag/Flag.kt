@@ -68,6 +68,7 @@ enum class Flag(
     HIDE_PLAYER_LIVE_SHARE_BUTTON("hide_player_live_share_button", "orange_settings_hide_player_live_share_button", BooleanValue()),
     HIDE_MESSAGE_INPUT("hide_message_input", "orange_settings_hide_message_input", BooleanValue()),
     BTTV_WEBP("bttv_webp", "orange_settings_bttv_webp", BooleanValue()),
+    FIX_KOREA_1080P("fix_korea", "orange_settings_fix_korea", BooleanValue()),
     // LIST
     PLAYER_IMPL("player_impl", "orange_settings_player_impl", ListValue(PlayerImpl::class)),
     DELETED_MESSAGES("deleted_messages", "orange_settings_deleted_messages", ListValue(DeletedMessages::class)),

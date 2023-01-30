@@ -97,7 +97,8 @@ class OrangeSettingsController @Inject constructor(
             Flag.BOTTOM_NAVBAR_POSITION,
             Flag.DEV_MODE,
             Flag.Proxy,
-            Flag.FORCE_DISABLE_SENTRY
+            Flag.FORCE_DISABLE_SENTRY,
+            Flag.FIX_KOREA_1080P
         )
     }
 

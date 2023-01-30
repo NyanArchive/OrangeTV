@@ -9,10 +9,12 @@ import retrofit2.Response
 import tv.orange.core.Core
 import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.variants.ProxyImpl
 import tv.orange.features.api.component.repository.ProxyRepository
 import tv.orange.features.proxy.bridge.LolTvApiInterceptor
+import tv.orange.features.proxy.bridge.PatchKoreaHlsRequestInterceptor
 import tv.orange.models.abc.Feature
 import tv.twitch.android.models.AccessTokenResponse
 import tv.twitch.android.models.manifest.extm3u
@@ -122,6 +124,16 @@ class Proxy @Inject constructor(
 
             val url = dataSpec.uri.toString()
             val headers = when {
+                url.contains("usher.ttvnw.net/api/channel/hls/") -> {
+                    if (Flag.FIX_KOREA_1080P.asBoolean()) {
+                        Collections.unmodifiableMap(
+                            dataSpec.httpRequestHeaders.toMutableMap().apply {
+                                put("X-Forwarded-For", "::1")
+                            })
+                    } else {
+                        null
+                    }
+                }
                 url.contains("https://api.ttv.lol/") -> Collections.unmodifiableMap(
                     dataSpec.httpRequestHeaders.toMutableMap().apply {
                         put("x-donate-to", "https://ttv.lol/donate")
@@ -146,6 +158,9 @@ class Proxy @Inject constructor(
         @JvmStatic
         fun maybeAddInterceptor(builder: OkHttpClient.Builder) {
             builder.addNetworkInterceptor(LolTvApiInterceptor())
+            if (Flag.FIX_KOREA_1080P.asBoolean()) {
+                builder.addNetworkInterceptor(PatchKoreaHlsRequestInterceptor())
+            }
         }
     }
 

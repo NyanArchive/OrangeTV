@@ -265,4 +265,6 @@
     <string name="orange_settings_bttv_webp_desc" />
     <string name="orange_settings_fix_korea">Bypass Korea CDN</string>
     <string name="orange_settings_fix_korea_desc" />
+    <string name="orange_settings_node">Segment node</string>
+    <string name="orange_settings_node_desc" />
 </resources>

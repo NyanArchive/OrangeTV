@@ -7,6 +7,7 @@ import tv.orange.core.models.flag.core.BooleanValue
 import tv.orange.core.models.flag.core.IntRangeValue
 import tv.orange.core.models.flag.core.ListValue
 import tv.orange.core.models.flag.variants.FontSize
+import tv.orange.core.models.flag.variants.Node
 import tv.orange.features.settings.bridge.model.DropDownMenuModelExt
 import tv.orange.features.settings.bridge.model.FlagToggleMenuModelExt
 import tv.orange.features.settings.bridge.model.OrangeSubMenu
@@ -54,10 +55,10 @@ open class BasedSettingsPresenter(
         private fun mapper(controller: OrangeSettingsController, flag: Flag): MenuModel? {
             return when (flag.valueHolder) {
                 is BooleanValue -> FlagToggleMenuModelExt(flag)
-                is ListValue<*> -> if (flag == Flag.CHAT_FONT_SIZE) {
-                    DropDownMenuModelExt<FontSize>(flag, controller, true)
-                } else {
-                    DropDownMenuModelExt(flag, controller)
+                is ListValue<*> -> when (flag) {
+                    Flag.NODE_SEGMENT -> DropDownMenuModelExt<Node>(flag, controller, true)
+                    Flag.CHAT_FONT_SIZE -> DropDownMenuModelExt<FontSize>(flag, controller, true)
+                    else -> DropDownMenuModelExt(flag, controller)
                 }
                 is IntRangeValue -> SliderModel(flag, controller)
                 else -> null

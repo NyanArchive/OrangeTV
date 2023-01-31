@@ -15,6 +15,7 @@ import tv.orange.core.models.flag.variants.ProxyImpl
 import tv.orange.features.api.component.repository.ProxyRepository
 import tv.orange.features.proxy.bridge.LolTvApiInterceptor
 import tv.orange.features.proxy.bridge.PatchKoreaHlsRequestInterceptor
+import tv.orange.features.proxy.bridge.PatchSegmentNodeRequestInterceptor
 import tv.orange.models.abc.Feature
 import tv.twitch.android.models.AccessTokenResponse
 import tv.twitch.android.models.manifest.extm3u
@@ -161,6 +162,7 @@ class Proxy @Inject constructor(
             if (Flag.FIX_KOREA_1080P.asBoolean()) {
                 builder.addNetworkInterceptor(PatchKoreaHlsRequestInterceptor())
             }
+            builder.addNetworkInterceptor(PatchSegmentNodeRequestInterceptor())
         }
     }
 

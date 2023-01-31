@@ -22,6 +22,7 @@ import tv.twitch.android.models.chat.MessageToken;
 import tv.twitch.android.models.emotes.EmoteModel;
 import tv.twitch.android.models.webview.WebViewSource;
 import tv.twitch.android.provider.chat.ChatMessageInterface;
+import tv.twitch.android.provider.experiments.helpers.AnimatedEmotesExperiment;
 import tv.twitch.android.shared.bits.cheermote.CheermotesHelper;
 import tv.twitch.android.shared.chat.UrlImageClickableProvider;
 import tv.twitch.android.shared.chat.chatsource.IClickableUsernameSpanListener;
@@ -35,6 +36,7 @@ import tv.twitch.android.shared.ui.elements.span.TwitchUrlSpanClickListener;
 import tv.twitch.android.shared.ui.elements.span.UrlDrawable;
 
 public class ChatMessageSpanFactory {
+    private AnimatedEmotesExperiment animatedEmotesExperiment;
     private AnimatedEmotesUrlUtil animatedEmotesUrlUtil;
     private final ChatHookProvider chatHookProvider = ChatHookProvider.get(); // TODO: __INJECT_FIELD
 
@@ -89,7 +91,7 @@ public class ChatMessageSpanFactory {
     private CharSequence stackEmoteSpannable(StackEmoteToken stackEmoteToken, ChatMessageInterface chatMessageInterface, Integer num, EventDispatcher<ChatItemClickEvent> eventDispatcher) {
         List<UrlDrawable> stack = new ArrayList<>();
         for (EmoteToken t : stackEmoteToken.getStack()) {
-            stack.add(new UrlDrawable(t.getEmoteUrl(), MediaSpan$Type.Emote, true));
+            stack.add(chatHookProvider.urlDrawableFactory(t.getEmoteUrl(), animatedEmotesUrlUtil.isAnimatedEmotesEnabled()));
         }
 
         if (stackEmoteToken.getCore().isTwitchToken()) {
@@ -102,7 +104,7 @@ public class ChatMessageSpanFactory {
             return spannable;
         } else {
             EmoteToken token = stackEmoteToken.getCore().getOrangeToken();
-            UrlDrawable drawable = new UrlDrawable(token.getEmoteUrl(), MediaSpan$Type.Emote, true);
+            UrlDrawable drawable = chatHookProvider.urlDrawableFactory(token.getEmoteUrl(), animatedEmotesUrlUtil.isAnimatedEmotesEnabled());
             drawable.addToStack(stack);
 
             SpannableString spannable = new SpannableString(imageSpannable(drawable, token.getEmoteCode(), "", null, true));
@@ -120,7 +122,7 @@ public class ChatMessageSpanFactory {
     }
 
     private CharSequence emoteSpannable(EmoteToken token, ChatMessageInterface cmi, EventDispatcher<ChatItemClickEvent> eventDispatcher) { // TODO: __INJECT_METHOD
-        Drawable drawable = new UrlDrawable(token.getEmoteUrl(), MediaSpan$Type.Emote, true);
+        Drawable drawable = chatHookProvider.urlDrawableFactory(token.getEmoteUrl(), animatedEmotesUrlUtil.isAnimatedEmotesEnabled());
         SpannableString spannable = new SpannableString(imageSpannable(drawable, token.getEmoteCode(), "", null, true));
         if (eventDispatcher != null) {
             spannable.setSpan(new ClickableEmoteSpan(new EmoteCardModelWrapper(token.getEmoteCode(), token.getEmoteCardUrl(), token.getPackageSet()).toJsonString(), cmi, eventDispatcher), 0, spannable.length() - 1, 33);

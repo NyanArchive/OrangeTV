@@ -60,6 +60,7 @@
     <string name="orange_settings_title">PurpleTV 설정</string>
     <string name="orange_settings_chat_font_size">채팅 글꼴 크기</string>
     <string name="orange_settings_landscape_chat_size">가로 모드에서 채팅 너비</string>
+    <string name="orange_settings_landscape_split_chat_size">가로 모드에서 스플릿 채팅 너비</string>
     <string name="orange_settings_forward_seek">플레이어 빨리 감기</string>
     <string name="orange_settings_rewind_seek">플레이어 뒤로 감기</string>
     <string name="orange_settings_mini_player_size">미니 플레이어 크기</string>
@@ -68,6 +69,7 @@
     <string name="orange_settings_hide_top_chat_panel_vods">VOD에서 상단 채팅 패널 숨기기</string>
     <string name="orange_settings_pronouns">대명사</string>
     <string name="orange_settings_auto_hide_message_input">가로 모드에서 메시지 입력 숨기기</string>
+    <string name="orange_settings_hide_message_input">메시지 입력 숨기기</string>
     <string name="orange_settings_landscape_chat_opacity">가로 모드에서 채팅 투명도</string>
     <string name="orange_chapters_unknown">알 수 없음</string>
     <string name="orange_settings_emote_quality">이모티콘 품질</string>
@@ -173,4 +175,13 @@
     <string name="orange_add">추가</string>
     <string name="orange_settings_hide_fsb">«팔로우/구독» 버튼 숨기기</string>
     <string name="orange_settings_user_mention_color">\@mention 색상 변경</string>
+    <string name="orange_settings_prevent_mod_clear">채팅 초기화 명령시 무시하고 채팅을 지우지 않기</string>
+    <string name="orange_settings_force_toolbar_search_button">툴바 검색 버튼 고정</string>
+    <string name="orange_settings_download_clip">클립 다운로드</string>
+    <string name="orangetv_downloading">다운로드 중…</string>
+    <string name="orangetv_notification_channel_name">PurpleTV</string>
+    <string name="orange_settings_hide_player_create_clip_button">«클립 생성» 버튼 숨기기</string>
+    <string name="orange_settings_disable_sentry">SentrySDK 비활성화</string>
+    <string name="orange_settings_hide_player_live_share_button">생방송도중 «공유» 버튼 숨기기</string>
+    <string name="orange_settings_bttv_webp">WEBP 이모티콘 지원</string>
 </resources>

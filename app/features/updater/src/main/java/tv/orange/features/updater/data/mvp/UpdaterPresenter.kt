@@ -6,15 +6,11 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
-import tv.orange.core.Core
-import tv.orange.core.LoggerImpl
-import tv.orange.core.util.FileUtil.copyTo
-import tv.orange.core.util.NetUtil
 import tv.orange.core.util.NetUtil.getFileSize
+import tv.orange.features.updater.Updater
 import tv.orange.features.updater.component.data.model.UpdateData
 import tv.orange.features.updater.data.view.UpdaterActivity
 import java.io.File
-import java.net.URL
 import java.util.concurrent.Executors
 
 class UpdaterPresenter(
@@ -71,10 +67,8 @@ class UpdaterPresenter(
                 when (state) {
                     State.Starting -> {
                         view.render(UpdaterContract.View.State.Prepare)
-                        view.clearTempCache()
                     }
                     is State.Initial -> {
-                        view.render(UpdaterContract.View.State.Loading)
                         tryUpdateInfo(state)
                     }
                     is State.ReadyToDownload -> {
@@ -88,7 +82,15 @@ class UpdaterPresenter(
                     is State.ReadyToInstall -> {
                         readyToInstall = true
                         installFile = state.file
-                        view.render(UpdaterContract.View.State.DownloadComplete(installFile))
+                        if (state.updateFileSize) {
+                            updateData = updateData.copy(size = installFile.length())
+                        }
+                        view.render(
+                            UpdaterContract.View.State.DownloadComplete(
+                                file = installFile,
+                                data = updateData
+                            )
+                        )
                     }
                     State.StartInstalling -> {
                         view.render(UpdaterContract.View.State.IndeterminateDownloading)
@@ -136,12 +138,16 @@ class UpdaterPresenter(
     }
 
     override fun onResume() {}
-
     override fun onPause() {}
 
     override fun onStart() {
         subject.onNext(State.Starting)
-        subject.onNext(State.Initial(updateData))
+        val file = view.getOtaFile(updateData.build)
+        if (!file.exists()) {
+            subject.onNext(State.Initial(updateData))
+        } else {
+            subject.onNext(State.ReadyToInstall(file, true))
+        }
     }
 
     override fun onStop() {
@@ -162,59 +168,16 @@ class UpdaterPresenter(
                 updateData = data
                 subject.onNext(State.ReadyToDownload(data))
             }, {
+                it.printStackTrace()
                 subject.onNext(State.Error(it.localizedMessage ?: "Throwable"))
             })
         )
     }
 
     private fun tryDownloadFile(updateData: UpdateData) {
-        disposables.add(
-            downloadFile(updateData)
-                .subscribeOn(Schedulers.io()).subscribe(
-                    {
-                        subject.onNext(State.ReadyToInstall(it))
-                    },
-                    {
-                        subject.onNext(State.Error(it.localizedMessage ?: "Throwable"))
-                    }
-                )
+        Updater.get().scheduleWork(
+            url = updateData.url,
+            build = updateData.build
         )
-    }
-
-    private fun downloadFile(data: UpdateData): Single<File> {
-        return Single.create { e ->
-            val build = if (data.build > 0) data.build else 0
-
-            val tmpApkFile = view.createTempFile()
-            val otaFile = view.getOtaFile(build)
-
-            try {
-                NetUtil.download(URL(data.url), tmpApkFile, object : NetUtil.DownloadCallback {
-                    override fun onProgressUpdate(
-                        progress: Int,
-                        downloadedBytes: Int,
-                        totalBytes: Int
-                    ) {
-                        subject.onNext(State.UpdateProgress(progress, downloadedBytes, totalBytes))
-                    }
-
-                    override fun isCanceled(): Boolean {
-                        return e.isDisposed
-                    }
-                })
-
-                tmpApkFile.copyTo(otaFile)
-
-                if (e.isDisposed) {
-                    otaFile.delete()
-                } else {
-                    e.onSuccess(otaFile)
-                }
-            } catch (th: Throwable) {
-                subject.onNext(State.Error(th.localizedMessage ?: "Throwable"))
-            } finally {
-                tmpApkFile.delete()
-            }
-        }
     }
 }

@@ -1,10 +1,13 @@
 package tv.orange.features.settings.bridge.settings
 
 import androidx.fragment.app.FragmentActivity
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.models.flag.Flag
-import tv.orange.core.models.flag.Internal
+import tv.orange.core.models.flag.core.BooleanValue
+import tv.orange.core.models.flag.core.IntRangeValue
+import tv.orange.core.models.flag.core.ListValue
 import tv.orange.core.models.flag.variants.FontSize
+import tv.orange.core.models.flag.variants.Node
 import tv.orange.features.settings.bridge.model.DropDownMenuModelExt
 import tv.orange.features.settings.bridge.model.FlagToggleMenuModelExt
 import tv.orange.features.settings.bridge.model.OrangeSubMenu
@@ -33,7 +36,7 @@ open class BasedSettingsPresenter(
     }
 
     override fun getToolbarTitle(): String {
-        return ResourceManager.get().getString(resName = orangeSubMenuWrapper.title)
+        return ResourcesManagerCore.get().getString(resName = orangeSubMenuWrapper.title)
     }
 
     override fun updateSettingModels() {
@@ -51,13 +54,13 @@ open class BasedSettingsPresenter(
 
         private fun mapper(controller: OrangeSettingsController, flag: Flag): MenuModel? {
             return when (flag.valueHolder) {
-                is Internal.BooleanValue -> FlagToggleMenuModelExt(flag)
-                is Internal.ListValue<*> -> if (flag == Flag.CHAT_FONT_SIZE) {
-                    DropDownMenuModelExt<FontSize>(flag, controller, true)
-                } else {
-                    DropDownMenuModelExt(flag, controller)
+                is BooleanValue -> FlagToggleMenuModelExt(flag)
+                is ListValue<*> -> when (flag) {
+                    Flag.NODE_SEGMENT -> DropDownMenuModelExt<Node>(flag, controller, true)
+                    Flag.CHAT_FONT_SIZE -> DropDownMenuModelExt<FontSize>(flag, controller, true)
+                    else -> DropDownMenuModelExt(flag, controller)
                 }
-                is Internal.IntegerRangeValue -> SliderModel(flag, controller)
+                is IntRangeValue -> SliderModel(flag, controller)
                 else -> null
             }
         }

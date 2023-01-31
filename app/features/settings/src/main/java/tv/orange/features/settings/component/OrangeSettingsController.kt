@@ -5,12 +5,12 @@ import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import tv.orange.core.Core
 import tv.orange.core.LoggerImpl
-import tv.orange.core.PreferenceManager
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asInt
 import tv.orange.core.models.flag.Flag.Companion.asString
-import tv.orange.core.models.flag.Internal
+import tv.orange.core.models.flag.Flag.Companion.setValue
+import tv.orange.core.models.flag.core.Variant
 import tv.orange.features.blacklist.Blacklist
 import tv.orange.features.highlighter.Highlighter
 import tv.orange.features.settings.bridge.model.OrangeSubMenu
@@ -42,7 +42,7 @@ class OrangeSettingsController @Inject constructor(
             return
         }
 
-        PreferenceManager.get().writeBoolean(flag = flag, value = state)
+        flag.setValue(state)
         checkIfNeedRestart(flag = flag)
     }
 
@@ -54,9 +54,9 @@ class OrangeSettingsController @Inject constructor(
         val alertDialog: AlertDialog = activity.let {
             val builder = AlertDialog.Builder(it)
             builder.apply {
-                setTitle(ResourceManager.get().getString(resName = "orange_restart_app_title"))
+                setTitle(ResourcesManagerCore.get().getString(resName = "orange_restart_app_title"))
                 setPositiveButton(
-                    ResourceManager.get().getString(resName = "orange_restart_app")
+                    ResourcesManagerCore.get().getString(resName = "orange_restart_app")
                 ) { _, _ ->
                     Core.restart(activity = activity)
                 }
@@ -73,27 +73,32 @@ class OrangeSettingsController @Inject constructor(
         alertDialog.show()
     }
 
+    @Suppress("CAST_NEVER_SUCCEEDS")
     fun getMainSettingModels(): Collection<MenuModel> {
         return OrangeSubMenu.values().filter { it.items.isNotEmpty() || it == OrangeSubMenu.Info }
             .map {
-                SubMenuModel(ResourceManager.get().getString(it.title), it.desc?.let { desc ->
-                    ResourceManager.get().getString(desc)
+                SubMenuModel(ResourcesManagerCore.get().getString(it.title), it.desc?.let { desc ->
+                    ResourcesManagerCore.get().getString(desc)
                 }, null, it.destination, true) as MenuModel
             }
     }
 
-    fun onDropDownMenuItemSelection(flag: Flag, variant: Internal.Variant) {
+    fun onDropDownMenuItemSelection(flag: Flag, variant: Variant) {
         if (flag.asString() == variant.toString()) {
             return
         }
 
-        PreferenceManager.get().writeString(flag = flag, value = variant.toString())
+        flag.setValue(variant)
         checkIfNeedRestart(flag)
     }
 
     companion object {
         private val RESTART_FLAGS = setOf(
-            Flag.BOTTOM_NAVBAR_POSITION, Flag.DEV_MODE, Flag.Proxy
+            Flag.BOTTOM_NAVBAR_POSITION,
+            Flag.DEV_MODE,
+            Flag.Proxy,
+            Flag.FORCE_DISABLE_SENTRY,
+            Flag.FIX_KOREA_1080P
         )
     }
 
@@ -102,7 +107,7 @@ class OrangeSettingsController @Inject constructor(
             return
         }
 
-        PreferenceManager.get().writeInt(flag = flag, value = value)
+        flag.setValue(value)
         checkIfNeedRestart(flag = flag)
     }
 

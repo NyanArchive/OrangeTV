@@ -18,6 +18,9 @@ object FileUtil {
     }
 
     fun File.dirSize(): Long {
+        if (isFile) {
+            return length()
+        }
         var size = 0L
         for (child in this.listFiles() ?: emptyArray()) {
             size += child.dirSize()

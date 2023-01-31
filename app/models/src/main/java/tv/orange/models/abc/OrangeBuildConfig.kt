@@ -18,6 +18,8 @@ data class OrangeBuildConfig(
     }
 
     fun getVersion(): String {
-        return "${version.div(100)}.${version % 100}"
+        val mj = version.div(100)
+        val mv = (version % 100).toString().padStart(2, '0')
+        return "$mj.$mv"
     }
 }

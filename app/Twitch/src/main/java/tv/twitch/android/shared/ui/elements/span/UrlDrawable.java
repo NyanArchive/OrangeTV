@@ -27,6 +27,7 @@ public class UrlDrawable extends BitmapDrawable { // TODO: __REPLACE_CLASS
     private final MediaSpan$Type type;
     private final String url;
     private final boolean wide;
+    private final boolean animated;
 
     private boolean grey = false;
     private ColorMatrix greyMatrix;
@@ -55,11 +56,11 @@ public class UrlDrawable extends BitmapDrawable { // TODO: __REPLACE_CLASS
     }
 
     public UrlDrawable(String str, MediaSpan$Type mediaSpan$Type, int i, DefaultConstructorMarker defaultConstructorMarker) {
-        this((i & 1) != 0 ? "" : str, (i & 2) != 0 ? MediaSpan$Type.Emote : mediaSpan$Type, false);
+        this((i & 1) != 0 ? "" : str, (i & 2) != 0 ? MediaSpan$Type.Emote : mediaSpan$Type, false, true);
     }
 
     public UrlDrawable(String url, MediaSpan$Type type) {
-        this(url, type, false);
+        this(url, type, false, true);
     }
 
     public boolean isWide() {
@@ -67,9 +68,14 @@ public class UrlDrawable extends BitmapDrawable { // TODO: __REPLACE_CLASS
     }
 
     public UrlDrawable(String url, MediaSpan$Type type, boolean wide) {
+        this(url, type, wide, true);
+    }
+
+    public UrlDrawable(String url, MediaSpan$Type type, boolean wide, boolean animated) {
         this.url = url;
         this.type = type;
         this.wide = wide;
+        this.animated = animated;
     }
 
     public void setDrawable(Drawable drawable) {
@@ -104,7 +110,9 @@ public class UrlDrawable extends BitmapDrawable { // TODO: __REPLACE_CLASS
                 setGreyFilter(drawable);
             }
             drawable.draw(canvas);
-            startAnimation(drawable);
+            if (animated) {
+                startAnimation(drawable);
+            }
         }
 
         for (UrlDrawable stack : getStack()) {
@@ -129,7 +137,9 @@ public class UrlDrawable extends BitmapDrawable { // TODO: __REPLACE_CLASS
         }
 
         isDestroyed = true;
-        stopAnimation(drawable);
+        if (animated) {
+            stopAnimation(drawable);
+        }
         drawable = null;
         onBoundsChangeListener = null;
         greyMatrix = null;

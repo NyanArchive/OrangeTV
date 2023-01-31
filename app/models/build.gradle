@@ -12,11 +12,11 @@ apollo {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         minSdk 21
-        targetSdk 32
+        targetSdk 33
     }
 
     buildTypes {
@@ -38,12 +38,12 @@ android {
 dependencies {
     api "com.google.code.gson:gson:$gson_version"
     api "com.apollographql.apollo3:apollo-runtime:$apollo_version"
-
     api "com.google.dagger:dagger:$dagger_version"
     api "com.google.dagger:dagger-android-support:$dagger_version"
     api "io.reactivex.rxjava2:rxjava:$rxjava2_version"
-    api 'androidx.recyclerview:recyclerview:1.2.1'
-    api 'androidx.constraintlayout:constraintlayout:2.1.4'
+    api "androidx.recyclerview:recyclerview:$recycler_version"
+    api "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
+
     implementation project(path: ':TwitchRes')
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation "com.google.android.material:material:$material_version"
 }

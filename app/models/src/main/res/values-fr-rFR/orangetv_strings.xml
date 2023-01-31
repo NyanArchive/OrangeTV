@@ -60,6 +60,7 @@
     <string name="orange_settings_title">Paramètres de PurpleTV</string>
     <string name="orange_settings_chat_font_size">Taille de police du chat</string>
     <string name="orange_settings_landscape_chat_size">Largeur du tchat en mode plein écran</string>
+    <string name="orange_settings_landscape_split_chat_size">Largeur du chat divisé en mode paysage</string>
     <string name="orange_settings_forward_seek">Avancer</string>
     <string name="orange_settings_rewind_seek">Reculer</string>
     <string name="orange_settings_mini_player_size">Taille du mini lecteur</string>
@@ -68,6 +69,7 @@
     <string name="orange_settings_hide_top_chat_panel_vods">Masquer le panneau de discussion le plus haut dans les rediffusions de live</string>
     <string name="orange_settings_pronouns">Pronoms</string>
     <string name="orange_settings_auto_hide_message_input">Masquer la saisie de message en mode paysage</string>
+    <string name="orange_settings_hide_message_input">Masquer la saisie</string>
     <string name="orange_settings_landscape_chat_opacity">Opacité du chat en mode paysage</string>
     <string name="orange_chapters_unknown">Inconnu</string>
     <string name="orange_settings_emote_quality">Qualité des emotes</string>
@@ -173,4 +175,13 @@
     <string name="orange_add">Ajouter</string>
     <string name="orange_settings_hide_fsb">Masquer le bouton « Suivre/S\'abonner »</string>
     <string name="orange_settings_user_mention_color">Changer la couleur de @mention</string>
+    <string name="orange_settings_prevent_mod_clear">Ne pas effacer le chat lorsque le streameur met une commande pour</string>
+    <string name="orange_settings_force_toolbar_search_button">Forcer le bouton de recherche</string>
+    <string name="orange_settings_download_clip">Télécharger l’extrait</string>
+    <string name="orangetv_downloading">Téléchargement…</string>
+    <string name="orangetv_notification_channel_name">PurpleTV</string>
+    <string name="orange_settings_hide_player_create_clip_button">Masquer « Créer le bouton crée un clip »</string>
+    <string name="orange_settings_disable_sentry">Désactiver SentrySDK</string>
+    <string name="orange_settings_hide_player_live_share_button">Masquer « Le bouton de partage » pour les lives</string>
+    <string name="orange_settings_bttv_webp">Prise en charge des emotes WEBP</string>
 </resources>

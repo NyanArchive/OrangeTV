@@ -1,14 +1,14 @@
 package tv.orange.features.updater
 
 import android.content.Context
+import androidx.work.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import tv.orange.core.BuildConfigUtil
 import tv.orange.core.Core
-import tv.orange.core.LoggerImpl
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.models.flag.Flag.Companion.asVariant
@@ -18,6 +18,8 @@ import tv.orange.core.util.FileUtil.dirSize
 import tv.orange.features.updater.component.data.model.UpdateData
 import tv.orange.features.updater.component.data.repository.UpdaterRepository
 import tv.orange.features.updater.data.view.UpdaterActivity
+import tv.orange.features.updater.work.DownloadUpdateRxWorker
+import tv.orange.features.updater.work.InstallUpdateWorker
 import tv.orange.models.abc.Feature
 import tv.twitch.android.core.mvp.rxutil.ISubscriptionHelper
 import tv.twitch.android.feature.update.UpdatePromptPresenter
@@ -26,8 +28,9 @@ import java.io.File
 import javax.inject.Inject
 
 class Updater @Inject constructor(
-    val resourceManager: ResourceManager,
-    val updaterRepository: UpdaterRepository
+    val resourceManager: ResourcesManagerCore,
+    val updaterRepository: UpdaterRepository,
+    val context: Context
 ) : Feature {
     private val disposables = CompositeDisposable()
 
@@ -36,6 +39,7 @@ class Updater @Inject constructor(
     companion object {
         const val TEMP_OTA_DIR = "tmp_ota"
         const val INSTALL_OTA_DIR = "install_ota"
+        const val DOWNLOAD_TASK_NAME = "DownloadUpdate"
 
         @JvmStatic
         fun get() = Core.getFeature(Updater::class.java)
@@ -61,14 +65,19 @@ class Updater @Inject constructor(
         }
 
         @JvmStatic
-        val orangeAppUpdateAvailable: Int = ResourceManager.get().getStringId(
+        val orangeAppUpdateAvailable: Int = ResourcesManagerCore.get().getStringId(
             "orange_app_update_available"
         )
 
         @JvmStatic
-        val orangeAppUpdateAvailableCta: Int = ResourceManager.get().getStringId(
+        val orangeAppUpdateAvailableCta: Int = ResourcesManagerCore.get().getStringId(
             "orange_app_update_available_cta"
         )
+
+        private fun createUrlData(url: String, build: Int): Data = Data.Builder().apply {
+            putString(DownloadUpdateRxWorker.URL_KEY, url)
+            putInt(DownloadUpdateRxWorker.BUILD_KEY, build)
+        }.build()
     }
 
     fun onClearCacheClicked(context: Context) {
@@ -135,6 +144,14 @@ class Updater @Inject constructor(
         getOtaDir(context = context).deleteDir()
     }
 
+    fun createTempFile(): File {
+        return File(getTempDir(context), "${System.currentTimeMillis()}.tmp")
+    }
+
+    fun getOtaFile(build: Int): File {
+        return File(getOtaDir(context), "$build.apk")
+    }
+
     fun injectToUpdatePromptPresenter(
         updatePromptPresenter: UpdatePromptPresenter,
         listenerBehaviorSubject: BehaviorSubject<Optional<UpdatePromptPresenter.UpdatePromptPresenterListener>>
@@ -181,5 +198,22 @@ class Updater @Inject constructor(
         return getOtaDir(context).dirSize() + getTempDir(context).dirSize()
     }
 
-    override fun onCreateFeature() {}
+    fun scheduleWork(url: String, build: Int) {
+        val request = OneTimeWorkRequest.Builder(DownloadUpdateRxWorker::class.java)
+            .setConstraints(
+                Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
+            )
+            .setInputData(createUrlData(url, build))
+            .build()
+
+        WorkManager.getInstance(context).beginUniqueWork(
+            DOWNLOAD_TASK_NAME,
+            ExistingWorkPolicy.KEEP,
+            request
+        ).then(OneTimeWorkRequest.Builder(InstallUpdateWorker::class.java).build()).enqueue()
+    }
+
+    override fun onCreateFeature() {
+        WorkManager.getInstance(context).cancelUniqueWork(DOWNLOAD_TASK_NAME)
+    }
 }

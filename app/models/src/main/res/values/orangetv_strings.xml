@@ -84,6 +84,8 @@
     <string name="orange_settings_chat_font_size_desc" />
     <string name="orange_settings_landscape_chat_size">Landscape chat width</string>
     <string name="orange_settings_landscape_chat_size_desc" />
+    <string name="orange_settings_landscape_split_chat_size">Landscape split chat width</string>
+    <string name="orange_settings_landscape_split_chat_size_desc" />
     <string name="orange_settings_forward_seek">Player forward seek</string>
     <string name="orange_settings_rewind_seek">Player backward seek</string>
     <string name="orange_settings_mini_player_size">MiniPlayer size</string>
@@ -97,6 +99,8 @@
     <string name="orange_settings_pronouns_desc" translatable="false">https://pronouns.alejo.io/</string>
     <string name="orange_settings_auto_hide_message_input">Hide message input on landscape</string>
     <string name="orange_settings_auto_hide_message_input_desc" />
+    <string name="orange_settings_hide_message_input">Hide message input</string>
+    <string name="orange_settings_hide_message_input_desc" />
     <string name="orange_settings_landscape_chat_opacity">Landscape chat opacity</string>
     <string name="orange_settings_landscape_chat_opacity_desc" />
     <string name="orange_chapters_unknown">Unknown</string>
@@ -208,7 +212,6 @@
     <string name="orange_settings_proxy_desc" />
     <string name="orange_proxy_disabled">Disabled</string>
     <string name="orange_proxy_twitching" translatable="false">Twitching</string>
-    <string name="orange_proxy_ttsftp" translatable="false">Twitch Tokyo Server Fix Tool</string>
     <string name="orange_proxy_ttv_lol" translatable="false">TTV LOL</string>
     <string name="orange_proxy_purple" translatable="false">Purple Adblock</string>
     <string name="orange_settings_improved_background_audio">Improved background audio</string>
@@ -244,4 +247,24 @@
     <string name="orange_settings_hide_fsb_desc" />
     <string name="orange_settings_user_mention_color">Change @mention color</string>
     <string name="orange_settings_user_mention_color_desc" />
+    <string name="orange_settings_prevent_mod_clear">Do not clear chat when commanded to</string>
+    <string name="orange_settings_prevent_mod_clear_desc" />
+    <string name="orange_settings_force_toolbar_search_button">Force toolbar search button</string>
+    <string name="orange_settings_force_toolbar_search_button_desc" />
+    <string name="orange_settings_download_clip">Download clip</string>
+    <string name="orangetv_downloading">Downloading…</string>
+    <string name="orangetv_notification_channel_name">PurpleTV</string>
+    <string name="orangetv_notification_channel_desc" />
+    <string name="orange_settings_hide_player_create_clip_button">Hide «Create clip button»</string>
+    <string name="orange_settings_hide_player_create_clip_button_desc" />
+    <string name="orange_settings_disable_sentry">Disable SentrySDK</string>
+    <string name="orange_settings_disable_sentry_desc" />
+    <string name="orange_settings_hide_player_live_share_button">Hide «Share button» for Live streams</string>
+    <string name="orange_settings_hide_player_live_share_button_desc" />
+    <string name="orange_settings_bttv_webp">Support for WEBP emotes</string>
+    <string name="orange_settings_bttv_webp_desc" />
+    <string name="orange_settings_fix_korea">Bypass Korea CDN</string>
+    <string name="orange_settings_fix_korea_desc" />
+    <string name="orange_settings_node">Segment node</string>
+    <string name="orange_settings_node_desc" />
 </resources>

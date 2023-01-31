@@ -6,9 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import tv.orange.core.ResourcesManagerCore
+import tv.orange.core.util.ViewUtil
 import tv.orange.core.util.ViewUtil.getView
 import tv.orange.core.util.ViewUtil.inflate
 import tv.orange.features.chapters.component.data.model.Chapter
@@ -24,6 +28,18 @@ class ChaptersFragment @Inject constructor(val repository: ChaptersRepository) :
     private var seekPresenter: SeekbarOverlayPresenter? = null
 
     private val disposables = CompositeDisposable()
+
+    override fun onStart() {
+        super.onStart()
+        dialog?.let { dialog ->
+            val id = ResourcesManagerCore.get().getId("design_bottom_sheet")
+            if (ViewUtil.isValidId(id)) {
+                dialog.findViewById<View>(id)?.let { view ->
+                    BottomSheetBehavior.from(view).setState(STATE_EXPANDED)
+                }
+            }
+        }
+    }
 
     fun load(vodId: String) {
         disposables.clear()

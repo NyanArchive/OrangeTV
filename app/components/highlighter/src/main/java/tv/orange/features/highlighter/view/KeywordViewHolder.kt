@@ -6,7 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.util.ViewUtil.getView
 import tv.orange.features.highlighter.data.model.KeywordData
 
@@ -30,7 +30,7 @@ class KeywordViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     private fun renderVibration(vibration: Boolean) {
-        val resId = ResourceManager.get().getDrawableId(
+        val resId = ResourcesManagerCore.get().getDrawableId(
             if (vibration) {
                 "ic_orangetv_vibration"
             } else {
@@ -47,7 +47,7 @@ class KeywordViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     private fun renderType(keywordType: KeywordData.Type) {
-        val resId = ResourceManager.get().getDrawableId(
+        val resId = ResourcesManagerCore.get().getDrawableId(
             resName = when (keywordType) {
                 KeywordData.Type.INSENSITIVE -> "ic_orangetv_case_insensitive"
                 KeywordData.Type.CASESENSITIVE -> "ic_orangetv_case_sensitive"

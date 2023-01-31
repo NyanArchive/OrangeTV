@@ -7,13 +7,15 @@ import okhttp3.OkHttpClient
 import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.Response
 import tv.orange.core.Core
-import tv.orange.core.LoggerImpl
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.models.flag.Flag
+import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.variants.ProxyImpl
 import tv.orange.features.api.component.repository.ProxyRepository
 import tv.orange.features.proxy.bridge.LolTvApiInterceptor
+import tv.orange.features.proxy.bridge.PatchKoreaHlsRequestInterceptor
+import tv.orange.features.proxy.bridge.PatchSegmentNodeRequestInterceptor
 import tv.orange.models.abc.Feature
 import tv.twitch.android.models.AccessTokenResponse
 import tv.twitch.android.models.manifest.extm3u
@@ -63,11 +65,11 @@ class Proxy @Inject constructor(
             proxyResponse: Single<Response<String>>,
             proxyName: String
         ): Single<Response<String>> {
-            val rm = ResourceManager.get()
+            val rm = ResourcesManagerCore.get()
             return proxyResponse.flatMap { proxyPlaylist ->
                 if (!proxyPlaylist.isSuccessful) {
                     Core.showToast(
-                        ResourceManager.get().getString(
+                        ResourcesManagerCore.get().getString(
                             "orange_generic_error_d",
                             "Proxy",
                             rm.getString("orange_proxy_error_ur")
@@ -123,6 +125,16 @@ class Proxy @Inject constructor(
 
             val url = dataSpec.uri.toString()
             val headers = when {
+                url.contains("usher.ttvnw.net/api/channel/hls/") -> {
+                    if (Flag.FIX_KOREA_1080P.asBoolean()) {
+                        Collections.unmodifiableMap(
+                            dataSpec.httpRequestHeaders.toMutableMap().apply {
+                                put("X-Forwarded-For", "::1")
+                            })
+                    } else {
+                        null
+                    }
+                }
                 url.contains("https://api.ttv.lol/") -> Collections.unmodifiableMap(
                     dataSpec.httpRequestHeaders.toMutableMap().apply {
                         put("x-donate-to", "https://ttv.lol/donate")
@@ -147,6 +159,10 @@ class Proxy @Inject constructor(
         @JvmStatic
         fun maybeAddInterceptor(builder: OkHttpClient.Builder) {
             builder.addNetworkInterceptor(LolTvApiInterceptor())
+            if (Flag.FIX_KOREA_1080P.asBoolean()) {
+                builder.addNetworkInterceptor(PatchKoreaHlsRequestInterceptor())
+            }
+            builder.addNetworkInterceptor(PatchSegmentNodeRequestInterceptor())
         }
     }
 
@@ -158,22 +174,6 @@ class Proxy @Inject constructor(
             twitchResponse = twitchResponse,
             proxyResponse = repository.getLolPlaylist(channelName = channelName),
             proxyName = "TTV LOL"
-        )
-    }
-
-    private fun createTTSFTProxySingleResponse(
-        twitchResponse: Single<Response<String>>,
-        channelName: String,
-        accessTokenResponse: AccessTokenResponse
-    ): Single<Response<String>> {
-        return trySwapPlaylist(
-            twitchResponse = twitchResponse,
-            proxyResponse = repository.getTTSFTPlaylist(
-                channelName = channelName,
-                sig = accessTokenResponse.sig,
-                token = accessTokenResponse.token
-            ),
-            proxyName = "Twitch Tokyo Server Fix Tool"
         )
     }
 
@@ -215,11 +215,6 @@ class Proxy @Inject constructor(
 
         return when (Flag.Proxy.asVariant<ProxyImpl>()) {
             ProxyImpl.Twitching -> createTwitchingProxySingleResponse(
-                twitchResponse = manifest,
-                channelName = channelName,
-                accessTokenResponse = accessTokenResponse
-            )
-            ProxyImpl.TTSFTP -> createTTSFTProxySingleResponse(
                 twitchResponse = manifest,
                 channelName = channelName,
                 accessTokenResponse = accessTokenResponse

@@ -1,0 +1,65 @@
+diff --git a/smali/androidx/work/impl/utils/WorkProgressUpdater.smali b/smali/androidx/work/impl/utils/WorkProgressUpdater.smali
+--- a/smali/androidx/work/impl/utils/WorkProgressUpdater.smali
++++ b/smali/androidx/work/impl/utils/WorkProgressUpdater.smali
+@@ -5,7 +5,6 @@
+ # interfaces
+ .implements Landroidx/work/ProgressUpdater;
+ 
+-
+ # static fields
+ .field static final TAG:Ljava/lang/String;
+ 
+@@ -56,3 +55,53 @@
+ 
+     return-void
+ .end method
++
++.method public updateProgress(Landroid/content/Context;Ljava/util/UUID;Landroidx/work/Data;)Lcom/google/common/util/concurrent/ListenableFuture;
++    .registers 7
++    .param p1, "context"    # Landroid/content/Context;
++    .param p2, "id"    # Ljava/util/UUID;
++    .param p3, "data"    # Landroidx/work/Data;
++    .annotation system Ldalvik/annotation/MethodParameters;
++        accessFlags = {
++            0x10,
++            0x10,
++            0x10
++        }
++        names = {
++            "context",
++            "id",
++            "data"
++        }
++    .end annotation
++
++    .annotation system Ldalvik/annotation/Signature;
++        value = {
++            "(",
++            "Landroid/content/Context;",
++            "Ljava/util/UUID;",
++            "Landroidx/work/Data;",
++            ")",
++            "Lcom/google/common/util/concurrent/ListenableFuture<",
++            "Ljava/lang/Void;",
++            ">;"
++        }
++    .end annotation
++
++    .line 71
++    invoke-static {}, Landroidx/work/impl/utils/futures/SettableFuture;->create()Landroidx/work/impl/utils/futures/SettableFuture;
++
++    move-result-object v0
++
++    .line 72
++    .local v0, "future":Landroidx/work/impl/utils/futures/SettableFuture;, "Landroidx/work/impl/utils/futures/SettableFuture<Ljava/lang/Void;>;"
++    iget-object v1, p0, Landroidx/work/impl/utils/WorkProgressUpdater;->mTaskExecutor:Landroidx/work/impl/utils/taskexecutor/TaskExecutor;
++
++    new-instance v2, Landroidx/work/impl/utils/WorkProgressUpdater$1;
++
++    invoke-direct {v2, p0, p2, p3, v0}, Landroidx/work/impl/utils/WorkProgressUpdater$1;-><init>(Landroidx/work/impl/utils/WorkProgressUpdater;Ljava/util/UUID;Landroidx/work/Data;Landroidx/work/impl/utils/futures/SettableFuture;)V
++
++    invoke-interface {v1, v2}, Landroidx/work/impl/utils/taskexecutor/TaskExecutor;->executeOnBackgroundThread(Ljava/lang/Runnable;)V
++
++    .line 111
++    return-object v0
++.end method

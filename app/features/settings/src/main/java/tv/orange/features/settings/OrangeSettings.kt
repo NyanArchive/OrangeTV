@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import dagger.android.AndroidInjector
 import dagger.internal.MapBuilder
 import tv.orange.core.Core
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.features.settings.bridge.factory.OrangeSettingsDaggerFactory
 import tv.orange.features.settings.bridge.settings.OrangeSettingsFragment
 import tv.orange.models.abc.Feature
@@ -22,7 +22,7 @@ class OrangeSettings @Inject constructor(
 
         @JvmStatic
         fun getOrangeSettingsString(): String {
-            return ResourceManager.get().getString(resName = "orange_settings")
+            return ResourcesManagerCore.get().getString(resName = "orange_settings")
         }
     }
 

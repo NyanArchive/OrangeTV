@@ -1,7 +1,6 @@
 package tv.orange.features.updater.data.mvp
 
 import tv.orange.features.updater.component.data.model.UpdateData
-import tv.orange.features.updater.component.data.repository.UpdaterRepository
 import java.io.File
 
 interface UpdaterContract {
@@ -20,11 +19,10 @@ interface UpdaterContract {
 
         sealed class State {
             object Prepare : State()
-            object Loading : State()
             data class Loaded(val updateData: UpdateData) : State()
             data class Downloading(val progress: Int, val downloaded: Int, val total: Int) : State()
             object IndeterminateDownloading : State()
-            data class DownloadComplete(val file: File) : State()
+            data class DownloadComplete(val file: File, val data: UpdateData) : State()
             data class Error(val msg: String) : State()
         }
     }
@@ -57,7 +55,7 @@ interface UpdaterContract {
             data class Initial(val updateData: UpdateData) : State()
             data class ReadyToDownload(val updateData: UpdateData) : State()
             object StartDownloading: State()
-            data class ReadyToInstall(val file: File) : State()
+            data class ReadyToInstall(val file: File, val updateFileSize: Boolean = false) : State()
             object StartInstalling: State()
             object CheckPermissions: State()
             object CopyApkUrl : State()

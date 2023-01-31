@@ -1,0 +1,119 @@
+diff --git a/smali_classes4/tv/twitch/android/feature/followed/firstpage/FollowedContentFirstPageFetcher.smali b/smali_classes4/tv/twitch/android/feature/followed/firstpage/FollowedContentFirstPageFetcher.smali
+--- a/smali_classes4/tv/twitch/android/feature/followed/firstpage/FollowedContentFirstPageFetcher.smali
++++ b/smali_classes4/tv/twitch/android/feature/followed/firstpage/FollowedContentFirstPageFetcher.smali
+@@ -235,12 +235,19 @@
+ .method private final cacheFirstPageContent(Ltv/twitch/android/shared/follow/pub/FollowedFirstPageContent;)V
+     .locals 1
+ 
++    invoke-static {}, Ltv/orange/features/ui/UI;->getHideGames()Z
++
++    move-result v0
++
++    if-nez v0, :cond_z
++
+     .line 207
+     iget-object v0, p0, Ltv/twitch/android/feature/followed/firstpage/FollowedContentFirstPageFetcher;->gamesFetcher:Ltv/twitch/android/feature/followed/firstpage/FollowedGamesFetcher;
+ 
+     invoke-virtual {v0, p1}, Ltv/twitch/android/feature/followed/firstpage/FollowedGamesFetcher;->cachePrefetchGames(Ltv/twitch/android/shared/follow/pub/FollowedFirstPageContent;)V
+ 
+     .line 208
++    :cond_z
+     iget-object v0, p0, Ltv/twitch/android/feature/followed/firstpage/FollowedContentFirstPageFetcher;->streamsFetcher:Ltv/twitch/android/feature/followed/firstpage/FollowedStreamsFetcher;
+ 
+     invoke-virtual {v0, p1}, Ltv/twitch/android/feature/followed/firstpage/FollowedStreamsFetcher;->cachePrefetchStreams(Ltv/twitch/android/shared/follow/pub/FollowedFirstPageContent;)V
+@@ -624,7 +631,7 @@
+ .end method
+ 
+ .method private static final refresh$lambda-6(Ltv/twitch/android/shared/follow/pub/FollowedFirstPageContent;)Ltv/twitch/android/feature/followed/model/FollowingContentResponse;
+-    .locals 4
++    .locals 5
+ 
+     const-string v0, "it"
+ 
+@@ -644,6 +651,17 @@
+ 
+     move-result-object v3
+ 
++    invoke-static {}, Ltv/orange/features/ui/UI;->getHideGames()Z
++
++    move-result v4
++
++    if-eqz v4, :cond_z
++
++    invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
++
++    move-result-object v3
++
++    :cond_z
+     invoke-direct {v2, v3}, Ltv/twitch/android/feature/followed/model/FollowingContentItemCollection$Categories;-><init>(Ljava/util/List;)V
+ 
+     const/4 v3, 0x0
+@@ -703,7 +721,21 @@
+         }
+     .end annotation
+ 
++    invoke-static {}, Ltv/orange/features/ui/UI;->getHideGames()Z
++
++    move-result v0
++
++    if-eqz v0, :cond_z
++
++    .line 28
++    invoke-static {}, Lio/reactivex/Maybe;->empty()Lio/reactivex/Maybe;
++
++    move-result-object v0
++
++    return-object v0
++
+     .line 154
++    :cond_z
+     iget-object v0, p0, Ltv/twitch/android/feature/followed/firstpage/FollowedContentFirstPageFetcher;->gamesFetcher:Ltv/twitch/android/feature/followed/firstpage/FollowedGamesFetcher;
+ 
+     invoke-virtual {v0}, Ltv/twitch/android/feature/followed/firstpage/FollowedGamesFetcher;->fetchMore()Lio/reactivex/Maybe;
+@@ -736,7 +768,7 @@
+ .end method
+ 
+ .method public final getCachedContent()Ljava/util/List;
+-    .locals 4
++    .locals 5
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+             "()",
+@@ -774,6 +806,17 @@
+ 
+     move-result-object v3
+ 
++    invoke-static {}, Ltv/orange/features/ui/UI;->getHideGames()Z
++
++    move-result v4
++
++    if-eqz v4, :cond_z
++
++    invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
++
++    move-result-object v3
++
++    :cond_z
+     invoke-direct {v2, v3}, Ltv/twitch/android/feature/followed/model/FollowingContentItemCollection$Categories;-><init>(Ljava/util/List;)V
+ 
+     aput-object v2, v0, v1
+@@ -823,7 +866,19 @@
+ .method public final hasMoreGames()Z
+     .locals 1
+ 
++    invoke-static {}, Ltv/orange/features/ui/UI;->getHideGames()Z
++
++    move-result v0
++
++    if-eqz v0, :cond_z
++
++    .line 64
++    const/4 v0, 0x0
++
++    return v0
++
+     .line 170
++    :cond_z
+     iget-object v0, p0, Ltv/twitch/android/feature/followed/firstpage/FollowedContentFirstPageFetcher;->gamesFetcher:Ltv/twitch/android/feature/followed/firstpage/FollowedGamesFetcher;
+ 
+     invoke-virtual {v0}, Ltv/twitch/android/core/fetchers/DynamicContentFetcher;->hasMoreContent()Z

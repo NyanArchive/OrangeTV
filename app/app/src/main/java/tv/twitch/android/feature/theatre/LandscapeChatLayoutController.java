@@ -16,5 +16,15 @@ public class LandscapeChatLayoutController {
         throw new VirtualImpl();
     }
 
+    public final void setupForLandscapeSplitView() {
+        /* ... */
+
+        int value = UI.getLandscapeSplitContainerScale(); // TODO: __INJECT_CODE
+
+        /* ... */
+
+        throw new VirtualImpl();
+    }
+
     /* ... */
 }

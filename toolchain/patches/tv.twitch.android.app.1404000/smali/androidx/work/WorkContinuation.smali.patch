@@ -1,0 +1,55 @@
+diff --git a/smali/androidx/work/WorkContinuation.smali b/smali/androidx/work/WorkContinuation.smali
+--- a/smali/androidx/work/WorkContinuation.smali
++++ b/smali/androidx/work/WorkContinuation.smali
+@@ -12,3 +12,51 @@
+ 
+     return-void
+ .end method
++
++.method public final then(Landroidx/work/OneTimeWorkRequest;)Landroidx/work/WorkContinuation;
++    .registers 3
++    .param p1, "work"    # Landroidx/work/OneTimeWorkRequest;
++    .annotation system Ldalvik/annotation/MethodParameters;
++        accessFlags = {
++            0x0
++        }
++        names = {
++            "work"
++        }
++    .end annotation
++
++    .line 76
++    invoke-static {p1}, Ljava/util/Collections;->singletonList(Ljava/lang/Object;)Ljava/util/List;
++
++    move-result-object v0
++
++    invoke-virtual {p0, v0}, Landroidx/work/WorkContinuation;->then(Ljava/util/List;)Landroidx/work/WorkContinuation;
++
++    move-result-object v0
++
++    return-object v0
++.end method
++
++.method public abstract then(Ljava/util/List;)Landroidx/work/WorkContinuation;
++    .annotation system Ldalvik/annotation/MethodParameters;
++        accessFlags = {
++            0x0
++        }
++        names = {
++            "work"
++        }
++    .end annotation
++
++    .annotation system Ldalvik/annotation/Signature;
++        value = {
++            "(",
++            "Ljava/util/List<",
++            "Landroidx/work/OneTimeWorkRequest;",
++            ">;)",
++            "Landroidx/work/WorkContinuation;"
++        }
++    .end annotation
++.end method
++
++.method public abstract enqueue()Landroidx/work/Operation;
++.end method

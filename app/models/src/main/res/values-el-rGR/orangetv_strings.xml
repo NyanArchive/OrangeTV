@@ -60,6 +60,7 @@
     <string name="orange_settings_title">PurpleTV Ρυθμίσεις</string>
     <string name="orange_settings_chat_font_size">Μέγεθος γραμματοσειράς συνομιλιών</string>
     <string name="orange_settings_landscape_chat_size">Πλάτος οριζόντιας συνομιλίας</string>
+    <string name="orange_settings_landscape_split_chat_size">Πλάτος διαχωρισμού οριζόντιας συνομιλίας</string>
     <string name="orange_settings_forward_seek">Αναπαραγωγέα επιδίωξη μπροστά</string>
     <string name="orange_settings_rewind_seek">Αναπαραγωγέα επιδίωξη πίσω</string>
     <string name="orange_settings_mini_player_size">Μέγεθος μίνι αναπαραγωγέα</string>
@@ -68,6 +69,7 @@
     <string name="orange_settings_hide_top_chat_panel_vods">Απόκρυψη του πίνακα κορυφαίας συνομιλίας σε VODs</string>
     <string name="orange_settings_pronouns">Αντωνυμίες</string>
     <string name="orange_settings_auto_hide_message_input">Απόκρυψη εισόδου μηνύματος σε οριζόντια θέση</string>
+    <string name="orange_settings_hide_message_input">Απόκρυψη εισόδου μηνύματος</string>
     <string name="orange_settings_landscape_chat_opacity">Αδιαφάνεια οριζόντιας συνομιλίας</string>
     <string name="orange_chapters_unknown">Άγνωστο</string>
     <string name="orange_settings_emote_quality">Ποιότητα Emotes</string>
@@ -173,4 +175,13 @@
     <string name="orange_add">Προσθήκη</string>
     <string name="orange_settings_hide_fsb">Απόκρυψη κουμπιού ακολούθησης/συνδρομής</string>
     <string name="orange_settings_user_mention_color">Αλλαγή του χρώματος @mention</string>
+    <string name="orange_settings_prevent_mod_clear">Να μην γίνεται εκκαθάριση συνομιλίας όταν υπάρχει εντολή</string>
+    <string name="orange_settings_force_toolbar_search_button">Επιβολή πλήκτρου αναζήτησης γραμμής εργαλείων</string>
+    <string name="orange_settings_download_clip">Κατεβάστε το κλιπ</string>
+    <string name="orangetv_downloading">Λήψη…</string>
+    <string name="orangetv_notification_channel_name">PurpleTV</string>
+    <string name="orange_settings_hide_player_create_clip_button">Απόκρυψη κουμπιού «Δημιουργία κλιπ»</string>
+    <string name="orange_settings_disable_sentry">Απενεργοποίηση SentrySDK</string>
+    <string name="orange_settings_hide_player_live_share_button">Απόκρυψη κουμπιού «Μοιραστείτε» για Live streams</string>
+    <string name="orange_settings_bttv_webp">Υποστήριξη για WEBP emotes</string>
 </resources>

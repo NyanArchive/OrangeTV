@@ -14,6 +14,7 @@ enum class OrangeSubMenu(
         title = "orange_settings_menu_third_party",
         items = listOf(
             Flag.BTTV_EMOTES,
+            Flag.BTTV_WEBP,
             Flag.FFZ_EMOTES,
             Flag.STV_EMOTES,
             Flag.ITZ_EMOTES,
@@ -35,6 +36,7 @@ enum class OrangeSubMenu(
             Flag.HIDE_LEADERBOARDS,
             Flag.DISABLE_HYPE_TRAIN,
             Flag.HIDE_TOP_CHAT_PANEL_VODS,
+            Flag.HIDE_MESSAGE_INPUT,
             Flag.AUTO_HIDE_MESSAGE_INPUT,
             Flag.CHAT_HISTORY,
             Flag.DISABLE_STICKY_HEADERS_EP,
@@ -44,12 +46,14 @@ enum class OrangeSubMenu(
             Flag.DELETED_MESSAGES,
             Flag.CHAT_FONT_SIZE,
             Flag.LANDSCAPE_CHAT_SIZE,
+            Flag.LANDSCAPE_SPLIT_CHAT_SIZE,
             Flag.LANDSCAPE_CHAT_OPACITY,
             Flag.LOCAL_LOGS,
             Flag.BYPASS_CHAT_BAN,
             Flag.HIDE_CHAT_HEADER,
             Flag.PINNED_MESSAGE,
-            Flag.CHAT_SETTINGS
+            Flag.CHAT_SETTINGS,
+            Flag.PREVENT_MOD_CLEAR
         )
     ),
     Player(
@@ -66,11 +70,15 @@ enum class OrangeSubMenu(
             Flag.DISABLE_THEATRE_AUTOPLAY,
             Flag.SHOW_STATS_BUTTON,
             Flag.Proxy,
+            Flag.FIX_KOREA_1080P,
+            Flag.NODE_SEGMENT,
             Flag.IMPROVED_BACKGROUND_AUDIO,
             Flag.HIDE_UNFOLLOW_BUTTON,
             Flag.EXOPLAYER_VOD_SPEED,
             Flag.FORCE_EXOPLAYER_FOR_VODS,
-            Flag.HIDE_FSB
+            Flag.HIDE_FSB,
+            Flag.HIDE_PLAYER_CREATE_CLIP_BUTTON,
+            Flag.HIDE_PLAYER_LIVE_SHARE_BUTTON
         )
     ),
     Gestures(
@@ -85,7 +93,6 @@ enum class OrangeSubMenu(
         destination = SettingsDestination.OrangeView,
         title = "orange_settings_menu_view",
         items = listOf(
-            Flag.CLIPFINITY,
             Flag.FOLLOWED_FULL_CARDS,
             Flag.HIDE_DISCOVER_TAB,
             Flag.BOTTOM_NAVBAR_POSITION,
@@ -95,7 +102,8 @@ enum class OrangeSubMenu(
             Flag.HIDE_OFFLINE_CHANNEL_SECTION,
             Flag.SHOW_TIMER_BUTTON,
             Flag.SHOW_REFRESH_BUTTON,
-            Flag.HIDE_CREATE_BUTTON
+            Flag.HIDE_CREATE_BUTTON,
+            Flag.FORCE_TOOLBAR_SEARCH_BUTTON
         )
     ),
     Patches(
@@ -108,7 +116,8 @@ enum class OrangeSubMenu(
         items = listOf(
             Flag.DEV_MODE,
             Flag.OKHTTP_LOGGING,
-            Flag.FORCE_OTA
+            Flag.FORCE_OTA,
+            Flag.FORCE_DISABLE_SENTRY
         )
     ),
     Support(

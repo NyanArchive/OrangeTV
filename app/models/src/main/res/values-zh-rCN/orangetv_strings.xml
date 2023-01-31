@@ -60,6 +60,7 @@
     <string name="orange_settings_title">PurpleTV 设置</string>
     <string name="orange_settings_chat_font_size">聊天字体大小</string>
     <string name="orange_settings_landscape_chat_size">横屏时聊天窗口宽度</string>
+    <string name="orange_settings_landscape_split_chat_size">横屏时聊天窗口宽度</string>
     <string name="orange_settings_forward_seek">播放器快进搜索</string>
     <string name="orange_settings_rewind_seek">播放器向后搜索</string>
     <string name="orange_settings_mini_player_size">迷你播放器大小</string>
@@ -68,6 +69,7 @@
     <string name="orange_settings_hide_top_chat_panel_vods">在视频点播时隐藏顶部聊天窗口</string>
     <string name="orange_settings_pronouns">代词</string>
     <string name="orange_settings_auto_hide_message_input">横屏时隐藏聊天输入框</string>
+    <string name="orange_settings_hide_message_input">隐藏聊天输入框</string>
     <string name="orange_settings_landscape_chat_opacity">横屏时聊天室透明度</string>
     <string name="orange_chapters_unknown">未知</string>
     <string name="orange_settings_emote_quality">表情画质</string>
@@ -173,4 +175,12 @@
     <string name="orange_add">添加</string>
     <string name="orange_settings_hide_fsb">隐藏关注/订阅按钮</string>
     <string name="orange_settings_user_mention_color">更改 @mount 颜色</string>
+    <string name="orange_settings_prevent_mod_clear">命令时不清除聊天</string>
+    <string name="orange_settings_force_toolbar_search_button">强制搜索工具栏按钮</string>
+    <string name="orange_settings_download_clip">下载剪辑</string>
+    <string name="orangetv_downloading">正在下载……</string>
+    <string name="orangetv_notification_channel_name">PurpleTV</string>
+    <string name="orange_settings_hide_player_create_clip_button">隐藏“创建素材”按钮</string>
+    <string name="orange_settings_disable_sentry">禁用 SentrySDK</string>
+    <string name="orange_settings_hide_player_live_share_button">为实时流隐藏 «共享按钮»</string>
 </resources>

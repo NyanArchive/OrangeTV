@@ -9,7 +9,7 @@ import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.feature.followed.model.FollowingContentItemCollection;
 import tv.twitch.android.feature.followed.model.FollowingContentResponse;
 import tv.twitch.android.models.GameModel;
-import tv.twitch.android.shared.api.pub.FollowedFirstPageContent;
+import tv.twitch.android.shared.follow.pub.FollowedFirstPageContent;
 
 public class FollowedContentFirstPageFetcher {
     private FollowedGamesFetcher gamesFetcher;
@@ -52,6 +52,16 @@ public class FollowedContentFirstPageFetcher {
             games = Collections.emptyList();
         } else {
             games = null;
+        }
+
+        /* ... */
+
+        throw new VirtualImpl();
+    }
+
+    public final boolean hasMoreGames() {
+        if (UI.getHideGames()) { // TODO: __INJECT_CODE
+            return false;
         }
 
         /* ... */

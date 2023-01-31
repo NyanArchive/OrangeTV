@@ -1,0 +1,33 @@
+diff --git a/smali/com/amazon/ads/video/viewability/AdViewabilitySessionCreator$2.smali b/smali/com/amazon/ads/video/viewability/AdViewabilitySessionCreator$2.smali
+--- a/smali/com/amazon/ads/video/viewability/AdViewabilitySessionCreator$2.smali
++++ b/smali/com/amazon/ads/video/viewability/AdViewabilitySessionCreator$2.smali
+@@ -114,29 +114,6 @@
+ 
+     if-eqz p1, :cond_1
+ 
+-    .line 97
+-    iget-object p1, p0, Lcom/amazon/ads/video/viewability/AdViewabilitySessionCreator$2;->this$0:Lcom/amazon/ads/video/viewability/AdViewabilitySessionCreator;
+-
+-    invoke-static {p1}, Lcom/amazon/ads/video/viewability/AdViewabilitySessionCreator;->access$getCrashReporterUtil$p(Lcom/amazon/ads/video/viewability/AdViewabilitySessionCreator;)Ltv/twitch/android/core/crashreporter/CrashReporterUtil;
+-
+-    move-result-object p1
+-
+-    .line 98
+-    sget-object v0, Ltv/twitch/android/util/LogTag;->ADS:Ltv/twitch/android/util/LogTag;
+-
+-    .line 99
+-    new-instance v1, Ljava/lang/IllegalStateException;
+-
+-    const-string v2, "Failed to download omsdk_js"
+-
+-    invoke-direct {v1, v2}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+-
+-    .line 100
+-    sget v2, Lcom/amazon/ads/video/R$string;->failed_to_download_omsdk_js:I
+-
+-    .line 97
+-    invoke-virtual {p1, v0, v1, v2}, Ltv/twitch/android/core/crashreporter/CrashReporterUtil;->logTaggedNonFatalException(Ltv/twitch/android/util/LogTag;Ljava/lang/Throwable;I)V
+-
+     :cond_1
+     :goto_0
+     return-void

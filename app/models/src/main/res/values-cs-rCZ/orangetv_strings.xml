@@ -60,6 +60,7 @@
     <string name="orange_settings_title">Nastavení PurpleTV</string>
     <string name="orange_settings_chat_font_size">Velikost písma chatu</string>
     <string name="orange_settings_landscape_chat_size">Šířka chatu v režimu na šířku</string>
+    <string name="orange_settings_landscape_split_chat_size">Šířka chatu v režimu na šířku</string>
     <string name="orange_settings_forward_seek">Náhled přehrávače dopředu</string>
     <string name="orange_settings_rewind_seek">Náhled přehrávače zpět</string>
     <string name="orange_settings_mini_player_size">Velikost mini-přehrávače</string>
@@ -68,6 +69,7 @@
     <string name="orange_settings_hide_top_chat_panel_vods">Skrýt horní panel chatu ve VODs</string>
     <string name="orange_settings_pronouns">Zájmena</string>
     <string name="orange_settings_auto_hide_message_input">Skrýt pole pro zadávání zpráv v režimu na šířku</string>
+    <string name="orange_settings_hide_message_input">Skrýt pole pro zadávání zprávy</string>
     <string name="orange_settings_landscape_chat_opacity">Průhlednost chatu v režimu na šířku</string>
     <string name="orange_chapters_unknown">Neznámé</string>
     <string name="orange_settings_emote_quality">Kvalita emotů</string>
@@ -171,4 +173,15 @@
     <string name="orange_settings_force_exoplayer_for_vods">Vynutit ExoPlayer pro VODy</string>
     <string name="orange_settings_exoplayer_vod_speed">Rychlost přehrávání VOD přes ExoPlayer</string>
     <string name="orange_add">Přidat</string>
+    <string name="orange_settings_hide_fsb">Skrýt tlačítko «Sledovat/Předplatit»</string>
+    <string name="orange_settings_user_mention_color">Změnit barvu @zmínka</string>
+    <string name="orange_settings_prevent_mod_clear">Nevyčistit chat při příkazu</string>
+    <string name="orange_settings_force_toolbar_search_button">Vynutit tlačítko hledání na panelu nástrojů</string>
+    <string name="orange_settings_download_clip">Stáhnout klip</string>
+    <string name="orangetv_downloading">Stahování…</string>
+    <string name="orangetv_notification_channel_name">PurpleTV</string>
+    <string name="orange_settings_hide_player_create_clip_button">Skrýt tlačítko «Vytvořit klip»</string>
+    <string name="orange_settings_disable_sentry">Zakázat SentrySDK</string>
+    <string name="orange_settings_hide_player_live_share_button">Skrýt tlačítko «Sdílet» pro živé streamy</string>
+    <string name="orange_settings_bttv_webp">Podpora WEBP emotů</string>
 </resources>

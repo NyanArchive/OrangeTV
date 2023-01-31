@@ -3,19 +3,18 @@ package tv.orange.features.ui
 import android.content.Context
 import android.content.res.Configuration
 import android.graphics.Color
-import android.text.format.DateUtils
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.Completable
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import tv.orange.core.Core
 import tv.orange.core.LoggerImpl
-import tv.orange.core.PreferenceManager
-import tv.orange.core.ResourceManager
+import tv.orange.core.PreferencesManagerCore
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.models.flag.Flag.Companion.asInt
@@ -23,21 +22,20 @@ import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.variants.BottomNavbarPosition
 import tv.orange.core.util.ViewUtil.changeVisibility
 import tv.orange.core.util.ViewUtil.getView
-import tv.orange.features.api.component.repository.TwitchRepository
 import tv.orange.features.ui.bridge.SupportBridge
 import tv.orange.models.abc.Feature
-import tv.orange.models.util.DateUtil
 import tv.twitch.android.shared.chat.ChatViewDelegate
 import tv.twitch.android.shared.chat.emotecard.FollowButtonUiModel
+import tv.twitch.android.shared.player.overlay.PlayerOverlayViewDelegate
+import tv.twitch.android.shared.player.overlay.stream.StreamOverlayConfiguration
 import tv.twitch.android.shared.ui.elements.navigation.BottomNavigationDestination
 import tv.twitch.android.shared.ui.elements.navigation.BottomNavigationItem
-import java.util.*
 import javax.inject.Inject
 
 class UI @Inject constructor(
     val context: Context,
     val supportBridge: SupportBridge,
-    val twitchRepository: TwitchRepository
+    val prefManager: PreferencesManagerCore
 ) : Feature {
     companion object {
         @JvmStatic
@@ -80,6 +78,10 @@ class UI @Inject constructor(
             get() = Flag.LANDSCAPE_CHAT_SIZE.asInt()
 
         @JvmStatic
+        val landscapeSplitContainerScale: Int
+            get() = Flag.LANDSCAPE_SPLIT_CHAT_SIZE.asInt()
+
+        @JvmStatic
         val forwardSeek: Int
             get() = Flag.FORWARD_SEEK.asInt()
 
@@ -107,7 +109,7 @@ class UI @Inject constructor(
 
         @JvmStatic
         fun shouldHideMessageInput(context: Context): Boolean {
-            return Flag.AUTO_HIDE_MESSAGE_INPUT.asBoolean() && isLandscapeOrientation(context = context)
+            return Flag.AUTO_HIDE_MESSAGE_INPUT.asBoolean() && isLandscapeOrientation(context = context) || Flag.HIDE_MESSAGE_INPUT.asBoolean()
         }
 
         @JvmStatic
@@ -116,7 +118,7 @@ class UI @Inject constructor(
                 return org
             }
 
-            return ResourceManager.get().getLayoutId("orangetv_player_metadata_view_extended")
+            return ResourcesManagerCore.get().getLayoutId("orangetv_player_metadata_view_extended")
         }
 
         @JvmStatic
@@ -137,7 +139,7 @@ class UI @Inject constructor(
 
         @JvmStatic
         fun getUptimeButton(vh: RecyclerView.ViewHolder): TextView {
-            return vh.itemView.getView<TextView>("compact_stream_item__uptime")
+            return vh.itemView.getView("compact_stream_item__uptime")
         }
 
         @JvmStatic
@@ -155,6 +157,10 @@ class UI @Inject constructor(
         @JvmStatic
         val hideFSB: Boolean
             get() = Flag.HIDE_FSB.asBoolean()
+
+        @JvmStatic
+        val forceToolbarSearch: Boolean
+            get() = Flag.FORCE_TOOLBAR_SEARCH_BUTTON.asBoolean()
     }
 
     val skipTwitchBrowserDialog: Boolean
@@ -168,6 +174,7 @@ class UI @Inject constructor(
         return items.filter {
             when (it.destination) {
                 BottomNavigationDestination.DISCOVER -> !hideDiscoverTab
+                BottomNavigationDestination.SEARCH -> !forceToolbarSearch
                 else -> true
             }
         }.toMutableList()
@@ -205,12 +212,12 @@ class UI @Inject constructor(
     }
 
     fun onChatViewPresenterConfigurationChanged(delegate: ChatViewDelegate) {
-        if (!Flag.AUTO_HIDE_MESSAGE_INPUT.asBoolean()) {
+        if (!Flag.AUTO_HIDE_MESSAGE_INPUT.asBoolean() && !Flag.HIDE_MESSAGE_INPUT.asBoolean()) {
             return
         }
 
         delegate.messageInputViewDelegate.apply {
-            if (isLandscapeOrientation(context = context)) {
+            if (isLandscapeOrientation(context = context) || Flag.HIDE_MESSAGE_INPUT.asBoolean()) {
                 hide()
             } else {
                 show()
@@ -219,7 +226,7 @@ class UI @Inject constructor(
     }
 
     fun changeLandscapeChatContainerOpacity(viewGroup: ViewGroup?) {
-        if (PreferenceManager.isDarkThemeEnabled) {
+        if (prefManager.isDarkThemeEnabled) {
             viewGroup?.setBackgroundColor(
                 Color.argb(
                     (255 * (Flag.LANDSCAPE_CHAT_OPACITY.asInt() / 100F)).toInt(),
@@ -260,17 +267,27 @@ class UI @Inject constructor(
         }
 
         return Completable.complete().subscribe()
-
-//        return twitchRepository.getStreamUptime(channelId).observeOn(AndroidSchedulers.mainThread())
-//            .subscribe({
-//                it.createdAt?.let { date ->
-//                    uptime.text = " (${DateUtils.formatElapsedTime(DateUtil.getDiff(date, Date()).div(1000))})"
-//                    uptime.changeVisibility(true)
-//                } ?: run {
-//                    uptime.changeVisibility(false)
-//                }
-//            }, { it.printStackTrace() })
     }
 
     override fun onCreateFeature() {}
+
+    fun maybeHideCreateClipButton(createClipButton: ImageView) {
+        if (Flag.HIDE_PLAYER_CREATE_CLIP_BUTTON.asBoolean()) {
+            createClipButton.changeVisibility(false)
+        }
+    }
+
+    fun maybeHideLiveShareButton(
+        streamOverlayConfiguration: StreamOverlayConfiguration?,
+        viewDelegate: PlayerOverlayViewDelegate?
+    ) {
+        streamOverlayConfiguration ?: return
+        viewDelegate ?: return
+
+        if (streamOverlayConfiguration == StreamOverlayConfiguration.SingleStream.INSTANCE) {
+            if (Flag.HIDE_PLAYER_LIVE_SHARE_BUTTON.asBoolean()) {
+                viewDelegate.shareButton.changeVisibility(false)
+            }
+        }
+    }
 }

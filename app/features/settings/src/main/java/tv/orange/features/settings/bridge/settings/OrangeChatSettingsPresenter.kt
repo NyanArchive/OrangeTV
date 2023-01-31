@@ -1,7 +1,7 @@
 package tv.orange.features.settings.bridge.settings
 
 import androidx.fragment.app.FragmentActivity
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.features.settings.bridge.model.OrangeSubMenu
 import tv.orange.features.settings.component.OrangeSettingsController
 import tv.twitch.android.models.settings.SettingsDestination
@@ -30,7 +30,7 @@ class OrangeChatSettingsPresenter constructor(
     private fun addHighlighterSubmenu() {
         settingModels.add(
             SubMenuModel(
-                ResourceManager.get().getString("orange_settings_menu_highlighter"),
+                ResourcesManagerCore.get().getString("orange_settings_menu_highlighter"),
                 null,
                 null,
                 SettingsDestination.OrangeHighlighter,
@@ -39,7 +39,7 @@ class OrangeChatSettingsPresenter constructor(
         )
         settingModels.add(
             SubMenuModel(
-                ResourceManager.get().getString("orange_settings_menu_blacklist"),
+                ResourcesManagerCore.get().getString("orange_settings_menu_blacklist"),
                 null,
                 null,
                 SettingsDestination.OrangeBlacklist,
@@ -48,7 +48,7 @@ class OrangeChatSettingsPresenter constructor(
         )
         settingModels.add(
             SubMenuModel(
-                ResourceManager.get().getString("orange_settings_user_mention_color"),
+                ResourcesManagerCore.get().getString("orange_settings_user_mention_color"),
                 null,
                 null,
                 SettingsDestination.OrangeHighlightColor,

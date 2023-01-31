@@ -1,8 +1,8 @@
 package tv.orange.core.models.flag.variants
 
-import tv.orange.core.models.flag.Internal
+import tv.orange.core.models.flag.core.Variant
 
-enum class FontSize(val value: String) : Internal.Variant {
+enum class FontSize(val value: String) : Variant {
     SP8("8sp"),
     SP9("9sp"),
     SP10("10sp"),
@@ -15,23 +15,11 @@ enum class FontSize(val value: String) : Internal.Variant {
     SP17("17sp"),
     SP18("18sp");
 
-    override fun getVariants(): List<Internal.Variant> {
-        return values().toList()
-    }
-
-    override fun getDefault(): Internal.Variant {
+    override fun getDefault(): Variant {
         return SP13
-    }
-
-    override fun fromString(str: String): Internal.Variant? {
-        return values().firstOrNull { it.value == str }
     }
 
     override fun toString(): String {
         return value
-    }
-
-    override fun isDefault(): Boolean {
-        return this == getDefault()
     }
 }

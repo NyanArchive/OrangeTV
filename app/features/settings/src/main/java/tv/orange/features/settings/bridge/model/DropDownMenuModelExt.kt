@@ -1,16 +1,17 @@
 package tv.orange.features.settings.bridge.model
 
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asVariant
-import tv.orange.core.models.flag.Internal
+import tv.orange.core.models.flag.core.Variant
+import tv.orange.core.models.flag.core.Variant.Companion.getVariants
 import tv.orange.features.settings.component.OrangeSettingsController
 import tv.twitch.android.core.adapters.TwitchArrayAdapter
 import tv.twitch.android.core.adapters.TwitchArrayAdapterModel
 import tv.twitch.android.shared.ui.menus.dropdown.DropDownMenuModel
 import tv.twitch.android.shared.ui.menus.dropdown.DropDownMenuModel.DropDownMenuItemSelection
 
-class DropDownMenuModelExt<T : Internal.Variant>(
+class DropDownMenuModelExt<T : Variant>(
     private val flag: Flag,
     controller: OrangeSettingsController,
     private val raw: Boolean = false
@@ -23,20 +24,20 @@ class DropDownMenuModelExt<T : Internal.Variant>(
                     if (raw) {
                         variant.toString()
                     } else {
-                        ResourceManager.get().getString(
+                        ResourcesManagerCore.get().getString(
                             resName = "orange_${flag.preferenceKey}_$variant"
                         )
                     }
                 }
             },
-            ResourceManager.get().getLayoutId(resName = "twitch_spinner_dropdown_item")
+            ResourcesManagerCore.get().getLayoutId(resName = "twitch_spinner_dropdown_item")
         ),
         flag.asVariant<T>().getVariants().indexOf(flag.asVariant()),
         flag.titleResName?.let { id ->
-            ResourceManager.get().getString(resName = id)
+            ResourcesManagerCore.get().getString(resName = id)
         },
         flag.summaryResName?.let { id ->
-            ResourceManager.get().getString(resName = id)
+            ResourcesManagerCore.get().getString(resName = id)
         },
         null,
         null,

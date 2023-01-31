@@ -12,6 +12,10 @@ import tv.twitch.android.core.fetchers.RefreshPolicy;
 import tv.twitch.android.models.FollowedUserModel;
 
 public class FollowedChannelsFetcher extends BaseFetcher {
+    private boolean hasFetchedAll;
+
+    /* ... */
+
     public FollowedChannelsFetcher(RefreshPolicy refreshPolicy, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap1) {
         super(refreshPolicy, concurrentHashMap, concurrentHashMap1);
     }
@@ -20,6 +24,7 @@ public class FollowedChannelsFetcher extends BaseFetcher {
 
     private final Maybe<List<FollowedUserModel>> fetchFollowedUsers() {
         if (UI.getHideOfflineChannels()) { // TODO: __INJECT_CODE
+            hasFetchedAll = true;
             return Maybe.just(Collections.emptyList());
         }
 
@@ -30,6 +35,7 @@ public class FollowedChannelsFetcher extends BaseFetcher {
 
     public final boolean hasMoreChannels() {
         if (UI.getHideOfflineChannels()) { // TODO: __INJECT_CODE
+            hasFetchedAll = true;
             return false;
         }
 
@@ -40,6 +46,7 @@ public class FollowedChannelsFetcher extends BaseFetcher {
 
     public final Maybe<Boolean> getUserHasFollows() {
         if (UI.getHideOfflineChannels()) { // TODO: __INJECT_CODE
+            hasFetchedAll = true;
             return Maybe.just(Boolean.FALSE);
         }
 

@@ -1,10 +1,7 @@
 package tv.orange.features.stv
 
 import io.reactivex.Single
-import tv.orange.core.Core
-import tv.orange.core.LoggerImpl
-import tv.orange.core.LoggerWithTag
-import tv.orange.core.PreferenceManager
+import tv.orange.core.*
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.models.flag.FlagListener
@@ -18,7 +15,8 @@ import javax.inject.Inject
 
 @AutoInitialize
 class StvAvatars @Inject constructor(
-    val stvRepository: StvRepository
+    val stvRepository: StvRepository,
+    val prefManager: PreferencesManagerCore
 ) : SimpleFetcher<AvatarSet>(
     dataSourceFactory = object : SourceFactory<AvatarSet> {
         override fun create(): Single<AvatarSet> {
@@ -72,6 +70,6 @@ class StvAvatars @Inject constructor(
 
     override fun onCreateFeature() {
         Core.get().registerLifecycleListeners(this)
-        PreferenceManager.get().registerFlagListeners(this)
+        prefManager.registerFlagListeners(this)
     }
 }

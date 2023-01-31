@@ -10,7 +10,7 @@ def java_string_hashcode(s):
 
 def replace(org):
     return org.replace("tv.twitch.android.media.action.",
-                       "tv.orange.action.").replace("tv.twitch.android.push.",
+                       "tv.orange.media.action.").replace("tv.twitch.android.push.",
                                                     "tv.orange.push.")
 
 
@@ -22,4 +22,5 @@ if __name__ == '__main__':
             hash_org = java_string_hashcode(org)
             hash_new = java_string_hashcode(new)
 
+            print("{} -> {}".format(org, new))
             print("{} -> {}".format(hex(hash_org), hex(hash_new)))

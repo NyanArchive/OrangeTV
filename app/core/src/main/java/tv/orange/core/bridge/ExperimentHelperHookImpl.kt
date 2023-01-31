@@ -9,7 +9,7 @@ import tv.twitch.android.provider.experiments.*
 class ExperimentHelperHookImpl(private val org: IExperimentHelper) : ExperimentHelper {
     override fun getGroupForExperiment(p0: Experiment): String {
         return when (p0) {
-            Experiment.ANIMATED_EMOTES -> "active_11.5"
+            Experiment.ANIMATED_EMOTES -> ANIMATED_EMOTES_ACTIVE
             else -> org.getGroupForExperimentOrg(p0).also { res ->
                 LoggerImpl.devDebug { "${p0.experimentName} --> $p0, res --> $res" }
             }
@@ -33,7 +33,8 @@ class ExperimentHelperHookImpl(private val org: IExperimentHelper) : ExperimentH
             Experiment.BILLING_UNAVAILABLE_DIALOG,
             Experiment.LATAM_CRONET,
             Experiment.LOAD_AD_PROPERTIES_ON_HOME_TAB,
-            Experiment.HTTP3_WITH_CRONET_GLOBAL -> false
+            Experiment.HTTP3_WITH_CRONET_GLOBAL,
+            Experiment.ANNUAL_RECAP_2022 -> false
 
             Experiment.FREEFORM_TAGS,
             Experiment.MULTI_OPTION_PREDICTIONS -> true
@@ -57,9 +58,19 @@ class ExperimentHelperHookImpl(private val org: IExperimentHelper) : ExperimentH
 
     override fun isInOnGroupForBinaryExperiment(p0: Experiment): Boolean {
         return when (p0) {
+            Experiment.AUDIO_ADS,
+            Experiment.DISABLE_AUDIO_ONLY,
             Experiment.ADS_SPONSORED_STREAMS,
             Experiment.LIVE_THEATRE_REFACTOR_GLOBAL,
-            Experiment.AMAZON_IDENTITY_INTEGRATION -> false
+            Experiment.AMAZON_IDENTITY_INTEGRATION,
+            Experiment.FOLLOW_SUB_DURING_ADS_EXPERIMENT,
+            Experiment.STREAM_DISPLAY_ADS,
+            Experiment.AUDIO_ADS_BACKGROUND,
+            Experiment.ADS_VIDEO_ASYNC_LOADING,
+            Experiment.PIP_SMOOTH_ENTER,
+            Experiment.EXPANDABLE_ADS -> false
+
+            Experiment.ADS_CLIENT_AD_ALLOCATOR -> true
 
             Experiment.CHAT_SETTINGS -> Flag.CHAT_SETTINGS.asBoolean()
 
@@ -93,5 +104,9 @@ class ExperimentHelperHookImpl(private val org: IExperimentHelper) : ExperimentH
 
     override fun updateEnabledGroupsForActiveExperiments(): MutableSet<RemoteConfigurable> {
         return org.updateEnabledGroupsForActiveExperimentsOrg()
+    }
+
+    companion object {
+        private const val ANIMATED_EMOTES_ACTIVE = "active_11.5"
     }
 }

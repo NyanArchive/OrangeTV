@@ -3,6 +3,7 @@ package tv.twitch.android.feature.followed.firstpage;
 import java.util.Collections;
 import java.util.List;
 
+import io.reactivex.Maybe;
 import io.reactivex.Single;
 import kotlin.jvm.functions.Function1;
 import tv.orange.features.ui.UI;
@@ -10,7 +11,7 @@ import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.android.core.fetchers.NoParamDynamicContentFetcher;
 import tv.twitch.android.core.fetchers.RefreshPolicy;
 import tv.twitch.android.models.GameModel;
-import tv.twitch.android.shared.api.pub.FollowedFirstPageContent;
+import tv.twitch.android.shared.follow.pub.FollowedFirstPageContent;
 
 public class FollowedGamesFetcher extends NoParamDynamicContentFetcher {
     /* ... */
@@ -45,6 +46,16 @@ public class FollowedGamesFetcher extends NoParamDynamicContentFetcher {
     }
 
     public final void cachePrefetchGames(FollowedFirstPageContent firstPageContent) {
+        throw new VirtualImpl();
+    }
+
+    public Maybe<List<GameModel>> fetchMore() {
+        if (UI.getHideGames()) { // TODO: __INJECT_CODE
+            return Maybe.just(Collections.emptyList());
+        }
+
+        /* ... */
+
         throw new VirtualImpl();
     }
 

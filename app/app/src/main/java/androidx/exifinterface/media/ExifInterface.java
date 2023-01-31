@@ -62,7 +62,6 @@ public class ExifInterface {
         if (isRw2Format(bArr)) {
             return 10;
         }
-
         return 0;
     }
 

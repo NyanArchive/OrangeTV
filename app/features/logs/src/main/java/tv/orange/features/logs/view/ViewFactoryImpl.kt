@@ -2,7 +2,7 @@ package tv.orange.features.logs.view
 
 import android.view.View
 import android.widget.TextView
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.util.ViewUtil.getView
 import tv.orange.features.logs.component.data.repository.LogsRepository
 import tv.orange.features.logs.data.adapter.LogsAdapter
@@ -18,8 +18,8 @@ class ViewFactoryImpl @Inject constructor(
 ) : ViewFactory {
     override fun createModLogsButton(state: ModerationBottomSheetViewState): BottomSheetListItemModel<*> {
         return BottomSheetListItemModel(
-            ResourceManager.get().getId(resName = "chat_moderation_menu__mod_logs"),
-            ResourceManager.get().getString(resName = "orange_mod_logs"),
+            ResourcesManagerCore.get().getId(resName = "chat_moderation_menu__mod_logs"),
+            ResourcesManagerCore.get().getString(resName = "orange_mod_logs"),
             true,
             ModerationActionBottomSheetViewDelegate.ModerationActionButtonEvent.ViewLogs(
                 state.username,

@@ -1,0 +1,48 @@
+diff --git a/smali_classes4/tv/twitch/android/feature/background/audio/ads/AudioAdsBackgroundPresenter.smali b/smali_classes4/tv/twitch/android/feature/background/audio/ads/AudioAdsBackgroundPresenter.smali
+--- a/smali_classes4/tv/twitch/android/feature/background/audio/ads/AudioAdsBackgroundPresenter.smali
++++ b/smali_classes4/tv/twitch/android/feature/background/audio/ads/AudioAdsBackgroundPresenter.smali
+@@ -77,22 +77,22 @@
+ 
+     move-result v0
+ 
+-    const v1, 0x23b7ff82
++    const v1, 0x1f1c3bdc
+ 
+     if-eq v0, v1, :cond_4
+ 
+-    const v1, 0x52dc94ef
++    const v1, 0x538ca8c9
+ 
+     if-eq v0, v1, :cond_2
+ 
+-    const v1, 0x54010054
++    const v1, -0x6b9068d2
+ 
+     if-eq v0, v1, :cond_0
+ 
+     goto :goto_0
+ 
+     :cond_0
+-    const-string/jumbo v0, "tv.twitch.android.media.action.audiobecomingnoisy"
++    const-string/jumbo v0, "tv.orange.media.action.audiobecomingnoisy"
+ 
+     invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+ 
+@@ -111,7 +111,7 @@
+     goto :goto_0
+ 
+     :cond_2
+-    const-string/jumbo v0, "tv.twitch.android.media.action.toggleplayback"
++    const-string/jumbo v0, "tv.orange.media.action.toggleplayback"
+ 
+     .line 39
+     invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+@@ -131,7 +131,7 @@
+     goto :goto_0
+ 
+     :cond_4
+-    const-string/jumbo v0, "tv.twitch.android.media.action.stop"
++    const-string/jumbo v0, "tv.orange.media.action.stop"
+ 
+     .line 39
+     invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z

@@ -2,10 +2,7 @@ package tv.orange.features.badges.component.model.factory
 
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
-import tv.orange.features.api.component.repository.ChatterinoRepository
-import tv.orange.features.api.component.repository.FfzRepository
-import tv.orange.features.api.component.repository.NopRepository
-import tv.orange.features.api.component.repository.StvRepository
+import tv.orange.features.api.component.repository.*
 import tv.orange.features.badges.component.model.BadgePackageImpl
 import tv.orange.features.badges.component.model.BadgePackageItzImpl
 import tv.orange.features.badges.component.model.room.Room
@@ -17,7 +14,8 @@ class RoomFactoryImpl @Inject constructor(
     val ffz: FfzRepository,
     val stv: StvRepository,
     val chatterino: ChatterinoRepository,
-    val nop: NopRepository
+    val nop: NopRepository,
+    val itz: ItzRepository
 ) : RoomFactory {
     override fun create(): Room {
         return RoomImpl().apply {
@@ -55,6 +53,18 @@ class RoomFactoryImpl @Inject constructor(
                 add(
                     BadgePackageItzImpl(
                         source = BadgeItzFetcherFactoryImpl { nop.getHomiesBadges() },
+                        token = BadgePackageSet.Homies
+                    )
+                )
+                add(
+                    BadgePackageImpl(
+                        source = BadgeFetcherFactoryImpl { itz.getGlobalBadges1() },
+                        token = BadgePackageSet.Homies
+                    )
+                )
+                add(
+                    BadgePackageImpl(
+                        source = BadgeFetcherFactoryImpl { itz.getGlobalBadges2() },
                         token = BadgePackageSet.Homies
                     )
                 )

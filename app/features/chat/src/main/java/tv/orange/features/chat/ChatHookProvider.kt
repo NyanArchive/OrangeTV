@@ -15,9 +15,8 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.PublishSubject
 import tv.orange.core.Core
-import tv.orange.core.PreferenceManager
-import tv.orange.core.PreferenceManager.Companion.isDarkThemeEnabled
-import tv.orange.core.ResourceManager
+import tv.orange.core.PreferencesManagerCore
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.compat.ClassCompat.getPrivateField
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
@@ -74,6 +73,8 @@ import tv.twitch.android.shared.emotes.emotepicker.models.EmoteHeaderUiModel
 import tv.twitch.android.shared.emotes.emotepicker.models.EmotePickerSection
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiModel
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteUiSet
+import tv.twitch.android.shared.ui.elements.span.UrlDrawable
+import tv.twitch.android.shared.ui.elements.span.`MediaSpan$Type`
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -90,7 +91,8 @@ class ChatHookProvider @Inject constructor(
     val favEmotesRepository: FavEmotesRepository,
     val chatFactory: ChatFactory,
     val highlighter: Highlighter,
-    val blacklist: Blacklist
+    val blacklist: Blacklist,
+    val prefManager: PreferencesManagerCore
 ) : LifecycleAware, FlagListener, Feature, SupportBridge.Callback {
     private val currentChannelSubject = BehaviorSubject.create<Int>()
 
@@ -462,7 +464,7 @@ class ChatHookProvider @Inject constructor(
                 else -> "orange_unknown_emotes"
             }
 
-            return ResourceManager.get().getStringId(resName)
+            return ResourcesManagerCore.get().getStringId(resName)
         }
 
         @JvmStatic
@@ -513,7 +515,7 @@ class ChatHookProvider @Inject constructor(
         fun fixUsernameSpanColor(usernameColor: Int): Int {
             return ChatUtil.fixUsernameColor(
                 color = usernameColor,
-                isDarkThemeEnabled = isDarkThemeEnabled
+                isDarkThemeEnabled = PreferencesManagerCore.isDarkThemeEnabled
             )
         }
 
@@ -550,6 +552,10 @@ class ChatHookProvider @Inject constructor(
         @JvmStatic
         val isChatKilled
             get() = killChat
+
+        @JvmStatic
+        val preventModClear
+            get() = Flag.PREVENT_MOD_CLEAR.asBoolean()
     }
 
     private fun updateFontSize() {
@@ -760,7 +766,7 @@ class ChatHookProvider @Inject constructor(
 
     override fun onCreateFeature() {
         Core.get().registerLifecycleListeners(this)
-        PreferenceManager.get().registerFlagListeners(this)
+        prefManager.registerFlagListeners(this)
         updateFontSize()
         emoteSize = Flag.EMOTE_QUALITY.asVariant<EmoteQuality>().toSize()
         pronouns = Flag.PRONOUNS.asBoolean()
@@ -780,5 +786,9 @@ class ChatHookProvider @Inject constructor(
                 mre.channelId,
                 mre.messages.filter { message -> !blacklist.isBlacklisted(message) })
         }.filter { it.messages.isNotEmpty() }
+    }
+
+    fun urlDrawableFactory(url: String, animatedEmotesEnabled: Boolean): UrlDrawable {
+        return UrlDrawable(url, `MediaSpan$Type`.Emote, true, animatedEmotesEnabled)
     }
 }

@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import android.widget.SeekBar
 import android.widget.TextView
 import tv.orange.core.Core
-import tv.orange.core.PreferenceManager
-import tv.orange.core.ResourceManager
+import tv.orange.core.PreferencesManagerCore
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.util.ViewUtil.changeVisibility
 import tv.orange.core.util.ViewUtil.getView
 import tv.orange.features.vodsync.view.ViewFactory
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 class VodSync @Inject constructor(
     val viewFactory: ViewFactory,
-    val prefManager: PreferenceManager
+    val prefManager: PreferencesManagerCore
 ) : Feature {
     companion object {
         @JvmStatic
@@ -35,15 +35,21 @@ class VodSync @Inject constructor(
 
     fun hookChommentTimestamp(
         vodModel: VodModel,
-        timestamp: Int
+        orgTimestamp: Int
     ): Int {
-        val progress = prefManager.getChommentSeekerValue(videoId = vodModel.id)
+        val sv = prefManager.getChommentSeekerValue(videoId = vodModel.id)
 
-        if (progress == 0) {
-            return timestamp
+        if (sv == 0) {
+            return orgTimestamp
         }
 
-        return timestamp + progress;
+        val timestamp = orgTimestamp + sv
+
+        return if (timestamp < 0) {
+            0
+        } else {
+            timestamp
+        }
     }
 
     fun renderChommentSeekerSection(
@@ -67,7 +73,7 @@ class VodSync @Inject constructor(
 
         val savedSyncValue = prefManager.getChommentSeekerValue(videoId = vodId.id)
         if (header is TextView) {
-            header.text = ResourceManager.get().getString(
+            header.text = ResourcesManagerCore.get().getString(
                 resName = "orange_seeker_header_text"
             )
         }
@@ -88,7 +94,7 @@ class VodSync @Inject constructor(
                 fromUser: Boolean
             ) {
                 val currentSyncValue = progress - 60
-                PreferenceManager.get().saveChommentSeekerValue(
+                prefManager.saveChommentSeekerValue(
                     videoId = vodId.id,
                     value = currentSyncValue
                 )

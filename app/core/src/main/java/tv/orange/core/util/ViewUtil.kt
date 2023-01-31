@@ -8,24 +8,24 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 
 @Suppress("UNCHECKED_CAST")
 object ViewUtil {
     fun <T : View> View.getView(resName: String): T {
-        return this.findViewById(ResourceManager.get().getId(resName = resName))
+        return this.findViewById(ResourcesManagerCore.get().getId(resName = resName))
     }
 
     fun <T : View> Activity.getView(resName: String): T {
-        return this.findViewById(ResourceManager.get().getId(resName = resName))
+        return this.findViewById(ResourcesManagerCore.get().getId(resName = resName))
     }
 
     fun Activity.setContentView(resName: String) {
-        this.setContentView(ResourceManager.get().getLayoutId(resName))
+        this.setContentView(ResourcesManagerCore.get().getLayoutId(resName))
     }
 
     fun LayoutInflater.inflate(container: ViewGroup?, resName: String): View {
-        val id = ResourceManager.get().getLayoutId(resName = resName)
+        val id = ResourcesManagerCore.get().getLayoutId(resName = resName)
         if (id == 0 || id == -1) {
             throw Resources.NotFoundException(resName)
         }
@@ -38,7 +38,7 @@ object ViewUtil {
     }
 
     fun ViewGroup.inflate(inflater: LayoutInflater, resName: String): View {
-        val id = ResourceManager.get().getLayoutId(resName = resName)
+        val id = ResourcesManagerCore.get().getLayoutId(resName = resName)
         if (id == 0 || id == -1) {
             throw Resources.NotFoundException(resName)
         }
@@ -55,7 +55,7 @@ object ViewUtil {
     }
 
     fun Context.inflate(resName: String): View {
-        val id = ResourceManager.get().getLayoutId(resName = resName)
+        val id = ResourcesManagerCore.get().getLayoutId(resName = resName)
         if (id == 0 || id == -1) {
             throw Resources.NotFoundException(resName)
         }
@@ -98,5 +98,9 @@ object ViewUtil {
 
     fun View.dipToPix(dip: Int): Int {
         return this.context.dipToPix(dip)
+    }
+
+    fun isValidId(res: Int): Boolean {
+        return res != 0
     }
 }

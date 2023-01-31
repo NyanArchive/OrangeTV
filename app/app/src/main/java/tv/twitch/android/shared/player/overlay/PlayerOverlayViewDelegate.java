@@ -10,7 +10,9 @@ import io.reactivex.subjects.PublishSubject;
 import tv.orange.features.chapters.VodChapters;
 import tv.orange.features.chapters.bridge.IChaptersDelegate;
 import tv.orange.features.timer.SleepTimer;
+import tv.orange.features.ui.UI;
 import tv.orange.models.exception.VirtualImpl;
+import tv.twitch.android.app.core.ViewExtensionsKt;
 import tv.twitch.android.core.mvp.viewdelegate.BaseViewDelegate;
 import tv.twitch.android.models.player.PlayerMode;
 import tv.twitch.android.models.videos.VodModel;
@@ -18,6 +20,7 @@ import tv.twitch.android.shared.ads.pub.TheatreAdsState;
 import tv.twitch.android.shared.player.overlay.seekable.SeekbarOverlayPresenter;
 
 public class PlayerOverlayViewDelegate extends BaseViewDelegate implements IPlayerOverlay, IChaptersDelegate { // TODO: __IMPLEMENT
+    private ImageView createClipButton;
     private final ImageView orangeTimerButton; // TODO: __INJECT_FIELD
     private final ImageView chaptersButton; // TODO: __INJECT_FIELD
 
@@ -84,6 +87,8 @@ public class PlayerOverlayViewDelegate extends BaseViewDelegate implements IPlay
 
         /* ... */
 
+        UI.get().maybeHideCreateClipButton(createClipButton); // TODO: __INJECT_CODE
+
         throw new VirtualImpl();
     }
 
@@ -134,5 +139,17 @@ public class PlayerOverlayViewDelegate extends BaseViewDelegate implements IPlay
     @Override
     public void onBindVodModel(@NonNull VodModel vod, @NonNull SeekbarOverlayPresenter presenter) { // TODO: __INJECT_METHOD
         VodChapters.get().bindChaptersButton(chaptersButton, vod, presenter);
+    }
+
+    public final void setClipButtonState(boolean var1) {
+        /* ... */
+
+        UI.get().maybeHideCreateClipButton(createClipButton); // TODO: __INJECT_CODE
+
+        throw new VirtualImpl();
+    }
+
+    public final ImageView getShareButton() {
+        throw new VirtualImpl();
     }
 }

@@ -60,6 +60,7 @@
     <string name="orange_settings_title">Nastavenia PurpleTV</string>
     <string name="orange_settings_chat_font_size">Veľkosť písma chatu</string>
     <string name="orange_settings_landscape_chat_size">Šírka chatu v režime na šírku</string>
+    <string name="orange_settings_landscape_split_chat_size">Šírka četu v režimu na šírku</string>
     <string name="orange_settings_forward_seek">Náhľad prehrávača dopredu</string>
     <string name="orange_settings_rewind_seek">Náhľad prehrávača späť</string>
     <string name="orange_settings_mini_player_size">Veľkosť MiniPrehrávača</string>
@@ -68,6 +69,7 @@
     <string name="orange_settings_hide_top_chat_panel_vods">Skryť horný panel chatu vo VODs</string>
     <string name="orange_settings_pronouns">Rody</string>
     <string name="orange_settings_auto_hide_message_input">Skryť pole pre zadávanie správ v režime na šírku</string>
+    <string name="orange_settings_hide_message_input">Skryť pole pre zadávanie správy</string>
     <string name="orange_settings_landscape_chat_opacity">Priehľadnosť chatu v režimu na šírku</string>
     <string name="orange_chapters_unknown">Neznáme</string>
     <string name="orange_settings_emote_quality">Kvalita Emótov</string>
@@ -96,6 +98,7 @@
     <string name="cpv_custom">Vlastné</string>
     <string name="cpv_select">Vybrať</string>
     <string name="cpv_transparency">Priehľadnosť</string>
+    <string name="orange_settings_clipfinity_desc">Dizajn klipov podobný TikToku</string>
     <string name="orange_updater_ds">Veľkosť sťahovania: %s</string>
     <string name="orange_updater_ds2">%1$s/%2$s</string>
     <string name="orange_updater_ds3">%s\%%</string>
@@ -103,6 +106,10 @@
     <string name="orange_updater_msg1">PurpleTV vyžaduje aktualizáciu</string>
     <string name="orange_app_name">PurpleTV</string>
     <string name="orange_settings_updater_channel">Kanál aktualizácií</string>
+    <string name="orange_updater_final_release">Vydanie</string>
+    <string name="orange_updater_final_beta">Beta</string>
+    <string name="orange_updater_final_dev">Vývojársky</string>
+    <string name="orange_updater_final_disabled">Vypnuté</string>
     <string name="orange_updater_install_action">Inštalovať</string>
     <string name="orange_updater_update_action">Aktualizovať</string>
     <string name="orange_updater_channel_disabled">Aktuálny aktualizačný kanál je vypnutý</string>
@@ -159,10 +166,22 @@
     <string name="orange_settings_hide_unfollow_button">Skryť tlačidlo zrušiť follow</string>
     <string name="orange_settings_info_lanzzz">Tvorca PurpleTV loga</string>
     <string name="orange_pinny_active_users">Aktívnych používateľov: %1$d</string>
-    <string name="orange_pinny_total_users">Celkový počet používateľov:%1$d</string>
+    <string name="orange_pinny_total_users">Celkový počet používateľov: %1$d</string>
     <string name="orange_settings_chat_settings">Nastavenia četu</string>
     <string name="orange_settings_hide_create_button">Skryť «Vytvoriť» tlačidlo</string>
     <string name="orange_settings_menu_blacklist">Čierna listina</string>
     <string name="orange_settings_force_exoplayer_for_vods">Vynútiť ExoPlayer pre VODs</string>
     <string name="orange_settings_exoplayer_vod_speed">Rýchlosť prehrávania VOD cez ExoPlayer</string>
+    <string name="orange_add">Pridať</string>
+    <string name="orange_settings_hide_fsb">Skryť tlačidlo «Sledovania/Predplatenia»</string>
+    <string name="orange_settings_user_mention_color">Zmeniť farbu @zmienky</string>
+    <string name="orange_settings_prevent_mod_clear">Nevymazávať čet, keď k tomu dostane príkaz</string>
+    <string name="orange_settings_force_toolbar_search_button">Vynútiť tlačidlo vyhľadávania na paneli s nástrojmi</string>
+    <string name="orange_settings_download_clip">Stiahnuť klip</string>
+    <string name="orangetv_downloading">Sťahuje sa…</string>
+    <string name="orangetv_notification_channel_name">PurpleTV</string>
+    <string name="orange_settings_hide_player_create_clip_button">Skryť tlačidlo «Vytvoriť klip»</string>
+    <string name="orange_settings_disable_sentry">Zakázať SentrySDK</string>
+    <string name="orange_settings_hide_player_live_share_button">Skryť tlačidlo «Zdieľať» pre živé streamy</string>
+    <string name="orange_settings_bttv_webp">Podpora pre WEBP emóty</string>
 </resources>

@@ -23,7 +23,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import androidx.core.graphics.ColorUtils
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.util.ViewUtil.getView
 import tv.orange.core.util.ViewUtil.inflate
 
@@ -77,7 +77,7 @@ class ColorPaletteAdapter(
             colorPanelView.setColor(color)
             imageView.setImageResource(
                 if (selectedPosition == position) {
-                    ResourceManager.get().getDrawableId("orangetv_cpv_preset_checked")
+                    ResourcesManagerCore.get().getDrawableId("orangetv_cpv_preset_checked")
                 } else {
                     0
                 }

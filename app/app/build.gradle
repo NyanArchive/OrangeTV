@@ -27,12 +27,12 @@ genDex.dependsOn 'mergeLibDexDebug'
 genDex.finalizedBy 'copyAppDex'
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "tv.orange"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
     }
@@ -57,4 +57,7 @@ android {
 
 dependencies {
     api project(path: ':bridge')
+
+    implementation "androidx.work:work-runtime:$work_version"
+    implementation "androidx.work:work-rxjava2:$work_version"
 }

@@ -56,10 +56,11 @@
     <string name="orange_settings_disable_hype_train">Hype Train\'i devre dışı bırak</string>
     <string name="orange_settings_hide_discover_tab">Keşfet sekmesini gizle</string>
     <string name="orange_restart_app">Yeniden başlat</string>
-    <string name="orange_restart_app_title">Uygulama güncellenip yeniden başlatılsın mı?</string>
+    <string name="orange_restart_app_title">Yenileme ve yeniden başlatma</string>
     <string name="orange_settings_title">PurpleTV Ayarları</string>
     <string name="orange_settings_chat_font_size">Sohbet yazı tipi boyutu</string>
     <string name="orange_settings_landscape_chat_size">Yatay sohbet genişliği</string>
+    <string name="orange_settings_landscape_split_chat_size">Yatay sohbet genişliği</string>
     <string name="orange_settings_forward_seek">Oynatıcı ileri sarma</string>
     <string name="orange_settings_rewind_seek">Oynatıcı geri sarma</string>
     <string name="orange_settings_mini_player_size">Mini oynatıcı büyüklüğü</string>
@@ -68,6 +69,7 @@
     <string name="orange_settings_hide_top_chat_panel_vods">VOD\'larda sohbet üst panelini gizle</string>
     <string name="orange_settings_pronouns">Zamirler</string>
     <string name="orange_settings_auto_hide_message_input">Yatayda mesaj kutusunu gizle</string>
+    <string name="orange_settings_hide_message_input">Mesaj girişini gizle</string>
     <string name="orange_settings_landscape_chat_opacity">Yatay sohbet opaklığı</string>
     <string name="orange_chapters_unknown">Bilinmiyor</string>
     <string name="orange_settings_emote_quality">İfade Kalitesi</string>
@@ -172,4 +174,14 @@
     <string name="orange_settings_exoplayer_vod_speed">ExoPlayer geçmiş yayın hızı</string>
     <string name="orange_add">Ekle</string>
     <string name="orange_settings_hide_fsb">Takip et/abone ol butonunu gizle</string>
+    <string name="orange_settings_user_mention_color">\@etiket rengini değiştir</string>
+    <string name="orange_settings_prevent_mod_clear">Sohbet temizleme komutu yazıldığında sohbeti temizleme</string>
+    <string name="orange_settings_force_toolbar_search_button">Arama çubuğunu ikonların yanında kullanmaya zorla</string>
+    <string name="orange_settings_download_clip">Klibi indir</string>
+    <string name="orangetv_downloading">İndiriliyor…</string>
+    <string name="orangetv_notification_channel_name">PurpleTV</string>
+    <string name="orange_settings_hide_player_create_clip_button">&lt;&lt;Klip oluştur butonunu&gt;&gt; gizle</string>
+    <string name="orange_settings_disable_sentry">NöbetçiSDK\'yı devre dışı bırak</string>
+    <string name="orange_settings_hide_player_live_share_button">Yayınlar için &lt;&lt;Paylaş butonunu&gt;&gt; gizle</string>
+    <string name="orange_settings_bttv_webp">WEBP emojileri desteği</string>
 </resources>

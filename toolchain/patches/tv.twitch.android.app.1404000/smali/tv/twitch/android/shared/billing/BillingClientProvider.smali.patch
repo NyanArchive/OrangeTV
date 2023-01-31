@@ -1,0 +1,38 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/billing/BillingClientProvider.smali b/smali_classes5/tv/twitch/android/shared/billing/BillingClientProvider.smali
+--- a/smali_classes5/tv/twitch/android/shared/billing/BillingClientProvider.smali
++++ b/smali_classes5/tv/twitch/android/shared/billing/BillingClientProvider.smali
+@@ -176,34 +176,7 @@
+ .method public final getBillingClient()Lcom/android/billingclient/api/BillingClient;
+     .locals 1
+ 
+-    .line 53
+-    sget-object v0, Ltv/twitch/android/core/buildconfig/BuildConfigUtil;->INSTANCE:Ltv/twitch/android/core/buildconfig/BuildConfigUtil;
+-
+-    invoke-virtual {v0}, Ltv/twitch/android/core/buildconfig/BuildConfigUtil;->isDebugConfigEnabled()Z
+-
+-    move-result v0
+-
+-    if-eqz v0, :cond_0
+-
+-    iget-object v0, p0, Ltv/twitch/android/shared/billing/BillingClientProvider;->debugSharedPreferenceFile:Ltv/twitch/android/shared/commerce/debug/CommerceDebugSharedPreferenceFile;
+-
+-    invoke-virtual {v0}, Ltv/twitch/android/shared/commerce/debug/CommerceDebugSharedPreferenceFile;->isDebugBillingClientEnabled()Z
+-
+-    move-result v0
+-
+-    if-eqz v0, :cond_0
+-
+-    .line 54
+     iget-object v0, p0, Ltv/twitch/android/shared/billing/BillingClientProvider;->debugBillingClient:Ltv/twitch/android/shared/billing/debug/DebugBillingClient;
+ 
+-    goto :goto_0
+-
+-    .line 56
+-    :cond_0
+-    invoke-direct {p0}, Ltv/twitch/android/shared/billing/BillingClientProvider;->getProdBillingClient()Lcom/android/billingclient/api/BillingClient;
+-
+-    move-result-object v0
+-
+-    :goto_0
+     return-object v0
+ .end method

@@ -1,16 +1,13 @@
 package tv.orange.features.settings.bridge.settings
 
 import androidx.fragment.app.FragmentActivity
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.features.settings.component.OrangeSettingsController
-import tv.twitch.android.models.settings.SettingsDestination
 import tv.twitch.android.settings.base.BaseSettingsPresenter
 import tv.twitch.android.settings.base.SettingsNavigationController
 import tv.twitch.android.settings.base.SettingsTracker
 import tv.twitch.android.shared.ui.menus.SettingsPreferencesController
 import tv.twitch.android.shared.ui.menus.core.MenuAdapterBinder
-import tv.twitch.android.shared.ui.menus.core.MenuModel
-import tv.twitch.android.shared.ui.menus.subscription.SubMenuModel
 
 class OrangeSettingsPresenter constructor(
     activity: FragmentActivity,
@@ -27,7 +24,7 @@ class OrangeSettingsPresenter constructor(
     }
 
     override fun getToolbarTitle(): String {
-        return ResourceManager.get().getString(resName = "orange_settings_menu_main")
+        return ResourcesManagerCore.get().getString(resName = "orange_settings_menu_main")
     }
 
     override fun updateSettingModels() {

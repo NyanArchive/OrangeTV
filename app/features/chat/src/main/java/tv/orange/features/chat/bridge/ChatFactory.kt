@@ -1,6 +1,6 @@
 package tv.orange.features.chat.bridge
 
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.models.abc.EmotePackageSet
 import tv.orange.models.data.emotes.Emote
 import tv.twitch.android.models.emotes.EmoteModelAssetType
@@ -10,7 +10,7 @@ import tv.twitch.android.shared.emotes.models.EmoteMessageInput
 import javax.inject.Inject
 
 class ChatFactory @Inject constructor(
-    val resourceManager: ResourceManager
+    val resourceManager: ResourcesManagerCore
 ) {
     fun createFavEmoteUiModel(
         emoteId: String,

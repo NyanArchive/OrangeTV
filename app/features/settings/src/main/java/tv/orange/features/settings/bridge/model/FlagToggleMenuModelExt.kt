@@ -1,15 +1,17 @@
 package tv.orange.features.settings.bridge.model
 
-import tv.orange.core.ResourceManager
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 
 class FlagToggleMenuModelExt(
     private val flag: Flag
 ) : ToggleMenuModelExt(
-    primaryText = ResourceManager.get().getString(resName = flag.titleResName!!),
+    primaryText = flag.titleResName?.let { resName ->
+        ResourcesManagerCore.get().getString(resName = resName)
+    } ?: "<NULL>",
     secondaryText = flag.summaryResName?.let { id ->
-        ResourceManager.get().getString(id)
+        ResourcesManagerCore.get().getString(id)
     },
     auxiliaryText = null,
     state = flag.asBoolean(),

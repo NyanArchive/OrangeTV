@@ -1,0 +1,29 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageModel.smali b/smali_classes6/tv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageModel.smali
+--- a/smali_classes6/tv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageModel.smali
++++ b/smali_classes6/tv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageModel.smali
+@@ -369,10 +369,22 @@
+ .end method
+ 
+ .method public final getPinnedMessage()Ltv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageMessageModel;
+-    .locals 1
++    .registers 5
+ 
+-    .line 16
+-    iget-object v0, p0, Ltv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageModel;->pinnedMessage:Ltv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageMessageModel;
++    .line 13
++    invoke-static {}, Ltv/orange/features/chat/ChatHookProvider;->get()Ltv/orange/features/chat/ChatHookProvider;
++
++    move-result-object v0
++
++    iget-object v1, p0, Ltv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageModel;->pinnedMessage:Ltv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageMessageModel;
++
++    iget-object v2, p0, Ltv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageModel;->channel:Ltv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageChannelModel;
++
++    iget-object v3, p0, Ltv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageModel;->pinnedByUser:Ltv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessagePinnedByUserModel;
++
++    invoke-virtual {v0, v1, v2, v3}, Ltv/orange/features/chat/ChatHookProvider;->hookPinnedMessage(Ltv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageMessageModel;Ltv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageChannelModel;Ltv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessagePinnedByUserModel;)Ltv/twitch/android/shared/chat/network/creatorpinnedchatmessage/model/CreatorPinnedChatMessageMessageModel;
++
++    move-result-object v0
+ 
+     return-object v0
+ .end method

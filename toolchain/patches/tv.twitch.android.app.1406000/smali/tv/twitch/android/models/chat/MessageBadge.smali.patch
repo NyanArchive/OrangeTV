@@ -1,0 +1,9 @@
+diff --git a/smali_classes8/tv/twitch/android/models/chat/MessageBadge.smali b/smali_classes8/tv/twitch/android/models/chat/MessageBadge.smali
+--- a/smali_classes8/tv/twitch/android/models/chat/MessageBadge.smali
++++ b/smali_classes8/tv/twitch/android/models/chat/MessageBadge.smali
+@@ -1,4 +1,4 @@
+-.class public final Ltv/twitch/android/models/chat/MessageBadge;
++.class public Ltv/twitch/android/models/chat/MessageBadge;
+ .super Ljava/lang/Object;
+ .source "MessageBadge.kt"
+ 

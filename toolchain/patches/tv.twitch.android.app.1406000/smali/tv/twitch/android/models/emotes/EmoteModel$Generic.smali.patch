@@ -1,0 +1,18 @@
+diff --git a/smali_classes8/tv/twitch/android/models/emotes/EmoteModel$Generic.smali b/smali_classes8/tv/twitch/android/models/emotes/EmoteModel$Generic.smali
+--- a/smali_classes8/tv/twitch/android/models/emotes/EmoteModel$Generic.smali
++++ b/smali_classes8/tv/twitch/android/models/emotes/EmoteModel$Generic.smali
+@@ -1,4 +1,4 @@
+-.class public final Ltv/twitch/android/models/emotes/EmoteModel$Generic;
++.class public Ltv/twitch/android/models/emotes/EmoteModel$Generic;
+ .super Ltv/twitch/android/models/emotes/EmoteModel;
+ .source "EmoteModel.kt"
+ 
+@@ -9,7 +9,7 @@
+ .end annotation
+ 
+ .annotation system Ldalvik/annotation/InnerClass;
+-    accessFlags = 0x19
++    accessFlags = 0x9
+     name = "Generic"
+ .end annotation
+ 

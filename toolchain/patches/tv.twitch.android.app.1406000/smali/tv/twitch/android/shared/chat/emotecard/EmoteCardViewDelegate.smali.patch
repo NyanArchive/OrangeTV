@@ -1,0 +1,40 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/chat/emotecard/EmoteCardViewDelegate.smali b/smali_classes6/tv/twitch/android/shared/chat/emotecard/EmoteCardViewDelegate.smali
+--- a/smali_classes6/tv/twitch/android/shared/chat/emotecard/EmoteCardViewDelegate.smali
++++ b/smali_classes6/tv/twitch/android/shared/chat/emotecard/EmoteCardViewDelegate.smali
+@@ -559,7 +559,7 @@
+ .end method
+ 
+ .method private final renderEmoteCard(Ltv/twitch/android/shared/chat/emotecard/EmoteCardState$Loaded;)V
+-    .locals 12
++    .locals 13
+ 
+     .line 126
+     invoke-virtual {p1}, Ltv/twitch/android/shared/chat/emotecard/EmoteCardState$Loaded;->getEmoteCardUiModel()Ltv/twitch/android/shared/chat/emotecard/EmoteCardUiModel;
+@@ -715,13 +715,13 @@
+     :cond_2
+     invoke-virtual {p1}, Ltv/twitch/android/shared/chat/emotecard/EmoteCardUiModel;->getFollowButton()Ltv/twitch/android/shared/chat/emotecard/FollowButtonUiModel;
+ 
+-    move-result-object v0
++    move-result-object v12
+ 
+     new-instance v3, Ltv/twitch/android/shared/chat/emotecard/EmoteCardViewDelegate$renderEmoteCard$4;
+ 
+     invoke-direct {v3, p0}, Ltv/twitch/android/shared/chat/emotecard/EmoteCardViewDelegate$renderEmoteCard$4;-><init>(Ltv/twitch/android/shared/chat/emotecard/EmoteCardViewDelegate;)V
+ 
+-    invoke-static {v0, v3}, Ltv/twitch/android/util/NullableUtils;->ifNotNull(Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
++    invoke-static {v12, v3}, Ltv/twitch/android/util/NullableUtils;->ifNotNull(Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
+ 
+     move-result-object v0
+ 
+@@ -740,6 +740,11 @@
+ 
+     .line 175
+     :cond_3
++
++    iget-object v0, p0, Ltv/twitch/android/shared/chat/emotecard/EmoteCardViewDelegate;->followButton:Landroid/widget/LinearLayout;
++
++    invoke-static {v0, v12}, Ltv/orange/features/ui/UI;->maybeHideFollowButton(Landroid/view/View;Ltv/twitch/android/shared/chat/emotecard/FollowButtonUiModel;)V
++
+     invoke-virtual {p1}, Ltv/twitch/android/shared/chat/emotecard/EmoteCardUiModel;->getSubscribeButton()Ltv/twitch/android/shared/chat/emotecard/SubscribeButtonUiModel;
+ 
+     move-result-object v0

@@ -1,0 +1,26 @@
+diff --git a/smali_classes8/tv/twitch/android/models/UserModel.smali b/smali_classes8/tv/twitch/android/models/UserModel.smali
+--- a/smali_classes8/tv/twitch/android/models/UserModel.smali
++++ b/smali_classes8/tv/twitch/android/models/UserModel.smali
+@@ -557,10 +557,20 @@
+ .end method
+ 
+ .method public final getLogoURL()Ljava/lang/String;
+-    .locals 1
++    .locals 3
+ 
+     .line 20
+-    iget-object v0, p0, Ltv/twitch/android/models/UserModel;->logoURL:Ljava/lang/String;
++    invoke-static {}, Ltv/orange/features/stv/StvAvatars;->get()Ltv/orange/features/stv/StvAvatars;
++
++    move-result-object v0
++
++    iget-object v1, p0, Ltv/twitch/android/models/UserModel;->logoURL:Ljava/lang/String;
++
++    iget-object v2, p0, Ltv/twitch/android/models/UserModel;->name:Ljava/lang/String;
++
++    invoke-virtual {v0, v1, v2}, Ltv/orange/features/stv/StvAvatars;->hookProfileImageUrl(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
++
++    move-result-object v0
+ 
+     return-object v0
+ .end method

@@ -1,0 +1,128 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate.smali b/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate.smali
+--- a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate.smali
++++ b/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate.smali
+@@ -4,6 +4,7 @@
+ 
+ # interfaces
+ .implements Ltv/twitch/android/shared/player/overlay/IPlayerOverlay;
++.implements Ltv/orange/features/chapters/bridge/IChaptersDelegate;
+ 
+ 
+ # annotations
+@@ -86,6 +87,9 @@
+ 
+ .field private final twitchRadioButton:Landroid/widget/ImageView;
+ 
++.field private final orangeTimerButton:Landroid/widget/ImageView;
++
++.field private final chaptersButton:Landroid/widget/ImageView;
+ 
+ # direct methods
+ .method public static synthetic $r8$lambda$OHalcw30Kr4-HVrzEe4UL00NqNs(Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;Landroid/view/View;)V
+@@ -535,6 +539,38 @@
+ 
+     invoke-virtual {v1, v2}, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->setBottomPlayerControlListener(Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate$BottomPlayerControlListener;)V
+ 
++    move-object/from16 v0, p0
++
++    invoke-static {}, Ltv/orange/features/timer/SleepTimer;->get()Ltv/orange/features/timer/SleepTimer;
++
++    move-result-object v1
++
++    invoke-virtual {v1, v0}, Ltv/orange/features/timer/SleepTimer;->getTimerButton(Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;)Landroid/widget/ImageView;
++
++    move-result-object v1
++
++    iput-object v1, v0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->orangeTimerButton:Landroid/widget/ImageView;
++
++    move-object/from16 v0, p0
++
++    invoke-static {}, Ltv/orange/features/chapters/VodChapters;->get()Ltv/orange/features/chapters/VodChapters;
++
++    move-result-object v1
++
++    invoke-virtual {v1, v0}, Ltv/orange/features/chapters/VodChapters;->getChaptersButton(Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;)Landroid/widget/ImageView;
++
++    move-result-object v1
++
++    iput-object v1, v0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->chaptersButton:Landroid/widget/ImageView;
++
++    invoke-static {}, Ltv/orange/features/ui/UI;->get()Ltv/orange/features/ui/UI;
++
++    move-result-object v1
++
++    iget-object v2, v0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->createClipButton:Landroid/widget/ImageView;
++
++    invoke-virtual {v1, v2}, Ltv/orange/features/ui/UI;->maybeHideCreateClipButton(Landroid/widget/ImageView;)V
++
+     return-void
+ .end method
+ 
+@@ -1356,7 +1392,7 @@
+ .end method
+ 
+ .method public final setClipButtonState(Z)V
+-    .locals 1
++    .locals 2
+ 
+     .line 333
+     iget-object v0, p0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->createClipButton:Landroid/widget/ImageView;
+@@ -1368,6 +1404,14 @@
+ 
+     invoke-static {v0, p1}, Ltv/twitch/android/app/core/ViewExtensionsKt;->visibilityForBoolean(Landroid/view/View;Z)V
+ 
++    invoke-static {}, Ltv/orange/features/ui/UI;->get()Ltv/orange/features/ui/UI;
++
++    move-result-object v0
++
++    iget-object v1, p0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->createClipButton:Landroid/widget/ImageView;
++
++    invoke-virtual {v0, v1}, Ltv/orange/features/ui/UI;->maybeHideCreateClipButton(Landroid/widget/ImageView;)V
++
+     return-void
+ .end method
+ 
+@@ -1852,3 +1896,43 @@
+ 
+     return-void
+ .end method
++
++.method public onBindVodModel(Ltv/twitch/android/models/videos/VodModel;Ltv/twitch/android/shared/player/overlay/seekable/SeekbarOverlayPresenter;)V
++    .registers 5
++    .param p1, "vod"    # Ltv/twitch/android/models/videos/VodModel;
++        .annotation build Landroidx/annotation/NonNull;
++        .end annotation
++    .end param
++    .param p2, "presenter"    # Ltv/twitch/android/shared/player/overlay/seekable/SeekbarOverlayPresenter;
++        .annotation build Landroidx/annotation/NonNull;
++        .end annotation
++    .end param
++
++    .line 136
++    invoke-static {}, Ltv/orange/features/chapters/VodChapters;->get()Ltv/orange/features/chapters/VodChapters;
++
++    move-result-object v0
++
++    iget-object v1, p0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->chaptersButton:Landroid/widget/ImageView;
++
++    invoke-virtual {v0, v1, p1, p2}, Ltv/orange/features/chapters/VodChapters;->bindChaptersButton(Landroid/widget/ImageView;Ltv/twitch/android/models/videos/VodModel;Ltv/twitch/android/shared/player/overlay/seekable/SeekbarOverlayPresenter;)V
++
++    .line 137
++    return-void
++.end method
++
++.method public hideChaptersButton()V
++    .registers 3
++
++    .line 131
++    invoke-static {}, Ltv/orange/features/chapters/VodChapters;->get()Ltv/orange/features/chapters/VodChapters;
++
++    move-result-object v0
++
++    iget-object v1, p0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->chaptersButton:Landroid/widget/ImageView;
++
++    invoke-virtual {v0, v1}, Ltv/orange/features/chapters/VodChapters;->hideChaptersButton(Landroid/widget/ImageView;)V
++
++    .line 132
++    return-void
++.end method

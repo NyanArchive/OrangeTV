@@ -1,0 +1,81 @@
+diff --git a/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleController.smali b/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleController.smali
+--- a/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleController.smali
++++ b/smali_classes4/tv/twitch/android/app/core/ApplicationLifecycleController.smali
+@@ -595,6 +595,12 @@
+ 
+     invoke-virtual {v0}, Ltv/twitch/android/shared/stream/preloader/StreamPreloader;->clearAll()V
+ 
++    invoke-static {}, Ltv/orange/core/Core;->get()Ltv/orange/core/Core;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Ltv/orange/core/Core;->onAllComponentDestroyed()V
++
+     :cond_0
+     return-void
+ .end method
+@@ -650,6 +656,12 @@
+ 
+     invoke-interface {v0}, Ltv/twitch/android/network/clientintegrity/ClientIntegrityTokenManager;->cleanResources()V
+ 
++    invoke-static {}, Ltv/orange/core/Core;->get()Ltv/orange/core/Core;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Ltv/orange/core/Core;->onAllComponentStopped()V
++
+     :cond_0
+     return-void
+ .end method
+@@ -784,6 +796,12 @@
+ 
+     invoke-virtual {p1}, Ltv/twitch/android/shared/badges/ChatBadgeProvider;->updateGlobalBadges()V
+ 
++    invoke-static {}, Ltv/orange/core/Core;->get()Ltv/orange/core/Core;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Ltv/orange/core/Core;->onSdkResume()V
++
+     return-void
+ .end method
+ 
+@@ -913,6 +931,12 @@
+ 
+     invoke-interface {v0, v1}, Ltv/twitch/android/network/clientintegrity/ClientIntegrityTokenManager;->fetchNewToken(Ltv/twitch/android/network/clientintegrity/Scope;)V
+ 
++    invoke-static {}, Ltv/orange/core/Core;->get()Ltv/orange/core/Core;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Ltv/orange/core/Core;->onAccountLogout()V
++
+     return-void
+ .end method
+ 
+@@ -1120,6 +1144,12 @@
+     .line 232
+     invoke-direct {p0}, Ltv/twitch/android/app/core/ApplicationLifecycleController;->initSdk()V
+ 
++    invoke-static {}, Ltv/orange/core/Core;->get()Ltv/orange/core/Core;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Ltv/orange/core/Core;->onFirstActivityCreated()V
++
+     :cond_1
+     return-void
+ .end method
+@@ -1462,6 +1492,12 @@
+ 
+     invoke-interface {v0, p1}, Ltv/twitch/android/network/clientintegrity/ClientIntegrityTokenManager;->fetchNewToken(Ltv/twitch/android/network/clientintegrity/Scope;)V
+ 
++    invoke-static {}, Ltv/orange/core/Core;->get()Ltv/orange/core/Core;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Ltv/orange/core/Core;->onFirstActivityStarted()V
++
+     :cond_3
+     return-void
+ .end method

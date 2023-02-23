@@ -1,0 +1,106 @@
+diff --git a/smali/androidx/work/ListenableWorker.smali b/smali/androidx/work/ListenableWorker.smali
+--- a/smali/androidx/work/ListenableWorker.smali
++++ b/smali/androidx/work/ListenableWorker.smali
+@@ -284,3 +284,102 @@
+ 
+     return-void
+ .end method
++
++.method public final setForegroundAsync(Landroidx/work/ForegroundInfo;)Lcom/google/common/util/concurrent/ListenableFuture;
++    .registers 5
++    .param p1, "foregroundInfo"    # Landroidx/work/ForegroundInfo;
++    .annotation system Ldalvik/annotation/MethodParameters;
++        accessFlags = {
++            0x0
++        }
++        names = {
++            "foregroundInfo"
++        }
++    .end annotation
++
++    .annotation system Ldalvik/annotation/Signature;
++        value = {
++            "(",
++            "Landroidx/work/ForegroundInfo;",
++            ")",
++            "Lcom/google/common/util/concurrent/ListenableFuture<",
++            "Ljava/lang/Void;",
++            ">;"
++        }
++    .end annotation
++
++    .line 233
++    const/4 v0, 0x1
++
++    iput-boolean v0, p0, Landroidx/work/ListenableWorker;->mRunInForeground:Z
++
++    .line 234
++    iget-object v0, p0, Landroidx/work/ListenableWorker;->mWorkerParams:Landroidx/work/WorkerParameters;
++
++    invoke-virtual {v0}, Landroidx/work/WorkerParameters;->getForegroundUpdater()Landroidx/work/ForegroundUpdater;
++
++    move-result-object v0
++
++    .line 235
++    invoke-virtual {p0}, Landroidx/work/ListenableWorker;->getApplicationContext()Landroid/content/Context;
++
++    move-result-object v1
++
++    invoke-virtual {p0}, Landroidx/work/ListenableWorker;->getId()Ljava/util/UUID;
++
++    move-result-object v2
++
++    invoke-interface {v0, v1, v2, p1}, Landroidx/work/ForegroundUpdater;->setForegroundAsync(Landroid/content/Context;Ljava/util/UUID;Landroidx/work/ForegroundInfo;)Lcom/google/common/util/concurrent/ListenableFuture;
++
++    move-result-object v0
++
++    .line 234
++    return-object v0
++.end method
++
++.method public setProgressAsync(Landroidx/work/Data;)Lcom/google/common/util/concurrent/ListenableFuture;
++    .registers 5
++    .param p1, "data"    # Landroidx/work/Data;
++    .annotation system Ldalvik/annotation/MethodParameters;
++        accessFlags = {
++            0x0
++        }
++        names = {
++            "data"
++        }
++    .end annotation
++
++    .annotation system Ldalvik/annotation/Signature;
++        value = {
++            "(",
++            "Landroidx/work/Data;",
++            ")",
++            "Lcom/google/common/util/concurrent/ListenableFuture<",
++            "Ljava/lang/Void;",
++            ">;"
++        }
++    .end annotation
++
++    .line 205
++    iget-object v0, p0, Landroidx/work/ListenableWorker;->mWorkerParams:Landroidx/work/WorkerParameters;
++
++    invoke-virtual {v0}, Landroidx/work/WorkerParameters;->getProgressUpdater()Landroidx/work/ProgressUpdater;
++
++    move-result-object v0
++
++    .line 206
++    invoke-virtual {p0}, Landroidx/work/ListenableWorker;->getApplicationContext()Landroid/content/Context;
++
++    move-result-object v1
++
++    invoke-virtual {p0}, Landroidx/work/ListenableWorker;->getId()Ljava/util/UUID;
++
++    move-result-object v2
++
++    invoke-interface {v0, v1, v2, p1}, Landroidx/work/ProgressUpdater;->updateProgress(Landroid/content/Context;Ljava/util/UUID;Landroidx/work/Data;)Lcom/google/common/util/concurrent/ListenableFuture;
++
++    move-result-object v0
++
++    .line 205
++    return-object v0
++.end method

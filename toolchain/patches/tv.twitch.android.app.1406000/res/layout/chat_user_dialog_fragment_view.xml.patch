@@ -1,0 +1,11 @@
+diff --git a/res/layout/chat_user_dialog_fragment_view.xml b/res/layout/chat_user_dialog_fragment_view.xml
+--- a/res/layout/chat_user_dialog_fragment_view.xml
++++ b/res/layout/chat_user_dialog_fragment_view.xml
+@@ -5,6 +5,7 @@
+         <LinearLayout android:orientation="vertical" android:id="@id/dialog_content" android:paddingTop="4.0dip" android:paddingBottom="4.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content">
+             <TextView android:textSize="@dimen/font_xlarge" android:textColor="@color/text_base" android:ellipsize="end" android:gravity="center_vertical" android:id="@id/username" android:paddingLeft="@dimen/default_margin_large" android:paddingTop="@dimen/default_margin" android:paddingRight="@dimen/default_margin_large" android:paddingBottom="@dimen/default_margin" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="" android:maxLines="1" style="@style/SemiboldFont" />
+             <TextView android:textColor="@color/text_alt" android:id="@id/view_info_text" android:text="@string/view_info" style="@style/ChatUserActionsItemStyle" />
++            <TextView android:textColor="@color/text_alt" android:id="@+id/chat_user_dialog_fragment_view__local_logs" android:text="@string/orange_chat_user_dialog_fragment_view_local_logs" style="@style/ChatUserActionsItemStyle" />
+             <TextView android:textColor="@color/text_alt" android:id="@id/follow_text" style="@style/ChatUserActionsItemStyle" />
+             <TextView android:textColor="@color/enabled_text_color_selector" android:id="@id/gift_sub_text" android:text="@string/gift_a_subscription" style="@style/ChatUserActionsItemStyle" />
+             <TextView android:textColor="@color/text_alt" android:id="@id/mention_text" android:text="@string/chat_mention" style="@style/ChatUserActionsItemStyle" />

@@ -1,0 +1,49 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate.smali b/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate.smali
+--- a/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate.smali
++++ b/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate.smali
+@@ -46,10 +46,12 @@
+ 
+ .field private final whisperText:Landroid/widget/TextView;
+ 
++.field private final localLogs:Landroid/widget/TextView;
++
+ 
+ # direct methods
+ .method public constructor <init>(Landroid/content/Context;Landroid/view/View;Ltv/twitch/android/shared/chat/chatuserdialog/OptionsToShow;)V
+-    .locals 1
++    .locals 2
+ 
+     const-string v0, "context"
+ 
+@@ -319,6 +321,18 @@
+ 
+     iput-object p1, p0, Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate;->dialogContent:Landroid/view/ViewGroup;
+ 
++    invoke-static {}, Ltv/orange/features/logs/ChatLogs;->get()Ltv/orange/features/logs/ChatLogs;
++
++    move-result-object v0
++
++    iget-object v1, p0, Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate;->root:Landroid/view/View;
++
++    invoke-virtual {v0, v1}, Ltv/orange/features/logs/ChatLogs;->injectLocalLogsButton(Landroid/view/View;)Landroid/widget/TextView;
++
++    move-result-object v0
++
++    iput-object v0, p0, Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate;->localLogs:Landroid/widget/TextView;
++
+     return-void
+ .end method
+ 
+@@ -940,3 +954,12 @@
+ 
+     return-void
+ .end method
++
++.method public final getLocalLogs()Landroid/widget/TextView;
++    .registers 2
++
++    .line 26
++    iget-object v0, p0, Ltv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate;->localLogs:Landroid/widget/TextView;
++
++    return-object v0
++.end method

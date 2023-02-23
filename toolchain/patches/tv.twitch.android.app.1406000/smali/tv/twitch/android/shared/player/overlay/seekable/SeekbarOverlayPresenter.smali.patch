@@ -1,0 +1,20 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/seekable/SeekbarOverlayPresenter.smali b/smali_classes6/tv/twitch/android/shared/player/overlay/seekable/SeekbarOverlayPresenter.smali
+--- a/smali_classes6/tv/twitch/android/shared/player/overlay/seekable/SeekbarOverlayPresenter.smali
++++ b/smali_classes6/tv/twitch/android/shared/player/overlay/seekable/SeekbarOverlayPresenter.smali
+@@ -343,3 +343,16 @@
+     :cond_0
+     return-void
+ .end method
++
++.method public xSeekTo(I)V
++    .registers 3
++    .param p1, "seconds"    # I
++
++    .line 9
++    iget-object v0, p0, Ltv/twitch/android/shared/player/overlay/seekable/SeekbarOverlayPresenter;->seekbarOverlayViewDelegate:Ltv/twitch/android/shared/player/overlay/seekable/SeekbarOverlayViewDelegate;
++
++    invoke-virtual {v0, p1}, Ltv/twitch/android/shared/player/overlay/seekable/SeekbarOverlayViewDelegate;->xSeekTo(I)V
++
++    .line 10
++    return-void
++.end method

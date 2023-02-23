@@ -1,0 +1,16 @@
+diff --git a/res/layout/stream_settings_fragment.xml b/res/layout/stream_settings_fragment.xml
+--- a/res/layout/stream_settings_fragment.xml
++++ b/res/layout/stream_settings_fragment.xml
+@@ -24,6 +24,12 @@
+                         <TextView android:textSize="@dimen/font_small" android:textColor="@color/text_alt_2" android:ellipsize="end" android:id="@id/do_not_disturb_subtext" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="@string/private_callout_do_not_disturb_subtext" android:maxLines="3" twitch:layout_constraintBottom_toBottomOf="parent" twitch:layout_constraintEnd_toStartOf="@id/do_not_disturb_switch" twitch:layout_constraintStart_toStartOf="parent" twitch:layout_constraintTop_toBottomOf="@id/do_not_disturb_text" />
+                         <androidx.appcompat.widget.SwitchCompat android:id="@id/do_not_disturb_switch" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/stream_settings_content_margin" twitch:layout_constraintEnd_toEndOf="parent" twitch:layout_constraintStart_toEndOf="@id/do_not_disturb_text" twitch:layout_constraintTop_toTopOf="parent" />
+                     </androidx.constraintlayout.widget.ConstraintLayout>
++                    <include android:id="@+id/stream_settings_fragment__chomment_seeker_header" layout="@layout/settings_section_item" />
++                    <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/stream_settings_fragment__chomment_seeker_wrapper" android:background="?selectableItemBackground" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/stream_settings_content_margin"
++                      xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
++                        <SeekBar android:id="@+id/stream_settings_fragment__chomment_seeker" android:layout_width="0.0dip" android:layout_height="wrap_content" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toStartOf="@id/stream_settings_fragment__chomment_seeker_value" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
++                        <TextView android:id="@+id/stream_settings_fragment__chomment_seeker_value" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/stream_settings_content_margin" android:minWidth="32.0dip" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent" />
++                    </androidx.constraintlayout.widget.ConstraintLayout>
+                 </LinearLayout>
+                 <include android:id="@id/chat_options_header" layout="@layout/settings_section_item" />
+                 <FrameLayout android:orientation="vertical" android:id="@id/chat_filters_wrapper" android:background="?selectableItemBackground" android:layout_width="fill_parent" android:layout_height="@dimen/selectable_item_row_height">

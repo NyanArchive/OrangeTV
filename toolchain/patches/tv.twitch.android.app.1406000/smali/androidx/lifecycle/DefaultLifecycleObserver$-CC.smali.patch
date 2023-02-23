@@ -1,0 +1,13 @@
+diff --git a/smali/androidx/lifecycle/DefaultLifecycleObserver$-CC.smali b/smali/androidx/lifecycle/DefaultLifecycleObserver$-CC.smali
+--- a/smali/androidx/lifecycle/DefaultLifecycleObserver$-CC.smali
++++ b/smali/androidx/lifecycle/DefaultLifecycleObserver$-CC.smali
+@@ -39,3 +39,9 @@
+ 
+     return-void
+ .end method
++
++.method public static $default$onResume(Landroidx/lifecycle/DefaultLifecycleObserver;Landroidx/lifecycle/LifecycleOwner;)V
++    .locals 0
++
++    return-void
++.end method

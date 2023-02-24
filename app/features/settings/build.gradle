@@ -1,10 +1,6 @@
-plugins {
-    id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
-}
-
 android {
+    namespace 'tv.orange.features.settings'
+
     compileSdk 33
 
     defaultConfig {
@@ -12,27 +8,23 @@ android {
         targetSdk 33
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-        }
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
 }
 
 dependencies {
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
     implementation project(path: ':core')
     implementation project(path: ':components:highlighter')
     implementation project(path: ':components:blacklist')
 
     implementation project(path: ':features:updater')
     implementation project(path: ':features:tracking')
-
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

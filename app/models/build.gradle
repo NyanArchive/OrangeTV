@@ -1,6 +1,4 @@
 plugins {
-    id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
     id 'com.apollographql.apollo3' version "$apollo_version"
 }
 
@@ -12,6 +10,8 @@ apollo {
 }
 
 android {
+    namespace 'tv.orange.models'
+
     compileSdk 33
 
     defaultConfig {
@@ -19,15 +19,11 @@ android {
         targetSdk 33
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-        }
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -36,14 +32,18 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':TwitchRes')
+
+    api "com.google.android.material:material:$material_version"
+
     api "com.google.code.gson:gson:$gson_version"
     api "com.apollographql.apollo3:apollo-runtime:$apollo_version"
+
     api "com.google.dagger:dagger:$dagger_version"
     api "com.google.dagger:dagger-android-support:$dagger_version"
+
     api "io.reactivex.rxjava2:rxjava:$rxjava2_version"
+
     api "androidx.recyclerview:recyclerview:$recycler_version"
     api "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
-
-    implementation project(path: ':TwitchRes')
-    implementation "com.google.android.material:material:$material_version"
 }

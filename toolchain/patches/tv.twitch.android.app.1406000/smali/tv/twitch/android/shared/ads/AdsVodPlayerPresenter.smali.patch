@@ -1,0 +1,20 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/ads/AdsVodPlayerPresenter.smali b/smali_classes5/tv/twitch/android/shared/ads/AdsVodPlayerPresenter.smali
+--- a/smali_classes5/tv/twitch/android/shared/ads/AdsVodPlayerPresenter.smali
++++ b/smali_classes5/tv/twitch/android/shared/ads/AdsVodPlayerPresenter.smali
+@@ -971,16 +971,6 @@
+ .method static synthetic requestAd$default(Ltv/twitch/android/shared/ads/AdsVodPlayerPresenter;Ltv/twitch/android/models/ads/ClientAdRequestMetadata;ZLtv/twitch/android/shared/ads/models/AdOpportunityStartContext;ILjava/lang/Object;)V
+     .locals 0
+ 
+-    and-int/lit8 p4, p4, 0x2
+-
+-    if-eqz p4, :cond_0
+-
+-    const/4 p2, 0x0
+-
+-    .line 295
+-    :cond_0
+-    invoke-direct {p0, p1, p2, p3}, Ltv/twitch/android/shared/ads/AdsVodPlayerPresenter;->requestAd(Ltv/twitch/android/models/ads/ClientAdRequestMetadata;ZLtv/twitch/android/shared/ads/models/AdOpportunityStartContext;)V
+-
+     return-void
+ .end method
+ 

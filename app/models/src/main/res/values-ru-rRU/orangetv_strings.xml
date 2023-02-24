@@ -186,4 +186,5 @@
     <string name="orange_settings_disable_sentry">Отключить SentrySDK</string>
     <string name="orange_settings_hide_player_live_share_button">Скрыть кнопку «Поделиться» для трансляций</string>
     <string name="orange_settings_bttv_webp">Поддержка WEBP смайликов</string>
+    <string name="orange_settings_fix_korea">Обход Корейского CDN</string>
 </resources>

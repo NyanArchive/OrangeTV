@@ -184,4 +184,5 @@
     <string name="orange_settings_disable_sentry">Desactivar SentrySDK</string>
     <string name="orange_settings_hide_player_live_share_button">Ocultar botón «Compartir» para directos</string>
     <string name="orange_settings_bttv_webp">Soporte para emotes WEBP</string>
+    <string name="orange_settings_fix_korea">Bypass Corea CDN</string>
 </resources>

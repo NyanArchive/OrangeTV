@@ -184,4 +184,5 @@
     <string name="orange_settings_disable_sentry">Zakázat SentrySDK</string>
     <string name="orange_settings_hide_player_live_share_button">Skrýt tlačítko «Sdílet» pro živé streamy</string>
     <string name="orange_settings_bttv_webp">Podpora WEBP emotů</string>
+    <string name="orange_settings_fix_korea">Obejít Korejský CDN</string>
 </resources>

@@ -69,6 +69,7 @@
     <string name="orange_settings_hide_top_chat_panel_vods">Chat Kopfzeile bei Videos ausblenden</string>
     <string name="orange_settings_pronouns">Pronomen</string>
     <string name="orange_settings_auto_hide_message_input">Nachrichteneingabefeld im Querformat ausblenden</string>
+    <string name="orange_settings_hide_message_input">Nachrichteneingabe ausblenden</string>
     <string name="orange_settings_landscape_chat_opacity">Durchsichtigkeit des Chats im Querformat</string>
     <string name="orange_chapters_unknown">Kapitel</string>
     <string name="orange_settings_emote_quality">Emote Größe</string>
@@ -182,4 +183,6 @@
     <string name="orange_settings_hide_player_create_clip_button">«Clip erstellen Button» ausblenden</string>
     <string name="orange_settings_disable_sentry">SentrySDK deaktivieren</string>
     <string name="orange_settings_hide_player_live_share_button">«Teilen Button» für Live Streams ausblenden</string>
+    <string name="orange_settings_bttv_webp">Unterstützung für WEBP Emotes</string>
+    <string name="orange_settings_fix_korea">Umgehung von Korea CDN</string>
 </resources>

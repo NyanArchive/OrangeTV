@@ -184,4 +184,5 @@
     <string name="orange_settings_disable_sentry">Απενεργοποίηση SentrySDK</string>
     <string name="orange_settings_hide_player_live_share_button">Απόκρυψη κουμπιού «Μοιραστείτε» για Live streams</string>
     <string name="orange_settings_bttv_webp">Υποστήριξη για WEBP emotes</string>
+    <string name="orange_settings_fix_korea">Παράκαμψη Κορέας CDN</string>
 </resources>

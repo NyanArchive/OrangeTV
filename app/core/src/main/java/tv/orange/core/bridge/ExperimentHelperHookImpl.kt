@@ -22,12 +22,6 @@ class ExperimentHelperHookImpl(private val org: IExperimentHelper) : ExperimentH
         }
     }
 
-    override fun isFeatureFlagEnabled(p0: RemoteConfigurable): Boolean {
-        return org.isFeatureFlagEnabledOrg(p0).also { res ->
-            LoggerImpl.devDebug { "${p0.displayName} --> $p0, res --> $res" }
-        }
-    }
-
     override fun isInGroupForMultiVariantExperiment(p0: Experiment, p1: String): Boolean {
         return when (p0) {
             Experiment.BILLING_UNAVAILABLE_DIALOG,
@@ -70,7 +64,8 @@ class ExperimentHelperHookImpl(private val org: IExperimentHelper) : ExperimentH
             Experiment.PIP_SMOOTH_ENTER,
             Experiment.EXPANDABLE_ADS -> false
 
-            Experiment.ADS_CLIENT_AD_ALLOCATOR -> true
+            Experiment.ADS_CLIENT_AD_ALLOCATOR,
+            Experiment.ADS_RX_CLIENT_VIDEO_AD_PRESENTER -> true
 
             Experiment.CHAT_SETTINGS -> Flag.CHAT_SETTINGS.asBoolean()
 

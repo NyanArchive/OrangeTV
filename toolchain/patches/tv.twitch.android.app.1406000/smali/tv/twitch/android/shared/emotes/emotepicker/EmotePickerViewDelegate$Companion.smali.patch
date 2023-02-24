@@ -1,6 +1,6 @@
-diff --git a/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate$Companion.smali b/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate$Companion.smali
---- a/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate$Companion.smali
-+++ b/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate$Companion.smali
+diff --git a/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate$Companion.smali b/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate$Companion.smali
+--- a/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate$Companion.smali
++++ b/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate$Companion.smali
 @@ -128,10 +128,17 @@
  
      move-result-object p2

@@ -1,4 +1,4 @@
-package tv.twitch.android.api;
+package tv.twitch.android.shared.emotes.network;
 
 import io.reactivex.Single;
 import tv.orange.features.chat.ChatHookProvider;

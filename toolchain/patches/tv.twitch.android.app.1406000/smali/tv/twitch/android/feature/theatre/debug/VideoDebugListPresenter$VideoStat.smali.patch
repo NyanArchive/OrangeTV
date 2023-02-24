@@ -1,6 +1,6 @@
-diff --git a/smali_classes5/tv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat.smali b/smali_classes5/tv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat.smali
---- a/smali_classes5/tv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat.smali
-+++ b/smali_classes5/tv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat.smali
+diff --git a/smali_classes4/tv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat.smali b/smali_classes4/tv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat.smali
+--- a/smali_classes4/tv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat.smali
++++ b/smali_classes4/tv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat.smali
 @@ -1,6 +1,7 @@
 +###### Class tv.twitch.android.feature.theatre.debug.VideoDebugListPresenter$VideoStat (tv.twitch.android.feature.theatre.debug.VideoDebugListPresenter$VideoStat)
  .class public final enum Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$VideoStat;

@@ -1,6 +1,6 @@
-diff --git a/smali_classes5/tv/twitch/android/feature/theatre/LandscapeChatLayoutController.smali b/smali_classes5/tv/twitch/android/feature/theatre/LandscapeChatLayoutController.smali
---- a/smali_classes5/tv/twitch/android/feature/theatre/LandscapeChatLayoutController.smali
-+++ b/smali_classes5/tv/twitch/android/feature/theatre/LandscapeChatLayoutController.smali
+diff --git a/smali_classes4/tv/twitch/android/feature/theatre/LandscapeChatLayoutController.smali b/smali_classes4/tv/twitch/android/feature/theatre/LandscapeChatLayoutController.smali
+--- a/smali_classes4/tv/twitch/android/feature/theatre/LandscapeChatLayoutController.smali
++++ b/smali_classes4/tv/twitch/android/feature/theatre/LandscapeChatLayoutController.smali
 @@ -996,6 +996,10 @@
      :goto_0
      iget-object v1, p0, Ltv/twitch/android/feature/theatre/LandscapeChatLayoutController;->mLandscapeContainer:Landroid/view/ViewGroup;

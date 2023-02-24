@@ -1,7 +1,7 @@
-diff --git a/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/adapter/EmoteAdapterItem.smali b/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/adapter/EmoteAdapterItem.smali
---- a/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/adapter/EmoteAdapterItem.smali
-+++ b/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/adapter/EmoteAdapterItem.smali
-@@ -511,6 +511,19 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/adapter/EmoteAdapterItem.smali b/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/adapter/EmoteAdapterItem.smali
+--- a/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/adapter/EmoteAdapterItem.smali
++++ b/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/adapter/EmoteAdapterItem.smali
+@@ -443,6 +443,19 @@
  
      check-cast v3, Ltv/twitch/android/shared/emotes/emotepicker/models/EmoteUiModel;
  
@@ -21,7 +21,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/adapter/
      invoke-virtual {v3}, Ltv/twitch/android/shared/emotes/emotepicker/models/EmoteUiModel;->getId()Ljava/lang/String;
  
      move-result-object v3
-@@ -519,6 +532,7 @@
+@@ -451,6 +464,7 @@
  
      move-result-object v1
  

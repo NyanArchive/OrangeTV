@@ -1,6 +1,6 @@
-diff --git a/smali_classes6/tv/twitch/android/shared/chat/emotecard/EmoteCardPresenter$bind$1.smali b/smali_classes6/tv/twitch/android/shared/chat/emotecard/EmoteCardPresenter$bind$1.smali
---- a/smali_classes6/tv/twitch/android/shared/chat/emotecard/EmoteCardPresenter$bind$1.smali
-+++ b/smali_classes6/tv/twitch/android/shared/chat/emotecard/EmoteCardPresenter$bind$1.smali
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/emotecard/EmoteCardPresenter$bind$1.smali b/smali_classes5/tv/twitch/android/shared/chat/emotecard/EmoteCardPresenter$bind$1.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/emotecard/EmoteCardPresenter$bind$1.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/emotecard/EmoteCardPresenter$bind$1.smali
 @@ -64,7 +64,7 @@
  .end method
  

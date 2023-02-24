@@ -1,6 +1,6 @@
-diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory.smali b/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory.smali
---- a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory.smali
-+++ b/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory.smali
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory.smali b/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory.smali
 @@ -37,6 +37,8 @@
  
  .field private final webViewDialogRouter:Ltv/twitch/android/routing/routers/WebViewDialogRouter;
@@ -47,7 +47,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMes
  
      invoke-virtual {p1}, Ltv/twitch/android/models/chat/MessageBadge;->getName()Ljava/lang/String;
 @@ -1961,6 +1984,10 @@
- .method private final usernameSpannable(Ltv/twitch/android/provider/chat/ChatMessageInterface;ILtv/twitch/android/shared/chat/chatsource/IClickableUsernameSpanListener;ZLjava/lang/String;Ljava/lang/String;)Ljava/lang/CharSequence;
+ .method private final usernameSpannable(Ltv/twitch/android/shared/chat/pub/ChatMessageInterface;ILtv/twitch/android/shared/chat/chatsource/IClickableUsernameSpanListener;ZLjava/lang/String;Ljava/lang/String;)Ljava/lang/CharSequence;
      .locals 12
  
 +    invoke-static {p2}, Ltv/orange/features/chat/ChatHookProvider;->fixUsernameSpanColor(I)I
@@ -69,7 +69,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
 +    move/from16 v2, p5
 +
-+    invoke-virtual {v0, v1, v2}, Ltv/orange/features/chat/ChatHookProvider;->hookMessageInterface(Ltv/twitch/android/provider/chat/ChatMessageInterface;I)Ltv/twitch/android/provider/chat/ChatMessageInterface;
++    invoke-virtual {v0, v1, v2}, Ltv/orange/features/chat/ChatHookProvider;->hookMessageInterface(Ltv/twitch/android/shared/chat/pub/ChatMessageInterface;I)Ltv/twitch/android/shared/chat/pub/ChatMessageInterface;
 +
 +    move-result-object p1
 +
@@ -81,7 +81,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMes
      invoke-static {v12, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
  
 -    .line 151
--    invoke-interface/range {p1 .. p1}, Ltv/twitch/android/provider/chat/ChatMessageInterface;->isDeleted()Z
+-    invoke-interface/range {p1 .. p1}, Ltv/twitch/android/shared/chat/pub/ChatMessageInterface;->isDeleted()Z
 -
 -    move-result v0
 -
@@ -135,7 +135,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
 +    check-cast v0, Ltv/orange/features/emotes/bridge/EmoteToken;
 +
-+    invoke-direct {v6, v0, v7, v10}, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;->emoteSpannable(Ltv/orange/features/emotes/bridge/EmoteToken;Ltv/twitch/android/provider/chat/ChatMessageInterface;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)Ljava/lang/CharSequence;
++    invoke-direct {v6, v0, v7, v10}, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;->emoteSpannable(Ltv/orange/features/emotes/bridge/EmoteToken;Ltv/twitch/android/shared/chat/pub/ChatMessageInterface;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)Ljava/lang/CharSequence;
 +
 +    move-result-object v0
 +
@@ -150,7 +150,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
 +    check-cast v0, Ltv/orange/features/chat/bridge/StackEmoteToken;
 +
-+    invoke-direct {v6, v0, v7, v9, v10}, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;->stackEmoteSpannable(Ltv/orange/features/chat/bridge/StackEmoteToken;Ltv/twitch/android/provider/chat/ChatMessageInterface;Ljava/lang/Integer;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)Ljava/lang/CharSequence;
++    invoke-direct {v6, v0, v7, v9, v10}, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;->stackEmoteSpannable(Ltv/orange/features/chat/bridge/StackEmoteToken;Ltv/twitch/android/shared/chat/pub/ChatMessageInterface;Ljava/lang/Integer;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)Ljava/lang/CharSequence;
 +
 +    move-result-object v0
 +
@@ -207,15 +207,15 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +    return-object v0
 +.end method
 +
-+.method private emoteSpannable(Ltv/orange/features/emotes/bridge/EmoteToken;Ltv/twitch/android/provider/chat/ChatMessageInterface;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)Ljava/lang/CharSequence;
++.method private emoteSpannable(Ltv/orange/features/emotes/bridge/EmoteToken;Ltv/twitch/android/shared/chat/pub/ChatMessageInterface;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)Ljava/lang/CharSequence;
 +    .registers 11
 +    .param p1, "token"    # Ltv/orange/features/emotes/bridge/EmoteToken;
-+    .param p2, "cmi"    # Ltv/twitch/android/provider/chat/ChatMessageInterface;
++    .param p2, "cmi"    # Ltv/twitch/android/shared/chat/pub/ChatMessageInterface;
 +    .annotation system Ldalvik/annotation/Signature;
 +        value = {
 +            "(",
 +            "Ltv/orange/features/emotes/bridge/EmoteToken;",
-+            "Ltv/twitch/android/provider/chat/ChatMessageInterface;",
++            "Ltv/twitch/android/shared/chat/pub/ChatMessageInterface;",
 +            "Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher",
 +            "<",
 +            "Ltv/twitch/android/shared/chat/util/ChatItemClickEvent;",
@@ -292,7 +292,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
 +    move-result-object v2
 +
-+    invoke-direct {v0, v2, p2, p3}, Ltv/twitch/android/shared/chat/util/ClickableEmoteSpan;-><init>(Ljava/lang/String;Ltv/twitch/android/provider/chat/ChatMessageInterface;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)V
++    invoke-direct {v0, v2, p2, p3}, Ltv/twitch/android/shared/chat/util/ClickableEmoteSpan;-><init>(Ljava/lang/String;Ltv/twitch/android/shared/chat/pub/ChatMessageInterface;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)V
 +
 +    const/4 v2, 0x0
 +
@@ -311,16 +311,16 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +    return-object v6
 +.end method
 +
-+.method private stackEmoteSpannable(Ltv/orange/features/chat/bridge/StackEmoteToken;Ltv/twitch/android/provider/chat/ChatMessageInterface;Ljava/lang/Integer;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)Ljava/lang/CharSequence;
++.method private stackEmoteSpannable(Ltv/orange/features/chat/bridge/StackEmoteToken;Ltv/twitch/android/shared/chat/pub/ChatMessageInterface;Ljava/lang/Integer;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)Ljava/lang/CharSequence;
 +    .registers 20
 +    .param p1, "stackEmoteToken"    # Ltv/orange/features/chat/bridge/StackEmoteToken;
-+    .param p2, "chatMessageInterface"    # Ltv/twitch/android/provider/chat/ChatMessageInterface;
++    .param p2, "chatMessageInterface"    # Ltv/twitch/android/shared/chat/pub/ChatMessageInterface;
 +    .param p3, "num"    # Ljava/lang/Integer;
 +    .annotation system Ldalvik/annotation/Signature;
 +        value = {
 +            "(",
 +            "Ltv/orange/features/chat/bridge/StackEmoteToken;",
-+            "Ltv/twitch/android/provider/chat/ChatMessageInterface;",
++            "Ltv/twitch/android/shared/chat/pub/ChatMessageInterface;",
 +            "Ljava/lang/Integer;",
 +            "Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher",
 +            "<",
@@ -410,7 +410,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
 +    move-object/from16 v2, p4
 +
-+    invoke-direct {p0, v3, v0, v1, v2}, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;->emoteSpannable(Ltv/twitch/android/models/chat/MessageToken$EmoticonToken;Ltv/twitch/android/provider/chat/ChatMessageInterface;Ljava/lang/Integer;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)Ljava/lang/CharSequence;
++    invoke-direct {p0, v3, v0, v1, v2}, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;->emoteSpannable(Ltv/twitch/android/models/chat/MessageToken$EmoticonToken;Ltv/twitch/android/shared/chat/pub/ChatMessageInterface;Ljava/lang/Integer;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)Ljava/lang/CharSequence;
 +
 +    move-result-object v10
 +
@@ -543,7 +543,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
 +    move-object/from16 v1, p4
 +
-+    invoke-direct {v3, v5, v0, v1}, Ltv/twitch/android/shared/chat/util/ClickableEmoteSpan;-><init>(Ljava/lang/String;Ltv/twitch/android/provider/chat/ChatMessageInterface;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)V
++    invoke-direct {v3, v5, v0, v1}, Ltv/twitch/android/shared/chat/util/ClickableEmoteSpan;-><init>(Ljava/lang/String;Ltv/twitch/android/shared/chat/pub/ChatMessageInterface;Ltv/twitch/android/core/mvp/viewdelegate/EventDispatcher;)V
 +
 +    const/4 v5, 0x0
 +

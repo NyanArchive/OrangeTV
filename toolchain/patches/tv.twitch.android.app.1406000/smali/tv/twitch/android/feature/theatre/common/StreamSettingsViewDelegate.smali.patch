@@ -1,6 +1,6 @@
-diff --git a/smali_classes5/tv/twitch/android/feature/theatre/common/StreamSettingsViewDelegate.smali b/smali_classes5/tv/twitch/android/feature/theatre/common/StreamSettingsViewDelegate.smali
---- a/smali_classes5/tv/twitch/android/feature/theatre/common/StreamSettingsViewDelegate.smali
-+++ b/smali_classes5/tv/twitch/android/feature/theatre/common/StreamSettingsViewDelegate.smali
+diff --git a/smali_classes4/tv/twitch/android/feature/theatre/common/StreamSettingsViewDelegate.smali b/smali_classes4/tv/twitch/android/feature/theatre/common/StreamSettingsViewDelegate.smali
+--- a/smali_classes4/tv/twitch/android/feature/theatre/common/StreamSettingsViewDelegate.smali
++++ b/smali_classes4/tv/twitch/android/feature/theatre/common/StreamSettingsViewDelegate.smali
 @@ -124,6 +124,10 @@
  
  .field private final viewingOptionsHeader:Landroid/widget/TextView;
@@ -39,7 +39,7 @@ diff --git a/smali_classes5/tv/twitch/android/feature/theatre/common/StreamSetti
      return-void
  .end method
  
-@@ -3041,6 +3065,24 @@
+@@ -3030,6 +3054,24 @@
  
      invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
  

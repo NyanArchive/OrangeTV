@@ -110,11 +110,6 @@ public class ExperimentHelperImpl implements ExperimentHelper, IExperimentHelper
     }
 
     @Override
-    public boolean isFeatureFlagEnabled(RemoteConfigurable remoteConfigurable) { // TODO: __INJECT_METHOD
-        return hook.isFeatureFlagEnabled(remoteConfigurable);
-    }
-
-    @Override
     public boolean isInGroupForMultiVariantExperiment(Experiment experiment, String s) { // TODO: __INJECT_METHOD
         return hook.isInGroupForMultiVariantExperiment(experiment, s);
     }

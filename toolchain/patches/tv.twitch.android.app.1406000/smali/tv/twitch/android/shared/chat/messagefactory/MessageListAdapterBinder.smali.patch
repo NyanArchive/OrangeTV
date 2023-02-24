@@ -1,7 +1,7 @@
-diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/MessageListAdapterBinder.smali b/smali_classes6/tv/twitch/android/shared/chat/messagefactory/MessageListAdapterBinder.smali
---- a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/MessageListAdapterBinder.smali
-+++ b/smali_classes6/tv/twitch/android/shared/chat/messagefactory/MessageListAdapterBinder.smali
-@@ -1658,3 +1658,23 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/MessageListAdapterBinder.smali b/smali_classes5/tv/twitch/android/shared/chat/messagefactory/MessageListAdapterBinder.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/MessageListAdapterBinder.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/messagefactory/MessageListAdapterBinder.smali
+@@ -1580,3 +1580,24 @@
  
      throw v0
  .end method
@@ -11,16 +11,17 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/Message
 +    .param p1, "messageInfo"    # Ltv/twitch/chat/ChatMessageInfo;
 +    .param p2, "channelId"    # I
 +
++    .prologue
 +    .line 13
 +    iget-object v0, p0, Ltv/twitch/android/shared/chat/messagefactory/MessageListAdapterBinder;->adapter:Ltv/twitch/android/shared/chat/adapter/ChatAdapter;
 +
 +    iget-object v1, p0, Ltv/twitch/android/shared/chat/messagefactory/MessageListAdapterBinder;->messageFactory:Ltv/twitch/android/shared/chat/messagefactory/ChatMessageFactory;
 +
-+    invoke-virtual {v1, p1, p2}, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageFactory;->createChatHistoryMessage(Ltv/twitch/chat/ChatMessageInfo;I)Ltv/twitch/android/provider/chat/ChatAdapterItem;
++    invoke-virtual {v1, p1, p2}, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageFactory;->createChatHistoryMessage(Ltv/twitch/chat/ChatMessageInfo;I)Ltv/twitch/android/shared/chat/pub/ChatAdapterItem;
 +
 +    move-result-object v1
 +
-+    invoke-interface {v0, v1}, Ltv/twitch/android/shared/chat/adapter/ChatAdapter;->addMessage(Ltv/twitch/android/provider/chat/ChatAdapterItem;)V
++    invoke-interface {v0, v1}, Ltv/twitch/android/shared/chat/adapter/ChatAdapter;->addMessage(Ltv/twitch/android/shared/chat/pub/ChatAdapterItem;)V
 +
 +    .line 14
 +    return-void

@@ -1,6 +1,6 @@
-diff --git a/smali_classes5/tv/twitch/android/feature/theatre/chomments/ChommentsHeaderViewDelegate.smali b/smali_classes5/tv/twitch/android/feature/theatre/chomments/ChommentsHeaderViewDelegate.smali
---- a/smali_classes5/tv/twitch/android/feature/theatre/chomments/ChommentsHeaderViewDelegate.smali
-+++ b/smali_classes5/tv/twitch/android/feature/theatre/chomments/ChommentsHeaderViewDelegate.smali
+diff --git a/smali_classes4/tv/twitch/android/feature/theatre/chomments/ChommentsHeaderViewDelegate.smali b/smali_classes4/tv/twitch/android/feature/theatre/chomments/ChommentsHeaderViewDelegate.smali
+--- a/smali_classes4/tv/twitch/android/feature/theatre/chomments/ChommentsHeaderViewDelegate.smali
++++ b/smali_classes4/tv/twitch/android/feature/theatre/chomments/ChommentsHeaderViewDelegate.smali
 @@ -86,3 +86,22 @@
  
      return-void

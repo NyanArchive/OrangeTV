@@ -9,7 +9,7 @@ import tv.orange.models.util.DateUtil
 import tv.twitch.android.models.chat.AutoModMessageFlags
 import tv.twitch.android.models.chat.MessageBadge
 import tv.twitch.android.models.chat.MessageToken
-import tv.twitch.android.provider.chat.model.ChatHistoryMessage
+import tv.twitch.android.shared.chat.pub.model.ChatHistoryMessage
 import java.util.*
 import javax.inject.Inject
 

@@ -1,6 +1,6 @@
-diff --git a/smali_classes6/tv/twitch/android/shared/community/points/presenters/CommunityPointsButtonPresenter.smali b/smali_classes6/tv/twitch/android/shared/community/points/presenters/CommunityPointsButtonPresenter.smali
---- a/smali_classes6/tv/twitch/android/shared/community/points/presenters/CommunityPointsButtonPresenter.smali
-+++ b/smali_classes6/tv/twitch/android/shared/community/points/presenters/CommunityPointsButtonPresenter.smali
+diff --git a/smali_classes5/tv/twitch/android/shared/community/points/presenters/CommunityPointsButtonPresenter.smali b/smali_classes5/tv/twitch/android/shared/community/points/presenters/CommunityPointsButtonPresenter.smali
+--- a/smali_classes5/tv/twitch/android/shared/community/points/presenters/CommunityPointsButtonPresenter.smali
++++ b/smali_classes5/tv/twitch/android/shared/community/points/presenters/CommunityPointsButtonPresenter.smali
 @@ -247,15 +247,6 @@
  
      invoke-virtual {v0, p1}, Ltv/twitch/android/shared/community/points/data/CommunityPointsDataProvider;->claimCommunityPoints(Ljava/lang/String;)V

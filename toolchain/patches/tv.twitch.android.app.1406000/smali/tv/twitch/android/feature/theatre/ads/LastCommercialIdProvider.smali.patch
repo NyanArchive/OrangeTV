@@ -1,6 +1,6 @@
-diff --git a/smali_classes5/tv/twitch/android/feature/theatre/ads/LastCommercialIdProvider.smali b/smali_classes5/tv/twitch/android/feature/theatre/ads/LastCommercialIdProvider.smali
---- a/smali_classes5/tv/twitch/android/feature/theatre/ads/LastCommercialIdProvider.smali
-+++ b/smali_classes5/tv/twitch/android/feature/theatre/ads/LastCommercialIdProvider.smali
+diff --git a/smali_classes4/tv/twitch/android/feature/theatre/ads/LastCommercialIdProvider.smali b/smali_classes4/tv/twitch/android/feature/theatre/ads/LastCommercialIdProvider.smali
+--- a/smali_classes4/tv/twitch/android/feature/theatre/ads/LastCommercialIdProvider.smali
++++ b/smali_classes4/tv/twitch/android/feature/theatre/ads/LastCommercialIdProvider.smali
 @@ -223,7 +223,7 @@
      .line 55
      new-instance v2, Landroid/content/IntentFilter;

@@ -1,6 +1,6 @@
-diff --git a/smali_classes6/tv/twitch/android/shared/chat/command/ChatCommandInterceptorFactory.smali b/smali_classes6/tv/twitch/android/shared/chat/command/ChatCommandInterceptorFactory.smali
---- a/smali_classes6/tv/twitch/android/shared/chat/command/ChatCommandInterceptorFactory.smali
-+++ b/smali_classes6/tv/twitch/android/shared/chat/command/ChatCommandInterceptorFactory.smali
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/command/ChatCommandInterceptorFactory.smali b/smali_classes5/tv/twitch/android/shared/chat/command/ChatCommandInterceptorFactory.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/command/ChatCommandInterceptorFactory.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/command/ChatCommandInterceptorFactory.smali
 @@ -20,6 +20,10 @@
  
  .field private final whisperCommandInterceptor:Ltv/twitch/android/shared/chat/command/WhisperCommandInterceptor;

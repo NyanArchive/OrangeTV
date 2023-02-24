@@ -1,6 +1,6 @@
 package tv.orange.features.logs.component.data.model
 
-import tv.twitch.android.provider.chat.model.ChatHistoryMessage
+import tv.twitch.android.shared.chat.pub.model.ChatHistoryMessage
 
 data class MessageInfo(
     val userId: Int,

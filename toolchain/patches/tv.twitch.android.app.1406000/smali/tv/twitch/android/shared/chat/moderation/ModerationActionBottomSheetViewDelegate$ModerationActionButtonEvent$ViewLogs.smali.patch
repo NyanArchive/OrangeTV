@@ -1,8 +1,8 @@
-diff --git a/smali_classes6/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetViewDelegate$ModerationActionButtonEvent$ViewLogs.smali b/smali_classes6/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetViewDelegate$ModerationActionButtonEvent$ViewLogs.smali
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetViewDelegate$ModerationActionButtonEvent$ViewLogs.smali b/smali_classes5/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetViewDelegate$ModerationActionButtonEvent$ViewLogs.smali
 new file mode 100644
 index 000000000..8e81281dc
 --- /dev/null
-+++ b/smali_classes6/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetViewDelegate$ModerationActionButtonEvent$ViewLogs.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetViewDelegate$ModerationActionButtonEvent$ViewLogs.smali
 @@ -0,0 +1,62 @@
 +.class public Ltv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetViewDelegate$ModerationActionButtonEvent$ViewLogs;
 +.super Ltv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetViewDelegate$ModerationActionButtonEvent;

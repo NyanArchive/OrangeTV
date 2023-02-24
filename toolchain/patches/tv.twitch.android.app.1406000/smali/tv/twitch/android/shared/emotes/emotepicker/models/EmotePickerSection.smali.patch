@@ -1,6 +1,6 @@
-diff --git a/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/models/EmotePickerSection.smali b/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/models/EmotePickerSection.smali
---- a/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/models/EmotePickerSection.smali
-+++ b/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/models/EmotePickerSection.smali
+diff --git a/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/models/EmotePickerSection.smali b/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/models/EmotePickerSection.smali
+--- a/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/models/EmotePickerSection.smali
++++ b/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/models/EmotePickerSection.smali
 @@ -1,6 +1,6 @@
  .class public final enum Ltv/twitch/android/shared/emotes/emotepicker/models/EmotePickerSection;
  .super Ljava/lang/Enum;

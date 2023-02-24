@@ -1,6 +1,6 @@
-diff --git a/smali_classes6/tv/twitch/android/shared/chat/observables/ChatConnectionController$$ExternalSyntheticLambda2.smali b/smali_classes6/tv/twitch/android/shared/chat/observables/ChatConnectionController$$ExternalSyntheticLambda2.smali
---- a/smali_classes6/tv/twitch/android/shared/chat/observables/ChatConnectionController$$ExternalSyntheticLambda2.smali
-+++ b/smali_classes6/tv/twitch/android/shared/chat/observables/ChatConnectionController$$ExternalSyntheticLambda2.smali
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnectionController$$ExternalSyntheticLambda2.smali b/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnectionController$$ExternalSyntheticLambda2.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnectionController$$ExternalSyntheticLambda2.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnectionController$$ExternalSyntheticLambda2.smali
 @@ -26,6 +26,17 @@
  .method public final test(Ljava/lang/Object;)Z
      .locals 1
@@ -18,4 +18,4 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/observables/ChatConnec
 +    :cond_z
      iget-object v0, p0, Ltv/twitch/android/shared/chat/observables/ChatConnectionController$$ExternalSyntheticLambda2;->f$0:Ltv/twitch/android/shared/chat/observables/ChatConnectionController;
  
-     check-cast p1, Ltv/twitch/android/provider/chat/events/MessagesReceivedEvent;
+     check-cast p1, Ltv/twitch/android/shared/chat/pub/events/MessagesReceivedEvent;

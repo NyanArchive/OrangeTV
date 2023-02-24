@@ -1,6 +1,6 @@
-diff --git a/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate.smali b/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate.smali
---- a/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate.smali
-+++ b/smali_classes6/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate.smali
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate.smali b/smali_classes5/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/chatuserdialog/ChatUserDialogViewDelegate.smali
 @@ -46,10 +46,12 @@
  
  .field private final whisperText:Landroid/widget/TextView;

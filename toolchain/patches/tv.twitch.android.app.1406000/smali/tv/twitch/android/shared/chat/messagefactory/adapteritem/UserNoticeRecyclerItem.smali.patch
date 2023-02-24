@@ -1,6 +1,6 @@
-diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem.smali b/smali_classes6/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem.smali
---- a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem.smali
-+++ b/smali_classes6/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem.smali
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem.smali b/smali_classes5/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem.smali
 @@ -402,10 +402,13 @@
      return-void
  .end method

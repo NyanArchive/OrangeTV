@@ -1,6 +1,6 @@
-diff --git a/smali_classes6/tv/twitch/android/shared/chat/chatheader/ChatHeaderVisibilityCalculator.smali b/smali_classes6/tv/twitch/android/shared/chat/chatheader/ChatHeaderVisibilityCalculator.smali
---- a/smali_classes6/tv/twitch/android/shared/chat/chatheader/ChatHeaderVisibilityCalculator.smali
-+++ b/smali_classes6/tv/twitch/android/shared/chat/chatheader/ChatHeaderVisibilityCalculator.smali
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/chatheader/ChatHeaderVisibilityCalculator.smali b/smali_classes5/tv/twitch/android/shared/chat/chatheader/ChatHeaderVisibilityCalculator.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/chatheader/ChatHeaderVisibilityCalculator.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/chatheader/ChatHeaderVisibilityCalculator.smali
 @@ -619,8 +619,23 @@
  .end method
  

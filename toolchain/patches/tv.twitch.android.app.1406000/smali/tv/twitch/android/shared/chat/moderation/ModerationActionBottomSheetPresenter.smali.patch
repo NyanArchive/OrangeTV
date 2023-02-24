@@ -1,7 +1,7 @@
-diff --git a/smali_classes6/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetPresenter.smali b/smali_classes6/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetPresenter.smali
---- a/smali_classes6/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetPresenter.smali
-+++ b/smali_classes6/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetPresenter.smali
-@@ -960,7 +960,22 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetPresenter.smali b/smali_classes5/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetPresenter.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetPresenter.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetPresenter.smali
+@@ -922,7 +922,22 @@
  
      move-object/from16 v0, p1
  
@@ -19,7 +19,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/moderation/ModerationA
 +
 +    return-void
 +
-     .line 207
+     .line 198
 +    :cond_z
      instance-of v1, v0, Ltv/twitch/android/shared/chat/moderation/ModerationActionBottomSheetViewDelegate$ModerationActionButtonEvent$Ban;
  

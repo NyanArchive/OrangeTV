@@ -1,6 +1,6 @@
-diff --git a/smali_classes4/tv/twitch/android/api/EmoteApiImpl.smali b/smali_classes4/tv/twitch/android/api/EmoteApiImpl.smali
---- a/smali_classes4/tv/twitch/android/api/EmoteApiImpl.smali
-+++ b/smali_classes4/tv/twitch/android/api/EmoteApiImpl.smali
+diff --git a/smali_classes5/tv/twitch/android/shared/emotes/network/EmoteApiImpl.smali b/smali_classes5/tv/twitch/android/shared/emotes/network/EmoteApiImpl.smali
+--- a/smali_classes5/tv/twitch/android/shared/emotes/network/EmoteApiImpl.smali
++++ b/smali_classes5/tv/twitch/android/shared/emotes/network/EmoteApiImpl.smali
 @@ -142,7 +142,24 @@
  
      invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
@@ -21,8 +21,8 @@ diff --git a/smali_classes4/tv/twitch/android/api/EmoteApiImpl.smali b/smali_cla
 +
 +    return-object v1
 +
-     .line 46
+     .line 44
 +    :cond_z
-     iget-object v1, p0, Ltv/twitch/android/api/EmoteApiImpl;->gqlService:Ltv/twitch/android/network/graphql/GraphQlService;
+     iget-object v1, p0, Ltv/twitch/android/shared/emotes/network/EmoteApiImpl;->gqlService:Ltv/twitch/android/network/graphql/GraphQlService;
  
-     .line 47
+     .line 45

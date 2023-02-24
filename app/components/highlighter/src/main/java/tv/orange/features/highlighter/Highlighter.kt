@@ -9,7 +9,7 @@ import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asInt
 import tv.orange.features.highlighter.data.model.HighlightDesc
 import tv.orange.features.highlighter.view.HighlighterFragment
-import tv.twitch.android.provider.chat.ChatMessageInterface
+import tv.twitch.android.shared.chat.pub.ChatMessageInterface
 import javax.inject.Inject
 
 class Highlighter @Inject constructor(

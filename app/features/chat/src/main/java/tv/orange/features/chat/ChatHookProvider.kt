@@ -60,13 +60,13 @@ import tv.twitch.android.models.chat.MessageToken
 import tv.twitch.android.models.emotes.EmoteCardModelResponse
 import tv.twitch.android.models.emotes.EmoteModelAssetType
 import tv.twitch.android.models.emotes.EmoteSet
-import tv.twitch.android.provider.chat.ChatMessageInterface
-import tv.twitch.android.provider.chat.events.MessagesReceivedEvent
 import tv.twitch.android.shared.chat.adapter.item.ChatMessageClickedEvents
 import tv.twitch.android.shared.chat.adapter.item.MessageRecyclerItem
 import tv.twitch.android.shared.chat.network.creatorpinnedchatmessage.model.CreatorPinnedChatMessageChannelModel
 import tv.twitch.android.shared.chat.network.creatorpinnedchatmessage.model.CreatorPinnedChatMessageMessageModel
 import tv.twitch.android.shared.chat.network.creatorpinnedchatmessage.model.CreatorPinnedChatMessagePinnedByUserModel
+import tv.twitch.android.shared.chat.pub.ChatMessageInterface
+import tv.twitch.android.shared.chat.pub.events.MessagesReceivedEvent
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerPresenter
 import tv.twitch.android.shared.emotes.emotepicker.EmotePickerViewDelegate
 import tv.twitch.android.shared.emotes.emotepicker.models.EmoteHeaderUiModel

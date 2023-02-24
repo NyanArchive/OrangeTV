@@ -5,8 +5,8 @@ diff --git a/smali_classes4/tv/twitch/android/feature/background/audio/Backgroun
      .line 282
      new-instance v7, Landroid/content/Intent;
  
--    const-string/jumbo v3, "tv.twitch.android.media.action.toggleplayback"
-+    const-string/jumbo v3, "tv.orange.media.action.toggleplayback"
+-    const-string v3, "tv.twitch.android.media.action.toggleplayback"
++    const-string v3, "tv.orange.media.action.toggleplayback"
  
      invoke-direct {v7, v3}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
  
@@ -14,8 +14,8 @@ diff --git a/smali_classes4/tv/twitch/android/feature/background/audio/Backgroun
      .line 291
      new-instance v7, Landroid/content/Intent;
  
--    const-string/jumbo v5, "tv.twitch.android.media.action.stop"
-+    const-string/jumbo v5, "tv.orange.media.action.stop"
+-    const-string v5, "tv.twitch.android.media.action.stop"
++    const-string v5, "tv.orange.media.action.stop"
  
      invoke-direct {v7, v5}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
  
@@ -41,8 +41,8 @@ diff --git a/smali_classes4/tv/twitch/android/feature/background/audio/Backgroun
      goto :goto_0
  
      :cond_0
--    const-string/jumbo v0, "tv.twitch.android.media.action.audiobecomingnoisy"
-+    const-string/jumbo v0, "tv.orange.media.action.audiobecomingnoisy"
+-    const-string v0, "tv.twitch.android.media.action.audiobecomingnoisy"
++    const-string v0, "tv.orange.media.action.audiobecomingnoisy"
  
      invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
  
@@ -50,8 +50,8 @@ diff --git a/smali_classes4/tv/twitch/android/feature/background/audio/Backgroun
      goto :goto_0
  
      :cond_3
--    const-string/jumbo v0, "tv.twitch.android.media.action.toggleplayback"
-+    const-string/jumbo v0, "tv.orange.media.action.toggleplayback"
+-    const-string v0, "tv.twitch.android.media.action.toggleplayback"
++    const-string v0, "tv.orange.media.action.toggleplayback"
  
      .line 243
      invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -59,8 +59,8 @@ diff --git a/smali_classes4/tv/twitch/android/feature/background/audio/Backgroun
      goto :goto_0
  
      :cond_6
--    const-string/jumbo v0, "tv.twitch.android.media.action.stop"
-+    const-string/jumbo v0, "tv.orange.media.action.stop"
+-    const-string v0, "tv.twitch.android.media.action.stop"
++    const-string v0, "tv.orange.media.action.stop"
  
      .line 243
      invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -68,20 +68,20 @@ diff --git a/smali_classes4/tv/twitch/android/feature/background/audio/Backgroun
  
      invoke-direct {v2}, Landroid/content/IntentFilter;-><init>()V
  
--    const-string/jumbo v0, "tv.twitch.android.media.action.toggleplayback"
-+    const-string/jumbo v0, "tv.orange.media.action.toggleplayback"
+-    const-string v0, "tv.twitch.android.media.action.toggleplayback"
++    const-string v0, "tv.orange.media.action.toggleplayback"
  
      .line 116
      invoke-virtual {v2, v0}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
  
--    const-string/jumbo v0, "tv.twitch.android.media.action.stop"
-+    const-string/jumbo v0, "tv.orange.media.action.stop"
+-    const-string v0, "tv.twitch.android.media.action.stop"
++    const-string v0, "tv.orange.media.action.stop"
  
      .line 117
      invoke-virtual {v2, v0}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
  
--    const-string/jumbo v0, "tv.twitch.android.media.action.audiobecomingnoisy"
-+    const-string/jumbo v0, "tv.orange.media.action.audiobecomingnoisy"
+-    const-string v0, "tv.twitch.android.media.action.audiobecomingnoisy"
++    const-string v0, "tv.orange.media.action.audiobecomingnoisy"
  
      .line 118
      invoke-virtual {v2, v0}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V

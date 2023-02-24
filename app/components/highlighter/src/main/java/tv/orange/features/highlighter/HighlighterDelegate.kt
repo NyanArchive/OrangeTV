@@ -6,7 +6,7 @@ import tv.orange.features.highlighter.data.model.HighlightDesc
 import tv.orange.features.highlighter.data.model.KeywordData
 import tv.orange.features.highlighter.data.source.HighlighterSource
 import tv.twitch.android.models.chat.MessageToken
-import tv.twitch.android.provider.chat.ChatMessageInterface
+import tv.twitch.android.shared.chat.pub.ChatMessageInterface
 import javax.inject.Inject
 
 class HighlighterDelegate @Inject constructor(val source: HighlighterSource) {

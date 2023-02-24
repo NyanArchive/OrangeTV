@@ -1,6 +1,6 @@
-diff --git a/smali_classes5/tv/twitch/android/feature/theatre/common/MiniPlayerSize.smali b/smali_classes5/tv/twitch/android/feature/theatre/common/MiniPlayerSize.smali
---- a/smali_classes5/tv/twitch/android/feature/theatre/common/MiniPlayerSize.smali
-+++ b/smali_classes5/tv/twitch/android/feature/theatre/common/MiniPlayerSize.smali
+diff --git a/smali_classes4/tv/twitch/android/feature/theatre/common/MiniPlayerSize.smali b/smali_classes4/tv/twitch/android/feature/theatre/common/MiniPlayerSize.smali
+--- a/smali_classes4/tv/twitch/android/feature/theatre/common/MiniPlayerSize.smali
++++ b/smali_classes4/tv/twitch/android/feature/theatre/common/MiniPlayerSize.smali
 @@ -118,5 +118,9 @@
  
      move-result v0

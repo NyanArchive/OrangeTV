@@ -1,7 +1,18 @@
-diff --git a/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter.smali b/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter.smali
---- a/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter.smali
-+++ b/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter.smali
-@@ -610,13 +610,21 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter.smali b/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter.smali
+--- a/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter.smali
++++ b/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter.smali
+@@ -584,6 +584,10 @@
+ 
+     move-result-object p1
+ 
++    invoke-static {p1}, Ltv/orange/features/chat/ChatHookProvider;->sortEmoteSets(Ljava/util/List;)Ljava/util/List;
++
++    move-result-object p1
++
+     invoke-virtual {v0, p1}, Ltv/twitch/android/shared/emotes/emotepicker/adapter/EmotePickerAdapterBinder;->bindItems(Ljava/util/List;)V
+ 
+     goto :goto_0
+@@ -749,13 +753,21 @@
  
      invoke-virtual {v0, v1}, Lio/reactivex/Flowable;->map(Lio/reactivex/functions/Function;)Lio/reactivex/Flowable;
  
@@ -26,14 +37,3 @@ diff --git a/smali_classes6/tv/twitch/android/shared/emotes/emotepicker/EmotePic
  .end method
  
  .method private static final createAllEmoteSetsFlowable$lambda-10(Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter;Ljava/lang/Integer;Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerSource;Lkotlin/Triple;)Lkotlin/Pair;
-@@ -3346,6 +3354,10 @@
-         }
-     .end annotation
- 
-+    invoke-static {p1}, Ltv/orange/features/chat/ChatHookProvider;->sortEmoteSets(Ljava/util/List;)Ljava/util/List;
-+
-+    move-result-object p1
-+
-     .line 279
-     iget-object v0, p0, Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter;->adapterBinder:Ltv/twitch/android/shared/emotes/emotepicker/adapter/EmotePickerAdapterBinder;
- 

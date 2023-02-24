@@ -1,6 +1,6 @@
-diff --git a/smali_classes6/tv/twitch/android/shared/chat/observables/ChatConnectionController.smali b/smali_classes6/tv/twitch/android/shared/chat/observables/ChatConnectionController.smali
---- a/smali_classes6/tv/twitch/android/shared/chat/observables/ChatConnectionController.smali
-+++ b/smali_classes6/tv/twitch/android/shared/chat/observables/ChatConnectionController.smali
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnectionController.smali b/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnectionController.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnectionController.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnectionController.smali
 @@ -245,6 +245,8 @@
  
  .field private viewerId:I
@@ -9,7 +9,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/observables/ChatConnec
 +
  
  # direct methods
- .method public static synthetic $r8$lambda$JOyx2HY6lO5LTVIU-9uDtn2HwA4(Ljava/lang/Boolean;)Z
+ .method public static synthetic $r8$lambda$EQVOfdpNI-6IznLi_PjAQJS_In0(Ltv/twitch/android/shared/chat/observables/ChatConnectionController;Ltv/twitch/android/shared/chat/pub/events/ChatNoticeEvent;)Z
 @@ -869,6 +871,22 @@
      :cond_2
      iput-object v4, v0, Ltv/twitch/android/shared/chat/observables/ChatConnectionController;->viewer:Ltv/twitch/android/models/UserModel;
@@ -33,7 +33,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/observables/ChatConnec
      return-void
  .end method
  
-@@ -2392,6 +2410,11 @@
+@@ -2365,6 +2383,12 @@
  
      invoke-virtual {v0, p1}, Ltv/twitch/android/shared/badges/ChatBadgeProvider;->fetchChannelBadges(I)V
  
@@ -42,10 +42,11 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/observables/ChatConnec
 +    move-result-object v0
 +
 +    invoke-virtual {v0, p1}, Ltv/orange/core/Core;->onConnectedToChannel(I)V
++
      goto :goto_1
  
-     .line 610
-@@ -2404,6 +2427,12 @@
+     .line 598
+@@ -2377,6 +2401,12 @@
  
      invoke-virtual {v0, v2}, Lio/reactivex/subjects/BehaviorSubject;->onNext(Ljava/lang/Object;)V
  
@@ -55,10 +56,10 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/observables/ChatConnec
 +
 +    invoke-virtual {v0, p1}, Ltv/orange/core/Core;->onConnectingToChannel(I)V
 +
-     .line 637
+     .line 625
      :goto_1
      sget-object v0, Ltv/twitch/android/sdk/ChannelState;->Disconnected:Ltv/twitch/android/sdk/ChannelState;
-@@ -4236,7 +4265,7 @@
+@@ -4151,7 +4181,7 @@
  .end method
  
  .method public observeMessagesReceived()Lio/reactivex/Flowable;
@@ -67,7 +68,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/observables/ChatConnec
      .annotation system Ldalvik/annotation/Signature;
          value = {
              "()",
-@@ -4258,6 +4287,12 @@
+@@ -4173,6 +4203,12 @@
  
      move-result-object v0
  
@@ -77,10 +78,10 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/observables/ChatConnec
 +
 +    move-result-object v0
 +
-     .line 301
+     .line 296
      sget-object v1, Lio/reactivex/BackpressureStrategy;->BUFFER:Lio/reactivex/BackpressureStrategy;
  
-@@ -4435,3 +4470,14 @@
+@@ -4350,3 +4386,14 @@
  
      return-void
  .end method

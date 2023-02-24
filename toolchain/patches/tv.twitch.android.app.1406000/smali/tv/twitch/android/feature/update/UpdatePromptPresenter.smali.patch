@@ -1,6 +1,6 @@
-diff --git a/smali_classes5/tv/twitch/android/feature/update/UpdatePromptPresenter.smali b/smali_classes5/tv/twitch/android/feature/update/UpdatePromptPresenter.smali
---- a/smali_classes5/tv/twitch/android/feature/update/UpdatePromptPresenter.smali
-+++ b/smali_classes5/tv/twitch/android/feature/update/UpdatePromptPresenter.smali
+diff --git a/smali_classes4/tv/twitch/android/feature/update/UpdatePromptPresenter.smali b/smali_classes4/tv/twitch/android/feature/update/UpdatePromptPresenter.smali
+--- a/smali_classes4/tv/twitch/android/feature/update/UpdatePromptPresenter.smali
++++ b/smali_classes4/tv/twitch/android/feature/update/UpdatePromptPresenter.smali
 @@ -347,36 +347,10 @@
  .end method
  

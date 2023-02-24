@@ -1,6 +1,6 @@
-diff --git a/smali_classes6/tv/twitch/android/shared/chat/LiveChatSource.smali b/smali_classes6/tv/twitch/android/shared/chat/LiveChatSource.smali
---- a/smali_classes6/tv/twitch/android/shared/chat/LiveChatSource.smali
-+++ b/smali_classes6/tv/twitch/android/shared/chat/LiveChatSource.smali
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/LiveChatSource.smali b/smali_classes5/tv/twitch/android/shared/chat/LiveChatSource.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/LiveChatSource.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/LiveChatSource.smali
 @@ -2,6 +2,9 @@
  .super Ljava/lang/Object;
  .source "LiveChatSource.kt"
@@ -11,7 +11,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/LiveChatSource.smali b
  
  # annotations
  .annotation system Ldalvik/annotation/MemberClasses;
-@@ -1014,10 +1017,17 @@
+@@ -975,10 +978,17 @@
  
      if-nez p1, :cond_4
  
@@ -21,15 +21,15 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/LiveChatSource.smali b
 +
 +    if-nez v0, :cond_z
 +
-     .line 382
+     .line 344
      invoke-virtual {p0}, Ltv/twitch/android/shared/chat/LiveChatSource;->clearMessages()V
  
-     .line 383
+     .line 345
 +    :cond_z
      iget-object p1, p0, Ltv/twitch/android/shared/chat/LiveChatSource;->context:Landroid/content/Context;
  
      sget v0, Ltv/twitch/android/core/strings/R$string;->channel_notice_chat_cleared:I
-@@ -2666,10 +2676,17 @@
+@@ -2627,10 +2637,17 @@
  
      if-eqz v1, :cond_10
  
@@ -39,15 +39,15 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/LiveChatSource.smali b
 +
 +    if-nez v1, :cond_z
 +
-     .line 516
+     .line 469
      invoke-virtual/range {p0 .. p0}, Ltv/twitch/android/shared/chat/LiveChatSource;->clearMessages()V
  
-     .line 517
+     .line 470
 +    :cond_z
      iget-object v1, v6, Ltv/twitch/android/shared/chat/LiveChatSource;->context:Landroid/content/Context;
  
      sget v4, Ltv/twitch/android/core/strings/R$string;->mod_notice_chat_cleared:I
-@@ -4082,3 +4099,37 @@
+@@ -3908,3 +3925,37 @@
  
      return-void
  .end method

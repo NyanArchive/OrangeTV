@@ -21,18 +21,20 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
  
  # direct methods
  .method public static synthetic $r8$lambda$86uzpKe1Ce7AREV03mT4Na-4dp8(Ljava/lang/Throwable;)V
-@@ -108,6 +114,10 @@
+@@ -108,6 +114,12 @@
  
      iput-object v0, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->mListener:Ltv/twitch/android/app/consumer/CrashReporterListener;
  
 +    const/4 v0, 0x0
 +
++    iput-object v0, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->orangeBridge:Ltv/orange/models/abc/Bridge;
++    
 +    iput-object v0, p0, Ltv/twitch/android/app/consumer/TwitchApplication;->twitchComponentProvider:Ltv/orange/models/abc/TwitchComponentProvider;
 +
      return-void
  .end method
  
-@@ -184,6 +194,14 @@
+@@ -184,6 +196,14 @@
  
      invoke-virtual {v0, p0}, Ltv/twitch/android/app/core/ApplicationContext;->setContext(Landroid/content/Context;)V
  
@@ -47,7 +49,7 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
      .line 94
      invoke-static {p0}, Ltv/twitch/android/app/core/ThemeManager;->setTheme(Landroid/content/Context;)V
  
-@@ -223,9 +241,7 @@
+@@ -223,9 +243,7 @@
      move-result-object v1
  
      .line 116
@@ -56,9 +58,9 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
 -    move-result-object v2
 +    const-string v2, "tv.twitch.android.app"
  
-     const-string v3, "14.4.0"
+     const-string v3, "14.6.0"
  
-@@ -241,6 +257,8 @@
+@@ -241,6 +259,8 @@
  
      invoke-interface {v1, p0}, Ltv/twitch/android/app/consumer/dagger/AppComponent;->inject(Ltv/twitch/android/app/consumer/TwitchApplication;)V
  
@@ -67,7 +69,7 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
      .line 125
      new-instance v1, Ltv/twitch/android/app/consumer/TwitchApplication$$ExternalSyntheticLambda0;
  
-@@ -480,3 +498,86 @@
+@@ -478,3 +498,86 @@
  
      return-void
  .end method

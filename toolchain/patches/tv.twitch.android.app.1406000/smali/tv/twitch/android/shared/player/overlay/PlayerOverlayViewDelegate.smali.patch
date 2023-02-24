@@ -9,7 +9,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
  
  
  # annotations
-@@ -86,6 +87,9 @@
+@@ -82,6 +83,9 @@
  
  .field private final twitchRadioButton:Landroid/widget/ImageView;
  
@@ -19,7 +19,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
  
  # direct methods
  .method public static synthetic $r8$lambda$OHalcw30Kr4-HVrzEe4UL00NqNs(Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;Landroid/view/View;)V
-@@ -535,6 +539,38 @@
+@@ -531,6 +535,38 @@
  
      invoke-virtual {v1, v2}, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->setBottomPlayerControlListener(Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate$BottomPlayerControlListener;)V
  
@@ -58,7 +58,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
      return-void
  .end method
  
-@@ -1356,7 +1392,7 @@
+@@ -1317,7 +1353,7 @@
  .end method
  
  .method public final setClipButtonState(Z)V
@@ -67,7 +67,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
  
      .line 333
      iget-object v0, p0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->createClipButton:Landroid/widget/ImageView;
-@@ -1368,6 +1404,14 @@
+@@ -1382,6 +1418,14 @@
  
      invoke-static {v0, p1}, Ltv/twitch/android/app/core/ViewExtensionsKt;->visibilityForBoolean(Landroid/view/View;Z)V
  
@@ -82,7 +82,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
      return-void
  .end method
  
-@@ -1852,3 +1896,43 @@
+@@ -1813,3 +1857,43 @@
  
      return-void
  .end method

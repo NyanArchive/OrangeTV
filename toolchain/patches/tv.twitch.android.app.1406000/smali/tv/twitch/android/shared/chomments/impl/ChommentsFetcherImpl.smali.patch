@@ -1,6 +1,6 @@
-diff --git a/smali_classes6/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali b/smali_classes6/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali
---- a/smali_classes6/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali
-+++ b/smali_classes6/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali
+diff --git a/smali_classes5/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali b/smali_classes5/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali
+--- a/smali_classes5/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali
++++ b/smali_classes5/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali
 @@ -677,7 +677,26 @@
  
      invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
@@ -23,12 +23,12 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chomments/impl/ChommentsFet
 +
 +    return-object v0
 +
-     .line 73
+     .line 74
 +    :cond_z
      iget-boolean v0, p0, Ltv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl;->isRequestInFlight:Z
  
      if-nez v0, :cond_1
-@@ -906,6 +925,26 @@
+@@ -895,6 +914,26 @@
  
      invoke-virtual {p1, v0}, Ltv/twitch/android/shared/badges/ChatBadgeProvider;->fetchChannelBadges(I)V
  
@@ -52,6 +52,6 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chomments/impl/ChommentsFet
 +
 +    invoke-virtual {v0, p1}, Ltv/orange/core/Core;->onConnectedToChannel(I)V
 +
-     .line 63
+     .line 64
      iget-object p1, p0, Ltv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl;->twitchAccountManager:Ltv/twitch/android/core/user/TwitchAccountManager;
  

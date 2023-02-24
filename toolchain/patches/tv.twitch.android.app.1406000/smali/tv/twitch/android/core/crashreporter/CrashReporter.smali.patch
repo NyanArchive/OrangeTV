@@ -287,7 +287,7 @@ diff --git a/smali_classes4/tv/twitch/android/core/crashreporter/CrashReporter.s
 -
 -    const-string v1, ""
 -
--    const-string/jumbo v2, "user_identifier"
+-    const-string v2, "user_identifier"
 -
 -    if-eqz v0, :cond_1
 -
@@ -335,7 +335,7 @@ diff --git a/smali_classes4/tv/twitch/android/core/crashreporter/CrashReporter.s
 +    .registers 3
 +    .param p1, "str"    # Ljava/lang/String;
  
--    const-string/jumbo v2, "user_name"
+-    const-string v2, "user_name"
 -
 -    if-eqz v0, :cond_1
 -

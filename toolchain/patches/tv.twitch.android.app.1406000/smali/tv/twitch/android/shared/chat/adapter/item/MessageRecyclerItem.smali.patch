@@ -1,10 +1,10 @@
-diff --git a/smali_classes6/tv/twitch/android/shared/chat/adapter/item/MessageRecyclerItem.smali b/smali_classes6/tv/twitch/android/shared/chat/adapter/item/MessageRecyclerItem.smali
---- a/smali_classes6/tv/twitch/android/shared/chat/adapter/item/MessageRecyclerItem.smali
-+++ b/smali_classes6/tv/twitch/android/shared/chat/adapter/item/MessageRecyclerItem.smali
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/adapter/item/MessageRecyclerItem.smali b/smali_classes5/tv/twitch/android/shared/chat/adapter/item/MessageRecyclerItem.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/adapter/item/MessageRecyclerItem.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/adapter/item/MessageRecyclerItem.smali
 @@ -5,6 +5,7 @@
  # interfaces
  .implements Ltv/twitch/android/core/adapters/RecyclerAdapterItem;
- .implements Ltv/twitch/android/provider/chat/ChatAdapterItem;
+ .implements Ltv/twitch/android/shared/chat/pub/ChatAdapterItem;
 +.implements Ltv/orange/features/chat/bridge/IMessageRecyclerItem;
  
  
@@ -33,17 +33,16 @@ diff --git a/smali_classes6/tv/twitch/android/shared/chat/adapter/item/MessageRe
      .line 28
      iput-object v1, v0, Ltv/twitch/android/shared/chat/adapter/item/MessageRecyclerItem;->context:Landroid/content/Context;
  
-@@ -701,8 +712,7 @@
-     .line 128
+@@ -702,7 +713,7 @@
      iget-boolean v5, p0, Ltv/twitch/android/shared/chat/adapter/item/MessageRecyclerItem;->hasModAccess:Z
  
--    .line 123
+     .line 123
 -    invoke-virtual/range {v0 .. v5}, Ltv/twitch/android/shared/chat/util/ChatUtil$Companion;->createDeletedSpanFromChatMessageSpan(Ljava/lang/String;Landroid/text/Spanned;Landroid/content/Context;Lio/reactivex/subjects/PublishSubject;Z)Landroid/text/Spanned;
 +    invoke-static {v1, v2, v3, v4, v5}, Ltv/orange/features/chat/ChatHookProvider;->hook(Ljava/lang/String;Landroid/text/Spanned;Landroid/content/Context;Lio/reactivex/subjects/PublishSubject;Z)Landroid/text/Spanned;
  
      move-result-object v0
  
-@@ -853,3 +863,30 @@
+@@ -853,3 +864,30 @@
      :cond_1
      return-void
  .end method

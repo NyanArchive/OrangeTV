@@ -1,6 +1,6 @@
-diff --git a/smali_classes5/tv/twitch/android/feature/profile/profilecard/ProfileCardViewModel.smali b/smali_classes5/tv/twitch/android/feature/profile/profilecard/ProfileCardViewModel.smali
---- a/smali_classes5/tv/twitch/android/feature/profile/profilecard/ProfileCardViewModel.smali
-+++ b/smali_classes5/tv/twitch/android/feature/profile/profilecard/ProfileCardViewModel.smali
+diff --git a/smali_classes4/tv/twitch/android/feature/profile/profilecard/ProfileCardViewModel.smali b/smali_classes4/tv/twitch/android/feature/profile/profilecard/ProfileCardViewModel.smali
+--- a/smali_classes4/tv/twitch/android/feature/profile/profilecard/ProfileCardViewModel.smali
++++ b/smali_classes4/tv/twitch/android/feature/profile/profilecard/ProfileCardViewModel.smali
 @@ -368,10 +368,21 @@
  .end method
  

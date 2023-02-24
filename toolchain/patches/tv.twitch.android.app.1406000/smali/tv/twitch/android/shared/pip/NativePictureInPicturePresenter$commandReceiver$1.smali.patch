@@ -30,5 +30,5 @@ diff --git a/smali_classes6/tv/twitch/android/shared/pip/NativePictureInPictureP
 -    const-string p2, "tv.twitch.android.media.action.resume_playback"
 +    const-string p2, "tv.orange.media.action.resume_playback"
  
-     .line 163
+     .line 162
      invoke-virtual {p1, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z

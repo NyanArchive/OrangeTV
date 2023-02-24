@@ -16,7 +16,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
      .line 249
      sget-object v1, Ltv/twitch/android/shared/player/overlay/stream/StreamOverlayConfiguration$SingleStream;->INSTANCE:Ltv/twitch/android/shared/player/overlay/stream/StreamOverlayConfiguration$SingleStream;
  
-@@ -1398,3 +1406,29 @@
+@@ -1378,3 +1386,29 @@
      :cond_0
      return-void
  .end method

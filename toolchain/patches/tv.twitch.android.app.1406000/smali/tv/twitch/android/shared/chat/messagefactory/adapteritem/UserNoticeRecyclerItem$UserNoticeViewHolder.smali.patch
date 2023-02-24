@@ -1,6 +1,6 @@
-diff --git a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder.smali b/smali_classes6/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder.smali
---- a/smali_classes6/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder.smali
-+++ b/smali_classes6/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder.smali
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder.smali b/smali_classes5/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/messagefactory/adapteritem/UserNoticeRecyclerItem$UserNoticeViewHolder.smali
 @@ -48,6 +48,17 @@
  
  .field private final systemMessage:Landroid/widget/TextView;

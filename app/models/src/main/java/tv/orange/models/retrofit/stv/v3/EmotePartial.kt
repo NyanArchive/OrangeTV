@@ -5,5 +5,6 @@ data class EmotePartial(
     val name: String,
     val flags: Int,
     val host: ImageHost,
-    val animated: Boolean
+    val animated: Boolean,
+    val lifecycle: EmoteLifecycle
 )

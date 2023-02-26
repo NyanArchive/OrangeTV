@@ -1,5 +1,6 @@
 package tv.orange.features.api.component.data.mapper
 
+import tv.orange.core.LoggerImpl
 import tv.orange.models.abc.EmotePackageSet
 import tv.orange.models.data.avatars.AvatarSet
 import tv.orange.models.data.badges.BadgeBaseImpl
@@ -7,6 +8,7 @@ import tv.orange.models.data.badges.BadgeSet
 import tv.orange.models.data.emotes.Emote
 import tv.orange.models.data.emotes.impl.EmoteStvV3Impl
 import tv.orange.models.retrofit.stv.BadgesData
+import tv.orange.models.retrofit.stv.v3.EmoteLifecycle
 import tv.orange.models.retrofit.stv.v3.EmoteSet
 import tv.orange.models.retrofit.stv.v3.ImageFormatModel
 import tv.orange.models.retrofit.stv.v3.ImageHost
@@ -17,6 +19,15 @@ class StvApiMapper @Inject constructor() {
     fun mapEmotes(set: EmoteSet, isChannelEmotes: Boolean): List<Emote> {
         return set.emotes.mapNotNull { emote ->
             emote.data?.let { emotePartial ->
+                if (emotePartial.lifecycle != EmoteLifecycle.Live) {
+                    LoggerImpl.devDebug("Skip emote (lifecycle): $emotePartial")
+                    return@mapNotNull null
+                }
+                if (!emotePartial.flags.isAllowedOnTwitch()) {
+                    LoggerImpl.devDebug("Skip emote (disallowed): $emotePartial")
+                    return@mapNotNull null
+                }
+
                 emotePartial.host.toSize()?.let { sizes ->
                     EmoteStvV3Impl(
                         emoteId = emote.id,
@@ -82,6 +93,10 @@ class StvApiMapper @Inject constructor() {
 
         private fun Int.isZeroWidthEmote(): Boolean {
             return BigInteger.valueOf(toLong()).testBit(8)
+        }
+
+        private fun Int.isAllowedOnTwitch(): Boolean {
+            return !BigInteger.valueOf(toLong()).testBit(24)
         }
 
         private fun pickBestFormat(files: List<ImageFormatModel>): List<ImageFormatModel> {

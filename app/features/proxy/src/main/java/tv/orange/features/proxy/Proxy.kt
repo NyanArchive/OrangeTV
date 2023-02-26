@@ -7,15 +7,13 @@ import okhttp3.OkHttpClient
 import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.Response
 import tv.orange.core.Core
+import tv.orange.core.LoggerImpl
 import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.models.flag.Flag
-import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.models.flag.Flag.Companion.asVariant
 import tv.orange.core.models.flag.variants.ProxyImpl
 import tv.orange.features.api.component.repository.ProxyRepository
 import tv.orange.features.proxy.bridge.LolTvApiInterceptor
-import tv.orange.features.proxy.bridge.PatchKoreaHlsRequestInterceptor
-import tv.orange.features.proxy.bridge.PatchSegmentNodeRequestInterceptor
 import tv.orange.models.abc.Feature
 import tv.twitch.android.models.AccessTokenResponse
 import tv.twitch.android.models.manifest.extm3u
@@ -65,6 +63,7 @@ class Proxy @Inject constructor(
             proxyResponse: Single<Response<String>>,
             proxyName: String
         ): Single<Response<String>> {
+            LoggerImpl.devDebug("[$proxyName] Start request...")
             val rm = ResourcesManagerCore.get()
             return proxyResponse.flatMap { proxyPlaylist ->
                 if (!proxyPlaylist.isSuccessful) {
@@ -75,9 +74,11 @@ class Proxy @Inject constructor(
                             rm.getString("orange_proxy_error_ur")
                         )
                     )
+                    LoggerImpl.devDebug("[$proxyName] Unsuccessful")
                     return@flatMap Single.error(Exception("proxy_unsuccessfull"))
                 }
                 val time = getRequestTime(proxyPlaylist.raw())
+                LoggerImpl.devDebug("[$proxyName] Time: $time")
                 var body = proxyPlaylist.body() ?: run {
                     Core.showToast(
                         rm.getString(
@@ -86,6 +87,7 @@ class Proxy @Inject constructor(
                             rm.getString("orange_proxy_error_cpr")
                         )
                     )
+                    LoggerImpl.devDebug("[$proxyName] Body is null")
                     return@flatMap Single.error(Exception("proxy_error"))
                 }
                 val proxyUrl = proxyPlaylist.raw().request.url
@@ -93,7 +95,7 @@ class Proxy @Inject constructor(
                     "#EXT-X-TWITCH-INFO:",
                     "#EXT-X-TWITCH-INFO:PROXY-SERVER=\"$proxyName ($time ms)\",PROXY-URL=\"$proxyUrl\","
                 )
-
+                LoggerImpl.devDebug("[$proxyName] Result: $body")
                 Single.just(createPlaylistResponse(body, proxyPlaylist))
             }.onErrorResumeNext { th: Throwable ->
                 Core.showToast(
@@ -103,6 +105,7 @@ class Proxy @Inject constructor(
                         th.localizedMessage ?: "<empty>"
                     )
                 )
+                LoggerImpl.devDebug("[$proxyName] Ex: ${th.localizedMessage}")
                 th.printStackTrace()
                 twitchResponse
             }
@@ -125,16 +128,6 @@ class Proxy @Inject constructor(
 
             val url = dataSpec.uri.toString()
             val headers = when {
-                url.contains("usher.ttvnw.net/api/channel/hls/") -> {
-                    if (Flag.FIX_KOREA_1080P.asBoolean()) {
-                        Collections.unmodifiableMap(
-                            dataSpec.httpRequestHeaders.toMutableMap().apply {
-                                put("X-Forwarded-For", "::1")
-                            })
-                    } else {
-                        null
-                    }
-                }
                 url.contains("https://api.ttv.lol/") -> Collections.unmodifiableMap(
                     dataSpec.httpRequestHeaders.toMutableMap().apply {
                         put("x-donate-to", "https://ttv.lol/donate")
@@ -159,10 +152,6 @@ class Proxy @Inject constructor(
         @JvmStatic
         fun maybeAddInterceptor(builder: OkHttpClient.Builder) {
             builder.addNetworkInterceptor(LolTvApiInterceptor())
-            if (Flag.FIX_KOREA_1080P.asBoolean()) {
-                builder.addNetworkInterceptor(PatchKoreaHlsRequestInterceptor())
-            }
-            builder.addNetworkInterceptor(PatchSegmentNodeRequestInterceptor())
         }
     }
 
@@ -204,6 +193,17 @@ class Proxy @Inject constructor(
         )
     }
 
+    private fun createGayProxySingleResponse(
+        twitchResponse: Single<Response<String>>,
+        channelName: String
+    ): Single<Response<String>> {
+        return trySwapPlaylist(
+            twitchResponse = twitchResponse,
+            proxyResponse = repository.getGayPlaylist(channelName = channelName),
+            proxyName = "GAY"
+        )
+    }
+
     fun maybeHookStreamManifestResponse(
         manifest: Single<Response<String>>,
         channelName: String,
@@ -224,6 +224,10 @@ class Proxy @Inject constructor(
                 channelName = channelName
             )
             ProxyImpl.PURPLE -> createPurpleProxySingleResponse(
+                twitchResponse = manifest,
+                channelName = channelName
+            )
+            ProxyImpl.GAY -> createGayProxySingleResponse(
                 twitchResponse = manifest,
                 channelName = channelName
             )

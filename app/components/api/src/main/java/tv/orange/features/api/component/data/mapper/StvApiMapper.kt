@@ -5,25 +5,34 @@ import tv.orange.models.data.avatars.AvatarSet
 import tv.orange.models.data.badges.BadgeBaseImpl
 import tv.orange.models.data.badges.BadgeSet
 import tv.orange.models.data.emotes.Emote
-import tv.orange.models.data.emotes.impl.EmoteStvImpl
+import tv.orange.models.data.emotes.impl.EmoteStvV3Impl
 import tv.orange.models.retrofit.stv.BadgesData
-import tv.orange.models.retrofit.stv.StvEmote
+import tv.orange.models.retrofit.stv.v3.EmoteSet
+import tv.orange.models.retrofit.stv.v3.ImageFormatModel
+import tv.orange.models.retrofit.stv.v3.ImageHost
+import java.math.BigInteger
 import javax.inject.Inject
 
 class StvApiMapper @Inject constructor() {
-    fun mapEmotes(emotes: List<StvEmote>, isChannelEmotes: Boolean): List<Emote> {
-        return emotes.map { emote ->
-            EmoteStvImpl(
-                emoteId = emote.id,
-                emoteCode = emote.name,
-                animated = emote.mime == "image/gif" || emote.mime == "image/webp",
-                packageSet = if (isChannelEmotes) {
-                    EmotePackageSet.StvChannel
-                } else {
-                    EmotePackageSet.StvGlobal
-                },
-                isZeroWidth = emote.visibility_simple.contains("ZERO_WIDTH")
-            )
+    fun mapEmotes(set: EmoteSet, isChannelEmotes: Boolean): List<Emote> {
+        return set.emotes.mapNotNull { emote ->
+            emote.data?.let { emotePartial ->
+                emotePartial.host.toSize()?.let { sizes ->
+                    EmoteStvV3Impl(
+                        emoteId = emote.id,
+                        emoteCode = emote.name,
+                        animated = emotePartial.animated,
+                        packageSet = if (isChannelEmotes) {
+                            EmotePackageSet.StvChannel
+                        } else {
+                            EmotePackageSet.StvGlobal
+                        },
+                        isZeroWidth = emotePartial.flags.isZeroWidthEmote(),
+                        baseUrl = emotePartial.host.formatUrl(),
+                        sizes = sizes
+                    )
+                }
+            }
         }
     }
 
@@ -69,6 +78,70 @@ class StvApiMapper @Inject constructor() {
                 1 -> urls[0][1]
                 else -> urls[1][1]
             }
+        }
+
+        private fun Int.isZeroWidthEmote(): Boolean {
+            return BigInteger.valueOf(toLong()).testBit(8)
+        }
+
+        private fun pickBestFormat(files: List<ImageFormatModel>): List<ImageFormatModel> {
+            val entries = files.groupBy { it.format }
+            entries[ImageFormatModel.ImageFormat.WEBP]?.let {
+                return it
+            }
+            entries[ImageFormatModel.ImageFormat.GIF]?.let {
+                return it
+            }
+            entries[ImageFormatModel.ImageFormat.PNG]?.let {
+                return it
+            }
+
+            return emptyList()
+        }
+
+        private fun ImageHost.formatUrl(): String {
+            return url.let { url ->
+                if (url.startsWith("//")) {
+                    "https:$url"
+                } else {
+                    url
+                }
+            }.let { url ->
+                if (url.endsWith("/")) {
+                    url
+                } else {
+                    "$url/"
+                }
+            }
+        }
+
+        private fun ImageHost.toSize(): Triple<String, String?, String?>? {
+            val pickedFiles = pickBestFormat(files).sortedBy { it.width }
+
+            var small: String? = null
+            var medium: String? = null
+            var large: String? = null
+
+            var width = 0
+            pickedFiles.forEach { file ->
+                if (width == 0) {
+                    width = file.width
+                    small = file.name
+                } else {
+                    when (file.width / width) {
+                        1 -> small = file.name
+                        2 -> medium = file.name
+                        3 -> large = file.name
+                        4 -> large = file.name
+                    }
+                }
+            }
+
+            small?.let { smallSize ->
+                return Triple(smallSize, medium, large)
+            }
+
+            return null
         }
     }
 }

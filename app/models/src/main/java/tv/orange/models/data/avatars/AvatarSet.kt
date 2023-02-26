@@ -6,7 +6,7 @@ class AvatarSet {
     private val map = ArrayMap<String, String>()
 
     fun add(channelName: String, url: String) {
-        map[channelName] = url
+        map[channelName.lowercase()] = url
     }
 
     fun get(channelName: String): String? {

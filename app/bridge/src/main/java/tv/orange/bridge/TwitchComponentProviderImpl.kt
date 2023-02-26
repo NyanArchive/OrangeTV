@@ -3,7 +3,6 @@ package tv.orange.bridge
 import tv.orange.core.compat.ClassCompat.getPrivateField
 import tv.orange.models.abc.TwitchComponentProvider
 import tv.twitch.android.app.consumer.dagger.AppComponent
-import tv.twitch.android.app.consumer.dagger.DaggerAppComponent
 import tv.twitch.android.network.graphql.GraphQlService
 import tv.twitch.android.shared.chat.messagefactory.ChatMessageFactory
 import java.util.concurrent.ConcurrentHashMap

@@ -36,11 +36,12 @@ public class ExifInterface {
         throw new VirtualImpl();
     }
 
-    private int getMimeType(BufferedInputStream bufferedInputStream) throws IOException { // TODO: __REPLACE_METHOD
+    private int getMimeType(BufferedInputStream bufferedInputStream) throws IOException {
         bufferedInputStream.mark(5000);
         byte[] bArr = new byte[5000];
         bufferedInputStream.read(bArr);
         bufferedInputStream.reset();
+
         if (isJpegFormat(bArr)) {
             return 4;
         }
@@ -62,6 +63,7 @@ public class ExifInterface {
         if (isRw2Format(bArr)) {
             return 10;
         }
+
         return 0;
     }
 

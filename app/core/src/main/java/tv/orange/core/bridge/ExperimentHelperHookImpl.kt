@@ -62,10 +62,10 @@ class ExperimentHelperHookImpl(private val org: IExperimentHelper) : ExperimentH
             Experiment.AUDIO_ADS_BACKGROUND,
             Experiment.ADS_VIDEO_ASYNC_LOADING,
             Experiment.PIP_SMOOTH_ENTER,
+            Experiment.ADS_RX_CLIENT_VIDEO_AD_PRESENTER,
             Experiment.EXPANDABLE_ADS -> false
 
-            Experiment.ADS_CLIENT_AD_ALLOCATOR,
-            Experiment.ADS_RX_CLIENT_VIDEO_AD_PRESENTER -> true
+            Experiment.ADS_CLIENT_AD_ALLOCATOR -> true
 
             Experiment.CHAT_SETTINGS -> Flag.CHAT_SETTINGS.asBoolean()
 

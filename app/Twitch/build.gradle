@@ -52,4 +52,7 @@ dependencies {
     api "androidx.room:room-rxjava2:$room_version"
 
     api "io.sentry:sentry-android:$sentry_version"
+
+    api 'com.google.android.exoplayer:exoplayer:2.13.3'
+    api 'com.google.android.exoplayer:exoplayer-core:2.13.3'
 }

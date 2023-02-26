@@ -183,6 +183,4 @@
     <string name="orange_settings_hide_player_create_clip_button">إخفاء《زر إنشاء Clip》</string>
     <string name="orange_settings_disable_sentry">تعطيل SentrySDK</string>
     <string name="orange_settings_hide_player_live_share_button">إخفاء《زر المشاركة》للبثوث المباشرة</string>
-    <string name="orange_settings_bttv_webp">دعم ايموتات بصيغة WEBP</string>
-    <string name="orange_settings_fix_korea">سيرفر تجاوز حضرا لجوده عالية في الكوريا</string>
 </resources>

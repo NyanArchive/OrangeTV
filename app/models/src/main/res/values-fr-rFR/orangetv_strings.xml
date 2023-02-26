@@ -183,6 +183,5 @@
     <string name="orange_settings_hide_player_create_clip_button">Masquer « Créer le bouton crée un clip »</string>
     <string name="orange_settings_disable_sentry">Désactiver SentrySDK</string>
     <string name="orange_settings_hide_player_live_share_button">Masquer « Le bouton de partage » pour les lives</string>
-    <string name="orange_settings_bttv_webp">Prise en charge des emotes WEBP</string>
-    <string name="orange_settings_fix_korea">Contourner la restriction internet de la Corée</string>
+    <string name="orange_settings_bttv_webp">Prise en charge des emotes BTTV WebP</string>
 </resources>

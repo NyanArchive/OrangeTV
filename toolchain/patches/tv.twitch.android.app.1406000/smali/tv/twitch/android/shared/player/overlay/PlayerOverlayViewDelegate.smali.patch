@@ -67,7 +67,20 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
  
      .line 333
      iget-object v0, p0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->createClipButton:Landroid/widget/ImageView;
-@@ -1382,6 +1418,14 @@
+@@ -1329,6 +1365,12 @@
+ 
+     invoke-static {v0, p1}, Ltv/twitch/android/app/core/ViewExtensionsKt;->visibilityForBoolean(Landroid/view/View;Z)V
+ 
++    invoke-static {}, Ltv/orange/features/ui/UI;->get()Ltv/orange/features/ui/UI;
++
++    move-result-object v1
++
++    invoke-virtual {v1, v0}, Ltv/orange/features/ui/UI;->maybeHideCreateClipButton(Landroid/widget/ImageView;)V
++
+     return-void
+ .end method
+ 
+@@ -1382,6 +1424,14 @@
  
      invoke-static {v0, p1}, Ltv/twitch/android/app/core/ViewExtensionsKt;->visibilityForBoolean(Landroid/view/View;Z)V
  
@@ -82,7 +95,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
      return-void
  .end method
  
-@@ -1813,3 +1857,43 @@
+@@ -1813,3 +1863,43 @@
  
      return-void
  .end method

@@ -56,7 +56,6 @@ open class BasedSettingsPresenter(
             return when (flag.valueHolder) {
                 is BooleanValue -> FlagToggleMenuModelExt(flag)
                 is ListValue<*> -> when (flag) {
-                    Flag.NODE_SEGMENT -> DropDownMenuModelExt<Node>(flag, controller, true)
                     Flag.CHAT_FONT_SIZE -> DropDownMenuModelExt<FontSize>(flag, controller, true)
                     else -> DropDownMenuModelExt(flag, controller)
                 }

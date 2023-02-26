@@ -64,11 +64,10 @@ enum class Flag(
     PREVENT_MOD_CLEAR("prevent_mod_clear", "orange_settings_prevent_mod_clear", BooleanValue()),
     FORCE_TOOLBAR_SEARCH_BUTTON("force_toolbar_search_button", "orange_settings_force_toolbar_search_button", BooleanValue()),
     HIDE_PLAYER_CREATE_CLIP_BUTTON("hide_player_create_clip_button", "orange_settings_hide_player_create_clip_button", BooleanValue()),
-    FORCE_DISABLE_SENTRY("disable_sentry", "orange_settings_disable_sentry", BooleanValue()),
+    FORCE_DISABLE_SENTRY("disable_sentry_v2", "orange_settings_disable_sentry", BooleanValue()),
     HIDE_PLAYER_LIVE_SHARE_BUTTON("hide_player_live_share_button", "orange_settings_hide_player_live_share_button", BooleanValue()),
     HIDE_MESSAGE_INPUT("hide_message_input", "orange_settings_hide_message_input", BooleanValue()),
     BTTV_WEBP("bttv_webp", "orange_settings_bttv_webp", BooleanValue()),
-    FIX_KOREA_1080P("fix_korea", "orange_settings_fix_korea", BooleanValue()),
     // LIST
     PLAYER_IMPL("player_impl", "orange_settings_player_impl", ListValue(PlayerImpl::class)),
     DELETED_MESSAGES("deleted_messages", "orange_settings_deleted_messages", ListValue(DeletedMessages::class)),
@@ -79,7 +78,6 @@ enum class Flag(
     UPDATER("updater_final", "orange_settings_updater_channel", ListValue(UpdateChannel::class)),
     PINNED_MESSAGE("pinned_message", "orange_settings_pinned_message", ListValue(PinnedMessageStrategy::class)),
     Proxy("proxy", "orange_settings_proxy", ListValue(ProxyImpl::class)),
-    NODE_SEGMENT("node", "orange_settings_node", ListValue(Node::class)),
     // INT
     USER_MENTION_COLOR("user_mention_color", "orange_settings_user_mention_color", IntValue(Color.argb(100, 255, 0, 0))),
     LANDSCAPE_CHAT_SIZE("landscape_chat_size", "orange_settings_landscape_chat_size", IntRangeValue(10, 50, 30)),

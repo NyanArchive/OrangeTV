@@ -6,7 +6,8 @@ enum class ProxyImpl(val value: String) : Variant {
     Disabled("disabled"),
     Twitching("twitching"),
     TTV_LOL("ttv_lol"),
-    PURPLE("purple");
+    PURPLE("purple"),
+    GAY("gay");
 
     override fun getDefault(): Variant {
         return Disabled

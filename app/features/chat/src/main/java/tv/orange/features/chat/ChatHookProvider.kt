@@ -544,9 +544,10 @@ class ChatHookProvider @Inject constructor(
             ret: IMessageRecyclerItem,
             cmi: ChatMessageInterface
         ) {
-            if (cmi.isDeleted && !ret.getHasBeenDeleted()) {
-                ret.markAsDeleted()
-            }
+// TODO: fix crashing
+//            if (cmi.isDeleted && !ret.getHasBeenDeleted()) {
+//                ret.markAsDeleted()
+//            }
         }
 
         @JvmStatic

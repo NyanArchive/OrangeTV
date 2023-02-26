@@ -183,6 +183,5 @@
     <string name="orange_settings_hide_player_create_clip_button">«클립 생성» 버튼 숨기기</string>
     <string name="orange_settings_disable_sentry">SentrySDK 비활성화</string>
     <string name="orange_settings_hide_player_live_share_button">생방송도중 «공유» 버튼 숨기기</string>
-    <string name="orange_settings_bttv_webp">WEBP 이모티콘 지원</string>
-    <string name="orange_settings_fix_korea">한국 CDN 우회</string>
+    <string name="orange_settings_bttv_webp">WebP 이모티콘 지원</string>
 </resources>

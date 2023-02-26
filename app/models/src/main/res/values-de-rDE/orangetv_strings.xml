@@ -183,6 +183,4 @@
     <string name="orange_settings_hide_player_create_clip_button">«Clip erstellen Button» ausblenden</string>
     <string name="orange_settings_disable_sentry">SentrySDK deaktivieren</string>
     <string name="orange_settings_hide_player_live_share_button">«Teilen Button» für Live Streams ausblenden</string>
-    <string name="orange_settings_bttv_webp">Unterstützung für WEBP Emotes</string>
-    <string name="orange_settings_fix_korea">Umgehung von Korea CDN</string>
 </resources>

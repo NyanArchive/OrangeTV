@@ -1,6 +1,6 @@
-diff --git a/smali_classes5/tv/twitch/android/shared/experiments/helpers/PlayerSelectionExperimentImpl.smali b/smali_classes5/tv/twitch/android/shared/experiments/helpers/PlayerSelectionExperimentImpl.smali
---- a/smali_classes5/tv/twitch/android/shared/experiments/helpers/PlayerSelectionExperimentImpl.smali
-+++ b/smali_classes5/tv/twitch/android/shared/experiments/helpers/PlayerSelectionExperimentImpl.smali
+diff --git a/smali_classes6/tv/twitch/android/shared/experiments/helpers/PlayerSelectionExperimentImpl.smali b/smali_classes6/tv/twitch/android/shared/experiments/helpers/PlayerSelectionExperimentImpl.smali
+--- a/smali_classes6/tv/twitch/android/shared/experiments/helpers/PlayerSelectionExperimentImpl.smali
++++ b/smali_classes6/tv/twitch/android/shared/experiments/helpers/PlayerSelectionExperimentImpl.smali
 @@ -70,5 +70,10 @@
      sget-object v0, Ltv/twitch/android/models/player/PlayerImplementation;->Core:Ltv/twitch/android/models/player/PlayerImplementation;
  

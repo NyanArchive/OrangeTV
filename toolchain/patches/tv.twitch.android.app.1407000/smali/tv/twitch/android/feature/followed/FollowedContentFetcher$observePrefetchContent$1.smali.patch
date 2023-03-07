@@ -1,0 +1,30 @@
+diff --git a/smali_classes4/tv/twitch/android/feature/followed/FollowedContentFetcher$observePrefetchContent$1.smali b/smali_classes4/tv/twitch/android/feature/followed/FollowedContentFetcher$observePrefetchContent$1.smali
+--- a/smali_classes4/tv/twitch/android/feature/followed/FollowedContentFetcher$observePrefetchContent$1.smali
++++ b/smali_classes4/tv/twitch/android/feature/followed/FollowedContentFetcher$observePrefetchContent$1.smali
+@@ -70,7 +70,7 @@
+ .end method
+ 
+ .method public final invoke(Ltv/twitch/android/shared/follow/pub/FollowedFirstPageContent;)Ltv/twitch/android/feature/followed/model/FollowingContentResponse;
+-    .locals 4
++    .locals 5
+ 
+     const-string v0, "it"
+ 
+@@ -90,6 +90,17 @@
+ 
+     move-result-object v3
+ 
++    invoke-static {}, Ltv/orange/features/ui/UI;->getHideGames()Z
++
++    move-result v4
++
++    if-eqz v4, :cond_z
++
++    invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
++
++    move-result-object v3
++
++    :cond_z
+     invoke-direct {v2, v3}, Ltv/twitch/android/feature/followed/model/FollowingContentItemCollection$Categories;-><init>(Ljava/util/List;)V
+ 
+     const/4 v3, 0x0

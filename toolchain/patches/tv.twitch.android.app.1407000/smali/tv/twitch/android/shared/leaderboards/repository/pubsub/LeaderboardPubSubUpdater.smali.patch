@@ -1,7 +1,7 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/leaderboards/repository/pubsub/LeaderboardPubSubUpdater.smali b/smali_classes6/tv/twitch/android/shared/leaderboards/repository/pubsub/LeaderboardPubSubUpdater.smali
 --- a/smali_classes6/tv/twitch/android/shared/leaderboards/repository/pubsub/LeaderboardPubSubUpdater.smali
 +++ b/smali_classes6/tv/twitch/android/shared/leaderboards/repository/pubsub/LeaderboardPubSubUpdater.smali
-@@ -550,8 +550,25 @@
+@@ -574,9 +574,26 @@
  
      move-result-object v3
  
@@ -21,6 +21,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/leaderboards/repository/pub
 +
 +    if-nez v4, :cond_z
 +
+     .line 1621
      invoke-interface {p1, v3}, Ljava/util/Collection;->add(Ljava/lang/Object;)Z
  
 +    :cond_z

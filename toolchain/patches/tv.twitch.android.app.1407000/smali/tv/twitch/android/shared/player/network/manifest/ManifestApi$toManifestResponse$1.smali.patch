@@ -1,0 +1,14 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/player/network/manifest/ManifestApi$toManifestResponse$1.smali b/smali_classes6/tv/twitch/android/shared/player/network/manifest/ManifestApi$toManifestResponse$1.smali
+--- a/smali_classes6/tv/twitch/android/shared/player/network/manifest/ManifestApi$toManifestResponse$1.smali
++++ b/smali_classes6/tv/twitch/android/shared/player/network/manifest/ManifestApi$toManifestResponse$1.smali
+@@ -121,6 +121,10 @@
+ 
+     move-result-object v1
+ 
++    invoke-static {p1, v1}, Ltv/orange/features/proxy/Proxy;->hookPlaylistUrl(Ljava/lang/String;Ltv/twitch/android/models/manifest/extm3u;)Ljava/lang/String;
++
++    move-result-object p1
++
+     .line 201
+     invoke-direct {v4, p1, v1, v2, v0}, Ltv/twitch/android/models/manifest/ManifestModel;-><init>(Ljava/lang/String;Ltv/twitch/android/models/manifest/extm3u;Ltv/twitch/android/models/AccessTokenResponse;Ljava/lang/String;)V
+ 

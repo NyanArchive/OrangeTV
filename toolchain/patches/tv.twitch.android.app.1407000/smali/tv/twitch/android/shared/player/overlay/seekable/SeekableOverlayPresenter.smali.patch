@@ -1,7 +1,7 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/seekable/SeekableOverlayPresenter.smali b/smali_classes6/tv/twitch/android/shared/player/overlay/seekable/SeekableOverlayPresenter.smali
 --- a/smali_classes6/tv/twitch/android/shared/player/overlay/seekable/SeekableOverlayPresenter.smali
 +++ b/smali_classes6/tv/twitch/android/shared/player/overlay/seekable/SeekableOverlayPresenter.smali
-@@ -233,6 +233,10 @@
+@@ -251,6 +251,10 @@
  
      invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
  
@@ -9,10 +9,10 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/seekable/See
 +
 +    invoke-virtual {v0}, Ltv/twitch/android/shared/player/overlay/PlayerOverlayPresenter;->hideChaptersButton()V
 +
-     .line 188
+     .line 191
      iget-object v0, p0, Ltv/twitch/android/shared/player/overlay/seekable/SeekableOverlayPresenter;->playPauseFastSeekViewDelegate:Ltv/twitch/android/shared/player/overlay/seekable/PlayPauseFastSeekViewDelegate;
  
-@@ -299,6 +303,12 @@
+@@ -317,6 +321,12 @@
  
      invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
  
@@ -22,11 +22,11 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/seekable/See
 +
 +    invoke-virtual {v0, p1, v1}, Ltv/twitch/android/shared/player/overlay/PlayerOverlayPresenter;->onBindVodModel(Ltv/twitch/android/models/videos/VodModel;Ltv/twitch/android/shared/player/overlay/seekable/SeekbarOverlayPresenter;)V
 +
-     .line 173
+     .line 176
      iget-object v0, p0, Ltv/twitch/android/shared/player/overlay/seekable/SeekableOverlayPresenter;->playPauseFastSeekViewDelegate:Ltv/twitch/android/shared/player/overlay/seekable/PlayPauseFastSeekViewDelegate;
  
-@@ -540,6 +550,10 @@
-     .line 146
+@@ -558,6 +568,10 @@
+     .line 149
      invoke-virtual {v0, p1}, Ltv/twitch/android/shared/player/overlay/PlayerOverlayPresenter;->attachViewDelegate(Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;)V
  
 +    iget-object v0, p0, Ltv/twitch/android/shared/player/overlay/seekable/SeekableOverlayPresenter;->playerOverlayPresenter:Ltv/twitch/android/shared/player/overlay/PlayerOverlayPresenter;
@@ -36,7 +36,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/seekable/See
      return-void
  .end method
  
-@@ -762,3 +776,16 @@
+@@ -780,3 +794,16 @@
  
      return-void
  .end method

@@ -58,7 +58,7 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
 -    move-result-object v2
 +    const-string v2, "tv.twitch.android.app"
  
-     const-string v3, "14.6.0"
+     const-string v3, "14.7.0"
  
 @@ -241,6 +259,8 @@
  
@@ -69,7 +69,7 @@ diff --git a/smali_classes4/tv/twitch/android/app/consumer/TwitchApplication.sma
      .line 125
      new-instance v1, Ltv/twitch/android/app/consumer/TwitchApplication$$ExternalSyntheticLambda0;
  
-@@ -478,3 +498,86 @@
+@@ -476,3 +496,86 @@
  
      return-void
  .end method

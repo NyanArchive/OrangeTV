@@ -1,7 +1,7 @@
 diff --git a/smali_classes4/tv/twitch/android/feature/theatre/refactor/RxStreamPlayerPresenter.smali b/smali_classes4/tv/twitch/android/feature/theatre/refactor/RxStreamPlayerPresenter.smali
 --- a/smali_classes4/tv/twitch/android/feature/theatre/refactor/RxStreamPlayerPresenter.smali
 +++ b/smali_classes4/tv/twitch/android/feature/theatre/refactor/RxStreamPlayerPresenter.smali
-@@ -608,8 +608,12 @@
+@@ -604,8 +604,12 @@
      .line 181
      invoke-virtual {v0, v4}, Ltv/twitch/android/core/mvp/presenter/BasePresenter;->registerInternalObjectForLifecycleEvents([Ltv/twitch/android/core/mvp/lifecycle/LifecycleAware;)V
  

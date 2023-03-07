@@ -1,7 +1,7 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/pip/NativePictureInPicturePresenter.smali b/smali_classes6/tv/twitch/android/shared/pip/NativePictureInPicturePresenter.smali
 --- a/smali_classes6/tv/twitch/android/shared/pip/NativePictureInPicturePresenter.smali
 +++ b/smali_classes6/tv/twitch/android/shared/pip/NativePictureInPicturePresenter.smali
-@@ -1058,12 +1058,12 @@
+@@ -815,12 +815,12 @@
  
      invoke-direct {v2}, Landroid/content/IntentFilter;-><init>()V
  

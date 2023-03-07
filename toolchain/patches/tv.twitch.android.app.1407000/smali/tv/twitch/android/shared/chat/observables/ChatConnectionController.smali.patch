@@ -9,8 +9,8 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnec
 +
  
  # direct methods
- .method public static synthetic $r8$lambda$EQVOfdpNI-6IznLi_PjAQJS_In0(Ltv/twitch/android/shared/chat/observables/ChatConnectionController;Ltv/twitch/android/shared/chat/pub/events/ChatNoticeEvent;)Z
-@@ -869,6 +871,22 @@
+ .method public static synthetic $r8$lambda$537qQSqwJq_L3rbguY99fuJB3Jg(Lkotlin/jvm/functions/Function1;Ljava/lang/Object;)Z
+@@ -873,6 +875,22 @@
      :cond_2
      iput-object v4, v0, Ltv/twitch/android/shared/chat/observables/ChatConnectionController;->viewer:Ltv/twitch/android/models/UserModel;
  
@@ -33,7 +33,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnec
      return-void
  .end method
  
-@@ -2365,6 +2383,12 @@
+@@ -2446,6 +2464,12 @@
  
      invoke-virtual {v0, p1}, Ltv/twitch/android/shared/badges/ChatBadgeProvider;->fetchChannelBadges(I)V
  
@@ -46,7 +46,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnec
      goto :goto_1
  
      .line 598
-@@ -2377,6 +2401,12 @@
+@@ -2458,6 +2482,12 @@
  
      invoke-virtual {v0, v2}, Lio/reactivex/subjects/BehaviorSubject;->onNext(Ljava/lang/Object;)V
  
@@ -59,29 +59,29 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnec
      .line 625
      :goto_1
      sget-object v0, Ltv/twitch/android/sdk/ChannelState;->Disconnected:Ltv/twitch/android/sdk/ChannelState;
-@@ -4151,7 +4181,7 @@
+@@ -4166,7 +4196,7 @@
  .end method
  
  .method public observeMessagesReceived()Lio/reactivex/Flowable;
--    .locals 2
-+    .locals 3
+-    .locals 3
++    .locals 4
      .annotation system Ldalvik/annotation/Signature;
          value = {
              "()",
-@@ -4173,6 +4203,12 @@
+@@ -4192,6 +4222,12 @@
  
      move-result-object v0
  
-+    iget-object v2, p0, Ltv/twitch/android/shared/chat/observables/ChatConnectionController;->chp:Ltv/orange/features/chat/ChatHookProvider;
++    iget-object v3, p0, Ltv/twitch/android/shared/chat/observables/ChatConnectionController;->chp:Ltv/orange/features/chat/ChatHookProvider;
 +
-+    invoke-virtual {v2, v0}, Ltv/orange/features/chat/ChatHookProvider;->filterMessages(Lio/reactivex/Observable;)Lio/reactivex/Observable;
++    invoke-virtual {v3, v0}, Ltv/orange/features/chat/ChatHookProvider;->filterMessages(Lio/reactivex/Observable;)Lio/reactivex/Observable;
 +
 +    move-result-object v0
 +
      .line 296
      sget-object v1, Lio/reactivex/BackpressureStrategy;->BUFFER:Lio/reactivex/BackpressureStrategy;
  
-@@ -4350,3 +4386,14 @@
+@@ -4375,3 +4411,14 @@
  
      return-void
  .end method

@@ -1,7 +1,7 @@
 diff --git a/smali_classes4/tv/twitch/android/feature/theatre/metadata/ExtendedPlayerMetadataViewDelegate$Companion.smali b/smali_classes4/tv/twitch/android/feature/theatre/metadata/ExtendedPlayerMetadataViewDelegate$Companion.smali
 --- a/smali_classes4/tv/twitch/android/feature/theatre/metadata/ExtendedPlayerMetadataViewDelegate$Companion.smali
 +++ b/smali_classes4/tv/twitch/android/feature/theatre/metadata/ExtendedPlayerMetadataViewDelegate$Companion.smali
-@@ -59,6 +59,10 @@
+@@ -51,6 +51,10 @@
  
      sget v2, Ltv/twitch/android/feature/theatre/R$layout;->player_metadata_view_extended:I
  

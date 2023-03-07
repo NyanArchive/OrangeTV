@@ -1,7 +1,7 @@
 diff --git a/smali_classes5/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali b/smali_classes5/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali
 --- a/smali_classes5/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali
 +++ b/smali_classes5/tv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl.smali
-@@ -677,7 +677,26 @@
+@@ -696,7 +696,26 @@
  
      invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
  
@@ -28,7 +28,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chomments/impl/ChommentsFet
      iget-boolean v0, p0, Ltv/twitch/android/shared/chomments/impl/ChommentsFetcherImpl;->isRequestInFlight:Z
  
      if-nez v0, :cond_1
-@@ -895,6 +914,26 @@
+@@ -927,6 +946,26 @@
  
      invoke-virtual {p1, v0}, Ltv/twitch/android/shared/badges/ChatBadgeProvider;->fetchChannelBadges(I)V
  

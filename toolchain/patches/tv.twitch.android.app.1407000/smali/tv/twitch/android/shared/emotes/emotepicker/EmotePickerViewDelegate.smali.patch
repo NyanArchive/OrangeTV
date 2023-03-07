@@ -19,7 +19,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/EmotePic
 +
  
  # direct methods
- .method public static synthetic $r8$lambda$CQ_u71dF9BxWNvZMIFBqYllcHYo(Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate;Landroid/view/View;)V
+ .method public static synthetic $r8$lambda$AF3nqKaHpJWlZshuIIiEPkQ3Ni8(Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerViewDelegate;Landroid/view/View;)V
 @@ -287,6 +292,16 @@
  
      invoke-virtual {v0, p1}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
@@ -49,7 +49,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/EmotePic
 +
 +    invoke-virtual {v0, p1, v1}, Ltv/orange/features/chat/ChatHookProvider;->renderEmotePickerState(Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter$EmotePickerState;Landroid/widget/ImageView;)V
 +
-     .line 128
+     .line 127
      invoke-virtual {p1}, Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter$EmotePickerState;->isOpen()Z
  
 @@ -742,3 +765,127 @@

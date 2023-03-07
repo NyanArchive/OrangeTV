@@ -1,7 +1,7 @@
 diff --git a/smali_classes4/tv/twitch/android/feature/theatre/metadata/ExtendedPlayerMetadataViewDelegate.smali b/smali_classes4/tv/twitch/android/feature/theatre/metadata/ExtendedPlayerMetadataViewDelegate.smali
 --- a/smali_classes4/tv/twitch/android/feature/theatre/metadata/ExtendedPlayerMetadataViewDelegate.smali
 +++ b/smali_classes4/tv/twitch/android/feature/theatre/metadata/ExtendedPlayerMetadataViewDelegate.smali
-@@ -624,11 +624,17 @@
+@@ -614,11 +614,17 @@
  
      invoke-static {p2, v0}, Ltv/twitch/android/app/core/ViewExtensionsKt;->visibilityForBoolean(Landroid/view/View;Z)V
  
@@ -9,13 +9,13 @@ diff --git a/smali_classes4/tv/twitch/android/feature/theatre/metadata/ExtendedP
 +
 +    move-result v0
 +
-     .line 138
+     .line 125
      iget-object p2, p0, Ltv/twitch/android/feature/theatre/metadata/ExtendedPlayerMetadataViewDelegate;->followButtonExtended:Landroid/view/View;
  
      invoke-static {p2, v0}, Ltv/twitch/android/app/core/ViewExtensionsKt;->visibilityForBoolean(Landroid/view/View;Z)V
  
 +    const/4 v0, 0x1
 +
-     .line 139
+     .line 126
      iget-object p2, p0, Ltv/twitch/android/feature/theatre/metadata/ExtendedPlayerMetadataViewDelegate;->notifsButtonExtended:Landroid/view/View;
  

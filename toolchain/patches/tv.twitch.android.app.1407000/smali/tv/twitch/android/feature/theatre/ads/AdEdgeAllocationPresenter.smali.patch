@@ -1,7 +1,7 @@
 diff --git a/smali_classes4/tv/twitch/android/feature/theatre/ads/AdEdgeAllocationPresenter.smali b/smali_classes4/tv/twitch/android/feature/theatre/ads/AdEdgeAllocationPresenter.smali
 --- a/smali_classes4/tv/twitch/android/feature/theatre/ads/AdEdgeAllocationPresenter.smali
 +++ b/smali_classes4/tv/twitch/android/feature/theatre/ads/AdEdgeAllocationPresenter.smali
-@@ -328,12 +328,6 @@
+@@ -317,12 +317,6 @@
      .line 237
      invoke-direct {p0}, Ltv/twitch/android/feature/theatre/ads/AdEdgeAllocationPresenter;->observeAdSessionChanges()V
  

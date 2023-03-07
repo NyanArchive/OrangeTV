@@ -16,6 +16,6 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/observables/ChatConnec
 +    return v0
 +
 +    :cond_z
-     iget-object v0, p0, Ltv/twitch/android/shared/chat/observables/ChatConnectionController$$ExternalSyntheticLambda2;->f$0:Ltv/twitch/android/shared/chat/observables/ChatConnectionController;
+     iget-object v0, p0, Ltv/twitch/android/shared/chat/observables/ChatConnectionController$$ExternalSyntheticLambda2;->f$0:Lkotlin/jvm/functions/Function1;
  
-     check-cast p1, Ltv/twitch/android/shared/chat/pub/events/MessagesReceivedEvent;
+     invoke-static {v0, p1}, Ltv/twitch/android/shared/chat/observables/ChatConnectionController;->$r8$lambda$537qQSqwJq_L3rbguY99fuJB3Jg(Lkotlin/jvm/functions/Function1;Ljava/lang/Object;)Z

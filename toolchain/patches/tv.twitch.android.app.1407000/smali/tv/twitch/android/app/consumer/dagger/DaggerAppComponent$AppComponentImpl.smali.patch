@@ -1,7 +1,7 @@
 diff --git a/smali_classes4/tv/twitch/android/app/consumer/dagger/DaggerAppComponent$AppComponentImpl.smali b/smali_classes4/tv/twitch/android/app/consumer/dagger/DaggerAppComponent$AppComponentImpl.smali
 --- a/smali_classes4/tv/twitch/android/app/consumer/dagger/DaggerAppComponent$AppComponentImpl.smali
 +++ b/smali_classes4/tv/twitch/android/app/consumer/dagger/DaggerAppComponent$AppComponentImpl.smali
-@@ -21482,6 +21482,10 @@
+@@ -21411,6 +21411,10 @@
  
      move-result-object v0
  

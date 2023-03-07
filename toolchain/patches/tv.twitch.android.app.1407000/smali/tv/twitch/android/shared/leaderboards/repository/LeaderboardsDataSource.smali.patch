@@ -1,7 +1,7 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/leaderboards/repository/LeaderboardsDataSource.smali b/smali_classes6/tv/twitch/android/shared/leaderboards/repository/LeaderboardsDataSource.smali
 --- a/smali_classes6/tv/twitch/android/shared/leaderboards/repository/LeaderboardsDataSource.smali
 +++ b/smali_classes6/tv/twitch/android/shared/leaderboards/repository/LeaderboardsDataSource.smali
-@@ -647,82 +647,8 @@
+@@ -665,82 +665,8 @@
  .end method
  
  .method private final observePubSubUpdates(Ltv/twitch/android/models/leaderboard/ChannelLeaderboards;)V
@@ -85,7 +85,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/leaderboards/repository/Lea
      return-void
  .end method
  
-@@ -834,7 +760,18 @@
+@@ -852,7 +778,18 @@
  .method private final shouldFetchLeaderboards(Ltv/twitch/android/models/chat/ChatBroadcaster;)Z
      .locals 2
  

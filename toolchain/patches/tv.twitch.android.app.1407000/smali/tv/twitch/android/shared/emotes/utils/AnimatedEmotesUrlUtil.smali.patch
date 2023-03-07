@@ -1,7 +1,7 @@
 diff --git a/smali_classes5/tv/twitch/android/shared/emotes/utils/AnimatedEmotesUrlUtil.smali b/smali_classes5/tv/twitch/android/shared/emotes/utils/AnimatedEmotesUrlUtil.smali
 --- a/smali_classes5/tv/twitch/android/shared/emotes/utils/AnimatedEmotesUrlUtil.smali
 +++ b/smali_classes5/tv/twitch/android/shared/emotes/utils/AnimatedEmotesUrlUtil.smali
-@@ -575,3 +575,17 @@
+@@ -576,3 +576,17 @@
      :cond_0
      return-object v0
  .end method

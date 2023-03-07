@@ -1,7 +1,7 @@
 diff --git a/smali_classes5/tv/twitch/android/shared/billing/RxBillingClient.smali b/smali_classes5/tv/twitch/android/shared/billing/RxBillingClient.smali
 --- a/smali_classes5/tv/twitch/android/shared/billing/RxBillingClient.smali
 +++ b/smali_classes5/tv/twitch/android/shared/billing/RxBillingClient.smali
-@@ -980,39 +980,8 @@
+@@ -481,39 +481,8 @@
  .end method
  
  .method private final logNonFatalBillingException(Ltv/twitch/android/shared/billing/models/BillingException;I)V
@@ -42,7 +42,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/billing/RxBillingClient.sma
      return-void
  .end method
  
-@@ -2692,12 +2661,7 @@
+@@ -2115,12 +2084,7 @@
  .method public final isAvailable()Z
      .locals 1
  

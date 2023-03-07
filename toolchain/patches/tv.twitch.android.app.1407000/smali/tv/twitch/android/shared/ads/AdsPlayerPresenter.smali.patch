@@ -1,7 +1,7 @@
 diff --git a/smali_classes5/tv/twitch/android/shared/ads/AdsPlayerPresenter.smali b/smali_classes5/tv/twitch/android/shared/ads/AdsPlayerPresenter.smali
 --- a/smali_classes5/tv/twitch/android/shared/ads/AdsPlayerPresenter.smali
 +++ b/smali_classes5/tv/twitch/android/shared/ads/AdsPlayerPresenter.smali
-@@ -1340,38 +1340,8 @@
+@@ -1308,38 +1308,8 @@
  .end method
  
  .method private final requestFirstAd()V
@@ -41,7 +41,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/ads/AdsPlayerPresenter.smal
      return-void
  .end method
  
-@@ -1406,32 +1376,7 @@
+@@ -1374,32 +1344,7 @@
  .end method
  
  .method private final requestMidroll(Ltv/twitch/android/models/ads/PbypMidrollRequest;Ltv/twitch/android/models/ads/ClientAdRequestMetadata$ClientMidrollMetadata;)V
@@ -75,7 +75,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/ads/AdsPlayerPresenter.smal
  
      return-void
  .end method
-@@ -2404,57 +2349,7 @@
+@@ -2377,57 +2322,7 @@
  .end method
  
  .method public final requestAdFromMultiAdFormatEvent(Ltv/twitch/android/models/ads/MultiAdFormatMetadata;Ltv/twitch/android/models/ads/PbypMidrollRequest;Ltv/twitch/android/shared/ads/models/sdk/VAST;)V

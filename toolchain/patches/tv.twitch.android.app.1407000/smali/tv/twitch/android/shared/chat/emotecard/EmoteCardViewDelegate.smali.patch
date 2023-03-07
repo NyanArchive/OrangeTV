@@ -1,7 +1,7 @@
 diff --git a/smali_classes5/tv/twitch/android/shared/chat/emotecard/EmoteCardViewDelegate.smali b/smali_classes5/tv/twitch/android/shared/chat/emotecard/EmoteCardViewDelegate.smali
 --- a/smali_classes5/tv/twitch/android/shared/chat/emotecard/EmoteCardViewDelegate.smali
 +++ b/smali_classes5/tv/twitch/android/shared/chat/emotecard/EmoteCardViewDelegate.smali
-@@ -559,7 +559,7 @@
+@@ -560,7 +560,7 @@
  .end method
  
  .method private final renderEmoteCard(Ltv/twitch/android/shared/chat/emotecard/EmoteCardState$Loaded;)V
@@ -10,7 +10,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/emotecard/EmoteCardVie
  
      .line 126
      invoke-virtual {p1}, Ltv/twitch/android/shared/chat/emotecard/EmoteCardState$Loaded;->getEmoteCardUiModel()Ltv/twitch/android/shared/chat/emotecard/EmoteCardUiModel;
-@@ -715,13 +715,13 @@
+@@ -716,13 +716,13 @@
      :cond_2
      invoke-virtual {p1}, Ltv/twitch/android/shared/chat/emotecard/EmoteCardUiModel;->getFollowButton()Ltv/twitch/android/shared/chat/emotecard/FollowButtonUiModel;
  
@@ -26,7 +26,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/emotecard/EmoteCardVie
  
      move-result-object v0
  
-@@ -740,6 +740,11 @@
+@@ -741,6 +741,11 @@
  
      .line 175
      :cond_3

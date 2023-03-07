@@ -28,7 +28,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/settings/entry/ChatSet
      .line 56
      sget v2, Ltv/twitch/android/shared/chat/settings/R$id;->close_button:I
  
-@@ -1147,6 +1160,12 @@
+@@ -1171,6 +1184,12 @@
  
      move-result-object v0
  
@@ -41,7 +41,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/settings/entry/ChatSet
      .line 92
      invoke-static {v0}, Lio/reactivex/Flowable;->merge(Ljava/lang/Iterable;)Lio/reactivex/Flowable;
  
-@@ -1178,6 +1197,10 @@
+@@ -1202,6 +1221,10 @@
  
      invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
  

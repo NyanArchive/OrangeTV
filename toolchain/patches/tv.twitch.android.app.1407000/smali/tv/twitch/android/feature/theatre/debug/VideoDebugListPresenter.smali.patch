@@ -1,7 +1,7 @@
 diff --git a/smali_classes4/tv/twitch/android/feature/theatre/debug/VideoDebugListPresenter.smali b/smali_classes4/tv/twitch/android/feature/theatre/debug/VideoDebugListPresenter.smali
 --- a/smali_classes4/tv/twitch/android/feature/theatre/debug/VideoDebugListPresenter.smali
 +++ b/smali_classes4/tv/twitch/android/feature/theatre/debug/VideoDebugListPresenter.smali
-@@ -421,6 +421,8 @@
+@@ -407,6 +407,8 @@
          }
      .end annotation
  
@@ -10,7 +10,7 @@ diff --git a/smali_classes4/tv/twitch/android/feature/theatre/debug/VideoDebugLi
      .line 171
      invoke-virtual {p1}, Ltv/twitch/android/feature/theatre/debug/VideoDebugListPresenter$State;->getData()Ljava/util/Map;
  
-@@ -1444,3 +1446,39 @@
+@@ -1430,3 +1432,39 @@
  
      return-void
  .end method

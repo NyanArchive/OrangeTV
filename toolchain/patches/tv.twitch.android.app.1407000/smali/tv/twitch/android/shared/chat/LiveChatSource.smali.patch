@@ -11,7 +11,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/LiveChatSource.smali b
  
  # annotations
  .annotation system Ldalvik/annotation/MemberClasses;
-@@ -975,10 +978,17 @@
+@@ -981,10 +984,17 @@
  
      if-nez p1, :cond_4
  
@@ -29,7 +29,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/LiveChatSource.smali b
      iget-object p1, p0, Ltv/twitch/android/shared/chat/LiveChatSource;->context:Landroid/content/Context;
  
      sget v0, Ltv/twitch/android/core/strings/R$string;->channel_notice_chat_cleared:I
-@@ -2627,10 +2637,17 @@
+@@ -2633,10 +2643,17 @@
  
      if-eqz v1, :cond_10
  
@@ -47,7 +47,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/LiveChatSource.smali b
      iget-object v1, v6, Ltv/twitch/android/shared/chat/LiveChatSource;->context:Landroid/content/Context;
  
      sget v4, Ltv/twitch/android/core/strings/R$string;->mod_notice_chat_cleared:I
-@@ -3908,3 +3925,37 @@
+@@ -3915,3 +3932,37 @@
  
      return-void
  .end method

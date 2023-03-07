@@ -16,20 +16,22 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/network/manifest/Man
  
      const/4 v10, 0x1
  
-@@ -529,7 +529,11 @@
+@@ -529,6 +529,14 @@
  
      move-result-object v1
  
--    move-object/from16 v2, p2
 +    move-object/from16 v3, p1
 +
-+    invoke-static {v1, v3, v2}, Ltv/orange/features/proxy/Proxy;->tryHookStreamManifestResponse(Lio/reactivex/Single;Ljava/lang/String;Ltv/twitch/android/models/AccessTokenResponse;)Lio/reactivex/Single;
++    move-object/from16 v4, p2
++
++    invoke-static {v1, v3, v4}, Ltv/orange/features/proxy/Proxy;->tryHookStreamManifestResponse(Lio/reactivex/Single;Ljava/lang/String;Ltv/twitch/android/models/AccessTokenResponse;)Lio/reactivex/Single;
 +
 +    move-result-object v1
++
+     move-object/from16 v2, p2
  
      .line 190
-     invoke-direct {v0, v1, v2}, Ltv/twitch/android/shared/player/network/manifest/ManifestApi;->toManifestResponse(Lio/reactivex/Single;Ltv/twitch/android/models/AccessTokenResponse;)Lio/reactivex/Single;
-@@ -657,7 +661,12 @@
+@@ -657,7 +665,12 @@
  .end method
  
  .method public getVodManifest(Ljava/lang/String;Ltv/twitch/android/models/AccessTokenResponse;Ljava/lang/String;Ljava/lang/String;Ltv/twitch/android/models/player/ManifestProperties;)Lio/reactivex/Single;
@@ -43,7 +45,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/network/manifest/Man
      .annotation system Ldalvik/annotation/Signature;
          value = {
              "(",
-@@ -667,89 +676,64 @@
+@@ -667,89 +680,64 @@
              "Ljava/lang/String;",
              "Ltv/twitch/android/models/player/ManifestProperties;",
              ")",
@@ -76,18 +78,18 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/network/manifest/Man
 -    invoke-static {v5, v2}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 -
 -    const-string v2, "sig"
--
--    move-object/from16 v6, p4
 +    .prologue
 +    .line 29
 +    invoke-static {}, Ltv/orange/features/vodhunter/Vodhunter;->get()Ltv/orange/features/vodhunter/Vodhunter;
  
--    invoke-static {v6, v2}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-    move-object/from16 v6, p4
 +    move-result-object v0
  
--    const-string v2, "manifestProperties"
+-    invoke-static {v6, v2}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
 +    iget-object v1, p0, Ltv/twitch/android/shared/player/network/manifest/ManifestApi;->manifestService:Ltv/twitch/android/shared/player/network/manifest/ManifestApi$ManifestService;
  
+-    const-string v2, "manifestProperties"
+-
 -    move-object/from16 v3, p5
 -
 -    invoke-static {v3, v2}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
@@ -131,17 +133,17 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/network/manifest/Man
      invoke-virtual/range {p5 .. p5}, Ltv/twitch/android/models/player/ManifestProperties;->getAdsEncodedClientMetadata()Ljava/lang/String;
  
 -    move-result-object v13
+-
+-    const/4 v11, 0x1
 +    move-result-object v11
  
--    const/4 v11, 0x1
-+    move-object v2, p1
- 
 -    move-object v3, v2
-+    move-object v3, p3
++    move-object v2, p1
  
 -    .line 147
 -    invoke-interface/range {v3 .. v13}, Ltv/twitch/android/shared/player/network/manifest/ManifestApi$ManifestService;->getVodManifest(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JZZLjava/lang/String;Ljava/lang/String;)Lio/reactivex/Single;
--
++    move-object v3, p3
+ 
 -    move-result-object v2
 +    move-object/from16 v4, p4
  

@@ -1,7 +1,7 @@
 diff --git a/smali_classes5/tv/twitch/android/shared/chat/emotecard/EmoteCardPresenter.smali b/smali_classes5/tv/twitch/android/shared/chat/emotecard/EmoteCardPresenter.smali
 --- a/smali_classes5/tv/twitch/android/shared/chat/emotecard/EmoteCardPresenter.smali
 +++ b/smali_classes5/tv/twitch/android/shared/chat/emotecard/EmoteCardPresenter.smali
-@@ -3884,3 +3884,30 @@
+@@ -3850,3 +3850,30 @@
  
      return-void
  .end method

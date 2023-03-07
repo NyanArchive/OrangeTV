@@ -15,7 +15,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/audio/ads/AudioAdsPresenter
  
      new-array v4, v5, [Ltv/twitch/android/core/mvp/presenter/BasePresenter;
  
-@@ -702,7 +706,7 @@
+@@ -582,7 +586,7 @@
      :cond_0
      new-instance p1, Landroid/content/Intent;
  

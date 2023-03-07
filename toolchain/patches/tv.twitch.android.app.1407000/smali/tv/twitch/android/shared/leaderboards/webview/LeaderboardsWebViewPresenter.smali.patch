@@ -1,7 +1,7 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/leaderboards/webview/LeaderboardsWebViewPresenter.smali b/smali_classes6/tv/twitch/android/shared/leaderboards/webview/LeaderboardsWebViewPresenter.smali
 --- a/smali_classes6/tv/twitch/android/shared/leaderboards/webview/LeaderboardsWebViewPresenter.smali
 +++ b/smali_classes6/tv/twitch/android/shared/leaderboards/webview/LeaderboardsWebViewPresenter.smali
-@@ -1180,7 +1180,18 @@
+@@ -1138,7 +1138,18 @@
  .method private final shouldFetchLeaderboards(Ltv/twitch/android/models/chat/ChatBroadcaster;)Z
      .locals 2
  

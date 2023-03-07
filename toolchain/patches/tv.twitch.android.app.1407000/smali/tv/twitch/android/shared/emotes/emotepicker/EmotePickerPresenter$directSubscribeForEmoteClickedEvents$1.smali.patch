@@ -1,7 +1,7 @@
 diff --git a/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter$directSubscribeForEmoteClickedEvents$1.smali b/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter$directSubscribeForEmoteClickedEvents$1.smali
 --- a/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter$directSubscribeForEmoteClickedEvents$1.smali
 +++ b/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter$directSubscribeForEmoteClickedEvents$1.smali
-@@ -97,7 +97,20 @@
+@@ -74,7 +74,20 @@
  
      invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
  
@@ -17,7 +17,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/EmotePic
 +
 +    return-void
 +
-     .line 316
+     .line 308
 +    :cond_z
      invoke-virtual {p1}, Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter$ClickEvent;->getClickedEmote()Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter$ClickedEmote;
  

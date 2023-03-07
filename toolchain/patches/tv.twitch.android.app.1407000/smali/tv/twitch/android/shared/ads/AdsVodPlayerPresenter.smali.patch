@@ -1,7 +1,7 @@
 diff --git a/smali_classes5/tv/twitch/android/shared/ads/AdsVodPlayerPresenter.smali b/smali_classes5/tv/twitch/android/shared/ads/AdsVodPlayerPresenter.smali
 --- a/smali_classes5/tv/twitch/android/shared/ads/AdsVodPlayerPresenter.smali
 +++ b/smali_classes5/tv/twitch/android/shared/ads/AdsVodPlayerPresenter.smali
-@@ -971,16 +971,6 @@
+@@ -944,16 +944,6 @@
  .method static synthetic requestAd$default(Ltv/twitch/android/shared/ads/AdsVodPlayerPresenter;Ltv/twitch/android/models/ads/ClientAdRequestMetadata;ZLtv/twitch/android/shared/ads/models/AdOpportunityStartContext;ILjava/lang/Object;)V
      .locals 0
  

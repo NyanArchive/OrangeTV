@@ -1,7 +1,7 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/privacy/VendorConsentProvider.smali b/smali_classes6/tv/twitch/android/shared/privacy/VendorConsentProvider.smali
 --- a/smali_classes6/tv/twitch/android/shared/privacy/VendorConsentProvider.smali
 +++ b/smali_classes6/tv/twitch/android/shared/privacy/VendorConsentProvider.smali
-@@ -42,73 +42,10 @@
+@@ -53,73 +53,10 @@
  .end method
  
  .method private final forTrackingVendor(Ltv/twitch/android/models/privacy/UserDataConsent;Ltv/twitch/android/models/privacy/TrackingVendor;)Ltv/twitch/android/models/privacy/UserConsentStatus;

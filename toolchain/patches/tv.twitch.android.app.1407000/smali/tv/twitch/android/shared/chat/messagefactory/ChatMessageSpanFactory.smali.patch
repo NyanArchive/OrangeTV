@@ -9,7 +9,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
 +
  
  # direct methods
- .method public static synthetic $r8$lambda$ZSA2jM2aPNt5h6aLk6mPCSBNB_I(Landroidx/fragment/app/FragmentActivity;Ltv/twitch/android/models/webview/WebViewSource;Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;Ljava/lang/String;)Landroid/text/style/ClickableSpan;
+ .method public static synthetic $r8$lambda$12XLw9fpEDR-cGJ8mzh4yULWvkQ(Landroidx/fragment/app/FragmentActivity;Ltv/twitch/android/models/webview/WebViewSource;Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;Ljava/lang/String;)Landroid/text/style/ClickableSpan;
 @@ -127,6 +129,12 @@
      .line 72
      iput-object p8, p0, Ltv/twitch/android/shared/chat/messagefactory/ChatMessageSpanFactory;->webViewDialogRouter:Ltv/twitch/android/routing/routers/WebViewDialogRouter;
@@ -76,7 +76,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      const-string v0, "chatMessageInfo"
  
      move-object/from16 v15, p1
-@@ -2356,48 +2395,7 @@
+@@ -2356,48 +2395,6 @@
  
      invoke-static {v12, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
  
@@ -120,12 +120,12 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
 -
 -    return-object v0
 -
-     .line 155
+-    .line 155
 -    :cond_0
      new-instance v14, Landroid/text/SpannableStringBuilder;
  
      invoke-direct {v14}, Landroid/text/SpannableStringBuilder;-><init>()V
-@@ -2589,6 +2587,36 @@
+@@ -2589,6 +2586,36 @@
  
      .line 197
      :cond_7
@@ -162,7 +162,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/ChatMes
      instance-of v1, v0, Ltv/twitch/android/models/chat/MessageToken$EmoticonToken;
  
      if-eqz v1, :cond_8
-@@ -2823,3 +2851,396 @@
+@@ -2823,3 +2850,396 @@
      :goto_0
      return-object p1
  .end method

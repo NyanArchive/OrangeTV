@@ -1,7 +1,7 @@
 diff --git a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/MessageListAdapterBinder.smali b/smali_classes5/tv/twitch/android/shared/chat/messagefactory/MessageListAdapterBinder.smali
 --- a/smali_classes5/tv/twitch/android/shared/chat/messagefactory/MessageListAdapterBinder.smali
 +++ b/smali_classes5/tv/twitch/android/shared/chat/messagefactory/MessageListAdapterBinder.smali
-@@ -1580,3 +1580,24 @@
+@@ -1536,3 +1536,24 @@
  
      throw v0
  .end method

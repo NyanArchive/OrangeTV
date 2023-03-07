@@ -1,7 +1,7 @@
 diff --git a/smali_classes4/tv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter.smali b/smali_classes4/tv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter.smali
 --- a/smali_classes4/tv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter.smali
 +++ b/smali_classes4/tv/twitch/android/feature/foreground/audio/ads/foreground/AudioAdsForegroundPresenter.smali
-@@ -986,7 +986,7 @@
+@@ -956,7 +956,7 @@
      .line 211
      new-instance v2, Landroid/content/IntentFilter;
  

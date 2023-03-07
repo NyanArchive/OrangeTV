@@ -1,7 +1,7 @@
 diff --git a/smali_classes4/tv/twitch/android/feature/followed/RecommendedStreamsFetcher.smali b/smali_classes4/tv/twitch/android/feature/followed/RecommendedStreamsFetcher.smali
 --- a/smali_classes4/tv/twitch/android/feature/followed/RecommendedStreamsFetcher.smali
 +++ b/smali_classes4/tv/twitch/android/feature/followed/RecommendedStreamsFetcher.smali
-@@ -394,7 +394,28 @@
+@@ -263,7 +263,28 @@
          }
      .end annotation
  

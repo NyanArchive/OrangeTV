@@ -17,7 +17,7 @@ diff --git a/smali_classes5/tv/twitch/android/shared/chat/adapter/item/MessageRe
 +
  
  # direct methods
- .method public static synthetic $r8$lambda$nF_mcHZBRv39Rz0LcJxVKadLCk4(Ltv/twitch/android/shared/chat/adapter/item/MessageRecyclerItem;Landroid/view/View;)Ltv/twitch/android/core/adapters/AbstractTwitchRecyclerViewHolder;
+ .method public static synthetic $r8$lambda$5smFPdr8qNLTr6QJAZE0DgpsyHA(Ltv/twitch/android/shared/chat/adapter/item/MessageRecyclerItem;Landroid/view/View;)Ltv/twitch/android/core/adapters/AbstractTwitchRecyclerViewHolder;
 @@ -157,6 +160,14 @@
      .line 27
      invoke-direct {p0}, Ljava/lang/Object;-><init>()V

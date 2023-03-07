@@ -48,7 +48,7 @@ diff --git a/AndroidManifest.xml b/AndroidManifest.xml
              </intent-filter>
          </receiver>
          <receiver android:enabled="true" android:exported="true" android:name="tv.twitch.android.feature.tablet.homeshelf.HomeMediaRowBroadcastReceiver">
-@@ -168,14 +171,14 @@
+@@ -174,14 +177,14 @@
                  <action android:name="android.intent.action.MEDIA_BUTTON"/>
              </intent-filter>
          </service>
@@ -66,7 +66,7 @@ diff --git a/AndroidManifest.xml b/AndroidManifest.xml
          <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_jgBdao5vVtyZ3hdckxy8jlkkzqooQltZ"/>
          <meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_test_ahupan1EKvF7XkpepyA3vpfivrdlOlMg"/>
          <meta-data android:name="io.branch.sdk.TestMode" android:value="false"/>
-@@ -233,7 +236,7 @@
+@@ -239,7 +242,7 @@
          <receiver android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementReceiver"/>
          <service android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementService"/>
          <service android:enabled="true" android:exported="false" android:name="com.google.android.gms.measurement.AppMeasurementJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
@@ -75,7 +75,7 @@ diff --git a/AndroidManifest.xml b/AndroidManifest.xml
          <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version"/>
          <service android:directBootAware="false" android:enabled="@bool/enable_system_alarm_service_default" android:exported="false" android:name="androidx.work.impl.background.systemalarm.SystemAlarmService"/>
          <service android:directBootAware="false" android:enabled="@bool/enable_system_job_service_default" android:exported="true" android:name="androidx.work.impl.background.systemjob.SystemJobService" android:permission="android.permission.BIND_JOB_SERVICE"/>
-@@ -321,6 +324,8 @@
+@@ -327,6 +330,8 @@
                  <action android:name="com.amazon.dcp.sso.action.session.users.changed"/>
              </intent-filter>
          </receiver>

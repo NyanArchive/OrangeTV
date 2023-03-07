@@ -1,0 +1,13 @@
+diff --git a/smali_classes4/tv/twitch/android/feature/theatre/common/MiniPlayerSize.smali b/smali_classes4/tv/twitch/android/feature/theatre/common/MiniPlayerSize.smali
+--- a/smali_classes4/tv/twitch/android/feature/theatre/common/MiniPlayerSize.smali
++++ b/smali_classes4/tv/twitch/android/feature/theatre/common/MiniPlayerSize.smali
+@@ -118,5 +118,9 @@
+ 
+     move-result v0
+ 
++    invoke-static {v0}, Ltv/orange/features/ui/UI;->hookMiniPlayerWidth(I)I
++
++    move-result v0
++
+     return v0
+ .end method

@@ -1,0 +1,70 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/player/network/manifest/extm3uParser.smali b/smali_classes6/tv/twitch/android/shared/player/network/manifest/extm3uParser.smali
+--- a/smali_classes6/tv/twitch/android/shared/player/network/manifest/extm3uParser.smali
++++ b/smali_classes6/tv/twitch/android/shared/player/network/manifest/extm3uParser.smali
+@@ -511,7 +511,7 @@
+ 
+ # virtual methods
+ .method public parse(Ljava/lang/String;)Ltv/twitch/android/models/manifest/extm3u;
+-    .locals 31
++    .locals 33
+ 
+     move-object/from16 v0, p0
+ 
+@@ -564,6 +564,10 @@
+ 
+     const/16 v20, 0x0
+ 
++    const/16 v31, 0x0
++
++    const/16 v32, 0x0
++
+     move-object v7, v10
+ 
+     move-object v8, v7
+@@ -875,6 +879,32 @@
+     goto/16 :goto_6
+ 
+     :cond_a
++    const-string v6, "PROXY-SERVER"
++
++    invoke-virtual {v5, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result v6
++
++    if-eqz v6, :cond_zz
++
++    move-object/from16 v31, v7
++
++    goto/16 :goto_5
++
++    :cond_zz
++    const-string v6, "PROXY-URL"
++
++    invoke-virtual {v5, v6}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++
++    move-result v6
++
++    if-eqz v6, :cond_zzz
++
++    move-object/from16 v32, v7
++
++    goto/16 :goto_5
++
++    :cond_zzz
+     const-string v6, "SERVER-TIME"
+ 
+     .line 212
+@@ -1413,5 +1443,13 @@
+     .line 329
+     iput-object v5, v2, Ltv/twitch/android/models/manifest/extm3u;->VideoSessionId:Ljava/lang/String;
+ 
++    move-object/from16 v5, v31
++
++    iput-object v5, v2, Ltv/twitch/android/models/manifest/extm3u;->ProxyServer:Ljava/lang/String;
++
++    move-object/from16 v5, v32
++
++    iput-object v5, v2, Ltv/twitch/android/models/manifest/extm3u;->ProxyUrl:Ljava/lang/String;
++
+     return-object v2
+ .end method

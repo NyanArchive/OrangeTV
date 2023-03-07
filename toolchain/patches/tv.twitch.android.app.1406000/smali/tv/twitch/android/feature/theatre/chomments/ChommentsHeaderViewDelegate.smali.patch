@@ -1,0 +1,26 @@
+diff --git a/smali_classes4/tv/twitch/android/feature/theatre/chomments/ChommentsHeaderViewDelegate.smali b/smali_classes4/tv/twitch/android/feature/theatre/chomments/ChommentsHeaderViewDelegate.smali
+--- a/smali_classes4/tv/twitch/android/feature/theatre/chomments/ChommentsHeaderViewDelegate.smali
++++ b/smali_classes4/tv/twitch/android/feature/theatre/chomments/ChommentsHeaderViewDelegate.smali
+@@ -86,3 +86,22 @@
+ 
+     return-void
+ .end method
++
++.method public show()V
++    .registers 2
++
++    .prologue
++    .line 24
++    invoke-static {}, Ltv/orange/features/ui/UI;->getHideChatHeader()Z
++
++    move-result v0
++
++    if-nez v0, :cond_9
++
++    .line 25
++    invoke-super {p0}, Ltv/twitch/android/core/mvp/viewdelegate/BaseViewDelegate;->show()V
++
++    .line 27
++    :cond_9
++    return-void
++.end method

@@ -1,0 +1,58 @@
+diff --git a/smali_classes4/tv/twitch/android/feature/followed/firstpage/FollowedGamesFetcher.smali b/smali_classes4/tv/twitch/android/feature/followed/firstpage/FollowedGamesFetcher.smali
+--- a/smali_classes4/tv/twitch/android/feature/followed/firstpage/FollowedGamesFetcher.smali
++++ b/smali_classes4/tv/twitch/android/feature/followed/firstpage/FollowedGamesFetcher.smali
+@@ -168,7 +168,25 @@
+         }
+     .end annotation
+ 
++    invoke-static {}, Ltv/orange/features/ui/UI;->getHideGames()Z
++
++    move-result v0
++
++    if-eqz v0, :cond_z
++
++    .line 54
++    invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
++
++    move-result-object v0
++
++    invoke-static {v0}, Lio/reactivex/Maybe;->just(Ljava/lang/Object;)Lio/reactivex/Maybe;
++
++    move-result-object v0
++
++    return-object v0
++
+     .line 44
++    :cond_z
+     invoke-virtual {p0}, Ltv/twitch/android/core/fetchers/DynamicContentFetcher;->getHasMoreContent()Z
+ 
+     move-result v0
+@@ -235,7 +253,28 @@
+         }
+     .end annotation
+ 
++    invoke-static {}, Ltv/orange/features/ui/UI;->getHideGames()Z
++
++    move-result v0
++
++    if-eqz v0, :cond_z
++
++    const/4 v0, 0x0
++
++    invoke-virtual {p0, v0}, Ltv/twitch/android/feature/followed/firstpage/FollowedGamesFetcher;->setHasMoreContent(Z)V
++
++    invoke-static {}, Ljava/util/Collections;->emptyList()Ljava/util/List;
++
++    move-result-object v0
++
++    invoke-static {v0}, Lio/reactivex/Single;->just(Ljava/lang/Object;)Lio/reactivex/Single;
++
++    move-result-object v0
++
++    return-object v0
++
+     .line 34
++    :cond_z
+     iget-object p1, p0, Ltv/twitch/android/feature/followed/firstpage/FollowedGamesFetcher;->followApi:Ltv/twitch/android/shared/follow/pub/IFollowApi;
+ 
+     const/16 v0, 0x64

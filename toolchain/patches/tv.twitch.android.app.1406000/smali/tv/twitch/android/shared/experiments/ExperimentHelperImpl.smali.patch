@@ -1,0 +1,366 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/experiments/ExperimentHelperImpl.smali b/smali_classes5/tv/twitch/android/shared/experiments/ExperimentHelperImpl.smali
+--- a/smali_classes5/tv/twitch/android/shared/experiments/ExperimentHelperImpl.smali
++++ b/smali_classes5/tv/twitch/android/shared/experiments/ExperimentHelperImpl.smali
+@@ -5,6 +5,7 @@
+ # interfaces
+ .implements Ltv/twitch/android/provider/experiments/ExperimentHelper;
+ .implements Ltv/twitch/android/provider/experiments/SavantValueProvider;
++.implements Ltv/orange/core/bridge/IExperimentHelper;
+ 
+ 
+ # annotations
+@@ -36,6 +37,8 @@
+     .end annotation
+ .end field
+ 
++.field private final hook:Ltv/twitch/android/provider/experiments/ExperimentHelper;
++
+ 
+ # direct methods
+ .method public constructor <init>(Ltv/twitch/android/shared/experiments/MiniExperimentFetcher;Ltv/twitch/android/shared/experiments/ExperimentStore;Ltv/twitch/android/shared/experiments/MiniExperimentAccessor;Ltv/twitch/android/shared/experiments/MiniExperimentParamProvider;)V
+@@ -85,6 +88,12 @@
+ 
+     iput-object p1, p0, Ltv/twitch/android/shared/experiments/ExperimentHelperImpl;->updatedRemoteConfigurablesPublishSubject:Lio/reactivex/subjects/PublishSubject;
+ 
++    new-instance v0, Ltv/orange/core/bridge/ExperimentHelperHookImpl;
++
++    invoke-direct {v0, p0}, Ltv/orange/core/bridge/ExperimentHelperHookImpl;-><init>(Ltv/orange/core/bridge/IExperimentHelper;)V
++
++    iput-object v0, p0, Ltv/twitch/android/shared/experiments/ExperimentHelperImpl;->hook:Ltv/twitch/android/provider/experiments/ExperimentHelper;
++
+     return-void
+ .end method
+ 
+@@ -654,7 +663,7 @@
+     return v0
+ .end method
+ 
+-.method public getGroupForExperiment(Ltv/twitch/android/provider/experiments/Experiment;)Ljava/lang/String;
++.method public getGroupForExperimentOrg(Ltv/twitch/android/provider/experiments/Experiment;)Ljava/lang/String;
+     .locals 7
+ 
+     const-string v0, "experiment"
+@@ -696,6 +705,21 @@
+     return-object p1
+ .end method
+ 
++.method public getGroupForExperiment(Ltv/twitch/android/provider/experiments/Experiment;)Ljava/lang/String;
++    .registers 3
++    .param p1, "experiment"    # Ltv/twitch/android/provider/experiments/Experiment;
++
++    .prologue
++    .line 94
++    iget-object v0, p0, Ltv/twitch/android/shared/experiments/ExperimentHelperImpl;->hook:Ltv/twitch/android/provider/experiments/ExperimentHelper;
++
++    invoke-interface {v0, p1}, Ltv/twitch/android/provider/experiments/ExperimentHelper;->getGroupForExperiment(Ltv/twitch/android/provider/experiments/Experiment;)Ljava/lang/String;
++
++    move-result-object v0
++
++    return-object v0
++.end method
++
+ .method public final getIvsBroadcastingMicrophoneGain()Ljava/lang/Float;
+     .locals 1
+ 
+@@ -748,7 +772,7 @@
+     return-object v0
+ .end method
+ 
+-.method public getModelForExperimentId(Ljava/lang/String;)Ltv/twitch/android/provider/experiments/MiniExperimentModel;
++.method public getModelForExperimentIdOrg(Ljava/lang/String;)Ltv/twitch/android/provider/experiments/MiniExperimentModel;
+     .locals 1
+ 
+     const-string v0, "id"
+@@ -765,6 +789,21 @@
+     return-object p1
+ .end method
+ 
++.method public getModelForExperimentId(Ljava/lang/String;)Ltv/twitch/android/provider/experiments/MiniExperimentModel;
++    .registers 3
++    .param p1, "s"    # Ljava/lang/String;
++
++    .prologue
++    .line 99
++    iget-object v0, p0, Ltv/twitch/android/shared/experiments/ExperimentHelperImpl;->hook:Ltv/twitch/android/provider/experiments/ExperimentHelper;
++
++    invoke-interface {v0, p1}, Ltv/twitch/android/provider/experiments/ExperimentHelper;->getModelForExperimentId(Ljava/lang/String;)Ltv/twitch/android/provider/experiments/MiniExperimentModel;
++
++    move-result-object v0
++
++    return-object v0
++.end method
++
+ .method public getNewGamePillThresholdDays()Ljava/lang/Long;
+     .locals 1
+ 
+@@ -927,7 +966,7 @@
+     return-object v0
+ .end method
+ 
+-.method public getTreatmentForExperimentId(Ljava/lang/String;)Ljava/lang/String;
++.method public getTreatmentForExperimentIdOrg(Ljava/lang/String;)Ljava/lang/String;
+     .locals 1
+ 
+     const-string v0, "id"
+@@ -955,6 +994,21 @@
+     return-object p1
+ .end method
+ 
++.method public getTreatmentForExperimentId(Ljava/lang/String;)Ljava/lang/String;
++    .registers 3
++    .param p1, "s"    # Ljava/lang/String;
++
++    .prologue
++    .line 104
++    iget-object v0, p0, Ltv/twitch/android/shared/experiments/ExperimentHelperImpl;->hook:Ltv/twitch/android/provider/experiments/ExperimentHelper;
++
++    invoke-interface {v0, p1}, Ltv/twitch/android/provider/experiments/ExperimentHelper;->getTreatmentForExperimentId(Ljava/lang/String;)Ljava/lang/String;
++
++    move-result-object v0
++
++    return-object v0
++.end method
++
+ .method public final getTwoFactorAuthenticationEnabled()Z
+     .locals 1
+ 
+@@ -994,7 +1048,7 @@
+     return v0
+ .end method
+ 
+-.method public getUpdatedRemoteConfigurablesObservable()Lio/reactivex/Observable;
++.method public getUpdatedRemoteConfigurablesObservableOrg()Lio/reactivex/Observable;
+     .locals 1
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+@@ -1012,7 +1066,32 @@
+     return-object v0
+ .end method
+ 
+-.method public isInGroupForMultiVariantExperiment(Ltv/twitch/android/provider/experiments/Experiment;Ljava/lang/String;)Z
++.method public getUpdatedRemoteConfigurablesObservable()Lio/reactivex/Observable;
++    .registers 2
++    .annotation system Ldalvik/annotation/Signature;
++        value = {
++            "()",
++            "Lio/reactivex/Observable",
++            "<",
++            "Ljava/util/Set",
++            "<",
++            "Ltv/twitch/android/provider/experiments/RemoteConfigurable;",
++            ">;>;"
++        }
++    .end annotation
++
++    .prologue
++    .line 109
++    iget-object v0, p0, Ltv/twitch/android/shared/experiments/ExperimentHelperImpl;->hook:Ltv/twitch/android/provider/experiments/ExperimentHelper;
++
++    invoke-interface {v0}, Ltv/twitch/android/provider/experiments/ExperimentHelper;->getUpdatedRemoteConfigurablesObservable()Lio/reactivex/Observable;
++
++    move-result-object v0
++
++    return-object v0
++.end method
++
++.method public isInGroupForMultiVariantExperimentOrg(Ltv/twitch/android/provider/experiments/Experiment;Ljava/lang/String;)Z
+     .locals 1
+ 
+     const-string v0, "experiment"
+@@ -1048,7 +1127,23 @@
+     return p1
+ .end method
+ 
+-.method public isInOnGroupForBinaryChannelExperiment(Ltv/twitch/android/provider/experiments/ChannelExperiment;Ljava/lang/String;)Z
++.method public isInGroupForMultiVariantExperiment(Ltv/twitch/android/provider/experiments/Experiment;Ljava/lang/String;)Z
++    .registers 4
++    .param p1, "experiment"    # Ltv/twitch/android/provider/experiments/Experiment;
++    .param p2, "s"    # Ljava/lang/String;
++
++    .prologue
++    .line 114
++    iget-object v0, p0, Ltv/twitch/android/shared/experiments/ExperimentHelperImpl;->hook:Ltv/twitch/android/provider/experiments/ExperimentHelper;
++
++    invoke-interface {v0, p1, p2}, Ltv/twitch/android/provider/experiments/ExperimentHelper;->isInGroupForMultiVariantExperiment(Ltv/twitch/android/provider/experiments/Experiment;Ljava/lang/String;)Z
++
++    move-result v0
++
++    return v0
++.end method
++
++.method public isInOnGroupForBinaryChannelExperimentOrg(Ltv/twitch/android/provider/experiments/ChannelExperiment;Ljava/lang/String;)Z
+     .locals 2
+ 
+     const-string v0, "experiment"
+@@ -1075,7 +1170,23 @@
+     return p1
+ .end method
+ 
+-.method public isInOnGroupForBinaryExperiment(Ltv/twitch/android/provider/experiments/Experiment;)Z
++.method public isInOnGroupForBinaryChannelExperiment(Ltv/twitch/android/provider/experiments/ChannelExperiment;Ljava/lang/String;)Z
++    .registers 4
++    .param p1, "channelExperiment"    # Ltv/twitch/android/provider/experiments/ChannelExperiment;
++    .param p2, "s"    # Ljava/lang/String;
++
++    .prologue
++    .line 119
++    iget-object v0, p0, Ltv/twitch/android/shared/experiments/ExperimentHelperImpl;->hook:Ltv/twitch/android/provider/experiments/ExperimentHelper;
++
++    invoke-interface {v0, p1, p2}, Ltv/twitch/android/provider/experiments/ExperimentHelper;->isInOnGroupForBinaryChannelExperiment(Ltv/twitch/android/provider/experiments/ChannelExperiment;Ljava/lang/String;)Z
++
++    move-result v0
++
++    return v0
++.end method
++
++.method public isInOnGroupForBinaryExperimentOrg(Ltv/twitch/android/provider/experiments/Experiment;)Z
+     .locals 1
+ 
+     const-string v0, "experiment"
+@@ -1094,7 +1205,22 @@
+     return p1
+ .end method
+ 
+-.method public isInRestrictedLocaleForExperiment(Ltv/twitch/android/provider/experiments/Experiment;)Z
++.method public isInOnGroupForBinaryExperiment(Ltv/twitch/android/provider/experiments/Experiment;)Z
++    .registers 3
++    .param p1, "experiment"    # Ltv/twitch/android/provider/experiments/Experiment;
++
++    .prologue
++    .line 124
++    iget-object v0, p0, Ltv/twitch/android/shared/experiments/ExperimentHelperImpl;->hook:Ltv/twitch/android/provider/experiments/ExperimentHelper;
++
++    invoke-interface {v0, p1}, Ltv/twitch/android/provider/experiments/ExperimentHelper;->isInOnGroupForBinaryExperiment(Ltv/twitch/android/provider/experiments/Experiment;)Z
++
++    move-result v0
++
++    return v0
++.end method
++
++.method public isInRestrictedLocaleForExperimentOrg(Ltv/twitch/android/provider/experiments/Experiment;)Z
+     .locals 1
+ 
+     const-string v0, "experiment"
+@@ -1119,6 +1245,21 @@
+     return p1
+ .end method
+ 
++.method public isInRestrictedLocaleForExperiment(Ltv/twitch/android/provider/experiments/Experiment;)Z
++    .registers 3
++    .param p1, "experiment"    # Ltv/twitch/android/provider/experiments/Experiment;
++
++    .prologue
++    .line 129
++    iget-object v0, p0, Ltv/twitch/android/shared/experiments/ExperimentHelperImpl;->hook:Ltv/twitch/android/provider/experiments/ExperimentHelper;
++
++    invoke-interface {v0, p1}, Ltv/twitch/android/provider/experiments/ExperimentHelper;->isInRestrictedLocaleForExperiment(Ltv/twitch/android/provider/experiments/Experiment;)Z
++
++    move-result v0
++
++    return v0
++.end method
++
+ .method public overrideGroupForExperiment(Ltv/twitch/android/provider/experiments/RemoteConfigurable;Ljava/lang/String;)V
+     .locals 1
+ 
+@@ -1145,7 +1286,7 @@
+     return-void
+ .end method
+ 
+-.method public refreshExperiments(I)V
++.method public refreshExperimentsOrg(I)V
+     .locals 2
+ 
+     .line 276
+@@ -1190,7 +1331,21 @@
+     return-void
+ .end method
+ 
+-.method public refreshIfNeeded(I)V
++.method public refreshExperiments(I)V
++    .registers 3
++    .param p1, "i"    # I
++
++    .prologue
++    .line 134
++    iget-object v0, p0, Ltv/twitch/android/shared/experiments/ExperimentHelperImpl;->hook:Ltv/twitch/android/provider/experiments/ExperimentHelper;
++
++    invoke-interface {v0, p1}, Ltv/twitch/android/provider/experiments/ExperimentHelper;->refreshExperiments(I)V
++
++    .line 135
++    return-void
++.end method
++
++.method public refreshIfNeededOrg(I)V
+     .locals 1
+ 
+     .line 247
+@@ -1216,6 +1371,20 @@
+     return-void
+ .end method
+ 
++.method public refreshIfNeeded(I)V
++    .registers 3
++    .param p1, "i"    # I
++
++    .prologue
++    .line 139
++    iget-object v0, p0, Ltv/twitch/android/shared/experiments/ExperimentHelperImpl;->hook:Ltv/twitch/android/provider/experiments/ExperimentHelper;
++
++    invoke-interface {v0, p1}, Ltv/twitch/android/provider/experiments/ExperimentHelper;->refreshIfNeeded(I)V
++
++    .line 140
++    return-void
++.end method
++
+ .method public final resetOverrides()V
+     .locals 1
+ 
+@@ -1244,7 +1413,7 @@
+     return-void
+ .end method
+ 
+-.method public updateEnabledGroupsForActiveExperiments()Ljava/util/Set;
++.method public updateEnabledGroupsForActiveExperimentsOrg()Ljava/util/Set;
+     .locals 1
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+@@ -1264,3 +1433,38 @@
+ 
+     return-object v0
+ .end method
++
++.method public updateEnabledGroupsForActiveExperiments()Ljava/util/Set;
++    .registers 2
++    .annotation system Ldalvik/annotation/Signature;
++        value = {
++            "()",
++            "Ljava/util/Set",
++            "<",
++            "Ltv/twitch/android/provider/experiments/RemoteConfigurable;",
++            ">;"
++        }
++    .end annotation
++
++    .prologue
++    .line 144
++    iget-object v0, p0, Ltv/twitch/android/shared/experiments/ExperimentHelperImpl;->hook:Ltv/twitch/android/provider/experiments/ExperimentHelper;
++
++    invoke-interface {v0}, Ltv/twitch/android/provider/experiments/ExperimentHelper;->updateEnabledGroupsForActiveExperiments()Ljava/util/Set;
++
++    move-result-object v0
++
++    return-object v0
++.end method
++
++.method public getHook()Ltv/twitch/android/provider/experiments/ExperimentHelper;
++    .registers 2
++    .annotation build Landroidx/annotation/NonNull;
++    .end annotation
++
++    .prologue
++    .line 89
++    iget-object v0, p0, Ltv/twitch/android/shared/experiments/ExperimentHelperImpl;->hook:Ltv/twitch/android/provider/experiments/ExperimentHelper;
++
++    return-object v0
++.end method

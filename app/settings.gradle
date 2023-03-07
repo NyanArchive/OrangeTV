@@ -23,9 +23,9 @@ include ':core'
 
 include ':bridge'
 
+include ':components:api'
 include ':components:emotes'
 include ':components:badges'
-include ':components:api'
 include ':components:pronouns'
 include ':components:highlighter'
 include ':components:blacklist'

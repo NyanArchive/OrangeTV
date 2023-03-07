@@ -2,7 +2,7 @@ package tv.orange.features.chat.bridge
 
 import tv.twitch.android.models.chat.MessageBadge
 import tv.twitch.android.models.chat.MessageToken
-import tv.twitch.android.provider.chat.ChatMessageInterface
+import tv.twitch.android.shared.chat.pub.ChatMessageInterface
 
 class ChatMessageInterfaceWrapper(
     private val cmi: ChatMessageInterface,

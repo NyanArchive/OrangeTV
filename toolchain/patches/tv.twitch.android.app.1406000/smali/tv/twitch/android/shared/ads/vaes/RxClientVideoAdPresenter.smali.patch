@@ -1,0 +1,116 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenter.smali b/smali_classes5/tv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenter.smali
+--- a/smali_classes5/tv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenter.smali
++++ b/smali_classes5/tv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenter.smali
+@@ -747,64 +747,7 @@
+ .end method
+ 
+ .method private final fetchAndPlayAdPod(Ltv/twitch/android/shared/ads/models/AdRequestInfo;Ltv/twitch/android/shared/ads/models/sdk/AdSessionInitializer;Landroid/view/ViewGroup;)V
+-    .locals 8
+-
+-    .line 421
+-    new-instance v4, Ltv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenter$fetchAndPlayAdPod$adsReadyHandler$1;
+-
+-    invoke-direct {v4, p0}, Ltv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenter$fetchAndPlayAdPod$adsReadyHandler$1;-><init>(Ltv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenter;)V
+-
+-    .line 430
+-    new-instance v5, Ltv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenter$$ExternalSyntheticLambda5;
+-
+-    invoke-direct {v5, p0}, Ltv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenter$$ExternalSyntheticLambda5;-><init>(Ltv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenter;)V
+-
+-    .line 441
+-    new-instance v6, Ltv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenter$$ExternalSyntheticLambda6;
+-
+-    invoke-direct {v6, p0}, Ltv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenter$$ExternalSyntheticLambda6;-><init>(Ltv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenter;)V
+-
+-    .line 446
+-    iget-object v0, p0, Ltv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenter;->clientViewabilityTracker:Lcom/amazon/ads/video/viewability/ClientViewabilityTracker;
+-
+-    new-instance v1, Lcom/amazon/ads/video/viewability/ClientViewabilityTracker$VideoAdType$Client;
+-
+-    const/4 v2, 0x0
+-
+-    const/4 v3, 0x2
+-
+-    invoke-direct {v1, p1, v2, v3, v2}, Lcom/amazon/ads/video/viewability/ClientViewabilityTracker$VideoAdType$Client;-><init>(Ltv/twitch/android/shared/ads/models/AdRequestInfo;Ltv/twitch/android/shared/ads/models/AdMetadata;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+-
+-    invoke-virtual {v0, v1}, Lcom/amazon/ads/video/viewability/ClientViewabilityTracker;->setVideoAdType(Lcom/amazon/ads/video/viewability/ClientViewabilityTracker$VideoAdType;)V
+-
+-    .line 448
+-    iget-object v0, p0, Ltv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenter;->amazonVideoAds:Lcom/amazon/ads/video/AmazonVideoAds;
+-
+-    .line 451
+-    invoke-virtual {p1}, Ltv/twitch/android/shared/ads/models/AdRequestInfo;->getBaseAdRequestInfo()Ltv/twitch/android/shared/ads/models/BaseAdRequestInfo;
+-
+-    move-result-object v1
+-
+-    invoke-virtual {v1}, Ltv/twitch/android/shared/ads/models/BaseAdRequestInfo;->getPlayerAdTrackingSnapshot()Ltv/twitch/android/shared/ads/models/IPlayerAdTrackingSnapshot;
+-
+-    move-result-object v1
+-
+-    invoke-interface {v1}, Ltv/twitch/android/shared/ads/models/IPlayerAdTrackingSnapshot;->getPosition()Ltv/twitch/android/models/ads/AdBreakPosition;
+-
+-    move-result-object v1
+-
+-    invoke-static {v1}, Ltv/twitch/android/shared/ads/vaes/VaesAdTagUrlBuilderKt;->toVideoAdsSdkPosition(Ltv/twitch/android/models/ads/AdBreakPosition;)Lcom/amazon/ads/video/RequestBuilder$AdBreakPosition;
+-
+-    move-result-object v3
+-
+-    move-object v1, p2
+-
+-    move-object v2, p3
+-
+-    move-object v7, p1
+-
+-    .line 448
+-    invoke-virtual/range {v0 .. v7}, Lcom/amazon/ads/video/AmazonVideoAds;->fetchAndPlayAdPod(Ltv/twitch/android/shared/ads/models/sdk/AdSessionInitializer;Landroid/view/ViewGroup;Lcom/amazon/ads/video/RequestBuilder$AdBreakPosition;Lcom/amazon/ads/video/AdsReadyHandler;Lcom/amazon/ads/video/OnErrorListener;Lcom/amazon/ads/video/OnTrackingEventListener;Ltv/twitch/android/shared/ads/models/AdRequestInfo;)V
++    .locals 0
+ 
+     return-void
+ .end method
+@@ -1702,45 +1645,7 @@
+ .end method
+ 
+ .method public requestAds(Ltv/twitch/android/shared/ads/models/AdRequestInfo;Landroid/view/ViewGroup;)V
+-    .locals 2
+-
+-    const-string v0, "adRequestInfo"
+-
+-    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    const-string v0, "adPlayerFrame"
+-
+-    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+-
+-    .line 484
+-    sget-object v0, Ltv/twitch/android/util/LogTag;->ADS_INFO:Ltv/twitch/android/util/LogTag;
+-
+-    const-string v1, "requesting client side video ads"
+-
+-    invoke-static {v0, v1}, Ltv/twitch/android/util/Logger;->d(Ltv/twitch/android/util/LogTag;Ljava/lang/String;)V
+-
+-    .line 485
+-    iget-object v0, p0, Ltv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenter;->amazonVideoAds:Lcom/amazon/ads/video/AmazonVideoAds;
+-
+-    invoke-virtual {v0}, Lcom/amazon/ads/video/AmazonVideoAds;->initialize()V
+-
+-    .line 486
+-    iget-object v0, p0, Ltv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenter;->viewDelegateFactory:Ltv/twitch/android/shared/ads/vaes/RxClientVideoAdViewDelegateFactory;
+-
+-    invoke-virtual {v0, p2}, Ltv/twitch/android/shared/ads/vaes/RxClientVideoAdViewDelegateFactory;->createViewDelegate(Landroid/view/ViewGroup;)Ltv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenterViewDelegate;
+-
+-    move-result-object v0
+-
+-    invoke-virtual {p0, v0}, Ltv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenter;->attach(Ltv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenterViewDelegate;)V
+-
+-    .line 488
+-    iget-object v0, p0, Ltv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenter;->stateMachine:Ltv/twitch/android/core/mvp/presenter/StateMachine;
+-
+-    new-instance v1, Ltv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenter$Event$AdRequested;
+-
+-    invoke-direct {v1, p1, p2}, Ltv/twitch/android/shared/ads/vaes/RxClientVideoAdPresenter$Event$AdRequested;-><init>(Ltv/twitch/android/shared/ads/models/AdRequestInfo;Landroid/view/ViewGroup;)V
+-
+-    invoke-virtual {v0, v1}, Ltv/twitch/android/core/mvp/presenter/StateMachine;->pushEvent(Ltv/twitch/android/core/mvp/presenter/StateUpdateEvent;)V
++    .locals 0
+ 
+     return-void
+ .end method

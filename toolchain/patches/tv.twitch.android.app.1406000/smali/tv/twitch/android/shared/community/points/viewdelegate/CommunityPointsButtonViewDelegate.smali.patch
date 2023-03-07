@@ -1,0 +1,14 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/community/points/viewdelegate/CommunityPointsButtonViewDelegate.smali b/smali_classes5/tv/twitch/android/shared/community/points/viewdelegate/CommunityPointsButtonViewDelegate.smali
+--- a/smali_classes5/tv/twitch/android/shared/community/points/viewdelegate/CommunityPointsButtonViewDelegate.smali
++++ b/smali_classes5/tv/twitch/android/shared/community/points/viewdelegate/CommunityPointsButtonViewDelegate.smali
+@@ -633,6 +633,10 @@
+ 
+     invoke-virtual {v0, v1}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+ 
++    const/4 v0, 0x0
++
++    invoke-virtual {v1, v0}, Ltv/twitch/android/shared/community/points/viewdelegate/CommunityPointsButtonViewDelegate$$ExternalSyntheticLambda1;->onClick(Landroid/view/View;)V
++
+     .line 140
+     iget-object v0, p0, Ltv/twitch/android/shared/community/points/viewdelegate/CommunityPointsButtonViewDelegate;->communityPointsUtil:Ltv/twitch/android/shared/community/points/util/CommunityPointsUtil;
+ 

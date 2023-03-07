@@ -19,14 +19,14 @@ import tv.twitch.android.core.mvp.presenter.BasePresenter
 import tv.twitch.android.core.mvp.rxutil.DisposeOn
 import tv.twitch.android.models.chat.MessageBadge
 import tv.twitch.android.models.social.ChatUser
-import tv.twitch.android.provider.chat.events.MessagesReceivedEvent
-import tv.twitch.android.provider.chat.model.ChatHistoryMessage
 import tv.twitch.android.shared.chat.ChatMessageParser
 import tv.twitch.android.shared.chat.chatuserdialog.ChatUserDialogInfo
 import tv.twitch.android.shared.chat.command.ChatCommandInterceptor
 import tv.twitch.android.shared.chat.command.VoteCommandInterceptor
 import tv.twitch.android.shared.chat.moderation.ModerationActionBottomSheetViewDelegate
 import tv.twitch.android.shared.chat.moderation.ModerationBottomSheetViewState
+import tv.twitch.android.shared.chat.pub.events.MessagesReceivedEvent
+import tv.twitch.android.shared.chat.pub.model.ChatHistoryMessage
 import tv.twitch.android.shared.ui.elements.bottomsheet.BottomSheetListItemModel
 import tv.twitch.chat.ChatLiveMessage
 import javax.inject.Inject

@@ -60,7 +60,7 @@ abstract class SimpleFetcher<Data>(
             this.data = res
             this.lastUpdate = Date()
             this.fetching = false
-            logger.devDebug { "Fetched: $res" }
+            logger.devDebug("Fetched: $res")
         }, {
             this.fetching = false
             logger.error("Cannot fetch: ${it.localizedMessage}")

@@ -5,17 +5,16 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import tv.orange.models.retrofit.stv.BadgesData
 import tv.orange.models.retrofit.stv.StvEmote
+import tv.orange.models.retrofit.stv.v3.EmoteSet
+import tv.orange.models.retrofit.stv.v3.User
 
 interface StvApi {
-    @GET("/v2/emotes/global")
-    fun globalEmotes(): Single<List<StvEmote>>
+    @GET("/v3/emote-sets/global")
+    fun globalEmotes(): Single<EmoteSet>
 
-    @GET("/v2/users/{id}/emotes")
-    fun emotes(@Path("id") userId: Int): Single<List<StvEmote>>
+    @GET("/v3/users/twitch/{id}")
+    fun emotes(@Path("id") userId: Int): Single<User>
 
     @GET("/v2/cosmetics/avatars?map_to=login")
     fun avatars(): Single<HashMap<String, String>>
-
-    @GET("/v2/badges?user_identifier=twitch_id")
-    fun badges(): Single<BadgesData>
 }

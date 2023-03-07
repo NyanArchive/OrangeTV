@@ -11,8 +11,8 @@ import tv.orange.models.exception.VirtualImpl;
 import tv.twitch.ErrorCode;
 import tv.twitch.android.core.mvp.presenter.BasePresenter;
 import tv.twitch.android.models.channel.ChannelInfo;
-import tv.twitch.android.provider.chat.events.MessagesReceivedEvent;
 import tv.twitch.android.sdk.ChannelState;
+import tv.twitch.android.shared.chat.pub.events.MessagesReceivedEvent;
 
 public class ChatConnectionController extends BasePresenter {
     private PublishSubject<MessagesReceivedEvent> messagesSubject;

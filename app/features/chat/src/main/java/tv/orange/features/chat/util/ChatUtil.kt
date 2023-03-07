@@ -8,7 +8,7 @@ import android.text.style.StrikethroughSpan
 import android.util.LruCache
 import android.util.TypedValue
 import tv.twitch.android.models.chat.MessageToken
-import tv.twitch.android.provider.chat.ChatMessageInterface
+import tv.twitch.android.shared.chat.pub.ChatMessageInterface
 import tv.twitch.android.shared.chat.util.ClickableUsernameSpan
 import tv.twitch.android.shared.ui.elements.span.CenteredImageSpan
 import tv.twitch.android.shared.ui.elements.span.UrlDrawable

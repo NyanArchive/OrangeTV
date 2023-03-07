@@ -3,6 +3,7 @@ package tv.orange.core
 import android.app.Activity
 import android.content.pm.Signature
 import com.google.android.exoplayer2.PlaybackParameters
+import com.google.android.exoplayer2.SimpleExoPlayer
 import io.reactivex.Single
 import tv.orange.core.compat.ClassCompat
 import tv.orange.core.models.flag.Flag
@@ -152,6 +153,10 @@ class CoreHook @Inject constructor() : Feature {
         @JvmStatic
         fun isPinnedChatMessageEnabled(): Boolean {
             return Flag.PINNED_MESSAGE.asVariant<PinnedMessageStrategy>() != PinnedMessageStrategy.Disabled
+        }
+
+        @JvmStatic
+        fun test(player: SimpleExoPlayer) {
         }
     }
 

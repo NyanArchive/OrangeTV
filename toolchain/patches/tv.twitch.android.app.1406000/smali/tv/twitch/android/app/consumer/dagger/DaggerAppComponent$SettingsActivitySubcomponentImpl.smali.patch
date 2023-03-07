@@ -1,0 +1,20 @@
+diff --git a/smali_classes4/tv/twitch/android/app/consumer/dagger/DaggerAppComponent$SettingsActivitySubcomponentImpl.smali b/smali_classes4/tv/twitch/android/app/consumer/dagger/DaggerAppComponent$SettingsActivitySubcomponentImpl.smali
+--- a/smali_classes4/tv/twitch/android/app/consumer/dagger/DaggerAppComponent$SettingsActivitySubcomponentImpl.smali
++++ b/smali_classes4/tv/twitch/android/app/consumer/dagger/DaggerAppComponent$SettingsActivitySubcomponentImpl.smali
+@@ -2351,6 +2351,16 @@
+ 
+     move-result-object v0
+ 
++    invoke-static {}, Ltv/orange/features/settings/OrangeSettings;->get()Ltv/orange/features/settings/OrangeSettings;
++
++    move-result-object v1
++
++    iget-object v2, p0, Ltv/twitch/android/app/consumer/dagger/DaggerAppComponent$SettingsActivitySubcomponentImpl;->settingsActivitySubcomponentImpl:Ltv/twitch/android/app/consumer/dagger/DaggerAppComponent$SettingsActivitySubcomponentImpl;
++
++    iget-object v3, p0, Ltv/twitch/android/app/consumer/dagger/DaggerAppComponent$SettingsActivitySubcomponentImpl;->appComponentImpl:Ltv/twitch/android/app/consumer/dagger/DaggerAppComponent$AppComponentImpl;
++
++    invoke-virtual {v1, v0, v2, v3}, Ltv/orange/features/settings/OrangeSettings;->inject(Ldagger/internal/MapBuilder;Ltv/twitch/android/app/consumer/dagger/DaggerAppComponent$SettingsActivitySubcomponentImpl;Ltv/twitch/android/app/consumer/dagger/AppComponent;)V
++
+     invoke-virtual {v0}, Ldagger/internal/MapBuilder;->build()Ljava/util/Map;
+ 
+     move-result-object v0

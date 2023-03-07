@@ -1,7 +1,9 @@
 package tv.orange.features.stv
 
 import io.reactivex.Single
-import tv.orange.core.*
+import tv.orange.core.Core
+import tv.orange.core.LoggerWithTag
+import tv.orange.core.PreferencesManagerCore
 import tv.orange.core.models.flag.Flag
 import tv.orange.core.models.flag.Flag.Companion.asBoolean
 import tv.orange.core.models.flag.FlagListener
@@ -36,7 +38,7 @@ class StvAvatars @Inject constructor(
                 return profileImageUrl
             }
 
-            return set.get(channelName = channelName) ?: profileImageUrl
+            return set.get(channelName = channelName.lowercase()) ?: profileImageUrl
         }
 
         return profileImageUrl

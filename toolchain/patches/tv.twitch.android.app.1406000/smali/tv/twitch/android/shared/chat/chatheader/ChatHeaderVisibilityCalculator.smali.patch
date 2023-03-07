@@ -1,0 +1,28 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/chat/chatheader/ChatHeaderVisibilityCalculator.smali b/smali_classes5/tv/twitch/android/shared/chat/chatheader/ChatHeaderVisibilityCalculator.smali
+--- a/smali_classes5/tv/twitch/android/shared/chat/chatheader/ChatHeaderVisibilityCalculator.smali
++++ b/smali_classes5/tv/twitch/android/shared/chat/chatheader/ChatHeaderVisibilityCalculator.smali
+@@ -619,8 +619,23 @@
+ .end method
+ 
+ .method private final shouldHideChatHeaderBasedOnDefaultRules(Z)Z
+-    .locals 0
++    .registers 3
++    .param p1, "p0"    # Z
++
++    .line 10
++    invoke-static {}, Ltv/orange/features/chat/ChatHookProvider;->hideChatHeader()Z
++
++    move-result v0
++
++    if-eqz v0, :cond_8
++
++    .line 11
++    const/4 v0, 0x1
++
++    return v0
+ 
++    .line 14
++    :cond_8
+     return p1
+ .end method
+ 

@@ -1,11 +1,6 @@
-plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-}
-
-
 android {
+    namespace 'tv.orange.core'
+
     compileSdk 33
 
     defaultConfig {
@@ -13,24 +8,19 @@ android {
         targetSdk 33
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-        }
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
 }
 
 dependencies {
-
-    api project(path: ':models')
-    api project(path: ':Twitch')
-
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+    api project(path: ':Twitch')
+    api project(path: ':models')
 }

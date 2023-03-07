@@ -1,0 +1,9 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/models/EmoteUiModel.smali b/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/models/EmoteUiModel.smali
+--- a/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/models/EmoteUiModel.smali
++++ b/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/models/EmoteUiModel.smali
+@@ -1,4 +1,4 @@
+-.class public final Ltv/twitch/android/shared/emotes/emotepicker/models/EmoteUiModel;
++.class public Ltv/twitch/android/shared/emotes/emotepicker/models/EmoteUiModel;
+ .super Ljava/lang/Object;
+ .source "EmoteUiModel.kt"
+ 

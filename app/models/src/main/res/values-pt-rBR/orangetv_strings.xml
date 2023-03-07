@@ -69,7 +69,7 @@
     <string name="orange_settings_hide_top_chat_panel_vods">Ocultar o painel acima do chat em VODs</string>
     <string name="orange_settings_pronouns">Pronomes</string>
     <string name="orange_settings_auto_hide_message_input">Ocultar entrada de mensagens no modo paisagem</string>
-    <string name="orange_settings_hide_message_input">Ocultar entrada de mensagem</string>
+    <string name="orange_settings_hide_message_input">Ocultar entrada de mensagens</string>
     <string name="orange_settings_landscape_chat_opacity">Opacidade do chat no modo paisagem</string>
     <string name="orange_chapters_unknown">Desconhecido</string>
     <string name="orange_settings_emote_quality">Qualidade dos emotes</string>
@@ -183,5 +183,4 @@
     <string name="orange_settings_hide_player_create_clip_button">Ocultar botão «Criar clipe»</string>
     <string name="orange_settings_disable_sentry">Desativar SentrySDK</string>
     <string name="orange_settings_hide_player_live_share_button">Ocultar botão «Compartilhar» em transmissões</string>
-    <string name="orange_settings_bttv_webp">Suporte a WEBP para emotes BTTV</string>
 </resources>

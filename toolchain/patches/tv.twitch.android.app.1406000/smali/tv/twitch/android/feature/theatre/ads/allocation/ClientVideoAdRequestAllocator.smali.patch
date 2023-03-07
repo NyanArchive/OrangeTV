@@ -1,0 +1,347 @@
+diff --git a/smali_classes4/tv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator.smali b/smali_classes4/tv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator.smali
+--- a/smali_classes4/tv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator.smali
++++ b/smali_classes4/tv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator.smali
+@@ -964,7 +964,7 @@
+ .end method
+ 
+ .method private final maybeRequestAd(Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$AdRequested;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+-    .locals 5
++    .locals 0
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+             "(",
+@@ -976,128 +976,15 @@
+             ">;"
+         }
+     .end annotation
+-
+-    .line 380
+-    invoke-virtual {p1}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$AdRequested;->getInactiveState()Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Inactive;
+-
+-    move-result-object v0
+-
+-    invoke-virtual {v0}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Inactive;->getPlayerMode()Ltv/twitch/android/models/player/PlayerMode;
+-
+-    move-result-object v0
+-
+-    if-eqz v0, :cond_0
+-
+-    invoke-virtual {p1}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$AdRequested;->getInactiveState()Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Inactive;
+-
+-    move-result-object v0
+-
+-    invoke-virtual {v0}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Inactive;->getManifest()Ltv/twitch/android/shared/ads/models/context/AdSessionManifest;
+-
+-    move-result-object v0
+-
+-    if-eqz v0, :cond_0
+-
+-    invoke-virtual {p1}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$AdRequested;->getInactiveState()Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Inactive;
+-
+-    move-result-object v0
+-
+-    invoke-virtual {v0}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Inactive;->getChannel()Ltv/twitch/android/models/channel/ChannelModel;
+-
+-    move-result-object v0
+-
+-    if-eqz v0, :cond_0
+-
+-    invoke-virtual {p1}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$AdRequested;->getInactiveState()Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Inactive;
+-
+-    move-result-object v0
+-
+-    invoke-virtual {v0}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Inactive;->getPlayable()Ltv/twitch/android/models/ads/AdsPlayable;
+-
+-    move-result-object v0
+-
+-    if-eqz v0, :cond_0
+-
+-    .line 382
+-    invoke-virtual {p1}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$AdRequested;->getInactiveState()Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Inactive;
+-
+-    move-result-object v0
+-
+-    invoke-virtual {v0}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Inactive;->getChannel()Ltv/twitch/android/models/channel/ChannelModel;
+-
+-    move-result-object v0
+-
+-    .line 383
+-    invoke-virtual {p1}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$AdRequested;->getInactiveState()Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Inactive;
+-
+-    move-result-object v1
+-
+-    invoke-virtual {v1}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Inactive;->getManifest()Ltv/twitch/android/shared/ads/models/context/AdSessionManifest;
+-
+-    move-result-object v1
+-
+-    .line 384
+-    invoke-virtual {p1}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$AdRequested;->getInactiveState()Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Inactive;
+-
+-    move-result-object v2
+-
+-    invoke-virtual {v2}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Inactive;->getPlayerMode()Ltv/twitch/android/models/player/PlayerMode;
+-
+-    move-result-object v2
+-
+-    .line 385
+-    invoke-virtual {p1}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$AdRequested;->getInactiveState()Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Inactive;
+-
+-    move-result-object v3
+-
+-    invoke-virtual {v3}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Inactive;->getPlayable()Ltv/twitch/android/models/ads/AdsPlayable;
+-
+-    move-result-object v3
+-
+-    .line 381
+-    new-instance v4, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Bound;
+-
+-    invoke-direct {v4, v1, v0, v2, v3}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Bound;-><init>(Ltv/twitch/android/shared/ads/models/context/AdSessionManifest;Ltv/twitch/android/models/channel/ChannelModel;Ltv/twitch/android/models/player/PlayerMode;Ltv/twitch/android/models/ads/AdsPlayable;)V
+-
+-    .line 387
+-    new-instance v0, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$RequestingAd;
+-
+-    invoke-virtual {p1}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$AdRequested;->getClientAdRequestMetadata()Ltv/twitch/android/models/ads/ClientAdRequestMetadata;
+-
+-    move-result-object v1
+-
+-    invoke-virtual {p1}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$AdRequested;->getAdRequest()Ltv/twitch/android/shared/ads/models/AdRequest;
+-
+-    move-result-object p1
+-
+-    invoke-direct {v0, v4, v1, p1}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$RequestingAd;-><init>(Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Bound;Ltv/twitch/android/models/ads/ClientAdRequestMetadata;Ltv/twitch/android/shared/ads/models/AdRequest;)V
+-
+-    new-instance p1, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$Action$UpdateChannelAdInfo;
+-
+-    invoke-virtual {v4}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Bound;->getChannel()Ltv/twitch/android/models/channel/ChannelModel;
+-
+-    move-result-object v1
+-
+-    invoke-direct {p1, v1}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$Action$UpdateChannelAdInfo;-><init>(Ltv/twitch/android/models/channel/ChannelModel;)V
+-
+-    invoke-static {v0, p1}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->plus(Ltv/twitch/android/core/mvp/presenter/PresenterState;Ltv/twitch/android/core/mvp/presenter/PresenterAction;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+-
+-    move-result-object p1
+-
+-    goto :goto_0
+-
+-    .line 389
+-    :cond_0
+     invoke-static {p1}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->noAction(Ltv/twitch/android/core/mvp/presenter/PresenterState;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+ 
+     move-result-object p1
+ 
+-    :goto_0
+     return-object p1
+ .end method
+ 
+ .method private final maybeRequestAd(Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State;Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$Event$AdRequested;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+-    .locals 2
++    .locals 0
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+             "(",
+@@ -1110,204 +997,11 @@
+             ">;"
+         }
+     .end annotation
+-
+-    .line 245
+-    instance-of v0, p1, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Disabled;
+-
+-    if-eqz v0, :cond_0
+-
+     invoke-static {p1}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->noAction(Ltv/twitch/android/core/mvp/presenter/PresenterState;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+ 
+     move-result-object p1
+ 
+-    goto/16 :goto_0
+-
+-    .line 246
+-    :cond_0
+-    instance-of v0, p1, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Inactive;
+-
+-    if-eqz v0, :cond_3
+-
+-    .line 247
+-    invoke-virtual {p2}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$Event$AdRequested;->getManifest()Ltv/twitch/android/shared/ads/models/context/AdSessionManifest;
+-
+-    move-result-object v0
+-
+-    if-eqz v0, :cond_2
+-
+-    .line 248
+-    invoke-virtual {p2}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$Event$AdRequested;->getManifest()Ltv/twitch/android/shared/ads/models/context/AdSessionManifest;
+-
+-    move-result-object v0
+-
+-    invoke-direct {p0, p1, v0}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator;->updateManifest(Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State;Ltv/twitch/android/shared/ads/models/context/AdSessionManifest;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+-
+-    move-result-object v0
+-
+-    .line 249
+-    invoke-virtual {v0}, Ltv/twitch/android/core/mvp/presenter/StateAndAction;->getNewState()Ltv/twitch/android/core/mvp/presenter/PresenterState;
+-
+-    move-result-object v1
+-
+-    instance-of v1, v1, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Bound;
+-
+-    if-eqz v1, :cond_1
+-
+-    .line 251
+-    invoke-virtual {v0}, Ltv/twitch/android/core/mvp/presenter/StateAndAction;->getNewState()Ltv/twitch/android/core/mvp/presenter/PresenterState;
+-
+-    move-result-object p1
+-
+-    check-cast p1, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State;
+-
+-    invoke-direct {p0, p1, p2}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator;->maybeRequestAd(Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State;Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$Event$AdRequested;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+-
+-    move-result-object p1
+-
+-    goto/16 :goto_0
+-
+-    .line 253
+-    :cond_1
+-    new-instance v0, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$AdRequested;
+-
+-    check-cast p1, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Inactive;
+-
+-    invoke-virtual {p2}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$Event$AdRequested;->getClientAdRequestMetadata()Ltv/twitch/android/models/ads/ClientAdRequestMetadata;
+-
+-    move-result-object v1
+-
+-    invoke-virtual {p2}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$Event$AdRequested;->getAdRequest()Ltv/twitch/android/shared/ads/models/AdRequest;
+-
+-    move-result-object p2
+-
+-    invoke-direct {v0, p1, v1, p2}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$AdRequested;-><init>(Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Inactive;Ltv/twitch/android/models/ads/ClientAdRequestMetadata;Ltv/twitch/android/shared/ads/models/AdRequest;)V
+-
+-    sget-object p1, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$Action$StartAdRequestedTimeout;->INSTANCE:Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$Action$StartAdRequestedTimeout;
+-
+-    invoke-static {v0, p1}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->plus(Ltv/twitch/android/core/mvp/presenter/PresenterState;Ltv/twitch/android/core/mvp/presenter/PresenterAction;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+-
+-    move-result-object p1
+-
+-    goto :goto_0
+-
+-    .line 256
+-    :cond_2
+-    new-instance v0, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$AdRequested;
+-
+-    check-cast p1, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Inactive;
+-
+-    invoke-virtual {p2}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$Event$AdRequested;->getClientAdRequestMetadata()Ltv/twitch/android/models/ads/ClientAdRequestMetadata;
+-
+-    move-result-object v1
+-
+-    invoke-virtual {p2}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$Event$AdRequested;->getAdRequest()Ltv/twitch/android/shared/ads/models/AdRequest;
+-
+-    move-result-object p2
+-
+-    invoke-direct {v0, p1, v1, p2}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$AdRequested;-><init>(Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Inactive;Ltv/twitch/android/models/ads/ClientAdRequestMetadata;Ltv/twitch/android/shared/ads/models/AdRequest;)V
+-
+-    sget-object p1, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$Action$StartAdRequestedTimeout;->INSTANCE:Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$Action$StartAdRequestedTimeout;
+-
+-    invoke-static {v0, p1}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->plus(Ltv/twitch/android/core/mvp/presenter/PresenterState;Ltv/twitch/android/core/mvp/presenter/PresenterAction;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+-
+-    move-result-object p1
+-
+-    goto :goto_0
+-
+-    .line 259
+-    :cond_3
+-    instance-of v0, p1, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Bound;
+-
+-    if-eqz v0, :cond_4
+-
+-    .line 260
+-    new-instance v0, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$RequestingAd;
+-
+-    check-cast p1, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Bound;
+-
+-    invoke-virtual {p2}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$Event$AdRequested;->getClientAdRequestMetadata()Ltv/twitch/android/models/ads/ClientAdRequestMetadata;
+-
+-    move-result-object v1
+-
+-    invoke-virtual {p2}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$Event$AdRequested;->getAdRequest()Ltv/twitch/android/shared/ads/models/AdRequest;
+-
+-    move-result-object p2
+-
+-    invoke-direct {v0, p1, v1, p2}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$RequestingAd;-><init>(Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Bound;Ltv/twitch/android/models/ads/ClientAdRequestMetadata;Ltv/twitch/android/shared/ads/models/AdRequest;)V
+-
+-    new-instance p2, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$Action$UpdateChannelAdInfo;
+-
+-    invoke-virtual {p1}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Bound;->getChannel()Ltv/twitch/android/models/channel/ChannelModel;
+-
+-    move-result-object p1
+-
+-    invoke-direct {p2, p1}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$Action$UpdateChannelAdInfo;-><init>(Ltv/twitch/android/models/channel/ChannelModel;)V
+-
+-    invoke-static {v0, p2}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->plus(Ltv/twitch/android/core/mvp/presenter/PresenterState;Ltv/twitch/android/core/mvp/presenter/PresenterAction;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+-
+-    move-result-object p1
+-
+-    goto :goto_0
+-
+-    .line 262
+-    :cond_4
+-    instance-of p2, p1, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$RequestingAd;
+-
+-    const-string v0, "ad request already active"
+-
+-    if-eqz p2, :cond_5
+-
+-    new-instance p2, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$Action$ReportNonFatalError;
+-
+-    .line 263
+-    new-instance v1, Ljava/lang/IllegalStateException;
+-
+-    invoke-direct {v1, v0}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+-
+-    .line 264
+-    sget v0, Ltv/twitch/android/feature/theatre/R$string;->ad_request_already_active:I
+-
+-    .line 262
+-    invoke-direct {p2, v1, v0}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$Action$ReportNonFatalError;-><init>(Ljava/lang/Throwable;I)V
+-
+-    invoke-static {p1, p2}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->plus(Ltv/twitch/android/core/mvp/presenter/PresenterState;Ltv/twitch/android/core/mvp/presenter/PresenterAction;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+-
+-    move-result-object p1
+-
+-    goto :goto_0
+-
+-    .line 266
+-    :cond_5
+-    instance-of p2, p1, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$AdRequested;
+-
+-    if-eqz p2, :cond_6
+-
+-    new-instance p2, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$Action$ReportNonFatalError;
+-
+-    .line 267
+-    new-instance v1, Ljava/lang/IllegalStateException;
+-
+-    invoke-direct {v1, v0}, Ljava/lang/IllegalStateException;-><init>(Ljava/lang/String;)V
+-
+-    .line 268
+-    sget v0, Ltv/twitch/android/feature/theatre/R$string;->ad_request_already_active:I
+-
+-    .line 266
+-    invoke-direct {p2, v1, v0}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$Action$ReportNonFatalError;-><init>(Ljava/lang/Throwable;I)V
+-
+-    invoke-static {p1, p2}, Ltv/twitch/android/core/mvp/presenter/StateMachineKt;->plus(Ltv/twitch/android/core/mvp/presenter/PresenterState;Ltv/twitch/android/core/mvp/presenter/PresenterAction;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
+-
+-    move-result-object p1
+-
+-    :goto_0
+     return-object p1
+-
+-    :cond_6
+-    new-instance p1, Lkotlin/NoWhenBranchMatchedException;
+-
+-    invoke-direct {p1}, Lkotlin/NoWhenBranchMatchedException;-><init>()V
+-
+-    throw p1
+ .end method
+ 
+ .method private final observeChannelModelUpdates(Ltv/twitch/android/core/data/source/DataProvider;)V

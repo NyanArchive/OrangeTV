@@ -1,0 +1,18 @@
+diff --git a/smali_classes4/tv/twitch/android/feature/creator/main/menu/ViewerModeMenuHelperImpl.smali b/smali_classes4/tv/twitch/android/feature/creator/main/menu/ViewerModeMenuHelperImpl.smali
+--- a/smali_classes4/tv/twitch/android/feature/creator/main/menu/ViewerModeMenuHelperImpl.smali
++++ b/smali_classes4/tv/twitch/android/feature/creator/main/menu/ViewerModeMenuHelperImpl.smali
+@@ -235,6 +235,14 @@
+ 
+     move-result v0
+ 
++    invoke-static {}, Ltv/orange/features/ui/UI;->get()Ltv/orange/features/ui/UI;
++
++    move-result-object v1
++
++    invoke-virtual {v1, v0}, Ltv/orange/features/ui/UI;->isCreatorButtonVisible(Z)Z
++
++    move-result v0
++
+     .line 47
+     sget v1, Ltv/twitch/android/feature/creator/main/R$id;->action_swap_to_creator_mode_labeled:I
+ 

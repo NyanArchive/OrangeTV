@@ -5,7 +5,7 @@ import tv.orange.features.logs.component.data.model.MessageInfo
 import tv.orange.features.logs.component.data.model.MessageItem
 import tv.orange.features.logs.component.data.source.LocalLogsDataSource
 import tv.orange.features.logs.component.data.source.TwitchLogsDataSource
-import tv.twitch.android.provider.chat.model.ChatHistoryMessage
+import tv.twitch.android.shared.chat.pub.model.ChatHistoryMessage
 import javax.inject.Inject
 
 class LogsRepository @Inject constructor(

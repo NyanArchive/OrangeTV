@@ -18,9 +18,16 @@ class ApiModule {
 
     @ApiScope
     @Provides
+    @Named(STV_OLD_API)
+    fun provideStvOldApiRetrofitClient(builder: Retrofit.Builder): Retrofit {
+        return builder.baseUrl("https://api.7tv.app/").build()
+    }
+
+    @ApiScope
+    @Provides
     @Named(STV)
     fun provideStvRetrofitClient(builder: Retrofit.Builder): Retrofit {
-        return builder.baseUrl("https://api.7tv.app/").build()
+        return builder.baseUrl("https://7tv.io/").build()
     }
 
     @ApiScope
@@ -102,6 +109,12 @@ class ApiModule {
     @Provides
     fun provideStvApi(@Named(STV) retrofit: Retrofit): StvApi {
         return retrofit.create(StvApi::class.java)
+    }
+
+    @ApiScope
+    @Provides
+    fun provideStvOldApi(@Named(STV_OLD_API) retrofit: Retrofit): StvOldApi {
+        return retrofit.create(StvOldApi::class.java)
     }
 
     @ApiScope

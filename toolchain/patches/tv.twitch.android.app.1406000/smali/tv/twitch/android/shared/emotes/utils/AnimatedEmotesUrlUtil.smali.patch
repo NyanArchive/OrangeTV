@@ -1,0 +1,21 @@
+diff --git a/smali_classes5/tv/twitch/android/shared/emotes/utils/AnimatedEmotesUrlUtil.smali b/smali_classes5/tv/twitch/android/shared/emotes/utils/AnimatedEmotesUrlUtil.smali
+--- a/smali_classes5/tv/twitch/android/shared/emotes/utils/AnimatedEmotesUrlUtil.smali
++++ b/smali_classes5/tv/twitch/android/shared/emotes/utils/AnimatedEmotesUrlUtil.smali
+@@ -575,3 +575,17 @@
+     :cond_0
+     return-object v0
+ .end method
++
++.method public isAnimatedEmotesEnabled()Z
++    .registers 2
++
++    .prologue
++    .line 11
++    iget-object v0, p0, Ltv/twitch/android/shared/emotes/utils/AnimatedEmotesUrlUtil;->chatSettingsPreferencesFile:Ltv/twitch/android/shared/chat/settings/preferences/ChatSettingsPreferencesFile;
++
++    invoke-virtual {v0}, Ltv/twitch/android/shared/chat/settings/preferences/ChatSettingsPreferencesFile;->isAnimatedEmotesEnabled()Z
++
++    move-result v0
++
++    return v0
++.end method

@@ -183,5 +183,5 @@
     <string name="orange_settings_hide_player_create_clip_button">Сховати кнопку «Створити кліп»</string>
     <string name="orange_settings_disable_sentry">Вимкнути SentrySDK</string>
     <string name="orange_settings_hide_player_live_share_button">Сховати кнопку «Поділитися» для етерів</string>
-    <string name="orange_settings_bttv_webp">Підтримка емоцій WEBP</string>
+    <string name="orange_settings_bttv_webp">Підтримка емоцій BTTV WebP</string>
 </resources>

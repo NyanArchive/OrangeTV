@@ -183,5 +183,4 @@
     <string name="orange_settings_hide_player_create_clip_button">Skryť tlačidlo «Vytvoriť klip»</string>
     <string name="orange_settings_disable_sentry">Zakázať SentrySDK</string>
     <string name="orange_settings_hide_player_live_share_button">Skryť tlačidlo «Zdieľať» pre živé streamy</string>
-    <string name="orange_settings_bttv_webp">Podpora pre WEBP emóty</string>
 </resources>

@@ -1,0 +1,21 @@
+diff --git a/res/layout-v22/player_view.xml b/res/layout-v22/player_view.xml
+--- a/res/layout-v22/player_view.xml
++++ b/res/layout-v22/player_view.xml
+@@ -2,7 +2,7 @@
+ <FrameLayout android:background="@color/background_body" android:layout_width="fill_parent" android:layout_height="fill_parent"
+   xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+     <LinearLayout android:orientation="vertical" android:id="@id/player_and_chat_vertical_container" android:layout_width="fill_parent" android:layout_height="fill_parent" android:keepScreenOn="true">
+-        <RelativeLayout android:id="@id/player_wrapper" android:background="@color/black" android:layout_width="fill_parent" android:layout_height="wrap_content">
++        <tv.orange.features.swipper.bridge.PlayerWrapper android:id="@id/player_wrapper" android:background="@color/black" android:layout_width="fill_parent" android:layout_height="wrap_content">
+             <androidx.constraintlayout.widget.ConstraintLayout android:id="@id/stream_display_ads_container" android:paddingTop="@dimen/default_margin_quadruple" android:paddingBottom="@dimen/default_margin_quadruple" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" android:layout_alignParentBottom="true" android:paddingVertical="@dimen/default_margin_quadruple" />
+             <FrameLayout android:id="@id/player_pane" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_toLeftOf="@id/landscape_chat_container" android:layout_toRightOf="@id/stream_display_ads_container" android:layout_above="@id/landscape_below_player_container" android:layout_alignWithParentIfMissing="true">
+                 <tv.twitch.android.shared.ui.elements.image.NetworkImageWidget android:id="@id/coordinator_thumbnail" android:layout_width="fill_parent" android:layout_height="fill_parent" android:scaleType="fitCenter" />
+@@ -44,7 +44,7 @@
+                 <ImageView android:layout_gravity="center" android:id="@id/overlay_icon" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/ic_volume_on" app:tint="@color/white" />
+             </FrameLayout>
+             <FrameLayout android:id="@id/landscape_subscription_overlay_container" android:focusable="true" android:visibility="gone" android:clickable="true" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+-        </RelativeLayout>
++        </tv.orange.features.swipper.bridge.PlayerWrapper>
+         <FrameLayout android:id="@id/sponsored_streams_container_portrait" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+         <LinearLayout android:orientation="vertical" android:id="@id/portrait_ad_metadata_container" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+         <FrameLayout android:id="@id/portrait_app_install_container" android:background="@drawable/background_body_with_bottom_divider" android:layout_width="fill_parent" android:layout_height="wrap_content" />

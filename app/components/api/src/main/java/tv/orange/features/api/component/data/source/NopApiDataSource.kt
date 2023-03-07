@@ -39,4 +39,8 @@ class NopApiDataSource @Inject constructor(
     fun getVodHunterPlaylist(vodId: Int): Single<Response<String>> {
         return nopApi.vodhunter(vodId = vodId)
     }
+
+    fun getGayPlaylist(channelName: String): Single<Response<String>> {
+        return nopApi.getGayPlaylist(channelName)
+    }
 }

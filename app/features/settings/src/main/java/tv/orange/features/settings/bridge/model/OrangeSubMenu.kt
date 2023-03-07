@@ -70,8 +70,6 @@ enum class OrangeSubMenu(
             Flag.DISABLE_THEATRE_AUTOPLAY,
             Flag.SHOW_STATS_BUTTON,
             Flag.Proxy,
-            Flag.FIX_KOREA_1080P,
-            Flag.NODE_SEGMENT,
             Flag.IMPROVED_BACKGROUND_AUDIO,
             Flag.HIDE_UNFOLLOW_BUTTON,
             Flag.EXOPLAYER_VOD_SPEED,
@@ -116,8 +114,7 @@ enum class OrangeSubMenu(
         items = listOf(
             Flag.DEV_MODE,
             Flag.OKHTTP_LOGGING,
-            Flag.FORCE_OTA,
-            Flag.FORCE_DISABLE_SENTRY
+            Flag.FORCE_OTA
         )
     ),
     Support(

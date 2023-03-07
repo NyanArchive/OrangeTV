@@ -1,0 +1,21 @@
+diff --git a/smali_classes5/tv/twitch/android/network/OkHttpClientFactory.smali b/smali_classes5/tv/twitch/android/network/OkHttpClientFactory.smali
+--- a/smali_classes5/tv/twitch/android/network/OkHttpClientFactory.smali
++++ b/smali_classes5/tv/twitch/android/network/OkHttpClientFactory.smali
+@@ -137,7 +137,7 @@
+ 
+     const/4 v1, 0x0
+ 
+-    if-eqz v0, :cond_0
++    if-eq v0, v0,:cond_0
+ 
+     .line 50
+     new-instance v0, Lcom/facebook/stetho/okhttp3/StethoInterceptor;
+@@ -440,6 +440,8 @@
+ 
+     .line 239
+     :cond_d
++    invoke-static {v0}, Ltv/orange/features/proxy/Proxy;->maybeAddInterceptor(Lokhttp3/OkHttpClient$Builder;)V
++
+     invoke-virtual {v0}, Lokhttp3/OkHttpClient$Builder;->build()Lokhttp3/OkHttpClient;
+ 
+     move-result-object p1

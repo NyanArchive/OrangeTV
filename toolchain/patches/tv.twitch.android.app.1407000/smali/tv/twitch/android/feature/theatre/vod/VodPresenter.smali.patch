@@ -1,0 +1,21 @@
+diff --git a/smali_classes4/tv/twitch/android/feature/theatre/vod/VodPresenter.smali b/smali_classes4/tv/twitch/android/feature/theatre/vod/VodPresenter.smali
+--- a/smali_classes4/tv/twitch/android/feature/theatre/vod/VodPresenter.smali
++++ b/smali_classes4/tv/twitch/android/feature/theatre/vod/VodPresenter.smali
+@@ -4221,3 +4221,17 @@
+     :cond_0
+     return v0
+ .end method
++
++.method public tryChangeSpeed(F)V
++    .registers 3
++    .param p1, "speed"    # F
++
++    .prologue
++    .line 9
++    iget-object v0, p0, Ltv/twitch/android/feature/theatre/vod/VodPresenter;->vodPlayerPresenter:Ltv/twitch/android/shared/player/presenters/IVodPlayerPresenter;
++
++    invoke-interface {v0, p1}, Ltv/twitch/android/shared/player/presenters/IVodPlayerPresenter;->tryChangeVodSpeed(F)V
++
++    .line 10
++    return-void
++.end method

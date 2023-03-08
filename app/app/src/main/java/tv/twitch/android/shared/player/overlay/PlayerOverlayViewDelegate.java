@@ -21,7 +21,9 @@ import tv.twitch.android.shared.player.overlay.seekable.SeekbarOverlayPresenter;
 
 public class PlayerOverlayViewDelegate extends BaseViewDelegate implements IPlayerOverlay, IChaptersDelegate { // TODO: __IMPLEMENT
     private ImageView createClipButton;
+    private final PublishSubject<PlayerOverlayEvents> playerOverlayEventsSubject = null;
     private final ImageView orangeTimerButton; // TODO: __INJECT_FIELD
+    private final ImageView changeSpeedButton; // TODO: __INJECT_FIELD
     private final ImageView chaptersButton; // TODO: __INJECT_FIELD
 
     /* ... */

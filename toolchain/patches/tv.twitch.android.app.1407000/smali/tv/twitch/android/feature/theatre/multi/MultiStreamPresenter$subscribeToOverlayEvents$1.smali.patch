@@ -1,0 +1,20 @@
+diff --git a/smali_classes4/tv/twitch/android/feature/theatre/multi/MultiStreamPresenter$subscribeToOverlayEvents$1.smali b/smali_classes4/tv/twitch/android/feature/theatre/multi/MultiStreamPresenter$subscribeToOverlayEvents$1.smali
+--- a/smali_classes4/tv/twitch/android/feature/theatre/multi/MultiStreamPresenter$subscribeToOverlayEvents$1.smali
++++ b/smali_classes4/tv/twitch/android/feature/theatre/multi/MultiStreamPresenter$subscribeToOverlayEvents$1.smali
+@@ -66,7 +66,16 @@
+ 
+     invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+ 
++    instance-of v0, p1, Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents$ChangePlaybackSpeed;
++
++    if-eqz v0, :cond_z
++
++    sget-object p1, Lkotlin/Unit;->INSTANCE:Lkotlin/Unit;
++
++    return-void
++
+     .line 353
++    :cond_z
+     instance-of v0, p1, Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents$ShowChat;
+ 
+     if-eqz v0, :cond_0

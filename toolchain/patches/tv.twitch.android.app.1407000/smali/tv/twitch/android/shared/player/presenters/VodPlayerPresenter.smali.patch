@@ -10,3 +10,21 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/presenters/VodPlayer
      invoke-virtual {v10, v8, v0}, Ltv/twitch/android/shared/player/TwitchPlayerProvider;->getTwitchPlayer(Ltv/twitch/android/shared/player/core/TwitchPlayerListener;Ljava/lang/String;)Ltv/twitch/android/shared/player/core/TwitchPlayer;
  
      move-result-object v0
+@@ -1463,3 +1465,17 @@
+ 
+     return-object v0
+ .end method
++
++.method public tryChangeVodSpeed(F)V
++    .registers 3
++    .param p1, "speed"    # F
++
++    .prologue
++    .line 38
++    iget-object v0, p0, Ltv/twitch/android/shared/player/presenters/VodPlayerPresenter;->twitchPlayer:Ltv/twitch/android/shared/player/core/TwitchPlayer;
++
++    invoke-interface {v0, p1}, Ltv/twitch/android/shared/player/core/TwitchPlayer;->trySetPlaybackSpeed(F)V
++
++    .line 39
++    return-void
++.end method

@@ -1,0 +1,28 @@
+diff --git a/smali_classes4/tv/twitch/android/feature/theatre/vod/VodPresenter$onViewAttached$3.smali b/smali_classes4/tv/twitch/android/feature/theatre/vod/VodPresenter$onViewAttached$3.smali
+--- a/smali_classes4/tv/twitch/android/feature/theatre/vod/VodPresenter$onViewAttached$3.smali
++++ b/smali_classes4/tv/twitch/android/feature/theatre/vod/VodPresenter$onViewAttached$3.smali
+@@ -62,7 +62,24 @@
+ .method public final invoke(Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents;)V
+     .locals 1
+ 
++    instance-of v0, p1, Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents$ChangePlaybackSpeed;
++
++    if-eqz v0, :cond_z
++
++    iget-object v0, p0, Ltv/twitch/android/feature/theatre/vod/VodPresenter$onViewAttached$3;->this$0:Ltv/twitch/android/feature/theatre/vod/VodPresenter;
++
++    check-cast p1, Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents$ChangePlaybackSpeed;
++
++    invoke-virtual {p1}, Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents$ChangePlaybackSpeed;->getSpeed()F
++
++    move-result v1
++
++    invoke-virtual {v0, v1}, Ltv/twitch/android/feature/theatre/vod/VodPresenter;->tryChangeSpeed(F)V
++
++    return-void
++
+     .line 374
++    :cond_z
+     instance-of v0, p1, Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents$Share;
+ 
+     if-eqz v0, :cond_0

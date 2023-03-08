@@ -1,0 +1,26 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayPresenter$attachViewDelegate$1.smali b/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayPresenter$attachViewDelegate$1.smali
+--- a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayPresenter$attachViewDelegate$1.smali
++++ b/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayPresenter$attachViewDelegate$1.smali
+@@ -62,7 +62,22 @@
+ .method public final invoke(Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents;)V
+     .locals 4
+ 
++    instance-of v0, p1, Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents$ChangePlaybackSpeed;
++
++    if-eqz v0, :cond_z
++
++    iget-object v0, p0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayPresenter$attachViewDelegate$1;->this$0:Ltv/twitch/android/shared/player/overlay/PlayerOverlayPresenter;
++
++    invoke-static {v0}, Ltv/twitch/android/shared/player/overlay/PlayerOverlayPresenter;->access$getPlayerOverlayEventsSubject$p(Ltv/twitch/android/shared/player/overlay/PlayerOverlayPresenter;)Lio/reactivex/subjects/PublishSubject;
++
++    move-result-object v0
++
++    invoke-virtual {v0, p1}, Lio/reactivex/subjects/PublishSubject;->onNext(Ljava/lang/Object;)V
++
++    return-void
++
+     .line 116
++    :cond_z
+     sget-object v0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents$Back;->INSTANCE:Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents$Back;
+ 
+     invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->areEqual(Ljava/lang/Object;Ljava/lang/Object;)Z

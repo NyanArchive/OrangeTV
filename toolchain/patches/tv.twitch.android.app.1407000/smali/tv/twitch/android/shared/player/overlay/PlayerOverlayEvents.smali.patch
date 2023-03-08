@@ -1,0 +1,13 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayEvents.smali b/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayEvents.smali
+--- a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayEvents.smali
++++ b/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayEvents.smali
+@@ -22,7 +22,8 @@
+         Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents$TwitchRadioButton;,
+         Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents$Subscribe;,
+         Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents$ChangeOrientation;,
+-        Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents$Chromecast;
++        Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents$Chromecast;,
++        Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents$ChangePlaybackSpeed;
+     }
+ .end annotation
+ 

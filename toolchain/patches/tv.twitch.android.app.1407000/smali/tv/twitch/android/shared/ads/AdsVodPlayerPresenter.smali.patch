@@ -18,3 +18,21 @@ diff --git a/smali_classes5/tv/twitch/android/shared/ads/AdsVodPlayerPresenter.s
      return-void
  .end method
  
+@@ -2067,3 +2057,17 @@
+ 
+     return v0
+ .end method
++
++.method public tryChangeVodSpeed(F)V
++    .registers 3
++    .param p1, "speed"    # F
++
++    .prologue
++    .line 10
++    iget-object v0, p0, Ltv/twitch/android/shared/ads/AdsVodPlayerPresenter;->vodPlayerPresenter:Ltv/twitch/android/shared/player/presenters/VodPlayerPresenter;
++
++    invoke-virtual {v0, p1}, Ltv/twitch/android/shared/player/presenters/VodPlayerPresenter;->tryChangeVodSpeed(F)V
++
++    .line 11
++    return-void
++.end method

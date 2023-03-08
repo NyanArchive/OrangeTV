@@ -1,0 +1,53 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayEvents$ChangePlaybackSpeed.smali b/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayEvents$ChangePlaybackSpeed.smali
+new file mode 100644
+index 000000000..3373726ad
+--- /dev/null
++++ b/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayEvents$ChangePlaybackSpeed.smali
+@@ -0,0 +1,47 @@
++.class public final Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents$ChangePlaybackSpeed;
++.super Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents;
++.source "PlayerOverlayEvents.java"
++
++
++# annotations
++.annotation system Ldalvik/annotation/EnclosingClass;
++    value = Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents;
++.end annotation
++
++.annotation system Ldalvik/annotation/InnerClass;
++    accessFlags = 0x19
++    name = "ChangePlaybackSpeed"
++.end annotation
++
++
++# instance fields
++.field private final speed:F
++
++
++# direct methods
++.method public constructor <init>(F)V
++    .registers 3
++    .param p1, "speed"    # F
++
++    .line 24
++    const/4 v0, 0x0
++
++    invoke-direct {p0, v0}, Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents;-><init>(Lkotlin/jvm/internal/DefaultConstructorMarker;)V
++
++    .line 25
++    iput p1, p0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents$ChangePlaybackSpeed;->speed:F
++
++    .line 26
++    return-void
++.end method
++
++
++# virtual methods
++.method public getSpeed()F
++    .registers 2
++
++    .line 29
++    iget v0, p0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayEvents$ChangePlaybackSpeed;->speed:F
++
++    return v0
++.end method

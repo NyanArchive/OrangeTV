@@ -1,12 +1,17 @@
 package tv.orange.features.chapters
 
+import android.os.Handler
 import android.widget.ImageView
 import androidx.fragment.app.FragmentActivity
+import io.reactivex.subjects.PublishSubject
 import tv.orange.core.Core
+import tv.orange.core.LoggerImpl
+import tv.orange.core.compat.ClassCompat.getPrivateField
 import tv.orange.core.util.ViewUtil.changeVisibility
 import tv.orange.features.chapters.view.ViewFactory
 import tv.orange.models.abc.Feature
 import tv.twitch.android.models.videos.VodModel
+import tv.twitch.android.shared.player.overlay.PlayerOverlayEvents
 import tv.twitch.android.shared.player.overlay.PlayerOverlayViewDelegate
 import tv.twitch.android.shared.player.overlay.seekable.SeekbarOverlayPresenter
 import javax.inject.Inject
@@ -28,6 +33,17 @@ class VodChapters @Inject constructor(
     }
 
     fun getChaptersButton(delegate: PlayerOverlayViewDelegate): ImageView {
+        val h = Handler(delegate.context.mainLooper)
+        var z = 1L
+        for (i in listOf(2.5f, 1.5f, 0.5f, 0.75f, 1.0f)) {
+            h.postDelayed({
+                LoggerImpl.devDebug("start")
+                Core.showToast("Change speed to $i")
+                delegate.getPrivateField<PublishSubject<PlayerOverlayEvents>>("playerOverlayEventsSubject")
+                    .onNext(PlayerOverlayEvents.ChangePlaybackSpeed(i))
+                LoggerImpl.devDebug("stop")
+            }, z++ * 3000)
+        }
         return viewFactory.createChaptersButton(delegate = delegate)
     }
 

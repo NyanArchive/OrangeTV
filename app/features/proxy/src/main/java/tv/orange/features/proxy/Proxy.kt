@@ -17,6 +17,7 @@ import tv.orange.features.proxy.bridge.LolTvApiInterceptor
 import tv.orange.models.abc.Feature
 import tv.twitch.android.models.AccessTokenResponse
 import tv.twitch.android.models.manifest.extm3u
+import tv.twitch.android.shared.player.core.TwitchExoPlayer2
 import java.util.*
 import javax.inject.Inject
 

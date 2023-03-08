@@ -1,5 +1,6 @@
 package tv.twitch.android.shared.player.core;
 
+import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 
 import tv.orange.core.CoreHook;

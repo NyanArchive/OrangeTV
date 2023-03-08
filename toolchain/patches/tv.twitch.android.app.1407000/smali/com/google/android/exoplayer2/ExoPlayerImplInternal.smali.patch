@@ -1,0 +1,27 @@
+diff --git a/smali_classes2/com/google/android/exoplayer2/ExoPlayerImplInternal.smali b/smali_classes2/com/google/android/exoplayer2/ExoPlayerImplInternal.smali
+--- a/smali_classes2/com/google/android/exoplayer2/ExoPlayerImplInternal.smali
++++ b/smali_classes2/com/google/android/exoplayer2/ExoPlayerImplInternal.smali
+@@ -7452,3 +7452,23 @@
+ 
+     return-void
+ .end method
++
++.method public setPlaybackParameters(Lcom/google/android/exoplayer2/PlaybackParameters;)V
++    .registers 4
++    .param p1, "playbackParameters"    # Lcom/google/android/exoplayer2/PlaybackParameters;
++
++    .prologue
++    .line 11
++    iget-object v0, p0, Lcom/google/android/exoplayer2/ExoPlayerImplInternal;->handler:Lcom/google/android/exoplayer2/util/HandlerWrapper;
++
++    const/4 v1, 0x4
++
++    invoke-interface {v0, v1, p1}, Lcom/google/android/exoplayer2/util/HandlerWrapper;->obtainMessage(ILjava/lang/Object;)Landroid/os/Message;
++
++    move-result-object v0
++
++    invoke-virtual {v0}, Landroid/os/Message;->sendToTarget()V
++
++    .line 12
++    return-void
++.end method

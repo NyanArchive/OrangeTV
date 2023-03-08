@@ -36,7 +36,7 @@ public class ExifInterface {
         throw new VirtualImpl();
     }
 
-    private int getMimeType(BufferedInputStream bufferedInputStream) throws IOException {
+    private int getMimeType(BufferedInputStream bufferedInputStream) throws IOException { // TODO: __REPLACE_METHOD
         bufferedInputStream.mark(5000);
         byte[] bArr = new byte[5000];
         bufferedInputStream.read(bArr);

@@ -1,0 +1,26 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/player/core/TwitchExoPlayer2.smali b/smali_classes6/tv/twitch/android/shared/player/core/TwitchExoPlayer2.smali
+--- a/smali_classes6/tv/twitch/android/shared/player/core/TwitchExoPlayer2.smali
++++ b/smali_classes6/tv/twitch/android/shared/player/core/TwitchExoPlayer2.smali
+@@ -2394,3 +2394,22 @@
+ 
+     return-void
+ .end method
++
++.method private final debugSpeedTest()V
++    .registers 4
++
++    .prologue
++    .line 18
++    iget-object v0, p0, Ltv/twitch/android/shared/player/core/TwitchExoPlayer2;->exoPlayer:Lcom/google/android/exoplayer2/SimpleExoPlayer;
++
++    new-instance v1, Lcom/google/android/exoplayer2/PlaybackParameters;
++
++    const/high16 v2, 0x40200000    # 2.5f
++
++    invoke-direct {v1, v2}, Lcom/google/android/exoplayer2/PlaybackParameters;-><init>(F)V
++
++    invoke-virtual {v0, v1}, Lcom/google/android/exoplayer2/SimpleExoPlayer;->setPlaybackParameters(Lcom/google/android/exoplayer2/PlaybackParameters;)V
++
++    .line 19
++    return-void
++.end method

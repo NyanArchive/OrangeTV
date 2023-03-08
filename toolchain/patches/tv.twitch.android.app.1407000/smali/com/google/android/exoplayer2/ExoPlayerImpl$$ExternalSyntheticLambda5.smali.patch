@@ -1,0 +1,40 @@
+diff --git a/smali_classes2/com/google/android/exoplayer2/ExoPlayerImpl$$ExternalSyntheticLambda5.smali b/smali_classes2/com/google/android/exoplayer2/ExoPlayerImpl$$ExternalSyntheticLambda5.smali
+new file mode 100644
+index 000000000..9c4add298
+--- /dev/null
++++ b/smali_classes2/com/google/android/exoplayer2/ExoPlayerImpl$$ExternalSyntheticLambda5.smali
+@@ -0,0 +1,34 @@
++.class public final synthetic Lcom/google/android/exoplayer2/ExoPlayerImpl$$ExternalSyntheticLambda5;
++.super Ljava/lang/Object;
++.source "D8$$SyntheticClass"
++
++# interfaces
++.implements Lcom/google/android/exoplayer2/BasePlayer$ListenerInvocation;
++
++
++# instance fields
++.field public final synthetic f$0:Lcom/google/android/exoplayer2/PlaybackParameters;
++
++
++# direct methods
++.method public synthetic constructor <init>(Lcom/google/android/exoplayer2/PlaybackParameters;)V
++    .registers 2
++
++    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
++
++    iput-object p1, p0, Lcom/google/android/exoplayer2/ExoPlayerImpl$$ExternalSyntheticLambda5;->f$0:Lcom/google/android/exoplayer2/PlaybackParameters;
++
++    return-void
++.end method
++
++
++# virtual methods
++.method public final invokeListener(Lcom/google/android/exoplayer2/Player$EventListener;)V
++    .registers 3
++
++    iget-object v0, p0, Lcom/google/android/exoplayer2/ExoPlayerImpl$$ExternalSyntheticLambda5;->f$0:Lcom/google/android/exoplayer2/PlaybackParameters;
++
++    invoke-static {v0, p1}, Lcom/google/android/exoplayer2/ExoPlayerImpl;->lambda$setPlaybackParameters$0(Lcom/google/android/exoplayer2/PlaybackParameters;Lcom/google/android/exoplayer2/Player$EventListener;)V
++
++    return-void
++.end method

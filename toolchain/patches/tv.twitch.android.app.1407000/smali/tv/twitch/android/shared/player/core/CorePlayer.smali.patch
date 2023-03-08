@@ -1,0 +1,21 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/player/core/CorePlayer.smali b/smali_classes6/tv/twitch/android/shared/player/core/CorePlayer.smali
+--- a/smali_classes6/tv/twitch/android/shared/player/core/CorePlayer.smali
++++ b/smali_classes6/tv/twitch/android/shared/player/core/CorePlayer.smali
+@@ -2624,3 +2624,17 @@
+ 
+     return-void
+ .end method
++
++.method public trySetPlaybackSpeed(F)V
++    .registers 3
++    .param p1, "speed"    # F
++
++    .prologue
++    .line 8
++    const-string v0, "<DEBUG>"
++
++    invoke-static {v0}, Ltv/orange/core/Core;->showToast(Ljava/lang/String;)V
++
++    .line 9
++    return-void
++.end method

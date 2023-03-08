@@ -1,0 +1,10 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/player/core/TwitchPlayer.smali b/smali_classes6/tv/twitch/android/shared/player/core/TwitchPlayer.smali
+--- a/smali_classes6/tv/twitch/android/shared/player/core/TwitchPlayer.smali
++++ b/smali_classes6/tv/twitch/android/shared/player/core/TwitchPlayer.smali
+@@ -117,3 +117,6 @@
+ 
+ .method public abstract unmuteAudio()V
+ .end method
++
++.method public abstract trySetPlaybackSpeed(F)V
++.end method

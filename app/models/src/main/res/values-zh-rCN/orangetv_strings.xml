@@ -171,7 +171,6 @@
     <string name="orange_settings_hide_create_button">隐藏《创建》按钮</string>
     <string name="orange_settings_menu_blacklist">黑名单</string>
     <string name="orange_settings_force_exoplayer_for_vods">强制在视频点播里使用ExoPlayer</string>
-    <string name="orange_settings_exoplayer_vod_speed">视频点播ExoPlayer速度</string>
     <string name="orange_add">添加</string>
     <string name="orange_settings_hide_fsb">隐藏关注/订阅按钮</string>
     <string name="orange_settings_user_mention_color">更改 @mount 颜色</string>

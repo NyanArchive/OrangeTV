@@ -23,6 +23,7 @@ import tv.orange.features.ui.UI
 import tv.orange.features.updater.Updater
 import tv.orange.features.usersearch.UserSearch
 import tv.orange.features.vodhunter.Vodhunter
+import tv.orange.features.vodspeed.VodSpeed
 import tv.orange.features.vodsync.VodSync
 import javax.inject.Provider
 
@@ -48,6 +49,7 @@ interface BridgeComponent {
     val vodhunterProvider: Provider<Vodhunter>
     val swipperProvider: Provider<Swipper>
     val proxyProvider: Provider<Proxy>
+    val vodSpeedProvider: Provider<VodSpeed>
 
     val core: Provider<Core>
 }

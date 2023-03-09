@@ -1,0 +1,12 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/player/core/TrackingMediaPlayer$setMaxPlaybackRate$1.smali b/smali_classes6/tv/twitch/android/shared/player/core/TrackingMediaPlayer$setMaxPlaybackRate$1.smali
+--- a/smali_classes6/tv/twitch/android/shared/player/core/TrackingMediaPlayer$setMaxPlaybackRate$1.smali
++++ b/smali_classes6/tv/twitch/android/shared/player/core/TrackingMediaPlayer$setMaxPlaybackRate$1.smali
+@@ -72,6 +72,8 @@
+ 
+     iget v1, p0, Ltv/twitch/android/shared/player/core/TrackingMediaPlayer$setMaxPlaybackRate$1;->$maxRate:I
+ 
++    const/4 v1, 0x3
++
+     invoke-virtual {v0, v1}, Lcom/amazonaws/ivs/player/MediaPlayer;->setMaxPlaybackRate(I)V
+ 
+     return-void

@@ -171,7 +171,6 @@
     <string name="orange_settings_hide_create_button">Erstellen Button ausblenden</string>
     <string name="orange_settings_menu_blacklist">Blockierliste</string>
     <string name="orange_settings_force_exoplayer_for_vods">Erzwinge ExoPlayer für VODS</string>
-    <string name="orange_settings_exoplayer_vod_speed">ExoPlayer VOD Geschwindigkeit</string>
     <string name="orange_add">Hinzufügen</string>
     <string name="orange_settings_hide_fsb">«Folgen/Abonnieren» Button ausblenden</string>
     <string name="orange_settings_user_mention_color">\@Erwähnung Farbe ändern</string>

@@ -171,7 +171,6 @@
     <string name="orange_settings_hide_create_button">Απόκρυψη κουμπιού «Δημιουργία»</string>
     <string name="orange_settings_menu_blacklist">Μαύρη λίστα</string>
     <string name="orange_settings_force_exoplayer_for_vods">Επιβολή ExoPlayer για VODs</string>
-    <string name="orange_settings_exoplayer_vod_speed">Ταχύτητα VOD ExoPlayer</string>
     <string name="orange_add">Προσθήκη</string>
     <string name="orange_settings_hide_fsb">Απόκρυψη κουμπιού ακολούθησης/συνδρομής</string>
     <string name="orange_settings_user_mention_color">Αλλαγή του χρώματος @mention</string>
@@ -183,5 +182,4 @@
     <string name="orange_settings_hide_player_create_clip_button">Απόκρυψη κουμπιού «Δημιουργία κλιπ»</string>
     <string name="orange_settings_disable_sentry">Απενεργοποίηση SentrySDK</string>
     <string name="orange_settings_hide_player_live_share_button">Απόκρυψη κουμπιού «Μοιραστείτε» για Live streams</string>
-    <string name="orange_settings_bttv_webp">Υποστήριξη για BTTV WebP emotes</string>
 </resources>

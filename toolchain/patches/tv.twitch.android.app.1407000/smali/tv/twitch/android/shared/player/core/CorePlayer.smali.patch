@@ -12,9 +12,9 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/core/CorePlayer.smal
 +
 +    .prologue
 +    .line 8
-+    const-string v0, "<DEBUG>"
++    iget-object v0, p0, Ltv/twitch/android/shared/player/core/CorePlayer;->player:Ltv/twitch/android/shared/player/core/TrackingMediaPlayer;
 +
-+    invoke-static {v0}, Ltv/orange/core/Core;->showToast(Ljava/lang/String;)V
++    invoke-virtual {v0, p1}, Ltv/twitch/android/shared/player/core/TrackingMediaPlayer;->setPlaybackRate(F)V
 +
 +    .line 9
 +    return-void

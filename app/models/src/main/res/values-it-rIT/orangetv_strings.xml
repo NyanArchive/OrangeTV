@@ -171,7 +171,6 @@
     <string name="orange_settings_hide_create_button">Nascondi il pulsante « Crea »</string>
     <string name="orange_settings_menu_blacklist">Blacklist</string>
     <string name="orange_settings_force_exoplayer_for_vods">Forza ExoPlayer per i VOD</string>
-    <string name="orange_settings_exoplayer_vod_speed">Velocità del VOD in ExoPlayer</string>
     <string name="orange_add">Aggiungi</string>
     <string name="orange_settings_hide_fsb">Nascondi il pulsante « Segui/Abbonati »</string>
     <string name="orange_settings_user_mention_color">Cambia il colore della @menzione</string>

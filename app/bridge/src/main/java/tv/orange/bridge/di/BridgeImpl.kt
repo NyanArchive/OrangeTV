@@ -21,6 +21,7 @@ import tv.orange.features.ui.UI
 import tv.orange.features.updater.Updater
 import tv.orange.features.usersearch.UserSearch
 import tv.orange.features.vodhunter.Vodhunter
+import tv.orange.features.vodspeed.VodSpeed
 import tv.orange.features.vodsync.VodSync
 import tv.orange.models.AutoInitialize
 import tv.orange.models.abc.Bridge
@@ -85,6 +86,7 @@ class BridgeImpl private constructor() : Bridge {
         featureFactoryMap[Vodhunter::class.java] = lazy { component.vodhunterProvider }
         featureFactoryMap[Swipper::class.java] = lazy { component.swipperProvider }
         featureFactoryMap[Proxy::class.java] = lazy { component.proxyProvider }
+        featureFactoryMap[VodSpeed::class.java] = lazy { component.vodSpeedProvider }
     }
 
     fun initialize(context: Context) {

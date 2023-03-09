@@ -170,7 +170,6 @@
     <string name="orange_settings_hide_create_button">Skjul «Opprett»-knapp</string>
     <string name="orange_settings_menu_blacklist">Sperretliste</string>
     <string name="orange_settings_force_exoplayer_for_vods">Tving ExoPlayer for VODs</string>
-    <string name="orange_settings_exoplayer_vod_speed">ExoPlayer VOD hastighet</string>
     <string name="orange_add">Legg til</string>
     <string name="orange_settings_hide_fsb">Skjul følge-/ abonner-knapp</string>
     <string name="orange_settings_user_mention_color">Endre @mention farge</string>

@@ -51,4 +51,5 @@ dependencies {
     api project(path: ':features:vodhunter')
     api project(path: ':features:swipper')
     api project(path: ':features:proxy')
+    api project(path: ':features:vodspeed')
 }

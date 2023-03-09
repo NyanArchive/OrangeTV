@@ -1,15 +1,16 @@
 diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate.smali b/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate.smali
 --- a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate.smali
 +++ b/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate.smali
-@@ -4,6 +4,7 @@
+@@ -4,6 +4,8 @@
  
  # interfaces
  .implements Ltv/twitch/android/shared/player/overlay/IPlayerOverlay;
 +.implements Ltv/orange/features/chapters/bridge/IChaptersDelegate;
++.implements Ltv/orange/features/vodspeed/bridge/IVodSpeedDelegate;
  
  
  # annotations
-@@ -82,6 +83,10 @@
+@@ -82,6 +84,12 @@
  
  .field private final twitchRadioButton:Landroid/widget/ImageView;
  
@@ -17,10 +18,12 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
 +
 +.field private final chaptersButton:Landroid/widget/ImageView;
 +
++.field private final orangeVodSpeedButton:Landroid/widget/ImageView;
++
  
  # direct methods
  .method public static synthetic $r8$lambda$3_b0QE3dXXjXEaW75wTCdAVAPRA(Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;Landroid/view/View;)V
-@@ -531,6 +536,38 @@
+@@ -531,6 +539,48 @@
  
      invoke-virtual {v1, v2}, Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate;->setBottomPlayerControlListener(Ltv/twitch/android/shared/player/overlay/BottomPlayerControlOverlayViewDelegate$BottomPlayerControlListener;)V
  
@@ -48,6 +51,16 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
 +
 +    iput-object v1, v0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->chaptersButton:Landroid/widget/ImageView;
 +
++    invoke-static {}, Ltv/orange/features/vodspeed/VodSpeed;->get()Ltv/orange/features/vodspeed/VodSpeed;
++
++    move-result-object v1
++
++    invoke-virtual {v1, v0}, Ltv/orange/features/vodspeed/VodSpeed;->getVodSpeedButton(Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;)Landroid/widget/ImageView;
++
++    move-result-object v1
++
++    iput-object v1, v0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->orangeVodSpeedButton:Landroid/widget/ImageView;
++
 +    invoke-static {}, Ltv/orange/features/ui/UI;->get()Ltv/orange/features/ui/UI;
 +
 +    move-result-object v1
@@ -59,7 +72,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
      return-void
  .end method
  
-@@ -1317,7 +1354,7 @@
+@@ -1317,7 +1367,7 @@
  .end method
  
  .method public final setClipButtonState(Z)V
@@ -68,7 +81,7 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
  
      .line 333
      iget-object v0, p0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->createClipButton:Landroid/widget/ImageView;
-@@ -1329,6 +1366,12 @@
+@@ -1329,6 +1379,12 @@
  
      invoke-static {v0, p1}, Ltv/twitch/android/app/core/ViewExtensionsKt;->visibilityForBoolean(Landroid/view/View;Z)V
  
@@ -81,13 +94,13 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
      return-void
  .end method
  
-@@ -1813,3 +1856,43 @@
+@@ -1813,3 +1869,77 @@
  
      return-void
  .end method
 +
 +.method public onBindVodModel(Ltv/twitch/android/models/videos/VodModel;Ltv/twitch/android/shared/player/overlay/seekable/SeekbarOverlayPresenter;)V
-+    .registers 5
++    .registers 7
 +    .param p1, "vod"    # Ltv/twitch/android/models/videos/VodModel;
 +        .annotation build Landroidx/annotation/NonNull;
 +        .end annotation
@@ -97,7 +110,8 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
 +        .end annotation
 +    .end param
 +
-+    .line 136
++    .prologue
++    .line 146
 +    invoke-static {}, Ltv/orange/features/chapters/VodChapters;->get()Ltv/orange/features/chapters/VodChapters;
 +
 +    move-result-object v0
@@ -106,14 +120,30 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
 +
 +    invoke-virtual {v0, v1, p1, p2}, Ltv/orange/features/chapters/VodChapters;->bindChaptersButton(Landroid/widget/ImageView;Ltv/twitch/android/models/videos/VodModel;Ltv/twitch/android/shared/player/overlay/seekable/SeekbarOverlayPresenter;)V
 +
-+    .line 137
++    .line 147
++    invoke-static {}, Ltv/orange/features/vodspeed/VodSpeed;->get()Ltv/orange/features/vodspeed/VodSpeed;
++
++    move-result-object v0
++
++    iget-object v1, p0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->orangeVodSpeedButton:Landroid/widget/ImageView;
++
++    iget-object v2, p0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->playerOverlayEventsSubject:Lio/reactivex/subjects/PublishSubject;
++
++    invoke-virtual {p0}, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->getContext()Landroid/content/Context;
++
++    move-result-object v3
++
++    invoke-virtual {v0, v1, v2, v3}, Ltv/orange/features/vodspeed/VodSpeed;->bindVodSpeedButton(Landroid/widget/ImageView;Lio/reactivex/subjects/PublishSubject;Landroid/content/Context;)V
++
++    .line 148
 +    return-void
 +.end method
 +
 +.method public hideChaptersButton()V
 +    .registers 3
 +
-+    .line 131
++    .prologue
++    .line 140
 +    invoke-static {}, Ltv/orange/features/chapters/VodChapters;->get()Ltv/orange/features/chapters/VodChapters;
 +
 +    move-result-object v0
@@ -122,6 +152,23 @@ diff --git a/smali_classes6/tv/twitch/android/shared/player/overlay/PlayerOverla
 +
 +    invoke-virtual {v0, v1}, Ltv/orange/features/chapters/VodChapters;->hideChaptersButton(Landroid/widget/ImageView;)V
 +
-+    .line 132
++    .line 141
++    invoke-static {}, Ltv/orange/features/vodspeed/VodSpeed;->get()Ltv/orange/features/vodspeed/VodSpeed;
++
++    move-result-object v0
++
++    iget-object v1, p0, Ltv/twitch/android/shared/player/overlay/PlayerOverlayViewDelegate;->orangeVodSpeedButton:Landroid/widget/ImageView;
++
++    invoke-virtual {v0, v1}, Ltv/orange/features/vodspeed/VodSpeed;->hideVodSpeedButton(Landroid/widget/ImageView;)V
++
++    .line 142
++    return-void
++.end method
++
++.method public hideVodSpeedButton()V
++    .registers 1
++
++    .prologue
++    .line 163
 +    return-void
 +.end method

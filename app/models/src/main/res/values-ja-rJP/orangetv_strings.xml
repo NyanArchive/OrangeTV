@@ -171,7 +171,6 @@
     <string name="orange_settings_hide_create_button">«作成»ボタンの非表示</string>
     <string name="orange_settings_menu_blacklist">ブラックリスト</string>
     <string name="orange_settings_force_exoplayer_for_vods">VODではExoPlayerを強制</string>
-    <string name="orange_settings_exoplayer_vod_speed">ExoPlayerのVOD速度</string>
     <string name="orange_add">追加</string>
     <string name="orange_settings_hide_fsb">«フォロー/サブスク»ボタンの非表示</string>
     <string name="orange_settings_user_mention_color">\@メンションのカラー変更</string>

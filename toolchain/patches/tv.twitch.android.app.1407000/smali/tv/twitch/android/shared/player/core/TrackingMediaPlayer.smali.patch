@@ -1,0 +1,21 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/player/core/TrackingMediaPlayer.smali b/smali_classes6/tv/twitch/android/shared/player/core/TrackingMediaPlayer.smali
+--- a/smali_classes6/tv/twitch/android/shared/player/core/TrackingMediaPlayer.smali
++++ b/smali_classes6/tv/twitch/android/shared/player/core/TrackingMediaPlayer.smali
+@@ -889,3 +889,17 @@
+ 
+     return-void
+ .end method
++
++.method public final setPlaybackRate(F)V
++    .registers 3
++    .param p1, "rate"    # F
++
++    .prologue
++    .line 16
++    iget-object v0, p0, Ltv/twitch/android/shared/player/core/TrackingMediaPlayer;->mediaPlayer:Lcom/amazonaws/ivs/player/MediaPlayer;
++
++    invoke-virtual {v0, p1}, Lcom/amazonaws/ivs/player/MediaPlayer;->setPlaybackRate(F)V
++
++    .line 17
++    return-void
++.end method

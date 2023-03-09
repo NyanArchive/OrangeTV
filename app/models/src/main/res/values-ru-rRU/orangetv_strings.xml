@@ -70,7 +70,7 @@
     <string name="orange_settings_pronouns">Местоимения (требуется авторизация)</string>
     <string name="orange_settings_auto_hide_message_input">Скрыть строку ввода в горизонтальной ориентации</string>
     <string name="orange_settings_hide_message_input">Скрыть строку ввода в чате</string>
-    <string name="orange_settings_landscape_chat_opacity">Прозрачность чата в горизонтальной ориентации</string>
+    <string name="orange_settings_landscape_chat_opacity">Непрозрачность чата в горизонтальной ориентации</string>
     <string name="orange_chapters_unknown">Главы</string>
     <string name="orange_settings_emote_quality">Качество смайликов</string>
     <string name="orange_emote_quality_low">Низкое</string>
@@ -173,7 +173,6 @@
     <string name="orange_settings_hide_create_button">Скрыть кнопку «Создать»</string>
     <string name="orange_settings_menu_blacklist">Черный список</string>
     <string name="orange_settings_force_exoplayer_for_vods">Воспроизводить записи через ExoPlayer</string>
-    <string name="orange_settings_exoplayer_vod_speed">Скорость воспроизведения (ExoPlayer)</string>
     <string name="orange_add">Добавить</string>
     <string name="orange_settings_hide_fsb">Скрыть кнопки «Отслеживать/Подписаться»</string>
     <string name="orange_settings_user_mention_color">Изменить цвет упоминания</string>

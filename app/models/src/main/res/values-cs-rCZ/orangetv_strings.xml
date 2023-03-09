@@ -171,7 +171,6 @@
     <string name="orange_settings_hide_create_button">Skrýt tlačítko «Vytvořit»</string>
     <string name="orange_settings_menu_blacklist">Zakázaná slova</string>
     <string name="orange_settings_force_exoplayer_for_vods">Vynutit ExoPlayer pro VODy</string>
-    <string name="orange_settings_exoplayer_vod_speed">Rychlost přehrávání VOD přes ExoPlayer</string>
     <string name="orange_add">Přidat</string>
     <string name="orange_settings_hide_fsb">Skrýt tlačítko «Sledovat/Předplatit»</string>
     <string name="orange_settings_user_mention_color">Změnit barvu @zmínka</string>
@@ -183,5 +182,4 @@
     <string name="orange_settings_hide_player_create_clip_button">Skrýt tlačítko «Vytvořit klip»</string>
     <string name="orange_settings_disable_sentry">Zakázat SentrySDK</string>
     <string name="orange_settings_hide_player_live_share_button">Skrýt tlačítko «Sdílet» pro živé streamy</string>
-    <string name="orange_settings_bttv_webp">Podpora BTTV WebP emotů</string>
 </resources>

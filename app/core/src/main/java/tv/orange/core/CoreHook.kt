@@ -2,7 +2,6 @@ package tv.orange.core
 
 import android.app.Activity
 import android.content.pm.Signature
-import com.google.android.exoplayer2.PlaybackParameters
 import com.google.android.exoplayer2.SimpleExoPlayer
 import io.reactivex.Single
 import tv.orange.core.compat.ClassCompat
@@ -54,19 +53,6 @@ class CoreHook @Inject constructor() : Feature {
                 PlayerImpl.Default -> default
                 PlayerImpl.Core -> PlayerImplementation.Core
                 PlayerImpl.Exo -> PlayerImplementation.Exo2
-            }
-        }
-
-        @JvmStatic
-        fun hookVodPlayerMediaClock(params: PlaybackParameters): PlaybackParameters {
-            return if (ClassCompat.isOnStackTrace("tv.twitch.android.shared.player.presenters.VodPlayerPresenter") ||
-                ClassCompat.isOnStackTrace("tv.twitch.android.shared.ads.AdsVodPlayerPresenter")
-            ) {
-                params.apply {
-                    speed = Flag.EXOPLAYER_VOD_SPEED.asInt() / 100f
-                }
-            } else {
-                params
             }
         }
 

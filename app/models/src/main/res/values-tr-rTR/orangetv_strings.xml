@@ -171,7 +171,6 @@
     <string name="orange_settings_hide_create_button">&lt;&lt;Oluştur&gt;&gt; butonunu gizle</string>
     <string name="orange_settings_menu_blacklist">Kara liste</string>
     <string name="orange_settings_force_exoplayer_for_vods">Geçmiş yayınlar için ExoPlayer\'i kullanmaya zorla</string>
-    <string name="orange_settings_exoplayer_vod_speed">ExoPlayer geçmiş yayın hızı</string>
     <string name="orange_add">Ekle</string>
     <string name="orange_settings_hide_fsb">Takip et/abone ol butonunu gizle</string>
     <string name="orange_settings_user_mention_color">\@etiket rengini değiştir</string>

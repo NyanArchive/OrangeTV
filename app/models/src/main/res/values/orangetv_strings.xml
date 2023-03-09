@@ -241,8 +241,6 @@
     <string name="orange_settings_menu_blacklist">Blacklist</string>
     <string name="orange_settings_force_exoplayer_for_vods">Force ExoPlayer for VODs</string>
     <string name="orange_settings_force_exoplayer_for_vods_desc" />
-    <string name="orange_settings_exoplayer_vod_speed">ExoPlayer VOD speed</string>
-    <string name="orange_settings_exoplayer_vod_speed_desc" />
     <string name="orange_add">Add</string>
     <string name="orange_settings_hide_fsb">Hide «Follow/Subscribe» button</string>
     <string name="orange_settings_hide_fsb_desc" />

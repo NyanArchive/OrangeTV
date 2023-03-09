@@ -171,7 +171,6 @@
     <string name="orange_settings_hide_create_button">Skryť «Vytvoriť» tlačidlo</string>
     <string name="orange_settings_menu_blacklist">Čierna listina</string>
     <string name="orange_settings_force_exoplayer_for_vods">Vynútiť ExoPlayer pre VODs</string>
-    <string name="orange_settings_exoplayer_vod_speed">Rýchlosť prehrávania VOD cez ExoPlayer</string>
     <string name="orange_add">Pridať</string>
     <string name="orange_settings_hide_fsb">Skryť tlačidlo «Sledovania/Predplatenia»</string>
     <string name="orange_settings_user_mention_color">Zmeniť farbu @zmienky</string>

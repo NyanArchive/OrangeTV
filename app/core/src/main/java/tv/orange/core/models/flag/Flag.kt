@@ -86,9 +86,7 @@ enum class Flag(
     REWIND_SEEK("backward_seek", "orange_settings_rewind_seek", IntRangeValue(5, 120, 10, step = 5)),
     MINI_PLAYER_SIZE("mini_player_size", "orange_settings_mini_player_size", IntRangeValue(50, 200, 100, step = 5)),
     VIBRATION_DURATION("vibration_duration", "orange_settings_vibration_duration", IntRangeValue(10, 1000, 100, step = 10)),
-    LANDSCAPE_CHAT_OPACITY("landscape_chat_opacity", "orange_settings_landscape_chat_opacity", IntRangeValue(0, 100, 30)),
-    EXOPLAYER_VOD_SPEED("exoplayer_vod_speed", "orange_settings_exoplayer_vod_speed", IntRangeValue(25, 200, 100, step = 5));
-
+    LANDSCAPE_CHAT_OPACITY("landscape_chat_opacity", "orange_settings_landscape_chat_opacity", IntRangeValue(0, 100, 30));
     constructor(prefKey: String, value: ValueHolder) : this(
         preferenceKey = prefKey,
         titleResName = null,

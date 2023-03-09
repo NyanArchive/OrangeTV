@@ -12,12 +12,13 @@ import tv.orange.features.refreshstream.di.module.RefreshStreamModule
 import tv.orange.features.spam.di.module.SpamModule
 import tv.orange.features.timer.di.module.TimerModule
 import tv.orange.features.usersearch.di.module.UserSearchModule
+import tv.orange.features.vodspeed.di.module.VodSpeedModule
 import tv.orange.features.vodsync.di.module.VodSyncModule
 
 @Module(
     includes = [ChaptersModule::class, ChatModule::class, LogsModule::class,
         RefreshStreamModule::class, SpamModule::class, TimerModule::class,
-        UserSearchModule::class, VodSyncModule::class]
+        UserSearchModule::class, VodSyncModule::class, VodSpeedModule::class]
 )
 class BridgeFeatureModule {
     @BridgeScope

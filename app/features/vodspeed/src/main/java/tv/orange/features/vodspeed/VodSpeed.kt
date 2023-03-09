@@ -5,6 +5,7 @@ import android.content.Context
 import android.widget.ImageView
 import io.reactivex.subjects.PublishSubject
 import tv.orange.core.Core
+import tv.orange.core.ResourcesManagerCore
 import tv.orange.core.util.ViewUtil.changeVisibility
 import tv.orange.features.vodspeed.view.ViewFactory
 import tv.orange.models.abc.Feature
@@ -13,7 +14,8 @@ import tv.twitch.android.shared.player.overlay.PlayerOverlayViewDelegate
 import javax.inject.Inject
 
 class VodSpeed @Inject constructor(
-    val viewFactory: ViewFactory
+    val viewFactory: ViewFactory,
+    val rm: ResourcesManagerCore
 ) : Feature {
     companion object {
         @JvmStatic
@@ -36,7 +38,7 @@ class VodSpeed @Inject constructor(
         button.changeVisibility(isVisible = true)
         button.setOnClickListener {
             val builder = AlertDialog.Builder(context)
-            builder.setTitle("Change speed")
+            builder.setTitle(rm.getStringId("orange_vodspeed_change_speed"))
 
             val animals = arrayOf("0.5", "0.75", "1.0", "1.25", "1.5", "1.75", "2.0", "2.5", "3.0")
             var checkedItem = 2

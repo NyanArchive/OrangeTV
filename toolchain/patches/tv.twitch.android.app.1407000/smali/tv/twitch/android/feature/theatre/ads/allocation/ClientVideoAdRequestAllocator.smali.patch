@@ -1,7 +1,53 @@
 diff --git a/smali_classes4/tv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator.smali b/smali_classes4/tv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator.smali
 --- a/smali_classes4/tv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator.smali
 +++ b/smali_classes4/tv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator.smali
-@@ -964,7 +964,7 @@
+@@ -774,44 +774,9 @@
+ .end method
+ 
+ .method private final dispatchAdRequest(Ltv/twitch/android/shared/ads/models/AdRequest;Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Bound;Ltv/twitch/android/models/ads/ClientAdRequestMetadata;Ltv/twitch/android/models/channel/ChannelMetadata;)V
+-    .locals 6
+-
+-    .line 440
+-    iget-object v1, p0, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator;->playerPresenter:Ltv/twitch/android/shared/player/presenters/IAdPlayerPresenter;
+-
+-    if-eqz v1, :cond_0
+-
+-    move-object v0, p0
+-
+-    move-object v2, p3
+-
+-    move-object v3, p2
+-
+-    move-object v4, p4
+-
+-    move-object v5, p1
+-
+-    .line 441
+-    invoke-direct/range {v0 .. v5}, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator;->createAdRequestInfo(Ltv/twitch/android/shared/player/presenters/IAdPlayerPresenter;Ltv/twitch/android/models/ads/ClientAdRequestMetadata;Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$Bound;Ltv/twitch/android/models/channel/ChannelMetadata;Ltv/twitch/android/shared/ads/models/AdRequest;)Ltv/twitch/android/shared/ads/models/AdRequestInfo;
+-
+-    move-result-object p1
+-
+-    .line 449
+-    iget-object p2, p0, Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator;->videoAdManager:Ltv/twitch/android/shared/ads/VideoAdManager;
+-
+-    invoke-virtual {p2, p1}, Ltv/twitch/android/shared/ads/VideoAdManager;->requestAds(Ltv/twitch/android/shared/ads/models/AdRequestInfo;)V
++    .locals 0
+ 
+     return-void
+-
+-    .line 440
+-    :cond_0
+-    new-instance p1, Ljava/lang/IllegalArgumentException;
+-
+-    const-string p2, "player cannot be null"
+-
+-    invoke-direct {p1, p2}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+-
+-    throw p1
+ .end method
+ 
+ .method private final initialState(Z)Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State;
+@@ -964,7 +929,7 @@
  .end method
  
  .method private final maybeRequestAd(Ltv/twitch/android/feature/theatre/ads/allocation/ClientVideoAdRequestAllocator$State$AdRequested;)Ltv/twitch/android/core/mvp/presenter/StateAndAction;
@@ -10,7 +56,7 @@ diff --git a/smali_classes4/tv/twitch/android/feature/theatre/ads/allocation/Cli
      .annotation system Ldalvik/annotation/Signature;
          value = {
              "(",
-@@ -976,128 +976,15 @@
+@@ -976,128 +941,15 @@
              ">;"
          }
      .end annotation
@@ -140,7 +186,7 @@ diff --git a/smali_classes4/tv/twitch/android/feature/theatre/ads/allocation/Cli
      .annotation system Ldalvik/annotation/Signature;
          value = {
              "(",
-@@ -1110,204 +997,11 @@
+@@ -1110,204 +962,11 @@
              ">;"
          }
      .end annotation

@@ -144,6 +144,11 @@ class CoreHook @Inject constructor() : Feature {
         @JvmStatic
         fun test(player: SimpleExoPlayer) {
         }
+
+        @JvmStatic
+        fun fixVideoSessionId(id: String?): String {
+            return id ?: ""
+        }
     }
 
     override fun onCreateFeature() {}

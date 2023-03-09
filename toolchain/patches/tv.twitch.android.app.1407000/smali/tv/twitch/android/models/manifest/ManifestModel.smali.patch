@@ -27,7 +27,28 @@ diff --git a/smali_classes8/tv/twitch/android/models/manifest/ManifestModel.smal
      iget-object v0, p0, Ltv/twitch/android/models/manifest/ManifestModel;->mBaseManifestURL:Ljava/lang/String;
  
      if-eqz p1, :cond_0
-@@ -926,3 +944,56 @@
+@@ -830,13 +848,18 @@
+ .end method
+ 
+ .method public getVideoSessionId()Ljava/lang/String;
+-    .locals 1
++    .registers 2
+ 
+-    .line 236
++    .prologue
++    .line 14
+     iget-object v0, p0, Ltv/twitch/android/models/manifest/ManifestModel;->mManifest:Ltv/twitch/android/models/manifest/extm3u;
+ 
+     iget-object v0, v0, Ltv/twitch/android/models/manifest/extm3u;->VideoSessionId:Ljava/lang/String;
+ 
++    invoke-static {v0}, Ltv/orange/core/CoreHook;->fixVideoSessionId(Ljava/lang/String;)Ljava/lang/String;
++
++    move-result-object v0
++
+     return-object v0
+ .end method
+ 
+@@ -926,3 +949,56 @@
  
      return v0
  .end method

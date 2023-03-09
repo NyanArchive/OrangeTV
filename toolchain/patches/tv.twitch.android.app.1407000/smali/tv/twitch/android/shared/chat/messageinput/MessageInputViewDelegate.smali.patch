@@ -1,7 +1,18 @@
 diff --git a/smali_classes5/tv/twitch/android/shared/chat/messageinput/MessageInputViewDelegate.smali b/smali_classes5/tv/twitch/android/shared/chat/messageinput/MessageInputViewDelegate.smali
 --- a/smali_classes5/tv/twitch/android/shared/chat/messageinput/MessageInputViewDelegate.smali
 +++ b/smali_classes5/tv/twitch/android/shared/chat/messageinput/MessageInputViewDelegate.smali
-@@ -2196,3 +2196,31 @@
+@@ -1746,6 +1746,10 @@
+ 
+     move-result v1
+ 
++    invoke-static {v1}, Ltv/orange/features/chat/ChatHookProvider;->changeBitsButtonVisibility(Z)Z
++
++    move-result v1
++
+     const/4 v2, 0x0
+ 
+     const/16 v3, 0x8
+@@ -2196,3 +2200,31 @@
  
      return-void
  .end method

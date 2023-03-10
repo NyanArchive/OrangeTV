@@ -12,3 +12,36 @@ diff --git a/smali_classes5/tv/twitch/android/shared/emotes/emotepicker/EmotePic
      invoke-virtual {v0, p1}, Ltv/twitch/android/shared/emotes/emotepicker/adapter/EmotePickerAdapterBinder;->bindItems(Ljava/util/List;)V
  
      goto :goto_0
+@@ -741,7 +745,7 @@
+ .end method
+ 
+ .method private final createAllEmoteSetsFlowable(Ljava/lang/Integer;Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerSource;)Lio/reactivex/Flowable;
+-    .locals 4
++    .locals 5
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+             "(",
+@@ -792,12 +796,20 @@
+     invoke-direct {v3, p0, p1, p2}, Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter$createAllEmoteSetsFlowable$1;-><init>(Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter;Ljava/lang/Integer;Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerSource;)V
+ 
+     .line 438
+-    new-instance p1, Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter$$ExternalSyntheticLambda3;
++    new-instance v4, Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter$$ExternalSyntheticLambda3;
+ 
+-    invoke-direct {p1, v3}, Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter$$ExternalSyntheticLambda3;-><init>(Lkotlin/jvm/functions/Function3;)V
++    invoke-direct {v4, v3}, Ltv/twitch/android/shared/emotes/emotepicker/EmotePickerPresenter$$ExternalSyntheticLambda3;-><init>(Lkotlin/jvm/functions/Function3;)V
+ 
+     .line 434
+-    invoke-static {v0, v1, v2, p1}, Lio/reactivex/Flowable;->combineLatest(Lorg/reactivestreams/Publisher;Lorg/reactivestreams/Publisher;Lorg/reactivestreams/Publisher;Lio/reactivex/functions/Function3;)Lio/reactivex/Flowable;
++    invoke-static {v0, v1, v2, v4}, Lio/reactivex/Flowable;->combineLatest(Lorg/reactivestreams/Publisher;Lorg/reactivestreams/Publisher;Lorg/reactivestreams/Publisher;Lio/reactivex/functions/Function3;)Lio/reactivex/Flowable;
++
++    move-result-object v4
++
++    invoke-static {}, Ltv/orange/features/chat/ChatHookProvider;->get()Ltv/orange/features/chat/ChatHookProvider;
++
++    move-result-object v0
++
++    invoke-virtual {v0, v4, p1}, Ltv/orange/features/chat/ChatHookProvider;->hookEmoteSetsFlowable(Lio/reactivex/Flowable;Ljava/lang/Integer;)Lio/reactivex/Flowable;
+ 
+     move-result-object p1
+ 

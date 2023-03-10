@@ -1,0 +1,30 @@
+diff --git a/smali_classes6/tv/twitch/android/shared/subscriptions/purchasers/GooglePlaySubscriptionPurchaser$purchase$3.smali b/smali_classes6/tv/twitch/android/shared/subscriptions/purchasers/GooglePlaySubscriptionPurchaser$purchase$3.smali
+--- a/smali_classes6/tv/twitch/android/shared/subscriptions/purchasers/GooglePlaySubscriptionPurchaser$purchase$3.smali
++++ b/smali_classes6/tv/twitch/android/shared/subscriptions/purchasers/GooglePlaySubscriptionPurchaser$purchase$3.smali
+@@ -53,7 +53,7 @@
+ 
+ # virtual methods
+ .method public final invoke(Ltv/twitch/android/shared/subscriptions/db/SubscriptionPurchaseEntity;)Lio/reactivex/SingleSource;
+-    .locals 3
++    .locals 4
+     .annotation system Ldalvik/annotation/Signature;
+         value = {
+             "(",
+@@ -81,9 +81,15 @@
+ 
+     invoke-virtual {p1}, Ltv/twitch/android/shared/subscriptions/db/SubscriptionPurchaseEntity;->getChannelId()Ljava/lang/String;
+ 
+-    move-result-object p1
++    move-result-object v3
++
++    invoke-static {v0, v1, v2, v3}, Ltv/twitch/android/shared/subscriptions/purchasers/GooglePlaySubscriptionPurchaser;->access$purchase(Ltv/twitch/android/shared/subscriptions/purchasers/GooglePlaySubscriptionPurchaser;Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)Lio/reactivex/Single;
++
++    move-result-object v3
++
++    iget-object v0, p0, Ltv/twitch/android/shared/subscriptions/purchasers/GooglePlaySubscriptionPurchaser$purchase$3;->$activity:Landroid/app/Activity;
+ 
+-    invoke-static {v0, v1, v2, p1}, Ltv/twitch/android/shared/subscriptions/purchasers/GooglePlaySubscriptionPurchaser;->access$purchase(Ltv/twitch/android/shared/subscriptions/purchasers/GooglePlaySubscriptionPurchaser;Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)Lio/reactivex/Single;
++    invoke-static {v0, v3, p1}, Ltv/orange/core/CoreHook;->injectBilling(Landroid/app/Activity;Lio/reactivex/Single;Ltv/twitch/android/shared/subscriptions/db/SubscriptionPurchaseEntity;)Lio/reactivex/Single;
+ 
+     move-result-object p1
+ 
